@@ -1,0 +1,8 @@
+.cache/
+__pycache__/
+*.pyc
+*.nc
+*.nc4
+*.HDF5
+*.h5
+*.gz
