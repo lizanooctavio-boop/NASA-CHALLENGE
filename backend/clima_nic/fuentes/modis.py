@@ -25,14 +25,15 @@ PRODUCTOS = {
     "MOD11A2": {"banda": "LST_Day_1km", "calidad": None, "escala": 0.02, "desplazamiento": -273.15,
                 "validos": None, "relleno": 0},
 }
-# Dos sitios por región, en zonas agrícolas o de vegetación representativas (lat, lon)
+# Tres sitios por región, en zonas agrícolas o de vegetación representativas (lat, lon)
 SITIOS = {
-    "pacifico": [("leon_llanura", 12.45, -86.85), ("rivas_istmo", 11.45, -85.85)],
-    "central": [("esteli_corredor_seco", 13.10, -86.35), ("chontales_juigalpa", 12.10, -85.35)],
-    "caribe": [("siuna_bosque", 13.75, -84.80), ("bluefields_interior", 12.05, -84.10)],
+    "pacifico": [("leon_llanura", 12.45, -86.85), ("rivas_istmo", 11.45, -85.85), ("chinandega_llanura", 12.62, -87.05)],
+    "central": [("esteli_corredor_seco", 13.10, -86.35), ("chontales_juigalpa", 12.10, -85.35),
+                ("matagalpa_sebaco", 12.85, -86.10)],
+    "caribe": [("siuna_bosque", 13.75, -84.80), ("bluefields_interior", 12.05, -84.10), ("waspam_sabana", 14.45, -83.75)],
 }
-# Subconjunto usado en la corrida del 12-11-2026: el servicio ORNL respondió a ~5 solicitudes/min, así que se
-# tomó un sitio por región y solo la banda NDVI (sin la de fiabilidad; se excluye solo el valor de relleno).
+# El servicio ORNL limita la velocidad: se usa solo la banda NDVI (sin la de fiabilidad; se excluye el valor de
+# relleno). LST se descarga en el primer sitio de cada región.
 SITIOS_RAPIDOS = {k: v[:1] for k, v in SITIOS.items()}
 
 
@@ -116,7 +117,7 @@ class Modis(Adaptador):
         return out
 
 
-def escribir_derivados(inicio=2000, fin=2024, hilos=8, salida=FENOMENOS, sitios=SITIOS_RAPIDOS, con_calidad=False):
+def escribir_derivados(inicio=2000, fin=2024, hilos=8, salida=FENOMENOS, sitios=SITIOS, con_calidad=False, lst=True):
     a = Modis()
     tareas = a.descargar(inicio, fin, "MOD13Q1", sitios=sitios, hilos=hilos, con_calidad=con_calidad)
     rec = a.recortar(tareas)
@@ -130,3 +131,15 @@ def escribir_derivados(inicio=2000, fin=2024, hilos=8, salida=FENOMENOS, sitios=
                     v = serie[fecha]
                     w.writerow([region, nombre, fecha, "" if not np.isfinite(v) else f"{v:.4f}"])
     print(f"NDVI: {sum(len(s) for r in rec.values() for s in r.values())} valores")
+    if lst:
+        tareas = a.descargar(inicio, fin, "MOD11A2", sitios=SITIOS_RAPIDOS, hilos=hilos)
+        rec = a.recortar(tareas, producto="MOD11A2")
+        with (salida / "lst_modis.csv").open("w", encoding="utf-8", newline="\n") as f:
+            w = csv.writer(f, lineterminator="\n")
+            w.writerow(["region", "sitio", "fecha", "lst_dia_c"])
+            for region, sitios_r in rec.items():
+                for nombre, serie in sitios_r.items():
+                    for fecha in sorted(serie):
+                        v = serie[fecha]
+                        w.writerow([region, nombre, fecha, "" if not np.isfinite(v) else f"{v:.2f}"])
+        print(f"LST: {sum(len(s) for r in rec.values() for s in r.values())} valores")

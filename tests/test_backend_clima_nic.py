@@ -133,11 +133,25 @@ def test_pdo_recupera_modo_principal():
 
 # ---------------------------------------------------------------- otros adaptadores
 
-def test_grealm_parser():
+def test_grealm_parser_formato_antiguo():
     texto = "Lake Nicaragua\nYYYYMMDD height\n19930105  0.52\n19930115 999.99\n2015.5 -0.80\nbasura\n"
-    f, h = leer_grealm(texto)
-    assert f[0] == "1993-01-05" and h == [0.52, -0.80]
-    assert f[1].startswith("2015-07")
+    obs = leer_grealm(texto)
+    assert [o["variacion_m"] for o in obs] == [0.52, -0.80]
+    assert obs[0]["fecha"] == "1993-01-05" and obs[1]["fecha"].startswith("2015-07")
+
+
+def test_grealm_parser_formato_gsfc():
+    texto = ("000351 Nicaragua           : Target database id number and name\n"
+             "  11.792  -85.714          : Latitude and longitude\n"
+             "Column 15: Target height variation in EGM2008 datum\n"
+             "POSDN   1 19921002  14 54   -0.19  0.051  11.88 ERA NIC ERA 3 9 0    31.84   0\n"
+             "TOPEX   2 19921012  12 52  999.99 99.999 999.99 ERA DOR ERA 4 0 0  9999.99   0\n"
+             "SEN6A 217 20261008  22  9    0.35  0.042  14.88 AMR GIM ECM 1 2 0    32.38   0\n")
+    obs = leer_grealm(texto)
+    assert len(obs) == 2  # la cabecera numérica y el relleno se excluyen
+    assert obs[0] == {"fecha": "1992-10-02", "mision": "POSDN", "variacion_m": -0.19, "error_m": 0.051,
+                      "altura_egm2008_m": 31.84}
+    assert obs[1]["altura_egm2008_m"] == 32.38
 
 
 def test_nex_calendarios_de_modelo():

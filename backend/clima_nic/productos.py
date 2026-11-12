@@ -71,10 +71,12 @@ VARIABLES = {
     "canicula_inicio": ("día del año", "canicula", "Inicio de la canícula", "Día del año en que empieza la canícula detectada."),
     "canicula_lluvia_15jul_15ago": ("mm", "canicula", "Lluvia del 15 de julio al 15 de agosto", "Ventana fija de la canícula."),
     "canicula_racha_seca": ("días", "canicula", "Racha seca en canícula", "Días seguidos sin lluvia entre el 15 de julio y el 15 de agosto."),
-    "ndvi": ("adimensional", "vegetacion", "Verdor de la vegetación (NDVI)", "Índice de vegetación de MODIS en dos sitios por región; también cambia con el uso del suelo."),
+    "ndvi": ("adimensional", "vegetacion", "Verdor de la vegetación (NDVI)", "Índice de vegetación de MODIS en un sitio por región; también cambia con el uso del suelo."),
+    "lst_dia": ("°C", "temperatura_superficie", "Temperatura de la superficie de día (MODIS)", "Temperatura de la superficie terrestre de día medida por MODIS (no es la del aire), en un sitio por región."),
+    "nivel_cocibolca": ("m s. n. m.", "nivel_lagos", "Nivel del lago Cocibolca", "Altura media anual del lago de Nicaragua medida por altímetros satelitales (G-REALM, datum EGM2008)."),
 }
 PRECIP = {k for k, v in VARIABLES.items() if v[1] in ("lluvia", "extremos_lluvia", "sequia", "canicula", "humedad",
-                                                      "humedad_suelo", "vegetacion")} | {"balance_hidrico"}
+                                                      "humedad_suelo", "vegetacion", "nivel_lagos")} | {"balance_hidrico"}
 CELDAS_MAPA = {"prcptot": "mm", "rx1day": "mm", "r95p": "mm", "tmax_media": "°C", "tmin_media": "°C", "tx90p": "% de días"}
 
 
@@ -422,7 +424,37 @@ def construir(permutaciones=200):
                     por.setdefault(r["region"], {}).setdefault(int(r["fecha"][:4]), []).append(float(r["ndvi"]))
         ndvi = {k: {a: float(np.mean(v)) for a, v in d.items() if len(v) >= 20 and a <= 2024} for k, d in por.items()}
 
-    regiones_out, objetivos, comparaciones = [], {}, {}
+    # LST de día (MODIS MOD11A2): media anual con ≥ 30 compuestos de 8 días
+    lst = {}
+    ruta_t = FENOMENOS / "lst_modis.csv"
+    if ruta_t.exists():
+        por = {}
+        with ruta_t.open(encoding="utf-8", newline="") as f:
+            for r in csv.DictReader(f):
+                if r["lst_dia_c"]:
+                    por.setdefault(r["region"], {}).setdefault(int(r["fecha"][:4]), []).append(float(r["lst_dia_c"]))
+        lst = {k: {a: float(np.mean(v)) for a, v in d.items() if len(v) >= 30 and a <= 2024} for k, d in por.items()}
+
+    # Nivel del Cocibolca (G-REALM, NASA GSFC): media anual con ≥ 24 pasos de 10 días
+    cocibolca, comparaciones_lago = {}, {}
+    ruta_l = FENOMENOS / "nivel_cocibolca_grealm.csv"
+    if ruta_l.exists():
+        por = {}
+        with ruta_l.open(encoding="utf-8", newline="") as f:
+            filas_l = list(csv.DictReader(f))
+        for r in filas_l:
+            por.setdefault(int(r["fecha"][:4]), []).append(float(r["altura_egm2008_m"]))
+        cocibolca = {a: float(np.mean(v)) for a, v in por.items() if len(v) >= 24 and a <= 2024}
+        oct10 = [float(r["altura_egm2008_m"]) for r in filas_l if r["fecha"].startswith("2010-10")]
+        if oct10:
+            comparaciones_lago = {"nivel_cocibolca_vs_ineter_oct2010": {
+                "grealm_egm2008_m": float(np.mean(oct10)), "n_pasos": len(oct10), "ineter_m": 32.91,
+                "diferencia_m": float(np.mean(oct10)) - 32.91,
+                "nota": ("G-REALM usa el geoide EGM2008 y INETER su propio datum de nivelación; una diferencia constante "
+                         "de algunas decenas de centímetros es esperable y no afecta a la tendencia ni a las anomalías."),
+                "minimo_anual": {"anio": min(cocibolca, key=cocibolca.get), "m": min(cocibolca.values())}}}
+
+    regiones_out, objetivos, comparaciones = [], {}, dict(comparaciones_lago)
     for k in ORDEN:
         s, sequia, can, temps = series_region(diario[k], celdas.get(k, {}), k, lat_media[k])
         if k in imerg_anual:
@@ -432,6 +464,10 @@ def construir(permutaciones=200):
             s["temperatura_gistemp"] = gis_anual[k]
         if k in ndvi:
             s["ndvi"] = ndvi[k]
+        if k in lst:
+            s["lst_dia"] = lst[k]
+        if k == "NIC" and cocibolca:
+            s["nivel_cocibolca"] = cocibolca
         indep = {}
         if k in imerg_anual:
             comunes = sorted(set(imerg_anual[k]) & set(s["lluvia_anual"]))
