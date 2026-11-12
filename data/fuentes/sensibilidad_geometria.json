@@ -1,0 +1,107 @@
+{
+  "delta_grados": 0.05,
+  "escenarios": {
+    "referencia": {
+      "NIC": {
+        "mm_por_decada": -62.332,
+        "ic_mm_por_decada": [
+          -210.763,
+          86.1
+        ],
+        "veredicto": "evidencia_insuficiente"
+      },
+      "HND": {
+        "mm_por_decada": -35.005,
+        "ic_mm_por_decada": [
+          -173.729,
+          103.72
+        ],
+        "veredicto": "evidencia_insuficiente"
+      },
+      "CRI": {
+        "mm_por_decada": -201.224,
+        "ic_mm_por_decada": [
+          -378.357,
+          -24.091
+        ],
+        "veredicto": "metodos_discrepan"
+      },
+      "NIC_fuera_caja": {
+        "mm_por_decada": -73.007,
+        "ic_mm_por_decada": [
+          -230.432,
+          84.418
+        ],
+        "veredicto": "evidencia_insuficiente"
+      }
+    },
+    "dilatado": {
+      "NIC": {
+        "mm_por_decada": -57.893,
+        "ic_mm_por_decada": [
+          -206.192,
+          90.406
+        ],
+        "veredicto": "evidencia_insuficiente"
+      },
+      "HND": {
+        "mm_por_decada": -38.141,
+        "ic_mm_por_decada": [
+          -176.066,
+          99.785
+        ],
+        "veredicto": "evidencia_insuficiente"
+      },
+      "CRI": {
+        "mm_por_decada": -178.045,
+        "ic_mm_por_decada": [
+          -345.839,
+          -10.251
+        ],
+        "veredicto": "metodos_discrepan"
+      },
+      "NIC_fuera_caja": {
+        "mm_por_decada": -70.106,
+        "ic_mm_por_decada": [
+          -226.588,
+          86.376
+        ],
+        "veredicto": "evidencia_insuficiente"
+      }
+    },
+    "erosionado": {
+      "NIC": {
+        "mm_por_decada": -68.337,
+        "ic_mm_por_decada": [
+          -216.469,
+          79.796
+        ],
+        "veredicto": "evidencia_insuficiente"
+      },
+      "HND": {
+        "mm_por_decada": -31.94,
+        "ic_mm_por_decada": [
+          -170.923,
+          107.044
+        ],
+        "veredicto": "evidencia_insuficiente"
+      },
+      "CRI": {
+        "mm_por_decada": -228.1,
+        "ic_mm_por_decada": [
+          -416.766,
+          -39.434
+        ],
+        "veredicto": "metodos_discrepan"
+      },
+      "NIC_fuera_caja": {
+        "mm_por_decada": -76.381,
+        "ic_mm_por_decada": [
+          -233.959,
+          81.196
+        ],
+        "veredicto": "evidencia_insuficiente"
+      }
+    }
+  }
+}

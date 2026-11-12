@@ -1,0 +1,4 @@
+# Solo para regenerar desde los HDF5 o las geometrías (no hace falta para generar_clima.py ni verificar_clima.py)
+shapely>=2.0
+pyproj>=3.6
+h5py>=3.10
