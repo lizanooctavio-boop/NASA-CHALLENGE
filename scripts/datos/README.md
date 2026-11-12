@@ -14,7 +14,7 @@ Genera y verifica los archivos derivados de `data/` que consume la demo. La inte
 | `sensibilidad_geometria.py` | los 288 HDF5 | `fuentes/sensibilidad_geometria.json` | + h5py |
 | `tendencia.py`, `comun.py` | — | módulos compartidos | numpy, scipy |
 
-`tendencia.py` es copia sin cambios de `sicc952/tendencia.py` (SHA-256 `0f493432cc9f496f1b6d0a83ed20d1669ff2bd0df67b73bb5f0a7b7ffe2f5abd`), el único código de SICC-952 incluido: es el que define el veredicto. No se copió ningún módulo de cultivos.
+`tendencia.py` es copia de `sicc952/tendencia.py` sin cambios de contenido (SHA-256 `00cb6f13cf6066d78912b155daa0206cf91f7b40f8e6c5dc525f19b29feff53a` con finales de línea LF), el único código de SICC-952 incluido: es el que define el veredicto. No se copió ningún módulo de cultivos.
 
 ## Verificar (sin HDF5)
 

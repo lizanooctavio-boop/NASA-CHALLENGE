@@ -209,7 +209,7 @@ if __name__ == "__main__":
     ap.add_argument("--salida", type=Path, default=DATOS / "clima.json")
     a = ap.parse_args()
     r = construir(a.datos)
-    a.salida.write_text(json.dumps(r, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    a.salida.write_text(json.dumps(r, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8", newline="\n")
     for d in r["dominios"]:
         t = d["tendencia"]
         print(f"{d['id']:15s} {len(d['anios_validos'])} años  {t['mm_por_decada']:9.3f} mm/década  "

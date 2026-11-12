@@ -83,11 +83,11 @@
     ],
     "integridad": {
       "mapa_base_sha256": "816eba5cb8fb968703b69f4e1d72bf9775f22b49f9f422cac55709c5c09d6f9f",
-      "dominios_geojson_sha256": "3f555d9a1f79263d75af68087172d2f89d83ce9cb527acc668af87f0725fceb1",
+      "dominios_geojson_sha256": "6d629f9404f8dca4208420597452b297f37bd0af6e2c682f675ac3dc258c710b",
       "serie_mensual_sha256": "06054f6e2d9896000c92669496f37dde241f83f742c1bd3873294230e6e444a2",
       "oni_csv_sha256": "14e74aa22c120ede3c9f38f4da5c7a0901e0406605164049a1c8f070b763f2f7",
       "manifiesto_imerg_sha256": "d33e87f5e51ab1a9225bd7c55e412ca2074c7d64584b77afe51cbe5c8e3fc879",
-      "sensibilidad_geometria_sha256": "f1d07cd3f58e563949b06d57ad5b4494e45b0d2fac07c79ac92f1697b7615fe6"
+      "sensibilidad_geometria_sha256": "327b8d0b9d7dfc2523a71fae12c961e34eea413b9abdf4161ad0abd1be54e27c"
     },
     "limites": [
       "Estado exploratorio: resultados de un diagnóstico, no una evaluación climática formal.",

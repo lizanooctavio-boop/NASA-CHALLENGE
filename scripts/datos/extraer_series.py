@@ -138,5 +138,5 @@ if __name__ == "__main__":
                                       "max_dif_anual_mm": float(np.abs(esf - ig).max()),
                                       "max_dif_anual_relativa": float((np.abs(esf - ig) / esf).max())}}
     (DATOS / "fuentes" / "comprobaciones_extraccion.json").write_text(
-        json.dumps(comp, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        json.dumps(comp, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(comp, ensure_ascii=False, indent=2))

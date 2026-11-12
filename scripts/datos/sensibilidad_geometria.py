@@ -39,5 +39,5 @@ if __name__ == "__main__":
         resultado["escenarios"][nombre] = {k: resumen(series, k) for k in (*PAISES, "NIC_fuera_caja")}
         print(nombre, {k: v["mm_por_decada"] for k, v in resultado["escenarios"][nombre].items()})
     destino = DATOS / "fuentes" / "sensibilidad_geometria.json"
-    destino.write_text(json.dumps(resultado, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    destino.write_text(json.dumps(resultado, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(destino)

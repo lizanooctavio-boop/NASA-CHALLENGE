@@ -64,6 +64,6 @@ if __name__ == "__main__":
     ap.add_argument("--salida", type=Path, default=DATOS / "dominios.geojson")
     a = ap.parse_args()
     r = construir(a.mapa)
-    a.salida.write_text(json.dumps(r, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    a.salida.write_text(json.dumps(r, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8", newline="\n")
     for f in r["features"]:
         print(f["id"], f["properties"]["area_km2"], "km²")
