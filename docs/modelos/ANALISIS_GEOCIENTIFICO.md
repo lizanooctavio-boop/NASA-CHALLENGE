@@ -18,6 +18,6 @@ Resumen de lo que usa el backend (las referencias completas están en el documen
 | Niño 3.4 como covariable obligatoria en tendencias de lluvia | `productos.analizar_variable`: toda variable de lluvia, sequía, canícula o humedad se ajusta con Niño 3.4 de junio–noviembre (`tendencia.controlada_por_indices`). Se aplica en todas las regiones, no solo Pacífico y Central. |
 | Índice CLLJ desde MERRA-2 | `fuentes/merra2.py` (925 hPa exacto, requiere Earthdata) y `fuentes/power.py` (aproximación sin cuenta con U a 10 m en la misma caja). Entra como modulador. |
 | PDO y AMO como moduladores, no supuestos | `fuentes/power.py` (índices desde la TSM de MERRA-2); `tendencia.controlada_por_todos_los_moduladores` y `correlacion_moduladores`. |
-| Nivel de lagos | `fuentes/lagos.py` (G-REALM y SWOT). G-REALM respondió 503 al consultar y falta el identificador de cada lago: implementado con pruebas sintéticas, sin datos aún. |
+| Nivel de lagos | `fuentes/lagos.py`: Cocibolca con G-REALM (NASA GSFC, objetivo 000351), 1992–2026; Xolotlán pendiente (solo SWOT, con Earthdata). |
 | ETCCDI con las definiciones de Aguilar et al. (2005) | `estadistica/indicadores.py`: TX90p, TN90p, R95p, Rx1day, Rx5day, CDD, CWD, SDII, R10mm, R20mm con umbrales de la base 1991–2020 (Aguilar usó 1971–2000 y estaciones; para comparar cifras hay que tener en cuenta la base y que aquí son celdas de reanálisis). |
 | Proyecciones solo como rangos por SSP | `proyecciones.py` y `escenarios_cmip6` en el JSON. |

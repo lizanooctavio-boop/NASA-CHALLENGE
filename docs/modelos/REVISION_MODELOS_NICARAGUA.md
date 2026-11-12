@@ -25,11 +25,11 @@ El pipeline de `codex/datos-climaticos` (contrato 1.0.0) analiza la lluvia anual
 | Humedad del suelo (satélite) | SMAP L4 SPL4SMGP | 9 km · 3 h | 2015-03 → | Earthdata | implementado, sin credenciales |
 | Almacenamiento de agua | GRACE/GRACE-FO JPL mascons RL06.3 | 0,5° (efectiva ~3°) · mensual | 2002-04 → (hueco 2017–18) | Earthdata | implementado, sin credenciales |
 | Vegetación | MODIS MOD13Q1 NDVI (ORNL DAAC) | 250 m · 16 días; 1 sitio de 3 × 3 km por región | 2000-02 → | sin cuenta | en uso (subconjunto) |
-| Temperatura de superficie | MODIS MOD11A2 LST | 1 km · 8 días | 2000 → | sin cuenta | implementado, no descargado |
+| Temperatura de superficie | MODIS MOD11A2 LST | 1 km · 8 días | 2000 → | sin cuenta | implementado; descarga pendiente (servicio ORNL lento) |
 | ENOS (Niño 3.4) | TS de MERRA-2 sobre el mar vía POWER | 0,5° × 0,625° · mensual | 1981 → | sin cuenta | en uso; **sustituye al ONI de NOAA** |
 | Atlántico (TNA, AMO), PDO | TS de MERRA-2 sobre el mar vía POWER (máscara de tierra Natural Earth) | igual | 1981 → | sin cuenta | en uso como moduladores |
 | CLLJ | U a 10 m (POWER, aproximación) / U a 925 hPa (MERRA-2 M2IMNPASM) | igual | 1981 → / 1980 → | sin cuenta / Earthdata | aproximación en uso |
-| Nivel de lagos | G-REALM (altimetría), SWOT | por lago | 1992 → / 2023 → | abierto / Earthdata | implementado, sin datos (G-REALM 503) |
+| Nivel de lagos | G-REALM (NASA GSFC, objetivo 000351 = Cocibolca), SWOT | por lago · 10 días | 1992-09 → / 2023 → | abierto / Earthdata | **Cocibolca en uso** (1 332 pasos 1992–2026); Xolotlán no está en G-REALM (solo SWOT, con cuenta) |
 | Ciclones tropicales | — | — | — | — | **no cubierto**: NASA no publica trayectorias; se ven solo por Rx1day/Rx5day |
 | Escenarios futuros | NEX-GDDP-CMIP6 v2.0 (6 modelos) | 0,25° · diaria | 1950–2100 | sin cuenta (NCCS THREDDS) | en uso: histórico 1995–2014, SSP2-4.5 y SSP5-8.5 2041–2060 |
 | Límites | Natural Earth (no NASA) | 1:50 m y 10 m | — | dominio público | en uso; SEDAC GPWv4 requeriría Earthdata y cambiaría las cifras del contrato |
@@ -75,6 +75,15 @@ Se detecta en 44/44 años en Pacífico y Central y en 42/44 en el Caribe. Duraci
 - **NDVI (MODIS, un sitio por región):** Central (Estelí) −0,043/década [−0,054; −0,031], detectada; Pacífico y Caribe sin tendencia. Un solo sitio y posible cambio de uso del suelo: es un indicio, no un resultado regional.
 - **Grados-día y radiación:** sin tendencia detectable (con el mismo problema de temperatura de MERRA-2).
 - **Mapas (57 celdas):** con FDR, todas las celdas «significativas» en lluvia total y R95p. Es otra manifestación del salto de MERRA-2, no 57 detecciones independientes.
+
+### 4.4 b Nivel del lago Cocibolca (G-REALM, NASA GSFC)
+
+G-REALM se trasladó del sitio retirado de USDA/IPAD a NASA Goddard (<https://earth.gsfc.nasa.gov/gwm/lake/Index>); el lago de Nicaragua es el objetivo **000351**. Serie de 10 días con TOPEX/Poseidon, Jason-1/2/3 y Sentinel-6A desde octubre de 1992, con altura en el datum EGM2008 (`data/fenomenos/nivel_cocibolca_grealm.csv`).
+
+- **Validación con INETER:** octubre de 2010 = 33,50 m (3 pasos) frente a 32,91 m de INETER: +0,59 m, coherente con la diferencia entre el geoide EGM2008 y el datum de nivelación nacional (desplazamiento constante que no afecta a tendencias ni anomalías).
+- **Sequía 2014–2016:** el mínimo anual de toda la serie es 2016 (31,21 m, ~1,5 m por debajo de 2011), lo que reproduce las bajas documentadas.
+- **Tendencia 1993–2024:** +0,09 m/década [−0,04; +0,21], Mann–Kendall modificado p = 0,37; con control por ENOS [−0,05; +0,18]: **evidencia insuficiente**. Domina la variabilidad plurianual: correlación −0,52 con la PDO y −0,39 con el CLLJ aproximado (descriptivas).
+- Xolotlán (lago de Managua) no figura en G-REALM; quedaría SWOT (2023 →, con Earthdata).
 
 ### 4.5 Pronóstico estacional (lluvia de junio–noviembre con índices de marzo–mayo, validación dejando un año fuera)
 
@@ -124,10 +133,20 @@ Los seis modelos coinciden en un calentamiento de 1,0–2,3 °C y casi todos en 
 
 1. **Cuenta Earthdata** (gratuita) y un `.netrc` en este equipo: con eso se activan IMERG 1998–2000 y diario (extremos y canícula a 0,1°, lo más urgente dado §4.1), CLLJ a 925 hPa, SMAP y GRACE-FO. Comando: `python -m clima_nic fuentes` para comprobar.
 2. Rehacer extremos, SPEI, canícula y el pronóstico por región con IMERG diario/mensual y reemplazar las versiones de MERRA-2.
-3. Nivel de lagos: obtener los identificadores de Cocibolca/Xolotlán en G-REALM (cuando responda) o en la PLD de SWOT.
+3. Nivel de lagos: Cocibolca resuelto (G-REALM 000351). Falta Xolotlán vía SWOT (PLD `lake_id`, Earthdata).
+7. MODIS: ampliar NDVI a los tres sitios por región ya definidos en `fuentes/modis.py` y descargar la LST de día (MOD11A2). El código está listo; el servicio ORNL respondió a ~6 solicitudes por minuto y la descarga (~45 min) se detuvo. Hoy el NDVI usa un sitio por región.
 4. Ampliar CMIP6 a más modelos y a 2081–2100; agregar Tmax/Tmin y lluvia diaria para extremos futuros.
 5. Revisar la pestaña Resources del reto (13-11-2026) y añadir las fuentes que liste.
 6. Que la interfaz (PR #2) decida si consume `fenomenos_nicaragua.json` o la API; no se tocó.
+
+## 7 b. Pendiente: Earthdata (401)
+
+`C:\Users\deran\_netrc` ya fue editado (no se leyó su contenido), pero GES DISC responde **401 (no autorizado)** al pedir un archivo de IMERG (dos intentos, 12-11-2026). Pasos para Angel:
+
+1. Confirmar el correo de la cuenta Earthdata (enlace que envía NASA al registrarse).
+2. En <https://urs.earthdata.nasa.gov/profile> → *Applications* → *Authorized Apps* → *Approve More Applications*, autorizar **NASA GESDISC DATA ARCHIVE** (y, para SMAP y GRACE-FO, *NSIDC DAAC* y *PO.DAAC*).
+3. **Cambiar la contraseña** (se escribió en un chat) y escribir usuario y contraseña nuevos en `_netrc`, en una sola línea: `machine urs.earthdata.nasa.gov login … password …`.
+4. Avisar con «ya». Se comprobará con una sola petición y, si responde 200, se activa: IMERG V07 1998–2000 y diario (extremos ETCCDI y canícula sin el artefacto de MERRA-2), CLLJ a 925 hPa (M2IMNPASM) como predictor del modelo estacional, SMAP L4 y GRACE-FO con tendencias por región.
 
 ## 8. Reproducir
 

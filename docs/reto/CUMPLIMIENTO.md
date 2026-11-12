@@ -16,7 +16,7 @@ Requisitos tomados de [`REQUISITOS_NASA.md`](REQUISITOS_NASA.md) (consulta del 1
 | Requisito | Módulo | Prueba | Estado |
 |---|---|---|---|
 | O1 Identificar variables NASA con potencial de tendencia | `fuentes/__init__.REGISTRO` (POWER, IMERG, MERRA-2, MODIS, SMAP, GRACE-FO, GISTEMP, NEX-GDDP-CMIP6, lagos); `GET /fuentes` | `test_registro_tiene_todas_las_fuentes_pedidas` | Cumplido |
-| O2 Adquirir datos de una región | `fuentes/base.recortar_malla` (ponderación por área EPSG:6933), `smap.recortar_puntos`, adaptadores | `test_recortar_malla_media_ponderada_por_area`, `test_recortar_malla_lon_0_360_y_nan`, `test_recortar_puntos_ease`, `test_power_leer_punto_sintetico` | Cumplido sin cuenta (POWER, GISTEMP, MODIS ORNL, NEX-GDDP); con Earthdata pendiente (IMERG 1998–2000, MERRA-2 directo, SMAP, GRACE-FO) |
+| O2 Adquirir datos de una región | `fuentes/base.recortar_malla` (ponderación por área EPSG:6933), `smap.recortar_puntos`, adaptadores | `test_recortar_malla_media_ponderada_por_area`, `test_recortar_malla_lon_0_360_y_nan`, `test_recortar_puntos_ease`, `test_power_leer_punto_sintetico` | Cumplido sin cuenta (POWER, GISTEMP, MODIS ORNL, NEX-GDDP, G-REALM); con Earthdata pendiente por error 401 (IMERG 1998–2000 y diario, MERRA-2 directo, SMAP, GRACE-FO; ver §7 b de la revisión) |
 | O3 Serie temporal larga y visualizable | `productos.series_region` (1981–2024 diario → anual/mensual); `consulta.tendencia` devuelve `anios`/`valores` | `test_a_mensual_y_anual`, `test_consulta_y_api` | Backend cumplido; la visualización es de la interfaz (PR #2) |
 | O4 Tasa de cambio y significancia (*t*, Mann–Kendall, IC) | `tendencia.py` (t con gl ajustados), `tendencia_robusta` (MK modificado, Sen con IC, HAC) | ver arriba | Cumplido |
 | Definiciones sencillas para el público | `productos.VARIABLES[*][3]` | `test_producto_estructura_y_cuatro_preguntas` | Cumplido |
@@ -37,5 +37,6 @@ Requisitos tomados de [`REQUISITOS_NASA.md`](REQUISITOS_NASA.md) (consulta del 1
 | Nunca un año futuro como pronóstico determinista | `consulta.pronostico_estacional` (rechaza años sin predictores), avisos en la respuesta | `test_consulta_y_api` (`pronostico_estacional(…, 2031)` → no disponible) |
 | Retroalimentación con historial de habilidad | `actualizar.py` → `data/historial/` | ejecución documentada en la revisión |
 | API | `api.py` (FastAPI) y CLI `python -m clima_nic` | `test_consulta_y_api` |
+| Nivel de lagos (Cocibolca, G-REALM NASA GSFC 000351) | `fuentes/lagos.py`, `productos` (`nivel_cocibolca`, `comparaciones_independientes.nivel_cocibolca_vs_ineter_oct2010`) | `test_grealm_parser_formato_gsfc`, `test_grealm_parser_formato_antiguo` |
 | Credenciales nunca expuestas | `fuentes/earthdata.py` | `test_hay_credenciales_lee_netrc_sin_exponerlo`, `test_adaptadores_earthdata_se_declaran` |
 | Contrato 1.0.0 intacto | `scripts/datos/verificar_clima.py` sin cambios | `python scripts/datos/verificar_clima.py` (80/80) |
