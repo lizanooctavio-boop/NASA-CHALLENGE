@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 
 const leer = ruta => readFileSync(ruta, 'utf8');
 let html = leer('index.html');
@@ -22,3 +22,7 @@ html = html.replace(/<script src="(src\/[^"]+\.js)"><\/script>/g, (_marca, ruta)
 
 mkdirSync('public', { recursive: true });
 writeFileSync('public/index.html', html, 'utf8');
+cpSync('visor', 'public/visor', { recursive: true });
+mkdirSync('public/src', { recursive: true });
+cpSync('src/fuentes-meteo.js', 'public/src/fuentes-meteo.js');
+cpSync('src/meteo-paletas.js', 'public/src/meteo-paletas.js');

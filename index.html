@@ -13,41 +13,58 @@
   <div class="contenedor">
     <header class="cabecera">
       <p class="antetitulo">NASA Space Apps · Earth System Trend Detective</p>
-      <h1>¿Está cambiando la lluvia en Nicaragua?</h1>
-      <p class="entradilla" id="entradilla">Explora la precipitación anual observada por GPM IMERG entre 2001 y 2024. Selecciona un área para ver cuánto cambia la lluvia y qué tan clara es la evidencia.</p>
+      <h1>Clima de Nicaragua</h1>
+      <p class="entradilla" id="entradilla">Explora la atmósfera y compara las tendencias de lluvia de Nicaragua con las de sus vecinos.</p>
+      <nav class="navegacion" aria-label="Vistas climáticas">
+        <a href="#mapa">Globo meteorológico</a>
+        <a href="visor/index.html">Mapa meteorológico 2D</a>
+        <a href="#t-resultado">Tendencias 2001–2024</a>
+      </nav>
       <div id="avisos" aria-live="polite"></div>
     </header>
 
     <main id="principal" tabindex="-1">
-      <div class="selector">
-        <span class="etiqueta" id="etq-region">Región analizada</span>
-        <div class="botones-region" role="radiogroup" aria-labelledby="etq-region" id="botones-region"></div>
-      </div>
-
       <div class="rejilla">
         <section class="tarjeta tarjeta-mapa" aria-labelledby="t-mapa">
           <div class="cabecera-mapa">
             <div>
-              <h2 id="t-mapa">Mapa de tendencias de lluvia</h2>
-              <p class="sub" id="sub-mapa">El color muestra la pendiente de Theil–Sen por área.</p>
+              <h2 id="t-mapa">Globo meteorológico</h2>
+              <p class="sub" id="sub-mapa">Campo mundial ECMWF IFS y viento a 10 m.</p>
             </div>
             <div class="vistas-mapa" role="group" aria-label="Encuadre del mapa">
               <button type="button" data-vista="globo" aria-pressed="true">Globo 3D</button>
               <button type="button" data-vista="regional" aria-pressed="false">Mapa regional</button>
             </div>
           </div>
+          <div class="controles-globo" id="controles-globo">
+            <label>Capa <select id="variable-globo">
+              <option value="temperatura_c">Temperatura</option><option value="precipitacion_mm">Lluvia</option>
+              <option value="viento_ms">Viento</option><option value="rafagas_ms">Ráfagas</option>
+              <option value="nubes_pct">Nubes</option><option value="humedad_pct">Humedad</option>
+              <option value="presion_hpa">Presión</option><option value="tendencia">Tendencia de lluvia</option>
+            </select></label>
+            <label><input type="checkbox" id="viento-globo" checked> Partículas de viento</label>
+          </div>
           <div class="grafica mapa" id="mapa"></div>
           <div class="pie-globo" id="pie-globo">
             <span id="ayuda-globo">Arrastra el globo para girarlo. También puedes usar las flechas del teclado.</span>
             <button type="button" id="centrar-nicaragua">Centrar Nicaragua</button>
           </div>
+          <div id="hora-globo" class="hora-globo">
+            <label>Hora del modelo <input type="range" id="paso-globo" min="0" max="0" disabled></label>
+            <p id="estado-globo" role="status">Cargando la corrida meteorológica…</p>
+          </div>
           <div class="escala-div" id="escala-mapa"></div>
-          <p class="descripcion-mapa">El contorno ámbar delimita la caja original de SICC. Las tendencias son promedios por área. Cartografía de referencia: Natural Earth.</p>
+          <p class="descripcion-mapa" id="nota-mapa"></p>
         </section>
 
         <div class="columna">
+          <div class="selector">
+            <span class="etiqueta" id="etq-region">Región analizada</span>
+            <div class="botones-region" role="radiogroup" aria-labelledby="etq-region" id="botones-region"></div>
+          </div>
           <section class="tarjeta" aria-labelledby="t-resultado" aria-live="polite" id="tarjeta-resultado">
-            <h2 id="t-resultado" class="solo-lector">Resultado</h2>
+            <h2 id="t-resultado">Tendencia de lluvia anual</h2>
             <div id="veredicto"></div>
             <div class="respuesta" id="respuesta"></div>
           </section>
@@ -112,6 +129,9 @@
   <script src="src/datos/contornos.js"></script>
   <script src="src/datos/base-mundial.js"></script>
   <script src="src/datos/ejemplo.js"></script>
+  <script src="src/fuentes-meteo.js"></script>
+  <script src="src/meteo-paletas.js"></script>
+  <script src="src/globo-meteo.js"></script>
   <script src="src/graficas.js"></script>
   <script src="src/globo.js"></script>
   <script src="src/app.js"></script>

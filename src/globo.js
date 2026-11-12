@@ -69,6 +69,7 @@
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     if (!ctx) return null;
+    canvas.className = 'esfera';
     canvas.tabIndex = 0;
     canvas.setAttribute('role', 'img');
     canvas.setAttribute('aria-describedby', 'ayuda-globo');
@@ -82,25 +83,46 @@
     const pixelsContext = superficie.getContext('2d');
     texturaMundial(mapa);
     const base = mapa.getImageData(0, 0, ANCHO, ALTO);
+    const trazas = document.createElement('canvas');
+    trazas.className = 'trazas-viento';
+    trazas.setAttribute('aria-hidden', 'true');
+    const viento = window.GloboMeteo.viento(trazas, proyectar);
 
     let lon = NICARAGUA[0], lat = NICARAGUA[1];
     let regiones = [], seleccion = 'nicaragua', colores, pixeles, frame = 0, imagen;
     let marcas = [], centroX, centroY, radio, gesto = null;
+    let ultimoCampo;
 
-    function actualizar(nuevasRegiones, id, nuevosColores) {
-      if (!contenedor.contains(canvas)) contenedor.replaceChildren(canvas);
-      if (regiones !== nuevasRegiones || seleccion !== id || !pixeles || colores.join() !== nuevosColores.join()) {
+    function proyectar(lambda, phi) {
+      const d = (lambda - lon) * RAD, p = phi * RAD, c = lat * RAD;
+      const x = Math.cos(p) * Math.sin(d), y = Math.sin(p) * Math.cos(c) - Math.cos(p) * Math.cos(d) * Math.sin(c);
+      const z = Math.sin(p) * Math.sin(c) + Math.cos(p) * Math.cos(d) * Math.cos(c);
+      return z > .035 ? [centroX + radio * x, centroY - radio * y] : null;
+    }
+
+    function actualizar(nuevasRegiones, id, nuevosColores, textura) {
+      if (!contenedor.contains(canvas)) contenedor.replaceChildren(canvas, trazas);
+      if (regiones !== nuevasRegiones || seleccion !== id || !pixeles || ultimoCampo !== textura || colores.join() !== nuevosColores.join()) {
         regiones = nuevasRegiones;
         seleccion = id;
         colores = nuevosColores;
+        ultimoCampo = textura;
         canvas.setAttribute('aria-label', 'Globo terrestre 3D. Área seleccionada: ' + regiones.find(r => r.id === id).nombre);
         mapa.putImageData(base, 0, 0);
+        if (textura) {
+          mapa.globalAlpha = .94;
+          mapa.drawImage(textura, 0, 0, ANCHO, ALTO);
+          mapa.globalAlpha = 1;
+          mapa.strokeStyle = 'rgba(25,25,30,.55)';
+          mapa.lineWidth = 1.25;
+          window.SOF_BASE_MUNDIAL.forEach(p => { trazarPoligono(mapa, p.anillos); mapa.stroke(); });
+        }
         regiones.slice().sort((a, b) => (a.id === 'caja_original') - (b.id === 'caja_original')).forEach(r => {
           poligonos(r).forEach(anillos => {
             trazarPoligono(mapa, anillos);
             mapa.fillStyle = colores[regiones.indexOf(r)];
-            mapa.globalAlpha = r.id === id ? .95 : .62;
-            mapa.fill('evenodd');
+            mapa.globalAlpha = textura ? 0 : r.id === id ? .95 : .62;
+            if (!textura) mapa.fill('evenodd');
             mapa.globalAlpha = 1;
             mapa.strokeStyle = r.id === 'caja_original' ? '#ffd08a' : r.id === id ? '#f8efd5' : '#84a59b';
             mapa.lineWidth = r.id === id ? 2.1 : 1;
@@ -125,6 +147,8 @@
         canvas.height = h;
         superficie.width = w;
         superficie.height = h;
+        trazas.width = w;
+        trazas.height = h;
         imagen = ctx.createImageData(w, h);
       }
       const salida = imagen.data;
@@ -188,6 +212,7 @@
         ctx.fillText(nombre, izquierda, ty);
         marcas.push({ id, izquierda, derecha: izquierda + ancho, y: ty });
       });
+      viento.renovar();
     }
 
     function girar(dx, dy) {
@@ -241,6 +266,7 @@
 
     return {
       actualizar,
+      viento: viento.actualizar,
       centrar: () => {
         [lon, lat] = NICARAGUA;
         programar();

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SOF Clima · Mapa meteorológico</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<aside>
+  <div class="cabeza-menu"><div class="marca">SICC<span>952</span></div><button id="plegar-menu" type="button" aria-expanded="true" aria-controls="menu-principal" aria-label="Plegar menú" title="Plegar menú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button></div>
+  <p class="sub">Laboratorio climático<br>Nicaragua · Río San Juan</p>
+  <nav id="menu-principal" aria-label="Secciones">
+<button class="activo" data-tab="meteorologia" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"/></svg><span class="txt">Mapa meteorológico</span></button>
+    <button data-tab="fenomenos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/></svg><span class="txt">Fenómenos: El Niño y ciclones</span></button>
+    <button data-tab="graficas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M6 20v-7M11 20V5M16 20v-10"/></svg><span class="txt">Gráficas de la cuenca</span></button>
+    <button data-tab="escenarios"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 14.8V4.5a2.5 2.5 0 0 0-5 0v10.3a4.5 4.5 0 1 0 5 0zM11.5 9v8"/></svg><span class="txt">Escenarios climáticos</span></button>
+<button data-tab="exportar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span class="txt">Informes CSV y publicación</span></button>
+  </nav>
+  <a class="volver" href="/" aria-label="Volver al globo y a las tendencias nacionales"><span aria-hidden="true">◉</span> <span class="txt">Globo y tendencias</span></a>
+  <div class="pie">NASA Space Apps<br>Earth System Trend Detective</div>
+</aside>
+
+<main>
+<header>
+  <div><p class="etiqueta">NASA SPACE APPS</p><h1 id="titulo">Mapa meteorológico</h1></div>
+  <div class="acciones"><div class="indicador-envoltura"><button id="indicador-datos" type="button" class="indicador" data-nivel="pendiente" aria-expanded="false" aria-controls="indicador-detalle"><i aria-hidden="true"></i><span id="indicador-texto">Comprobando datos…</span></button><div id="indicador-detalle" class="ventana" role="region" aria-label="Estado de los datos meteorológicos" hidden></div></div><button id="solomapa" type="button" aria-pressed="false">Solo mapa</button><span class="estado">Prototipo exploratorio</span></div>
+</header>
+<div id="error" role="alert" hidden><span id="error-texto"></span><button id="error-cerrar" type="button" aria-label="Cerrar aviso de error">×</button></div>
+<div id="aviso-publico" role="note" hidden><span>Versión de demostración de un proyecto de investigación: estimaciones de modelo e imágenes, sin validación local. No es un servicio oficial; ante cualquier amenaza sigue los avisos de SINAPRED e INETER.</span><button id="aviso-cerrar" type="button" aria-label="Ocultar aviso de demostración">×</button></div>
+
+<section id="meteorologia" class="vista">
+  <div class="intro"><h2>Tiempo sobre Nicaragua, hora a hora</h2><p>Selecciona una capa y una hora de la corrida guardada. La malla regional muestra 6 horas previas y 48 de pronóstico ECMWF IFS vía Open-Meteo. Son estimaciones de modelo con la fecha indicada en la línea de tiempo.</p></div>
+  <div class="controles"><button id="actualizar-campo" type="button">Recargar datos guardados</button><button id="centrar" type="button">Centrar en Nicaragua</button><button id="exp-campo" type="button" data-csv-meteo="campo" disabled>Descargar mapa de esta hora (CSV)</button></div>
+  <label class="rango" for="opacidad-temp">Opacidad de la capa de color<input id="opacidad-temp" type="range" min="15" max="90" value="62"></label>
+  <p id="campo-estado" role="status">Cargando la corrida meteorológica guardada…</p>
+  <p id="mundial-estado" role="status">Comprobando vigencia e intervalos de la malla mundial…</p>
+  <p class="nota">Si falta la malla regional, la línea de tiempo usa los pasos de 3 h de la corrida mundial guardada.</p>
+  <p id="vivo-estado" role="status">Esperando capas…</p>
+  <article>
+    <h2 id="meteograma-titulo">Pronóstico 48 h en un punto</h2>
+    <p id="meteograma-estado" class="nota" role="status"></p>
+    <p class="graf-aviso nota"></p>
+    <div class="graf alta" hidden><canvas id="graf-meteograma" aria-label="Pronóstico horario del punto elegido"></canvas></div>
+    <div class="controles"><button id="exp-punto" type="button" data-csv-meteo="pronostico_punto" disabled>Descargar pronóstico del punto (CSV)</button></div>
+    <p id="csv-meteo-estado" class="nota" role="status">Esperando malla regional para los CSV meteorológicos.</p>
+  </article>
+  <article><h2>Consulta meteorológica puntual</h2>
+    <form id="consulta-punto" class="controles"><label>Latitud<input id="lat" type="number" step="any" min="-90" max="90" value="12.14" required></label><label>Longitud<input id="lon" type="number" step="any" min="-180" max="180" value="-86.25" required></label><button id="consultar" type="submit">Consultar punto</button></form>
+    <div id="meteo" role="status"><p>Pulsa el mapa o consulta coordenadas. ECMWF IFS 0,25° a través de Open-Meteo; estimaciones de modelo, no observaciones de estación.</p></div>
+  </article>
+  <details class="mundial"><summary>Campo mundial guardado (ECMWF)</summary>
+    <div class="controles"><button id="cargargrilla">Cargar campo mundial guardado</button><label>Capa mundial<select id="capa"><option value="temperatura_c">Temperatura</option><option value="viento">Viento · vectores</option><option value="precipitacion_mm_3h">Precipitación · 3 horas</option><option value="ninguna">Solo mapa base</option></select></label><button id="mundo">Mundo</button></div>
+    <p id="grillaestado" role="status">Las capas se cargan desde el archivo del piloto; no hay actualización automática en segundo plano.</p><p id="leyenda" class="unidad"></p><p id="mapaestado" role="status">Cargando mapa base…</p>
+  </details>
+  <p class="nota">Mapa base y nombres: OpenStreetMap con CARTO o Esri (ver atribución en el mapa). Campos ECMWF, CC BY 4.0, vía <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a> (uso gratuito no comercial); la interpolación suaviza y no aumenta la resolución. Satélite, lluvia IMERG, anomalía del mar y aerosoles de NASA GIBS; radar de RainViewer (cobertura parcial en Nicaragua).</p>
+</section>
+
+<section id="fenomenos" class="vista" hidden>
+  <div class="intro"><h2>El Niño–Oscilación del Sur (ENOS)</h2><p>Índice ONI (media de 3 meses de la anomalía de temperatura del mar en la región Niño 3.4) y anomalías semanales. Indicadores oceánicos de NOAA, no pronósticos para la cuenca.</p></div>
+  <div id="enos-tarjetas" class="tarjetas"></div>
+  <p id="enos-estado" class="nota" role="status">Cargando ENOS…</p>
+  <article><h2>ONI 1950–hoy</h2><p class="graf-aviso nota"></p><div class="graf"><canvas id="graf-oni"></canvas></div></article>
+  <article><h2>Anomalías semanales por región Niño (últimos 6 meses)</h2><div class="graf"><canvas id="graf-nino34"></canvas></div>
+    <div class="controles"><button type="button" data-activar="chk-sst" data-vista="2,-110,3">Ver anomalía del mar en el mapa</button><a class="boton" href="/clima-base/enos.csv" download>Descargar ONI (CSV)</a></div></article>
+  <article><h2>Ciclones tropicales activos</h2><p id="tormentas-estado" class="nota" role="status">Consultando el NHC…</p><ul id="lista-tormentas" class="lista"></ul>
+    <div class="controles"><button type="button" data-activar="chk-tormentas" data-vista="15,-85,4">Ver ciclones en el mapa</button><a class="boton" href="/clima-base/tormentas.csv" download>Descargar ciclones activos (CSV)</a></div></article>
+  <article><h2>Ciclones históricos cerca de la cuenca</h2><div class="graf"><canvas id="graf-tormentas"></canvas></div><div class="controles"><a class="boton" href="/clima-base/tormentas_historicas.csv" download>Descargar histórico HURDAT2 (CSV)</a></div></article>
+  <article><h2>Otros fenómenos en el mapa</h2>
+    <ul class="lista">
+      <li><strong>Lluvia satelital IMERG</strong> (NASA GPM, cada 30 min, ~5–7 h de retraso). <button type="button" class="mini" data-activar="chk-imerg" data-vista="12.6,-85.1,6">Ver</button></li>
+      <li><strong>Polvo y humo</strong>: espesor óptico de aerosoles MODIS (diario). Útil para episodios de polvo del Sahara y quemas. <button type="button" class="mini" data-activar="chk-aod" data-vista="14,-75,4">Ver</button></li>
+      <li><strong>Radar de lluvia</strong> RainViewer (cobertura parcial en Nicaragua). <button type="button" class="mini" data-activar="chk-radar" data-vista="12.6,-85.1,6">Ver</button></li>
+      <li><strong>Ráfagas y presión</strong>: en la barra de capas del mapa (modelo ECMWF).</li>
+      <li class="nota">Focos de incendio: NASA FIRMS exige una clave gratuita (MAP_KEY) y las teselas VIIRS de GIBS son vectoriales; quedan pendientes. Alertas oficiales: consultar SINAPRED e INETER.</li>
+    </ul></article>
+</section>
+
+<section id="graficas" class="vista" hidden>
+  <div class="intro"><h2>Clima observado de la cuenca</h2><p>Caja geográfica de la cuenca 952-69: lluvia CHIRPS v2 y temperatura Berkeley Earth / NASA POWER ajustada. Son productos satelitales y de reanálisis, no estaciones.</p></div>
+  <p class="graf-aviso nota"></p>
+  <article id="tendencia" aria-labelledby="tend-titulo">
+    <h2 id="tend-titulo">¿Ha cambiado la lluvia anual en la zona de estudio?</h2>
+    <p class="nota">Reto NASA Space Apps · Earth System Trend Detective. Variable: precipitación anual (mm/año) en la «caja de estudio de SICC», que no es el polígono oficial de la cuenca.</p>
+    <div class="controles"><label>Producto<select id="tend-producto"></select></label></div>
+    <p id="tend-estado" class="nota" role="status">Cargando…</p>
+    <div id="tend-mapa" class="tend-mapa" aria-label="Mapa de la caja de estudio"></div>
+    <div class="graf"><canvas id="graf-tendencia" role="img" aria-label="Precipitación anual y recta de tendencia"></canvas></div>
+    <dl id="tend-resumen" class="tend-resumen"></dl>
+    <p id="tend-interpretacion"></p>
+    <p id="tend-calendario" class="nota"></p>
+    <details><summary>Método, controles y sensibilidad</summary>
+      <p id="tend-metodo" class="nota"></p>
+      <div class="tabla"><table><thead><tr><th>Estimación</th><th>mm/década</th><th>IC 95 % (mm/década)</th><th>Años</th></tr></thead><tbody id="tend-filas"></tbody></table></div>
+    </details>
+    <div class="controles"><a id="tend-csv-anual" class="boton" href="/clima-base/tendencia_precipitacion_anual.csv" download>Descargar serie anual y resultado (CSV)</a><a id="tend-csv-mensual" class="boton" href="/clima-base/tendencia_precipitacion_mensual_imerg.csv" download>Procedencia mensual IMERG (CSV)</a></div>
+  </article>
+
+  <article><h2>Lluvia y temperatura anual</h2><div class="graf"><canvas id="graf-anual"></canvas></div></article>
+  <article><h2>Año en curso frente a lo normal (1991–2020)</h2><div class="graf"><canvas id="graf-mensual"></canvas></div><div class="controles"><a class="boton" href="/clima-base/serie_cuenca.csv" download>Descargar serie mensual (CSV)</a></div></article>
+</section>
+
+<section id="escenarios" class="vista" hidden>
+  <div class="controles"><label>Escenario<select id="ssp"><option>ssp126</option><option selected>ssp245</option><option>ssp370</option><option>ssp585</option></select></label><label>Ventana climática<select id="ventana-cmip"></select></label></div>
+  <article><h2>Cambio climático por período</h2><p>Media de cambios estacionales del ensamble heredado, respecto a la base 1981–1995. Región SCA; temperatura en °C y precipitación en %. Las curvas corresponden a la ventana estacional elegida.</p><div id="cambios" class="tarjetas"></div></article>
+  <article><h2>Calentamiento estacional 2026–2100</h2><div class="graf"><canvas id="graf-dT"></canvas></div></article>
+  <article><h2>Cambio de precipitación 2026–2100</h2><div class="graf"><canvas id="graf-dP"></canvas></div></article>
+  <div class="controles"><a class="boton" href="/clima-base/proyecciones.csv" download>Descargar cambios de temperatura y precipitación (CSV)</a></div>
+</section>
+
+<section id="exportar" class="vista" hidden>
+  <div class="intro"><h2>Informes CSV</h2><p>Cada archivo incluye en sus primeras líneas (comentadas con #) la fuente, la hora de generación y la advertencia de uso. Codificación UTF-8 compatible con Excel.</p></div>
+  <article><ul class="lista descargas">
+    <li><button type="button" data-csv-meteo="campo" disabled>Malla regional de la hora actual</button> — 224 puntos, 8 variables de modelo.</li>
+    <li><button type="button" data-csv-meteo="pronostico_punto" disabled>Pronóstico horario de Managua</button> — 54 horas.</li>
+    <li><a href="/clima-base/serie_cuenca.csv" download>Serie mensual observada de la cuenca</a> — 1981–2026.</li>
+    <li><a href="/clima-base/enos.csv" download>Índice ONI</a> — 1950–hoy.</li>
+    <li><a href="/clima-base/tormentas.csv" download>Ciclones activos (NHC)</a> y <a href="/clima-base/tormentas_historicas.csv" download>histórico cercano (HURDAT2)</a>.</li>
+  </ul><p id="csv-informes-estado" class="nota" role="status">Esperando malla regional para los CSV meteorológicos.</p></article>
+
+</section>
+</main>
+
+<div id="mapa" aria-label="Mapa de Nicaragua con capas meteorológicas"></div>
+<div id="controles-mapa" role="region" aria-label="Controles y estado meteorológico">
+<div id="barra-capas" class="ventana capas-mapa" role="toolbar" aria-label="Capas del mapa">
+  <div class="ventana-barra"><span class="ventana-titulo">Capas</span></div>
+  <div class="ventana-cuerpo">
+    <button type="button" data-var="temperatura_c" aria-pressed="true"><i style="--c:linear-gradient(90deg,#2e5ec4,#fcd448,#d63036)"></i>Temperatura</button>
+    <button type="button" data-var="precipitacion_mm" aria-pressed="false"><i style="--c:linear-gradient(90deg,#96cdff,#286ee6,#e12337)"></i>Lluvia</button>
+    <button type="button" data-var="viento_ms" aria-pressed="false"><i style="--c:linear-gradient(90deg,#2a3a80,#34b68c,#da3832)"></i>Viento</button>
+    <button type="button" data-var="rafagas_ms" aria-pressed="false"><i style="--c:linear-gradient(90deg,#2880c4,#d6d640,#96248c)"></i>Ráfagas</button>
+    <button type="button" data-var="nubes_pct" aria-pressed="false"><i style="--c:linear-gradient(90deg,#3c5a78,#fafbfd)"></i>Nubes</button>
+    <button type="button" data-var="humedad_pct" aria-pressed="false"><i style="--c:linear-gradient(90deg,#aa6e3c,#96ce96,#2236a0)"></i>Humedad</button>
+    <button type="button" data-var="presion_hpa" aria-pressed="false"><i style="--c:linear-gradient(90deg,#6e2896,#6ec86e,#d23232)"></i>Presión</button>
+    <button type="button" data-var="ninguna" aria-pressed="false"><i style="--c:#0a1a2e"></i>Sin color</button>
+    <hr>
+    <label class="chk"><input type="checkbox" id="chk-particulas" checked> Partículas de viento</label>
+    <label class="chk"><input type="checkbox" id="chk-sat" checked> Satélite GOES</label>
+    <label class="chk"><input type="checkbox" id="chk-radar"> Radar</label>
+    <label class="chk"><input type="checkbox" id="chk-imerg"> Lluvia IMERG</label>
+    <label class="chk"><input type="checkbox" id="chk-sst"> Anomalía del mar</label>
+    <label class="chk"><input type="checkbox" id="chk-aod"> Polvo y humo</label>
+    <label class="chk"><input type="checkbox" id="chk-tormentas"> Ciclones (NHC)</label>
+  </div>
+</div>
+<div id="linea-tiempo" class="ventana" role="group" aria-label="Línea de tiempo del pronóstico">
+  <button type="button" id="lt-play" aria-label="Reproducir pronóstico" disabled>▶</button>
+  <button type="button" id="lt-ahora" class="mini" disabled>Ahora</button>
+  <div class="lt-pista"><input type="range" id="lt-rango" min="0" max="53" value="6" disabled aria-label="Hora del pronóstico"><div id="lt-marcas" class="lt-marcas" aria-hidden="true"></div></div>
+  <span id="lt-etiqueta">Cargando pronóstico…</span>
+</div>
+<div id="leyenda-campo" class="ventana mini" hidden></div>
+<p id="estado-meteo-mapa" class="ventana mini" role="status">Consultando disponibilidad y vigencia meteorológica…</p>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="../src/fuentes-meteo.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script src="grilla.js"></script>
+<script src="soporte_meteo.js"></script>
+<script src="../src/meteo-paletas.js"></script>
+<script src="campo.js"></script>
+<script src="graficas.js"></script>
+<script src="tendencia.js"></script>
+<script src="fenomenos.js"></script>
+</body>
+</html>

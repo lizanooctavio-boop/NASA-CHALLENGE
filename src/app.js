@@ -12,6 +12,7 @@
   var G = window.SofGraficas, C = window.SofContrato, F = G.formato;
   var params = new URLSearchParams(location.search);
   var estado = { datos: null, sel: 'nicaragua', vista: 'globo', globo: null };
+  var meteo = { meta: null, textura: null, viento: null, turno: 0, cache: new Map() };
 
   var $ = function (id) { return document.getElementById(id); };
 
@@ -183,24 +184,107 @@
   }
 
   // ---------- pintado ----------
+  async function recursoMeteo(ruta) {
+    var respuesta = await window.FuentesMeteo.fetch('/api/' + ruta);
+    if (!respuesta.ok) throw Error('HTTP ' + respuesta.status);
+    return respuesta.json();
+  }
+
+  function escalaGlobo(variable) {
+    var escala = window.GloboMeteo.escala(variable), cont = $('escala-mapa');
+    var min = escala.tramos[0][0], max = escala.tramos.at(-1)[0];
+    var posicion = function (v) {
+      if (escala.log) return Math.log(v / min) / Math.log(max / min) * 100;
+      return (v - min) / (max - min) * 100;
+    };
+    var colores = escala.tramos.map(function (t) { return 'rgb(' + t[1].join(',') + ') ' + posicion(t[0]) + '%'; });
+    cont.innerHTML = '<strong>' + escala.nombre + ' (' + escala.unidad + ')</strong>' +
+      '<div class="leyenda-rampa"><div class="rampa" style="background:linear-gradient(90deg,' + colores.join(',') + ')"></div>' +
+      '<div class="marcas-rampa">' + escala.etiquetas.map(function (v) { return '<span style="left:' + posicion(v) + '%">' + v + '</span>'; }).join('') + '</div></div>';
+  }
+
+  async function cargarGlobo() {
+    var variable = $('variable-globo').value, turno = ++meteo.turno;
+    if (variable === 'tendencia') {
+      meteo.textura = null;
+      meteo.viento = null;
+      pintarMapa();
+      return;
+    }
+    try {
+      if (!meteo.meta) {
+        var meta = await recursoMeteo('global_meta');
+        if (turno !== meteo.turno) return;
+        meteo.meta = meta;
+        var slider = $('paso-globo'), ahora = Date.now();
+        var fechas = meta.horas_utc.map(function (hora) { return Date.parse(hora + 'Z'); });
+        var cerca = fechas.reduce(function (j, fecha, i) { return Math.abs(fecha - ahora) < Math.abs(fechas[j] - ahora) ? i : j; }, 0);
+        slider.max = fechas.length - 1;
+        slider.value = cerca;
+        slider.disabled = false;
+      }
+      var paso = $('paso-globo').value;
+      var campo = function (v) {
+        var clave = v + '|' + paso;
+        if (!meteo.cache.has(clave)) {
+          var promesa = recursoMeteo('global?var=' + v + '&paso=' + paso).then(function (d) {
+            if (d.corrida_utc !== meteo.meta.corrida_utc || d.hora_utc !== meteo.meta.horas_utc[paso]) throw Error('Corridas incompatibles');
+            return d;
+          }).catch(function (e) { meteo.cache.delete(clave); throw e; });
+          if (meteo.cache.size >= 14) meteo.cache.delete(meteo.cache.keys().next().value);
+          meteo.cache.set(clave, promesa);
+        }
+        return meteo.cache.get(clave);
+      };
+      var v = variable === 'viento_ms' ? 'viento' : variable;
+      $('estado-globo').textContent = 'Cargando la capa de ' + window.GloboMeteo.escala(variable).nombre.toLowerCase() + '…';
+      var campos = await Promise.allSettled([campo(v), campo('viento')]);
+      if (turno !== meteo.turno) return;
+      if (campos[0].status !== 'fulfilled') throw campos[0].reason;
+      meteo.viento = campos[1].status === 'fulfilled' ? campos[1].value : null;
+      meteo.textura = window.GloboMeteo.textura(meteo.meta, campos[0].value, variable);
+      $('estado-globo').textContent = 'ECMWF IFS · válido ' + meteo.meta.horas_utc[paso].replace('T', ' ') + ' UTC · corrida guardada ' +
+        meteo.meta.corrida_utc.replace('T', ' ').replace(/Z$/, ' UTC') +
+        (meteo.viento ? '' : ' · viento no disponible');
+    } catch (e) {
+      if (turno !== meteo.turno) return;
+      meteo.textura = null;
+      meteo.viento = null;
+      $('estado-globo').textContent = 'Capa meteorológica no disponible para esta hora.';
+    }
+    pintarMapa();
+  }
+
   function pintarMapa() {
     var d = estado.datos;
     var cont = $('mapa');
     var elegirMapa = function (id) { elegir(id, false); };
-    if (estado.vista === 'globo' && estado.globo) {
+    var esGlobo = estado.vista === 'globo' && estado.globo;
+    var variable = $('variable-globo').value, esMeteo = esGlobo && variable !== 'tendencia';
+    if (esGlobo) {
       var estilos = getComputedStyle(cont);
       var colores = d.regiones.map(function (r) {
         return estilos.getPropertyValue(G.colorMapa(r, d.regiones)).trim();
       });
-      estado.globo.actualizar(d.regiones, estado.sel, colores);
+      estado.globo.actualizar(d.regiones, estado.sel, colores, esMeteo ? meteo.textura : null);
+      estado.globo.viento(meteo.meta, meteo.viento, esMeteo && $('viento-globo').checked);
     } else {
+      if (estado.globo) estado.globo.viento(null, null, false);
       G.dibujarMapa(cont, d, estado.sel, elegirMapa);
     }
     document.querySelectorAll('[data-vista]').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.dataset.vista === estado.vista));
     });
     $('pie-globo').hidden = estado.vista !== 'globo';
-    G.dibujarEscalaMapa($('escala-mapa'), d.regiones, d.meta);
+    $('controles-globo').hidden = !esGlobo;
+    $('hora-globo').hidden = !esMeteo;
+    $('viento-globo').disabled = !esMeteo;
+    $('t-mapa').textContent = esMeteo ? 'Globo meteorológico' : 'Mapa de tendencias de lluvia';
+    $('sub-mapa').textContent = esMeteo ? 'Campo mundial ECMWF IFS y viento a 10 m.' : 'El color muestra la pendiente de Theil–Sen por área.';
+    $('nota-mapa').textContent = esMeteo ? 'Modelo mundial a 1°. El contorno ámbar indica la caja histórica de SICC. Cartografía: Natural Earth.' :
+      'El contorno ámbar delimita la caja de SICC. Las tendencias son promedios por área. Cartografía: Natural Earth.';
+    if (esMeteo) escalaGlobo(variable);
+    else G.dibujarEscalaMapa($('escala-mapa'), d.regiones, d.meta);
   }
 
   function pintar() {
@@ -342,8 +426,12 @@
       b.addEventListener('click', function () { estado.vista = b.dataset.vista; pintarMapa(); });
     });
     $('centrar-nicaragua').addEventListener('click', function () { estado.globo.centrar(); });
+    $('variable-globo').addEventListener('change', cargarGlobo);
+    $('paso-globo').addEventListener('change', cargarGlobo);
+    $('viento-globo').addEventListener('change', pintarMapa);
     $('bloque-oni').addEventListener('toggle', function () { if ($('bloque-oni').open) G.dibujarOni($('oni'), estado.datos.oni, region(), estado.datos.meta); });
     pintar();
+    if (estado.globo) cargarGlobo();
     var ancho = window.innerWidth, t = null;
     window.addEventListener('resize', function () {
       if (window.innerWidth === ancho) return;

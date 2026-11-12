@@ -1,0 +1,273 @@
+:root{font-family:system-ui,Cantarell,Ubuntu,"Segoe UI",sans-serif;color-scheme:dark;--vidrio:rgba(18,24,38,.58);--vidrio-barra:rgba(255,255,255,.07);--borde:rgba(255,255,255,.16);--cian:#6fd8ff;--texto:#e8eef6;--tenue:#a9b8c9;--ambar:#f6c76b;--rojo:#ff8c7b;font-synthesis:none}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;color:var(--texto);background:#06101d;overflow:hidden}
+#mapa{position:fixed;inset:0;z-index:0;background:#0a1a2e}
+/* Solo el mapa base se oscurece; satélite y radar conservan sus colores reales. */
+.base-osm{filter:invert(1) hue-rotate(195deg) brightness(.72) saturate(.5) contrast(.95)}
+.leaflet-container{font-family:inherit;background:#0a1a2e}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:rgba(18,24,38,.9);color:var(--texto);border:1px solid var(--borde)}
+.leaflet-control-attribution{background:rgba(6,16,29,.7)!important;color:var(--tenue)!important}
+.leaflet-control-attribution a{color:var(--cian)!important}
+.leaflet-bar{border:1px solid var(--borde)!important}
+.leaflet-bar a{background:var(--vidrio);color:var(--texto);border-color:var(--borde);backdrop-filter:blur(10px)}
+/* --izq: espacio del menú lateral; --col: ancho de la columna leyenda + línea de tiempo (abajo a la derecha). */
+body{--izq:256px;--col:min(400px,calc(100vw - 28px))}
+aside{position:fixed;inset:14px auto 14px 14px;width:calc(var(--izq) - 28px);z-index:5;background:var(--vidrio);border:1px solid var(--borde);border-radius:12px;backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);padding:22px 16px;display:flex;flex-direction:column;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.marca{font-size:30px;letter-spacing:-2px;font-weight:800}
+.marca span{color:var(--cian);margin-left:6px}
+.sub{color:var(--tenue);line-height:1.6;font-size:13px}
+nav{margin-top:22px;display:grid;gap:6px}
+button,select,input,summary{font:inherit}
+button{cursor:pointer;border:1px solid var(--borde);padding:9px 15px;border-radius:8px;background:rgba(255,255,255,.08);color:var(--texto);font-weight:600;transition:background .15s,border-color .15s}
+button:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3)}
+button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--cian);outline-offset:2px}
+button:disabled{opacity:.55;cursor:progress}
+button[data-csv-meteo]:disabled,#linea-tiempo button:disabled{cursor:not-allowed}
+button[data-csv-meteo][aria-busy="true"]{cursor:progress}
+nav button{background:transparent;color:#cdd9e6;border:1px solid transparent;text-align:left;padding:12px;font-size:14px;display:flex;align-items:center;gap:10px}
+aside svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+nav button svg{opacity:.85}
+.cabeza-menu{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#plegar-menu{width:34px;height:34px;padding:0;display:grid;place-items:center;flex:none}
+#plegar-menu svg{transition:transform .2s}
+nav button.activo{background:rgba(111,216,255,.16);border-color:rgba(111,216,255,.35);color:#fff}
+.pie{margin-top:auto;color:var(--tenue);font-size:12px;line-height:1.9}
+.insignia{display:inline-block;margin-top:12px;background:rgba(246,199,107,.12);border:1px solid rgba(246,199,107,.4);color:var(--ambar);border-radius:5px;padding:3px 9px}
+/* El margen derecho deja libre la barra de capas; los paneles se estrechan para no tapar la columna inferior. */
+main{position:relative;z-index:4;margin-left:var(--izq);padding:14px 190px 14px 18px;height:100vh;display:flex;flex-direction:column;gap:12px;pointer-events:none;width:calc(100% - var(--izq))}
+main>*{pointer-events:auto}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 15px;padding:12px 18px;background:var(--vidrio);border:1px solid var(--borde);border-radius:12px;backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);width:max-content;max-width:100%;flex:none}
+header>div:first-child{min-width:0}
+h1{font-size:22px;margin:3px 0 0;font-weight:650;letter-spacing:-.4px;color:#fff}
+h2{font-size:17px;margin-top:0;color:#fff}
+.etiqueta{font-size:10px;letter-spacing:2.2px;color:var(--cian);margin:0}
+.acciones{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+/* Indicador de procedencia de los datos meteorológicos */
+.indicador-envoltura{position:relative}
+.indicador{display:inline-flex;align-items:center;gap:8px;border-radius:30px;padding:7px 13px;font-size:12px;white-space:nowrap}
+.indicador i{width:9px;height:9px;border-radius:50%;background:#8fa1b5;box-shadow:0 0 0 3px rgba(143,161,181,.22);flex:none}
+.indicador[data-nivel="ok"] i{background:#3ddc84;box-shadow:0 0 0 3px rgba(61,220,132,.22)}
+.indicador[data-nivel="aviso"] i{background:var(--ambar);box-shadow:0 0 0 3px rgba(246,199,107,.25)}
+.indicador[data-nivel="error"] i{background:#ff6b5b;box-shadow:0 0 0 3px rgba(255,107,91,.25)}
+.indicador[data-nivel="pendiente"] i{animation:latido 1.4s ease-in-out infinite}
+@keyframes latido{50%{opacity:.35}}
+header{position:relative;z-index:10}
+#indicador-detalle{position:absolute;top:calc(100% + 8px);right:0;width:min(360px,calc(100vw - 24px));max-height:none;padding:12px 14px;z-index:30;font-size:12px;background:rgba(14,20,32,.95)}
+#indicador-detalle[hidden]{display:none}
+#indicador-detalle dl{margin:0}
+#indicador-detalle dt{font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--cian);margin-top:8px}
+#indicador-detalle dt:first-child{margin-top:0}
+#indicador-detalle dd{margin:2px 0 0;color:var(--texto);line-height:1.5}
+#indicador-detalle .nota{margin:10px 0 0}
+.estado{border:1px solid rgba(246,199,107,.5);background:rgba(246,199,107,.1);color:var(--ambar);border-radius:30px;padding:7px 13px;font-size:12px;white-space:nowrap}
+p,li{line-height:1.65;font-size:14px}
+p{color:var(--tenue)}
+li{color:#d4deea}
+/* Ventanas translúcidas */
+.ventana{display:flex;flex-direction:column;background:var(--vidrio);border:1px solid var(--borde);border-radius:12px;backdrop-filter:blur(20px) saturate(1.35);-webkit-backdrop-filter:blur(20px) saturate(1.35);box-shadow:0 22px 60px rgba(0,0,0,.5);overflow:hidden;width:min(600px,100%);min-height:0;flex:0 1 auto;max-height:calc(100vh - 118px)}
+.vista[hidden]{display:none}
+.vista.ventana{width:min(600px,max(340px,calc(100vw - var(--izq) - var(--col) - 44px)))}
+.ventana.ancha,.vista.ventana.ancha{width:min(1000px,100%)}
+.ventana.minimizada{flex:none}
+.ventana.minimizada .ventana-cuerpo{display:none}
+body.solo-mapa .vista{display:none}
+.ventana-barra{display:flex;align-items:center;gap:12px;padding:9px 12px;background:var(--vidrio-barra);border-bottom:1px solid var(--borde);user-select:none;flex:none}
+.ventana-botones{display:flex;gap:12px}
+.punto{width:13px;height:13px;padding:0;border-radius:50%;border:0;display:inline-block;position:relative}
+.punto::before{content:'';position:absolute;inset:-6px}
+.punto.rojo{background:#ff5f57}.punto.ambar{background:#febc2e}.punto.verde{background:#28c840}
+.punto:hover{filter:brightness(1.25);background-clip:padding-box}
+.ventana-titulo{font-size:12px;letter-spacing:.6px;color:#dbe6f2;font-weight:600;flex:1;text-align:center;margin-right:50px}
+.ventana-cuerpo{padding:20px 22px;overflow:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.3) transparent}
+.vista article{padding:18px;border:1px solid var(--borde);background:rgba(255,255,255,.05);border-radius:10px;margin-bottom:16px}
+.vista article{margin-bottom:16px}.vista .ventana-cuerpo>article:last-child{margin-bottom:0}
+.intro{margin-bottom:16px}
+.intro h2{font-size:20px;letter-spacing:-.3px}
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.tarjeta{padding:16px;border:1px solid var(--borde);background:rgba(255,255,255,.06);border-radius:10px}
+.tarjeta small{color:var(--tenue);font-size:11px;letter-spacing:.5px;text-transform:uppercase;display:block}
+.tarjeta strong{font-size:25px;display:block;line-height:1.4;margin-top:5px;color:#fff}
+.tarjeta p{margin:2px 0;font-size:12px}
+.columnas{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.columnas article{height:100%;margin:0!important}
+.advertencia{background:rgba(246,199,107,.09)!important;border-color:rgba(246,199,107,.45)!important}
+.advertencia h2{color:var(--ambar)}
+.advertencia p{color:#e6d6a8}
+.controles{display:flex;gap:14px;align-items:end;margin-bottom:16px;flex-wrap:wrap}
+label{display:grid;gap:7px;font-size:12px;color:var(--tenue)}
+select,input{background:rgba(8,14,26,.7);padding:9px 11px;color:var(--texto);border:1px solid var(--borde);border-radius:7px;min-width:110px}
+input{max-width:140px}
+option{background:#121a29;color:var(--texto)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;border-bottom:1px solid rgba(255,255,255,.1);padding:11px 9px;color:var(--texto)}
+th{font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--cian)}
+.tabla{overflow:auto}
+.nota{font-size:12px;color:#8fa1b5}
+details.mundial{margin:14px 0;border:1px solid var(--borde);border-radius:10px;padding:10px 14px;background:rgba(255,255,255,.04)}
+details.mundial summary{cursor:pointer;color:var(--tenue);font-size:13px}
+#mapaestado,#campo-estado,#grillaestado{font-size:12px}
+#error{position:fixed;z-index:20;left:calc(var(--izq) + 18px);bottom:30px;max-width:420px;display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:rgba(80,24,18,.85);border:1px solid rgba(255,140,123,.6);color:#ffd5cd;border-radius:10px;backdrop-filter:blur(10px)}
+#error[hidden]{display:none}
+#error-cerrar,#aviso-cerrar{flex:none;padding:0 6px;border:0;background:transparent;color:inherit;font-size:20px;line-height:1;font-weight:400;min-width:32px;min-height:32px}
+#error-cerrar:hover,#aviso-cerrar:hover{background:rgba(255,255,255,.12)}
+.fila-barra{display:grid;grid-template-columns:150px 1fr 50px;gap:12px;align-items:center;font-size:12px;margin:11px 0;color:var(--texto)}
+.barra{height:12px;background:linear-gradient(90deg,#2a8bc4,var(--cian));border-radius:4px}
+.referencia{background:linear-gradient(90deg,#5b6f86,#9db0c6)}
+.unidad{font-size:13px;color:var(--tenue)}
+.viento{font-size:35px;color:#fff;text-align:center;line-height:1;text-shadow:0 0 6px #000}
+a{color:var(--cian)}
+.capas-vivo{border:1px solid var(--borde);border-radius:10px;margin:0 0 14px;padding:10px 14px;background:rgba(255,255,255,.04)}.capas-vivo legend{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--cian);padding:0 6px}.chk{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--texto);margin:4px 0;min-height:24px;cursor:pointer}.chk input{min-width:0;width:auto}#vivo-estado{font-size:12px;margin:6px 0 0}
+/* Leyenda flotante */
+#leyenda-campo{position:fixed;right:14px;bottom:84px;z-index:6;width:min(360px,calc(100% - 36px));max-height:none}
+#leyenda-campo[hidden]{display:none}
+#leyenda-campo .ventana-titulo{margin-right:0}
+#leyenda-campo .ventana-cuerpo{padding:12px 14px}
+.leyenda-alternar{width:100%;padding:0;border:0;background:transparent;font-size:12px;letter-spacing:.3px;min-height:26px}
+.gradiente{height:10px;border-radius:5px}
+.etiquetas{position:relative;height:14px;font-size:10px;color:var(--tenue);margin:4px 6px 8px}.etiquetas span{position:absolute;transform:translateX(-50%)}
+.rango{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px;font-size:12px;color:var(--tenue);margin:0 0 12px}.rango input{max-width:none;min-width:0;padding:0;accent-color:var(--cian)}
+.lectura{margin:2px 0;font-size:12px;line-height:1.5}
+.lectura.fuente{font-size:11px;color:#8fa1b5}
+@media(max-width:1000px){body{--izq:218px}.columnas{grid-template-columns:1fr}}
+/* Menú plegado (solo escritorio): barra de iconos de 60 px */
+@media(min-width:701px) and (min-height:501px),(min-width:1001px){
+  body.menu-plegado{--izq:88px}
+  body.menu-plegado aside{padding:14px 7px;align-items:center}
+  body.menu-plegado .marca,body.menu-plegado .sub,body.menu-plegado .pie{display:none}
+  /* Oculto solo a la vista: el lector de pantalla conserva el nombre de cada sección. */
+  body.menu-plegado nav .txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  body.menu-plegado nav{margin-top:14px}
+  body.menu-plegado nav button{justify-content:center;width:44px;height:44px;padding:0;position:relative}
+  aside{z-index:8}
+  #aviso-publico{max-width:min(600px,max(280px,calc(100vw - var(--izq) - var(--col) - 44px)))}
+  .leaflet-right .leaflet-control-zoom{margin-right:14px;margin-bottom:calc(var(--alto-lt,64px) + var(--alto-ley,0px) + 32px)}
+  #barra-capas{max-height:max(140px,calc(100vh - 14px - 30px - var(--alto-lt,64px) - var(--alto-ley,0px) - 26px - var(--alto-zoom,68px)))}
+  body.menu-plegado nav button:is(:hover,:focus-visible)::after{content:attr(data-nombre);position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;padding:6px 10px;border-radius:7px;background:rgba(14,20,32,.95);border:1px solid var(--borde);color:var(--texto);font-size:12.5px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.4);pointer-events:none;z-index:20}
+  body.menu-plegado #plegar-menu svg{transform:rotate(180deg)}
+}
+@media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:10px;padding:14px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:12px;gap:4px}nav button{font-size:12px;padding:10px;min-width:125px}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:10px}.etiqueta{letter-spacing:1.2px}h1{font-size:19px}.acciones{width:100%;justify-content:space-between}.estado{white-space:normal}.ventana,.ventana.ancha,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}#indicador-detalle{right:auto;left:0}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
+
+
+/* Barra de capas estilo Meteored (derecha) */
+.capas-mapa{position:fixed;top:14px;right:14px;z-index:6;width:162px;max-height:max(140px,calc(100vh - 14px - 30px - var(--alto-lt,64px) - var(--alto-ley,0px) - 26px))}
+/* Si quedan opciones por debajo, se difumina el borde inferior para indicar que hay más. */
+.capas-mapa .ventana-cuerpo.mas-abajo{-webkit-mask-image:linear-gradient(#000 calc(100% - 40px),transparent);mask-image:linear-gradient(#000 calc(100% - 40px),transparent)}
+.capas-mapa .ventana-titulo{margin-right:0}
+.capas-mapa .ventana-cuerpo{padding:8px;display:flex;flex-direction:column;gap:4px}
+.capas-mapa [data-var]{display:flex;align-items:center;gap:8px;padding:7px 9px;font-size:12.5px;text-align:left;background:transparent;border-color:transparent}
+.capas-mapa [data-var] i{width:22px;height:8px;border-radius:4px;background:var(--c);flex:none;border:1px solid rgba(255,255,255,.2)}
+.capas-mapa [data-var][aria-pressed="true"]{background:rgba(111,216,255,.18);border-color:rgba(111,216,255,.45);color:#fff}
+.capas-mapa hr{border:0;border-top:1px solid var(--borde);margin:6px 0;width:100%}
+.capas-mapa .chk{font-size:12px;margin:1px 0}
+/* Línea de tiempo */
+/* Columna inferior derecha: la leyenda se apila encima de la línea de tiempo (alturas medidas en app.js). */
+#linea-tiempo{position:fixed;right:14px;bottom:30px;z-index:6;width:var(--col);min-width:0;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px 12px}
+#leyenda-campo{bottom:calc(30px + var(--alto-lt,64px) + 8px);width:var(--col)}
+.lt-pista{flex:1;min-width:0}
+#linea-tiempo input{display:block;width:100%;min-width:0;max-width:none;padding:0;margin:4px 0 0;accent-color:var(--cian)}
+.lt-marcas{position:relative;height:15px;margin:0 0 -2px}
+.lt-dia{position:absolute;top:3px;transform:translateX(-50%);font-size:10px;line-height:1;color:var(--tenue);white-space:nowrap}
+.lt-dia::before{content:'';position:absolute;left:50%;top:-5px;height:4px;border-left:1px solid rgba(255,255,255,.35)}
+.lt-ahora{position:absolute;top:-1px;width:0;height:0;transform:translateX(-50%);border:5px solid transparent;border-top:0;border-bottom:6px solid var(--cian)}
+#lt-play{width:36px;height:32px;padding:0;font-size:13px}
+#lt-etiqueta{flex:1 0 100%;min-width:0;line-height:1.35}
+#lt-etiqueta strong{display:block;font-size:12.5px;font-weight:600;color:var(--texto)}
+#lt-etiqueta small{display:block;font-size:10.5px;color:var(--tenue)}
+/* Gráficas, enlaces de descarga y listas */
+.graf{position:relative;height:250px;margin:6px 0 4px}.graf.alta{height:230px}
+.boton,a.boton{display:inline-block;text-decoration:none;border:1px solid var(--borde);padding:9px 14px;border-radius:8px;background:rgba(111,216,255,.1);color:var(--texto);font-weight:600;font-size:13px}
+.boton:hover{background:rgba(111,216,255,.2)}
+button.mini,.mini{padding:4px 9px;font-size:12px;border-radius:6px}
+.lista{padding-left:18px;margin:6px 0}.lista li{margin:6px 0;font-size:13.5px}.descargas li{margin:9px 0}
+.tarjeta.calido{border-color:rgba(255,123,107,.55);background:rgba(255,123,107,.1)}.tarjeta.calido strong{color:#ffb3a8}
+.tarjeta.frio{border-color:rgba(79,143,232,.55);background:rgba(79,143,232,.1)}
+.ciclon{font-size:26px;line-height:30px;text-align:center;filter:drop-shadow(0 0 4px var(--c)) drop-shadow(0 0 2px #000);animation:giro 3s linear infinite}
+@keyframes giro{to{transform:rotate(-360deg)}}
+code{font-size:12px;background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px}
+#controles-mapa{display:contents}
+#estado-meteo-mapa{display:none;margin:0;padding:9px 12px;font-size:11px;line-height:1.4;color:var(--ambar)}
+.fuente-detalle{margin-top:6px}.fuente-detalle summary{cursor:pointer;font-size:11px;color:var(--cian)}
+@media(max-width:700px),(max-height:500px) and (max-width:1000px){
+  #mapa{height:calc(100dvh - var(--alto-controles-mapa,0px))}
+  main{padding-bottom:calc(var(--alto-controles-mapa,0px) + 16px)}
+  /* La franja fija no debe cubrir los paneles ni el botón para entrar al mapa. */
+  body:not(.solo-mapa) #controles-mapa{display:flex}
+  body:not(.solo-mapa) #controles-mapa>:not(#estado-meteo-mapa){display:none}
+  body:not(.solo-mapa) #controles-mapa #estado-meteo-mapa{max-height:20dvh;overflow:auto}
+  #controles-mapa{position:fixed;inset:auto 0 0;z-index:6;display:flex;flex-direction:column;gap:6px;max-height:calc(100dvh - 180px);pointer-events:none}
+  #controles-mapa>*{position:static;pointer-events:auto;flex:none}
+  #controles-mapa #leyenda-campo{order:1;width:calc(100% - 12px);margin:0 6px;max-height:32dvh;flex:0 1 auto;min-height:32px}
+  #leyenda-campo .ventana-barra{padding:6px 10px}
+  #leyenda-campo .ventana-cuerpo{padding:7px 12px;overflow:auto}
+  #controles-mapa #estado-meteo-mapa{position:relative;z-index:6;display:block;order:2;width:calc(100% - 12px);max-width:none;margin:0 6px;padding:6px 10px}
+  #controles-mapa .capas-mapa{order:4;width:100%;height:calc(72px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);max-height:none;border-radius:12px 12px 0 0}
+  .capas-mapa .ventana-barra{display:none}
+  .capas-mapa .ventana-cuerpo{flex-direction:row;overflow-x:auto;padding:6px;gap:4px;min-height:0}
+  .capas-mapa [data-var]{min-height:44px}
+  .capas-mapa [data-var],.capas-mapa .chk{flex:none;white-space:nowrap}.capas-mapa hr{display:none}
+  #controles-mapa #linea-tiempo{order:3;width:calc(100% - 12px);margin:0 6px;min-width:0;max-width:none;display:grid;grid-template-columns:44px 56px minmax(0,1fr);gap:6px;padding:6px 10px}
+  #linea-tiempo button{min-height:44px;padding:6px}
+  #lt-play{width:44px}#linea-tiempo input{min-width:0;width:100%}
+  #lt-etiqueta{grid-column:1/-1;min-width:0;max-width:none;font-size:10.5px}
+  #lt-etiqueta strong{font-size:12px}
+  body.solo-mapa{overflow:hidden}
+  body.solo-mapa aside{display:none}
+  body.solo-mapa main{position:fixed;inset:0;margin:0;padding:0;min-height:0;height:100dvh;width:100%}
+  body.solo-mapa header{position:fixed;top:10px;left:6px;right:6px;width:auto;height:auto;min-height:58px;padding:8px 10px}
+  body.solo-mapa header>div:first-child{display:none}
+  body.solo-mapa .acciones{gap:8px}
+  body.solo-mapa #solomapa{font-size:12px;padding:8px 10px;min-height:40px}
+  body.solo-mapa .estado{font-size:10px;padding:6px 8px}
+  body.solo-mapa .indicador{font-size:11px;padding:6px 10px;min-height:40px}
+  body.solo-mapa #aviso-publico{position:fixed;top:calc(18px + var(--alto-cabecera,58px));left:6px;right:6px;max-width:none;max-height:22dvh;overflow:auto;padding:7px 10px;font-size:11px}
+}
+@media(max-height:500px) and (min-width:560px) and (max-width:1000px){
+  #controles-mapa{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:'leyenda estado' 'leyenda tiempo' 'capas capas';max-height:calc(100dvh - 80px)}
+  #controles-mapa #leyenda-campo{grid-area:leyenda;max-height:48dvh}
+  #controles-mapa #estado-meteo-mapa{grid-area:estado}
+  #controles-mapa #linea-tiempo{grid-area:tiempo}
+  #controles-mapa .capas-mapa{grid-area:capas}
+  body.solo-mapa header{right:calc(50% + 3px)}
+  body.solo-mapa #aviso-publico{top:10px;left:calc(50% + 3px);max-height:none}
+}
+@media(max-width:480px){
+  body.solo-mapa .estado{display:none}
+  body.solo-mapa .acciones{flex-wrap:nowrap}
+  body.solo-mapa .indicador-envoltura,body.solo-mapa .indicador{min-width:0}
+  body.solo-mapa #indicador-texto{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
+@media(pointer:coarse) and (max-width:700px){.leaflet-control-zoom{display:flex}.leaflet-touch .leaflet-bar .leaflet-control-zoom-in{border-bottom:0;border-right:1px solid var(--borde)}}
+body.aviso-encima main{z-index:7}
+@media(pointer:coarse){
+  body{--alto-zoom:98px}
+  .ventana-barra{min-height:46px;padding-left:18px}
+  .ventana-botones{gap:31px}
+  .punto::before{inset:-15.5px}
+  .chk{min-height:44px}
+  .leaflet-touch .leaflet-bar a,.leaflet-bar a{width:44px;height:44px;line-height:44px}
+  #linea-tiempo button{min-height:44px;min-width:44px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.ciclon,.indicador i{animation:none!important}}
+
+#aviso-publico{flex:none;max-width:600px;display:flex;align-items:flex-start;gap:8px;padding:9px 14px;font-size:12px;line-height:1.5;color:#ffe3a8;background:rgba(80,60,10,.7);border:1px solid rgba(246,199,107,.5);border-radius:10px;backdrop-filter:blur(10px)}#aviso-publico[hidden]{display:none}
+.etq-pais{color:#dfe8f2;font-size:10.5px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;white-space:nowrap;transform:translate(-50%,-50%);text-shadow:0 0 3px #000,0 0 6px #000,0 0 10px #000;pointer-events:none}
+.etq-ciudad{color:#f2f6fa;font-size:11.5px;white-space:nowrap;text-shadow:0 0 3px #000,0 0 6px #000;transform:translate(-3px,-50%);pointer-events:none}.etq-ciudad i{display:inline-block;width:5px;height:5px;border-radius:50%;background:#fff;margin-right:5px;vertical-align:middle;box-shadow:0 0 3px #000}
+
+/* Tendencia de precipitación anual (Trend Detective) */
+.tend-mapa{height:170px;margin:8px 0;border-radius:6px;overflow:hidden;background:#0d1b2a}
+.tend-resumen{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+.tend-resumen>div{background:rgba(255,255,255,.05);border-radius:6px;padding:8px}
+.tend-resumen dt{font-size:11px;color:#8fa1b5}.tend-resumen dd{margin:2px 0 0;font-size:15px;font-weight:600}
+.boton[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.tend-mapa-reg{height:200px}
+.reg-columnas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}.reg-zona{min-width:0}
+.reg-zona[hidden]{display:none}.reg-columnas.una{grid-template-columns:1fr}
+.reg-zona h3,#regiones>h3,#regiones [data-reg-contenido]>h3{margin:10px 0 4px;font-size:14px}
+.reg-lectura{font-weight:600;border-left:3px solid #c27c2a;padding-left:10px}
+.tend-etiqueta{background:rgba(13,27,42,.8);border:0;color:#e8f1fa;font-size:11px;box-shadow:none}
+@media(max-width:700px){.tend-mapa-reg{height:170px}}
+.volver { display:flex; gap:9px; align-items:center; padding:9px 12px; margin-top:10px; border-radius:8px; color:var(--texto); text-decoration:none; font-weight:600; }
+.volver:hover { background:var(--vidrio-barra); }
+.menu-plegado .volver { justify-content:center; padding-inline:0; }
+.menu-plegado .volver .txt { display:none; }
