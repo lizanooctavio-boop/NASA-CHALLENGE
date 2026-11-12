@@ -1,20 +1,22 @@
-// Mapa regional estilo Meteored: capas de color (temperatura, lluvia, viento, ráfagas, nubes, humedad, presión),
-// partículas que siguen el viento y línea de tiempo horaria. Solo dibuja datos de /api/campo_nicaragua
-// y de la malla mundial ECMWF Open Data con sus propios pasos y etiquetas.
+// Mapa estilo Meteored: capas de color (temperatura, lluvia, viento, ráfagas, nubes, humedad, presión),
+// partículas que siguen el viento y línea de tiempo. Dibuja la malla mundial ECMWF y, donde existe,
+// la malla regional horaria fundida encima. Publica la hora y la capa para el globo 3D.
 (function(){
 const $=id=>document.getElementById(id);
 const soporte=window.SICC_soporte;
 const json=r=>typeof leerJSON==='function'?leerJSON(r):r.json();
-function sinCampo(msg){for(const id of ['campo-estado','estado-meteo-mapa']){const e=$(id);if(e)e.textContent=msg}const b=$('indicador-datos');if(b){b.dataset.nivel='error';b.title=msg;const t=$('indicador-texto');if(t)t.textContent='Sin datos vigentes'}}
-if(!soporte){sinCampo('No se pudo verificar el soporte meteorológico; no se muestra el campo.');return}
-if(typeof mapa==='undefined'||!mapa){sinCampo('Mapa no disponible (no se cargó Leaflet); no se muestra el campo regional.');return}
+const texto=(id,t)=>{const e=$(id);if(e)e.textContent=t};
+function sinCampo(msg){const b=$('indicador-datos');if(b){b.dataset.nivel='error';b.title=msg;texto('indicador-texto','No model data')}}
+if(!soporte){sinCampo('Weather support module unavailable.');return}
+if(typeof mapa==='undefined'||!mapa){sinCampo('Map library unavailable.');return}
 
-// Escalas de color. Cada tramo: [valor, [r,g,b], alfa 0-1]. Valores por debajo de "minimo" son transparentes.
 const { escalas: ESCALAS, color } = window.PaletasMeteo;
 const reducido=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const DPR=Math.min(2,window.devicePixelRatio||1);
-const REFRESCO_MIN=(window.SICC_CONFIG||{}).publico?60:30; // la malla ECMWF es horaria y cada consulta cuenta 224 puntos en Open-Meteo
-let G=null,estadoRegional='Consultando malla regional…',variable='temperatura_c',hora=0,raf=0,opacidad=.62,conParticulas=true,reproducir=null;
+const REFRESCO_MIN=60;
+let G=null,variable='temperatura_c',hora=0,raf=0,opacidad=.7,conParticulas=true,reproducir=null;
+const enGlobo=()=>window.SICC_vista?.modo()!=='mapa';
+const avisar=nombre=>document.dispatchEvent(new CustomEvent(nombre));
 
 const lon180=l=>((l+180)%360+360)%360-180;
 function indice(lat,lon){const L=G.latitudes,O=G.longitudes;const fi=(lat-L[0])/(L[1]-L[0]),fj=(lon180(lon)-O[0])/(O[1]-O[0]);return fi>=0&&fj>=0&&fi<=L.length-1&&fj<=O.length-1?[fi,fj]:null}
@@ -24,13 +26,11 @@ function campo(v,h){if(v==='viento_ms'){if(!cacheViento[h]){const U=G.variables.
 function muestra(v,lat,lon,h=hora){if(!G)return null;const ij=indice(lat,lon);return ij?bilineal(campo(v,h),ij[0],ij[1]):null}
 function borde(fi,fj){return Math.max(0,Math.min(1,Math.min(fi,G.latitudes.length-1-fi,fj,G.longitudes.length-1-fj)/2))}
 
-// ---- Malla mundial de fondo (ECMWF IFS Open Data 1°, cada 3 h). La regional se funde encima en su borde.
-let GM=null,errorGlobal='';const cacheG={},pidiendo={};
-function mundialDisponible(){
-  return GM&&GM.horas_utc.length>0&&soporte.utc(GM.corrida_utc)<=Date.now();
-}
+// ---- Malla mundial (ECMWF IFS 1°, cada 3 h). La regional se funde encima en su borde.
+let GM=null;const cacheG={},pidiendo={};
+function mundialDisponible(){return GM&&GM.horas_utc.length>0&&soporte.utc(GM.corrida_utc)<=Date.now()}
 const horasActivas=()=>G?.horas_utc||(mundialDisponible()?GM.horas_utc:[]);
-function pasoGlobal(h=hora){if(!mundialDisponible())return null;if(!G)return GM.horas_utc[h]?h:null;const t=soporte.utc(G.horas_utc[h]);let mejor=null,d=1e15;GM.horas_utc.forEach((x,k)=>{const e=Math.abs(Date.parse(x+':00Z')-t);if(e<d){d=e;mejor=k}});return d<=90*60000?mejor:null}
+function pasoGlobal(h=hora){if(!mundialDisponible())return null;if(!G)return GM.horas_utc[h]?h:null;const t=soporte.utc(G.horas_utc[h]);let mejor=null,d=1e15;GM.horas_utc.forEach((x,k)=>{const e=Math.abs(soporte.utc(x)-t);if(e<d){d=e;mejor=k}});return d<=90*60000?mejor:null}
 const varGlobal=v=>v==='viento_ms'||v==='viento_u_ms'||v==='viento_v_ms'?'viento':v;
 function campoG(v,paso){if(paso===null)return null;if(v==='viento_ms'){const w=cacheG['viento|'+paso];if(!w)return null;return cacheG['vms|'+paso]??=w.viento_u_ms.map((f,i)=>f.map((u,j)=>{
   const v=w.viento_v_ms[i][j];return Number.isFinite(u)&&Number.isFinite(v)?Math.hypot(u,v):null;
@@ -41,10 +41,8 @@ async function pedirGlobal(v,paso){const k=varGlobal(v)+'|'+paso;if(paso===null|
 function muestraG(M,lat,lon){if(!M)return null;const fi=(GM.latitudes[0]-lat)/(GM.latitudes[0]-GM.latitudes[1]),fj=(lon180(lon)-GM.longitudes[0])/(GM.longitudes[1]-GM.longitudes[0]);
   if(!(fi>=0&&fi<=M.length-1))return null;const n=M[0].length,i=Math.min(Math.floor(fi),M.length-2),j0=Math.floor(fj),a=fi-i,b=fj-j0,j=((j0%n)+n)%n,j1=(j+1)%n;
   return soporte.bilineal([M[i][j],M[i][j1],M[i+1][j],M[i+1][j1]],a,b)}
-// Valor combinado: regional donde existe (con fundido de 2 celdas en el borde) y mundial fuera.
 function valor(v,lat,lon,M,MG){let r=null,w=0;if(G&&M){const ij=indice(lat,lon);if(ij){r=bilineal(M,ij[0],ij[1]);w=borde(ij[0],ij[1])}}
   const g=MG?muestraG(MG,lat,lon):null;if(r===null)return g;if(g===null)return w>0?r:null;return r*w+g*(1-w)}
-
 
 // Lienzo de color en el panel de superposición (se mueve con el mapa; se oculta durante el zoom).
 const cT=document.createElement('canvas');cT.className='campo-temp leaflet-zoom-hide';cT.setAttribute('aria-hidden','true');cT.style.cssText='position:absolute;pointer-events:none';
@@ -86,36 +84,29 @@ function frame(){
   const caminos=TRAMOS.map(()=>new Path2D());
   for(let k=0;k<N;k++){if(px[k]<0||++edad[k]>vida[k]){nueva(k);continue}const q=vel(px[k],py[k]);if(!q){nueva(k);continue}const x2=px[k]+q[0],y2=py[k]+q[1];let t=0;while(q[2]>=TRAMOS[t][1])t++;caminos[t].moveTo(px[k],py[k]);caminos[t].lineTo(x2,y2);px[k]=x2;py[k]=y2}
   TRAMOS.forEach((tr,t)=>{ctxP.strokeStyle=tr[2];ctxP.stroke(caminos[t])});
-  if(!reducido&&!document.hidden)raf=requestAnimationFrame(frame);
+  if(!reducido&&!document.hidden&&!enGlobo())raf=requestAnimationFrame(frame);
 }
 function estatico(){ctxP.setTransform(1,0,0,1,0,0);ctxP.clearRect(0,0,cP.width,cP.height);if(!FV||!conParticulas)return;ctxP.setTransform(DPR,0,0,DPR,0,0);ctxP.lineWidth=1.2;ctxP.strokeStyle='rgba(255,255,255,.7)';const c=new Path2D();for(let k=0;k<Math.min(N,900);k++){let x=px[k],y=py[k];if(x<0)continue;c.moveTo(x,y);for(let s=0;s<16;s++){const q=vel(x,y);if(!q)break;x+=q[0]*1.5;y+=q[1]*1.5;c.lineTo(x,y)}}ctxP.stroke(c)}
 function tamano(){const s=mapa.getSize();cP.width=Math.round(s.x*DPR);cP.height=Math.round(s.y*DPR)}
 const ley=$('leyenda-campo');
-// En móvil la leyenda empieza plegada para dejar ver el mapa; el usuario puede abrirla.
 const pantallaCorta=matchMedia('(max-width:700px), (max-height:700px)');
 let leyendaElegida=null;
 pantallaCorta.addEventListener('change',()=>{if(leyendaElegida===null)leyenda()});
-function estadoVisible(){const e=$('estado-meteo-mapa');if(e)e.textContent=(!G?'Sin malla regional. ':G.respaldo?'Malla regional de respaldo. ':'')+soporte.vigencia(GM)+(errorGlobal?' '+errorGlobal:'');indicador()}
 
-// Indicador de procedencia en la cabecera: verde regional, ámbar respaldo o malla mundial, rojo sin datos.
-const ind=$('indicador-datos'),indTxt=$('indicador-texto'),indDet=$('indicador-detalle');
-let regionalListo=false,globalListo=false;
+// Indicador en la cabecera: modelo y hora de la corrida.
+const ind=$('indicador-datos'),indDet=$('indicador-detalle');
+let globalListo=false;
+const fechaCorta=iso=>new Date(soporte.utc(iso)).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'UTC'})+' UTC';
 function indicador(){
   if(!ind)return;
   let nivel,txt;
-  if(G&&!G.respaldo){nivel='ok';txt='Malla regional guardada'}
-  else if(G){nivel='aviso';txt='Respaldo regional'}
-  else if(mundialDisponible()){nivel='aviso';txt='Solo malla mundial'}
-  else if(!regionalListo||!globalListo){nivel='pendiente';txt='Comprobando datos…'}
-  else{nivel='error';txt='Sin datos vigentes'}
-  ind.dataset.nivel=nivel;indTxt.textContent=txt;
-  const resumen={ok:'Malla regional horaria de Nicaragua (~0,35°) disponible.',aviso:G?'Se muestra la última malla regional guardada porque Open-Meteo limitó las consultas.':'Sin malla regional: se usa la malla mundial ECMWF de 1° con pasos de 3 h.',pendiente:'Consultando las fuentes meteorológicas.',error:'No hay malla regional ni mundial vigente para la hora actual.'}[nivel];
-  ind.title=txt+'. '+resumen;
-  const items=[['Situación',resumen],['Malla regional',estadoRegional],['Malla mundial',soporte.vigencia(GM)+(errorGlobal?' '+errorGlobal:'')],['Hora mostrada',horasActivas()[hora]?horasActivas()[hora]+' UTC · '+relativa(hora)+' · '+soporte.etiquetaHora(horasActivas()[hora]):'—']];
-  if(!G&&mundialDisponible()){const u=GM.horas_utc[indiceAhora()];items.push(['Último paso mundial',`${u} UTC (${relativa(indiceAhora()).replace('último paso mundial · ','')}). La malla mundial avanza de 3 en 3 h: no representa la hora exacta actual.`])}
+  if(mundialDisponible()){nivel='ok';txt='ECMWF IFS · '+fechaCorta(GM.corrida_utc)}
+  else if(!globalListo){nivel='pendiente';txt='Loading data…'}
+  else{nivel='error';txt='No model data'}
+  ind.dataset.nivel=nivel;texto('indicador-texto',txt);
+  const items=[['Model','ECMWF IFS · global 1° · 3-hourly'+(G?' · regional 0.25° · hourly':'')],['Run',GM?fechaCorta(GM.corrida_utc):'—'],['Shown',horasActivas()[hora]?fechaCorta(horasActivas()[hora]):'—'],['Imagery','NASA GIBS · Blue Marble, GOES-East, IMERG, MODIS']];
   const dl=document.createElement('dl');items.forEach(([k,v])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=v;dl.append(dt,dd)});
-  const nota=document.createElement('p');nota.className='nota';nota.textContent='Estimaciones de modelo, sin validación local. Satélite y radar conservan su propia hora.';
-  indDet.replaceChildren(dl,nota);
+  indDet.replaceChildren(dl);
 }
 if(ind){
   const abrir=v=>{indDet.hidden=!v;ind.setAttribute('aria-expanded',String(v))};
@@ -126,99 +117,86 @@ if(ind){
 }
 // conservar=true: al cambiar de hora o de capa se mantienen las partículas (solo cambia el campo de velocidad).
 function reiniciar(conservar){
-  estadoVisible();
+  indicador();
   cancelAnimationFrame(raf);raf=0;
-  pintarCampo();
   const hayCampo=horasActivas().length>0;
-  if(conservar&&FV&&hayCampo&&N){FV=campoPantalla()}else{tamano();ctxP.setTransform(1,0,0,1,0,0);ctxP.clearRect(0,0,cP.width,cP.height);FV=hayCampo?campoPantalla():null;sembrar()}
   ley.hidden=!hayCampo||variable==='ninguna';
+  if(enGlobo()){ctxP.setTransform(1,0,0,1,0,0);ctxP.clearRect(0,0,cP.width,cP.height);return}
+  pintarCampo();
+  if(conservar&&FV&&hayCampo&&N){FV=campoPantalla()}else{tamano();ctxP.setTransform(1,0,0,1,0,0);ctxP.clearRect(0,0,cP.width,cP.height);FV=hayCampo?campoPantalla():null;sembrar()}
   if(reducido)estatico();else raf=requestAnimationFrame(frame);
 }
 mapa.on('movestart zoomstart',()=>{cancelAnimationFrame(raf);raf=0;cP.style.visibility='hidden'});
 mapa.on('moveend zoomend resize',()=>{cP.style.visibility='';reiniciar()});
-document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(raf);raf=0;if(!document.hidden&&!reducido&&FV)raf=requestAnimationFrame(frame)});
+document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(raf);raf=0;if(!document.hidden&&!reducido&&FV&&!enGlobo())raf=requestAnimationFrame(frame)});
+document.addEventListener('sicc:vista',()=>reiniciar());
 
 // Leyenda
 function leyenda(){
-  estadoVisible();
+  indicador();
   if(variable==='ninguna'||!horasActivas().length){ley.hidden=true;return}
   const E=ESCALAS[variable],T=E.tramos,pos=x=>E.log?(Math.log(x)-Math.log(T[0][0]))/(Math.log(T.at(-1)[0])-Math.log(T[0][0])):(x-T[0][0])/(T.at(-1)[0]-T[0][0]);
   const grad=T.map(t=>`rgba(${t[1].join(',')},${t[2]===undefined?1:Math.max(.25,t[2])}) ${(pos(t[0])*100).toFixed(1)}%`).join(',');
-  const abierto=ley.querySelector('.fuente-detalle')?.open??!matchMedia('(max-width:700px), (max-height:500px) and (max-width:1000px)').matches;
   const expandida=leyendaElegida===null?!pantallaCorta.matches:leyendaElegida;
   ley.classList.toggle('minimizada',!expandida);
   ley.replaceChildren();
-  const bar=document.createElement('div');bar.className='ventana-barra';const tt=document.createElement('button');tt.type='button';tt.className='leyenda-alternar';tt.setAttribute('aria-label',`Leyenda: ${E.nombre} · ${E.unidad}`);tt.setAttribute('aria-expanded',String(expandida));tt.setAttribute('aria-controls','cuerpo-leyenda-meteo');tt.textContent=`${expandida?'▾':'▸'} ${E.nombre} · ${E.unidad}`;tt.onclick=()=>{leyendaElegida=ley.classList.contains('minimizada');ley.classList.toggle('minimizada',!leyendaElegida);tt.setAttribute('aria-expanded',String(leyendaElegida));tt.textContent=`${leyendaElegida?'▾':'▸'} ${E.nombre} · ${E.unidad}`};bar.append(tt);
+  const bar=document.createElement('div');bar.className='ventana-barra';const tt=document.createElement('button');tt.type='button';tt.className='leyenda-alternar';tt.setAttribute('aria-expanded',String(expandida));tt.setAttribute('aria-controls','cuerpo-leyenda-meteo');
+  const rotulo=a=>`${a?'▾':'▸'} ${E.nombre} · ${E.unidad}`;tt.textContent=rotulo(expandida);
+  tt.onclick=()=>{leyendaElegida=ley.classList.contains('minimizada');ley.classList.toggle('minimizada',!leyendaElegida);tt.setAttribute('aria-expanded',String(leyendaElegida));tt.textContent=rotulo(leyendaElegida)};bar.append(tt);
   const cuerpo=document.createElement('div');cuerpo.className='ventana-cuerpo';cuerpo.id='cuerpo-leyenda-meteo';
   const g=document.createElement('div');g.className='gradiente';g.style.background=`linear-gradient(90deg,${grad})`;
-  const et=document.createElement('div');et.className='etiquetas';E.etiquetas.forEach(t=>{const s=document.createElement('span');s.textContent=String(t).replace('.',',');s.style.left=`${pos(t)*100}%`;et.append(s)});
-  const lec=document.createElement('p');lec.id='lectura';lec.className='lectura';lec.textContent='Mueve el cursor sobre el mapa.';
-  const fu=document.createElement('p');fu.className='lectura fuente';const pg=pasoGlobal();
-  const respuesta=cacheG[varGlobal(variable)+'|'+pg];
-  const regional=G?`Nicaragua: ${G.fuente}, válido ${G.horas_utc[hora]} UTC.`:'Campo regional no disponible.';
-  const mundial=pg!==null?`ECMWF Open Data 1°, corrida ${GM.corrida_utc}, válido ${GM.horas_utc[pg]} UTC.`:'Sin paso mundial para esta hora.';
-  fu.textContent=`${regional} ${mundial} ${soporte.vigencia(GM)} ${pg!==null?soporte.soporte(variable,respuesta):''} Estimaciones de modelo sin validación local.`;
-  const estadoM=$('mundial-estado');if(estadoM)estadoM.textContent=soporte.vigencia(GM)+' '+(errorGlobal||'')+' '+(GM&&pg!==null?soporte.soporte(variable,respuesta):'');
-  const detalle=document.createElement('details');detalle.className='fuente-detalle';detalle.open=abierto;
-  const resumen=document.createElement('summary');resumen.textContent='Fuente e intervalo';detalle.append(resumen,fu);
-  cuerpo.append(g,et,lec,detalle);ley.append(bar,cuerpo);
+  const et=document.createElement('div');et.className='etiquetas';E.etiquetas.forEach(t=>{const s=document.createElement('span');s.textContent=String(t);s.style.left=`${pos(t)*100}%`;et.append(s)});
+  const lec=document.createElement('p');lec.id='lectura';lec.className='lectura';
+  cuerpo.append(g,et,lec);ley.append(bar,cuerpo);
 }
 
-// Lectura bajo el cursor: todas las variables de la hora elegida
-const PUNTOS=['N','NE','E','SE','S','SO','O','NO'];let lecturaPend=null,lecturaProg=false;
+// Lectura bajo el cursor (mapa 2D)
+const PUNTOS=['N','NE','E','SE','S','SW','W','NW'];let lecturaPend=null,lecturaProg=false;
 function dirDe(u,v){return PUNTOS[Math.round(((Math.atan2(-u,-v)*180/Math.PI+360)%360)/45)%8]}
+const fmt=(x,d=1)=>Number.isFinite(x)?x.toFixed(d):'—';
 mapa.on('mousemove',e=>{lecturaPend=e.latlng;if(lecturaProg)return;lecturaProg=true;requestAnimationFrame(()=>{lecturaProg=false;const ll=lecturaPend,l=$('lectura');if(!l||!ll)return;
-  const m=k=>muestra(k,ll.lat,ll.lng);const t=m('temperatura_c');
-  if(t===null){const pg=pasoGlobal(),f=k=>{const M=campoG(k,pg);const x=M?muestraG(M,ll.lat,ll.lng):null;return x},tg=f('temperatura_c'),W=campoG('viento',pg),ug=W?muestraG(W.viento_u_ms,ll.lat,ll.lng):null,vg=W?muestraG(W.viento_v_ms,ll.lat,ll.lng):null,vs=f(variable==='viento_ms'?'viento_ms':variable);
-    l.textContent=pg===null?'Fuera de la malla de Nicaragua y sin paso mundial para esta hora.':`${ll.lat.toFixed(1)}°, ${lon180(ll.lng).toFixed(1)}° (malla mundial 1°, ${GM.horas_utc[pg].slice(11)} UTC) · ${tg!==null?tg.toFixed(1)+' °C':'—'}${ug!==null&&vg!==null?` · viento ${Math.hypot(ug,vg).toFixed(1)} m/s del ${dirDe(ug,vg)}`:''}${variable!=='temperatura_c'&&variable!=='viento_ms'&&ESCALAS[variable]?` · ${ESCALAS[variable].nombre.toLowerCase()} ${vs!==null?vs.toFixed(variable==='precipitacion_mm'?1:0)+' '+ESCALAS[variable].unidad:'sin dato o indeterminada (no cero)'}`:''}`;return}
-  const u=m('viento_u_ms'),v=m('viento_v_ms');
-  l.textContent=`${ll.lat.toFixed(2)}°, ${lon180(ll.lng).toFixed(2)}° · ${t.toFixed(1)} °C · lluvia ${soporte.formato(m('precipitacion_mm'))} mm/h · viento ${u!==null&&v!==null?Math.hypot(u,v).toFixed(1)+' m/s del '+dirDe(u,v):'sin dato'} (ráfagas ${soporte.formato(m('rafagas_ms'),0)}) · nubes ${soporte.formato(m('nubes_pct'),0)} % · HR ${soporte.formato(m('humedad_pct'),0)} % · ${soporte.formato(m('presion_hpa'),0)} hPa`})});
+  const pos=`${Math.abs(ll.lat).toFixed(1)}°${ll.lat>=0?'N':'S'} ${Math.abs(lon180(ll.lng)).toFixed(1)}°${lon180(ll.lng)>=0?'E':'W'}`;
+  const t=muestra('temperatura_c',ll.lat,ll.lng);
+  if(t===null){const pg=pasoGlobal();if(pg===null){l.textContent=pos;return}
+    const f=k=>{const M=campoG(k,pg);return M?muestraG(M,ll.lat,ll.lng):null},tg=f('temperatura_c'),W=campoG('viento',pg),ug=W?muestraG(W.viento_u_ms,ll.lat,ll.lng):null,vg=W?muestraG(W.viento_v_ms,ll.lat,ll.lng):null,vs=f(variable==='viento_ms'?'viento_ms':variable);
+    l.textContent=`${pos} · ${tg!==null?tg.toFixed(1)+' °C':'—'}${ug!==null&&vg!==null?` · wind ${Math.hypot(ug,vg).toFixed(1)} m/s ${dirDe(ug,vg)}`:''}${variable!=='temperatura_c'&&variable!=='viento_ms'&&ESCALAS[variable]&&vs!==null?` · ${ESCALAS[variable].nombre.toLowerCase()} ${vs.toFixed(variable==='precipitacion_mm'?1:0)} ${ESCALAS[variable].unidad}`:''}`;return}
+  const m=k=>muestra(k,ll.lat,ll.lng),u=m('viento_u_ms'),v=m('viento_v_ms');
+  l.textContent=`${pos} · ${t.toFixed(1)} °C · rain ${fmt(m('precipitacion_mm'))} mm/h · wind ${u!==null&&v!==null?Math.hypot(u,v).toFixed(1)+' m/s '+dirDe(u,v):'—'} · clouds ${fmt(m('nubes_pct'),0)}% · RH ${fmt(m('humedad_pct'),0)}% · ${fmt(m('presion_hpa'),0)} hPa`})});
 
 // Línea de tiempo
 const lt=$('lt-rango'),ltEt=$('lt-etiqueta'),ltPlay=$('lt-play'),ltAhora=$('lt-ahora');
-function fechaLocal(iso){return new Date(iso+':00Z').toLocaleString('es-NI',{timeZone:'America/Managua',weekday:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}
+function fechaLocal(iso){return new Date(soporte.utc(iso)).toLocaleString('en-US',{weekday:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false})}
 function indiceAhora(){
-  if(G){
-    const actual=new Date().toISOString().slice(0,13)+':00';
-    const i=G.horas_utc.indexOf(actual);
-    return i<0?G.indice_actual:i;
-  }
+  if(G){const actual=new Date().toISOString().slice(0,13)+':00';const i=G.horas_utc.indexOf(actual);return i<0?G.indice_actual:i}
   return Math.max(0,horasActivas().findLastIndex(h=>soporte.utc(h)<=Date.now()));
 }
-// Distancia a la hora actual. Regional (horaria): «ahora», «+3 h», «−2 h». Mundial (cada 3 h): el paso
-// anterior a la hora actual se rotula como «último paso mundial · hace N h», no como «ahora».
 function relativa(i){
   const H=horasActivas(),t=soporte.utc(H[i]);if(!Number.isFinite(t))return '';
-  if(G){const a=indiceAhora();if(i===a)return 'ahora';const d=Math.round((t-soporte.utc(H[a]))/3600000);return (d>0?'+':'−')+Math.abs(d)+' h'}
-  const d=(t-Date.now())/3600000;
-  if(i===indiceAhora())return 'último paso mundial · hace '+(d>-1?'menos de 1 h':Math.round(-d)+' h');
-  const r=Math.round(d);return (r>0?'+':'−')+Math.abs(r)+' h desde ahora';
+  const d=Math.round((t-Date.now())/3600000);
+  if(i===indiceAhora())return 'now';
+  return (d>0?'+':'−')+Math.abs(d)+' h';
 }
 function etiquetaHora(){
   const iso=horasActivas()[hora];
-  if(!iso){ltEt.textContent='Sin datos de pronóstico vigentes';ltEt.removeAttribute('title');return}
-  const fuente=G?(G.respaldo?'Regional de respaldo':'Regional · 1 h'):'Mundial 1° · pasos de 3 h';
+  if(!iso){ltEt.textContent='No forecast data';return}
   const principal=document.createElement('strong');principal.textContent=fechaLocal(iso)+' · '+relativa(hora);
-  const detalle=document.createElement('small');detalle.textContent=fuente+' · '+iso.slice(11)+' UTC · modelo';
+  const detalle=document.createElement('small');detalle.textContent='ECMWF IFS · '+iso.slice(11,16)+' UTC';
   ltEt.replaceChildren(principal,detalle);
-  ltEt.title=fuente+' · '+fechaLocal(iso)+' (Managua) · '+iso.slice(11)+' UTC · '+soporte.etiquetaHora(iso)+' · satélite y radar conservan su propia hora';
-  ltAhora.title=G?'Ir a la hora actual':'Ir al último paso mundial anterior a la hora actual';
   indicador();
 }
-// Marcas bajo el deslizador: inicio de cada día (hora de Managua, UTC−6 sin horario de verano) y la hora actual.
+// Marcas bajo el deslizador: cambio de día (hora local del visitante) y la hora actual.
 const ltMarcas=$('lt-marcas');
 function marcas(){
   if(!ltMarcas)return;
   const H=horasActivas(),n=H.length,pos=i=>`calc(8px + (100% - 16px) * ${n>1?i/(n-1):0})`;
   ltMarcas.replaceChildren();
   if(!n)return;
-  H.forEach((iso,i)=>{const t=soporte.utc(iso);if(!Number.isFinite(t)||new Date(t-6*3600000).getUTCHours()!==0)return;
-    const m=document.createElement('span');m.className='lt-dia';m.style.left=pos(i);
-    m.textContent=new Date(t).toLocaleDateString('es-NI',{timeZone:'America/Managua',weekday:'short',day:'numeric'});ltMarcas.append(m)});
-  // Con pasos de 3 h la hora actual cae entre dos pasos: la marca se interpola en el tiempo.
+  let dia=null;
+  H.forEach((iso,i)=>{const f=new Date(soporte.utc(iso)),d=f.toDateString();if(d===dia)return;const nuevo=dia!==null;dia=d;if(!nuevo)return;
+    const m=document.createElement('span');m.className='lt-dia';m.style.left=pos(i);m.textContent=f.toLocaleDateString('en-US',{weekday:'short',day:'numeric'});ltMarcas.append(m)});
   let ia=indiceAhora();
-  if(!G&&ia<n-1){const t0=soporte.utc(H[ia]),t1=soporte.utc(H[ia+1]);if(t1>t0)ia+=Math.min(1,Math.max(0,(Date.now()-t0)/(t1-t0)))}
-  const a=document.createElement('span');a.className='lt-ahora';a.style.left=pos(ia);a.title='Hora actual';ltMarcas.append(a);
+  if(ia<n-1){const t0=soporte.utc(H[ia]),t1=soporte.utc(H[ia+1]);if(t1>t0)ia+=Math.min(1,Math.max(0,(Date.now()-t0)/(t1-t0)))}
+  const a=document.createElement('span');a.className='lt-ahora';a.style.left=pos(ia);ltMarcas.append(a);
 }
 function ajustarTiempo(iso,seguirAhora){
   const horas=horasActivas();
@@ -239,74 +217,59 @@ function ponerHora(h){
   requestAnimationFrame(()=>{pendienteHora=false;reiniciar(true);leyenda();document.dispatchEvent(new CustomEvent('sicc:hora',{detail:hora}))});
 }
 lt.oninput=e=>{parar();ponerHora(Number(e.target.value))};
-function parar(){if(reproducir){clearInterval(reproducir);reproducir=null}ltPlay.textContent='▶';ltPlay.setAttribute('aria-label','Reproducir pronóstico')}
-ltPlay.onclick=()=>{if(reproducir)return parar();if(!horasActivas().length)return;ltPlay.textContent='❚❚';ltPlay.setAttribute('aria-label','Pausar');reproducir=setInterval(()=>ponerHora(hora+1>=horasActivas().length?0:hora+1),900)};
+function parar(){if(reproducir){clearInterval(reproducir);reproducir=null}ltPlay.textContent='▶';ltPlay.setAttribute('aria-label','Play forecast')}
+ltPlay.onclick=()=>{if(reproducir)return parar();if(!horasActivas().length)return;ltPlay.textContent='❚❚';ltPlay.setAttribute('aria-label','Pause');reproducir=setInterval(()=>ponerHora(hora+1>=horasActivas().length?0:hora+1),G?700:1100)};
 ltAhora.onclick=()=>{parar();ponerHora(indiceAhora())};
 
 // Selector de capas
-document.querySelectorAll('#barra-capas [data-var]').forEach(b=>b.onclick=()=>{variable=b.dataset.var;document.querySelectorAll('#barra-capas [data-var]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));leyenda();reiniciar(true)});
+document.querySelectorAll('#barra-capas [data-var]').forEach(b=>b.onclick=()=>{variable=b.dataset.var;document.querySelectorAll('#barra-capas [data-var]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));leyenda();reiniciar(true);avisar('sicc:capa')});
 $('chk-particulas').onchange=e=>{conParticulas=e.target.checked;reiniciar()};
-const op=$('opacidad-temp');if(op)op.oninput=e=>{opacidad=Number(e.target.value)/100;cT.style.opacity=opacidad};
+const op=$('opacidad-temp');if(op){opacidad=Number(op.value)/100;op.oninput=e=>{opacidad=Number(e.target.value)/100;cT.style.opacity=opacidad}}
 
 async function cargar(){
-  const est=$('campo-estado'),b=$('actualizar-campo');
-  if(b.disabled)return;
-  b.disabled=true;
-  est.textContent='Consultando malla regional…';
   try{
     const r=await window.FuentesMeteo.fetch('/api/campo_nicaragua'),d=await json(r);
-    if(!r.ok)throw Error(d.error||'Error al leer el campo');
+    if(!r.ok)throw Error(d.error||'Regional grid unavailable');
     const iso=G?.horas_utc[hora],seguirAhora=!G||hora===G.indice_actual;
     G=d;
     for(const k in cacheViento)delete cacheViento[k];
     ajustarTiempo(iso,seguirAhora);
-    estadoRegional=(d.respaldo?'Respaldo regional por límite de Open-Meteo · ':'')+d.fuente+
-      ' · instantánea de la consulta '+d.consulta_utc+' · '+d.horas_utc.length+' pasos ('+d.horas_utc[0]+' a '+d.horas_utc.at(-1)+' UTC). '+d.nota;
   }catch(e){
     const iso=G?null:horasActivas()[hora];
     if(G)parar();
     G=null;
     ajustarTiempo(iso);
-    estadoRegional='Campo regional no disponible: '+(e.message||e);
   }finally{
-    regionalListo=true;
-    est.textContent=estadoRegional;
-    b.disabled=false;
-    reiniciar();leyenda();
-    document.dispatchEvent(new CustomEvent('sicc:campo'));
+    reiniciar();leyenda();avisar('sicc:campo');
   }
 }
-$('actualizar-campo').onclick=()=>{cargar();cargarGlobal()};
 let cargandoGlobal=false;
 async function cargarGlobal(){
   if(cargandoGlobal)return;
   cargandoGlobal=true;
   try{
     const r=await window.FuentesMeteo.fetch('/api/global_meta'),d=await json(r);
-    if(!r.ok)throw Error(d.error||'Sin metadatos mundiales');
+    if(!r.ok)throw Error(d.error||'No global metadata');
     const iso=horasActivas()[hora],seguirAhora=hora===indiceAhora();
     if(GM?.corrida_utc!==d.corrida_utc)for(const k in cacheG)delete cacheG[k];
-    GM=d;errorGlobal='';
+    GM=d;
     if(!G)ajustarTiempo(iso,seguirAhora);
   }catch(e){
-    GM=null;errorGlobal='Malla mundial no disponible: '+(e.message||e);
+    GM=null;
     for(const k in cacheG)delete cacheG[k];
     if(!G)ajustarTiempo();
   }finally{
     cargandoGlobal=false;globalListo=true;
-    reiniciar(true);leyenda();
-    if(!G)$('mundial-estado').textContent=errorGlobal||soporte.vigencia(GM);
+    reiniciar(true);leyenda();avisar('sicc:campo');
   }
 }
 cargarGlobal();setInterval(()=>{if(!document.hidden)cargarGlobal()},30*60000);
 
-// Interfaz para gráficas, fenómenos, exportación y pruebas (solo lectura).
 window.SICC_campo={
-  estado:()=>({datos:!!G,variable,hora,horaUTC:horasActivas()[hora]??null,particulas:N,rejilla:FV?FV.nx+'x'+FV.ny:null,mundial:GM?{corrida:GM.corrida_utc,paso:pasoGlobal(),horaGlobal:pasoGlobal()!==null?GM.horas_utc[pasoGlobal()]:null,enMemoria:Object.keys(cacheG)}:null}),
+  estado:()=>({datos:!!G,variable,hora,horaUTC:horasActivas()[hora]??null,particulas:N,mundial:GM?{corrida:GM.corrida_utc,paso:pasoGlobal(),horaGlobal:pasoGlobal()!==null?GM.horas_utc[pasoGlobal()]:null}:null}),
+  meta:()=>GM,
   hora:()=>hora,
-  datos:()=>G,
-  contiene:(lat,lon)=>!!G&&!!indice(lat,lon),
-  serie:(lat,lon)=>{if(!G||!indice(lat,lon))return null;const r={horas:G.horas_utc,actual:G.indice_actual};for(const k of Object.keys(G.variables).concat('viento_ms'))r[k]=G.horas_utc.map((_,h)=>muestra(k,lat,lon,h));return r}
+  datos:()=>G
 };
 cargar();setInterval(()=>{if(!document.hidden)cargar()},REFRESCO_MIN*60000);
 })();

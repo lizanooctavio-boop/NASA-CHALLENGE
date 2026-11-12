@@ -5,7 +5,7 @@ const salida = 'public/clima-base';
 const variables = ['temperatura_c', 'precipitacion_mm', 'viento', 'rafagas_ms', 'nubes_pct', 'humedad_pct', 'presion_hpa'];
 const capas = ['GOES-East_ABI_GeoColor', 'IMERG_Precipitation_Rate_30min',
   'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies', 'MODIS_Combined_Value_Added_AOD'];
-const csv = ['serie_cuenca', 'enos', 'tormentas', 'tormentas_historicas', 'tendencia_precipitacion_anual', 'tendencia_precipitacion_mensual_imerg'];
+const csv = ['enos', 'tormentas'];
 
 async function obtener(ruta) {
   const respuesta = await fetch(origen + '/api/' + ruta, { signal: AbortSignal.timeout(25000) });
@@ -36,7 +36,7 @@ const tareas = meta.horas_utc.flatMap((_, paso) => variables.map(variable => asy
   }
   await guardar(`global-${variable}-${paso}`, campo);
 }));
-tareas.unshift(...['campo_nicaragua', 'territorio', 'tendencia_precipitacion', 'enos', 'tormentas', 'grilla'].map(n => () => guardarApi(n)));
+tareas.unshift(...['campo_nicaragua', 'enos', 'tormentas'].map(n => () => guardarApi(n)));
 tareas.push(...capas.map(capa => () => guardarApi('gibs-' + capa, 'gibs_hora?capa=' + encodeURIComponent(capa))));
 tareas.push(...csv.map(nombre => async () => {
   const r = await obtener('exportar/' + nombre + '.csv');
@@ -44,12 +44,12 @@ tareas.push(...csv.map(nombre => async () => {
 }));
 tareas.push(async () => {
   const datos = await json('series');
-  const ventanas = { 'maíz': 'Temporada de referencia 1', arroz: 'Temporada de referencia 2', frijol: 'Temporada de referencia 3' };
+  const ventanas = { 'maíz': 'Reference season 1', arroz: 'Reference season 2', frijol: 'Reference season 3' };
   const proyecciones = datos.escenarios_anuales.map(({ escenario, cultivo, anio, dT, dP }) =>
     ({ escenario, ventana: ventanas[cultivo], anio, dT, dP }));
-  await guardar('series', { cuenca_mensual: datos.cuenca_mensual, proyecciones });
+  await guardar('series', { proyecciones });
   await writeFile(salida + '/proyecciones.csv',
-    '# CMIP6 / SCA; cambios estacionales vs. 1981–1995.\nescenario,ventana,anio,delta_t_c,delta_p_pct\n' +
+    '# CMIP6, Central America (SCA); seasonal change vs. 1981-1995.\nscenario,season,year,delta_t_c,delta_p_pct\n' +
     proyecciones.map(f => [f.escenario, f.ventana, f.anio, f.dT, f.dP].join(',')).join('\n') + '\n');
 });
 const fallos = await ejecutar(tareas);

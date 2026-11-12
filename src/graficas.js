@@ -1,13 +1,13 @@
 /*
- * Dibujo de mapa, serie anual, comparación de pendientes y bloque ONI en SVG, sin librerías.
+ * Serie anual y comparación de pendientes en SVG, sin librerías.
  * Cada gráfica se dibuja al ancho real de su contenedor para que el texto conserve su tamaño en móvil.
  */
 (function () {
   'use strict';
   var NS = 'http://www.w3.org/2000/svg';
-  var nf1 = new Intl.NumberFormat('es-NI', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-  var nf0 = new Intl.NumberFormat('es-NI', { maximumFractionDigits: 0 });
-  var nf2 = new Intl.NumberFormat('es-NI', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var nf1 = new Intl.NumberFormat('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  var nf0 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+  var nf2 = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   function conSigno(v, f) { f = f || nf1; return (v > 0 ? '+' : v < 0 ? '−' : '') + f.format(Math.abs(v)); }
 
@@ -39,8 +39,8 @@
     var t = tooltip();
     t.innerHTML = html;
     t.hidden = false;
-    var x = clientX + window.scrollX, y = clientY + window.scrollY;
-    var ancho = t.offsetWidth, min = window.scrollX + ancho / 2 + 8, max = window.scrollX + document.documentElement.clientWidth - ancho / 2 - 8;
+    var x = clientX, y = clientY;
+    var ancho = t.offsetWidth, min = ancho / 2 + 8, max = document.documentElement.clientWidth - ancho / 2 - 8;
     t.style.left = Math.max(min, Math.min(max, x)) + 'px';
     t.style.top = y + 'px';
   }
@@ -48,11 +48,11 @@
 
   // ---------- colores ----------
   var ESTADOS = {
-    aumento: { etiqueta: 'Aumento', clase: 'est-aumento' },
-    disminucion: { etiqueta: 'Disminución', clase: 'est-disminucion' },
-    insuficiente: { etiqueta: 'Evidencia insuficiente', clase: 'est-insuficiente' },
-    discrepan: { etiqueta: 'Los métodos discrepan', clase: 'est-discrepan' },
-    faltan: { etiqueta: 'Datos faltantes', clase: 'est-faltan' }
+    aumento: { etiqueta: 'Increase', clase: 'est-aumento' },
+    disminucion: { etiqueta: 'Decrease', clase: 'est-disminucion' },
+    insuficiente: { etiqueta: 'Insufficient evidence', clase: 'est-insuficiente' },
+    discrepan: { etiqueta: 'Methods disagree', clase: 'est-discrepan' },
+    faltan: { etiqueta: 'Missing data', clase: 'est-faltan' }
   };
 
   function claseDivergente(v, maxAbs) {
@@ -66,100 +66,6 @@
   function colorMapa(r, regiones) {
     if (!r || r.analisis.veredicto.estado === 'faltan' || !r.analisis.sen) return '--tierra';
     return claseDivergente(r.analisis.sen.pendiente, maxAbsPendiente(regiones)).slice(4, -1);
-  }
-
-  // ---------- mapa ----------
-  function dibujarMapa(cont, datos, selId, alElegir) {
-    cont.innerHTML = '';
-    var C = window.SOF_CONTORNOS;
-    var lon0 = -90.2, lon1 = -81.0, lat0 = 7.85, lat1 = 16.65, cosl = Math.cos(12 * Math.PI / 180);
-    var W = Math.max(260, cont.clientWidth || 400);
-    var k = W / ((lon1 - lon0) * cosl), H = Math.round((lat1 - lat0) * k);
-    function px(p) { return [((p[0] - lon0) * cosl * k).toFixed(1), ((lat1 - p[1]) * k).toFixed(1)]; }
-    function ruta(anillo) { return 'M' + anillo.map(function (p) { return px(p).join(','); }).join('L') + 'Z'; }
-
-    var porId = {};
-    datos.regiones.forEach(function (r) { porId[r.id] = r; });
-    var maxAbs = maxAbsPendiente(datos.regiones);
-    var sel = porId[selId];
-    var svg = el('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img',
-      'aria-label': 'Mapa de Centroamérica con ' + (sel ? sel.nombre : '') + ' resaltada. ' + datos.regiones.map(function (r) {
-        return r.nombre + ': ' + ESTADOS[r.analisis.veredicto.estado].etiqueta.toLowerCase();
-      }).join('; ') + '.' }, cont);
-    el('rect', { x: 0, y: 0, width: W, height: H, fill: 'var(--agua)', rx: 6 }, svg);
-    svg.setAttribute('overflow', 'hidden');
-    var fondoBase = el('g', { class: 'base-regional', 'aria-hidden': 'true' }, svg);
-    window.SOF_BASE_MUNDIAL.forEach(function (p) {
-      if (p.tipo !== 'pais') return;
-      var borde = p.anillos[0];
-      if (!borde.some(function (q) { return q[0] > lon0 - 4 && q[0] < lon1 + 4 && q[1] > lat0 - 4 && q[1] < lat1 + 4; })) return;
-      el('path', { d: p.anillos.map(ruta).join(' '), 'fill-rule': 'evenodd' }, fondoBase);
-    });
-    var defs = el('defs', null, svg);
-    var pat = el('pattern', { id: 'rayado', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' }, defs);
-    el('rect', { width: 6, height: 6, fill: 'var(--tierra)' }, pat);
-    el('line', { x1: 0, y1: 0, x2: 0, y2: 6, stroke: 'var(--texto-3)', 'stroke-width': 1.2 }, pat);
-
-    function relleno(r) {
-      if (!r || r.analisis.veredicto.estado === 'faltan' || !r.analisis.sen) return 'url(#rayado)';
-      return claseDivergente(r.analisis.sen.pendiente, maxAbs);
-    }
-    function alPasar(r) {
-      return function (ev) {
-        mostrarTip('<strong>' + r.nombre + '</strong><br>' + resumenCorto(r, datos.meta), ev.clientX, ev.clientY);
-      };
-    }
-
-    ['honduras', 'costa_rica', 'nicaragua'].forEach(function (id) {
-      var r = porId[id];
-      var anillo = (r && Array.isArray(r.contorno) && r.contorno.length > 2) ? r.contorno : C.paises[id];
-      var trazado = r && r.poligonos ? r.poligonos.flat().map(ruta).join(' ') : ruta(anillo);
-      var p = el('path', { d: trazado, 'fill-rule': 'evenodd', class: 'pais' + (id === selId ? ' sel' : ''), fill: relleno(r), 'data-region': id }, svg);
-      p.addEventListener('click', function () { alElegir(id); });
-      p.addEventListener('pointermove', alPasar(r));
-      p.addEventListener('pointerleave', ocultarTip);
-    });
-    // la región seleccionada se dibuja encima para que su borde no quede tapado
-    var selPath = svg.querySelector('.pais.sel');
-    if (selPath) svg.appendChild(selPath);
-
-    var caja = porId.caja_original;
-    if (caja && caja.bbox) {
-      var a = px([caja.bbox[0], caja.bbox[3]]), b = px([caja.bbox[2], caja.bbox[1]]);
-      var g = el('g', null, svg);
-      var fondo = el('rect', { x: a[0], y: a[1], width: b[0] - a[0], height: b[1] - a[1], fill: relleno(caja), 'fill-opacity': selId === 'caja_original' ? 0.9 : 0.6, 'data-region': 'caja_original' }, g);
-      var borde = el('rect', { x: a[0], y: a[1], width: b[0] - a[0], height: b[1] - a[1], class: 'caja' + (selId === 'caja_original' ? ' sel' : '') }, g);
-      [fondo, borde].forEach(function (n) {
-        n.style.cursor = 'pointer';
-        n.addEventListener('click', function () { alElegir('caja_original'); });
-        n.addEventListener('pointermove', alPasar(caja));
-        n.addEventListener('pointerleave', ocultarTip);
-      });
-      texto(svg, Number(a[0]) + 6, Number(b[1]) - 8, 'Caja SICC', { class: 'rotulo-caja' });
-    }
-    C.lagos.forEach(function (l) { el('path', { d: ruta(l), class: 'lago' }, svg); });
-    Object.keys(C.rotulos).forEach(function (id) {
-      var p = px(C.rotulos[id]);
-      texto(svg, p[0], p[1], (porId[id] && porId[id].nombre) || id, { class: 'rotulo', 'text-anchor': 'middle' });
-    });
-    [['Managua', -86.251, 12.136], ['Bluefields', -83.764, 12.014], ['Bilwi', -83.389, 14.035]].forEach(function (ciudad) {
-      var p = px(ciudad.slice(1));
-      el('circle', { cx: p[0], cy: p[1], r: 2, class: 'punto-ciudad' }, svg);
-      texto(svg, Number(p[0]) + 5, Number(p[1]) + 4, ciudad[0], { class: 'rotulo-ciudad' });
-    });
-    svg.addEventListener('pointerleave', ocultarTip);
-  }
-
-  function dibujarEscalaMapa(cont, regiones, meta) {
-    var maxAbs = maxAbsPendiente(regiones);
-    cont.innerHTML = '<span>Pendiente negativa</span><span class="barras" aria-hidden="true">' +
-      ['neg-3', 'neg-2', 'neg-1'].map(function (c) { return '<span style="background:var(--div-' + c + ')"></span>'; }).join('') +
-      '<span style="background:var(--div-neutro)"></span>' +
-      ['pos-1', 'pos-2', 'pos-3'].map(function (c) { return '<span style="background:var(--div-' + c + ')"></span>'; }).join('') +
-      '</span><span>Pendiente positiva</span><span>(±' + nf0.format(maxAbs) + ' ' + meta.unidades_pendiente + ')</span>';
-    if (regiones.some(function (r) { return r.analisis.veredicto.estado === 'faltan'; })) {
-      cont.innerHTML += '<span class="barras"><span style="background:var(--tierra)"></span></span><span>Sin datos</span>';
-    }
   }
 
   function maxAbsPendiente(regiones) {
@@ -184,8 +90,8 @@
     var svg = el('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H }, cont);
     if (!validos.length) {
       svg.setAttribute('role', 'img');
-      svg.setAttribute('aria-label', 'Sin datos para ' + region.nombre);
-      texto(svg, W / 2, H / 2, 'No hay datos de lluvia para esta región.', { 'text-anchor': 'middle' });
+      svg.setAttribute('aria-label', 'No data for ' + region.nombre);
+      texto(svg, W / 2, H / 2, 'No rainfall data for this area.', { 'text-anchor': 'middle' });
       return;
     }
     var a0 = meta.periodo[0], a1 = meta.periodo[1];
@@ -198,9 +104,9 @@
     var Y = function (v) { return m.t + (ymax - v) / (ymax - ymin) * (H - m.t - m.b); };
 
     svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', 'Precipitación anual de ' + region.nombre + ' entre ' + a0 + ' y ' + a1 +
-      (tm ? ', con rectas de tendencia por mínimos cuadrados (' + conSigno(tm.pendiente) + ') y Theil-Sen (' + conSigno(ts.pendiente) + ') ' + meta.unidades_pendiente : '') +
-      '. Use las flechas izquierda y derecha para recorrer los años.');
+    svg.setAttribute('aria-label', 'Annual precipitation in ' + region.nombre + ' from ' + a0 + ' to ' + a1 +
+      (tm ? ', with least-squares (' + conSigno(tm.pendiente) + ') and Theil–Sen (' + conSigno(ts.pendiente) + ') trend lines, ' + meta.unidades_pendiente : '') +
+      '. Use the left and right arrow keys to step through the years.');
     svg.setAttribute('tabindex', '0');
 
     var gEje = el('g', { class: 'eje' }, svg);
@@ -244,9 +150,9 @@
       guia.setAttribute('x1', X(anio)); guia.setAttribute('x2', X(anio)); guia.setAttribute('visibility', 'visible');
       if (p && p.valor !== null) { foco.setAttribute('cx', X(anio)); foco.setAttribute('cy', Y(p.valor)); foco.setAttribute('visibility', 'visible'); }
       else foco.setAttribute('visibility', 'hidden');
-      var html = '<strong>' + anio + '</strong><br>Observado: ' + (p && p.valor !== null ? nf0.format(p.valor) + ' ' + meta.unidades : 'sin dato');
-      if (tm) html += '<br><span class="t">Recta MCO: ' + nf0.format(window.SofContrato.valorAjustado(tm, anio)) + '</span>';
-      if (ts) html += '<br><span class="t">Recta Theil-Sen: ' + nf0.format(window.SofContrato.valorAjustado(ts, anio)) + '</span>';
+      var html = '<strong>' + anio + '</strong><br>Observed: ' + (p && p.valor !== null ? nf0.format(p.valor) + ' ' + meta.unidades : 'no data');
+      if (tm) html += '<br><span class="t">Least squares: ' + nf0.format(window.SofContrato.valorAjustado(tm, anio)) + '</span>';
+      if (ts) html += '<br><span class="t">Theil–Sen: ' + nf0.format(window.SofContrato.valorAjustado(ts, anio)) + '</span>';
       if (cx === undefined) {
         var r = svg.getBoundingClientRect();
         cx = r.left + X(anio) * r.width / W; cy = r.top + (p && p.valor !== null ? Y(p.valor) : m.t + 20) * r.height / H;
@@ -281,7 +187,7 @@
     lo -= pad; hi += pad;
     var X = function (v) { return m.l + (v - lo) / (hi - lo) * (W - m.l - m.r); };
     var svg = el('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img',
-      'aria-label': 'Pendientes de Theil-Sen y mínimos cuadrados con intervalos del ' + Math.round(meta.nivel_confianza * 100) + ' % para las cuatro regiones, en una misma escala con una línea en cero. La tabla siguiente contiene los mismos valores.' }, cont);
+      'aria-label': 'Theil–Sen and least-squares slopes with ' + Math.round(meta.nivel_confianza * 100) + '% intervals for each area on a common scale with a zero line.' }, cont);
 
     var g = el('g', { class: 'eje' }, svg);
     ticksBonitos(lo, hi, estrecho ? 4 : 7).forEach(function (v) {
@@ -289,7 +195,7 @@
       texto(g, X(v), H - m.b + 16, conSigno(v, nf0), { 'text-anchor': 'middle' });
     });
     texto(g, W - m.r, H - 4, meta.unidades_pendiente, { 'text-anchor': 'end', style: 'fill:var(--texto-3)', 'font-size': 11 });
-    texto(g, X(0), H - 4, estrecho ? '' : 'sin cambio', { 'text-anchor': 'middle', style: 'fill:var(--texto-3)', 'font-size': 11 });
+    texto(g, X(0), H - 4, estrecho ? '' : 'no change', { 'text-anchor': 'middle', style: 'fill:var(--texto-3)', 'font-size': 11 });
 
     regiones.forEach(function (r, i) {
       var y0 = m.t + i * fila, yc = y0 + fila / 2;
@@ -302,9 +208,9 @@
       tEst.setAttribute('class', est.clase);
       tEst.style.fill = 'currentColor';
       if (!r.analisis.mco) {
-        texto(grupo, X(0) + 8, yc + 4, 'sin tendencia calculable', { style: 'fill:var(--texto-3)', 'font-size': 12 });
+        texto(grupo, X(0) + 8, yc + 4, 'no trend available', { style: 'fill:var(--texto-3)', 'font-size': 12 });
       }
-      [['mco', -7, 'var(--serie-mco)', 'Mínimos cuadrados'], ['sen', 7, 'var(--serie-sen)', 'Theil-Sen']].forEach(function (cfg) {
+      [['mco', -7, 'var(--serie-mco)', 'Least squares'], ['sen', 7, 'var(--serie-sen)', 'Theil–Sen']].forEach(function (cfg) {
         var t = r.analisis[cfg[0]]; if (!t) return;
         var y = yc + cfg[1];
         el('line', { x1: X(t.ic_inf), x2: X(t.ic_sup), y1: y, y2: y, stroke: cfg[2], 'stroke-width': 2.5, 'stroke-linecap': 'round', 'stroke-dasharray': cfg[0] === 'sen' ? '6 3' : null }, grupo);
@@ -315,7 +221,7 @@
         [hit, forma].forEach(function (n) {
           n.addEventListener('pointermove', function (ev) {
             mostrarTip('<strong>' + r.nombre + ' · ' + cfg[3] + '</strong><br>' + conSigno(t.pendiente) + ' ' + meta.unidades_pendiente +
-              '<br><span class="t">IC ' + Math.round(meta.nivel_confianza * 100) + ' %: ' + conSigno(t.ic_inf) + ' a ' + conSigno(t.ic_sup) + '</span>', ev.clientX, ev.clientY);
+              '<br><span class="t">' + Math.round(meta.nivel_confianza * 100) + '% CI: ' + conSigno(t.ic_inf) + ' to ' + conSigno(t.ic_sup) + '</span>', ev.clientX, ev.clientY);
           });
           n.addEventListener('pointerleave', ocultarTip);
         });
@@ -325,106 +231,13 @@
     el('line', { x1: X(0), x2: X(0), y1: m.t, y2: H - m.b, class: 'cero' }, svg);
   }
 
-  // ---------- ONI ----------
-  function dibujarOni(cont, oni, region, meta) {
-    cont.innerHTML = '';
-    var E = window.SofEstadistica;
-    var limites = '<div class="limites"><h3>Qué muestra y qué no</h3><ul>' +
-      '<li>Muestra <strong>asociación</strong>: si los años con El Niño o La Niña coinciden con años más secos o más lluviosos. No demuestra que el ONI cause la diferencia ni explica la tendencia.</li>' +
-      '<li>El ONI anual es un promedio; El Niño suele alcanzar su máximo en diciembre-febrero y su efecto sobre la lluvia cambia según la temporada y entre la vertiente del Pacífico y la del Caribe.</li>' +
-      '<li>En 24 años hay pocos eventos fuertes, así que un solo año puede mover la correlación.</li>' +
-      '<li>Para no mezclar la relación con la tendencia, la lluvia se compara como anomalía respecto a la recta de Theil-Sen.</li></ul></div>';
-    if (!oni) {
-      cont.innerHTML = '<p class="sub">El archivo de datos no incluye la serie ONI, así que este bloque queda vacío.</p>' + limites;
-      return;
-    }
-    var porAnio = {};
-    oni.serie.forEach(function (p) { porAnio[p.anio] = p.valor; });
-    var pares = [];
-    if (region.analisis.sen) {
-      region.serie.forEach(function (p) {
-        if (p.valor !== null && porAnio[p.anio] !== undefined) {
-          var t = region.analisis.sen;
-          pares.push({ anio: p.anio, oni: porAnio[p.anio], anom: p.valor - (window.SofContrato.valorAjustado(t, p.anio)) });
-        }
-      });
-    }
-    var c = pares.length >= 3 ? E.pearson(pares.map(function (q) { return q.oni; }), pares.map(function (q) { return q.anom; })) : null;
-    var frase = c
-      ? 'En ' + region.nombre + ', la correlación entre el ONI anual y la anomalía de lluvia es r = ' + nf2.format(c.r) + ' (n = ' + c.n + ' años, p ≈ ' + nf2.format(c.p) + '). ' +
-        (c.p < 0.05 ? (c.r < 0 ? 'Los años con ONI alto (El Niño) tienden a ser más secos.' : 'Los años con ONI alto (El Niño) tienden a ser más lluviosos.') : 'Con estos datos la asociación no es clara.')
-      : 'No hay suficientes años con lluvia y ONI para calcular la asociación en ' + region.nombre + '.';
-    var intro = document.createElement('div');
-    intro.innerHTML = '<p class="sub">Fuente: ' + escapar(oni.fuente) + '. Agregación: ' + escapar(oni.agregacion) + '.</p><p>' + frase + '</p>';
-    cont.appendChild(intro);
-
-    var fila = document.createElement('div');
-    fila.className = 'dos';
-    var c1 = document.createElement('div'), c2 = document.createElement('div');
-    c1.className = 'grafica'; c2.className = 'grafica';
-    fila.appendChild(c1); fila.appendChild(c2);
-    cont.appendChild(fila);
-    var lim = document.createElement('div');
-    lim.innerHTML = limites;
-    cont.appendChild(lim);
-
-    // barras ONI por año
-    var W = Math.max(260, c1.clientWidth || 400), H = 200, m = { l: 36, r: 8, t: 22, b: 26 };
-    var a0 = meta.periodo[0], a1 = meta.periodo[1];
-    var vmax = Math.max(2, Math.max.apply(null, oni.serie.map(function (p) { return Math.abs(p.valor); })));
-    var bw = (W - m.l - m.r) / (a1 - a0 + 1);
-    var X = function (a) { return m.l + (a - a0) * bw; }, Y = function (v) { return m.t + (vmax - v) / (2 * vmax) * (H - m.t - m.b); };
-    var s1 = el('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': 'Índice ONI anual de ' + a0 + ' a ' + a1 + '. Barras hacia arriba: El Niño; hacia abajo: La Niña.' }, c1);
-    texto(s1, m.l, 12, 'ONI anual (°C)', { style: 'fill:var(--texto-3)', 'font-size': 11 });
-    [-1, -0.5, 0, 0.5, 1].forEach(function (v) {
-      el('line', { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), class: v === 0 ? 'cero' : 'rejilla-h' }, s1);
-      if (v !== 0.5 && v !== -0.5) texto(s1, m.l - 4, Y(v) + 4, conSigno(v, nf0), { 'text-anchor': 'end' });
-    });
-    oni.serie.forEach(function (p) {
-      if (p.anio < a0 || p.anio > a1) return;
-      var color = p.valor >= 0.5 ? 'var(--div-neg-2)' : p.valor <= -0.5 ? 'var(--div-pos-2)' : 'var(--texto-3)';
-      var y = Math.min(Y(0), Y(p.valor)), h = Math.max(1, Math.abs(Y(p.valor) - Y(0)));
-      var b = el('rect', { x: X(p.anio) + 1, y: y, width: Math.max(1, bw - 2), height: h, fill: color, rx: 2 }, s1);
-      b.addEventListener('pointermove', function (ev) {
-        mostrarTip('<strong>' + p.anio + '</strong><br>ONI ' + conSigno(p.valor, nf2) + '<br><span class="t">' + (p.valor >= 0.5 ? 'El Niño' : p.valor <= -0.5 ? 'La Niña' : 'Neutro') + '</span>', ev.clientX, ev.clientY);
-      });
-      b.addEventListener('pointerleave', ocultarTip);
-    });
-    [a0, a0 + 8, a0 + 16, a1].forEach(function (a) { texto(s1, X(a) + bw / 2, H - 8, String(a), { 'text-anchor': 'middle' }); });
-
-    // dispersión ONI vs anomalía
-    var W2 = Math.max(260, c2.clientWidth || 400), m2 = { l: 48, r: 10, t: 22, b: 30 };
-    var s2 = el('svg', { width: W2, height: H, viewBox: '0 0 ' + W2 + ' ' + H, role: 'img', 'aria-label': 'Dispersión de ONI anual frente a la anomalía de lluvia de ' + region.nombre + '.' }, c2);
-    texto(s2, m2.l, 12, 'Anomalía de lluvia (' + meta.unidades + ') frente a ONI', { style: 'fill:var(--texto-3)', 'font-size': 11 });
-    if (!pares.length) { texto(s2, W2 / 2, H / 2, 'Sin datos', { 'text-anchor': 'middle' }); return; }
-    var amax = Math.max.apply(null, pares.map(function (q) { return Math.abs(q.anom); })) * 1.1;
-    var X2 = function (v) { return m2.l + (v + vmax) / (2 * vmax) * (W2 - m2.l - m2.r); };
-    var Y2 = function (v) { return m2.t + (amax - v) / (2 * amax) * (H - m2.t - m2.b); };
-    ticksBonitos(-amax, amax, 4).forEach(function (v) {
-      el('line', { x1: m2.l, x2: W2 - m2.r, y1: Y2(v), y2: Y2(v), class: v === 0 ? 'cero' : 'rejilla-h' }, s2);
-      texto(s2, m2.l - 4, Y2(v) + 4, conSigno(v, nf0), { 'text-anchor': 'end' });
-    });
-    [-1, 0, 1].forEach(function (v) {
-      el('line', { x1: X2(v), x2: X2(v), y1: m2.t, y2: H - m2.b, class: v === 0 ? 'cero' : 'rejilla-h' }, s2);
-      texto(s2, X2(v), H - 12, conSigno(v, nf0), { 'text-anchor': 'middle' });
-    });
-    texto(s2, W2 - m2.r, H - 1, 'ONI', { 'text-anchor': 'end', style: 'fill:var(--texto-3)', 'font-size': 11 });
-    pares.forEach(function (q) {
-      var p = el('circle', { cx: X2(q.oni), cy: Y2(q.anom), r: 5, fill: 'var(--observado)', 'fill-opacity': 0.75, stroke: 'var(--superficie)', 'stroke-width': 1.5 }, s2);
-      p.addEventListener('pointermove', function (ev) {
-        mostrarTip('<strong>' + q.anio + '</strong><br>ONI ' + conSigno(q.oni, nf2) + '<br>Anomalía ' + conSigno(q.anom, nf0) + ' ' + meta.unidades, ev.clientX, ev.clientY);
-      });
-      p.addEventListener('pointerleave', ocultarTip);
-    });
-  }
-
   function escapar(s) {
     return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
   }
 
   window.SofGraficas = {
-    ESTADOS: ESTADOS, colorMapa: colorMapa, dibujarMapa: dibujarMapa, dibujarEscalaMapa: dibujarEscalaMapa, dibujarSerie: dibujarSerie,
-    dibujarComparacion: dibujarComparacion, dibujarOni: dibujarOni, ocultarTip: ocultarTip,
+    ESTADOS: ESTADOS, colorMapa: colorMapa, dibujarSerie: dibujarSerie,
+    dibujarComparacion: dibujarComparacion, ocultarTip: ocultarTip,
     formato: { nf0: nf0, nf1: nf1, nf2: nf2, conSigno: conSigno }, escapar: escapar
   };
 })();

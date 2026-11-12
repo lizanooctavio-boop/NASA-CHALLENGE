@@ -1,11 +1,18 @@
-:root{font-family:system-ui,Cantarell,Ubuntu,"Segoe UI",sans-serif;color-scheme:dark;--vidrio:rgba(18,24,38,.58);--vidrio-barra:rgba(255,255,255,.07);--borde:rgba(255,255,255,.16);--cian:#6fd8ff;--texto:#e8eef6;--tenue:#a9b8c9;--ambar:#f6c76b;--rojo:#ff8c7b;font-synthesis:none}
+:root{font-family:"Inter",system-ui,"Segoe UI",sans-serif;color-scheme:dark;--vidrio:rgba(18,24,38,.58);--vidrio-barra:rgba(255,255,255,.07);--borde:rgba(255,255,255,.16);--cian:#6fd8ff;--texto:#e8eef6;--tenue:#a9b8c9;--ambar:#f6c76b;--rojo:#ff8c7b;font-synthesis:none}
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;color:var(--texto);background:#06101d;overflow:hidden}
-#mapa{position:fixed;inset:0;z-index:0;background:#0a1a2e}
-/* Solo el mapa base se oscurece; satélite y radar conservan sus colores reales. */
-.base-osm{filter:invert(1) hue-rotate(195deg) brightness(.72) saturate(.5) contrast(.95)}
-.leaflet-container{font-family:inherit;background:#0a1a2e}
+body{margin:0;color:var(--texto);background:#01030a;overflow:hidden}
+/* Fondo: escena espacial 3D; el mapa 2D aparece encima cuando el globo termina de aplanarse. */
+#espacio{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block;opacity:0;transition:opacity 1.2s ease;touch-action:none;outline:none;cursor:grab}
+#espacio.listo{opacity:1}
+#espacio:active{cursor:grabbing}
+#mapa{position:fixed;inset:0;z-index:1;background:#01030a;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s linear .5s}
+body.modo-mapa #mapa{opacity:1;visibility:visible;transition:opacity .5s ease,visibility 0s}
+body.modo-globo #mapa{pointer-events:none}
+body.modo-globo .solo-mapa-capas,body.modo-globo .leaflet-control-container{display:none}
+body.en-transicion aside,body.en-transicion main,body.en-transicion #controles-mapa>*{transition:opacity .4s}
+.base-nasa{filter:brightness(.82) saturate(1.05)}
+.leaflet-container{font-family:inherit;background:#01030a}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:rgba(18,24,38,.9);color:var(--texto);border:1px solid var(--borde)}
 .leaflet-control-attribution{background:rgba(6,16,29,.7)!important;color:var(--tenue)!important}
 .leaflet-control-attribution a{color:var(--cian)!important}
@@ -250,7 +257,6 @@ body.aviso-encima main{z-index:7}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}.ciclon,.indicador i{animation:none!important}}
 
-#aviso-publico{flex:none;max-width:600px;display:flex;align-items:flex-start;gap:8px;padding:9px 14px;font-size:12px;line-height:1.5;color:#ffe3a8;background:rgba(80,60,10,.7);border:1px solid rgba(246,199,107,.5);border-radius:10px;backdrop-filter:blur(10px)}#aviso-publico[hidden]{display:none}
 .etq-pais{color:#dfe8f2;font-size:10.5px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;white-space:nowrap;transform:translate(-50%,-50%);text-shadow:0 0 3px #000,0 0 6px #000,0 0 10px #000;pointer-events:none}
 .etq-ciudad{color:#f2f6fa;font-size:11.5px;white-space:nowrap;text-shadow:0 0 3px #000,0 0 6px #000;transform:translate(-3px,-50%);pointer-events:none}.etq-ciudad i{display:inline-block;width:5px;height:5px;border-radius:50%;background:#fff;margin-right:5px;vertical-align:middle;box-shadow:0 0 3px #000}
 
@@ -267,7 +273,74 @@ body.aviso-encima main{z-index:7}
 .reg-lectura{font-weight:600;border-left:3px solid #c27c2a;padding-left:10px}
 .tend-etiqueta{background:rgba(13,27,42,.8);border:0;color:#e8f1fa;font-size:11px;box-shadow:none}
 @media(max-width:700px){.tend-mapa-reg{height:170px}}
-.volver { display:flex; gap:9px; align-items:center; padding:9px 12px; margin-top:10px; border-radius:8px; color:var(--texto); text-decoration:none; font-weight:600; }
-.volver:hover { background:var(--vidrio-barra); }
-.menu-plegado .volver { justify-content:center; padding-inline:0; }
-.menu-plegado .volver .txt { display:none; }
+
+/* ---------------------------------------------------------------- Trend Detective: escena espacial */
+.marca{display:flex;align-items:center;gap:9px;font-size:21px;letter-spacing:-.6px;font-weight:500;color:#dfe8f2}
+.marca b{font-weight:800;color:#fff;margin-left:-5px}
+.marca-punto{width:18px;height:18px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#bfe9ff,#3a8ee8 45%,#0b2a5c 75%);box-shadow:0 0 12px rgba(111,216,255,.55)}
+.marca span{margin-left:0}
+.sub{margin:8px 0 0}
+.interruptor{display:inline-flex;padding:3px;border:1px solid var(--borde);border-radius:999px;background:rgba(6,12,24,.55)}
+.interruptor button{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:999px;background:transparent;padding:6px 13px;font-size:12.5px;color:var(--tenue)}
+.interruptor button svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.interruptor button[aria-pressed="true"]{background:rgba(111,216,255,.2);color:#fff;box-shadow:inset 0 0 0 1px rgba(111,216,255,.45)}
+body.en-transicion .interruptor button{cursor:progress}
+.pista{margin:4px 0 0;font-size:13px;color:var(--tenue)}
+.coordenadas{margin:0 0 4px;font-size:12.5px;color:var(--cian);font-variant-numeric:tabular-nums}
+.sub-art{margin:-6px 0 4px;font-size:12px}
+.marca-punto-mapa{width:14px;height:14px;border-radius:50%;background:var(--cian);box-shadow:0 0 0 4px rgba(111,216,255,.3);margin:12px auto}
+.capas-extra li{display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none}
+.capas-extra{padding-left:0}
+.descargas-lista{padding-left:0}
+.descargas-lista li{list-style:none;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0}
+.descargas-lista li span{font-size:12.5px;color:var(--tenue)}
+.descargas-lista button,.descargas-lista .boton{min-width:190px;text-align:left}
+#indicador-detalle dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px}
+#indicador-detalle dt{margin:0!important}
+#indicador-detalle dd{margin:0}
+
+/* Tendencia de lluvia (gráficas SVG de src/graficas.js) */
+.vista{--superficie:rgba(14,20,34,.9);--superficie-2:rgba(255,255,255,.08);--texto-2:#cfd9e6;--texto-3:#93a4b8;--serie-mco:#97caff;--serie-sen:#fbc894;--observado:#e6e8f5;
+  --est-aumento:#a5e0d0;--est-disminucion:#f5ae8f;--est-insuf:#e3decb;--est-disc:#ffd08a;--est-faltan:#c8d0c8}
+.botones-region{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.botones-region button{display:grid;gap:1px;text-align:left;border-radius:10px;padding:8px 13px;background:rgba(255,255,255,.05)}
+.botones-region button .rol{font-size:10.5px;font-weight:500;color:var(--tenue);text-transform:uppercase;letter-spacing:.6px}
+.botones-region button[aria-checked="true"]{background:rgba(111,216,255,.18);border-color:rgba(111,216,255,.5)}
+.veredicto{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center}
+.veredicto .sub{margin:0;font-size:12px}
+.veredicto .icono{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:2px solid currentColor}
+.veredicto .icono svg{width:22px;height:22px}
+.veredicto .estado{font-size:20px;font-weight:700;margin:0;line-height:1.25}
+.pendiente-principal{grid-column:1/-1;margin:14px 0 0;color:var(--texto-2);font-variant-numeric:tabular-nums}
+.pendiente-principal strong{font-size:44px;font-weight:650;line-height:1;color:#fff;letter-spacing:-1px}
+.pendiente-principal small{display:block;margin-top:6px;font-size:12px;color:var(--tenue)}
+.veredicto .detalle{grid-column:1/-1;margin:8px 0 0;color:var(--texto-2)}
+.intervalos{grid-column:1/-1;list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px}
+.intervalos li{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,.04)}
+.intervalos li span{color:var(--tenue)}
+.intervalos li b{font-weight:600;font-variant-numeric:tabular-nums}
+.est-aumento{color:var(--est-aumento)}.est-disminucion{color:var(--est-disminucion)}.est-insuficiente{color:var(--est-insuf)}.est-discrepan{color:var(--est-disc)}.est-faltan{color:var(--est-faltan)}
+.grafica{min-height:120px}
+.grafica svg{display:block;max-width:100%}
+.grafica text{fill:var(--texto-2);font-size:12px;font-family:inherit}
+.grafica .eje line,.grafica .eje path{stroke:var(--borde)}
+.grafica .rejilla-h{stroke:var(--borde);stroke-dasharray:2 3}
+.grafica .cero{stroke:#fff;stroke-width:1.5}
+.grafica svg:focus-visible{outline:2px solid var(--cian);outline-offset:3px}
+.leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--texto-2);margin:0 0 8px;padding:0;list-style:none}
+.leyenda li{display:inline-flex;align-items:center;gap:6px;color:var(--texto-2);font-size:12.5px}
+.leyenda .muestra{width:18px;height:0;border-top:2px solid;display:inline-block}
+.leyenda .muestra.punteada{border-top-style:dashed}
+.descargas{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.descargas button{display:grid;gap:3px;text-align:left;padding:11px 13px}
+.descargas button .d{font-size:11.5px;font-weight:500;color:var(--tenue)}
+.estado-descarga{font-size:12px;min-height:1.2em;margin:8px 0 0}
+.tooltip{position:fixed;z-index:50;pointer-events:none;transform:translate(-50%,calc(-100% - 12px));background:rgba(10,16,28,.95);color:var(--texto);border:1px solid var(--borde);border-radius:8px;padding:7px 10px;font-size:12px;line-height:1.45;box-shadow:0 10px 30px rgba(0,0,0,.45);white-space:nowrap}
+.tooltip[hidden]{display:none}
+.tooltip .t{color:var(--tenue)}
+@media(max-width:700px),(max-height:500px) and (max-width:1000px){
+  #espacio{height:calc(100dvh - var(--alto-controles-mapa,0px))}
+  .interruptor button{padding:8px 12px}
+  .pendiente-principal strong{font-size:36px}
+}
+.veredicto .estado{border:0;background:none;padding:0;border-radius:0;white-space:normal;font-size:20px;color:inherit}

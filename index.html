@@ -1,139 +1,168 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tendencias de lluvia en Nicaragua</title>
-  <meta name="description" content="Demo de Earth System Trend Detective: ¿cambia la conclusión sobre la lluvia cuando ampliamos el mapa? Precipitación anual NASA GPM IMERG, 2001–2024.">
-  <link rel="stylesheet" href="src/estilos.css">
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Earth Trend Detective</title>
+<meta name="description" content="Explore Earth's weather from space and test whether annual rainfall in Nicaragua has changed, with NASA GPM IMERG data.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="app/estilos.css">
 </head>
-<body>
-  <a class="saltar" href="#principal">Saltar al contenido</a>
+<body class="modo-globo cargando">
+<canvas id="espacio" tabindex="0" aria-label="3D Earth. Drag to rotate, scroll to zoom, click to get a forecast."></canvas>
+<div id="mapa" aria-label="2D weather map"></div>
 
-  <div class="contenedor">
-    <header class="cabecera">
-      <p class="antetitulo">NASA Space Apps · Earth System Trend Detective</p>
-      <h1>Clima de Nicaragua</h1>
-      <p class="entradilla" id="entradilla">Explora la atmósfera y compara las tendencias de lluvia de Nicaragua con las de sus vecinos.</p>
-      <nav class="navegacion" aria-label="Vistas climáticas">
-        <a href="#mapa">Globo meteorológico</a>
-        <a href="visor/index.html">Mapa meteorológico 2D</a>
-        <a href="#t-resultado">Tendencias 2001–2024</a>
-      </nav>
-      <div id="avisos" aria-live="polite"></div>
-    </header>
-
-    <main id="principal" tabindex="-1">
-      <div class="rejilla">
-        <section class="tarjeta tarjeta-mapa" aria-labelledby="t-mapa">
-          <div class="cabecera-mapa">
-            <div>
-              <h2 id="t-mapa">Globo meteorológico</h2>
-              <p class="sub" id="sub-mapa">Campo mundial ECMWF IFS y viento a 10 m.</p>
-            </div>
-            <div class="vistas-mapa" role="group" aria-label="Encuadre del mapa">
-              <button type="button" data-vista="globo" aria-pressed="true">Globo 3D</button>
-              <button type="button" data-vista="regional" aria-pressed="false">Mapa regional</button>
-            </div>
-          </div>
-          <div class="controles-globo" id="controles-globo">
-            <label>Capa <select id="variable-globo">
-              <option value="temperatura_c">Temperatura</option><option value="precipitacion_mm">Lluvia</option>
-              <option value="viento_ms">Viento</option><option value="rafagas_ms">Ráfagas</option>
-              <option value="nubes_pct">Nubes</option><option value="humedad_pct">Humedad</option>
-              <option value="presion_hpa">Presión</option><option value="tendencia">Tendencia de lluvia</option>
-            </select></label>
-            <label><input type="checkbox" id="viento-globo" checked> Partículas de viento</label>
-          </div>
-          <div class="grafica mapa" id="mapa"></div>
-          <div class="pie-globo" id="pie-globo">
-            <span id="ayuda-globo">Arrastra el globo para girarlo. También puedes usar las flechas del teclado.</span>
-            <button type="button" id="centrar-nicaragua">Centrar Nicaragua</button>
-          </div>
-          <div id="hora-globo" class="hora-globo">
-            <label>Hora del modelo <input type="range" id="paso-globo" min="0" max="0" disabled></label>
-            <p id="estado-globo" role="status">Cargando la corrida meteorológica…</p>
-          </div>
-          <div class="escala-div" id="escala-mapa"></div>
-          <p class="descripcion-mapa" id="nota-mapa"></p>
-        </section>
-
-        <div class="columna">
-          <div class="selector">
-            <span class="etiqueta" id="etq-region">Región analizada</span>
-            <div class="botones-region" role="radiogroup" aria-labelledby="etq-region" id="botones-region"></div>
-          </div>
-          <section class="tarjeta" aria-labelledby="t-resultado" aria-live="polite" id="tarjeta-resultado">
-            <h2 id="t-resultado">Tendencia de lluvia anual</h2>
-            <div id="veredicto"></div>
-            <div class="respuesta" id="respuesta"></div>
-          </section>
-
-          <section class="tarjeta" aria-labelledby="t-serie">
-            <h2 id="t-serie">Serie anual</h2>
-            <p class="sub" id="sub-serie"></p>
-            <ul class="leyenda" id="leyenda-serie"></ul>
-            <div class="grafica" id="serie"></div>
-            <details class="tabla">
-              <summary>Ver los datos en tabla</summary>
-              <div class="tabla-scroll" id="tabla-serie"></div>
-            </details>
-          </section>
-        </div>
-
-        <section class="tarjeta ancho" aria-labelledby="t-comp">
-          <h2 id="t-comp">Pendientes e intervalos en una escala común</h2>
-          <p class="sub" id="sub-comp"></p>
-          <ul class="leyenda" id="leyenda-comp"></ul>
-          <div class="grafica" id="comparacion"></div>
-          <details class="tabla">
-            <summary>Ver las pendientes en tabla</summary>
-            <div class="tabla-scroll" id="tabla-comp"></div>
-          </details>
-        </section>
-
-        <div class="dos ancho">
-          <section class="tarjeta explicacion" aria-labelledby="t-expl">
-            <h2 id="t-expl">Cómo leer el resultado</h2>
-            <p>La gráfica compara estimaciones e intervalos. Cuando un intervalo incluye cero, ese método no aporta evidencia suficiente de una tendencia para el periodo.</p>
-            <p id="metodo-real">En los datos de ejemplo, el veredicto compara los dos intervalos. Un intervalo que incluye cero refleja incertidumbre sobre el sentido del cambio.</p>
-          </section>
-
-          <section class="tarjeta" aria-labelledby="t-desc">
-            <h2 id="t-desc">Descargar la evidencia</h2>
-            <p class="sub">Los archivos llevan la fuente, el periodo y, si corresponde, la marca de datos de ejemplo.</p>
-            <div class="descargas" id="descargas"></div>
-            <p class="estado-descarga" id="estado-descarga" role="status"></p>
-          </section>
-        </div>
-
-        <section class="tarjeta ancho" aria-labelledby="t-oni">
-          <details class="secundario" id="bloque-oni">
-            <summary><h2 id="t-oni">Contexto: El Niño y La Niña (índice ONI)</h2></summary>
-            <div class="contenido" id="oni"></div>
-          </details>
-        </section>
-      </div>
-    </main>
-
-    <footer>
-      <p id="pie-fuente"></p>
-      <p>Prototipo independiente para NASA Space Apps. Límites cartográficos de referencia de Natural Earth.</p>
-    </footer>
+<aside>
+  <div class="cabeza-menu">
+    <div class="marca"><span class="marca-punto" aria-hidden="true"></span>Trend<b>Detective</b></div>
+    <button id="plegar-menu" type="button" aria-expanded="true" aria-controls="menu-principal" aria-label="Collapse menu" title="Collapse menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
   </div>
+  <p class="sub">Earth system explorer</p>
+  <nav id="menu-principal" aria-label="Sections">
+    <button class="activo" data-tab="meteorologia" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 1 1 .8-7.9A5.5 5.5 0 0 1 18.4 12 3 3 0 0 1 18 18z"/></svg><span class="txt">Weather</span></button>
+    <button data-tab="tendencias"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M5 16l5-5 4 3 6-7M16 7h4v4"/></svg><span class="txt">Rainfall trend</span></button>
+    <button data-tab="fenomenos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/></svg><span class="txt">El Niño &amp; cyclones</span></button>
+    <button data-tab="escenarios"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 14.8V4.5a2.5 2.5 0 0 0-5 0v10.3a4.5 4.5 0 1 0 5 0zM11.5 9v8"/></svg><span class="txt">Climate scenarios</span></button>
+    <button data-tab="exportar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span class="txt">Data downloads</span></button>
+  </nav>
+  <div class="pie">NASA Space Apps 2026<br>Earth System Trend Detective</div>
+</aside>
 
-  <div class="tooltip" id="tooltip" role="presentation" hidden></div>
+<main>
+<header>
+  <div><p class="etiqueta">NASA SPACE APPS</p><h1 id="titulo">Weather</h1></div>
+  <div class="acciones">
+    <div class="interruptor" role="group" aria-label="View">
+      <button type="button" id="vista-globo" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Globe</button>
+      <button type="button" id="vista-mapa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"/></svg>Map</button>
+    </div>
+    <div class="indicador-envoltura"><button id="indicador-datos" type="button" class="indicador" data-nivel="pendiente" aria-expanded="false" aria-controls="indicador-detalle"><i aria-hidden="true"></i><span id="indicador-texto">Loading data…</span></button><div id="indicador-detalle" class="ventana" role="region" aria-label="Data status" hidden></div></div>
+    <button id="solomapa" type="button" aria-pressed="false">Hide panels</button>
+  </div>
+</header>
+<div id="error" role="alert" hidden><span id="error-texto"></span><button id="error-cerrar" type="button" aria-label="Close">×</button></div>
 
-  <script src="src/estadistica.js"></script>
-  <script src="src/contrato.js"></script>
-  <script src="src/datos/contornos.js"></script>
-  <script src="src/datos/base-mundial.js"></script>
-  <script src="src/datos/ejemplo.js"></script>
-  <script src="src/fuentes-meteo.js"></script>
-  <script src="src/meteo-paletas.js"></script>
-  <script src="src/globo-meteo.js"></script>
-  <script src="src/graficas.js"></script>
-  <script src="src/globo.js"></script>
-  <script src="src/app.js"></script>
+<section id="meteorologia" class="vista">
+  <label class="rango" for="opacidad-temp">Layer opacity<input id="opacidad-temp" type="range" min="15" max="95" value="60"></label>
+  <article>
+    <h2 id="meteograma-titulo">Point forecast</h2>
+    <form id="consulta-punto" class="controles"><label>Latitude<input id="lat" type="number" step="any" min="-90" max="90" required></label><label>Longitude<input id="lon" type="number" step="any" min="-180" max="180" required></label><button id="consultar" type="submit">Get forecast</button></form>
+    <div id="meteo" role="status"><p class="pista">Click anywhere on the globe or the map.</p></div>
+    <div class="graf alta" hidden><canvas id="graf-meteograma" aria-label="Hourly forecast at the selected point"></canvas></div>
+    <div class="controles"><button id="exp-punto" type="button" disabled>Download forecast (CSV)</button></div>
+  </article>
+</section>
+
+<section id="tendencias" class="vista" hidden>
+  <div class="intro"><h2>Has annual rainfall changed in Nicaragua?</h2><p id="tend-sub">NASA GPM IMERG Final V07B · 2001–2024</p></div>
+  <div class="botones-region" role="radiogroup" aria-label="Area" id="botones-region"></div>
+  <article id="tarjeta-resultado" aria-live="polite"><div id="veredicto"></div></article>
+  <article>
+    <h2>Annual rainfall</h2>
+    <ul class="leyenda" id="leyenda-serie"></ul>
+    <div class="grafica" id="serie"></div>
+  </article>
+  <article>
+    <h2>Trend and 95% confidence interval by area</h2>
+    <ul class="leyenda" id="leyenda-comp"></ul>
+    <div class="grafica" id="comparacion"></div>
+  </article>
+  <article>
+    <h2>Download the evidence</h2>
+    <div class="descargas" id="descargas"></div>
+    <p class="estado-descarga" id="estado-descarga" role="status"></p>
+  </article>
+</section>
+
+<section id="fenomenos" class="vista" hidden>
+  <div id="enos-tarjetas" class="tarjetas"></div>
+  <article><h2>Oceanic Niño Index, 1950–present</h2><div class="graf"><canvas id="graf-oni"></canvas></div></article>
+  <article><h2>Weekly anomalies by Niño region</h2><div class="graf"><canvas id="graf-nino34"></canvas></div>
+    <div class="controles"><button type="button" data-activar="chk-sst" data-vista="2,-120,3">Sea temperature anomaly on the map</button><a class="boton" href="/clima-base/enos.csv" download>ONI (CSV)</a></div></article>
+  <article><h2>Active tropical cyclones</h2><ul id="lista-tormentas" class="lista"></ul>
+    <div class="controles"><button type="button" data-activar="chk-tormentas" data-vista="18,-75,3">Cyclones on the map</button><a class="boton" href="/clima-base/tormentas.csv" download>Active cyclones (CSV)</a></div></article>
+  <article><h2>More layers</h2>
+    <ul class="lista capas-extra">
+      <li><span>NASA GPM IMERG rainfall · every 30 min</span><button type="button" class="mini" data-activar="chk-imerg" data-vista="10,-75,3">Show</button></li>
+      <li><span>MODIS dust and smoke (aerosol optical depth)</span><button type="button" class="mini" data-activar="chk-aod" data-vista="15,-30,3">Show</button></li>
+      <li><span>GOES-East GeoColor satellite</span><button type="button" class="mini" data-activar="chk-sat" data-vista="10,-75,3">Show</button></li>
+      <li><span>RainViewer radar</span><button type="button" class="mini" data-activar="chk-radar" data-vista="38,-95,4">Show</button></li>
+    </ul></article>
+</section>
+
+<section id="escenarios" class="vista" hidden>
+  <div class="controles"><label>Scenario<select id="ssp"><option value="ssp126">SSP1-2.6</option><option value="ssp245" selected>SSP2-4.5</option><option value="ssp370">SSP3-7.0</option><option value="ssp585">SSP5-8.5</option></select></label><label>Season<select id="ventana-cmip"></select></label></div>
+  <article><h2>Projected change by period</h2><p class="sub-art">CMIP6 · Central America (SCA) · vs. 1981–1995</p><div id="cambios" class="tarjetas"></div></article>
+  <article><h2>Warming 2026–2100</h2><div class="graf"><canvas id="graf-dT"></canvas></div></article>
+  <article><h2>Precipitation change 2026–2100</h2><div class="graf"><canvas id="graf-dP"></canvas></div></article>
+  <div class="controles"><a class="boton" href="/clima-base/proyecciones.csv" download>Projections (CSV)</a></div>
+</section>
+
+<section id="exportar" class="vista" hidden>
+  <article><ul class="lista descargas-lista">
+    <li><button type="button" data-descarga="serie">Annual rainfall series</button><span>IMERG · selected area · 2001–2024</span></li>
+    <li><button type="button" data-descarga="pendientes">Trends by area</button><span>slopes, intervals and verdicts</span></li>
+    <li><button type="button" data-descarga="evidencia">Full evidence (JSON)</button><span>data, method and decision rule</span></li>
+    <li><button type="button" data-descarga="punto" disabled>Point forecast</button><span>48 hours · selected location</span></li>
+    <li><a class="boton" href="/clima-base/enos.csv" download>Oceanic Niño Index</a><span>1950–present</span></li>
+    <li><a class="boton" href="/clima-base/tormentas.csv" download>Active cyclones</a><span>NHC</span></li>
+    <li><a class="boton" href="/clima-base/proyecciones.csv" download>Climate projections</a><span>CMIP6 · SCA</span></li>
+  </ul></article>
+</section>
+</main>
+
+<div id="controles-mapa" role="region" aria-label="Map controls">
+<div id="barra-capas" class="ventana capas-mapa" role="toolbar" aria-label="Layers">
+  <div class="ventana-barra"><span class="ventana-titulo">Layers</span></div>
+  <div class="ventana-cuerpo">
+    <button type="button" data-var="temperatura_c" aria-pressed="true"><i style="--c:linear-gradient(90deg,#5669cc,#3fc4da,#fdda5a,#e5472a)"></i>Temperature</button>
+    <button type="button" data-var="precipitacion_mm" aria-pressed="false"><i style="--c:linear-gradient(90deg,#96cdff,#286ee6,#e12337)"></i>Rain</button>
+    <button type="button" data-var="viento_ms" aria-pressed="false"><i style="--c:linear-gradient(90deg,#2a3a80,#34b68c,#da3832)"></i>Wind</button>
+    <button type="button" data-var="rafagas_ms" aria-pressed="false"><i style="--c:linear-gradient(90deg,#2880c4,#d6d640,#96248c)"></i>Gusts</button>
+    <button type="button" data-var="nubes_pct" aria-pressed="false"><i style="--c:linear-gradient(90deg,#3c5a78,#fafbfd)"></i>Clouds</button>
+    <button type="button" data-var="humedad_pct" aria-pressed="false"><i style="--c:linear-gradient(90deg,#aa6e3c,#96ce96,#2236a0)"></i>Humidity</button>
+    <button type="button" data-var="presion_hpa" aria-pressed="false"><i style="--c:linear-gradient(90deg,#6e2896,#6ec86e,#d23232)"></i>Pressure</button>
+    <button type="button" data-var="ninguna" aria-pressed="false"><i style="--c:#0a1a2e"></i>None</button>
+    <hr>
+    <label class="chk"><input type="checkbox" id="chk-particulas" checked> Wind particles</label>
+    <div class="solo-mapa-capas">
+      <label class="chk"><input type="checkbox" id="chk-sat"> GOES satellite</label>
+      <label class="chk"><input type="checkbox" id="chk-radar"> Radar</label>
+      <label class="chk"><input type="checkbox" id="chk-imerg"> IMERG rain</label>
+      <label class="chk"><input type="checkbox" id="chk-sst"> Sea temp. anomaly</label>
+      <label class="chk"><input type="checkbox" id="chk-aod"> Dust &amp; smoke</label>
+      <label class="chk"><input type="checkbox" id="chk-tormentas"> Cyclones</label>
+    </div>
+  </div>
+</div>
+<div id="linea-tiempo" class="ventana" role="group" aria-label="Forecast timeline">
+  <button type="button" id="lt-play" aria-label="Play forecast" disabled>▶</button>
+  <button type="button" id="lt-ahora" class="mini" disabled>Now</button>
+  <div class="lt-pista"><input type="range" id="lt-rango" min="0" max="16" value="0" disabled aria-label="Forecast hour"><div id="lt-marcas" class="lt-marcas" aria-hidden="true"></div></div>
+  <span id="lt-etiqueta">Loading forecast…</span>
+</div>
+<div id="leyenda-campo" class="ventana mini" hidden></div>
+</div>
+
+<div class="tooltip" id="tooltip" role="presentation" hidden></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="src/fuentes-meteo.js"></script>
+<script src="src/meteo-paletas.js"></script>
+<script src="src/globo-meteo.js"></script>
+<script src="app/config.js"></script>
+<script src="app/shell.js"></script>
+<script src="app/soporte-meteo.js"></script>
+<script src="app/campo.js"></script>
+<script src="app/graficas-meteo.js"></script>
+<script src="app/fenomenos.js"></script>
+<script src="src/estadistica.js"></script>
+<script src="src/contrato.js"></script>
+<script src="src/graficas.js"></script>
+<script src="src/tendencias.js"></script>
+<script src="app/globo.js"></script>
+<script type="module" src="app/espacio.js"></script>
 </body>
 </html>

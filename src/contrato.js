@@ -22,7 +22,7 @@
   'use strict';
   var E = window.SofEstadistica;
   var ORDEN = ['nicaragua', 'caja_original', 'honduras', 'costa_rica'];
-  var NOMBRES = { caja_original: 'Caja original SICC', nicaragua: 'Nicaragua', honduras: 'Honduras', costa_rica: 'Costa Rica' };
+  var NOMBRES = { caja_original: 'Study box', nicaragua: 'Nicaragua', honduras: 'Honduras', costa_rica: 'Costa Rica' };
 
   function tendenciaValida(t) {
     return t && isFinite(t.pendiente) && isFinite(t.ic_inf) && isFinite(t.ic_sup);
@@ -32,7 +32,7 @@
 
   function desdeClima(clima, mapa) {
     if (clima.esquema !== 'nasa-challenge/clima' || clima.version_esquema !== '1.0.0') {
-      throw new Error('Versión del archivo climático no compatible.');
+      throw new Error('Unsupported climate file version.');
     }
     var meta = clima.metadatos;
     var formas = new Map(mapa.features.map(function (f) { return [f.id || f.properties.id, f.geometry]; }));
@@ -51,11 +51,11 @@
         } : null
       };
     });
-    if (regiones.length !== ORDEN.length) throw new Error('Faltan dominios en el archivo climático.');
+    if (regiones.length !== ORDEN.length) throw new Error('Missing areas in the climate file.');
     return {
       version_contrato: clima.version_esquema, es_ejemplo: false, regiones: regiones,
       meta: {
-        fuente: 'NASA GES DISC · GPM IMERG Final V07B', variable: 'Precipitación anual',
+        fuente: 'NASA GES DISC · GPM IMERG Final V07B', variable: 'Annual precipitation',
         unidades: meta.unidad_serie, unidades_pendiente: meta.unidad_pendiente,
         periodo: [meta.periodo.inicio, meta.periodo.fin], nivel_confianza: 0.95,
         metodo: meta.metodo, fuentes: meta.fuentes, limites: meta.limites,
@@ -70,9 +70,9 @@
 
   function normalizar(bruto) {
     var avisos = [];
-    if (!bruto || typeof bruto !== 'object') throw new Error('El archivo no contiene un objeto JSON.');
+    if (!bruto || typeof bruto !== 'object') throw new Error('The file is not a JSON object.');
     var meta = bruto.meta || {};
-    if (!bruto.meta) avisos.push('El archivo no trae el bloque «meta»; se usan unidades por defecto.');
+    if (!bruto.meta) avisos.push('Missing meta block; default units used.');
     var nivel = isFinite(meta.nivel_confianza) ? Number(meta.nivel_confianza) : 0.95;
     var lista = Array.isArray(bruto.regiones) ? bruto.regiones : [];
     var porId = {};
@@ -81,7 +81,7 @@
     var regiones = ORDEN.map(function (id) {
       var r = porId[id];
       if (!r) {
-        avisos.push('Falta la región «' + NOMBRES[id] + '» en los datos.');
+        avisos.push('Missing area: ' + NOMBRES[id] + '.');
         return { id: id, nombre: NOMBRES[id], rol: id === 'nicaragua' ? 'principal' : 'contexto', faltante: true,
           serie: [], analisis: { mco: null, sen: null, n_validos: 0, veredicto: { estado: 'faltan' } } };
       }
@@ -89,7 +89,7 @@
         return { anio: Number(p.anio), valor: p.valor === null || p.valor === undefined || !isFinite(p.valor) ? null : Number(p.valor) };
       }).filter(function (p) { return isFinite(p.anio); }).sort(function (a, b) { return a.anio - b.anio; });
       var calculado = E.analizar(serie, nivel);
-      var analisis = calculado, origen = 'calculado en el navegador';
+      var analisis = calculado, origen = 'computed in the browser';
       if (r.tendencias && tendenciaValida(r.tendencias.mco) && tendenciaValida(r.tendencias.sen)) {
         var tm = Object.assign({ metodo: 'mco', intercepto: calculado.mco && calculado.mco.intercepto }, r.tendencias.mco);
         var ts = Object.assign({ metodo: 'sen', intercepto: calculado.sen && calculado.sen.intercepto }, r.tendencias.sen);
@@ -105,11 +105,11 @@
             evidencia_insuficiente: 'insuficiente', metodos_discrepan: 'discrepan'
           }[r.veredicto_fuente];
         }
-        origen = 'proporcionado en el JSON';
+        origen = 'provided in the JSON';
       }
       var faltan = serie.filter(function (p) { return p.valor === null; }).map(function (p) { return p.anio; });
       if (calculado.n_validos < E.MIN_ANIOS) {
-        avisos.push('«' + (r.nombre || NOMBRES[id]) + '» tiene ' + calculado.n_validos + ' años con dato; se necesitan al menos ' + E.MIN_ANIOS + '.');
+        avisos.push((r.nombre || NOMBRES[id]) + ' has ' + calculado.n_validos + ' years with data; at least ' + E.MIN_ANIOS + ' are needed.');
         analisis = { mco: null, sen: null, n_validos: calculado.n_validos, veredicto: { estado: 'faltan' } };
       }
       return {
@@ -121,21 +121,21 @@
     var oni = null;
     if (bruto.oni && Array.isArray(bruto.oni.serie) && bruto.oni.serie.length) {
       oni = {
-        fuente: bruto.oni.fuente || 'NOAA CPC, índice ONI',
-        agregacion: bruto.oni.agregacion || 'media anual',
+        fuente: bruto.oni.fuente || 'NOAA CPC, ONI',
+        agregacion: bruto.oni.agregacion || 'annual mean',
         serie: bruto.oni.serie.filter(function (p) { return p && isFinite(p.anio) && isFinite(p.valor); })
           .map(function (p) { return { anio: Number(p.anio), valor: Number(p.valor) }; })
       };
     }
 
     return {
-      version: bruto.version_contrato || 'sin versión',
+      version: bruto.version_contrato || 'unversioned',
       es_ejemplo: !!bruto.es_ejemplo,
       meta: {
-        fuente: meta.fuente || 'Fuente no indicada',
-        variable: meta.variable || 'Precipitación anual',
+        fuente: meta.fuente || 'Unknown source',
+        variable: meta.variable || 'Annual precipitation',
         unidades: meta.unidades || 'mm/año',
-        unidades_pendiente: meta.unidades_pendiente || 'mm/año por año',
+        unidades_pendiente: meta.unidades_pendiente || 'mm/yr per year',
         periodo: Array.isArray(meta.periodo) ? meta.periodo : [2001, 2024],
         nivel_confianza: nivel,
         generado: meta.generado || '',
