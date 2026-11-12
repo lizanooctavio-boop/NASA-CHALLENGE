@@ -1,111 +1,164 @@
 /*
- * Lectura y validación del JSON de evidencia.
+ * Lectura de data/clima.json según el contrato 1.0.0 (data/contrato.md, rama codex/datos-climaticos).
  *
- * ESTADO: forma PROPUESTA. El contrato definitivo acordado con Octavio no estaba disponible
- * al construir la demo. Si sus nombres de campo difieren, basta con adaptar `normalizar()`;
- * el resto de la interfaz solo consume el objeto que devuelve esta función.
+ * Reglas del contrato que se respetan aquí:
+ *  - Se usan `veredicto` y `veredicto_texto` del JSON; la interfaz no recalcula tendencias.
+ *  - Si `tendencia.estado` ≠ "ok" o hay menos de 24 años válidos, se muestra `mensaje` y no se dibuja tendencia.
+ *  - Los campos desconocidos se ignoran; los opcionales que falten no rompen la lectura.
+ *  - Las rutas de `geometria.archivo` son relativas a data/.
  *
- * Forma esperada (campos con ? son opcionales):
- * {
- *   version_contrato, es_ejemplo?,
- *   meta: { fuente, variable, unidades, unidades_pendiente, periodo:[ini,fin], nivel_confianza?, generado?, nota? },
- *   regiones: [{
- *     id, nombre, rol: "original"|"principal"|"contexto", bbox:[oeste,sur,este,norte], contorno?:[[lon,lat],...],
- *     serie: [{ anio, valor|null }],
- *     tendencias?: { mco:{pendiente,ic_inf,ic_sup,p?}, sen:{pendiente,ic_inf,ic_sup,p?} }
- *   }],
- *   oni?: { fuente, agregacion, serie:[{ anio, valor }] }
- * }
- * Si una región no trae `tendencias`, se calculan en el navegador con src/estadistica.js.
+ * El resto de la interfaz consume solo el objeto que devuelve `normalizar()`.
  */
 (function () {
   'use strict';
-  var E = window.SofEstadistica;
-  var ORDEN = ['caja_original', 'nicaragua', 'honduras', 'costa_rica'];
-  var NOMBRES = { caja_original: 'Caja original SICC', nicaragua: 'Nicaragua', honduras: 'Honduras', costa_rica: 'Costa Rica' };
+  var ORDEN = ['caja_sicc', 'NIC', 'HND', 'CRI'];
+  var AUXILIARES = ['NIC_fuera_caja'];
+  var NOMBRES = { caja_sicc: 'Caja original SICC-952', NIC: 'Nicaragua', HND: 'Honduras', CRI: 'Costa Rica', NIC_fuera_caja: 'Nicaragua fuera de la caja' };
+  var ROL_POR_DEFECTO = { caja_sicc: 'referencia', NIC: 'principal', HND: 'contexto', CRI: 'contexto', NIC_fuera_caja: 'auxiliar' };
+  var VEREDICTOS = { tendencia_detectada: 'detectada', evidencia_insuficiente: 'insuficiente', metodos_discrepan: 'discrepan' };
 
-  function tendenciaValida(t) {
-    return t && isFinite(t.pendiente) && isFinite(t.ic_inf) && isFinite(t.ic_sup);
+  function num(v) { return typeof v === 'number' && isFinite(v) ? v : null; }
+  function intervalo(ic) {
+    return Array.isArray(ic) && ic.length === 2 && num(ic[0]) !== null && num(ic[1]) !== null ? { ic_inf: ic[0], ic_sup: ic[1] } : null;
+  }
+  function mediana(a) {
+    var s = a.slice().sort(function (x, y) { return x - y; }), n = s.length;
+    return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2;
+  }
+
+  function leerDominio(d, anioFinal, aniosEsperados, avisos) {
+    var id = d.id;
+    var anios = Array.isArray(d.anios_validos) ? d.anios_validos : [];
+    var valores = Array.isArray(d.serie_anual_mm) ? d.serie_anual_mm : [];
+    if (anios.length !== valores.length) avisos.push('«' + (d.nombre || id) + '»: anios_validos y serie_anual_mm tienen longitudes distintas; se usa la parte común.');
+    var serie = [], porAnio = {};
+    for (var i = 0; i < Math.min(anios.length, valores.length); i++) {
+      if (num(anios[i]) !== null && num(valores[i]) !== null) porAnio[anios[i]] = valores[i];
+    }
+    for (var a = anioFinal[0]; a <= anioFinal[1]; a++) serie.push({ anio: a, valor: porAnio[a] !== undefined ? porAnio[a] : null });
+    var validos = serie.filter(function (p) { return p.valor !== null; });
+    var faltan = serie.filter(function (p) { return p.valor === null; }).map(function (p) { return p.anio; });
+
+    var t = d.tendencia || {};
+    var res = { estado: 'faltan', mensaje: t.mensaje || '', crudo: t };
+    var ok = t.estado === 'ok' && validos.length >= aniosEsperados && VEREDICTOS[t.veredicto];
+    if (!ok) {
+      if (!res.mensaje) {
+        res.mensaje = t.estado && t.estado !== 'ok' ? 'El archivo indica que no hay datos suficientes para estimar una tendencia.'
+          : validos.length < aniosEsperados ? 'Hay ' + validos.length + ' años válidos de ' + aniosEsperados + '; no se dibuja tendencia.'
+          : 'El archivo no trae un veredicto reconocible para este dominio.';
+      }
+      avisos.push('«' + (d.nombre || NOMBRES[id] || id) + '»: ' + res.mensaje);
+    } else {
+      var ctr = t.controles || {};
+      var principal = intervalo(t.ic_mm_por_decada);
+      var hac = ctr.hac ? intervalo(ctr.hac.ic_mm_por_decada) : null;
+      var sen = ctr.theil_sen ? intervalo(ctr.theil_sen.ic_mm_por_decada) : null;
+      if (principal) { principal.pendiente = num(t.mm_por_decada); principal.p = num(t.p_valor); }
+      if (hac) { hac.pendiente = num(t.mm_por_decada); hac.rezago = ctr.hac.rezago; }
+      if (sen) sen.pendiente = num(ctr.theil_sen.mm_por_decada);
+      // rectas para la gráfica: MCO pasa por (media de años, media de lluvia); Theil-Sen se centra en las medianas
+      var xs = validos.map(function (p) { return p.anio; }), ys = validos.map(function (p) { return p.valor; });
+      var mx = xs.reduce(function (s, v) { return s + v; }, 0) / xs.length, my = ys.reduce(function (s, v) { return s + v; }, 0) / ys.length;
+      if (principal && principal.pendiente !== null) principal.intercepto = my - principal.pendiente / 10 * mx;
+      if (sen && sen.pendiente !== null) sen.intercepto = mediana(ys) - sen.pendiente / 10 * mediana(xs);
+      res = {
+        estado: VEREDICTOS[t.veredicto], veredicto_texto: t.veredicto_texto || '', interpretacion: t.interpretacion || '',
+        nivel_confianza: num(t.nivel_confianza) || 0.95, media: num(t.media_anual_mm),
+        principal: principal, hac: hac, sen: sen,
+        mann_kendall: ctr.mann_kendall || null, n_efectivo: num(t.n_efectivo), r1: num(t.r1_residuos),
+        pct: num(t.pct_por_decada), ic_pct: intervalo(t.ic_pct_por_decada),
+        sensibilidad: Array.isArray(t.sensibilidad) ? t.sensibilidad : [],
+        omitir: intervalo(t.omitir_un_anio_mm_por_decada), crudo: t
+      };
+    }
+    return {
+      id: id, nombre: d.nombre || NOMBRES[id] || id, tipo: d.tipo, rol: d.rol || ROL_POR_DEFECTO[id] || 'contexto',
+      bbox: Array.isArray(d.bbox) ? d.bbox : null, area_km2: num(d.area_km2), geometria: null,
+      serie: serie, anios_sin_dato: faltan, n_validos: validos.length, tendencia: res, original: d
+    };
+  }
+
+  function ausente(id) {
+    return { id: id, nombre: NOMBRES[id], rol: ROL_POR_DEFECTO[id], faltante: true, serie: [], anios_sin_dato: [], n_validos: 0,
+      tendencia: { estado: 'faltan', mensaje: 'El archivo de datos no incluye este dominio.' }, original: null };
   }
 
   function normalizar(bruto) {
+    if (!bruto || typeof bruto !== 'object') throw new Error('el archivo no contiene un objeto JSON');
+    if (!Array.isArray(bruto.dominios)) throw new Error('falta la lista «dominios» del contrato 1.0.0');
     var avisos = [];
-    if (!bruto || typeof bruto !== 'object') throw new Error('El archivo no contiene un objeto JSON.');
-    var meta = bruto.meta || {};
-    if (!bruto.meta) avisos.push('El archivo no trae el bloque «meta»; se usan unidades por defecto.');
-    var nivel = isFinite(meta.nivel_confianza) ? Number(meta.nivel_confianza) : 0.95;
-    var lista = Array.isArray(bruto.regiones) ? bruto.regiones : [];
+    var version = bruto.version_esquema || 'sin versión';
+    if (String(version).split('.')[0] !== '1') avisos.push('El archivo declara la versión de esquema ' + version + '; esta interfaz se escribió para la 1.x.');
+    var md = bruto.metadatos || {};
+    var per = md.periodo || {};
+    var periodo = [num(per.inicio) || 2001, num(per.fin) || 2024];
+    var aniosEsperados = num(per.anios) || (periodo[1] - periodo[0] + 1);
     var porId = {};
-    lista.forEach(function (r) { if (r && r.id) porId[r.id] = r; });
+    bruto.dominios.forEach(function (d) { if (d && d.id) porId[d.id] = d; });
 
     var regiones = ORDEN.map(function (id) {
-      var r = porId[id];
-      if (!r) {
-        avisos.push('Falta la región «' + NOMBRES[id] + '» en los datos.');
-        return { id: id, nombre: NOMBRES[id], rol: id === 'nicaragua' ? 'principal' : 'contexto', faltante: true,
-          serie: [], analisis: { mco: null, sen: null, n_validos: 0, veredicto: { estado: 'faltan' } } };
-      }
-      var serie = (Array.isArray(r.serie) ? r.serie : []).map(function (p) {
-        return { anio: Number(p.anio), valor: p.valor === null || p.valor === undefined || !isFinite(p.valor) ? null : Number(p.valor) };
-      }).filter(function (p) { return isFinite(p.anio); }).sort(function (a, b) { return a.anio - b.anio; });
-      var calculado = E.analizar(serie, nivel);
-      var analisis = calculado, origen = 'calculado en el navegador';
-      if (r.tendencias && tendenciaValida(r.tendencias.mco) && tendenciaValida(r.tendencias.sen)) {
-        var tm = Object.assign({ metodo: 'mco', intercepto: calculado.mco && calculado.mco.intercepto }, r.tendencias.mco);
-        var ts = Object.assign({ metodo: 'sen', intercepto: calculado.sen && calculado.sen.intercepto }, r.tendencias.sen);
-        analisis = { mco: tm, sen: ts, n_validos: calculado.n_validos, veredicto: E.veredicto(tm, ts) };
-        origen = 'proporcionado en el JSON';
-      }
-      var faltan = serie.filter(function (p) { return p.valor === null; }).map(function (p) { return p.anio; });
-      if (calculado.n_validos < E.MIN_ANIOS) {
-        avisos.push('«' + (r.nombre || NOMBRES[id]) + '» tiene ' + calculado.n_validos + ' años con dato; se necesitan al menos ' + E.MIN_ANIOS + '.');
-        analisis = { mco: null, sen: null, n_validos: calculado.n_validos, veredicto: { estado: 'faltan' } };
-      }
-      return {
-        id: id, nombre: r.nombre || NOMBRES[id], rol: r.rol || 'contexto', bbox: r.bbox, contorno: r.contorno,
-        serie: serie, anios_sin_dato: faltan, analisis: analisis, origen_tendencias: origen
-      };
+      if (!porId[id]) { avisos.push('Falta el dominio «' + NOMBRES[id] + '» en los datos.'); return ausente(id); }
+      return leerDominio(porId[id], periodo, aniosEsperados, avisos);
     });
+    var auxiliares = AUXILIARES.filter(function (id) { return porId[id]; }).map(function (id) { return leerDominio(porId[id], periodo, aniosEsperados, []); });
 
+    var producto = md.producto || {};
+    var fuenteTexto = 'NASA GPM IMERG Final ' + (producto.version || 'V07B') + (producto.id ? ' (' + producto.id + ')' : '');
     var oni = null;
-    if (bruto.oni && Array.isArray(bruto.oni.serie) && bruto.oni.serie.length) {
+    var o = bruto.oni;
+    if (o && Array.isArray(o.anios) && Array.isArray(o.oni_temporada) && o.anios.length === o.oni_temporada.length) {
       oni = {
-        fuente: bruto.oni.fuente || 'NOAA CPC, índice ONI',
-        agregacion: bruto.oni.agregacion || 'media anual',
-        serie: bruto.oni.serie.filter(function (p) { return p && isFinite(p.anio) && isFinite(p.valor); })
-          .map(function (p) { return { anio: Number(p.anio), valor: Number(p.valor) }; })
+        fuente: o.fuente && (o.fuente.nombre || o.fuente.url) ? (o.fuente.nombre || 'NOAA CPC') : (typeof o.fuente === 'string' ? o.fuente : 'NOAA CPC, índice ONI'),
+        fuente_url: o.fuente && o.fuente.url,
+        definicion: o.definicion_temporal || '',
+        temporada: (o.temporada && o.temporada.nombre) || 'junio–noviembre',
+        agregacion: (o.temporada && o.temporada.agregacion) || '',
+        anios: o.anios, valores: o.oni_temporada, categorias: o.categoria_descriptiva || [],
+        lluvia: o.lluvia_jun_nov_mm || {}, correlacion: o.correlacion_descriptiva || {},
+        advertencia: o.advertencia || 'La correlación es descriptiva: no prueba causa.'
       };
     }
 
     return {
-      version: bruto.version_contrato || 'sin versión',
-      es_ejemplo: !!bruto.es_ejemplo,
+      version: version, estado: bruto.estado || '', es_ejemplo: !!bruto.es_ejemplo || bruto.estado === 'ejemplo_sintetico',
       meta: {
-        fuente: meta.fuente || 'Fuente no indicada',
-        variable: meta.variable || 'Precipitación anual',
-        unidades: meta.unidades || 'mm/año',
-        unidades_pendiente: meta.unidades_pendiente || 'mm/año por año',
-        periodo: Array.isArray(meta.periodo) ? meta.periodo : [2001, 2024],
-        nivel_confianza: nivel,
-        generado: meta.generado || '',
-        nota: meta.nota || ''
+        titulo: md.titulo || '', fuente: fuenteTexto, producto: producto,
+        unidades: md.unidad_serie || 'mm/año', unidades_pendiente: md.unidad_pendiente || 'mm/década',
+        periodo: periodo, anios: aniosEsperados, nivel_confianza: 0.95,
+        metodo: md.metodo || null, fuentes: Array.isArray(md.fuentes) ? md.fuentes : [], limites: Array.isArray(md.limites) ? md.limites : []
       },
-      regiones: regiones,
-      oni: oni,
-      avisos: avisos
+      regiones: regiones, auxiliares: auxiliares,
+      superposicion: bruto.superposicion || null,
+      oni: oni, avisos: avisos, crudo: bruto
     };
+  }
+
+  // Añade las geometrías de data/dominios.geojson (si se pudo cargar) a cada región
+  function unirGeometrias(datos, geojson) {
+    if (!geojson || !Array.isArray(geojson.features)) return;
+    var porId = {};
+    geojson.features.forEach(function (f) {
+      var id = (f.properties && (f.properties.id || f.properties.dominio)) || f.id;
+      if (id && f.geometry) porId[id] = f.geometry;
+    });
+    datos.regiones.concat(datos.auxiliares).forEach(function (r) { if (porId[r.id]) r.geometria = porId[r.id]; });
   }
 
   // Variante para probar el mensaje de datos faltantes (?caso=faltantes)
   function variarFaltantes(bruto) {
     var copia = JSON.parse(JSON.stringify(bruto));
-    copia.regiones = copia.regiones.filter(function (r) { return r.id !== 'honduras'; });
-    copia.regiones.forEach(function (r) {
-      if (r.id === 'costa_rica') r.serie.forEach(function (p, i) { if (i % 3) p.valor = null; });
+    copia.dominios = copia.dominios.filter(function (d) { return d.id !== 'HND'; });
+    copia.dominios.forEach(function (d) {
+      if (d.id === 'CRI') {
+        d.anios_validos = d.anios_validos.slice(0, 7);
+        d.serie_anual_mm = d.serie_anual_mm.slice(0, 7);
+        d.tendencia = { estado: 'datos_insuficientes', anios: 7, mensaje: 'Solo hay 7 años con los 12 meses válidos; se necesitan 24 para estimar la tendencia.' };
+      }
     });
     delete copia.oni;
     return copia;
   }
 
-  window.SofContrato = { normalizar: normalizar, variarFaltantes: variarFaltantes, ORDEN: ORDEN };
+  window.SofContrato = { normalizar: normalizar, unirGeometrias: unirGeometrias, variarFaltantes: variarFaltantes, ORDEN: ORDEN };
 })();

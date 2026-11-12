@@ -11,6 +11,9 @@
   --foco: #1c5cab;
   --serie-mco: #2a78d6;
   --serie-sen: #eb6834;
+  --serie-hac: #1baf7a;
+  --mapa-detectada-pos: #3987e5; --mapa-detectada-neg: #e66767; --mapa-insuficiente: #c9c7bf; --mapa-discrepan: #f2b54a;
+  --oni-nino: #e34948; --oni-nina: #2a78d6;
   --observado: #52514e;
   --div-pos-3: #1c5cab; --div-pos-2: #5598e7; --div-pos-1: #b7d3f6;
   --div-neutro: #e4e2dc;
@@ -18,7 +21,7 @@
   --tierra: #e9e7e1;
   --agua: #dce8f3;
   --aviso-fondo: #fff4d6; --aviso-borde: #e0a800; --aviso-texto: #4a3600;
-  --est-aumento: #1c5cab; --est-disminucion: #a83232; --est-insuf: #6f6e69; --est-disc: #9a5b00; --est-faltan: #6f6e69;
+  --est-detectada: #1c5cab; --est-insuf: #6f6e69; --est-disc: #9a5b00; --est-faltan: #6f6e69;
   --sombra: 0 1px 2px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.04);
   --radio: 10px;
 }
@@ -29,12 +32,18 @@
     --texto: #f0efec; --texto-2: #c3c2b7; --texto-3: #9e9d95;
     --acento: #86b6ef; --foco: #86b6ef;
     --serie-mco: #3987e5; --serie-sen: #d95926; --observado: #c3c2b7;
+  --serie-hac: #199e70;
+  --mapa-detectada-pos: #3987e5; --mapa-detectada-neg: #c04848; --mapa-insuficiente: #55554f; --mapa-discrepan: #b8801a;
+  --oni-nino: #e66767; --oni-nina: #3987e5;
+    --serie-hac: #199e70;
+    --mapa-detectada-pos: #3987e5; --mapa-detectada-neg: #c04848; --mapa-insuficiente: #55554f; --mapa-discrepan: #b8801a;
+    --oni-nino: #e66767; --oni-nina: #3987e5;
     --div-pos-3: #86b6ef; --div-pos-2: #3987e5; --div-pos-1: #184f95;
     --div-neutro: #383835;
     --div-neg-1: #6b2a2a; --div-neg-2: #c04848; --div-neg-3: #f09a9a;
     --tierra: #2a2a28; --agua: #1d2733;
     --aviso-fondo: #33290f; --aviso-borde: #c98500; --aviso-texto: #ffe3a3;
-    --est-aumento: #86b6ef; --est-disminucion: #f09a9a; --est-insuf: #b5b4ac; --est-disc: #f0b54d; --est-faltan: #b5b4ac;
+    --est-detectada: #86b6ef; --est-insuf: #b5b4ac; --est-disc: #f0b54d; --est-faltan: #b5b4ac;
     --sombra: none;
   }
 }
@@ -49,7 +58,7 @@
   --div-neg-1: #6b2a2a; --div-neg-2: #c04848; --div-neg-3: #f09a9a;
   --tierra: #2a2a28; --agua: #1d2733;
   --aviso-fondo: #33290f; --aviso-borde: #c98500; --aviso-texto: #ffe3a3;
-  --est-aumento: #86b6ef; --est-disminucion: #f09a9a; --est-insuf: #b5b4ac; --est-disc: #f0b54d; --est-faltan: #b5b4ac;
+  --est-detectada: #86b6ef; --est-insuf: #b5b4ac; --est-disc: #f0b54d; --est-faltan: #b5b4ac;
   --sombra: none;
 }
 
@@ -106,8 +115,7 @@ h3 { font-size: .95rem; margin: 0 0 4px; }
 .veredicto .icono svg { width: 20px; height: 20px; }
 .veredicto .estado { font-size: 1.25rem; font-weight: 700; line-height: 1.25; margin: 0; }
 .veredicto .detalle { grid-column: 1 / -1; color: var(--texto-2); margin: 6px 0 0; font-size: .95rem; }
-.est-aumento { color: var(--est-aumento); }
-.est-disminucion { color: var(--est-disminucion); }
+.est-detectada { color: var(--est-detectada); }
 .est-insuficiente { color: var(--est-insuf); }
 .est-discrepan { color: var(--est-disc); }
 .est-faltan { color: var(--est-faltan); }
@@ -138,9 +146,11 @@ h3 { font-size: .95rem; margin: 0 0 4px; }
 .mapa .lago { fill: var(--agua); stroke: none; pointer-events: none; }
 .mapa .rotulo { font-size: 13px; fill: var(--texto); font-weight: 600; pointer-events: none; paint-order: stroke; stroke: var(--superficie); stroke-width: 3px; }
 .mapa .rotulo-caja { font-size: 11px; fill: var(--texto); pointer-events: none; paint-order: stroke; stroke: var(--superficie); stroke-width: 3px; }
-.escala-div { display: flex; align-items: center; gap: 8px; font-size: .78rem; color: var(--texto-3); margin-top: 8px; flex-wrap: wrap; }
+.escala-div { display: flex; align-items: center; gap: 6px 14px; font-size: .78rem; color: var(--texto-3); margin-top: 8px; flex-wrap: wrap; }
 .escala-div .barras { display: flex; }
 .escala-div .barras span { width: 22px; height: 10px; display: block; }
+.escala-div .item { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.escala-div .muestra-mapa { width: 14px; height: 10px; border-radius: 2px; display: inline-block; border: 1px solid var(--borde); }
 
 .tooltip {
   position: absolute; pointer-events: none; z-index: 5; background: var(--superficie); color: var(--texto);
@@ -184,7 +194,11 @@ details.secundario .contenido { margin-top: 8px; }
 footer { color: var(--texto-3); font-size: .8rem; padding: 24px 0 40px; }
 footer p { margin: 4px 0; }
 
-.error-carga { border: 1px solid var(--est-disminucion); }
+p.aviso-oni { font-size: .9rem; border-left: 3px solid var(--aviso-borde); padding-left: 10px; color: var(--texto-2); }
+.superposicion { font-size: .875rem; color: var(--texto-2); margin: 10px 0 0; }
+.sensibilidad { margin-top: 10px; font-size: .875rem; }
+.sensibilidad summary { cursor: pointer; color: var(--acento); min-height: 32px; display: flex; align-items: center; }
+.limites-datos { font-size: .875rem; color: var(--texto-2); padding-left: 20px; }
 
 @media (max-width: 860px) {
   .rejilla, .dos { grid-template-columns: 1fr; }

@@ -27,10 +27,10 @@
       <div class="rejilla">
         <section class="tarjeta" aria-labelledby="t-mapa">
           <h2 id="t-mapa">Mapa</h2>
-          <p class="sub" id="sub-mapa">Color: pendiente de Theil-Sen de cada región.</p>
+          <p class="sub" id="sub-mapa">Color: resultado de cada dominio. Pulsa un país o la caja para seleccionarlo.</p>
           <div class="grafica mapa" id="mapa"></div>
           <div class="escala-div" id="escala-mapa" aria-hidden="true"></div>
-          <p class="descripcion-mapa">Contornos simplificados a mano, solo para orientarse. La línea discontinua es la caja original de SICC, que queda dentro de Nicaragua.</p>
+          <p class="descripcion-mapa" id="nota-mapa">Contornos simplificados, solo para orientarse. La línea discontinua es la caja original de SICC.</p>
         </section>
 
         <div class="columna">
@@ -53,7 +53,7 @@
         </div>
 
         <section class="tarjeta ancho" aria-labelledby="t-comp">
-          <h2 id="t-comp">Pendientes e intervalos en una escala común</h2>
+          <h2 id="t-comp">Pendientes e intervalos de los tres métodos, en una escala común</h2>
           <p class="sub" id="sub-comp"></p>
           <ul class="leyenda" id="leyenda-comp"></ul>
           <div class="grafica" id="comparacion"></div>
@@ -66,18 +66,19 @@
         <div class="dos ancho">
           <section class="tarjeta explicacion" aria-labelledby="t-expl">
             <h2 id="t-expl">Cómo leer el resultado</h2>
-            <p>Cada región tiene dos estimaciones de la tendencia. <strong>Mínimos cuadrados (MCO)</strong> ajusta una recta a todos los años. <strong>Theil-Sen</strong> toma la mediana de las pendientes entre pares de años, por lo que un año extremo pesa menos. Las barras muestran el intervalo de confianza del <span class="nivel">95 %</span>.</p>
+            <p>Cada dominio tiene tres intervalos del 95 % para la pendiente, en mm/década. <strong>Mínimos cuadrados</strong> es el principal y ajusta sus grados de libertad por la autocorrelación entre años. <strong>HAC de Newey–West</strong> es otra forma de tener en cuenta esa autocorrelación. <strong>Theil–Sen</strong> usa la mediana de las pendientes entre pares de años, así que un año extremo pesa menos. El resultado viene calculado en el archivo de datos; la página no lo recalcula.</p>
             <dl>
-              <dt><span class="est-aumento" aria-hidden="true">●</span> Aumento o disminución</dt>
-              <dd>Los dos intervalos quedan del mismo lado del cero.</dd>
+              <dt><span class="est-detectada" aria-hidden="true">●</span> Tendencia detectada</dt>
+              <dd>Los tres intervalos excluyen el cero con el mismo signo y el valor p principal es menor que 0,05.</dd>
               <dt><span class="est-insuficiente" aria-hidden="true">●</span> Evidencia insuficiente</dt>
-              <dd>Los dos intervalos cruzan el cero. Los métodos coinciden en que, con 24 años, no se distingue una tendencia de la variación natural. No significa que la lluvia no cambie.</dd>
+              <dd>Los tres intervalos incluyen el cero. Con esta ventana y estos métodos no se detecta una tendencia. No significa «no hay cambio».</dd>
               <dt><span class="est-discrepan" aria-hidden="true">●</span> Los métodos discrepan</dt>
-              <dd>Un intervalo excluye el cero y el otro no. El resultado depende del método, casi siempre por pocos años extremos, y no conviene afirmar una tendencia.</dd>
+              <dd>Cualquier otro caso: unos intervalos excluyen el cero y otros no. El resultado depende del método y no se presenta como tendencia confirmada.</dd>
               <dt><span class="est-faltan" aria-hidden="true">●</span> Datos faltantes</dt>
-              <dd>La región no tiene al menos 10 años con dato y no se calcula tendencia.</dd>
+              <dd>El dominio no tiene los 24 años completos o no está en el archivo. Se muestra el mensaje y no se dibuja tendencia.</dd>
             </dl>
-            <p>Ninguno de los dos métodos corrige la autocorrelación entre años, que puede hacer que los intervalos sean más estrechos de lo debido.</p>
+            <h3 style="margin-top:14px">Límites de los datos</h3>
+            <ul class="limites-datos" id="limites-datos"></ul>
           </section>
 
           <section class="tarjeta" aria-labelledby="t-desc">
@@ -105,7 +106,6 @@
 
   <div class="tooltip" id="tooltip" role="presentation" hidden></div>
 
-  <script src="src/estadistica.js"></script>
   <script src="src/contrato.js"></script>
   <script src="src/datos/contornos.js"></script>
   <script src="src/datos/ejemplo.js"></script>
