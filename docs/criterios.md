@@ -1,0 +1,13 @@
+# Criterios de evaluación: qué verifica el jurado y qué falta
+
+Estado de cada celda comprobado el 2026-11-12 contra la rama `codex/verificacion-v2` (basada en `origin/codex/demo-render`). No se asignan puntajes.
+
+| Criterio | Qué puede verificar el jurado | Qué falta |
+|---|---|---|
+| **Impacto** | Que al pasar de la caja original a Nicaragua la estimación cambia (−13,1 → −62,3 mm/década) y la conclusión se mantiene (ambos intervalos incluyen cero). Contraste multi-sensor (IMERG, GISTEMP v4, MODIS NDVI, MERRA-2) y proyecciones reales NEX-GDDP-CMIP6 (6 GCMs, 2041–2060) por región climática de Nicaragua. | Una persona o usuario concreto que tome una decisión operativa con estos indicadores climáticos; confirmar el enlace público final. |
+| **Creatividad** | El cambio de escala en una sola interacción; Costa Rica como caso en que el método importa; contraste explícito de los saltos de reanálisis (MERRA-2 1998–2005) frente a observaciones independientes (IMERG y GISTEMP v4); globo 3D y mapa 2D sincronizados. | Comprobar con una persona ajena que el cambio de escala se entiende sin explicación ([prueba-persona-ajena.md](prueba-persona-ajena.md)). |
+| **Validez** | IMERG V07B (24 años), GISTEMP v4 (44 años), MODIS MOD13C2 (25 años), NEX-GDDP-CMIP6 v2.0 (6 modelos); cada cifra reproducible con `pytest tests` (50 pruebas) y `verificar_clima.py` (88 comprobaciones); tres intervalos y veredicto con regla explícita; CSV de pendientes con `mann_kendall_p`; validación externa de los índices oceánicos MERRA-2 con NOAA CPC ONI (r = 0,983) y NOAA PSL TNA (r = 0,949) y AMO (r = 0,768 sin tendencia). | Completar los DOI bibliográficos en la entrega final ([checklist-entrega.md](checklist-entrega.md)). |
+| **Relevancia** | Diagnóstico riguroso de tendencias climáticas de la Tierra centrado en Nicaragua (Pacífico, Central y Caribe), su relación con teleconexiones oceánicas (ENSO/ONI, TNA, AMO, CLLJ) y su proyección futura con datos exclusivos de NASA. | Confirmar el texto del formulario de entrega para el reto *Be An Earth System Trend Detective!*. |
+| **Presentación** | Interfaz espacial íntegra en inglés, sin avisos ni textos residuales de ejemplo; bloque ONI visible con datos reales en la pestaña *El Niño & cyclones*; nueva pestaña *Climate indicators* verificada extremo a extremo; guion ES/EN y guía de reproducción. | Confirmar el formato oficial de video (30 s) o diapositivas (7 slides) y grabar/exportar la presentación final; realizar la prueba con persona ajena. |
+
+Detalle de cada hallazgo y su resolución: [auditoria.md](auditoria.md) y [estado-verificacion.md](estado-verificacion.md).

@@ -4,9 +4,10 @@ import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 // public/clima-base (datos meteorológicos de preparar_meteo.mjs) se conserva entre compilaciones.
 const rutas = ['index.html', 'app', 'src', 'assets', 'visor'];
 for (const ruta of [...rutas, 'data']) rmSync('public/' + ruta, { recursive: true, force: true });
-mkdirSync('public/data', { recursive: true });
+mkdirSync('public/data/fuentes', { recursive: true });
 for (const ruta of rutas) cpSync(ruta, 'public/' + ruta, { recursive: true });
 for (const archivo of ['clima.json', 'dominios.geojson']) cpSync('data/' + archivo, 'public/data/' + archivo);
+cpSync('data/fuentes/oni_2001_2024.csv', 'public/data/fuentes/oni_2001_2024.csv');
 
 // Indicadores de clima_nic: solo lo que muestra la portada (las series, tendencias, contrastes,
 // pronóstico estacional y escenarios); el JSON completo sigue en data/ del repositorio.
