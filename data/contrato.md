@@ -1,6 +1,6 @@
 # Contrato de datos climáticos (`data/clima.json`)
 
-**Versión del contrato:** 1.0.0 (borrador para revisión del equipo)
+**Versión del contrato:** 1.1.0 (borrador para revisión del equipo). La 1.1.0 solo **añade archivos opcionales** (§9); `clima.json` no cambia y sigue declarando `version_esquema` 1.0.0, con las mismas cifras de referencia.
 **Rama:** `codex/datos-climaticos` · **Responsable:** datos (`data/` y `scripts/datos/`)
 
 La interfaz debe leer únicamente los archivos derivados de `data/`. No necesita los HDF5 de IMERG, ni el repositorio privado de SICC-952, ni credenciales. Quien cambie un campo de este contrato debe subir la versión y avisar a quien lo consume.
@@ -181,3 +181,17 @@ python scripts/datos/extraer_series.py --hdf5 <carpeta>   # opcional: recalcula 
 ## 8. Estado
 
 Exploratorio. Las cifras de referencia vienen del diagnóstico ejecutado el 11 de noviembre de 2026 en la PC de Octavio y se reproducen con este procedimiento. Pendiente de revisión de los demás integrantes antes de que la interfaz dependa de campos concretos; la visibilidad del repositorio, la licencia y la publicación de la demo quedan a decisión de Octavio.
+
+## 9. Archivos opcionales añadidos en 1.1.0 (backend `clima_nic`)
+
+Generados por `backend/clima_nic` (ver `backend/README.md`). Ninguno es necesario para leer `clima.json`; quien no los use no tiene que cambiar nada.
+
+| Archivo | Contenido |
+|---|---|
+| `data/fenomenos_nicaragua.json` | Esquema `nasa-challenge/fenomenos-nicaragua` 1.0.0: por región (`NIC`, `pacifico`, `central`, `caribe`, `caja_sicc`) y variable (lluvia, extremos ETCCDI, temperatura, calor extremo, humedad, radiación, viento, ETo, balance, SPI/SPEI, canícula, NDVI), la serie anual y su tendencia con `respuesta_reto` = {`que`, `donde`, `cuanto`, `significativo`}; `mapas_tendencia` por celda con FDR; `indices_climaticos` (Niño 3.4, TNA, AMO, PDO, CLLJ desde MERRA-2); `comparaciones_independientes`; `modelo_estacional` (`tipo`: `pronostico`); `escenarios_cmip6` (rangos, no pronóstico). |
+| `data/regiones_nicaragua.geojson` | Polígonos de las cinco regiones. Pacífico, Central y Caribe son una partición de la máscara `NIC` de `dominios.geojson`. |
+| `data/fenomenos/*.csv` | Derivados de NASA POWER, GISTEMP, MODIS y NEX-GDDP-CMIP6 para regenerar sin red; `manifiesto_power.csv` con SHA-256 de las respuestas crudas. |
+| `data/historial/` | `habilidad.csv` y `corridas.jsonl`: habilidad del modelo estacional en cada corrida de `python -m clima_nic actualizar`. |
+
+Reglas adicionales: `veredicto` en `fenomenos_nicaragua.json` puede ser `tendencia_detectada`, `evidencia_insuficiente`, `metodos_discrepan` o `datos_insuficientes`, y es más exigente que el de `clima.json` (añade Mann–Kendall modificado). Mostrar siempre `advertencias` cuando no esté vacía. Las variables de MERRA-2 con advertencia de inhomogeneidad no deben presentarse como tendencia climática.
+

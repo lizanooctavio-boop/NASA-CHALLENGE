@@ -1,0 +1,37 @@
+{
+  "inicio": 1981,
+  "fin": 2024,
+  "parametros_diarios": [
+    "PRECTOTCORR",
+    "T2M",
+    "T2M_MAX",
+    "T2M_MIN",
+    "RH2M",
+    "GWETROOT",
+    "GWETTOP",
+    "ALLSKY_SFC_SW_DWN",
+    "WS2M",
+    "T2MDEW",
+    "PS"
+  ],
+  "anios_base": [
+    1991,
+    2020
+  ],
+  "regiones": [
+    "NIC",
+    "pacifico",
+    "central",
+    "caribe",
+    "caja_sicc"
+  ],
+  "celdas": 57,
+  "puntos_oceano_por_caja": {
+    "nino34": 1701,
+    "tna": 2247,
+    "amo": 11834,
+    "pacifico_norte": 13661,
+    "cllj": 186
+  },
+  "mascara_tierra": "Natural Earth 10 m admin-1"
+}
