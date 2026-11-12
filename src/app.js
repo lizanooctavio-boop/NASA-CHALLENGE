@@ -17,6 +17,10 @@
 
   // ---------- carga ----------
   async function cargar() {
+    var publicado = $('clima-publicado');
+    if (publicado && !params.has('datos') && !params.has('caso')) {
+      return C.desdeClima(JSON.parse(publicado.textContent), JSON.parse($('mapa-publicado').textContent));
+    }
     if (location.protocol === 'file:' || params.has('caso')) {
       return params.get('caso') === 'faltantes' ? C.variarFaltantes(window.SOF_DATOS_EJEMPLO) : window.SOF_DATOS_EJEMPLO;
     }
