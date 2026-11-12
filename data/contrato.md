@@ -15,6 +15,7 @@ La interfaz debe leer únicamente los archivos derivados de `data/`. No necesita
 | `data/fuentes/oni_2001_2024.csv` | ONI mensual (`anio,mes,oni`) de NOAA CPC, 2001–2024. | No. |
 | `data/fuentes/manifiesto_imerg.csv` | Nombre, tamaño, SHA-256 y URL de los 288 archivos IMERG mensuales usados. | No. |
 | `data/fuentes/comprobaciones_extraccion.json` | Celdas con peso por dominio y comprobación de la ponderación de la caja. | No. |
+| `data/fuentes/sensibilidad_geometria.json` | Pendientes con el contorno de los países dilatado y erosionado 0,05°. | No. |
 
 Convenciones: UTF-8, claves en `snake_case` sin tildes, valores de texto en español, números con punto decimal, años como enteros, sin `NaN` ni `Infinity`.
 
@@ -44,7 +45,7 @@ Convenciones: UTF-8, claves en `snake_case` sin tildes, valores de texto en espa
 | `resolucion` | objeto | `espacial_grados` (0,1), `temporal_origen` (mensual), `temporal_salida` (anual, año calendario). |
 | `metodo` | objeto | Cómo se obtuvieron las series y las tendencias (ver §4). Texto para mostrar en una ayuda o nota metodológica. |
 | `fuentes` | lista | Cada fuente con `id`, `nombre`, `url`, `uso` y `licencia_o_condiciones`. |
-| `integridad` | objeto | SHA-256 de las entradas (`mapa_base`, `oni_local`, `manifiesto_imerg`, `serie_mensual`). |
+| `integridad` | objeto | SHA-256 de las entradas: mapa base, `dominios.geojson`, `serie_mensual.csv`, ONI, manifiesto IMERG y sensibilidad de geometría. |
 | `limites` | lista de textos | Advertencias que la interfaz debe poder mostrar. |
 
 ### 2.2 `dominios[]`
@@ -154,8 +155,8 @@ Se calculan con tres intervalos del 95 %: el principal (mínimos cuadrados con g
 
 * Los polígonos de países proceden de Natural Earth 1:50 m, simplificados en el proyecto SICC-952. Son una máscara de referencia para ponderar celdas de 0,1°, no una frontera oficial ni un levantamiento.
 * A los países se les restaron los lagos disponibles en esa base (en Nicaragua, el Lago de Nicaragua y el Lago de Managua). IMERG sí asigna lluvia a las celdas sobre los lagos, y la ponderación las excluye del promedio de país. `caja_sicc` es un rectángulo sin restar lagos ni mar.
-* `caja_sicc` (10,7–12,6° N; 86,5–83,6° O) incluye parte del mar Caribe y del Pacífico y una franja del norte de Costa Rica; sus resultados no equivalen a los de Nicaragua.
-* Con celdas de 0,1° y una geometría simplificada, cambios pequeños de contorno modifican el peso de las celdas de borde. No se ha cuantificado esa sensibilidad: queda como límite declarado.
+* `caja_sicc` (10,7–12,6° N; 86,5–83,6° O) es un rectángulo de ~66 500 km²: el 62 % es Nicaragua, el 10 % es el norte de Costa Rica y el 28 % restante (~18 500 km²) no pertenece a ninguna máscara de país, porque son los lagos de Nicaragua y de Managua (restados a los países) y mar. Sus resultados no equivalen a los de Nicaragua.
+* Con celdas de 0,1° y una geometría simplificada, cambios pequeños de contorno modifican el peso de las celdas de borde. Prueba realizada (dilatar y erosionar cada país 0,05° ≈ 5,5 km, `metadatos.metodo.sensibilidad_geometria`): los veredictos no cambian, pero la pendiente de Costa Rica oscila entre −178 y −228 mm/década, la de Nicaragua entre −58 y −68, y la de Honduras entre −32 y −38. Costa Rica es la más sensible por ser el país más pequeño. Esto no es una incertidumbre formal de la geometría.
 * El período 2001–2024 es corto para tendencias climáticas; una tendencia de 24 años puede reflejar variabilidad interdecadal.
 
 ## 6. Reglas para quien consume el JSON

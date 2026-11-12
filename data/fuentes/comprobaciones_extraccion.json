@@ -1,0 +1,14 @@
+{
+  "celdas_con_peso": {
+    "NIC": 1116,
+    "HND": 1067,
+    "CRI": 512,
+    "NIC_fuera_caja": 717,
+    "caja_sicc": 551
+  },
+  "caja_esferica_vs_6933": {
+    "celdas_con_peso_6933": 551,
+    "max_dif_anual_mm": 0.015984784361307902,
+    "max_dif_anual_relativa": 8.028486522221463e-06
+  }
+}

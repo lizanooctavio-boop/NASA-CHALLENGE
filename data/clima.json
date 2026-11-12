@@ -1,0 +1,1223 @@
+{
+  "esquema": "nasa-challenge/clima",
+  "version_esquema": "1.0.0",
+  "estado": "exploratorio",
+  "metadatos": {
+    "titulo": "Precipitación anual en Nicaragua y su contexto regional, 2001–2024",
+    "producto": {
+      "nombre": "GPM IMERG Final Run, mensual",
+      "id": "GPM_3IMERGM",
+      "version": "V07B",
+      "variable": "precipitation",
+      "unidad_origen": "mm/hr",
+      "proveedor": "NASA GES DISC"
+    },
+    "periodo": {
+      "inicio": 2001,
+      "fin": 2024,
+      "anios": 24
+    },
+    "unidad_serie": "mm/año",
+    "unidad_pendiente": "mm/década",
+    "resolucion": {
+      "espacial_grados": 0.1,
+      "temporal_origen": "mensual",
+      "temporal_salida": "anual (año calendario)"
+    },
+    "metodo": {
+      "agregacion_espacial": "Media ponderada por área de la tasa de precipitación (mm/h) de las celdas IMERG de 0,1° que intersecan el dominio. Países: peso = área de la intersección celda–polígono en EPSG:6933 (cilíndrica de igual área). Caja de SICC-952: peso = área esférica relativa de la celda dentro del rectángulo. Las celdas parciales entran con su fracción de área.",
+      "agregacion_temporal": "Acumulado mensual = tasa media ponderada × horas del mes (24 × días). Acumulado anual = suma de los 12 meses del año calendario; solo se admiten años con 12 meses válidos.",
+      "calidad": "Un mes es válido si la fracción de peso con dato válido es ≥ 0,999; si no, el procesamiento se detiene. El valor de relleno -9999,9 y los negativos se excluyen sin imputar.",
+      "tendencia_principal": "Mínimos cuadrados sobre la serie anual; intervalo t del 95 % con grados de libertad ajustados por la autocorrelación de lag 1 de los residuos (Santer et al., 2000), sin inflar la muestra.",
+      "controles": "HAC de Newey–West (Bartlett), Theil–Sen con intervalo del 95 % y tau de Kendall.",
+      "regla_veredicto": "tendencia_detectada si los tres intervalos excluyen cero con el mismo signo y el p-valor principal es < 0,05; evidencia_insuficiente si los tres incluyen cero; metodos_discrepan en otro caso.",
+      "comprobacion_pesos_caja": "Con pesos de igual área (EPSG:6933) en lugar de esféricos, el acumulado anual de la caja cambia como máximo 0.016 mm (8.0e-06 en términos relativos).",
+      "sensibilidad_geometria": {
+        "descripcion": "Pendientes recalculadas con el contorno de cada país dilatado y erosionado 0,05° (≈ 5,5 km). Es una prueba de sensibilidad del contorno, no una incertidumbre formal de la geometría.",
+        "delta_grados": 0.05,
+        "rango_mm_por_decada": {
+          "NIC": [
+            -68.337,
+            -57.893
+          ],
+          "HND": [
+            -38.141,
+            -31.94
+          ],
+          "CRI": [
+            -228.1,
+            -178.045
+          ],
+          "NIC_fuera_caja": [
+            -76.381,
+            -70.106
+          ]
+        },
+        "veredictos_cambian": false
+      }
+    },
+    "fuentes": [
+      {
+        "id": "imerg_v07b",
+        "nombre": "GPM IMERG Final Run, mensual, versión 07B (GPM_3IMERGM.07)",
+        "url": "https://www.earthdata.nasa.gov/data/catalog/ges-disc-gpm-3imergm-07",
+        "documentacion": "https://gpm.nasa.gov/sites/default/files/2023-07/IMERG_TechnicalDocumentation_final_230713.pdf",
+        "uso": "Precipitación mensual 2001–2024 (288 archivos HDF5, listados con SHA-256 en fuentes/manifiesto_imerg.csv).",
+        "licencia_o_condiciones": "Datos abiertos de NASA Earthdata/GES DISC; citar el producto y su versión."
+      },
+      {
+        "id": "oni_noaa",
+        "nombre": "Oceanic Niño Index (ONI), NOAA Climate Prediction Center",
+        "url": "https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt",
+        "documentacion": "https://origin.cpc.ncep.noaa.gov/products/analysis_monitoring/ensostuff/ONI_v5.php",
+        "uso": "Contexto de El Niño y La Niña (fuentes/oni_2001_2024.csv).",
+        "licencia_o_condiciones": "Datos públicos de NOAA; citar la fuente."
+      },
+      {
+        "id": "natural_earth",
+        "nombre": "Natural Earth 1:50 m (países y lagos), simplificado en SICC-952",
+        "url": "https://www.naturalearthdata.com/",
+        "uso": "Máscara de referencia de Nicaragua, Honduras y Costa Rica (dominios.geojson).",
+        "licencia_o_condiciones": "Dominio público."
+      }
+    ],
+    "integridad": {
+      "mapa_base_sha256": "816eba5cb8fb968703b69f4e1d72bf9775f22b49f9f422cac55709c5c09d6f9f",
+      "dominios_geojson_sha256": "3f555d9a1f79263d75af68087172d2f89d83ce9cb527acc668af87f0725fceb1",
+      "serie_mensual_sha256": "06054f6e2d9896000c92669496f37dde241f83f742c1bd3873294230e6e444a2",
+      "oni_csv_sha256": "14e74aa22c120ede3c9f38f4da5c7a0901e0406605164049a1c8f070b763f2f7",
+      "manifiesto_imerg_sha256": "d33e87f5e51ab1a9225bd7c55e412ca2074c7d64584b77afe51cbe5c8e3fc879",
+      "sensibilidad_geometria_sha256": "f1d07cd3f58e563949b06d57ad5b4494e45b0d2fac07c79ac92f1697b7615fe6"
+    },
+    "limites": [
+      "Estado exploratorio: resultados de un diagnóstico, no una evaluación climática formal.",
+      "Veinticuatro años (2001–2024) son pocos para separar tendencia de variabilidad natural.",
+      "Un intervalo que incluye cero no demuestra ausencia de cambio: indica que la ventana y el método no bastan para detectarlo.",
+      "Costa Rica depende del método: dos intervalos excluyen cero y uno no; no se presenta como tendencia confirmada.",
+      "Los dominios se solapan y comparten el mismo sistema climático regional: no son muestras independientes.",
+      "Las geometrías son máscaras de referencia simplificadas (Natural Earth 1:50 m), no fronteras oficiales; se restaron los lagos disponibles de los países.",
+      "IMERG es una estimación satelital con celdas de 0,1° (~11 km); las celdas costeras mezclan tierra y mar y se ponderan solo por área.",
+      "La correlación con el ONI es descriptiva (24 puntos); no establece causalidad ni se usa para pronosticar."
+    ]
+  },
+  "dominios": [
+    {
+      "id": "caja_sicc",
+      "nombre": "Caja original de SICC-952",
+      "tipo": "caja",
+      "rol": "referencia",
+      "geometria": {
+        "archivo": "dominios.geojson",
+        "id": "caja_sicc"
+      },
+      "bbox": [
+        -86.5,
+        10.7,
+        -83.6,
+        12.6
+      ],
+      "area_km2": 66459.1,
+      "celdas_con_peso": 551,
+      "cobertura_minima": 1.0,
+      "anios_validos": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "serie_anual_mm": [
+        2131.194,
+        2282.407,
+        2347.976,
+        2333.023,
+        2369.663,
+        1801.841,
+        2513.714,
+        2684.733,
+        2067.224,
+        2486.742,
+        2192.868,
+        2013.371,
+        2120.242,
+        1985.715,
+        1768.152,
+        2249.3,
+        2433.377,
+        2241.666,
+        1991.008,
+        2517.479,
+        2042.722,
+        2365.808,
+        1935.815,
+        2664.489
+      ],
+      "tendencia": {
+        "estado": "ok",
+        "veredicto": "evidencia_insuficiente",
+        "veredicto_texto": "Con esta ventana y estos métodos no se detecta una tendencia (−13 mm/década; IC 95 %: −171 a 144). No demuestra que no haya cambio.",
+        "nivel_confianza": 0.95,
+        "anios": 24,
+        "periodo": [
+          2001,
+          2024
+        ],
+        "media_anual_mm": 2230.855,
+        "mm_por_decada": -13.132,
+        "ic_mm_por_decada": [
+          -170.748,
+          144.485
+        ],
+        "pct_por_decada": -0.589,
+        "ic_pct_por_decada": [
+          -7.654,
+          6.477
+        ],
+        "p_valor": 0.8644,
+        "n_efectivo": 24.0,
+        "r1_residuos": -0.212,
+        "controles": {
+          "hac": {
+            "rezago": 2,
+            "ic_mm_por_decada": [
+              -119.373,
+              93.11
+            ]
+          },
+          "theil_sen": {
+            "mm_por_decada": -28.705,
+            "ic_mm_por_decada": [
+              -184.428,
+              188.865
+            ]
+          },
+          "mann_kendall": {
+            "tau": -0.043,
+            "p_valor": 0.7873
+          }
+        },
+        "sensibilidad": [
+          {
+            "ventana": "período completo",
+            "anios": 24,
+            "periodo": [
+              2001,
+              2024
+            ],
+            "mm_por_decada": -13.132,
+            "ic_mm_por_decada": [
+              -170.748,
+              144.485
+            ]
+          },
+          {
+            "ventana": "sin los primeros 3 años",
+            "anios": 21,
+            "periodo": [
+              2004,
+              2024
+            ],
+            "mm_por_decada": -11.673,
+            "ic_mm_por_decada": [
+              -219.017,
+              195.672
+            ]
+          },
+          {
+            "ventana": "sin los últimos 3 años",
+            "anios": 21,
+            "periodo": [
+              2001,
+              2021
+            ],
+            "mm_por_decada": -66.122,
+            "ic_mm_por_decada": [
+              -250.297,
+              118.054
+            ]
+          }
+        ],
+        "omitir_un_anio_mm_por_decada": [
+          -66.341,
+          16.643
+        ],
+        "interpretacion": "El intervalo del 95 % incluye cero con los tres métodos: con este método y esta ventana la evidencia es insuficiente para detectar una tendencia. No demuestra que no haya cambio."
+      }
+    },
+    {
+      "id": "NIC",
+      "nombre": "Nicaragua",
+      "tipo": "pais",
+      "rol": "principal",
+      "geometria": {
+        "archivo": "dominios.geojson",
+        "id": "NIC"
+      },
+      "bbox": [
+        -87.68,
+        10.74,
+        -83.16,
+        15.0
+      ],
+      "area_km2": 119881.4,
+      "celdas_con_peso": 1116,
+      "cobertura_minima": 1.0,
+      "anios_validos": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "serie_anual_mm": [
+        2062.583,
+        2212.873,
+        2236.141,
+        2130.515,
+        2295.902,
+        1627.618,
+        2287.753,
+        2466.66,
+        2155.796,
+        2302.275,
+        2148.631,
+        1893.701,
+        2011.061,
+        1942.925,
+        1705.191,
+        2141.719,
+        2382.392,
+        2060.202,
+        1620.488,
+        2471.771,
+        1907.891,
+        2176.133,
+        1798.008,
+        2219.125
+      ],
+      "tendencia": {
+        "estado": "ok",
+        "veredicto": "evidencia_insuficiente",
+        "veredicto_texto": "Con esta ventana y estos métodos no se detecta una tendencia (−62 mm/década; IC 95 %: −211 a 86). No demuestra que no haya cambio.",
+        "nivel_confianza": 0.95,
+        "anios": 24,
+        "periodo": [
+          2001,
+          2024
+        ],
+        "media_anual_mm": 2094.056,
+        "mm_por_decada": -62.332,
+        "ic_mm_por_decada": [
+          -210.763,
+          86.1
+        ],
+        "pct_por_decada": -2.977,
+        "ic_pct_por_decada": [
+          -10.065,
+          4.112
+        ],
+        "p_valor": 0.3932,
+        "n_efectivo": 24.0,
+        "r1_residuos": -0.269,
+        "controles": {
+          "hac": {
+            "rezago": 2,
+            "ic_mm_por_decada": [
+              -144.58,
+              19.916
+            ]
+          },
+          "theil_sen": {
+            "mm_por_decada": -64.923,
+            "ic_mm_por_decada": [
+              -233.24,
+              98.283
+            ]
+          },
+          "mann_kendall": {
+            "tau": -0.116,
+            "p_valor": 0.4461
+          }
+        },
+        "sensibilidad": [
+          {
+            "ventana": "período completo",
+            "anios": 24,
+            "periodo": [
+              2001,
+              2024
+            ],
+            "mm_por_decada": -62.332,
+            "ic_mm_por_decada": [
+              -210.763,
+              86.1
+            ]
+          },
+          {
+            "ventana": "sin los primeros 3 años",
+            "anios": 21,
+            "periodo": [
+              2004,
+              2024
+            ],
+            "mm_por_decada": -59.592,
+            "ic_mm_por_decada": [
+              -255.026,
+              135.842
+            ]
+          },
+          {
+            "ventana": "sin los últimos 3 años",
+            "anios": 21,
+            "periodo": [
+              2001,
+              2021
+            ],
+            "mm_por_decada": -79.796,
+            "ic_mm_por_decada": [
+              -267.869,
+              108.276
+            ]
+          }
+        ],
+        "omitir_un_anio_mm_por_decada": [
+          -93.424,
+          -35.773
+        ],
+        "interpretacion": "El intervalo del 95 % incluye cero con los tres métodos: con este método y esta ventana la evidencia es insuficiente para detectar una tendencia. No demuestra que no haya cambio."
+      }
+    },
+    {
+      "id": "HND",
+      "nombre": "Honduras",
+      "tipo": "pais",
+      "rol": "contexto",
+      "geometria": {
+        "archivo": "dominios.geojson",
+        "id": "HND"
+      },
+      "bbox": [
+        -89.36,
+        12.98,
+        -83.16,
+        16.52
+      ],
+      "area_km2": 113081.7,
+      "celdas_con_peso": 1067,
+      "cobertura_minima": 1.0,
+      "anios_validos": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "serie_anual_mm": [
+        1508.032,
+        1494.987,
+        1753.69,
+        1494.879,
+        1850.312,
+        1419.308,
+        1778.754,
+        2075.707,
+        1621.981,
+        1942.778,
+        1858.367,
+        1668.556,
+        1692.692,
+        1683.151,
+        1460.007,
+        1665.697,
+        1973.218,
+        1512.344,
+        1169.01,
+        2008.502,
+        1398.108,
+        1637.141,
+        1412.742,
+        1720.16
+      ],
+      "tendencia": {
+        "estado": "ok",
+        "veredicto": "evidencia_insuficiente",
+        "veredicto_texto": "Con esta ventana y estos métodos no se detecta una tendencia (−35 mm/década; IC 95 %: −174 a 104). No demuestra que no haya cambio.",
+        "nivel_confianza": 0.95,
+        "anios": 24,
+        "periodo": [
+          2001,
+          2024
+        ],
+        "media_anual_mm": 1658.338,
+        "mm_por_decada": -35.005,
+        "ic_mm_por_decada": [
+          -173.729,
+          103.72
+        ],
+        "pct_por_decada": -2.111,
+        "ic_pct_por_decada": [
+          -10.476,
+          6.254
+        ],
+        "p_valor": 0.606,
+        "n_efectivo": 24.0,
+        "r1_residuos": -0.264,
+        "controles": {
+          "hac": {
+            "rezago": 2,
+            "ic_mm_por_decada": [
+              -142.091,
+              72.081
+            ]
+          },
+          "theil_sen": {
+            "mm_por_decada": -41.197,
+            "ic_mm_por_decada": [
+              -191.751,
+              122.339
+            ]
+          },
+          "mann_kendall": {
+            "tau": -0.08,
+            "p_valor": 0.6062
+          }
+        },
+        "sensibilidad": [
+          {
+            "ventana": "período completo",
+            "anios": 24,
+            "periodo": [
+              2001,
+              2024
+            ],
+            "mm_por_decada": -35.005,
+            "ic_mm_por_decada": [
+              -173.729,
+              103.72
+            ]
+          },
+          {
+            "ventana": "sin los primeros 3 años",
+            "anios": 21,
+            "periodo": [
+              2004,
+              2024
+            ],
+            "mm_por_decada": -89.492,
+            "ic_mm_por_decada": [
+              -264.583,
+              85.6
+            ]
+          },
+          {
+            "ventana": "sin los últimos 3 años",
+            "anios": 21,
+            "periodo": [
+              2001,
+              2021
+            ],
+            "mm_por_decada": -21.414,
+            "ic_mm_por_decada": [
+              -200.912,
+              158.084
+            ]
+          }
+        ],
+        "omitir_un_anio_mm_por_decada": [
+          -61.999,
+          -6.389
+        ],
+        "interpretacion": "El intervalo del 95 % incluye cero con los tres métodos: con este método y esta ventana la evidencia es insuficiente para detectar una tendencia. No demuestra que no haya cambio."
+      }
+    },
+    {
+      "id": "CRI",
+      "nombre": "Costa Rica",
+      "tipo": "pais",
+      "rol": "contexto",
+      "geometria": {
+        "archivo": "dominios.geojson",
+        "id": "CRI"
+      },
+      "bbox": [
+        -85.9,
+        8.08,
+        -82.56,
+        11.18
+      ],
+      "area_km2": 51445.5,
+      "celdas_con_peso": 512,
+      "cobertura_minima": 1.0,
+      "anios_validos": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "serie_anual_mm": [
+        3075.835,
+        3255.612,
+        3412.662,
+        3303.2,
+        3346.744,
+        2990.243,
+        3506.951,
+        3700.081,
+        2952.529,
+        3495.544,
+        3051.272,
+        2634.551,
+        2630.285,
+        3089.733,
+        2657.7,
+        2747.303,
+        2887.899,
+        2953.279,
+        2710.045,
+        3147.677,
+        3016.348,
+        3022.688,
+        2651.099,
+        3260.294
+      ],
+      "tendencia": {
+        "estado": "ok",
+        "veredicto": "metodos_discrepan",
+        "veredicto_texto": "El resultado depende del método (−201 mm/década; IC 95 % del método principal: −378 a −24). No es concluyente.",
+        "nivel_confianza": 0.95,
+        "anios": 24,
+        "periodo": [
+          2001,
+          2024
+        ],
+        "media_anual_mm": 3062.482,
+        "mm_por_decada": -201.224,
+        "ic_mm_por_decada": [
+          -378.357,
+          -24.091
+        ],
+        "pct_por_decada": -6.571,
+        "ic_pct_por_decada": [
+          -12.355,
+          -0.787
+        ],
+        "p_valor": 0.028,
+        "n_efectivo": 22.0,
+        "r1_residuos": 0.043,
+        "controles": {
+          "hac": {
+            "rezago": 2,
+            "ic_mm_por_decada": [
+              -332.359,
+              -70.089
+            ]
+          },
+          "theil_sen": {
+            "mm_por_decada": -168.386,
+            "ic_mm_por_decada": [
+              -369.492,
+              20.815
+            ]
+          },
+          "mann_kendall": {
+            "tau": -0.246,
+            "p_valor": 0.0968
+          }
+        },
+        "sensibilidad": [
+          {
+            "ventana": "período completo",
+            "anios": 24,
+            "periodo": [
+              2001,
+              2024
+            ],
+            "mm_por_decada": -201.224,
+            "ic_mm_por_decada": [
+              -378.357,
+              -24.091
+            ]
+          },
+          {
+            "ventana": "sin los primeros 3 años",
+            "anios": 21,
+            "periodo": [
+              2004,
+              2024
+            ],
+            "mm_por_decada": -218.151,
+            "ic_mm_por_decada": [
+              -445.151,
+              8.849
+            ]
+          },
+          {
+            "ventana": "sin los últimos 3 años",
+            "anios": 21,
+            "periodo": [
+              2001,
+              2021
+            ],
+            "mm_por_decada": -264.13,
+            "ic_mm_por_decada": [
+              -487.871,
+              -40.388
+            ]
+          }
+        ],
+        "omitir_un_anio_mm_por_decada": [
+          -252.119,
+          -178.469
+        ],
+        "interpretacion": "Los métodos no coinciden respecto de cero: la señal depende de supuestos y no es concluyente. Se informan todos los intervalos sin elegir el más favorable."
+      }
+    },
+    {
+      "id": "NIC_fuera_caja",
+      "nombre": "Nicaragua fuera de la caja de SICC-952",
+      "tipo": "complemento",
+      "rol": "auxiliar",
+      "geometria": {
+        "archivo": "dominios.geojson",
+        "id": "NIC_fuera_caja"
+      },
+      "bbox": [
+        -87.68,
+        11.788,
+        -83.16,
+        15.0
+      ],
+      "area_km2": 78891.9,
+      "celdas_con_peso": 717,
+      "cobertura_minima": 1.0,
+      "anios_validos": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "serie_anual_mm": [
+        1970.515,
+        2077.88,
+        2141.695,
+        1952.65,
+        2239.33,
+        1514.331,
+        2143.664,
+        2348.215,
+        2145.158,
+        2222.974,
+        2115.372,
+        1802.096,
+        1909.84,
+        1855.926,
+        1617.821,
+        2054.522,
+        2302.205,
+        1894.622,
+        1421.45,
+        2428.798,
+        1813.947,
+        2056.456,
+        1688.46,
+        2023.276
+      ],
+      "tendencia": {
+        "estado": "ok",
+        "veredicto": "evidencia_insuficiente",
+        "veredicto_texto": "Con esta ventana y estos métodos no se detecta una tendencia (−73 mm/década; IC 95 %: −230 a 84). No demuestra que no haya cambio.",
+        "nivel_confianza": 0.95,
+        "anios": 24,
+        "periodo": [
+          2001,
+          2024
+        ],
+        "media_anual_mm": 1989.217,
+        "mm_por_decada": -73.007,
+        "ic_mm_por_decada": [
+          -230.432,
+          84.418
+        ],
+        "pct_por_decada": -3.67,
+        "ic_pct_por_decada": [
+          -11.584,
+          4.244
+        ],
+        "p_valor": 0.3466,
+        "n_efectivo": 24.0,
+        "r1_residuos": -0.267,
+        "controles": {
+          "hac": {
+            "rezago": 2,
+            "ic_mm_por_decada": [
+              -159.659,
+              13.645
+            ]
+          },
+          "theil_sen": {
+            "mm_por_decada": -70.83,
+            "ic_mm_por_decada": [
+              -251.924,
+              103.123
+            ]
+          },
+          "mann_kendall": {
+            "tau": -0.159,
+            "p_valor": 0.2896
+          }
+        },
+        "sensibilidad": [
+          {
+            "ventana": "período completo",
+            "anios": 24,
+            "periodo": [
+              2001,
+              2024
+            ],
+            "mm_por_decada": -73.007,
+            "ic_mm_por_decada": [
+              -230.432,
+              84.418
+            ]
+          },
+          {
+            "ventana": "sin los primeros 3 años",
+            "anios": 21,
+            "periodo": [
+              2004,
+              2024
+            ],
+            "mm_por_decada": -76.594,
+            "ic_mm_por_decada": [
+              -284.253,
+              131.066
+            ]
+          },
+          {
+            "ventana": "sin los últimos 3 años",
+            "anios": 21,
+            "periodo": [
+              2001,
+              2021
+            ],
+            "mm_por_decada": -77.521,
+            "ic_mm_por_decada": [
+              -280.417,
+              125.375
+            ]
+          }
+        ],
+        "omitir_un_anio_mm_por_decada": [
+          -108.457,
+          -41.096
+        ],
+        "interpretacion": "El intervalo del 95 % incluye cero con los tres métodos: con este método y esta ventana la evidencia es insuficiente para detectar una tendencia. No demuestra que no haya cambio."
+      }
+    }
+  ],
+  "superposicion": {
+    "nota": "Los dominios no son muestras independientes: caja_sicc se solapa con Nicaragua y con el norte de Costa Rica, y NIC_fuera_caja es el complemento de caja_sicc dentro de Nicaragua. Aunque los tres países no comparten área, sí comparten el mismo sistema climático regional.",
+    "umbral_km2": 1.0,
+    "pares": [
+      {
+        "a": "caja_sicc",
+        "b": "NIC",
+        "interseccion_km2": 40989.5,
+        "fraccion_de_a": 0.6168,
+        "fraccion_de_b": 0.3419
+      },
+      {
+        "a": "caja_sicc",
+        "b": "CRI",
+        "interseccion_km2": 6941.6,
+        "fraccion_de_a": 0.1044,
+        "fraccion_de_b": 0.1349
+      },
+      {
+        "a": "NIC",
+        "b": "NIC_fuera_caja",
+        "interseccion_km2": 78891.9,
+        "fraccion_de_a": 0.6581,
+        "fraccion_de_b": 1.0
+      }
+    ],
+    "sin_area_compartida": [
+      [
+        "caja_sicc",
+        "HND"
+      ],
+      [
+        "caja_sicc",
+        "NIC_fuera_caja"
+      ],
+      [
+        "NIC",
+        "HND"
+      ],
+      [
+        "NIC",
+        "CRI"
+      ],
+      [
+        "HND",
+        "CRI"
+      ],
+      [
+        "HND",
+        "NIC_fuera_caja"
+      ],
+      [
+        "CRI",
+        "NIC_fuera_caja"
+      ]
+    ]
+  },
+  "oni": {
+    "fuente": "https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt",
+    "definicion_temporal": "ONI: anomalía de la temperatura superficial del mar en la región Niño 3.4 (5° N–5° S, 120°–170° O) en medias móviles de tres meses. Cada trimestre se asigna a su mes central (DJF = enero … OND = noviembre, NDJ = diciembre). La temporada es la media de los seis valores de junio a noviembre (trimestres MJJ a OND).",
+    "temporada": {
+      "nombre": "junio–noviembre",
+      "meses": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "agregacion": "media de los seis valores mensuales"
+    },
+    "anios": [
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "oni_temporada": [
+      -0.167,
+      0.768,
+      0.142,
+      0.497,
+      -0.173,
+      0.422,
+      -0.945,
+      -0.378,
+      0.715,
+      -1.237,
+      -0.655,
+      0.247,
+      -0.292,
+      0.302,
+      1.852,
+      -0.31,
+      -0.148,
+      0.502,
+      0.452,
+      -0.63,
+      -0.573,
+      -0.798,
+      1.353,
+      -0.067
+    ],
+    "categoria_descriptiva": [
+      "neutral",
+      "el_nino",
+      "neutral",
+      "neutral",
+      "neutral",
+      "neutral",
+      "la_nina",
+      "neutral",
+      "el_nino",
+      "la_nina",
+      "la_nina",
+      "neutral",
+      "neutral",
+      "neutral",
+      "el_nino",
+      "neutral",
+      "neutral",
+      "el_nino",
+      "neutral",
+      "la_nina",
+      "la_nina",
+      "la_nina",
+      "el_nino",
+      "neutral"
+    ],
+    "umbral_categoria": 0.5,
+    "nota_categoria": "Etiqueta de la media estacional (≥ +0,5 El Niño, ≤ −0,5 La Niña); no es el criterio oficial de NOAA, que exige cinco trimestres consecutivos.",
+    "lluvia_jun_nov_mm": {
+      "caja_sicc": [
+        1550.519,
+        1725.574,
+        1794.785,
+        1559.163,
+        1796.903,
+        1302.211,
+        1912.486,
+        2058.42,
+        1589.324,
+        1921.004,
+        1674.274,
+        1527.475,
+        1663.645,
+        1638.985,
+        1372.287,
+        1692.322,
+        1751.455,
+        1656.531,
+        1375.417,
+        2017.412,
+        1482.264,
+        1913.888,
+        1574.879,
+        2116.066
+      ],
+      "NIC": [
+        1536.857,
+        1635.666,
+        1717.218,
+        1458.27,
+        1758.324,
+        1183.047,
+        1780.259,
+        1916.561,
+        1686.204,
+        1789.893,
+        1632.363,
+        1349.957,
+        1514.136,
+        1574.829,
+        1298.321,
+        1655.967,
+        1711.328,
+        1475.882,
+        1151.673,
+        1980.331,
+        1392.744,
+        1699.967,
+        1468.729,
+        1744.131
+      ],
+      "HND": [
+        1083.571,
+        1035.114,
+        1217.576,
+        932.13,
+        1433.524,
+        961.396,
+        1367.796,
+        1614.456,
+        1168.412,
+        1389.173,
+        1352.344,
+        1113.885,
+        1173.388,
+        1223.95,
+        997.438,
+        1192.698,
+        1422.822,
+        967.677,
+        815.679,
+        1500.449,
+        1006.657,
+        1159.679,
+        1068.447,
+        1354.856
+      ],
+      "CRI": [
+        2103.141,
+        2326.363,
+        2292.899,
+        2102.374,
+        2276.983,
+        1939.098,
+        2394.501,
+        2638.565,
+        1971.122,
+        2359.314,
+        2095.608,
+        1825.955,
+        1853.817,
+        2236.733,
+        1832.923,
+        2003.453,
+        1924.587,
+        2020.197,
+        1902.019,
+        2287.839,
+        1927.343,
+        2117.305,
+        1898.043,
+        2362.577
+      ],
+      "NIC_fuera_caja": [
+        1494.375,
+        1518.543,
+        1658.18,
+        1368.321,
+        1731.23,
+        1111.04,
+        1695.263,
+        1845.243,
+        1693.446,
+        1742.495,
+        1615.861,
+        1238.11,
+        1406.927,
+        1488.99,
+        1224.221,
+        1614.045,
+        1647.091,
+        1324.409,
+        1010.189,
+        1943.66,
+        1343.801,
+        1566.66,
+        1385.931,
+        1600.56
+      ]
+    },
+    "correlacion_descriptiva": {
+      "caja_sicc": {
+        "r": -0.591,
+        "n": 24
+      },
+      "NIC": {
+        "r": -0.561,
+        "n": 24
+      },
+      "HND": {
+        "r": -0.585,
+        "n": 24
+      },
+      "CRI": {
+        "r": -0.455,
+        "n": 24
+      },
+      "NIC_fuera_caja": {
+        "r": -0.553,
+        "n": 24
+      }
+    },
+    "advertencia": "La correlación es descriptiva: resume 24 temporadas, no establece causalidad, no se acompaña de valor p y los dominios se solapan. La lluvia centroamericana también responde al Atlántico, al Caribe y a la variabilidad local."
+  }
+}
