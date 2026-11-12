@@ -1,4 +1,4 @@
-import { cpSync, mkdirSync, rmSync } from 'node:fs';
+import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 
 // Sitio estático: la portada, sus módulos, las texturas NASA y los resultados IMERG empaquetados.
 // public/clima-base (datos meteorológicos de preparar_meteo.mjs) se conserva entre compilaciones.
@@ -7,3 +7,18 @@ for (const ruta of [...rutas, 'data']) rmSync('public/' + ruta, { recursive: tru
 mkdirSync('public/data', { recursive: true });
 for (const ruta of rutas) cpSync(ruta, 'public/' + ruta, { recursive: true });
 for (const archivo of ['clima.json', 'dominios.geojson']) cpSync('data/' + archivo, 'public/data/' + archivo);
+
+// Indicadores de clima_nic: solo lo que muestra la portada (las series, tendencias, contrastes,
+// pronóstico estacional y escenarios); el JSON completo sigue en data/ del repositorio.
+const VARIABLES = ['temperatura_gistemp', 'lluvia_anual_imerg', 'lluvia_jun_nov_imerg', 'ndvi', 't2m_media', 'lluvia_anual'];
+const f = JSON.parse(readFileSync('data/fenomenos_nicaragua.json', 'utf8'));
+const recorte = {
+  esquema: f.esquema, version_esquema: f.version_esquema, generado: f.generado,
+  regiones: f.regiones.map(r => ({ id: r.id, nombre: r.nombre, variables: Object.fromEntries(
+    VARIABLES.filter(v => r.variables[v]).map(v => [v, r.variables[v]])) })),
+  comparaciones_independientes: f.comparaciones_independientes,
+  modelo_estacional: { principales: f.modelo_estacional.principales },
+  escenarios_cmip6: f.escenarios_cmip6,
+};
+writeFileSync('public/data/fenomenos_nicaragua.json', JSON.stringify(recorte));
+cpSync('data/regiones_nicaragua.geojson', 'public/data/regiones_nicaragua.geojson');
