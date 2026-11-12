@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lluvia y escala del mapa</title>
+  <title>Tendencias de lluvia en Nicaragua</title>
   <meta name="description" content="Demo de Earth System Trend Detective: ¿cambia la conclusión sobre la lluvia cuando ampliamos el mapa? Precipitación anual NASA GPM IMERG, 2001–2024.">
   <link rel="stylesheet" href="src/estilos.css">
 </head>
@@ -12,9 +12,9 @@
 
   <div class="contenedor">
     <header class="cabecera">
-      <p class="antetitulo">Earth System Trend Detective · Prototipo SOF Clima</p>
-      <h1>¿Cambia la conclusión sobre la lluvia cuando ampliamos el mapa?</h1>
-      <p class="entradilla" id="entradilla">Tendencia de la precipitación anual entre 2001 y 2024 en la caja original de SICC, Nicaragua y dos países vecinos. Elige una región: el mapa, la serie anual y el resultado cambian juntos.</p>
+      <p class="antetitulo">NASA Space Apps · Earth System Trend Detective</p>
+      <h1>¿Está cambiando la lluvia en Nicaragua?</h1>
+      <p class="entradilla" id="entradilla">Explora la precipitación anual observada por GPM IMERG entre 2001 y 2024. Selecciona un área para ver cuánto cambia la lluvia y qué tan clara es la evidencia.</p>
       <div id="avisos" aria-live="polite"></div>
     </header>
 
@@ -25,12 +25,24 @@
       </div>
 
       <div class="rejilla">
-        <section class="tarjeta" aria-labelledby="t-mapa">
-          <h2 id="t-mapa">Mapa</h2>
-          <p class="sub" id="sub-mapa">Color: pendiente de Theil-Sen de cada región.</p>
+        <section class="tarjeta tarjeta-mapa" aria-labelledby="t-mapa">
+          <div class="cabecera-mapa">
+            <div>
+              <h2 id="t-mapa">Mapa de tendencias de lluvia</h2>
+              <p class="sub" id="sub-mapa">El color muestra la pendiente de Theil–Sen por área.</p>
+            </div>
+            <div class="vistas-mapa" role="group" aria-label="Encuadre del mapa">
+              <button type="button" data-vista="globo" aria-pressed="true">Globo 3D</button>
+              <button type="button" data-vista="regional" aria-pressed="false">Mapa regional</button>
+            </div>
+          </div>
           <div class="grafica mapa" id="mapa"></div>
-          <div class="escala-div" id="escala-mapa" aria-hidden="true"></div>
-          <p class="descripcion-mapa">La línea discontinua delimita la caja original de SICC. Los límites son de referencia.</p>
+          <div class="pie-globo" id="pie-globo">
+            <span id="ayuda-globo">Arrastra el globo para girarlo. También puedes usar las flechas del teclado.</span>
+            <button type="button" id="centrar-nicaragua">Centrar Nicaragua</button>
+          </div>
+          <div class="escala-div" id="escala-mapa"></div>
+          <p class="descripcion-mapa">El contorno ámbar delimita la caja original de SICC. Las tendencias son promedios por área. Cartografía de referencia: Natural Earth.</p>
         </section>
 
         <div class="columna">
@@ -66,7 +78,7 @@
         <div class="dos ancho">
           <section class="tarjeta explicacion" aria-labelledby="t-expl">
             <h2 id="t-expl">Cómo leer el resultado</h2>
-            <p>La gráfica muestra las pendientes de mínimos cuadrados y Theil–Sen, con sus intervalos. La línea en cero indica una pendiente sin cambio.</p>
+            <p>La gráfica compara estimaciones e intervalos. Cuando un intervalo incluye cero, ese método no aporta evidencia suficiente de una tendencia para el periodo.</p>
             <p id="metodo-real">En los datos de ejemplo, el veredicto compara los dos intervalos. Un intervalo que incluye cero refleja incertidumbre sobre el sentido del cambio.</p>
           </section>
 
@@ -98,8 +110,10 @@
   <script src="src/estadistica.js"></script>
   <script src="src/contrato.js"></script>
   <script src="src/datos/contornos.js"></script>
+  <script src="src/datos/base-mundial.js"></script>
   <script src="src/datos/ejemplo.js"></script>
   <script src="src/graficas.js"></script>
+  <script src="src/globo.js"></script>
   <script src="src/app.js"></script>
 </body>
 </html>

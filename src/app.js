@@ -11,7 +11,7 @@
   'use strict';
   var G = window.SofGraficas, C = window.SofContrato, F = G.formato;
   var params = new URLSearchParams(location.search);
-  var estado = { datos: null, sel: 'nicaragua' };
+  var estado = { datos: null, sel: 'nicaragua', vista: 'globo', globo: null };
 
   var $ = function (id) { return document.getElementById(id); };
 
@@ -115,8 +115,8 @@
       return r.faltante ? 'El archivo de datos no incluye esta región.' :
         'Solo hay ' + a.n_validos + ' años con dato; hacen falta al menos ' + window.SofEstadistica.MIN_ANIOS + ' para estimar una tendencia.';
     }
+    if (r.interpretacion) return r.interpretacion;
     var base = 'Mínimos cuadrados: ' + ic(a.mco, u) + '. Theil-Sen: ' + ic(a.sen, u) + '.';
-    if (r.interpretacion) return base + " " + r.interpretacion;
     var lectura = {
       aumento: ' Los dos intervalos quedan por encima de cero: la lluvia anual tiende a aumentar en esta región durante el periodo.',
       disminucion: ' Los dos intervalos quedan por debajo de cero: la lluvia anual tiende a disminuir en esta región durante el periodo.',
@@ -134,7 +134,14 @@
       '<div class="veredicto"><span class="icono ' + e.clase + '" aria-hidden="true"><svg viewBox="0 0 24 24">' + ICONOS[v] + '</svg></span>' +
       '<div><p class="sub" style="margin:0">' + G.escapar(r.nombre) + ' · ' + estado.datos.meta.periodo.join('–') + '</p>' +
       '<p class="estado ' + e.clase + '">' + e.etiqueta + '</p></div>' +
-      '<p class="detalle">' + G.escapar(detalleVeredicto(r)) + '</p></div>';
+      (r.analisis.mco ? '<p class="pendiente-principal"><strong>' + F.conSigno(r.analisis.mco.pendiente) +
+        '</strong> <span>' + G.escapar(estado.datos.meta.unidades_pendiente) + '</span><small>Pendiente estimada por mínimos cuadrados · ' +
+        r.analisis.n_validos + ' años</small></p>' : '') +
+      '<p class="detalle">' + G.escapar(detalleVeredicto(r)) + '</p>' +
+      (r.analisis.hac ? '<details class="intervalos"><summary>Ver los tres intervalos del 95 %</summary><ul>' +
+        [['Mínimos cuadrados', r.analisis.mco], ['Mínimos cuadrados con ajuste HAC', r.analisis.hac], ['Theil–Sen', r.analisis.sen]]
+          .map(function (par) { return '<li>' + par[0] + ' · ' + G.escapar(ic(par[1], estado.datos.meta.unidades_pendiente)) + '</li>'; }).join('') +
+        '</ul></details>' : '') + '</div>';
 
     var estados = estado.datos.regiones.map(function (q) { return q.analisis.veredicto.estado; });
     var conDatos = estados.filter(function (s) { return s !== 'faltan'; });
@@ -153,12 +160,7 @@
         ' Los países vecinos ofrecen contexto para la comparación.';
     }
     if (sinDatos && conDatos.length >= 2) resp += ' (Sin contar ' + sinDatos + (sinDatos === 1 ? ' región' : ' regiones') + ' con datos faltantes.)';
-    $('respuesta').innerHTML = '<span>¿Cambia la conclusión al ampliar el mapa? ' + resp + '</span><ul class="chips">' +
-      estado.datos.regiones.map(function (q) {
-        var e2 = G.ESTADOS[q.analisis.veredicto.estado];
-        return '<li' + (q.id === estado.sel ? ' aria-current="true" style="border-color:var(--texto)"' : '') + '><span class="punto ' + e2.clase + '" aria-hidden="true"></span>' +
-          G.escapar(q.nombre) + ': ' + e2.etiqueta.toLowerCase() + '</li>';
-      }).join('') + '</ul>';
+    $('respuesta').innerHTML = '<span>' + resp + '</span>';
   }
 
   function tablaSerie(r) {
@@ -181,6 +183,26 @@
   }
 
   // ---------- pintado ----------
+  function pintarMapa() {
+    var d = estado.datos;
+    var cont = $('mapa');
+    var elegirMapa = function (id) { elegir(id, false); };
+    if (estado.vista === 'globo' && estado.globo) {
+      var estilos = getComputedStyle(cont);
+      var colores = d.regiones.map(function (r) {
+        return estilos.getPropertyValue(G.colorMapa(r, d.regiones)).trim();
+      });
+      estado.globo.actualizar(d.regiones, estado.sel, colores);
+    } else {
+      G.dibujarMapa(cont, d, estado.sel, elegirMapa);
+    }
+    document.querySelectorAll('[data-vista]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.vista === estado.vista));
+    });
+    $('pie-globo').hidden = estado.vista !== 'globo';
+    G.dibujarEscalaMapa($('escala-mapa'), d.regiones, d.meta);
+  }
+
   function pintar() {
     var d = estado.datos, r = region();
     document.querySelectorAll('#botones-region button').forEach(function (b) {
@@ -189,8 +211,7 @@
       b.tabIndex = on ? 0 : -1;
     });
     G.ocultarTip();
-    G.dibujarMapa($('mapa'), d, estado.sel, function (id) { elegir(id, false); });
-    G.dibujarEscalaMapa($('escala-mapa'), d.regiones, d.meta);
+    pintarMapa();
     pintarVeredicto();
     $('sub-serie').textContent = r.nombre + ' · ' + d.meta.variable + ', ' + d.meta.unidades + '.';
     $('leyenda-serie').innerHTML =
@@ -247,10 +268,10 @@
       return [r.id, '"' + r.nombre + '"', a.n_validos,
         a.mco ? n(a.mco.pendiente) : '', a.mco ? n(a.mco.ic_inf) : '', a.mco ? n(a.mco.ic_sup) : '', a.mco && isFinite(a.mco.p) ? n(a.mco.p, 4) : '',
         a.sen ? n(a.sen.pendiente) : '', a.sen ? n(a.sen.ic_inf) : '', a.sen ? n(a.sen.ic_sup) : '', a.sen && isFinite(a.sen.p) ? n(a.sen.p, 4) : '',
-        a.veredicto.estado].join(',');
+        a.veredicto.estado, a.hac ? n(a.hac.ic_inf) : '', a.hac ? n(a.hac.ic_sup) : ''].join(',');
     });
     descargar('pendientes_por_region' + sufijo() + '.csv', cabeceraCsv() +
-      'region,nombre,anios_con_dato,mco_pendiente,mco_ic_inf,mco_ic_sup,mco_p,sen_pendiente,sen_ic_inf,sen_ic_sup,sen_p_mann_kendall,veredicto\n' + filas.join('\n') + '\n', 'text/csv;charset=utf-8');
+      'region,nombre,anios_con_dato,mco_pendiente,mco_ic_inf,mco_ic_sup,mco_p,sen_pendiente,sen_ic_inf,sen_ic_sup,sen_p_mann_kendall,veredicto,hac_ic_inf,hac_ic_sup\n' + filas.join('\n') + '\n', 'text/csv;charset=utf-8');
   }
   function jsonEvidencia() {
     var d = estado.datos;
@@ -266,7 +287,7 @@
       },
       regiones: d.regiones.map(function (r) {
         return { id: r.id, nombre: r.nombre, rol: r.rol, bbox: r.bbox, veredicto: r.analisis.veredicto, origen_tendencias: r.origen_tendencias,
-          anios_con_dato: r.analisis.n_validos, anios_sin_dato: r.anios_sin_dato, mco: r.analisis.mco, theil_sen: r.analisis.sen, serie: r.serie };
+          anios_con_dato: r.analisis.n_validos, anios_sin_dato: r.anios_sin_dato, mco: r.analisis.mco, hac: r.analisis.hac, theil_sen: r.analisis.sen, serie: r.serie };
       }),
       avisos_de_carga: d.avisos
     };
@@ -312,6 +333,15 @@
     }
     construirSelector();
     construirDescargas();
+    estado.globo = window.SofGlobo.crear($('mapa'), function (id) { elegir(id, false); });
+    if (!estado.globo) {
+      estado.vista = 'regional';
+      document.querySelector('[data-vista="globo"]').disabled = true;
+    }
+    document.querySelectorAll('[data-vista]').forEach(function (b) {
+      b.addEventListener('click', function () { estado.vista = b.dataset.vista; pintarMapa(); });
+    });
+    $('centrar-nicaragua').addEventListener('click', function () { estado.globo.centrar(); });
     $('bloque-oni').addEventListener('toggle', function () { if ($('bloque-oni').open) G.dibujarOni($('oni'), estado.datos.oni, region(), estado.datos.meta); });
     pintar();
     var ancho = window.innerWidth, t = null;

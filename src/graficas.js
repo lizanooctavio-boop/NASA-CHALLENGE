@@ -63,11 +63,16 @@
     return 'var(--div-' + (v > 0 ? 'pos' : 'neg') + '-' + paso + ')';
   }
 
+  function colorMapa(r, regiones) {
+    if (!r || r.analisis.veredicto.estado === 'faltan' || !r.analisis.sen) return '--tierra';
+    return claseDivergente(r.analisis.sen.pendiente, maxAbsPendiente(regiones)).slice(4, -1);
+  }
+
   // ---------- mapa ----------
   function dibujarMapa(cont, datos, selId, alElegir) {
     cont.innerHTML = '';
     var C = window.SOF_CONTORNOS;
-    var lon0 = -89.6, lon1 = -82.3, lat0 = 7.85, lat1 = 16.65, cosl = Math.cos(12 * Math.PI / 180);
+    var lon0 = -90.2, lon1 = -81.0, lat0 = 7.85, lat1 = 16.65, cosl = Math.cos(12 * Math.PI / 180);
     var W = Math.max(260, cont.clientWidth || 400);
     var k = W / ((lon1 - lon0) * cosl), H = Math.round((lat1 - lat0) * k);
     function px(p) { return [((p[0] - lon0) * cosl * k).toFixed(1), ((lat1 - p[1]) * k).toFixed(1)]; }
@@ -82,6 +87,14 @@
         return r.nombre + ': ' + ESTADOS[r.analisis.veredicto.estado].etiqueta.toLowerCase();
       }).join('; ') + '.' }, cont);
     el('rect', { x: 0, y: 0, width: W, height: H, fill: 'var(--agua)', rx: 6 }, svg);
+    svg.setAttribute('overflow', 'hidden');
+    var fondoBase = el('g', { class: 'base-regional', 'aria-hidden': 'true' }, svg);
+    window.SOF_BASE_MUNDIAL.forEach(function (p) {
+      if (p.tipo !== 'pais') return;
+      var borde = p.anillos[0];
+      if (!borde.some(function (q) { return q[0] > lon0 - 4 && q[0] < lon1 + 4 && q[1] > lat0 - 4 && q[1] < lat1 + 4; })) return;
+      el('path', { d: p.anillos.map(ruta).join(' '), 'fill-rule': 'evenodd' }, fondoBase);
+    });
     var defs = el('defs', null, svg);
     var pat = el('pattern', { id: 'rayado', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' }, defs);
     el('rect', { width: 6, height: 6, fill: 'var(--tierra)' }, pat);
@@ -122,24 +135,31 @@
         n.addEventListener('pointermove', alPasar(caja));
         n.addEventListener('pointerleave', ocultarTip);
       });
-      texto(svg, Number(a[0]) + 6, Number(b[1]) - 8, 'Caja original', { class: 'rotulo-caja' });
+      texto(svg, Number(a[0]) + 6, Number(b[1]) - 8, 'Caja SICC', { class: 'rotulo-caja' });
     }
     C.lagos.forEach(function (l) { el('path', { d: ruta(l), class: 'lago' }, svg); });
     Object.keys(C.rotulos).forEach(function (id) {
       var p = px(C.rotulos[id]);
       texto(svg, p[0], p[1], (porId[id] && porId[id].nombre) || id, { class: 'rotulo', 'text-anchor': 'middle' });
     });
+    [['Managua', -86.251, 12.136], ['Bluefields', -83.764, 12.014], ['Bilwi', -83.389, 14.035]].forEach(function (ciudad) {
+      var p = px(ciudad.slice(1));
+      el('circle', { cx: p[0], cy: p[1], r: 2, class: 'punto-ciudad' }, svg);
+      texto(svg, Number(p[0]) + 5, Number(p[1]) + 4, ciudad[0], { class: 'rotulo-ciudad' });
+    });
     svg.addEventListener('pointerleave', ocultarTip);
   }
 
   function dibujarEscalaMapa(cont, regiones, meta) {
     var maxAbs = maxAbsPendiente(regiones);
-    cont.innerHTML = '<span>Menos lluvia</span><span class="barras">' +
+    cont.innerHTML = '<span>Pendiente negativa</span><span class="barras" aria-hidden="true">' +
       ['neg-3', 'neg-2', 'neg-1'].map(function (c) { return '<span style="background:var(--div-' + c + ')"></span>'; }).join('') +
       '<span style="background:var(--div-neutro)"></span>' +
       ['pos-1', 'pos-2', 'pos-3'].map(function (c) { return '<span style="background:var(--div-' + c + ')"></span>'; }).join('') +
-      '</span><span>Más lluvia</span><span>(±' + nf0.format(maxAbs) + ' ' + meta.unidades_pendiente + ')</span>' +
-      '<span class="barras"><span style="background:var(--tierra);background-image:repeating-linear-gradient(45deg,var(--texto-3) 0 1px,transparent 1px 5px)"></span></span><span>sin datos</span>';
+      '</span><span>Pendiente positiva</span><span>(±' + nf0.format(maxAbs) + ' ' + meta.unidades_pendiente + ')</span>';
+    if (regiones.some(function (r) { return r.analisis.veredicto.estado === 'faltan'; })) {
+      cont.innerHTML += '<span class="barras"><span style="background:var(--tierra)"></span></span><span>Sin datos</span>';
+    }
   }
 
   function maxAbsPendiente(regiones) {
@@ -403,7 +423,7 @@
   }
 
   window.SofGraficas = {
-    ESTADOS: ESTADOS, dibujarMapa: dibujarMapa, dibujarEscalaMapa: dibujarEscalaMapa, dibujarSerie: dibujarSerie,
+    ESTADOS: ESTADOS, colorMapa: colorMapa, dibujarMapa: dibujarMapa, dibujarEscalaMapa: dibujarEscalaMapa, dibujarSerie: dibujarSerie,
     dibujarComparacion: dibujarComparacion, dibujarOni: dibujarOni, ocultarTip: ocultarTip,
     formato: { nf0: nf0, nf1: nf1, nf2: nf2, conSigno: conSigno }, escapar: escapar
   };

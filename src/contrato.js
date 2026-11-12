@@ -21,7 +21,7 @@
 (function () {
   'use strict';
   var E = window.SofEstadistica;
-  var ORDEN = ['caja_original', 'nicaragua', 'honduras', 'costa_rica'];
+  var ORDEN = ['nicaragua', 'caja_original', 'honduras', 'costa_rica'];
   var NOMBRES = { caja_original: 'Caja original SICC', nicaragua: 'Nicaragua', honduras: 'Honduras', costa_rica: 'Costa Rica' };
 
   function tendenciaValida(t) {
@@ -46,6 +46,7 @@
         serie: serie, veredicto_fuente: t.veredicto, interpretacion: t.interpretacion,
         tendencias: sen ? {
           mco: { pendiente: t.mm_por_decada, ic_inf: t.ic_mm_por_decada[0], ic_sup: t.ic_mm_por_decada[1], p: t.p_valor },
+          hac: t.controles.hac ? { pendiente: t.mm_por_decada, ic_inf: t.controles.hac.ic_mm_por_decada[0], ic_sup: t.controles.hac.ic_mm_por_decada[1] } : null,
           sen: { pendiente: sen.mm_por_decada, ic_inf: sen.ic_mm_por_decada[0], ic_sup: sen.ic_mm_por_decada[1] }
         } : null
       };
@@ -97,6 +98,7 @@
           ts.pendiente_anual = ts.pendiente / 10;
         }
         analisis = { mco: tm, sen: ts, n_validos: calculado.n_validos, veredicto: E.veredicto(tm, ts) };
+        if (tendenciaValida(r.tendencias.hac)) analisis.hac = r.tendencias.hac;
         if (r.veredicto_fuente) {
           analisis.veredicto.estado = {
             tendencia_detectada: tm.pendiente > 0 ? 'aumento' : 'disminucion',
