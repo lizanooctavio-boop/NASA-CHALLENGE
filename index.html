@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lluvia y escala del mapa</title>
+  <meta name="description" content="Demo de Earth System Trend Detective: ¿cambia la conclusión sobre la lluvia cuando ampliamos el mapa? Precipitación anual NASA GPM IMERG, 2001–2024.">
+  <link rel="stylesheet" href="src/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#principal">Saltar al contenido</a>
+
+  <div class="contenedor">
+    <header class="cabecera">
+      <p class="antetitulo">Earth System Trend Detective · Prototipo SOF Clima</p>
+      <h1>¿Cambia la conclusión sobre la lluvia cuando ampliamos el mapa?</h1>
+      <p class="entradilla" id="entradilla">Tendencia de la precipitación anual entre 2001 y 2024 en la caja original de SICC, Nicaragua y dos países vecinos. Elige una región: el mapa, la serie anual y el resultado cambian juntos.</p>
+      <div id="avisos" aria-live="polite"></div>
+    </header>
+
+    <main id="principal" tabindex="-1">
+      <div class="selector">
+        <span class="etiqueta" id="etq-region">Región analizada</span>
+        <div class="botones-region" role="radiogroup" aria-labelledby="etq-region" id="botones-region"></div>
+      </div>
+
+      <div class="rejilla">
+        <section class="tarjeta" aria-labelledby="t-mapa">
+          <h2 id="t-mapa">Mapa</h2>
+          <p class="sub" id="sub-mapa">Color: pendiente de Theil-Sen de cada región.</p>
+          <div class="grafica mapa" id="mapa"></div>
+          <div class="escala-div" id="escala-mapa" aria-hidden="true"></div>
+          <p class="descripcion-mapa">Contornos simplificados a mano, solo para orientarse. La línea discontinua es la caja original de SICC, que queda dentro de Nicaragua.</p>
+        </section>
+
+        <div class="columna">
+          <section class="tarjeta" aria-labelledby="t-resultado" aria-live="polite" id="tarjeta-resultado">
+            <h2 id="t-resultado" class="solo-lector">Resultado</h2>
+            <div id="veredicto"></div>
+            <div class="respuesta" id="respuesta"></div>
+          </section>
+
+          <section class="tarjeta" aria-labelledby="t-serie">
+            <h2 id="t-serie">Serie anual</h2>
+            <p class="sub" id="sub-serie"></p>
+            <ul class="leyenda" id="leyenda-serie"></ul>
+            <div class="grafica" id="serie"></div>
+            <details class="tabla">
+              <summary>Ver los datos en tabla</summary>
+              <div class="tabla-scroll" id="tabla-serie"></div>
+            </details>
+          </section>
+        </div>
+
+        <section class="tarjeta ancho" aria-labelledby="t-comp">
+          <h2 id="t-comp">Pendientes e intervalos en una escala común</h2>
+          <p class="sub" id="sub-comp"></p>
+          <ul class="leyenda" id="leyenda-comp"></ul>
+          <div class="grafica" id="comparacion"></div>
+          <details class="tabla">
+            <summary>Ver las pendientes en tabla</summary>
+            <div class="tabla-scroll" id="tabla-comp"></div>
+          </details>
+        </section>
+
+        <div class="dos ancho">
+          <section class="tarjeta explicacion" aria-labelledby="t-expl">
+            <h2 id="t-expl">Cómo leer el resultado</h2>
+            <p>Cada región tiene dos estimaciones de la tendencia. <strong>Mínimos cuadrados (MCO)</strong> ajusta una recta a todos los años. <strong>Theil-Sen</strong> toma la mediana de las pendientes entre pares de años, por lo que un año extremo pesa menos. Las barras muestran el intervalo de confianza del <span class="nivel">95 %</span>.</p>
+            <dl>
+              <dt><span class="est-aumento" aria-hidden="true">●</span> Aumento o disminución</dt>
+              <dd>Los dos intervalos quedan del mismo lado del cero.</dd>
+              <dt><span class="est-insuficiente" aria-hidden="true">●</span> Evidencia insuficiente</dt>
+              <dd>Los dos intervalos cruzan el cero. Los métodos coinciden en que, con 24 años, no se distingue una tendencia de la variación natural. No significa que la lluvia no cambie.</dd>
+              <dt><span class="est-discrepan" aria-hidden="true">●</span> Los métodos discrepan</dt>
+              <dd>Un intervalo excluye el cero y el otro no. El resultado depende del método, casi siempre por pocos años extremos, y no conviene afirmar una tendencia.</dd>
+              <dt><span class="est-faltan" aria-hidden="true">●</span> Datos faltantes</dt>
+              <dd>La región no tiene al menos 10 años con dato y no se calcula tendencia.</dd>
+            </dl>
+            <p>Ninguno de los dos métodos corrige la autocorrelación entre años, que puede hacer que los intervalos sean más estrechos de lo debido.</p>
+          </section>
+
+          <section class="tarjeta" aria-labelledby="t-desc">
+            <h2 id="t-desc">Descargar la evidencia</h2>
+            <p class="sub">Los archivos llevan la fuente, el periodo y, si corresponde, la marca de datos de ejemplo.</p>
+            <div class="descargas" id="descargas"></div>
+            <p class="estado-descarga" id="estado-descarga" role="status"></p>
+          </section>
+        </div>
+
+        <section class="tarjeta ancho" aria-labelledby="t-oni">
+          <details class="secundario" id="bloque-oni">
+            <summary><h2 id="t-oni">Contexto: El Niño y La Niña (índice ONI)</h2></summary>
+            <div class="contenido" id="oni"></div>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p id="pie-fuente"></p>
+      <p>Prototipo independiente para NASA Space Apps. Visibilidad, licencia y publicación pendientes de decisión del responsable del repositorio.</p>
+    </footer>
+  </div>
+
+  <div class="tooltip" id="tooltip" role="presentation" hidden></div>
+
+  <script src="src/estadistica.js"></script>
+  <script src="src/contrato.js"></script>
+  <script src="src/datos/contornos.js"></script>
+  <script src="src/datos/ejemplo.js"></script>
+  <script src="src/graficas.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
