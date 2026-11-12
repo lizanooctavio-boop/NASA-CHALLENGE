@@ -30,7 +30,7 @@
           <p class="sub" id="sub-mapa">Color: pendiente de Theil-Sen de cada región.</p>
           <div class="grafica mapa" id="mapa"></div>
           <div class="escala-div" id="escala-mapa" aria-hidden="true"></div>
-          <p class="descripcion-mapa">Contornos simplificados a mano, solo para orientarse. La línea discontinua es la caja original de SICC, que queda dentro de Nicaragua.</p>
+          <p class="descripcion-mapa">La línea discontinua delimita la caja original de SICC. Los límites son de referencia.</p>
         </section>
 
         <div class="columna">
@@ -66,18 +66,8 @@
         <div class="dos ancho">
           <section class="tarjeta explicacion" aria-labelledby="t-expl">
             <h2 id="t-expl">Cómo leer el resultado</h2>
-            <p>Cada región tiene dos estimaciones de la tendencia. <strong>Mínimos cuadrados (MCO)</strong> ajusta una recta a todos los años. <strong>Theil-Sen</strong> toma la mediana de las pendientes entre pares de años, por lo que un año extremo pesa menos. Las barras muestran el intervalo de confianza del <span class="nivel">95 %</span>.</p>
-            <dl>
-              <dt><span class="est-aumento" aria-hidden="true">●</span> Aumento o disminución</dt>
-              <dd>Los dos intervalos quedan del mismo lado del cero.</dd>
-              <dt><span class="est-insuficiente" aria-hidden="true">●</span> Evidencia insuficiente</dt>
-              <dd>Los dos intervalos cruzan el cero. Los métodos coinciden en que, con 24 años, no se distingue una tendencia de la variación natural. No significa que la lluvia no cambie.</dd>
-              <dt><span class="est-discrepan" aria-hidden="true">●</span> Los métodos discrepan</dt>
-              <dd>Un intervalo excluye el cero y el otro no. El resultado depende del método, casi siempre por pocos años extremos, y no conviene afirmar una tendencia.</dd>
-              <dt><span class="est-faltan" aria-hidden="true">●</span> Datos faltantes</dt>
-              <dd>La región no tiene al menos 10 años con dato y no se calcula tendencia.</dd>
-            </dl>
-            <p>Ninguno de los dos métodos corrige la autocorrelación entre años, que puede hacer que los intervalos sean más estrechos de lo debido.</p>
+            <p>La gráfica muestra las pendientes de mínimos cuadrados y Theil–Sen, con sus intervalos. La línea en cero indica una pendiente sin cambio.</p>
+            <p id="metodo-real">En los datos de ejemplo, el veredicto compara los dos intervalos. Un intervalo que incluye cero refleja incertidumbre sobre el sentido del cambio.</p>
           </section>
 
           <section class="tarjeta" aria-labelledby="t-desc">
@@ -99,7 +89,7 @@
 
     <footer>
       <p id="pie-fuente"></p>
-      <p>Prototipo independiente para NASA Space Apps. Visibilidad, licencia y publicación pendientes de decisión del responsable del repositorio.</p>
+      <p>Prototipo independiente para NASA Space Apps. Límites cartográficos de referencia de Natural Earth.</p>
     </footer>
   </div>
 

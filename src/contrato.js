@@ -28,6 +28,45 @@
     return t && isFinite(t.pendiente) && isFinite(t.ic_inf) && isFinite(t.ic_sup);
   }
 
+  var IDS = { caja_sicc: 'caja_original', NIC: 'nicaragua', HND: 'honduras', CRI: 'costa_rica' };
+
+  function desdeClima(clima, mapa) {
+    if (clima.esquema !== 'nasa-challenge/clima' || clima.version_esquema !== '1.0.0') {
+      throw new Error('Versión del archivo climático no compatible.');
+    }
+    var meta = clima.metadatos;
+    var formas = new Map(mapa.features.map(function (f) { return [f.id || f.properties.id, f.geometry]; }));
+    var regiones = clima.dominios.filter(function (d) { return IDS[d.id]; }).map(function (d) {
+      var t = d.tendencia, g = formas.get(d.id);
+      var sen = t.controles && t.controles.theil_sen;
+      var serie = d.anios_validos.map(function (anio, i) { return { anio: anio, valor: d.serie_anual_mm[i] }; });
+      return {
+        id: IDS[d.id], nombre: d.nombre, rol: d.tipo === 'caja' ? 'original' : d.rol,
+        bbox: d.bbox, poligonos: g && (g.type === 'Polygon' ? [g.coordinates] : g.coordinates),
+        serie: serie, veredicto_fuente: t.veredicto, interpretacion: t.interpretacion,
+        tendencias: sen ? {
+          mco: { pendiente: t.mm_por_decada, ic_inf: t.ic_mm_por_decada[0], ic_sup: t.ic_mm_por_decada[1], p: t.p_valor },
+          sen: { pendiente: sen.mm_por_decada, ic_inf: sen.ic_mm_por_decada[0], ic_sup: sen.ic_mm_por_decada[1] }
+        } : null
+      };
+    });
+    if (regiones.length !== ORDEN.length) throw new Error('Faltan dominios en el archivo climático.');
+    return {
+      version_contrato: clima.version_esquema, es_ejemplo: false, regiones: regiones,
+      meta: {
+        fuente: 'NASA GES DISC · GPM IMERG Final V07B', variable: 'Precipitación anual',
+        unidades: meta.unidad_serie, unidades_pendiente: meta.unidad_pendiente,
+        periodo: [meta.periodo.inicio, meta.periodo.fin], nivel_confianza: 0.95,
+        metodo: meta.metodo, fuentes: meta.fuentes, limites: meta.limites,
+        nota: clima.superposicion.nota
+      }
+    };
+  }
+
+  function valorAjustado(t, anio) {
+    return t.intercepto + (t.pendiente_anual ?? t.pendiente) * anio;
+  }
+
   function normalizar(bruto) {
     var avisos = [];
     if (!bruto || typeof bruto !== 'object') throw new Error('El archivo no contiene un objeto JSON.');
@@ -53,7 +92,17 @@
       if (r.tendencias && tendenciaValida(r.tendencias.mco) && tendenciaValida(r.tendencias.sen)) {
         var tm = Object.assign({ metodo: 'mco', intercepto: calculado.mco && calculado.mco.intercepto }, r.tendencias.mco);
         var ts = Object.assign({ metodo: 'sen', intercepto: calculado.sen && calculado.sen.intercepto }, r.tendencias.sen);
+        if (r.veredicto_fuente) {
+          tm.pendiente_anual = tm.pendiente / 10;
+          ts.pendiente_anual = ts.pendiente / 10;
+        }
         analisis = { mco: tm, sen: ts, n_validos: calculado.n_validos, veredicto: E.veredicto(tm, ts) };
+        if (r.veredicto_fuente) {
+          analisis.veredicto.estado = {
+            tendencia_detectada: tm.pendiente > 0 ? 'aumento' : 'disminucion',
+            evidencia_insuficiente: 'insuficiente', metodos_discrepan: 'discrepan'
+          }[r.veredicto_fuente];
+        }
         origen = 'proporcionado en el JSON';
       }
       var faltan = serie.filter(function (p) { return p.valor === null; }).map(function (p) { return p.anio; });
@@ -62,7 +111,7 @@
         analisis = { mco: null, sen: null, n_validos: calculado.n_validos, veredicto: { estado: 'faltan' } };
       }
       return {
-        id: id, nombre: r.nombre || NOMBRES[id], rol: r.rol || 'contexto', bbox: r.bbox, contorno: r.contorno,
+        id: id, nombre: r.nombre || NOMBRES[id], rol: r.rol || 'contexto', bbox: r.bbox, contorno: r.contorno, poligonos: r.poligonos, interpretacion: r.interpretacion,
         serie: serie, anios_sin_dato: faltan, analisis: analisis, origen_tendencias: origen
       };
     });
@@ -88,7 +137,7 @@
         periodo: Array.isArray(meta.periodo) ? meta.periodo : [2001, 2024],
         nivel_confianza: nivel,
         generado: meta.generado || '',
-        nota: meta.nota || ''
+        nota: meta.nota || '', metodo: meta.metodo, fuentes: meta.fuentes, limites: meta.limites
       },
       regiones: regiones,
       oni: oni,
@@ -107,5 +156,5 @@
     return copia;
   }
 
-  window.SofContrato = { normalizar: normalizar, variarFaltantes: variarFaltantes, ORDEN: ORDEN };
+  window.SofContrato = { normalizar: normalizar, desdeClima: desdeClima, valorAjustado: valorAjustado, variarFaltantes: variarFaltantes, ORDEN: ORDEN };
 })();

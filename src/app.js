@@ -16,19 +16,18 @@
   var $ = function (id) { return document.getElementById(id); };
 
   // ---------- carga ----------
-  function cargar() {
-    var ruta = params.get('datos');
-    if (ruta) {
-      return fetch(ruta, { cache: 'no-store' })
-        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status + ' al pedir ' + ruta); return r.json(); })
-        .catch(function (e) {
-          mostrarAvisos(['No se pudo cargar «' + ruta + '» (' + e.message + '). Se muestran los datos de ejemplo.'], true);
-          return window.SOF_DATOS_EJEMPLO;
-        });
+  async function cargar() {
+    if (location.protocol === 'file:' || params.has('caso')) {
+      return params.get('caso') === 'faltantes' ? C.variarFaltantes(window.SOF_DATOS_EJEMPLO) : window.SOF_DATOS_EJEMPLO;
     }
-    var base = window.SOF_DATOS_EJEMPLO;
-    if (params.get('caso') === 'faltantes') base = C.variarFaltantes(base);
-    return Promise.resolve(base);
+    async function leer(ruta) {
+      var respuesta = await fetch(ruta);
+      if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status + ' al pedir ' + ruta);
+      return respuesta.json();
+    }
+    var clima = await leer(params.get('datos') || 'data/clima.json');
+    if (clima.esquema !== 'nasa-challenge/clima') return clima;
+    return C.desdeClima(clima, await leer('data/dominios.geojson'));
   }
 
   function mostrarAvisos(lista, error) {
@@ -113,6 +112,7 @@
         'Solo hay ' + a.n_validos + ' años con dato; hacen falta al menos ' + window.SofEstadistica.MIN_ANIOS + ' para estimar una tendencia.';
     }
     var base = 'Mínimos cuadrados: ' + ic(a.mco, u) + '. Theil-Sen: ' + ic(a.sen, u) + '.';
+    if (r.interpretacion) return base + " " + r.interpretacion;
     var lectura = {
       aumento: ' Los dos intervalos quedan por encima de cero: la lluvia anual tiende a aumentar en esta región durante el periodo.',
       disminucion: ' Los dos intervalos quedan por debajo de cero: la lluvia anual tiende a disminuir en esta región durante el periodo.',
@@ -141,6 +141,13 @@
       : distintos.length === 1
         ? '<strong>No:</strong> ' + (sinDatos ? 'las áreas con datos' : 'las cuatro áreas') + ' llevan a la misma conclusión.'
         : '<strong>Sí cambia:</strong> la conclusión depende del área que se mire.';
+    if (estado.datos.meta.metodo && sinDatos === 0) {
+      var caja = estado.datos.regiones.find(function (r) { return r.id === 'caja_original'; });
+      var pais = estado.datos.regiones.find(function (r) { return r.id === 'nicaragua'; });
+      var cambia = caja.analisis.veredicto.estado !== pais.analisis.veredicto.estado;
+      resp = '<strong>De la caja a Nicaragua:</strong> ' + (cambia ? 'el resultado cambia.' : 'la conclusión se mantiene.') +
+        ' Los países vecinos ofrecen contexto para la comparación.';
+    }
     if (sinDatos && conDatos.length >= 2) resp += ' (Sin contar ' + sinDatos + (sinDatos === 1 ? ' región' : ' regiones') + ' con datos faltantes.)';
     $('respuesta').innerHTML = '<span>¿Cambia la conclusión al ampliar el mapa? ' + resp + '</span><ul class="chips">' +
       estado.datos.regiones.map(function (q) {
@@ -154,7 +161,7 @@
     var u = estado.datos.meta.unidades, tm = r.analisis.mco, ts = r.analisis.sen;
     var filas = r.serie.map(function (p) {
       return '<tr><td>' + p.anio + '</td><td>' + (p.valor === null ? 'sin dato' : F.nf1.format(p.valor)) + '</td><td>' +
-        (tm ? F.nf0.format(tm.intercepto + tm.pendiente * p.anio) : '—') + '</td><td>' + (ts ? F.nf0.format(ts.intercepto + ts.pendiente * p.anio) : '—') + '</td></tr>';
+        (tm ? F.nf0.format(C.valorAjustado(tm, p.anio)) : '—') + '</td><td>' + (ts ? F.nf0.format(C.valorAjustado(ts, p.anio)) : '—') + '</td></tr>';
     }).join('');
     $('tabla-serie').innerHTML = '<table><caption class="solo-lector">Precipitación anual de ' + G.escapar(r.nombre) + '</caption><thead><tr><th scope="col">Año</th><th scope="col">Lluvia (' + u + ')</th><th scope="col">Recta MCO</th><th scope="col">Recta Theil-Sen</th></tr></thead><tbody>' +
       (filas || '<tr><td colspan="4">Sin datos</td></tr>') + '</tbody></table>';
@@ -226,7 +233,7 @@
   function csvSerie() {
     var r = region(), tm = r.analisis.mco, ts = r.analisis.sen;
     var filas = r.serie.map(function (p) {
-      return [p.anio, n(p.valor, 1), tm ? n(tm.intercepto + tm.pendiente * p.anio, 1) : '', ts ? n(ts.intercepto + ts.pendiente * p.anio, 1) : ''].join(',');
+      return [p.anio, n(p.valor, 1), tm ? n(C.valorAjustado(tm, p.anio), 1) : '', ts ? n(C.valorAjustado(ts, p.anio), 1) : ''].join(',');
     });
     descargar('serie_anual_' + r.id + sufijo() + '.csv', cabeceraCsv() + 'anio,lluvia_mm,recta_mco_mm,recta_theil_sen_mm\n' + filas.join('\n') + '\n', 'text/csv;charset=utf-8');
   }
@@ -247,7 +254,7 @@
       aviso: d.es_ejemplo ? 'DATOS DE EJEMPLO SINTÉTICOS: no son mediciones reales y no deben citarse.' : undefined,
       pregunta: '¿Cambia la conclusión sobre la lluvia cuando ampliamos el mapa?',
       version_contrato: d.version, meta: d.meta, descargado: new Date().toISOString(),
-      criterio: {
+      criterio: d.meta.metodo ? d.meta.metodo.regla_veredicto : {
         aumento_o_disminucion: 'Los intervalos de MCO y Theil-Sen excluyen el cero con el mismo signo.',
         insuficiente: 'Ambos intervalos incluyen el cero.',
         discrepan: 'Un intervalo excluye el cero y el otro no, o ambos lo excluyen con signo opuesto.',
@@ -294,6 +301,11 @@
     $('pie-fuente').textContent = 'Fuente: ' + estado.datos.meta.fuente + '. Periodo ' + estado.datos.meta.periodo.join('–') +
       '. Contrato de datos: ' + estado.datos.version + '.';
     document.querySelectorAll('.nivel').forEach(function (n) { n.textContent = Math.round(estado.datos.meta.nivel_confianza * 100) + ' %'; });
+    if (estado.datos.meta.metodo) {
+      $('metodo-real').textContent = estado.datos.meta.metodo.tendencia_principal + ' ' +
+        'El veredicto considera también el intervalo HAC de Newey–West. La caja original se solapa con Nicaragua y Costa Rica.';
+      $('bloque-oni').closest('section').hidden = true;
+    }
     construirSelector();
     construirDescargas();
     $('bloque-oni').addEventListener('toggle', function () { if ($('bloque-oni').open) G.dibujarOni($('oni'), estado.datos.oni, region(), estado.datos.meta); });
@@ -305,5 +317,5 @@
       clearTimeout(t);
       t = setTimeout(pintar, 120);
     });
-  });
+  }).catch(function (e) { mostrarAvisos([e.message], true); });
 })();

@@ -67,7 +67,7 @@
   function dibujarMapa(cont, datos, selId, alElegir) {
     cont.innerHTML = '';
     var C = window.SOF_CONTORNOS;
-    var lon0 = -89.6, lon1 = -82.3, lat0 = 7.85, lat1 = 16.15, cosl = Math.cos(12 * Math.PI / 180);
+    var lon0 = -89.6, lon1 = -82.3, lat0 = 7.85, lat1 = 16.65, cosl = Math.cos(12 * Math.PI / 180);
     var W = Math.max(260, cont.clientWidth || 400);
     var k = W / ((lon1 - lon0) * cosl), H = Math.round((lat1 - lat0) * k);
     function px(p) { return [((p[0] - lon0) * cosl * k).toFixed(1), ((lat1 - p[1]) * k).toFixed(1)]; }
@@ -100,7 +100,8 @@
     ['honduras', 'costa_rica', 'nicaragua'].forEach(function (id) {
       var r = porId[id];
       var anillo = (r && Array.isArray(r.contorno) && r.contorno.length > 2) ? r.contorno : C.paises[id];
-      var p = el('path', { d: ruta(anillo), class: 'pais' + (id === selId ? ' sel' : ''), fill: relleno(r), 'data-region': id }, svg);
+      var trazado = r && r.poligonos ? r.poligonos.flat().map(ruta).join(' ') : ruta(anillo);
+      var p = el('path', { d: trazado, 'fill-rule': 'evenodd', class: 'pais' + (id === selId ? ' sel' : ''), fill: relleno(r), 'data-region': id }, svg);
       p.addEventListener('click', function () { alElegir(id); });
       p.addEventListener('pointermove', alPasar(r));
       p.addEventListener('pointerleave', ocultarTip);
@@ -170,7 +171,7 @@
     var a0 = meta.periodo[0], a1 = meta.periodo[1];
     var tm = region.analisis.mco, ts = region.analisis.sen;
     var ys = validos.map(function (p) { return p.valor; });
-    [tm, ts].forEach(function (t) { if (t && isFinite(t.intercepto)) { ys.push(t.intercepto + t.pendiente * a0, t.intercepto + t.pendiente * a1); } });
+    [tm, ts].forEach(function (t) { if (t && isFinite(t.intercepto)) { ys.push(window.SofContrato.valorAjustado(t, a0), window.SofContrato.valorAjustado(t, a1)); } });
     var ymin = Math.min.apply(null, ys), ymax = Math.max.apply(null, ys), pad = (ymax - ymin) * 0.08 || 50;
     ymin -= pad; ymax += pad;
     var X = function (a) { return m.l + (a - a0) / (a1 - a0) * (W - m.l - m.r); };
@@ -194,8 +195,8 @@
     texto(gEje, m.l, m.t - 2, meta.unidades, { 'text-anchor': 'start', 'font-size': 11, dy: 0, style: 'fill:var(--texto-3)' }).setAttribute('y', 10);
 
     // tendencias (detrás de la serie)
-    if (tm) el('line', { x1: X(a0), x2: X(a1), y1: Y(tm.intercepto + tm.pendiente * a0), y2: Y(tm.intercepto + tm.pendiente * a1), stroke: 'var(--serie-mco)', 'stroke-width': 2.5 }, svg);
-    if (ts) el('line', { x1: X(a0), x2: X(a1), y1: Y(ts.intercepto + ts.pendiente * a0), y2: Y(ts.intercepto + ts.pendiente * a1), stroke: 'var(--serie-sen)', 'stroke-width': 2.5, 'stroke-dasharray': '7 5' }, svg);
+    if (tm) el('line', { x1: X(a0), x2: X(a1), y1: Y(window.SofContrato.valorAjustado(tm, a0)), y2: Y(window.SofContrato.valorAjustado(tm, a1)), stroke: 'var(--serie-mco)', 'stroke-width': 2.5 }, svg);
+    if (ts) el('line', { x1: X(a0), x2: X(a1), y1: Y(window.SofContrato.valorAjustado(ts, a0)), y2: Y(window.SofContrato.valorAjustado(ts, a1)), stroke: 'var(--serie-sen)', 'stroke-width': 2.5, 'stroke-dasharray': '7 5' }, svg);
 
     // serie observada con huecos donde falta dato
     var d = '', abierto = false;
@@ -224,8 +225,8 @@
       if (p && p.valor !== null) { foco.setAttribute('cx', X(anio)); foco.setAttribute('cy', Y(p.valor)); foco.setAttribute('visibility', 'visible'); }
       else foco.setAttribute('visibility', 'hidden');
       var html = '<strong>' + anio + '</strong><br>Observado: ' + (p && p.valor !== null ? nf0.format(p.valor) + ' ' + meta.unidades : 'sin dato');
-      if (tm) html += '<br><span class="t">Recta MCO: ' + nf0.format(tm.intercepto + tm.pendiente * anio) + '</span>';
-      if (ts) html += '<br><span class="t">Recta Theil-Sen: ' + nf0.format(ts.intercepto + ts.pendiente * anio) + '</span>';
+      if (tm) html += '<br><span class="t">Recta MCO: ' + nf0.format(window.SofContrato.valorAjustado(tm, anio)) + '</span>';
+      if (ts) html += '<br><span class="t">Recta Theil-Sen: ' + nf0.format(window.SofContrato.valorAjustado(ts, anio)) + '</span>';
       if (cx === undefined) {
         var r = svg.getBoundingClientRect();
         cx = r.left + X(anio) * r.width / W; cy = r.top + (p && p.valor !== null ? Y(p.valor) : m.t + 20) * r.height / H;
@@ -324,7 +325,7 @@
       region.serie.forEach(function (p) {
         if (p.valor !== null && porAnio[p.anio] !== undefined) {
           var t = region.analisis.sen;
-          pares.push({ anio: p.anio, oni: porAnio[p.anio], anom: p.valor - (t.intercepto + t.pendiente * p.anio) });
+          pares.push({ anio: p.anio, oni: porAnio[p.anio], anom: p.valor - (window.SofContrato.valorAjustado(t, p.anio)) });
         }
       });
     }
