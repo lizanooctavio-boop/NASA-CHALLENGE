@@ -316,9 +316,17 @@ def _contraste(carpeta, permitir_sintetico):
 
 
 def _csa(carpeta, permitir_sintetico):
-    """Agente 3: GISTEMP en las Praderas de Canadá, nivel de lagos (G-REALM y SWOT)."""
+    """Agente 3: lluvia IMERG y GISTEMP en las Praderas de Canadá, nivel de lagos (G-REALM y SWOT)."""
     carpeta = Path(carpeta)
     invs, contrastes, entradas = [], [], []
+    ruta = carpeta / "canada_imerg.json"
+    if ruta.is_file():
+        entradas.append(ruta)
+        d = _leer_json(ruta, permitir_sintetico)
+        invs.append(_investigacion("lluvia_CAN_prairies", "lluvia", "CAN_prairies", "Annual rainfall", "All the rain that fell in a year.",
+                                   "mm", d["anios"], d["valores"],
+                                   {"producto": "NASA GPM IMERG Final V07B", "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGM_07/summary"},
+                                   recursos=[10]))
     ruta = carpeta / "canada_gistemp.json"
     if ruta.is_file():
         entradas.append(ruta)

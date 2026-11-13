@@ -30,7 +30,7 @@ Formatos que lee, tal como los entregaron los agentes (no siguen del todo el for
 |---|---|---|
 | 1 · tierra | `series_*_anual.json` (listas de `SerieRegional`) | Una investigación por variable y región; todavía no existen porque falta Earthdata |
 | 2 · contraste | `resumen_contrastes.json`, `series_anuales.csv` | `papel: contraste` con `estado: ok` → segunda opinión de una investigación; `papel: tendencia` → investigación nueva (clorofila; OMI y AIRS cuando se desbloqueen) |
-| 3 · csa | `canada_gistemp.json`, `cocibolca_grealm.csv`, `comparacion_cocibolca_grealm_swot.csv`, `swot_mensual.csv`, `data/regiones_canada.geojson` | Temperatura de las Praderas, nivel del Cocibolca 1993–2025, contraste SWOT/G-REALM y SWOT de ambos lagos |
+| 3 · csa | `canada_imerg.json`, `canada_gistemp.json`, `cocibolca_grealm.csv`, `comparacion_cocibolca_grealm_swot.csv`, `swot_mensual.csv`, `data/regiones_canada.geojson` | Lluvia y temperatura de las Praderas, nivel del Cocibolca 1993–2025, contraste SWOT/G-REALM y SWOT de ambos lagos |
 
 ## Resultado con los datos de los tres agentes
 
@@ -43,6 +43,7 @@ Comprobado en una copia local que junta la base, los commits propios de los agen
 | Temperatura, Nicaragua 1981–2024 (GISTEMP) | tendencia detectada | +0,29 °C |
 | Temperatura, Nicaragua 2001–2024 | tendencia detectada | +0,40 °C |
 | Temperatura, Praderas de Canadá 2001–2024 | evidencia insuficiente | +0,18 °C |
+| Lluvia anual, Praderas de Canadá 2001–2024 (IMERG) | evidencia insuficiente | −30,4 mm |
 | Nivel del lago Cocibolca 1993–2025 (G-REALM) | evidencia insuficiente | +0,11 m |
 | Clorofila, golfo de Fonseca | métodos discrepan | +0,68 mg/m³ |
 
