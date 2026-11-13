@@ -1,0 +1,30 @@
+{
+ "clorofila": {
+  "errores": [],
+  "fecha": "2026-11-13",
+  "url": "https://oceandata.sci.gsfc.nasa.gov/getfile/AQUA_MODIS.{a:04d}{m:02d}01_{a:04d}{m:02d}{d:02d}.L3m.MO.CHL.chlor_a.4km.nc"
+ },
+ "cru": {
+  "fecha": "2026-11-12",
+  "url": "https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.10/cruts.2604091129.v4.10/pre/"
+ },
+ "ghcnd": {
+  "fecha": "2026-11-12",
+  "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
+ },
+ "gpcc": {
+  "atributos": {
+   "data_modified": "2019-03-12",
+   "history": "Created 10/2026 based on V2022 data obtained via opendap",
+   "title": "GPCC Full Data Reanalysis Version 2018 0.5x0.5 Monthly Total",
+   "version": "v2025"
+  },
+  "fecha": "2026-11-12",
+  "ultimo_mes": "2026-08",
+  "url": "https://psl.noaa.gov/thredds/dodsC/Datasets/gpcc/full_v2025/precip.mon.total.0.50x0.50.v2025.nc"
+ },
+ "gsom": {
+  "fecha": "2026-11-12",
+  "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
+ }
+}

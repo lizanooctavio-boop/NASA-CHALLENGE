@@ -1,0 +1,56 @@
+{
+ "giovanni_airs_tas_a_nic": {
+  "fecha": "2026-11-12",
+  "http": 302,
+  "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+  "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2003-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=AIRS3STM_7_0_SurfAirTemp_A&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
+ },
+ "giovanni_airs_tas_d_nic": {
+  "fecha": "2026-11-12",
+  "http": 302,
+  "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+  "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2003-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=AIRS3STM_7_0_SurfAirTemp_D&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
+ },
+ "giovanni_imerg_caja_sicc": {
+  "fecha": "2026-11-12",
+  "http": 302,
+  "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+  "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-86.5%2C10.7%2C-83.6%2C12.6&portal=GIOVANNI&format=json"
+ },
+ "giovanni_imerg_nic": {
+  "fecha": "2026-11-12",
+  "http": 302,
+  "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+  "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
+ },
+ "giovanni_imerg_tegucigalpa": {
+  "fecha": "2026-11-12",
+  "http": 302,
+  "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+  "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-87.35%2C13.95%2C-87.05%2C14.25&portal=GIOVANNI&format=json"
+ },
+ "giovanni_omi_no2_managua": {
+  "fecha": "2026-11-12",
+  "http": 302,
+  "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+  "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_ColumnAmountNO2TropCloudScreened&bbox=-86.35%2C12.05%2C-86.15%2C12.2&portal=GIOVANNI&format=json"
+ },
+ "giovanni_omi_no2_rural": {
+  "fecha": "2026-11-12",
+  "http": 302,
+  "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+  "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_ColumnAmountNO2TropCloudScreened&bbox=-85.1%2C12.35%2C-84.9%2C12.5&portal=GIOVANNI&format=json"
+ },
+ "knmi_climate_explorer": {
+  "fecha": "2026-11-12",
+  "http": "200",
+  "motivo": "KNMI Climate Explorer exige verificar que el usuario es humano (control antibots) antes de usarlo; no se automatiza. Python además rechaza su cadena de certificados. Se usó la descarga directa equivalente: CRU TS 4.10 (UEA) y GPCC (PSL), con la correlación con Niño 3.4 calculada localmente.",
+  "url": "https://climexp.knmi.nl/start.cgi?id=someone@somewhere"
+ },
+ "noaa_cdo_v2": {
+  "fecha": "2026-11-12",
+  "http": 400,
+  "motivo": "NOAA_CDO_TOKEN no está en el entorno; CDO v2 exige el token. Se usó el servicio NCEI v1 (mismos conjuntos GSOM y GHCN-Daily, sin token).",
+  "url": "https://www.ncei.noaa.gov/cdo-web/api/v2/stations?datasetid=GSOM&extent=10.7%2C-89.4%2C16.5%2C-83.1&limit=1000"
+ }
+}

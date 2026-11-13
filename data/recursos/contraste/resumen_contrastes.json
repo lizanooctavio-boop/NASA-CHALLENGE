@@ -1,0 +1,1113 @@
+{
+ "esquema": "nasa-challenge/contrastes",
+ "version": "1.0.0",
+ "generado": "2026-11-13",
+ "metodo": "Pendientes de Theil–Sen por década; veredicto del contrato 1.0.0 (tendencia.py: tres intervalos del 95 %) y veredicto robusto (tendencia_robusta: además Mann–Kendall modificado). diferencia.media = externa − nuestra en los años comunes; r de Pearson anual.",
+ "bloqueos": {
+  "giovanni_airs_tas_a_nic": {
+   "fecha": "2026-11-12",
+   "http": 302,
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2003-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=AIRS3STM_7_0_SurfAirTemp_A&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
+  },
+  "giovanni_airs_tas_d_nic": {
+   "fecha": "2026-11-12",
+   "http": 302,
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2003-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=AIRS3STM_7_0_SurfAirTemp_D&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
+  },
+  "giovanni_imerg_caja_sicc": {
+   "fecha": "2026-11-12",
+   "http": 302,
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-86.5%2C10.7%2C-83.6%2C12.6&portal=GIOVANNI&format=json"
+  },
+  "giovanni_imerg_nic": {
+   "fecha": "2026-11-12",
+   "http": 302,
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
+  },
+  "giovanni_imerg_tegucigalpa": {
+   "fecha": "2026-11-12",
+   "http": 302,
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-87.35%2C13.95%2C-87.05%2C14.25&portal=GIOVANNI&format=json"
+  },
+  "giovanni_omi_no2_managua": {
+   "fecha": "2026-11-12",
+   "http": 302,
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_ColumnAmountNO2TropCloudScreened&bbox=-86.35%2C12.05%2C-86.15%2C12.2&portal=GIOVANNI&format=json"
+  },
+  "giovanni_omi_no2_rural": {
+   "fecha": "2026-11-12",
+   "http": 302,
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_ColumnAmountNO2TropCloudScreened&bbox=-85.1%2C12.35%2C-84.9%2C12.5&portal=GIOVANNI&format=json"
+  },
+  "knmi_climate_explorer": {
+   "fecha": "2026-11-12",
+   "http": "200",
+   "motivo": "KNMI Climate Explorer exige verificar que el usuario es humano (control antibots) antes de usarlo; no se automatiza. Python además rechaza su cadena de certificados. Se usó la descarga directa equivalente: CRU TS 4.10 (UEA) y GPCC (PSL), con la correlación con Niño 3.4 calculada localmente.",
+   "url": "https://climexp.knmi.nl/start.cgi?id=someone@somewhere"
+  },
+  "noaa_cdo_v2": {
+   "fecha": "2026-11-12",
+   "http": 400,
+   "motivo": "NOAA_CDO_TOKEN no está en el entorno; CDO v2 exige el token. Se usó el servicio NCEI v1 (mismos conjuntos GSOM y GHCN-Daily, sin token).",
+   "url": "https://www.ncei.noaa.gov/cdo-web/api/v2/stations?datasetid=GSOM&extent=10.7%2C-89.4%2C16.5%2C-83.1&limit=1000"
+  }
+ },
+ "contrastes": [
+  {
+   "id": "cru_caja_sicc",
+   "papel": "contraste",
+   "region": "caja_sicc",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GPM IMERG Final V07B (data/clima.json)",
+    "pendiente": -28.7051,
+    "pendiente_mco": -13.132,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.785,
+    "veredicto_clima_json": "evidencia_insuficiente"
+   },
+   "serie_externa": {
+    "fuente": "CRU TS 4.10 (University of East Anglia), pre, 0,5°",
+    "pendiente": 6.6729,
+    "pendiente_mco": -25.857,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.785,
+    "version": "4.10 (cruts.2604091129)",
+    "fecha_consulta": "2026-11-12",
+    "url": "https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.10/cruts.2604091129.v4.10/pre/"
+   },
+   "diferencia": {
+    "media": 208.7862,
+    "r": 0.7056,
+    "diferencia_pendiente": 35.378,
+    "anios_comunes": 24,
+    "unidad_media": "mm"
+   },
+   "estado": "ok",
+   "frase_en": "CRU TS 4.10 vs IMERG over SICC box (10.7–12.6°N, 86.5–83.6°W), 2001–2024: r = 0.71, mean difference +209 mm/yr; Sen slopes +7 vs -29 mm/decade; both 'insufficient evidence'; June–November correlation with Niño 3.4: -0.46 (CRU TS 4.10) vs -0.59 (IMERG).",
+   "nino34_jun_nov": {
+    "indice": "ONI (Niño 3.4) media jun–nov, data/clima.json",
+    "n": 24,
+    "r_externa": -0.4572,
+    "r_nuestra": -0.5913,
+    "r_nuestra_clima_json": -0.591
+   },
+   "cru_estaciones_por_celda": {
+    "2001_2014": 4.3059,
+    "2015_2024": 2.1479
+   }
+  },
+  {
+   "id": "cru_nic",
+   "papel": "contraste",
+   "region": "NIC",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GPM IMERG Final V07B (data/clima.json)",
+    "pendiente": -64.9226,
+    "pendiente_mco": -62.332,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.4419,
+    "veredicto_clima_json": "evidencia_insuficiente"
+   },
+   "serie_externa": {
+    "fuente": "CRU TS 4.10 (University of East Anglia), pre, 0,5°",
+    "pendiente": -21.2563,
+    "pendiente_mco": -27.344,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.7098,
+    "version": "4.10 (cruts.2604091129)",
+    "fecha_consulta": "2026-11-12",
+    "url": "https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.10/cruts.2604091129.v4.10/pre/"
+   },
+   "diferencia": {
+    "media": 209.5976,
+    "r": 0.6339,
+    "diferencia_pendiente": 43.6663,
+    "anios_comunes": 24,
+    "unidad_media": "mm"
+   },
+   "estado": "ok",
+   "frase_en": "CRU TS 4.10 vs IMERG over Nicaragua, 2001–2024: r = 0.63, mean difference +210 mm/yr; Sen slopes -21 vs -65 mm/decade; both 'insufficient evidence'; June–November correlation with Niño 3.4: -0.47 (CRU TS 4.10) vs -0.56 (IMERG).",
+   "nino34_jun_nov": {
+    "indice": "ONI (Niño 3.4) media jun–nov, data/clima.json",
+    "n": 24,
+    "r_externa": -0.4725,
+    "r_nuestra": -0.5609,
+    "r_nuestra_clima_json": -0.561
+   },
+   "cru_estaciones_por_celda": {
+    "2001_2014": 3.6715,
+    "2015_2024": 1.8289
+   }
+  },
+  {
+   "id": "gpcc_caja_sicc",
+   "papel": "contraste",
+   "region": "caja_sicc",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GPM IMERG Final V07B (data/clima.json)",
+    "pendiente": -28.7051,
+    "pendiente_mco": -13.132,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.785,
+    "veredicto_clima_json": "evidencia_insuficiente"
+   },
+   "serie_externa": {
+    "fuente": "GPCC Full Data Reanalysis 0,5° (copia NOAA PSL)",
+    "pendiente": -15.8534,
+    "pendiente_mco": 56.341,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.8233,
+    "version": "v2025 según el atributo del archivo PSL",
+    "fecha_consulta": "2026-11-12",
+    "url": "https://psl.noaa.gov/thredds/dodsC/Datasets/gpcc/full_v2025/precip.mon.total.0.50x0.50.v2025.nc"
+   },
+   "diferencia": {
+    "media": 126.687,
+    "r": 0.8081,
+    "diferencia_pendiente": 12.8517,
+    "anios_comunes": 24,
+    "unidad_media": "mm"
+   },
+   "estado": "ok",
+   "frase_en": "GPCC (PSL copy) vs IMERG over SICC box (10.7–12.6°N, 86.5–83.6°W), 2001–2024: r = 0.81, mean difference +127 mm/yr; Sen slopes -16 vs -29 mm/decade; both 'insufficient evidence'; June–November correlation with Niño 3.4: -0.57 (GPCC (PSL copy)) vs -0.59 (IMERG).",
+   "nino34_jun_nov": {
+    "indice": "ONI (Niño 3.4) media jun–nov, data/clima.json",
+    "n": 24,
+    "r_externa": -0.5672,
+    "r_nuestra": -0.5913,
+    "r_nuestra_clima_json": -0.591
+   }
+  },
+  {
+   "id": "gpcc_nic",
+   "papel": "contraste",
+   "region": "NIC",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GPM IMERG Final V07B (data/clima.json)",
+    "pendiente": -64.9226,
+    "pendiente_mco": -62.332,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.4419,
+    "veredicto_clima_json": "evidencia_insuficiente"
+   },
+   "serie_externa": {
+    "fuente": "GPCC Full Data Reanalysis 0,5° (copia NOAA PSL)",
+    "pendiente": -79.1999,
+    "pendiente_mco": -47.024,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.4419,
+    "version": "v2025 según el atributo del archivo PSL",
+    "fecha_consulta": "2026-11-12",
+    "url": "https://psl.noaa.gov/thredds/dodsC/Datasets/gpcc/full_v2025/precip.mon.total.0.50x0.50.v2025.nc"
+   },
+   "diferencia": {
+    "media": -46.5654,
+    "r": 0.9391,
+    "diferencia_pendiente": -14.2773,
+    "anios_comunes": 24,
+    "unidad_media": "mm"
+   },
+   "estado": "ok",
+   "frase_en": "GPCC (PSL copy) vs IMERG over Nicaragua, 2001–2024: r = 0.94, mean difference -47 mm/yr; Sen slopes -79 vs -65 mm/decade; both 'insufficient evidence'; June–November correlation with Niño 3.4: -0.64 (GPCC (PSL copy)) vs -0.56 (IMERG).",
+   "nino34_jun_nov": {
+    "indice": "ONI (Niño 3.4) media jun–nov, data/clima.json",
+    "n": 24,
+    "r_externa": -0.6429,
+    "r_nuestra": -0.5609,
+    "r_nuestra_clima_json": -0.561
+   }
+  },
+  {
+   "id": "noaa_managua_tavg",
+   "papel": "contraste",
+   "region": "Managua International",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "NASA POWER T2M (MERRA-2), celda 12.0 N -86.25 O",
+    "pendiente": 0.0095,
+    "pendiente_mco": 0.028,
+    "unidad": "°C/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.9802
+   },
+   "serie_externa": {
+    "fuente": "NOAA NCEI GHCN-Daily (daily-summaries) TAVG NUM00078741",
+    "pendiente": 0.0374,
+    "pendiente_mco": 0.088,
+    "unidad": "°C/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 23,
+    "mann_kendall_p": 0.7116,
+    "version": "GHCN-Daily v3 (servicio NCEI v1)",
+    "fecha_consulta": "2026-11-12",
+    "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
+   },
+   "diferencia": {
+    "media": 0.1025,
+    "r": 0.8031,
+    "diferencia_pendiente": 0.0279,
+    "anios_comunes": 23,
+    "unidad_media": "°C"
+   },
+   "estado": "ok",
+   "frase_en": "Managua International station (GHCN-Daily mean temperature, 23 complete years in 2001–2024) vs NASA POWER/MERRA-2: r = 0.80, station 0.1 °C warmer; trends +0.04 vs +0.01 °C/decade (insufficient evidence vs insufficient evidence).",
+   "estacion": {
+    "id": "NUM00078741",
+    "lat": 12.141,
+    "lon": -86.168,
+    "elevacion_m": 59.1,
+    "celda_power": [
+     12.0,
+     -86.25
+    ],
+    "distancia_km": 18.0,
+    "elevacion_celda_m": 140.53
+   },
+   "otras_referencias": [
+    {
+     "fuente": "NASA POWER T2M, misma celda, todos los años comunes",
+     "r": 0.7648,
+     "anios_comunes": 27
+    },
+    {
+     "fuente": "GISTEMP v4 (anomalías, región NIC, data/fenomenos)",
+     "r_anomalias": 0.5987,
+     "anios_comunes": 37,
+     "pendiente_2001_2024": 0.3978,
+     "veredicto_2001_2024": "tendencia_detectada",
+     "diferencia_pendiente_estacion_menos_gistemp": -0.3604
+    }
+   ],
+   "anios_completos_2001_2024": 23,
+   "nota": "TAVG de GHCN-Daily para estas estaciones proviene de mensajes SYNOP (media diaria), sin homogeneizar; un mes vale con >= 20 días y un año con los 12 meses. diferencia.media = estación − celda POWER; la celda está a 18 km y su elevación media es 141 m frente a 59 m de la estación."
+  },
+  {
+   "id": "noaa_juigalpa_tavg",
+   "papel": "contraste",
+   "region": "Juigalpa",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "NASA POWER T2M (MERRA-2), celda 12.0 N -85.625 O",
+    "pendiente": 0.06,
+    "pendiente_mco": 0.114,
+    "unidad": "°C/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.6733
+   },
+   "serie_externa": {
+    "fuente": "NOAA NCEI GHCN-Daily (daily-summaries) TAVG NU000069034",
+    "pendiente": 0.2083,
+    "pendiente_mco": 0.202,
+    "unidad": "°C/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 23,
+    "mann_kendall_p": 0.1015,
+    "version": "GHCN-Daily v3 (servicio NCEI v1)",
+    "fecha_consulta": "2026-11-12",
+    "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
+   },
+   "diferencia": {
+    "media": 1.7098,
+    "r": 0.7021,
+    "diferencia_pendiente": 0.1483,
+    "anios_comunes": 23,
+    "unidad_media": "°C"
+   },
+   "estado": "ok",
+   "frase_en": "Juigalpa station (GHCN-Daily mean temperature, 23 complete years in 2001–2024) vs NASA POWER/MERRA-2: r = 0.70, station 1.7 °C warmer; trends +0.21 vs +0.06 °C/decade (insufficient evidence vs insufficient evidence).",
+   "estacion": {
+    "id": "NU000069034",
+    "lat": 12.1,
+    "lon": -85.367,
+    "elevacion_m": 90.0,
+    "celda_power": [
+     12.0,
+     -85.625
+    ],
+    "distancia_km": 30.2,
+    "elevacion_celda_m": 131.15
+   },
+   "otras_referencias": [
+    {
+     "fuente": "NASA POWER T2M, misma celda, todos los años comunes",
+     "r": 0.7174,
+     "anios_comunes": 27
+    },
+    {
+     "fuente": "GISTEMP v4 (anomalías, región NIC, data/fenomenos)",
+     "r_anomalias": 0.8314,
+     "anios_comunes": 27,
+     "pendiente_2001_2024": 0.3978,
+     "veredicto_2001_2024": "tendencia_detectada",
+     "diferencia_pendiente_estacion_menos_gistemp": -0.1895
+    }
+   ],
+   "anios_completos_2001_2024": 23,
+   "nota": "TAVG de GHCN-Daily para estas estaciones proviene de mensajes SYNOP (media diaria), sin homogeneizar; un mes vale con >= 20 días y un año con los 12 meses. diferencia.media = estación − celda POWER; la celda está a 30 km y su elevación media es 131 m frente a 90 m de la estación."
+  },
+  {
+   "id": "noaa_tegucigalpa_tavg",
+   "papel": "contraste",
+   "region": "Tegucigalpa",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "NASA POWER T2M (MERRA-2), celda 14.0 N -86.875 O",
+    "pendiente": -0.0581,
+    "pendiente_mco": -0.036,
+    "unidad": "°C/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.8233
+   },
+   "serie_externa": {
+    "fuente": "NOAA NCEI GHCN-Daily (daily-summaries) TAVG HO000078720",
+    "pendiente": -0.0339,
+    "pendiente_mco": 0.086,
+    "unidad": "°C/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 21,
+    "mann_kendall_p": 0.8326,
+    "version": "GHCN-Daily v3 (servicio NCEI v1)",
+    "fecha_consulta": "2026-11-12",
+    "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
+   },
+   "diferencia": {
+    "media": -0.5742,
+    "r": 0.552,
+    "diferencia_pendiente": 0.0242,
+    "anios_comunes": 21,
+    "unidad_media": "°C"
+   },
+   "estado": "ok",
+   "frase_en": "Tegucigalpa station (GHCN-Daily mean temperature, 21 complete years in 2001–2024) vs NASA POWER/MERRA-2: r = 0.55, station 0.6 °C cooler; trends -0.03 vs -0.06 °C/decade (insufficient evidence vs insufficient evidence).",
+   "estacion": {
+    "id": "HO000078720",
+    "lat": 14.05,
+    "lon": -87.217,
+    "elevacion_m": 1007.0,
+    "celda_power": [
+     14.0,
+     -86.875
+    ],
+    "distancia_km": 37.3,
+    "elevacion_celda_m": 933.11
+   },
+   "otras_referencias": [
+    {
+     "fuente": "NASA POWER T2M, misma celda, todos los años comunes",
+     "r": 0.4257,
+     "anios_comunes": 36
+    },
+    {
+     "fuente": "GISTEMP v4 (anomalías, región NIC, data/fenomenos)",
+     "r_anomalias": 0.5725,
+     "anios_comunes": 45,
+     "pendiente_2001_2024": 0.3978,
+     "veredicto_2001_2024": "tendencia_detectada",
+     "diferencia_pendiente_estacion_menos_gistemp": -0.4317
+    }
+   ],
+   "anios_completos_2001_2024": 21,
+   "nota": "TAVG de GHCN-Daily para estas estaciones proviene de mensajes SYNOP (media diaria), sin homogeneizar; un mes vale con >= 20 días y un año con los 12 meses. diferencia.media = estación − celda POWER; la celda está a 37 km y su elevación media es 933 m frente a 1007 m de la estación."
+  },
+  {
+   "id": "noaa_tegucigalpa_lluvia_vs_imerg_hnd",
+   "papel": "contraste",
+   "region": "Tegucigalpa / Honduras",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GPM IMERG Final V07B, Honduras (data/clima.json)",
+    "pendiente": -41.1971,
+    "pendiente_mco": -35.004,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.6024
+   },
+   "serie_externa": {
+    "fuente": "NOAA NCEI Global Summary of the Month PRCP HO000078720",
+    "pendiente": null,
+    "unidad": "mm",
+    "veredicto": null,
+    "version": "GSOM 1.0 (servicio NCEI v1)",
+    "fecha_consulta": "2026-11-12",
+    "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
+   },
+   "diferencia": {
+    "media": -787.8752,
+    "r": 0.7717,
+    "diferencia_pendiente": null,
+    "anios_comunes": 5,
+    "unidad_media": "mm"
+   },
+   "estado": "ok",
+   "frase_en": "Tegucigalpa rain gauge (GSOM) vs IMERG Honduras average, 150 common months in 2001–2024: r = 0.73 (anomalies 0.57); the valley station gets 55% of the national mean rain (representativeness, not bias). Only 5 complete years: no trend comparison.",
+   "mensual": {
+    "meses_comunes": 150,
+    "r_mensual": 0.7346,
+    "r_anomalias_mensuales": 0.5744,
+    "cociente_medio_estacion_imerg": 0.5465
+   },
+   "nota": "Una estación (valle a 1 007 m, sombra pluviométrica) frente a la media de todo Honduras: la diferencia media es sobre todo de representatividad, no un error de IMERG. GSOM da pocos años con los 12 meses, por eso se añade la comparación mensual."
+  },
+  {
+   "id": "noaa_estaciones_nic_lluvia",
+   "papel": "contraste",
+   "region": "Nicaragua (5 estaciones)",
+   "periodo": [
+    1981,
+    1991
+   ],
+   "serie_nuestra": {
+    "fuente": "NASA POWER PRECTOTCORR, celda más cercana",
+    "pendiente": null,
+    "unidad": "mm/década",
+    "veredicto": "no_aplica"
+   },
+   "serie_externa": {
+    "fuente": "NOAA NCEI GSOM PRCP",
+    "version": "GSOM 1.0 (servicio NCEI v1)",
+    "fecha_consulta": "2026-11-12",
+    "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1",
+    "pendiente": null,
+    "unidad": "mm/década",
+    "veredicto": "no_aplica"
+   },
+   "diferencia": {
+    "media": -1091.8378,
+    "r": 0.2157,
+    "diferencia_pendiente": null,
+    "estadistico": "mediana entre estaciones",
+    "unidad_media": "mm"
+   },
+   "por_estacion": [
+    {
+     "estacion": "NUM00078741",
+     "nombre": "Managua International",
+     "lat": 12.141,
+     "lon": -86.168,
+     "elevacion_m": 59.1,
+     "celda_power": [
+      12.0,
+      -86.25
+     ],
+     "distancia_km": 18.0,
+     "anios_comunes": 0,
+     "periodo": null,
+     "r": null,
+     "diferencia_media_mm": null,
+     "ultimo_mes_con_lluvia": "2003-10",
+     "ultimo_anio_completo": null,
+     "meses_con_lluvia_2001_2024": 6
+    },
+    {
+     "estacion": "NU000069034",
+     "nombre": "Juigalpa",
+     "lat": 12.1,
+     "lon": -85.367,
+     "elevacion_m": 90.0,
+     "celda_power": [
+      12.0,
+      -85.625
+     ],
+     "distancia_km": 30.2,
+     "anios_comunes": 9,
+     "periodo": [
+      1981,
+      1989
+     ],
+     "r": 0.2903,
+     "diferencia_media_mm": -633.7356,
+     "ultimo_mes_con_lluvia": "2002-10",
+     "ultimo_anio_completo": 1989,
+     "meses_con_lluvia_2001_2024": 2
+    },
+    {
+     "estacion": "NU000055002",
+     "nombre": "Hacienda San Francisco",
+     "lat": 12.95,
+     "lon": -85.86,
+     "elevacion_m": 790.0,
+     "celda_power": [
+      13.0,
+      -85.625
+     ],
+     "distancia_km": 26.1,
+     "anios_comunes": 9,
+     "periodo": [
+      1982,
+      1990
+     ],
+     "r": 0.3765,
+     "diferencia_media_mm": -1487.7356,
+     "ultimo_mes_con_lluvia": "1991-04",
+     "ultimo_anio_completo": 1990,
+     "meses_con_lluvia_2001_2024": 0
+    },
+    {
+     "estacion": "NU000055029",
+     "nombre": "Guasimón",
+     "lat": 12.93,
+     "lon": -85.53,
+     "elevacion_m": 475.0,
+     "celda_power": [
+      13.0,
+      -85.625
+     ],
+     "distancia_km": 12.9,
+     "anios_comunes": 10,
+     "periodo": [
+      1981,
+      1990
+     ],
+     "r": 0.0802,
+     "diferencia_media_mm": -1797.846,
+     "ultimo_mes_con_lluvia": "1991-03",
+     "ultimo_anio_completo": 1990,
+     "meses_con_lluvia_2001_2024": 0
+    },
+    {
+     "estacion": "NU000055016",
+     "nombre": "San Dionisio",
+     "lat": 12.88,
+     "lon": -86.41,
+     "elevacion_m": 675.0,
+     "celda_power": [
+      13.0,
+      -86.25
+     ],
+     "distancia_km": 21.9,
+     "anios_comunes": 9,
+     "periodo": [
+      1982,
+      1991
+     ],
+     "r": 0.141,
+     "diferencia_media_mm": -695.94,
+     "ultimo_mes_con_lluvia": "1991-12",
+     "ultimo_anio_completo": 1991,
+     "meses_con_lluvia_2001_2024": 0
+    }
+   ],
+   "estado": "ok",
+   "nota": "La lluvia de las estaciones de Nicaragua en NCEI termina en 2003-10 (último mes con dato; los últimos años completos son de 1989 a 1991): no sirve para la tendencia de lluvia 2001–2024. Solo valida POWER en los años comunes de la década de 1980.",
+   "frase_en": "Nicaraguan rain gauges in NOAA archives end by 2003 (last complete years 1989–1991), so they cannot test the 2001–2024 rain trend; in the 1980s their annual totals correlate only weakly with NASA POWER (median r = 0.22)."
+  },
+  {
+   "id": "clorofila_golfo_fonseca",
+   "papel": "tendencia",
+   "region": "Gulf of Fonseca",
+   "caja": [
+    -87.9,
+    12.9,
+    -87.3,
+    13.5
+   ],
+   "periodo": [
+    2003,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "NASA OBPG MODIS-Aqua L3m CHL chlor_a 4 km mensual (golfo_fonseca), anual desestacionalizada",
+    "pendiente": 0.6786,
+    "pendiente_mco": 1.097,
+    "unidad": "mg m-3/década",
+    "veredicto": "metodos_discrepan",
+    "veredicto_robusto": "metodos_discrepan",
+    "periodo": [
+     2003,
+     2024
+    ],
+    "anios": 22,
+    "mann_kendall_p": 0.0804,
+    "anios_validos": 22,
+    "meses_validos": 264
+   },
+   "serie_externa": {
+    "fuente": "Método NTRS 20090042747 (Acker et al.): OLS mensual cruda + ANOVA F",
+    "version": "R2022.0",
+    "fecha_consulta": "2026-11-13",
+    "url": "https://oceandata.sci.gsfc.nasa.gov/getfile/AQUA_MODIS.{a:04d}{m:02d}01_{a:04d}{m:02d}{d:02d}.L3m.MO.CHL.chlor_a.4km.nc",
+    "pendiente": 1.2052,
+    "unidad": "mg m-3/década",
+    "veredicto": "significativa_p<0.05",
+    "r2": 0.0433,
+    "p_valor_F": 0.0007,
+    "theil_sen_mensual": {
+     "pendiente_por_decada": 0.7461,
+     "ic95_por_decada": [
+      0.3208,
+      1.1709
+     ]
+    }
+   },
+   "diferencia": {
+    "media": null,
+    "r": null,
+    "diferencia_pendiente": 0.5266
+   },
+   "metodos_coinciden": false,
+   "estado": "ok",
+   "frase_en": "MODIS-Aqua chlorophyll-a, Gulf of Fonseca (2003–2024): OLS on raw monthly data +1.21 mg/m³ per decade (significant, p = 0.00); Theil–Sen on deseasonalized annual means +0.68, verdict 'methods disagree'."
+  },
+  {
+   "id": "clorofila_rio_coco",
+   "papel": "tendencia",
+   "region": "Coco River mouth",
+   "caja": [
+    -83.15,
+    14.75,
+    -82.65,
+    15.25
+   ],
+   "periodo": [
+    2003,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "NASA OBPG MODIS-Aqua L3m CHL chlor_a 4 km mensual (rio_coco), anual desestacionalizada",
+    "pendiente": 0.0096,
+    "pendiente_mco": 0.03,
+    "unidad": "mg m-3/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2003,
+     2024
+    ],
+    "anios": 22,
+    "mann_kendall_p": 0.778,
+    "anios_validos": 22,
+    "meses_validos": 258
+   },
+   "serie_externa": {
+    "fuente": "Método NTRS 20090042747 (Acker et al.): OLS mensual cruda + ANOVA F",
+    "version": "R2022.0",
+    "fecha_consulta": "2026-11-13",
+    "url": "https://oceandata.sci.gsfc.nasa.gov/getfile/AQUA_MODIS.{a:04d}{m:02d}01_{a:04d}{m:02d}{d:02d}.L3m.MO.CHL.chlor_a.4km.nc",
+    "pendiente": 0.0452,
+    "unidad": "mg m-3/década",
+    "veredicto": "no_significativa",
+    "r2": 0.005,
+    "p_valor_F": 0.2569,
+    "theil_sen_mensual": {
+     "pendiente_por_decada": 0.0086,
+     "ic95_por_decada": [
+      -0.0432,
+      0.0614
+     ]
+    }
+   },
+   "diferencia": {
+    "media": null,
+    "r": null,
+    "diferencia_pendiente": 0.0356
+   },
+   "metodos_coinciden": true,
+   "estado": "ok",
+   "frase_en": "MODIS-Aqua chlorophyll-a, Coco River mouth (2003–2024): OLS on raw monthly data +0.05 mg/m³ per decade (not significant, p = 0.26); Theil–Sen on deseasonalized annual means +0.01, verdict 'insufficient evidence'."
+  },
+  {
+   "id": "clorofila_rio_grande_matagalpa",
+   "papel": "tendencia",
+   "region": "Grande de Matagalpa River mouth",
+   "caja": [
+    -83.5,
+    12.65,
+    -83.0,
+    13.15
+   ],
+   "periodo": [
+    2003,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "NASA OBPG MODIS-Aqua L3m CHL chlor_a 4 km mensual (rio_grande_matagalpa), anual desestacionalizada",
+    "pendiente": 0.0275,
+    "pendiente_mco": 0.022,
+    "unidad": "mg m-3/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2003,
+     2024
+    ],
+    "anios": 22,
+    "mann_kendall_p": 0.6519,
+    "anios_validos": 22,
+    "meses_validos": 255
+   },
+   "serie_externa": {
+    "fuente": "Método NTRS 20090042747 (Acker et al.): OLS mensual cruda + ANOVA F",
+    "version": "R2022.0",
+    "fecha_consulta": "2026-11-13",
+    "url": "https://oceandata.sci.gsfc.nasa.gov/getfile/AQUA_MODIS.{a:04d}{m:02d}01_{a:04d}{m:02d}{d:02d}.L3m.MO.CHL.chlor_a.4km.nc",
+    "pendiente": 0.0424,
+    "unidad": "mg m-3/década",
+    "veredicto": "no_significativa",
+    "r2": 0.0029,
+    "p_valor_F": 0.3899,
+    "theil_sen_mensual": {
+     "pendiente_por_decada": 0.028,
+     "ic95_por_decada": [
+      -0.0308,
+      0.1018
+     ]
+    }
+   },
+   "diferencia": {
+    "media": null,
+    "r": null,
+    "diferencia_pendiente": 0.0149
+   },
+   "metodos_coinciden": true,
+   "estado": "ok",
+   "frase_en": "MODIS-Aqua chlorophyll-a, Grande de Matagalpa River mouth (2003–2024): OLS on raw monthly data +0.04 mg/m³ per decade (not significant, p = 0.39); Theil–Sen on deseasonalized annual means +0.03, verdict 'insufficient evidence'."
+  },
+  {
+   "id": "clorofila_rio_escondido_bluefields",
+   "papel": "tendencia",
+   "region": "Escondido River / Bluefields Bay",
+   "caja": [
+    -83.68,
+    11.75,
+    -83.18,
+    12.25
+   ],
+   "periodo": [
+    2003,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "NASA OBPG MODIS-Aqua L3m CHL chlor_a 4 km mensual (rio_escondido_bluefields), anual desestacionalizada",
+    "pendiente": 0.0951,
+    "pendiente_mco": 0.081,
+    "unidad": "mg m-3/década",
+    "veredicto": "metodos_discrepan",
+    "veredicto_robusto": "metodos_discrepan",
+    "periodo": [
+     2003,
+     2024
+    ],
+    "anios": 22,
+    "mann_kendall_p": 0.0711,
+    "anios_validos": 22,
+    "meses_validos": 249
+   },
+   "serie_externa": {
+    "fuente": "Método NTRS 20090042747 (Acker et al.): OLS mensual cruda + ANOVA F",
+    "version": "R2022.0",
+    "fecha_consulta": "2026-11-13",
+    "url": "https://oceandata.sci.gsfc.nasa.gov/getfile/AQUA_MODIS.{a:04d}{m:02d}01_{a:04d}{m:02d}{d:02d}.L3m.MO.CHL.chlor_a.4km.nc",
+    "pendiente": 0.1008,
+    "unidad": "mg m-3/década",
+    "veredicto": "no_significativa",
+    "r2": 0.0093,
+    "p_valor_F": 0.1296,
+    "theil_sen_mensual": {
+     "pendiente_por_decada": 0.0728,
+     "ic95_por_decada": [
+      -0.0163,
+      0.1653
+     ]
+    }
+   },
+   "diferencia": {
+    "media": null,
+    "r": null,
+    "diferencia_pendiente": 0.0057
+   },
+   "metodos_coinciden": true,
+   "estado": "ok",
+   "frase_en": "MODIS-Aqua chlorophyll-a, Escondido River / Bluefields Bay (2003–2024): OLS on raw monthly data +0.10 mg/m³ per decade (not significant, p = 0.13); Theil–Sen on deseasonalized annual means +0.10, verdict 'methods disagree'."
+  },
+  {
+   "id": "giovanni_imerg_caja_sicc",
+   "papel": "contraste",
+   "region": "caja_sicc",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GPM IMERG Final V07B (data/clima.json)",
+    "pendiente": null,
+    "unidad": "mm/década",
+    "veredicto": null
+   },
+   "serie_externa": {
+    "fuente": "NASA Giovanni, Time Series Area-Averaged",
+    "pendiente": null,
+    "unidad": "mm/década",
+    "veredicto": null,
+    "version": "GPM_3IMERGM V07B",
+    "fecha_consulta": null,
+    "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-86.5%2C10.7%2C-83.6%2C12.6&portal=GIOVANNI&format=json"
+   },
+   "diferencia": {
+    "media": null,
+    "r": null,
+    "diferencia_pendiente": null
+   },
+   "estado": "bloqueado",
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla. Petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-86.5%2C10.7%2C-83.6%2C12.6&portal=GIOVANNI&format=json (HTTP 302, 2026-11-12).",
+   "frase_en": "Giovanni area-averaged IMERG for caja_sicc: blocked (Earthdata application not authorized)."
+  },
+  {
+   "id": "giovanni_imerg_nic",
+   "papel": "contraste",
+   "region": "NIC",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GPM IMERG Final V07B (data/clima.json)",
+    "pendiente": null,
+    "unidad": "mm/década",
+    "veredicto": null
+   },
+   "serie_externa": {
+    "fuente": "NASA Giovanni, Time Series Area-Averaged",
+    "pendiente": null,
+    "unidad": "mm/década",
+    "veredicto": null,
+    "version": "GPM_3IMERGM V07B",
+    "fecha_consulta": null,
+    "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
+   },
+   "diferencia": {
+    "media": null,
+    "r": null,
+    "diferencia_pendiente": null
+   },
+   "estado": "bloqueado",
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla. Petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json (HTTP 302, 2026-11-12).",
+   "frase_en": "Giovanni area-averaged IMERG for NIC: blocked (Earthdata application not authorized)."
+  },
+  {
+   "id": "noaa_tegucigalpa_lluvia_vs_imerg_caja",
+   "papel": "contraste",
+   "region": "Tegucigalpa (caja 0,3°)",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GPM IMERG V07B, caja 13.95–14.25 N, 87.35–87.05 O (Giovanni)",
+    "pendiente": null,
+    "unidad": "mm/década",
+    "veredicto": null
+   },
+   "serie_externa": {
+    "fuente": "NOAA NCEI Global Summary of the Month",
+    "pendiente": null,
+    "unidad": "mm/década",
+    "veredicto": null,
+    "version": "GSOM 1.0 (servicio NCEI v1)",
+    "fecha_consulta": "2026-11-12",
+    "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
+   },
+   "diferencia": {
+    "media": null,
+    "r": null,
+    "diferencia_pendiente": null
+   },
+   "estado": "bloqueado",
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla. Petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-87.35%2C13.95%2C-87.05%2C14.25&portal=GIOVANNI&format=json (HTTP 302, 2026-11-12).",
+   "frase_en": "Tegucigalpa gauge vs IMERG pixel box: blocked (Earthdata application not authorized)."
+  },
+  {
+   "id": "airs_tas_nic",
+   "papel": "tendencia",
+   "region": "NIC",
+   "periodo": [
+    2003,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "AIRS3STM v7 SurfAirTemp (A+D)",
+    "pendiente": null,
+    "unidad": "°C/década",
+    "veredicto": null
+   },
+   "serie_externa": {
+    "fuente": "GISTEMP v4 / NASA POWER (MERRA-2)",
+    "pendiente": null,
+    "unidad": "°C/década",
+    "veredicto": null,
+    "version": null,
+    "fecha_consulta": null,
+    "url": null
+   },
+   "diferencia": {
+    "media": null,
+    "r": null,
+    "diferencia_pendiente": null
+   },
+   "estado": "bloqueado",
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla. Petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2003-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=AIRS3STM_7_0_SurfAirTemp_A&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json (HTTP 302, 2026-11-12).",
+   "frase_en": "AIRS surface air temperature over Nicaragua: blocked (Earthdata application not authorized)."
+  },
+  {
+   "id": "omi_no2_managua",
+   "papel": "tendencia",
+   "region": "Managua (12.05–12.20 N, 86.35–86.15 O)",
+   "periodo": [
+    2005,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "OMI OMNO2d v003 ColumnAmountNO2TropCloudScreened",
+    "pendiente": null,
+    "unidad": "molec cm-2/década",
+    "veredicto": null
+   },
+   "serie_externa": {
+    "fuente": "OMNO2d v003, caja rural 12.35–12.50 N, 85.10–84.90 O",
+    "pendiente": null,
+    "unidad": "molec cm-2/década",
+    "veredicto": null,
+    "version": "003",
+    "fecha_consulta": null,
+    "url": null
+   },
+   "diferencia": {
+    "media": null,
+    "r": null,
+    "diferencia_pendiente": null
+   },
+   "estado": "bloqueado",
+   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla. Petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_ColumnAmountNO2TropCloudScreened&bbox=-86.35%2C12.05%2C-86.15%2C12.2&portal=GIOVANNI&format=json (HTTP 302, 2026-11-12).",
+   "frase_en": "OMI tropospheric NO2 over Managua: blocked (Earthdata application not authorized)."
+  }
+ ]
+}
