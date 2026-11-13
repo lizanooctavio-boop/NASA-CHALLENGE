@@ -1,0 +1,38 @@
+[
+  {
+    "ProductAndVersion": "MOD11A2.061",
+    "Layer": "Emis_31",
+    "QualityProductAndVersion": "MOD11A2.061",
+    "QualityLayers": [
+      "QC_Day"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MOD11A2.061",
+    "Layer": "Emis_32",
+    "QualityProductAndVersion": "MOD11A2.061",
+    "QualityLayers": [
+      "QC_Day"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MOD11A2.061",
+    "Layer": "LST_Day_1km",
+    "QualityProductAndVersion": "MOD11A2.061",
+    "QualityLayers": [
+      "QC_Day"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MOD11A2.061",
+    "Layer": "LST_Night_1km",
+    "QualityProductAndVersion": "MOD11A2.061",
+    "QualityLayers": [
+      "QC_Night"
+    ],
+    "VisibleToWorker": true
+  }
+]

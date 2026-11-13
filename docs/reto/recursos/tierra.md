@@ -1,0 +1,149 @@
+# Recursos de tierra: AppEEARS y Hydrology Time Series
+
+Rama: `codex/recursos-tierra`, base `codex/demo-render` (`544756a`). Verificación local: 12 de noviembre de 2026, America/Managua. No se modifican los adaptadores existentes, la estadística, los datos fuente ni la demo de Render.
+
+## Estado de entrega
+
+**Implementación y pruebas locales disponibles; extracción real pendiente de credenciales Earthdata.** Los catálogos públicos sí se consultaron. No hay todavía series regionales nuevas de AppEEARS ni GLDAS, ni tiempos de procesamiento medidos de tareas AppEEARS. Las cifras de este documento son recálculos de las referencias existentes, no resultados de las nuevas extracciones. La aceptación científica queda pendiente hasta ejecutar las descargas autenticadas.
+
+| Requisito | Resultado verificable | Pendiente |
+|---|---|---|
+| Áreas AppEEARS | Adaptador, cinco productos, geometrías reales, envío antes de esperar, reanudación por huella de solicitud, descarga de bundle y QA | Token/login, enviar y completar tareas reales |
+| NDVI regional y cobertura estable | Media por área; cohorte fija multianual; QA y clase IGBP; prueba con cambio de cobertura | Valores reales y diferencia frente a los sitios ORNL |
+| Canadá | CLI `--canada`; plan de 10 tareas NDVI/LST con copia exacta de la geometría del agente 3 (PR #7) | Autenticar y enviar; no se fusiona el PR del agente 3 |
+| GLDAS de punto | Servicio antiguo retirado, sustituto oficial identificado, catálogo consultado y consulta de prueba rechazada por autenticación | Token Earthdata y descarga de las tres series de punto por variable |
+| Contraste de humedad | Referencias MERRA-2 recalculadas; comparador local listo | GLDAS y SMAP reales; no se inventan correlaciones |
+| Estadística | 23 análisis de referencia con `estadistica/tendencia_robusta.py`, sin modificarla | Aplicar la misma función a las nuevas series cuando existan |
+
+## Acceso y evidencia de los servicios
+
+AppEEARS admite tareas de **área** con polígonos GeoJSON y autenticación propia mediante `POST /login` con credenciales Earthdata. El token devuelto por AppEEARS es distinto del token generado en el perfil Earthdata. Véase la [API oficial](https://appeears.earthdatacloud.nasa.gov/api/). Los JSON `catalogo_*.json` y `calidad_*.json` guardan las respuestas públicas verificadas en esta ejecución, incluidas las capas exactas y metadatos de escala/relleno.
+
+El endpoint histórico `https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/access/timeseries.cgi` **no entrega una serie en la prueba realizada**: redirige a una página HTML de aviso de retirada del servicio y termina con HTTP 200. No se considera una descarga válida. El aviso se corrobora en la [guía de migración de NASA](https://github.com/nasa/gesdisc-tutorials/blob/main/user-guidance/GES_DISC_Migration_to_Earthdata_Website_and_Earthdata_Cloud.md). La API de series de punto recomendada por el equipo GES DISC es `https://api.giovanni.earthdata.nasa.gov/timeseries`; el [ejemplo oficial de soporte](https://forum.earthdata.nasa.gov/viewtopic.php?t=7938) explica la consulta. El catálogo público `configured-variables` ofrece las cinco variables solicitadas para `GLDAS_NOAH025_3H_2_1`. El sondeo de un día en León devuelve HTTP 403, cuerpo `Bad or missing token`. Requiere Earthdata Bearer.
+
+`gldas_datarods.py` usa ese sustituto, conserva la trazabilidad del cambio y rechaza HTML/JSON de error incluso con HTTP 200. No fabrica URLs al archivo antiguo ni sustituye GLDAS por otro modelo.
+
+## Preparación y credenciales
+
+Desde la raíz del repositorio, en PowerShell:
+
+```powershell
+python -m venv backend/.cache/tierra-venv
+backend/.cache/tierra-venv/Scripts/python.exe -m pip install -r backend/requirements.txt -r data/recursos/tierra/requirements.txt
+$env:PYTHONPATH = 'backend'
+```
+
+La caché y el entorno quedan en `backend/.cache/`, excluido por `backend/.gitignore`. El núcleo requiere NumPy, SciPy, Shapely y pyproj; Rasterio es necesario para leer/reproyectar GeoTIFF de AppEEARS. La descarga usa la biblioteca estándar de Python.
+
+Crear o iniciar sesión en [Earthdata Login](https://urs.earthdata.nasa.gov/). Entrar también en [AppEEARS](https://appeears.earthdatacloud.nasa.gov/login) y completar la autorización solicitada. Para las aplicaciones de GES DISC, completar la autorización de NASA GESDISC DATA ARCHIVE si la cuenta la solicita.
+
+Dos opciones de configuración local:
+
+1. Un archivo `.netrc` o `_netrc` en el directorio personal (o una ruta indicada por `NETRC`) con la entrada `machine urs.earthdata.nasa.gov login TU_USUARIO password TU_CONTRASEÑA`. Ambos adaptadores leen ese archivo y solicitan sus respectivos tokens en memoria. No se imprime ni se versiona el archivo ni los tokens. No utilizar una cuenta federada sin contraseña de API válida como si tuviera credenciales Basic.
+2. Variables `APPEEARS_TOKEN` y `EARTHDATA_TOKEN`. El primero procede de `POST https://appeears.earthdatacloud.nasa.gov/api/login`; el segundo de **Generate Token** en el perfil Earthdata ([guía oficial](https://urs.earthdata.nasa.gov/documentation/for_users/user_token)). También se admiten `APPEEARS_TOKEN_FILE` y `EARTHDATA_TOKEN_FILE`, rutas a archivos locales que contienen solo el token correspondiente. No guardar esos archivos en el repositorio. Un token Earthdata no se puede usar como token AppEEARS.
+
+Las variables configuradas en otra terminal no aparecen automáticamente en un proceso ya abierto: usar archivos/netrc o reiniciar el proceso con las variables correctas. `disponible()` comprueba presencia local, no demuestra autorización remota. Los errores HTTP 401/403 piden renovar el token/revisar la autorización y conservan las descargas previas. Nunca pegar secretos en un issue, PR o chat.
+
+## Ejecutar las peticiones largas primero
+
+```powershell
+# No hace peticiones autenticadas: manifiesto compacto con huella de las geometrías.
+backend/.cache/tierra-venv/Scripts/python.exe -m clima_nic.fuentes.appeears plan
+# Enviar antes de esperar; guarda los task_id en caché después de cada aceptación.
+backend/.cache/tierra-venv/Scripts/python.exe -m clima_nic.fuentes.appeears enviar
+# Puede ejecutarse mientras AppEEARS procesa sus tareas:
+backend/.cache/tierra-venv/Scripts/python.exe -m clima_nic.fuentes.gldas_datarods --inicio 2001 --fin 2024
+# Reutilizar las tareas, esperar, descargar y agregar. Repetir tras un timeout.
+backend/.cache/tierra-venv/Scripts/python.exe -m clima_nic.fuentes.appeears procesar --max-segundos 3600
+backend/.cache/tierra-venv/Scripts/python.exe data/recursos/tierra/resumir.py
+```
+
+El plan Nicaragua contiene 150 tareas de área: cinco polígonos originales (`NIC`, `pacifico`, `central`, `caribe`, `caja_sicc`); SMAP en bloques anuales 2015–2024 (desde el 31 de marzo de 2015), y los otros productos en bloques de hasta cinco años 2001–2024. Orden de envío: SMAP, ET, LST, NDVI, cobertura. La prioridad se basa en cadencia/resolución y volumen esperado, **no en duraciones medidas**. La disponibilidad histórica exacta y los límites/cuotas de la cuenta deben validarse al enviar. Si AppEEARS rechaza el volumen/número de peticiones, las ya aceptadas quedan en caché; no se deben borrar ni volver a crear desde cero. Se puede trabajar con `plan()`/`enviar()` sobre un subconjunto de tareas y procesarlo después. Una tarea con estado `done` pero vacía produce un error, no una serie ficticia.
+
+Cada solicitud se identifica por SHA-256 del payload. La caché conserva solicitud, geometría, identificador, hora de envío y archivos descargados. Tras completar, `procedencia_nicaragua.json` guarda fechas `created`, `updated`, `completed`, productos, periodos y SHA-256 de archivos; permite calcular espera y duración real. **Por ahora: 0 tareas enviadas; tiempos de cola y procesamiento no disponibles.** Los sondeos públicos y las pruebas sintéticas no miden tiempos de AppEEARS.
+
+Canadá: el archivo no está en la base `codex/demo-render`, pero ya existe en el [PR #7 del agente 3](https://github.com/lizanooctavio-boop/NASA-CHALLENGE/pull/7). Se guarda una copia exacta en `data/recursos/tierra/regiones_canada_agente3.geojson`: commit `ddad804318868dae8be71162f41678a574978e34`, SHA-256 `05e0f0dc1cf0a7c7476436028b5443812d44b9087fb5c0812e9ab588bbf4b402`. La procedencia está en `procedencia_geometria_canada.json`. Es la ecozona Prairies de AAFC, 467127.9 km² según sus metadatos; se conserva la atribución/licencia del agente 3. Se generó `plan_canada.json` con 10 tareas de área (cinco bloques por cada uno de los dos productos), todavía sin enviar por falta de credenciales.
+
+```powershell
+backend/.cache/tierra-venv/Scripts/python.exe -m clima_nic.fuentes.appeears plan --canada --geojson data/recursos/tierra/regiones_canada_agente3.geojson
+backend/.cache/tierra-venv/Scripts/python.exe -m clima_nic.fuentes.appeears enviar --canada --geojson data/recursos/tierra/regiones_canada_agente3.geojson
+backend/.cache/tierra-venv/Scripts/python.exe -m clima_nic.fuentes.appeears procesar --canada --geojson data/recursos/tierra/regiones_canada_agente3.geojson
+```
+
+Cuando `data/regiones_canada.geojson` esté integrado, puede omitirse `--geojson`. No se utiliza una región canadiense inventada ni se modifica el archivo ajeno. Esa ejecución solicita NDVI/LST y produce sus medias regionales; no afirma cobertura estable porque el encargo de Canadá no pide MCD12Q1. Si se quiere esa comparación adicional, debe pedirse también MCD12Q1 para todos los años.
+
+## Productos, calidad y agregación
+
+| Producto | Capas de datos | Control aplicado |
+|---|---|---|
+| MOD13A3.061, NDVI mensual, 1 km | `_1_km_monthly_NDVI` | `VI_Quality`: MODLAND bueno, utilidad ≤2, aerosol no alto, sin nubes adyacentes/mixtas, nieve ni sombra, clase tierra; `pixel_reliability=0`; rango −0.2 a 1 |
+| MOD11A2.061, LST diurna, 1 km/8 días | `LST_Day_1km` | `QC_Day`: MODLAND y datos buenos; error emisividad ≤0.02 y error LST ≤1 K; rango físico 150–400 K, luego °C |
+| MOD16A2GF.061, ET, 500 m/8 días | `ET_500m` | `ET_QC_500m`: MODLAND bueno, detector operativo, cielo claro, algoritmo principal sin saturación; excluye rellenos/clases especiales y ET negativa |
+| MCD12Q1.061, cobertura anual, 500 m | `LC_Type1` (IGBP) | `QC=0`, tierra clasificada; clases 1–16; excluye agua, relleno y clases reconstruidas/no clasificadas |
+| SPL4SMGP.008, 9 km/3 h | `Geophysical_Data_sm_surface`, `Geophysical_Data_sm_rootzone` | No hay asociación de calidad en `/quality/SPL4SMGP.008` (HTTP 404) ni bitfield QA en el catálogo AppEEARS; rango 0–1, `soil_temp_layer1 > 273.15 K` y `<350 K`, `land_fraction_snow_covered=0` |
+
+Los filtros MODIS son deliberadamente conservadores. SMAP L4 es un producto de asimilación, no una observación independiente de un sensor en cada fecha. El filtro físico no reproduce todos los controles de asimilación ni certifica ausencia de RFI, agua, relieve, vegetación densa u otros errores. Véase la [guía SMAP L4 v8](https://nsidc.org/sites/default/files/documents/user-guide/multi_spl4smau-v008-userguide.pdf). En particular, parte del producto depende de modelo/forzamientos y no constituye validación independiente de otros modelos.
+
+El catálogo describe los valores físicos, pero los **GeoTIFF de área conservan valores empaquetados**. Rasterio lee esos valores sin aplicar automáticamente la escala: se aplican `Scale`/`Offset` de la banda una sola vez (o `scale_factor`/`add_offset` de sus etiquetas si no hay atributos de banda). Un TIFF científico entero sin escala produce error en vez de una conversión adivinada. Los float físicos con escala 1 se conservan. Esta diferencia respecto al CSV está confirmada por [LP DAAC](https://forum.earthdata.nasa.gov/viewtopic.php?t=3934). Se lee `nodata` antes de escalar. Para QA no se escala y se conserva el cero válido aunque el GeoTIFF declare `nodata=0`, pues cero significa buena calidad en varias capas.
+
+La media espacial pondera la **intersección** de cada celda y polígono en EPSG:6933, incluyendo bordes parciales y huecos de los polígonos. Se requiere al menos 50% del área con dato válido por compuesto. Los registros guardan esa fracción para auditar cambios de muestreo. La composición temporal pondera los días/horas que se solapan con cada mes: no asigna un compuesto de ocho días entero al mes de su fecha. ET es una acumulación repartida proporcionalmente a su duración, incluidos los 5/6 días del último compuesto del año; no una media de acumulados. Para SMAP, la hora del nombre es el centro del intervalo: 01:30 representa 00:00–03:00. Las medias mensuales exigen ≥90% de cobertura temporal; las sumas de ET exigen 100%, sin extrapolación de huecos. Los años exigen 12 meses válidos. Se rechazan compuestos duplicados o intervalos solapados.
+
+NDVI estable: todos los años del periodo deben tener MCD12Q1 y QA válidos. La clase de cada píxel 500 m debe permanecer constante. Al pasar a la malla NDVI de 1 km se exigen todos los subpíxeles estables y una misma clase, usando mínimos/máximos categóricos, sin interpolación bilineal ni rellenar años ausentes. Se fija la cohorte para todo el periodo, y se entrega `ndvi_regional` y `ndvi_cobertura_estable`. Se registra la fracción de área de la cohorte. El filtro es más estricto que seleccionar el píxel 500 m más cercano. QA NDVI puede dejar muestras válidas distintas dentro de la cohorte fija en cada fecha; se conserva la fracción válida. Cobertura estable no elimina cambios de manejo agrícola, incendios o degradación dentro de una misma clase.
+
+## GLDAS: puntos y unidades
+
+Los tres puntos son el primer sitio existente de cada región en `fuentes/modis.py:SITIOS`, sin modificarlo:
+
+| Región | Sitio | Latitud | Longitud |
+|---|---|---:|---:|
+| pacifico | leon_llanura | 12.45 | −86.85 |
+| central | esteli_corredor_seco | 13.10 | −86.35 |
+| caribe | siuna_bosque | 13.75 | −84.80 |
+
+**Son series de punto/celda de 0.25°, no medias de las regiones ni de NIC.** Giovanni devuelve la celda seleccionada y sus coordenadas en los metadatos, que se conservan en las notas. Consulta por año, con `location=[lat,lon]` (orden distinto del WKT del servicio antiguo). [Variables GLDAS-2.1 Noah](https://disc.gsfc.nasa.gov/datasets/GLDAS_NOAH025_3H_2.1/summary).
+
+| Variable original | Salida | Conversión |
+|---|---|---|
+| `SoilMoi0_10cm_inst` | `humedad_gldas_0_10`, m³/m³ | kg/m² ÷ 100 (agua, espesor 0.10 m) |
+| `SoilMoi10_40cm_inst` | `humedad_gldas_10_40`, m³/m³ | kg/m² ÷ 300 (espesor 0.30 m) |
+| `Evap_tavg` | `et_gldas`, mm/mes | tasa kg/m²/s × 10800 s por paso, suma |
+| `Qs_acc` | `escorrentia_superficial_gldas`, mm/mes | acumulado kg/m² por paso de 3 h, suma |
+| `Qsb_acc` | `escorrentia_subterranea_gldas`, mm/mes | acumulado kg/m² por paso de 3 h, suma |
+
+`undef` y valores no finitos quedan ausentes. Humedad fuera de 0–1 y escorrentía negativa se excluyen; ET conserva posibles flujos negativos de condensación. Se exigen todos los pasos de tres horas por mes y 12 meses por año. Sin extrapolación ni interpolación. No hay una QA de observación de suelo para estos campos modelados. El código comprueba cadencia, duplicados y bloques solapados antes de agregar.
+
+## Formato y contraste para el agente 4
+
+Las salidas `series_appeears_nicaragua_mensual.json`, `series_appeears_nicaragua_anual.json`, `series_gldas_mensual.json`, `series_gldas_anual.json` y sus variantes de Canadá son listas de `SerieRegional.como_dict()` (`region`, `variable`, `unidad`, `frecuencia`, `tiempos`, `valores`, `fuente`, `version`, `notas`), con faltantes JSON `null`. Los crudos nunca se copian a `data/`. Los adaptadores se importan directamente desde sus módulos; no se modifica el registro compartido de fuentes por la división de archivos de este encargo.
+
+`data/recursos/tierra/resumir.py` importa `estadistica/tendencia_robusta.analizar` y escribe `analisis.json` con Sen, IC95%, MK modificado, MCO/HAC, Pettitt, veredicto y huellas SHA-256 de entradas. `tabla_analisis.md` contiene las 23 filas de referencia. También busca las nuevas salidas y calcula automáticamente diferencias NDVI regional/estable/sitio y correlaciones mensuales de humedad sobre fechas comunes. No resta índices MERRA-2 de humedad volumétrica. Las correlaciones incluyen estacionalidad/autocorrelación y se rotulan descriptivas, sin inferencia de validación o causalidad. GLDAS 0–10 cm, SMAP superficial ~0–5 cm, GLDAS 10–40 cm y SMAP raíz ~0–100 cm representan profundidades distintas. GWETTOP/GWETROOT de POWER/MERRA-2 son índices relativos 0–1, no m³/m³.
+
+Resultados de **referencia existente**, pendientes de contrastar con nuevas series:
+
+| Referencia | Periodo | Sen por década | Veredicto robusto |
+|---|---|---:|---|
+| NDVI sitio Pacífico | 2000–2024 | +0.0076 | evidencia_insuficiente |
+| NDVI sitio Central | 2000–2024 | −0.0438 | tendencia_detectada |
+| NDVI sitio Caribe | 2000–2024 | +0.0009 | evidencia_insuficiente |
+| GWETTOP Pacífico | 2015–2024 | +0.1191 | evidencia_insuficiente |
+| GWETROOT Pacífico | 2015–2024 | +0.0878 | evidencia_insuficiente |
+| GWETTOP Central | 2015–2024 | +0.1054 | evidencia_insuficiente |
+| GWETROOT Central | 2015–2024 | +0.0711 | evidencia_insuficiente |
+| GWETTOP Caribe | 2015–2024 | +0.0387 | evidencia_insuficiente |
+| GWETROOT Caribe | 2015–2024 | +0.0335 | evidencia_insuficiente |
+
+NDVI es adimensional; GWET son unidades de índice por década. La referencia NDVI replica la media mensual de los sitios preexistentes y el umbral anual ≥10 meses de `modis.py` (2000 es parcial); las nuevas series anuales requieren 12. La extracción ORNL original rápida no incluía QA de fiabilidad, por lo que una diferencia con el área filtrada también puede reflejar calidad, resolución, compositado y muestreo. No atribuir por sí sola la caída NDVI Central al clima.
+
+En el periodo completo 1981–2024, GWETTOP/GWETROOT arrojan `tendencia_detectada` en todas las regiones existentes; por ejemplo NIC: +0.0572 y +0.0425 por década. En 2015–2024, las cinco regiones existentes arrojan `evidencia_insuficiente`. Es una descripción del reanálisis y de la dependencia de la ventana, no un hallazgo climático validado: MERRA-2 tiene discontinuidades ya documentadas en el proyecto. Para SMAP, 2015 es parcial, así que una serie anual estricta hasta 2024 puede tener solo 9 años y devolver `datos_insuficientes`; no se amplía artificialmente la muestra.
+
+## Pruebas y límites de la verificación
+
+```powershell
+backend/.cache/tierra-venv/Scripts/python.exe -m pytest tests/test_recursos_tierra.py tests/test_indicadores_nicaragua.py -q
+```
+
+Resultado: `python -m pytest tests -q`: **81 passed, 1 skipped**. Se omite la prueba de la API web existente porque FastAPI/httpx son dependencias opcionales que no se instalaron en este entorno de verificación. Las 28 pruebas nuevas de tierra sí se ejecutan.
+
+Pruebas sin red ni credenciales: polígonos de área, Canadá con fixture, orden y reanudación del envío, estados vacío/error/timeout, QA de cinco productos, años de cobertura ausentes, cohortes cambiantes, lectura GeoTIFF física sin doble escala y empaquetada con escala, QA=0, peso de borde parcial, fechas subdiarias SMAP, reparto ET entre meses y fin de año, cadencia GLDAS, HTML/errores, datos faltantes y conversiones de humedad/ET/escorrentía. No demuestran aceptación remota de tareas, duración, integridad de datos NASA reales ni permisos de la cuenta.
+
+Para cerrar la aceptación: autenticar, registrar identificadores/fechas reales, descargar todos los periodos, inspeccionar visualmente un raster por producto y QA, ejecutar `resumir.py`, incorporar cifras de diferencias/contrastes y cotejarlas con el agente 4. El PR permanece en borrador hasta entonces. La fusión y el despliegue siguen a cargo del responsable.
