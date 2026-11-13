@@ -94,6 +94,14 @@ def datos_sinteticos(tmp_path):
         {"region": "pacifico", "variable": "et_gldas", "unidad": "mm", "frecuencia": "anual", "tiempos": anios,
          "valores": [1400 + 10 * v for v in plano], "fuente": "Giovanni time series API, GLDAS_NOAH025_3H 2.1",
          "version": "2.1", "notas": [], "sintetico": True}]), encoding="utf-8")
+    # agente 1: contraste con destino explícito (humedad GLDAS frente a MERRA-2, en anomalías z)
+    (tierra / "contrastes_tierra.json").write_text(json.dumps({"sintetico": True, "contrastes": [
+        {"id": "merra2_et_gldas_NIC", "investigacion": "et_gldas_NIC", "papel": "contraste", "estado": "ok",
+         "serie_nuestra": {"fuente": "GLDAS-2.1 Noah (GES DISC), regional mean", "pendiente": None, "unidad": "z/década"},
+         "serie_externa": {"fuente": "MERRA-2 root-zone soil wetness (GWETROOT), regional mean", "pendiente": None},
+         "diferencia": {"media": None, "r": 0.1}, "frase_en": "Synthetic model disagreement."}]}), encoding="utf-8")
+    _escribir_csv(tierra / "contrastes_tierra_series.csv", ["contraste", "serie", "anio", "valor"],
+                  [["merra2_et_gldas_NIC", s, a, v] for a, v in zip(anios, plano) for s in ("nuestra", "externa")])
     return tmp_path
 
 
@@ -130,6 +138,9 @@ def test_integra_las_salidas_de_los_tres_agentes(datos_sinteticos):
     assert ids["et_gldas_NIC"]["recursos"] == [] and "sample point" not in ids["et_gldas_NIC"]["titulo_en"]
     assert ids["et_gldas_NIC"]["fuente"]["producto"].startswith("NASA GLDAS-2.1")
     assert ids["et_gldas_pacifico"]["recursos"] == [1, 2] and ids["et_gldas_pacifico"]["titulo_en"].endswith("at a sample point")
+    assert "merra2_et_gldas_NIC" in ids["et_gldas_NIC"]["contrastes"]
+    merra = next(c for c in d["contrastes"] if c["id"] == "merra2_et_gldas_NIC")
+    assert merra["unidad"] == "z" and merra["r"] == 0.1 and merra["externa"]["por_decada"] is None
     # la interfaz solo ve nombres en inglés
     cru = next(c for c in d["contrastes"] if c["id"] == "cru_nic")
     assert cru["externa"]["nombre_en"] == "CRU TS 4.10 (University of East Anglia)"

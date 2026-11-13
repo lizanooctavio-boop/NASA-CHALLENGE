@@ -304,7 +304,8 @@ def _contraste(carpeta, permitir_sintetico, nombre_json="resumen_contrastes.json
                                "recursos": recursos})
             invs.append(inv)
         else:
-            destino = CONTRASTE_A_INVESTIGACION.get(cid)
+            # El agente puede indicar la investigación de destino; si no, se usa la tabla fija.
+            destino = c.get("investigacion") or CONTRASTE_A_INVESTIGACION.get(cid)
             if not destino:
                 continue
             nuestra, ext, dif = c["serie_nuestra"], c["serie_externa"], c.get("diferencia", {})
@@ -471,9 +472,11 @@ def construir(datos=DATOS, permitir_sintetico=False):
     s_inv, s_con, s_ent = _csa(datos / "recursos" / "csa", permitir_sintetico)
     k_inv, k_con, k_ent, _ = _contraste(datos / "recursos" / "csa", permitir_sintetico,
                                         "contrastes_canada.json", "contrastes_canada_series.csv")
-    invs += t_inv + c_inv + s_inv + k_inv
-    contrastes = c_con + s_con + k_con
-    entradas += t_ent + c_ent + s_ent + k_ent
+    h_inv, h_con, h_ent, _ = _contraste(datos / "recursos" / "tierra", permitir_sintetico,
+                                        "contrastes_tierra.json", "contrastes_tierra_series.csv")
+    invs += t_inv + c_inv + s_inv + k_inv + h_inv
+    contrastes = c_con + s_con + k_con + h_con
+    entradas += t_ent + c_ent + s_ent + k_ent + h_ent
     por_id = {i["id"]: i for i in invs}
     for c in contrastes:
         inv = por_id.get(c["investigacion"])
