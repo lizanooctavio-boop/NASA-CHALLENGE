@@ -1,17 +1,19 @@
 # Recursos de tierra: AppEEARS y Hydrology Time Series
 
-Rama: `codex/recursos-tierra`, base `codex/demo-render` (`544756a`). Verificación local: 12 de noviembre de 2026, America/Managua. No se modifican los adaptadores existentes, la estadística, los datos fuente ni la demo de Render.
+Rama: `codex/recursos-tierra`, base `codex/demo-render` (`544756a`). Actualización de navegador: 13 de noviembre de 2026, America/Managua. No se modifican los adaptadores existentes, la estadística, los datos fuente ni la demo de Render.
 
 ## Estado de entrega
 
-**Implementación y pruebas locales disponibles; extracción real pendiente de credenciales Earthdata.** Los catálogos públicos sí se consultaron. No hay todavía series regionales nuevas de AppEEARS ni GLDAS, ni tiempos de procesamiento medidos de tareas AppEEARS. Las cifras de este documento son recálculos de las referencias existentes, no resultados de las nuevas extracciones. La aceptación científica queda pendiente hasta ejecutar las descargas autenticadas.
+**160 solicitudes de área reales enviadas y cotejadas mediante la sesión del navegador: 150 de Nicaragua y 10 de Canadá.** Los recibos están en `data/recursos/tierra/tareas_navegador.json`, con identificadores, nombres, fechas y estados leídos de las dos páginas de Explore Requests. En la observación de `2026-11-13T06:30:48.277Z` (00:30:48 CST), había 158 pendientes y dos procesándose (17% y 28%); ninguna completada. La sesión AppEEARS está operativa: ya no falta iniciar sesión para tramitar los pedidos.
+
+GLDAS sigue bloqueado: el visor autenticado no recupera el enlace del subconjunto; la API de series devuelve HTTP 500 y la comprobación de cuota rechaza con HTTP 401 el token generado en Earthdata. Se reproduce tras renovar la sesión. No hay todavía series regionales nuevas descargadas de AppEEARS ni GLDAS. Las cifras de tendencias de este documento son recálculos de las referencias existentes, no resultados de los pedidos pendientes. **La aceptación científica permanece abierta** hasta descargar y validar los bundles y resolver el acceso GLDAS.
 
 | Requisito | Resultado verificable | Pendiente |
 |---|---|---|
-| Áreas AppEEARS | Adaptador, cinco productos, geometrías reales, envío antes de esperar, reanudación por huella de solicitud, descarga de bundle y QA | Token/login, enviar y completar tareas reales |
+| Áreas AppEEARS | Adaptador; cinco productos; 150 solicitudes Nicaragua aceptadas por la web; 160 recibos incluyendo Canadá registrados en caché sin duplicados | NASA debe terminar de generar los bundles; descargar y validar |
 | NDVI regional y cobertura estable | Media por área; cohorte fija multianual; QA y clase IGBP; prueba con cambio de cobertura | Valores reales y diferencia frente a los sitios ORNL |
-| Canadá | CLI `--canada`; plan de 10 tareas NDVI/LST con copia exacta de la geometría del agente 3 (PR #7) | Autenticar y enviar; no se fusiona el PR del agente 3 |
-| GLDAS de punto | Servicio antiguo retirado, sustituto oficial identificado, catálogo consultado y consulta de prueba rechazada por autenticación | Token Earthdata y descarga de las tres series de punto por variable |
+| Canadá | Diez tareas NDVI/LST aceptadas por la web con la geometría exacta del agente 3 (PR #7) | Completar/descargar; no se fusiona el PR del agente 3 |
+| GLDAS de punto | Catálogo y variables verificados; sesión web reconocida; intentos web y API con token Earthdata real documentados | Acceso que Giovanni acepte y recuperación del servicio; series aún no obtenidas |
 | Contraste de humedad | Referencias MERRA-2 recalculadas; comparador local listo | GLDAS y SMAP reales; no se inventan correlaciones |
 | Estadística | 23 análisis de referencia con `estadistica/tendencia_robusta.py`, sin modificarla | Aplicar la misma función a las nuevas series cuando existan |
 
@@ -22,6 +24,10 @@ AppEEARS admite tareas de **área** con polígonos GeoJSON y autenticación prop
 El endpoint histórico `https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/access/timeseries.cgi` **no entrega una serie en la prueba realizada**: redirige a una página HTML de aviso de retirada del servicio y termina con HTTP 200. No se considera una descarga válida. El aviso se corrobora en la [guía de migración de NASA](https://github.com/nasa/gesdisc-tutorials/blob/main/user-guidance/GES_DISC_Migration_to_Earthdata_Website_and_Earthdata_Cloud.md). La API de series de punto recomendada por el equipo GES DISC es `https://api.giovanni.earthdata.nasa.gov/timeseries`; el [ejemplo oficial de soporte](https://forum.earthdata.nasa.gov/viewtopic.php?t=7938) explica la consulta. El catálogo público `configured-variables` ofrece las cinco variables solicitadas para `GLDAS_NOAH025_3H_2_1`. El sondeo de un día en León devuelve HTTP 403, cuerpo `Bad or missing token`. Requiere Earthdata Bearer.
 
 `gldas_datarods.py` usa ese sustituto, conserva la trazabilidad del cambio y rechaza HTML/JSON de error incluso con HTTP 200. No fabrica URLs al archivo antiguo ni sustituye GLDAS por otro modelo.
+
+Prueba posterior con el navegador y un token creado con autorización del usuario: GES DISC muestra `Hi, Manuel`; cambiar el punto a León (12.45, −86.85) produce `Failed to fetch subset job link contents:`. El gráfico conservaba el punto anterior (36.61, −80.24): **no se exportó ni se trató como dato de Nicaragua**. También apareció el aviso de cinco intentos fallidos de renovación de sesión. Tras recargar y volver a consultar León se reprodujo el error. `hydrology_error.jpg` conserva evidencia de la interfaz.
+
+La API `/timeseries` devolvió HTTP 500 `{"message":null}` para `SoilMoi0_10cm_inst` y `Evap_tavg` de tres horas y para humedad mensual, con y sin el parámetro de versión de API documentado. `/quota` devolvió HTTP 401 `Invalid bearer token`. Se comprobó que el token leído de la página estaba completo (704 caracteres, RS256, emisor Earthdata, sin elipsis); no se afirma que Giovanni lo acepte. No se almacenó en el repositorio ni en configuración permanente; la transferencia temporal se eliminó al leerla y se retiró de memoria al terminar su uso. Para continuar GLDAS hace falta una autenticación aceptada por Giovanni o resolver el fallo de su visor/API; no basta con ver una sesión iniciada en la web.
 
 ## Preparación y credenciales
 
@@ -60,9 +66,20 @@ backend/.cache/tierra-venv/Scripts/python.exe data/recursos/tierra/resumir.py
 
 El plan Nicaragua contiene 150 tareas de área: cinco polígonos originales (`NIC`, `pacifico`, `central`, `caribe`, `caja_sicc`); SMAP en bloques anuales 2015–2024 (desde el 31 de marzo de 2015), y los otros productos en bloques de hasta cinco años 2001–2024. Orden de envío: SMAP, ET, LST, NDVI, cobertura. La prioridad se basa en cadencia/resolución y volumen esperado, **no en duraciones medidas**. La disponibilidad histórica exacta y los límites/cuotas de la cuenta deben validarse al enviar. Si AppEEARS rechaza el volumen/número de peticiones, las ya aceptadas quedan en caché; no se deben borrar ni volver a crear desde cero. Se puede trabajar con `plan()`/`enviar()` sobre un subconjunto de tareas y procesarlo después. Una tarea con estado `done` pero vacía produce un error, no una serie ficticia.
 
-Cada solicitud se identifica por SHA-256 del payload. La caché conserva solicitud, geometría, identificador, hora de envío y archivos descargados. Tras completar, `procedencia_nicaragua.json` guarda fechas `created`, `updated`, `completed`, productos, periodos y SHA-256 de archivos; permite calcular espera y duración real. **Por ahora: 0 tareas enviadas; tiempos de cola y procesamiento no disponibles.** Los sondeos públicos y las pruebas sintéticas no miden tiempos de AppEEARS.
+Las 160 solicitudes ya se enviaron mediante **Upload a request file** de la web y se cotejaron por nombre, ID y total del inventario. No ejecutar envíos nuevos desde un clon sin importar antes los recibos:
 
-Canadá: el archivo no está en la base `codex/demo-render`, pero ya existe en el [PR #7 del agente 3](https://github.com/lizanooctavio-boop/NASA-CHALLENGE/pull/7). Se guarda una copia exacta en `data/recursos/tierra/regiones_canada_agente3.geojson`: commit `ddad804318868dae8be71162f41678a574978e34`, SHA-256 `05e0f0dc1cf0a7c7476436028b5443812d44b9087fb5c0812e9ab588bbf4b402`. La procedencia está en `procedencia_geometria_canada.json`. Es la ecozona Prairies de AAFC, 467127.9 km² según sus metadatos; se conserva la atribución/licencia del agente 3. Se generó `plan_canada.json` con 10 tareas de área (cinco bloques por cada uno de los dos productos), todavía sin enviar por falta de credenciales.
+```powershell
+backend/.cache/tierra-venv/Scripts/python.exe -m clima_nic.fuentes.appeears registrar-navegador
+backend/.cache/tierra-venv/Scripts/python.exe -m clima_nic.fuentes.appeears registrar-navegador --canada --geojson data/recursos/tierra/regiones_canada_agente3.geojson
+```
+
+Esta importación no usa red ni crea tareas. Valida nombre, UUID, duplicados y conflictos antes de escribir caché. Se comprobó de solo lectura que **160/160 payloads e IDs** coinciden entre plan, recibos UI y caché. Con esos registros, el adaptador utiliza los mismos IDs para esperar/descargar cuando disponga de acceso a la API. La sesión web no se convierte ni se copia a credenciales permanentes del CLI. Los botones de descarga de la web se pueden usar cuando NASA termine los pedidos.
+
+Cada solicitud se identifica por SHA-256 del payload. La caché conserva solicitud, geometría, identificador y hora de envío; los archivos se añadirán cuando puedan descargarse. Tras completar, `procedencia_nicaragua.json` guarda fechas `created`, `updated`, `completed`, productos, periodos y SHA-256 de archivos.
+
+Tiempos reales parciales: el primer pedido, SMAP NIC 2015, ID `5c1e5da0-a4a3-40d2-bda1-eee9dec63163`, se envió el 12 de noviembre a las 23:50:34 CST y estaba al 28% a las 00:30:48 CST del día 13: **40 min 14 s transcurridos desde el envío**. El siguiente estaba al 17%; los otros 158 seguían pendientes. Ese tiempo incluye espera y trabajo; no se conoce el comienzo exacto de procesamiento, ni la duración final. No extrapolar una ETA a partir del porcentaje. Todavía no hay tiempos completos de cola/ejecución ni bundles finalizados. `solicitudes_navegador.jpg` acredita el total de 160 pedidos; los sondeos públicos y pruebas sintéticas no se usan como medidas de procesamiento.
+
+Canadá: el archivo no está en la base `codex/demo-render`, pero ya existe en el [PR #7 del agente 3](https://github.com/lizanooctavio-boop/NASA-CHALLENGE/pull/7). Se guarda una copia exacta en `data/recursos/tierra/regiones_canada_agente3.geojson`: commit `ddad804318868dae8be71162f41678a574978e34`, SHA-256 `05e0f0dc1cf0a7c7476436028b5443812d44b9087fb5c0812e9ab588bbf4b402`. La procedencia está en `procedencia_geometria_canada.json`. Es la ecozona Prairies de AAFC, 467127.9 km² según sus metadatos; se conserva la atribución/licencia del agente 3. Las diez tareas de `plan_canada.json` (cinco bloques por producto) ya están aceptadas por AppEEARS y registradas en los recibos. Los siguientes comandos se conservan como referencia del flujo; **no reenviar desde una caché vacía**:
 
 ```powershell
 backend/.cache/tierra-venv/Scripts/python.exe -m clima_nic.fuentes.appeears plan --canada --geojson data/recursos/tierra/regiones_canada_agente3.geojson
@@ -142,8 +159,8 @@ En el periodo completo 1981–2024, GWETTOP/GWETROOT arrojan `tendencia_detectad
 backend/.cache/tierra-venv/Scripts/python.exe -m pytest tests/test_recursos_tierra.py tests/test_indicadores_nicaragua.py -q
 ```
 
-Resultado: `python -m pytest tests -q`: **81 passed, 1 skipped**. Se omite la prueba de la API web existente porque FastAPI/httpx son dependencias opcionales que no se instalaron en este entorno de verificación. Las 28 pruebas nuevas de tierra sí se ejecutan.
+Resultado actualizado: `python -m pytest tests -q`: **82 passed, 1 skipped**. Se omite la prueba de la API web existente porque FastAPI/httpx son dependencias opcionales que no se instalaron en este entorno de verificación. Las 29 pruebas nuevas de tierra sí se ejecutan, incluida la importación de recibos UI sin reenviar ni sobrescribir un ID contradictorio.
 
 Pruebas sin red ni credenciales: polígonos de área, Canadá con fixture, orden y reanudación del envío, estados vacío/error/timeout, QA de cinco productos, años de cobertura ausentes, cohortes cambiantes, lectura GeoTIFF física sin doble escala y empaquetada con escala, QA=0, peso de borde parcial, fechas subdiarias SMAP, reparto ET entre meses y fin de año, cadencia GLDAS, HTML/errores, datos faltantes y conversiones de humedad/ET/escorrentía. No demuestran aceptación remota de tareas, duración, integridad de datos NASA reales ni permisos de la cuenta.
 
-Para cerrar la aceptación: autenticar, registrar identificadores/fechas reales, descargar todos los periodos, inspeccionar visualmente un raster por producto y QA, ejecutar `resumir.py`, incorporar cifras de diferencias/contrastes y cotejarlas con el agente 4. El PR permanece en borrador hasta entonces. La fusión y el despliegue siguen a cargo del responsable.
+Para cerrar la aceptación: esperar la terminación de las 160 tareas **ya enviadas**, descargar todos los periodos, inspeccionar visualmente un raster por producto y QA, obtener GLDAS con autenticación aceptada por el servicio, ejecutar `resumir.py`, incorporar cifras de diferencias/contrastes y cotejarlas con el agente 4. No se fabrican series a partir de tareas pendientes o gráficos de otro punto. El PR permanece en borrador hasta entonces. La fusión y el despliegue siguen a cargo del responsable.

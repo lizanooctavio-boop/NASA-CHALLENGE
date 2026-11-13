@@ -1,7 +1,7 @@
 {
   "geojson": "regiones_canada_agente3.geojson",
   "sha256_geojson": "05e0f0dc1cf0a7c7476436028b5443812d44b9087fb5c0812e9ab588bbf4b402",
-  "estado": "no_enviado",
+  "operacion": "plan_sin_envios_nuevos",
   "tareas": [
     {
       "region": "CAN_prairies",
