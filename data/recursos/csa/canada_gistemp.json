@@ -1,0 +1,146 @@
+{
+  "region": "CAN_prairies",
+  "papel": "tendencia",
+  "fuente": "https://data.giss.nasa.gov/gistemp/",
+  "producto": "gistemp250_GHCNv4",
+  "anios": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "valores": [
+    1.8923352280367218,
+    0.402507762901497,
+    0.9820407171744217,
+    0.7011958889100108,
+    1.5158676885199869,
+    2.2144924154523777,
+    1.3269344323362,
+    0.336434812340076,
+    -0.05685344735751108,
+    1.0325493772090057,
+    0.9126302977171248,
+    1.844395367366914,
+    0.1435046155584442,
+    0.12588076530611425,
+    2.2722580929767475,
+    2.675484102076273,
+    1.5023057754879643,
+    0.23610329190566035,
+    -0.28879304871399897,
+    1.1277212452882055,
+    1.809458974069569,
+    0.5772822254158619,
+    2.277029825848191,
+    2.08741692898457
+  ],
+  "unidad": "°C anomaly vs 1951–1980",
+  "notas": [
+    "año admitido con ≥ 10 meses con dato"
+  ],
+  "tendencia": {
+    "unidad": "°C",
+    "unidad_pendiente": "°C/década",
+    "anios": 24,
+    "periodo": [
+      2001,
+      2024
+    ],
+    "minimos_cuadrados": {
+      "estado": "ok",
+      "veredicto": "evidencia_insuficiente",
+      "media": 1.152,
+      "por_decada": 0.158,
+      "ic_por_decada": [
+        -0.518,
+        0.834
+      ],
+      "p_valor": 0.6242,
+      "n_efectivo": 16.5,
+      "r1_residuos": 0.186,
+      "hac_ic_por_decada": [
+        -0.316,
+        0.632
+      ],
+      "sensibilidad": [
+        {
+          "ventana": "período completo",
+          "anios": 24,
+          "por_decada": 0.158,
+          "ic_por_decada": [
+            -0.518,
+            0.834
+          ]
+        },
+        {
+          "ventana": "sin los primeros 3 años",
+          "anios": 21,
+          "por_decada": 0.22,
+          "ic_por_decada": [
+            -0.72,
+            1.16
+          ]
+        },
+        {
+          "ventana": "sin los últimos 3 años",
+          "anios": 21,
+          "por_decada": -0.015,
+          "ic_por_decada": [
+            -0.898,
+            0.869
+          ]
+        }
+      ],
+      "omitir_un_anio_por_decada": [
+        0.057,
+        0.268
+      ]
+    },
+    "mann_kendall_modificado": {
+      "s": 20.0,
+      "tau": 0.0725,
+      "z": 0.4713,
+      "p_valor": 0.6374,
+      "factor_correccion": 1.0,
+      "rezagos_significativos": [],
+      "significativo": false
+    },
+    "theil_sen": {
+      "por_decada": 0.1751,
+      "ic_por_decada": [
+        -0.5684,
+        0.7535
+      ]
+    },
+    "pettitt": {
+      "anio_cambio": 2015,
+      "k": 46.0,
+      "p_valor": 0.8282,
+      "media_antes": 0.9553,
+      "media_despues": 1.4276,
+      "salto": 0.4723
+    },
+    "veredicto": "evidencia_insuficiente"
+  }
+}
