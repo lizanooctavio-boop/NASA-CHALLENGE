@@ -4,18 +4,20 @@ Rama: `codex/recursos-tierra`, base `codex/demo-render` (`544756a`). Actualizaci
 
 ## Estado de entrega
 
-**160 solicitudes de área reales enviadas y cotejadas mediante la sesión del navegador: 150 de Nicaragua y 10 de Canadá.** Los recibos están en `data/recursos/tierra/tareas_navegador.json`, con identificadores, nombres, fechas y estados leídos de las dos páginas de Explore Requests. En la observación de `2026-11-13T06:30:48.277Z` (00:30:48 CST), había 158 pendientes y dos procesándose (17% y 28%); ninguna completada. La sesión AppEEARS está operativa: ya no falta iniciar sesión para tramitar los pedidos.
+**GLDAS completado: 360/360 bloques anuales válidos, 1 051 920 observaciones de tres horas, 15 series mensuales y 15 anuales de punto, 2001–2024.** Cada serie tiene 288 meses y 24 años completos, sin faltantes. Se guardan las URLs públicas y SHA-256 de los 360 CSV en `procedencia_gldas.json`; los crudos permanecen en caché ignorada. La descarga validó el año completo, cadencia, duplicados, unidades (`unit` del CSV) y las conversiones descritas abajo.
 
-GLDAS sigue bloqueado: el visor autenticado no recupera el enlace del subconjunto; la API de series devuelve HTTP 500 y la comprobación de cuota rechaza con HTTP 401 el token generado en Earthdata. Se reproduce tras renovar la sesión. No hay todavía series regionales nuevas descargadas de AppEEARS ni GLDAS. Las cifras de tendencias de este documento son recálculos de las referencias existentes, no resultados de los pedidos pendientes. **La aceptación científica permanece abierta** hasta descargar y validar los bundles y resolver el acceso GLDAS.
+**AppEEARS: las 160 solicitudes de área reales siguen enviadas, sin duplicarlas (150 Nicaragua y 10 Canadá).** `estado_appeears.json` guarda el último inventario leído de las dos páginas: una terminada, tres procesándose y 156 pendientes. El pedido NIC SMAP 2015 terminó el 13 de noviembre a las 06:27:58 CST, tras **6 h 37 min 24 s** desde el envío; este intervalo incluye cola y procesamiento, cuyos tiempos separados no están disponibles. Contiene 8832 GeoTIFF (70.34 MB según la web). Los recibos originales se conservan en `tareas_navegador.json`. No se extrapola una ETA para los otros pedidos.
+
+La descarga web por lote permaneció en 0/8832; una descarga individual tampoco produjo archivo. La lista de URLs sí se descargó; su primer enlace sin autenticación devolvió HTTP 403. Hace falta un token **AppEEARS**, distinto de Earthdata Bearer, para usar el adaptador y descargar los resultados ya preparados. No se extraen cookies ni credenciales ocultas del navegador. **La aceptación científica permanece abierta** para los productos AppEEARS, el NDVI estable y el contraste con SMAP.
 
 | Requisito | Resultado verificable | Pendiente |
 |---|---|---|
-| Áreas AppEEARS | Adaptador; cinco productos; 150 solicitudes Nicaragua aceptadas por la web; 160 recibos incluyendo Canadá registrados en caché sin duplicados | NASA debe terminar de generar los bundles; descargar y validar |
-| NDVI regional y cobertura estable | Media por área; cohorte fija multianual; QA y clase IGBP; prueba con cambio de cobertura | Valores reales y diferencia frente a los sitios ORNL |
-| Canadá | Diez tareas NDVI/LST aceptadas por la web con la geometría exacta del agente 3 (PR #7) | Completar/descargar; no se fusiona el PR del agente 3 |
-| GLDAS de punto | Catálogo y variables verificados; sesión web reconocida; intentos web y API con token Earthdata real documentados | Acceso que Giovanni acepte y recuperación del servicio; series aún no obtenidas |
-| Contraste de humedad | Referencias MERRA-2 recalculadas; comparador local listo | GLDAS y SMAP reales; no se inventan correlaciones |
-| Estadística | 23 análisis de referencia con `estadistica/tendencia_robusta.py`, sin modificarla | Aplicar la misma función a las nuevas series cuando existan |
+| Áreas AppEEARS | Cinco productos, 160 tareas aceptadas, recibos registrados sin duplicados, primer bundle terminado | Terminar cola NASA, descargar y validar los rasters con token AppEEARS |
+| NDVI regional y cobertura estable | Media de área, cohorte fija multianual y QA probados | Series reales y diferencia frente a sitios ORNL |
+| Canadá | Diez tareas NDVI/LST enviadas con geometría exacta del agente 3 | Completar y descargar |
+| GLDAS de punto | 360 años descargados, 15 series mensuales y anuales completas | Cotejo científico del agente 4 |
+| Contraste de humedad | Seis correlaciones GLDAS–MERRA-2 calculadas | SMAP real pendiente de descarga |
+| Estadística | 38 análisis: 23 referencias y 15 series GLDAS con funciones existentes | Añadir AppEEARS cuando haya datos |
 
 ## Acceso y evidencia de los servicios
 
@@ -27,7 +29,9 @@ El endpoint histórico `https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/access/t
 
 Prueba posterior con el navegador y un token creado con autorización del usuario: GES DISC muestra `Hi, Manuel`; cambiar el punto a León (12.45, −86.85) produce `Failed to fetch subset job link contents:`. El gráfico conservaba el punto anterior (36.61, −80.24): **no se exportó ni se trató como dato de Nicaragua**. También apareció el aviso de cinco intentos fallidos de renovación de sesión. Tras recargar y volver a consultar León se reprodujo el error. `hydrology_error.jpg` conserva evidencia de la interfaz.
 
-La API `/timeseries` devolvió HTTP 500 `{"message":null}` para `SoilMoi0_10cm_inst` y `Evap_tavg` de tres horas y para humedad mensual, con y sin el parámetro de versión de API documentado. `/quota` devolvió HTTP 401 `Invalid bearer token`. Se comprobó que el token leído de la página estaba completo (704 caracteres, RS256, emisor Earthdata, sin elipsis); no se afirma que Giovanni lo acepte. No se almacenó en el repositorio ni en configuración permanente; la transferencia temporal se eliminó al leerla y se retiró de memoria al terminar su uso. Para continuar GLDAS hace falta una autenticación aceptada por Giovanni o resolver el fallo de su visor/API; no basta con ver una sesión iniciada en la web.
+Los errores iniciales HTTP 500 en `/timeseries` y 401 en `/quota` quedaron **resueltos** después de que el usuario autorizara y aceptara el EULA de **NASA GESDISC DATA ARCHIVE** en Earthdata. La interfaz confirmó la aplicación autorizada (`archivo_gldas_autorizado.jpg`). El mismo token Earthdata pasó a devolver HTTP 200 para cuota y CSV de series; no fue necesario regenerarlo. El token se usó solo en memoria durante la descarga; la transferencia temporal fuera del repositorio se eliminó al leerla. Nunca se añade al código, procedencia, datos o configuración permanente.
+
+La descarga real utilizó tres solicitudes simultáneas como máximo y caché por año. Los 360 bloques terminaron sin errores. Una primera consulta de prueba devolvió 24.553 kg/m² de humedad 0–10 cm en León el 2024-01-01 00:00 UTC (0.24553 m³/m³ tras convertir); se distingue de la extracción completa. El procedimiento reproducible sigue siendo el CLI `gldas_datarods` con Earthdata token y el EULA ya aceptado.
 
 ## Preparación y credenciales
 
@@ -77,7 +81,7 @@ Esta importación no usa red ni crea tareas. Valida nombre, UUID, duplicados y c
 
 Cada solicitud se identifica por SHA-256 del payload. La caché conserva solicitud, geometría, identificador y hora de envío; los archivos se añadirán cuando puedan descargarse. Tras completar, `procedencia_nicaragua.json` guarda fechas `created`, `updated`, `completed`, productos, periodos y SHA-256 de archivos.
 
-Tiempos reales parciales: el primer pedido, SMAP NIC 2015, ID `5c1e5da0-a4a3-40d2-bda1-eee9dec63163`, se envió el 12 de noviembre a las 23:50:34 CST y estaba al 28% a las 00:30:48 CST del día 13: **40 min 14 s transcurridos desde el envío**. El siguiente estaba al 17%; los otros 158 seguían pendientes. Ese tiempo incluye espera y trabajo; no se conoce el comienzo exacto de procesamiento, ni la duración final. No extrapolar una ETA a partir del porcentaje. Todavía no hay tiempos completos de cola/ejecución ni bundles finalizados. `solicitudes_navegador.jpg` acredita el total de 160 pedidos; los sondeos públicos y pruebas sintéticas no se usan como medidas de procesamiento.
+Tiempos reales parciales: el primer pedido, SMAP NIC 2015, ID `5c1e5da0-a4a3-40d2-bda1-eee9dec63163`, se envió el 12 de noviembre a las 23:50:34 CST y estaba al 28% a las 00:30:48 CST del día 13: **40 min 14 s transcurridos desde el envío**. El siguiente estaba al 17%; los otros 158 seguían pendientes. Ese tiempo incluye espera y trabajo; no se conoce el comienzo exacto de procesamiento, ni la duración final. No extrapolar una ETA a partir del porcentaje. El primer tiempo completo de envío a finalización se documenta en el estado de entrega; los tiempos de cola y ejecución por separado siguen sin conocerse. `solicitudes_navegador.jpg` acredita el total de 160 pedidos; los sondeos públicos y pruebas sintéticas no se usan como medidas de procesamiento.
 
 Canadá: el archivo no está en la base `codex/demo-render`, pero ya existe en el [PR #7 del agente 3](https://github.com/lizanooctavio-boop/NASA-CHALLENGE/pull/7). Se guarda una copia exacta en `data/recursos/tierra/regiones_canada_agente3.geojson`: commit `ddad804318868dae8be71162f41678a574978e34`, SHA-256 `05e0f0dc1cf0a7c7476436028b5443812d44b9087fb5c0812e9ab588bbf4b402`. La procedencia está en `procedencia_geometria_canada.json`. Es la ecozona Prairies de AAFC, 467127.9 km² según sus metadatos; se conserva la atribución/licencia del agente 3. Las diez tareas de `plan_canada.json` (cinco bloques por producto) ya están aceptadas por AppEEARS y registradas en los recibos. Los siguientes comandos se conservan como referencia del flujo; **no reenviar desde una caché vacía**:
 
@@ -133,7 +137,7 @@ Los tres puntos son el primer sitio existente de cada región en `fuentes/modis.
 
 Las salidas `series_appeears_nicaragua_mensual.json`, `series_appeears_nicaragua_anual.json`, `series_gldas_mensual.json`, `series_gldas_anual.json` y sus variantes de Canadá son listas de `SerieRegional.como_dict()` (`region`, `variable`, `unidad`, `frecuencia`, `tiempos`, `valores`, `fuente`, `version`, `notas`), con faltantes JSON `null`. Los crudos nunca se copian a `data/`. Los adaptadores se importan directamente desde sus módulos; no se modifica el registro compartido de fuentes por la división de archivos de este encargo.
 
-`data/recursos/tierra/resumir.py` importa `estadistica/tendencia_robusta.analizar` y escribe `analisis.json` con Sen, IC95%, MK modificado, MCO/HAC, Pettitt, veredicto y huellas SHA-256 de entradas. `tabla_analisis.md` contiene las 23 filas de referencia. También busca las nuevas salidas y calcula automáticamente diferencias NDVI regional/estable/sitio y correlaciones mensuales de humedad sobre fechas comunes. No resta índices MERRA-2 de humedad volumétrica. Las correlaciones incluyen estacionalidad/autocorrelación y se rotulan descriptivas, sin inferencia de validación o causalidad. GLDAS 0–10 cm, SMAP superficial ~0–5 cm, GLDAS 10–40 cm y SMAP raíz ~0–100 cm representan profundidades distintas. GWETTOP/GWETROOT de POWER/MERRA-2 son índices relativos 0–1, no m³/m³.
+`data/recursos/tierra/resumir.py` importa `estadistica/tendencia_robusta.analizar` y escribe `analisis.json` con Sen, IC95%, MK modificado, MCO/HAC, Pettitt, veredicto y huellas SHA-256 de entradas. `tabla_analisis.md` contiene 38 filas (23 referencias y 15 GLDAS). También busca las nuevas salidas y calcula automáticamente diferencias NDVI regional/estable/sitio y correlaciones mensuales de humedad sobre fechas comunes. No resta índices MERRA-2 de humedad volumétrica. Las correlaciones incluyen estacionalidad/autocorrelación y se rotulan descriptivas, sin inferencia de validación o causalidad. GLDAS 0–10 cm, SMAP superficial ~0–5 cm, GLDAS 10–40 cm y SMAP raíz ~0–100 cm representan profundidades distintas. GWETTOP/GWETROOT de POWER/MERRA-2 son índices relativos 0–1, no m³/m³.
 
 Resultados de **referencia existente**, pendientes de contrastar con nuevas series:
 
@@ -153,6 +157,38 @@ NDVI es adimensional; GWET son unidades de índice por década. La referencia ND
 
 En el periodo completo 1981–2024, GWETTOP/GWETROOT arrojan `tendencia_detectada` en todas las regiones existentes; por ejemplo NIC: +0.0572 y +0.0425 por década. En 2015–2024, las cinco regiones existentes arrojan `evidencia_insuficiente`. Es una descripción del reanálisis y de la dependencia de la ventana, no un hallazgo climático validado: MERRA-2 tiene discontinuidades ya documentadas en el proyecto. Para SMAP, 2015 es parcial, así que una serie anual estricta hasta 2024 puede tener solo 9 años y devolver `datos_insuficientes`; no se amplía artificialmente la muestra.
 
+## Resultados GLDAS reales y contraste descriptivo
+
+Las pendientes usan 24 años completos (2001–2024), la misma función `estadistica/tendencia_robusta.analizar` existente y sin modificarla. Humedad en m³/m³ por década; ET y escorrentía en mm/año por década. `metodos_discrepan` se conserva como veredicto del código y no se presenta como una tendencia confirmada.
+
+| Región | Variable | Periodo | Sen / década | Veredicto |
+|---|---|---|---:|---|
+| caribe | et_gldas | [2001, 2024] | 56.5239 | metodos_discrepan |
+| caribe | escorrentia_superficial_gldas | [2001, 2024] | 8.3067 | metodos_discrepan |
+| caribe | escorrentia_subterranea_gldas | [2001, 2024] | -50.6151 | evidencia_insuficiente |
+| caribe | humedad_gldas_0_10 | [2001, 2024] | -0.0031 | metodos_discrepan |
+| caribe | humedad_gldas_10_40 | [2001, 2024] | -0.0039 | metodos_discrepan |
+| central | et_gldas | [2001, 2024] | 0.1206 | evidencia_insuficiente |
+| central | escorrentia_superficial_gldas | [2001, 2024] | -1.9013 | evidencia_insuficiente |
+| central | escorrentia_subterranea_gldas | [2001, 2024] | -51.6736 | evidencia_insuficiente |
+| central | humedad_gldas_0_10 | [2001, 2024] | -0.0027 | evidencia_insuficiente |
+| central | humedad_gldas_10_40 | [2001, 2024] | -0.0047 | evidencia_insuficiente |
+| pacifico | et_gldas | [2001, 2024] | 26.0469 | evidencia_insuficiente |
+| pacifico | escorrentia_superficial_gldas | [2001, 2024] | -0.2436 | evidencia_insuficiente |
+| pacifico | escorrentia_subterranea_gldas | [2001, 2024] | 10.2921 | evidencia_insuficiente |
+| pacifico | humedad_gldas_0_10 | [2001, 2024] | 0.0005 | evidencia_insuficiente |
+| pacifico | humedad_gldas_10_40 | [2001, 2024] | 0.0023 | evidencia_insuficiente |
+
+GLDAS frente a POWER/MERRA-2, correlación mensual descriptiva en 288 meses comunes (2001-01 a 2024-12):
+
+| Región | GLDAS 0–10 cm vs GWETTOP | GLDAS 10–40 cm vs GWETROOT |
+|---|---:|---:|
+| Pacífico | 0.9414 | 0.8874 |
+| Central | 0.8446 | 0.7705 |
+| Caribe | 0.8760 | 0.8343 |
+
+La coincidencia incluye el ciclo estacional y autocorrelación, mezcla un punto GLDAS con agregados MERRA-2 y compara profundidades distintas. GWET es un índice relativo, por lo que no se calcula una diferencia en m³/m³. Estas correlaciones no validan independencia, exactitud ni causalidad climática. El contraste GLDAS–SMAP permanece pendiente; no se sustituye por el CSV de estadísticas del bundle ni por una serie parcial sin QA.
+
 ## Pruebas y límites de la verificación
 
 ```powershell
@@ -163,4 +199,6 @@ Resultado actualizado: `python -m pytest tests -q`: **82 passed, 1 skipped**. Se
 
 Pruebas sin red ni credenciales: polígonos de área, Canadá con fixture, orden y reanudación del envío, estados vacío/error/timeout, QA de cinco productos, años de cobertura ausentes, cohortes cambiantes, lectura GeoTIFF física sin doble escala y empaquetada con escala, QA=0, peso de borde parcial, fechas subdiarias SMAP, reparto ET entre meses y fin de año, cadencia GLDAS, HTML/errores, datos faltantes y conversiones de humedad/ET/escorrentía. No demuestran aceptación remota de tareas, duración, integridad de datos NASA reales ni permisos de la cuenta.
 
-Para cerrar la aceptación: esperar la terminación de las 160 tareas **ya enviadas**, descargar todos los periodos, inspeccionar visualmente un raster por producto y QA, obtener GLDAS con autenticación aceptada por el servicio, ejecutar `resumir.py`, incorporar cifras de diferencias/contrastes y cotejarlas con el agente 4. No se fabrican series a partir de tareas pendientes o gráficos de otro punto. El PR permanece en borrador hasta entonces. La fusión y el despliegue siguen a cargo del responsable.
+Verificación de esta actualización: **61 pruebas pasadas** (`tests/test_recursos_tierra.py` y `tests/test_indicadores_nicaragua.py`), 360 CSV reales validados y comprobación de 288 meses/24 años sin nulos en las 15 series. `resumir.py` produjo 38 análisis y seis contrastes.
+
+Para cerrar la aceptación: esperar la terminación de las tareas AppEEARS **ya enviadas**, descargar todos los periodos con token AppEEARS, inspeccionar visualmente un raster por producto y QA, volver a ejecutar `resumir.py`, incorporar diferencias NDVI/contrastes SMAP y cotejarlas con el agente 4. No se fabrican series a partir de tareas pendientes o gráficos de otro punto. El PR permanece en borrador hasta entonces. La fusión y el despliegue siguen a cargo del responsable.
