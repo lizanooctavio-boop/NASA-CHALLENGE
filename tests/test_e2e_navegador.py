@@ -9,7 +9,9 @@ un navegador Chromium headless. Comprueba:
    independientes (temperatura_gistemp, lluvia_anual_imerg, lluvia_jun_nov_imerg, ndvi), contraste
    frente a MERRA-2 y descarga CSV frente a data/fenomenos_nicaragua.json.
 3. Pestaña «El Niño & cyclones» (#fenomenos): bloque ONI visible con datos reales.
-4. Ausencia de textos residuales de «datos de ejemplo».
+4. Pestañas «Investigate», «Learn» y «Sources»: cada investigación de data/recursos_integrados.json con
+   su veredicto, sus contrastes y su CSV; solo los recursos en uso en «Sources».
+5. Ausencia de textos residuales de «datos de ejemplo».
 """
 import csv
 import functools
@@ -217,6 +219,31 @@ class RecorridoEnNavegador(unittest.TestCase):
                     self.assertEqual(anios_csv, v_json["anios"])
                     for a, b in zip(vals_csv, v_json["valores"]):
                         self.assertAlmostEqual(a, b, delta=1e-4)
+
+
+    def test_pestana_investigate_veredictos_contrastes_csv_y_fuentes(self):
+        datos = json.loads((RAIZ / "data" / "recursos_integrados.json").read_text(encoding="utf-8"))
+        inv = self.salida["investigar"]
+        self.assertIsNone(inv["error"])
+        self.assertEqual(inv["categorias"], [c["id"] for c in datos["categorias"] if c["con_datos"]])
+        textos = {"tendencia_detectada": "Trend detected", "evidencia_insuficiente": "Not enough evidence of a trend",
+                  "metodos_discrepan": "Methods disagree", "datos_insuficientes": "Not enough data for a trend test"}
+        for caso in datos["investigaciones"]:
+            ui = inv["casos"][caso["id"]]
+            with self.subTest(caso["id"]):
+                self.assertEqual(ui["seleccion"], caso["id"])
+                esperado = textos[caso["tendencia"]["veredicto"]] if "tendencia" in caso else "Record too short for a trend test"
+                self.assertEqual(ui["estado"], esperado)
+                self.assertEqual(ui["contrastes"], len(caso["contrastes"]))
+                self.assertEqual(ui["csvNombre"], f"{caso['id']}.csv")
+                filas = [l for l in ui["csvTexto"].lstrip("﻿").splitlines() if l and not l.startswith("#")][1:]
+                self.assertEqual([f.split(",")[0] for f in filas], [str(t) for t in caso["tiempos"]])
+                for f, v in zip(filas, caso["valores"]):
+                    if v is not None:
+                        self.assertAlmostEqual(float(f.split(",")[1]), v, delta=1e-6)
+        self.assertEqual(inv["demos"], [d["id"] for d in datos["demostraciones"]])
+        self.assertEqual(inv["fuentes"], [r["id"] for r in datos["recursos"] if r["estado"] == "en_uso"])
+        self.assertGreaterEqual(inv["aprender"], 8)
 
 
 if __name__ == "__main__":

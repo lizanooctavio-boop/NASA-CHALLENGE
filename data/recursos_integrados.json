@@ -1,0 +1,1620 @@
+{
+ "esquema": "nasa-challenge/recursos",
+ "version_esquema": "1.0.0",
+ "generado": "2026-11-13",
+ "categorias": [
+  {
+   "id": "lluvia",
+   "nombre_en": "Rain",
+   "pregunta_en": "Is it raining more or less than before?",
+   "con_datos": true
+  },
+  {
+   "id": "temperatura",
+   "nombre_en": "Temperature",
+   "pregunta_en": "Is it getting warmer?",
+   "con_datos": true
+  },
+  {
+   "id": "vegetacion",
+   "nombre_en": "Vegetation & ecosystems",
+   "pregunta_en": "Is the land getting greener or browner?",
+   "descripcion_en": "Satellite observations can help identify changes in forest condition, land cover and habitat. Ask whether a greenness change persists across years and whether it coincides with disturbance or land-use change.",
+   "recurso": 12,
+   "con_datos": true
+  },
+  {
+   "id": "agua",
+   "nombre_en": "Water bodies",
+   "pregunta_en": "Are lakes and soils holding more or less water?",
+   "descripcion_en": "Satellite radar can map water extent, while SWOT measures water-surface elevation. Changes can reflect seasonal inflows, evaporation and water management.",
+   "recurso": 12,
+   "con_datos": false
+  },
+  {
+   "id": "aire",
+   "nombre_en": "Air quality",
+   "pregunta_en": "Is the air over the city changing?",
+   "con_datos": false
+  },
+  {
+   "id": "costa",
+   "nombre_en": "Coast & ocean",
+   "pregunta_en": "Are coastal waters changing?",
+   "con_datos": false
+  }
+ ],
+ "lugares": [
+  {
+   "id": "NIC",
+   "nombre_en": "Nicaragua",
+   "pais": "Nicaragua",
+   "centro": [
+    12.9,
+    -85.2
+   ],
+   "zoom": 6
+  },
+  {
+   "id": "caja_sicc",
+   "nombre_en": "Study box (SW Nicaragua)",
+   "pais": "Nicaragua",
+   "centro": [
+    11.65,
+    -85.05
+   ],
+   "zoom": 7
+  },
+  {
+   "id": "pacifico",
+   "nombre_en": "Pacific lowlands",
+   "pais": "Nicaragua",
+   "centro": [
+    12.3,
+    -86.4
+   ],
+   "zoom": 7
+  },
+  {
+   "id": "central",
+   "nombre_en": "Central highlands",
+   "pais": "Nicaragua",
+   "centro": [
+    13.0,
+    -85.7
+   ],
+   "zoom": 7
+  },
+  {
+   "id": "caribe",
+   "nombre_en": "Caribbean coast",
+   "pais": "Nicaragua",
+   "centro": [
+    12.9,
+    -84.0
+   ],
+   "zoom": 7
+  },
+  {
+   "id": "HND",
+   "nombre_en": "Honduras",
+   "pais": "Honduras",
+   "centro": [
+    14.8,
+    -86.6
+   ],
+   "zoom": 6
+  },
+  {
+   "id": "CRI",
+   "nombre_en": "Costa Rica",
+   "pais": "Costa Rica",
+   "centro": [
+    9.9,
+    -84.2
+   ],
+   "zoom": 7
+  }
+ ],
+ "investigaciones": [
+  {
+   "id": "lluvia_NIC",
+   "categoria": "lluvia",
+   "lugar": "NIC",
+   "titulo_en": "Annual rainfall",
+   "definicion_en": "All the rain that fell in a year.",
+   "unidad": "mm",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    2062.5832,
+    2212.8733,
+    2236.1415,
+    2130.5153,
+    2295.9025,
+    1627.6176,
+    2287.7528,
+    2466.6597,
+    2155.796,
+    2302.2754,
+    2148.631,
+    1893.7008,
+    2011.061,
+    1942.9245,
+    1705.1906,
+    2141.7187,
+    2382.3923,
+    2060.2023,
+    1620.488,
+    2471.7715,
+    1907.8913,
+    2176.1332,
+    1798.0079,
+    2219.1247
+   ],
+   "fuente": {
+    "producto": "NASA GPM IMERG Final V07B",
+    "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGM_07/summary"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 24,
+    "periodo": [
+     2001,
+     2024
+    ],
+    "unidad_pendiente": "mm/decade",
+    "sen": {
+     "por_decada": -64.9229,
+     "ic": [
+      -233.2394,
+      98.2826
+     ]
+    },
+    "mco": {
+     "por_decada": -62.332,
+     "ic": [
+      -210.763,
+      86.1
+     ],
+     "p_valor": 0.3932
+    },
+    "hac_ic": [
+     -144.58,
+     19.916
+    ],
+    "mann_kendall_p": 0.4419,
+    "media": 2094.056
+   }
+  },
+  {
+   "id": "lluvia_caja_sicc",
+   "categoria": "lluvia",
+   "lugar": "caja_sicc",
+   "titulo_en": "Annual rainfall",
+   "definicion_en": "All the rain that fell in a year.",
+   "unidad": "mm",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    2131.1937,
+    2282.4073,
+    2347.976,
+    2333.0226,
+    2369.6625,
+    1801.8411,
+    2513.7136,
+    2684.7333,
+    2067.2238,
+    2486.7425,
+    2192.8676,
+    2013.3706,
+    2120.2424,
+    1985.7148,
+    1768.1516,
+    2249.2995,
+    2433.377,
+    2241.6658,
+    1991.0084,
+    2517.4791,
+    2042.7218,
+    2365.8082,
+    1935.8147,
+    2664.4893
+   ],
+   "fuente": {
+    "producto": "NASA GPM IMERG Final V07B",
+    "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGM_07/summary"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 24,
+    "periodo": [
+     2001,
+     2024
+    ],
+    "unidad_pendiente": "mm/decade",
+    "sen": {
+     "por_decada": -28.7047,
+     "ic": [
+      -184.4277,
+      188.8646
+     ]
+    },
+    "mco": {
+     "por_decada": -13.132,
+     "ic": [
+      -170.748,
+      144.485
+     ],
+     "p_valor": 0.8644
+    },
+    "hac_ic": [
+     -119.373,
+     93.11
+    ],
+    "mann_kendall_p": 0.785,
+    "media": 2230.855
+   }
+  },
+  {
+   "id": "lluvia_jun_nov_NIC",
+   "categoria": "lluvia",
+   "lugar": "NIC",
+   "titulo_en": "Rainy-season rainfall (June–November)",
+   "definicion_en": "Rain during the main rainy season.",
+   "unidad": "mm",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    1536.8575,
+    1635.6655,
+    1717.2182,
+    1458.2705,
+    1758.324,
+    1183.0468,
+    1780.2585,
+    1916.5609,
+    1686.2041,
+    1789.8927,
+    1632.3627,
+    1349.9575,
+    1514.1363,
+    1574.8295,
+    1298.3211,
+    1655.9673,
+    1711.3281,
+    1475.8821,
+    1151.6726,
+    1980.3305,
+    1392.7444,
+    1699.9673,
+    1468.7294,
+    1744.1306
+   ],
+   "fuente": {
+    "producto": "NASA GPM IMERG Final V07B",
+    "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGM_07/summary"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 24,
+    "periodo": [
+     2001,
+     2024
+    ],
+    "unidad_pendiente": "mm/decade",
+    "sen": {
+     "por_decada": -23.4278,
+     "ic": [
+      -180.2632,
+      128.0826
+     ]
+    },
+    "mco": {
+     "por_decada": -22.309,
+     "ic": [
+      -154.964,
+      110.346
+     ],
+     "p_valor": 0.7306
+    },
+    "hac_ic": [
+     -102.475,
+     57.858
+    ],
+    "mann_kendall_p": 0.7098,
+    "media": 1588.027
+   }
+  },
+  {
+   "id": "lluvia_HND",
+   "categoria": "lluvia",
+   "lugar": "HND",
+   "titulo_en": "Annual rainfall",
+   "definicion_en": "All the rain that fell in a year.",
+   "unidad": "mm",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    1508.032,
+    1494.987,
+    1753.69,
+    1494.879,
+    1850.312,
+    1419.308,
+    1778.754,
+    2075.707,
+    1621.981,
+    1942.778,
+    1858.367,
+    1668.556,
+    1692.692,
+    1683.151,
+    1460.007,
+    1665.697,
+    1973.218,
+    1512.344,
+    1169.01,
+    2008.502,
+    1398.108,
+    1637.141,
+    1412.742,
+    1720.16
+   ],
+   "fuente": {
+    "producto": "NASA GPM IMERG Final V07B",
+    "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGM_07/summary"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 24,
+    "periodo": [
+     2001,
+     2024
+    ],
+    "unidad_pendiente": "mm/decade",
+    "sen": {
+     "por_decada": -41.1971,
+     "ic": [
+      -191.7512,
+      122.34
+     ]
+    },
+    "mco": {
+     "por_decada": -35.004,
+     "ic": [
+      -173.729,
+      103.72
+     ],
+     "p_valor": 0.606
+    },
+    "hac_ic": [
+     -142.09,
+     72.081
+    ],
+    "mann_kendall_p": 0.6024,
+    "media": 1658.338
+   }
+  },
+  {
+   "id": "lluvia_CRI",
+   "categoria": "lluvia",
+   "lugar": "CRI",
+   "titulo_en": "Annual rainfall",
+   "definicion_en": "All the rain that fell in a year.",
+   "unidad": "mm",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    3075.835,
+    3255.612,
+    3412.662,
+    3303.2,
+    3346.744,
+    2990.243,
+    3506.951,
+    3700.081,
+    2952.529,
+    3495.544,
+    3051.272,
+    2634.551,
+    2630.285,
+    3089.733,
+    2657.7,
+    2747.303,
+    2887.899,
+    2953.279,
+    2710.045,
+    3147.677,
+    3016.348,
+    3022.688,
+    2651.099,
+    3260.294
+   ],
+   "fuente": {
+    "producto": "NASA GPM IMERG Final V07B",
+    "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGM_07/summary"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "metodos_discrepan",
+    "veredicto_contrato": "metodos_discrepan",
+    "anios": 24,
+    "periodo": [
+     2001,
+     2024
+    ],
+    "unidad_pendiente": "mm/decade",
+    "sen": {
+     "por_decada": -168.3861,
+     "ic": [
+      -369.4922,
+      20.814
+     ]
+    },
+    "mco": {
+     "por_decada": -201.224,
+     "ic": [
+      -378.357,
+      -24.091
+     ],
+     "p_valor": 0.028
+    },
+    "hac_ic": [
+     -332.359,
+     -70.089
+    ],
+    "mann_kendall_p": 0.0965,
+    "media": 3062.482
+   }
+  },
+  {
+   "id": "temperatura_NIC",
+   "categoria": "temperatura",
+   "lugar": "NIC",
+   "titulo_en": "Air temperature anomaly",
+   "definicion_en": "How much warmer or cooler the air near the ground was than the 1951–1980 average.",
+   "unidad": "°C",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    0.151,
+    0.2873,
+    0.6188,
+    -0.0603,
+    0.0067,
+    0.0212,
+    0.6882,
+    0.2763,
+    -0.033,
+    0.2956,
+    0.3672,
+    0.4263,
+    0.3749,
+    0.6125,
+    0.8661,
+    -0.0129,
+    0.8306,
+    1.2371,
+    0.2407,
+    0.2198,
+    0.3537,
+    0.6228,
+    0.8758,
+    0.7608,
+    0.8461,
+    0.8728,
+    0.8965,
+    0.4537,
+    0.962,
+    0.639,
+    0.6148,
+    0.7001,
+    0.9497,
+    0.9419,
+    1.3704,
+    1.2595,
+    0.867,
+    0.8948,
+    1.3803,
+    1.4177,
+    1.1647,
+    0.9043,
+    1.637,
+    1.7751
+   ],
+   "fuente": {
+    "producto": "NASA GISS GISTEMP v4 (250 km)",
+    "url": "https://data.giss.nasa.gov/gistemp/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 44,
+    "periodo": [
+     1981,
+     2024
+    ],
+    "unidad_pendiente": "°C/decade",
+    "sen": {
+     "por_decada": 0.2939,
+     "ic": [
+      0.2169,
+      0.374
+     ]
+    },
+    "mco": {
+     "por_decada": 0.284,
+     "ic": [
+      0.213,
+      0.355
+     ],
+     "p_valor": 0.0
+    },
+    "hac_ic": [
+     0.23,
+     0.338
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 0.695
+   }
+  },
+  {
+   "id": "temperatura_pacifico",
+   "categoria": "temperatura",
+   "lugar": "pacifico",
+   "titulo_en": "Air temperature anomaly",
+   "definicion_en": "How much warmer or cooler the air near the ground was than the 1951–1980 average.",
+   "unidad": "°C",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    0.111,
+    0.2638,
+    0.5907,
+    -0.1409,
+    -0.0729,
+    0.0756,
+    0.7238,
+    0.1772,
+    -0.0829,
+    0.3368,
+    0.4632,
+    0.4877,
+    0.4462,
+    0.6184,
+    0.8193,
+    -0.0709,
+    0.8103,
+    1.2217,
+    0.1832,
+    0.1545,
+    0.4438,
+    0.6252,
+    0.8661,
+    0.7489,
+    0.8228,
+    0.7656,
+    0.8013,
+    0.4682,
+    1.0199,
+    0.626,
+    0.6166,
+    0.7491,
+    0.9683,
+    0.865,
+    1.4262,
+    1.2812,
+    0.8281,
+    0.8274,
+    1.338,
+    1.3818,
+    1.2746,
+    0.8905,
+    1.6593,
+    1.773
+   ],
+   "fuente": {
+    "producto": "NASA GISS GISTEMP v4 (250 km)",
+    "url": "https://data.giss.nasa.gov/gistemp/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 44,
+    "periodo": [
+     1981,
+     2024
+    ],
+    "unidad_pendiente": "°C/decade",
+    "sen": {
+     "por_decada": 0.295,
+     "ic": [
+      0.2161,
+      0.3733
+     ]
+    },
+    "mco": {
+     "por_decada": 0.288,
+     "ic": [
+      0.217,
+      0.359
+     ],
+     "p_valor": 0.0
+    },
+    "hac_ic": [
+     0.234,
+     0.342
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 0.686
+   }
+  },
+  {
+   "id": "temperatura_central",
+   "categoria": "temperatura",
+   "lugar": "central",
+   "titulo_en": "Air temperature anomaly",
+   "definicion_en": "How much warmer or cooler the air near the ground was than the 1951–1980 average.",
+   "unidad": "°C",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    0.1352,
+    0.3037,
+    0.6131,
+    -0.0793,
+    0.0072,
+    -0.0087,
+    0.723,
+    0.2595,
+    -0.0346,
+    0.2823,
+    0.3663,
+    0.4366,
+    0.3623,
+    0.6835,
+    0.9217,
+    -0.0506,
+    0.8477,
+    1.3283,
+    0.2807,
+    0.1804,
+    0.2969,
+    0.5678,
+    0.9072,
+    0.7692,
+    0.8434,
+    0.9158,
+    0.8889,
+    0.4257,
+    0.9336,
+    0.6032,
+    0.6069,
+    0.7075,
+    0.9574,
+    0.9808,
+    1.4238,
+    1.2938,
+    0.8518,
+    0.8252,
+    1.3754,
+    1.4443,
+    1.2163,
+    0.9286,
+    1.6461,
+    1.7938
+   ],
+   "fuente": {
+    "producto": "NASA GISS GISTEMP v4 (250 km)",
+    "url": "https://data.giss.nasa.gov/gistemp/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 44,
+    "periodo": [
+     1981,
+     2024
+    ],
+    "unidad_pendiente": "°C/decade",
+    "sen": {
+     "por_decada": 0.2925,
+     "ic": [
+      0.2116,
+      0.3733
+     ]
+    },
+    "mco": {
+     "por_decada": 0.287,
+     "ic": [
+      0.208,
+      0.365
+     ],
+     "p_valor": 0.0
+    },
+    "hac_ic": [
+     0.23,
+     0.343
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 0.699
+   }
+  },
+  {
+   "id": "temperatura_caribe",
+   "categoria": "temperatura",
+   "lugar": "caribe",
+   "titulo_en": "Air temperature anomaly",
+   "definicion_en": "How much warmer or cooler the air near the ground was than the 1951–1980 average.",
+   "unidad": "°C",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    0.1712,
+    0.2802,
+    0.6352,
+    -0.0268,
+    0.0297,
+    0.0265,
+    0.6582,
+    0.3131,
+    -0.0182,
+    0.2916,
+    0.3417,
+    0.4059,
+    0.3627,
+    0.5656,
+    0.8469,
+    0.017,
+    0.8272,
+    1.1912,
+    0.2347,
+    0.2596,
+    0.3601,
+    0.653,
+    0.8615,
+    0.7594,
+    0.8535,
+    0.8803,
+    0.9271,
+    0.4649,
+    0.9602,
+    0.6625,
+    0.6185,
+    0.6829,
+    0.9381,
+    0.9418,
+    1.3258,
+    1.2342,
+    0.8859,
+    0.9521,
+    1.3955,
+    1.4138,
+    1.1054,
+    0.8948,
+    1.6254,
+    1.7654
+   ],
+   "fuente": {
+    "producto": "NASA GISS GISTEMP v4 (250 km)",
+    "url": "https://data.giss.nasa.gov/gistemp/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 44,
+    "periodo": [
+     1981,
+     2024
+    ],
+    "unidad_pendiente": "°C/decade",
+    "sen": {
+     "por_decada": 0.2873,
+     "ic": [
+      0.2178,
+      0.3726
+     ]
+    },
+    "mco": {
+     "por_decada": 0.281,
+     "ic": [
+      0.213,
+      0.349
+     ],
+     "p_valor": 0.0
+    },
+    "hac_ic": [
+     0.228,
+     0.334
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 0.695
+   }
+  },
+  {
+   "id": "ndvi_sitios_pacifico",
+   "categoria": "vegetacion",
+   "lugar": "pacifico",
+   "titulo_en": "Vegetation greenness (NDVI) at sample sites",
+   "definicion_en": "How green the vegetation is, from 0 (bare) to 1 (dense), at representative sites.",
+   "unidad": "NDVI",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    0.5738,
+    0.5785,
+    0.5576,
+    0.585,
+    0.5929,
+    0.5647,
+    0.6045,
+    0.613,
+    0.5845,
+    0.5645,
+    0.6022,
+    0.5776,
+    0.5789,
+    0.5346,
+    0.5256,
+    0.5137,
+    0.5627,
+    0.5779,
+    0.5714,
+    0.5642,
+    0.5829,
+    0.6228,
+    0.603,
+    0.6135,
+    0.6148
+   ],
+   "fuente": {
+    "producto": "NASA MODIS MOD13Q1 NDVI (ORNL DAAC subsets)",
+    "url": "https://modis.ornl.gov/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 25,
+    "periodo": [
+     2000,
+     2024
+    ],
+    "unidad_pendiente": "NDVI/decade",
+    "sen": {
+     "por_decada": 0.0064,
+     "ic": [
+      -0.0089,
+      0.0227
+     ]
+    },
+    "mco": {
+     "por_decada": 0.006,
+     "ic": [
+      -0.038,
+      0.05
+     ],
+     "p_valor": 0.7366
+    },
+    "hac_ic": [
+     -0.011,
+     0.023
+    ],
+    "mann_kendall_p": 0.4805,
+    "media": 0.579
+   }
+  },
+  {
+   "id": "ndvi_sitios_central",
+   "categoria": "vegetacion",
+   "lugar": "central",
+   "titulo_en": "Vegetation greenness (NDVI) at sample sites",
+   "definicion_en": "How green the vegetation is, from 0 (bare) to 1 (dense), at representative sites.",
+   "unidad": "NDVI",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    0.4205,
+    0.4032,
+    0.4049,
+    0.4304,
+    0.4075,
+    0.4277,
+    0.4349,
+    0.4387,
+    0.4123,
+    0.4068,
+    0.4239,
+    0.4097,
+    0.3918,
+    0.3823,
+    0.362,
+    0.3572,
+    0.3738,
+    0.3531,
+    0.3416,
+    0.342,
+    0.3454,
+    0.358,
+    0.3377,
+    0.3358,
+    0.3406
+   ],
+   "fuente": {
+    "producto": "NASA MODIS MOD13Q1 NDVI (ORNL DAAC subsets)",
+    "url": "https://modis.ornl.gov/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 25,
+    "periodo": [
+     2000,
+     2024
+    ],
+    "unidad_pendiente": "NDVI/decade",
+    "sen": {
+     "por_decada": -0.0432,
+     "ic": [
+      -0.0541,
+      -0.0313
+     ]
+    },
+    "mco": {
+     "por_decada": -0.043,
+     "ic": [
+      -0.069,
+      -0.016
+     ],
+     "p_valor": 0.0089
+    },
+    "hac_ic": [
+     -0.056,
+     -0.03
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 0.386
+   }
+  },
+  {
+   "id": "ndvi_sitios_caribe",
+   "categoria": "vegetacion",
+   "lugar": "caribe",
+   "titulo_en": "Vegetation greenness (NDVI) at sample sites",
+   "definicion_en": "How green the vegetation is, from 0 (bare) to 1 (dense), at representative sites.",
+   "unidad": "NDVI",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    0.648,
+    0.6908,
+    0.7405,
+    0.7138,
+    0.7088,
+    0.7186,
+    0.754,
+    0.7301,
+    0.7234,
+    0.685,
+    0.7057,
+    0.7191,
+    0.7578,
+    0.7109,
+    0.692,
+    0.7031,
+    0.7219,
+    0.7212,
+    0.7054,
+    0.7301,
+    0.67,
+    0.739,
+    0.7178,
+    0.7191,
+    0.7082
+   ],
+   "fuente": {
+    "producto": "NASA MODIS MOD13Q1 NDVI (ORNL DAAC subsets)",
+    "url": "https://modis.ornl.gov/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 25,
+    "periodo": [
+     2000,
+     2024
+    ],
+    "unidad_pendiente": "NDVI/decade",
+    "sen": {
+     "por_decada": 0.0021,
+     "ic": [
+      -0.0102,
+      0.0166
+     ]
+    },
+    "mco": {
+     "por_decada": 0.004,
+     "ic": [
+      -0.011,
+      0.018
+     ],
+     "p_valor": 0.6044
+    },
+    "hac_ic": [
+     -0.012,
+     0.019
+    ],
+    "mann_kendall_p": 0.7971,
+    "media": 0.713
+   }
+  }
+ ],
+ "contrastes": [],
+ "demostraciones": [
+  {
+   "id": "lluvia_nicaragua",
+   "titulo_en": "Has Nicaragua's rainfall changed?",
+   "pasos": [
+    {
+     "investigacion": "lluvia_NIC",
+     "texto_en": "Start with what NASA satellites measured: yearly rainfall over Nicaragua since 2001."
+    },
+    {
+     "investigacion": "lluvia_NIC",
+     "ver": "veredicto",
+     "texto_en": "The slope is negative, but its 95% confidence interval includes zero: the record cannot tell a trend apart from year-to-year swings."
+    },
+    {
+     "investigacion": "lluvia_NIC",
+     "ver": "aprender",
+     "texto_en": "Not significant does not mean no change. A longer record could make the same change detectable."
+    }
+   ]
+  }
+ ],
+ "recursos": [
+  {
+   "id": 1,
+   "nombre": "Giovanni",
+   "url": "https://giovanni.gsfc.nasa.gov/",
+   "organizacion": "NASA",
+   "uso_en": "Area-averaged NASA time series and point series used as data sources and cross-checks.",
+   "estado": "sin_datos"
+  },
+  {
+   "id": 2,
+   "nombre": "Hydrology Time Series",
+   "url": "https://disc.gsfc.nasa.gov/information/tools?title=Hydrology%20Time%20Series",
+   "organizacion": "NASA",
+   "uso_en": "GLDAS land-model hydrology at sample points.",
+   "estado": "sin_datos"
+  },
+  {
+   "id": 3,
+   "nombre": "AppEEARS",
+   "url": "https://appeears.earthdatacloud.nasa.gov/",
+   "organizacion": "NASA",
+   "uso_en": "Regional averages of MODIS vegetation, land temperature and evapotranspiration, and SMAP soil moisture.",
+   "estado": "sin_datos"
+  },
+  {
+   "id": 4,
+   "nombre": "Climate Data Online (CDO)",
+   "url": "https://www.ncei.noaa.gov/cdo-web/",
+   "organizacion": "NOAA",
+   "uso_en": "Weather-station records (GSOM, GHCN-Daily) to cross-check satellite and reanalysis data.",
+   "estado": "sin_datos"
+  },
+  {
+   "id": 5,
+   "nombre": "Time-Series Analysis of Remotely-Sensed SeaWiFS Chlorophyll in River-Influenced Coastal Regions",
+   "url": "https://ntrs.nasa.gov/api/citations/20090042747/downloads/20090042747.pdf",
+   "organizacion": "NASA",
+   "uso_en": "Method for chlorophyll time series and significance tests in river-influenced coastal waters.",
+   "estado": "sin_datos"
+  },
+  {
+   "id": 6,
+   "nombre": "KNMI Climate Explorer",
+   "url": "https://climexp.knmi.nl/",
+   "organizacion": "KNMI",
+   "uso_en": "Independent gridded datasets to cross-check rainfall trends.",
+   "estado": "sin_datos"
+  },
+  {
+   "id": 7,
+   "nombre": "Statistical test methods to detect trends in time series data",
+   "url": "https://medium.com/@snp.kriss/statistical-test-methods-to-detect-trends-in-time-series-data-b361a0ec530b",
+   "organizacion": "Medium",
+   "uso_en": "Overview of trend tests.",
+   "estado": "sin_datos"
+  },
+  {
+   "id": 8,
+   "nombre": "A Comprehensive Guide to Statistical Significance",
+   "url": "https://www.statsig.com/perspectives/a-comprehensive-guide-to-statistical-significance",
+   "organizacion": "Statsig",
+   "uso_en": "Plain-language guide to p-values, confidence intervals and common misreadings (Learn section).",
+   "estado": "en_uso"
+  },
+  {
+   "id": 9,
+   "nombre": "Radarsat Constellation Mission (RCM) - Data",
+   "url": "https://donnees-data.asc-csa.gc.ca/en/dataset/rcm",
+   "organizacion": "CSA",
+   "uso_en": "Radar images of water extent.",
+   "estado": "sin_datos"
+  },
+  {
+   "id": 10,
+   "nombre": "Geo.ca",
+   "url": "http://geo.ca/",
+   "organizacion": "Government of Canada",
+   "uso_en": "Boundary of the Canadian Prairies ecozone used as a contrast region.",
+   "estado": "sin_datos"
+  },
+  {
+   "id": 11,
+   "nombre": "SWOT Mission - Information",
+   "url": "https://www.asc-csa.gc.ca/eng/satellites/swot/",
+   "organizacion": "CSA",
+   "uso_en": "Lake water-surface elevation for Lake Nicaragua and Lake Managua.",
+   "estado": "sin_datos"
+  },
+  {
+   "id": 12,
+   "nombre": "Monitoring and protecting our ecosystem from space",
+   "url": "https://www.asc-csa.gc.ca/eng/satellites/everyday-lives/monitoring-and-protecting-our-ecosystems-from-space.asp",
+   "organizacion": "CSA",
+   "uso_en": "Framing of the vegetation & ecosystems and water-bodies questions.",
+   "estado": "sin_datos"
+  },
+  {
+   "id": 13,
+   "nombre": "Synthetic Aperture Radar python Tutorial",
+   "url": "https://github.com/asc-csa/Synthetic_Aperture_Radar_Tutorial",
+   "organizacion": "CSA",
+   "uso_en": "Workflow to map surface water from radar images.",
+   "estado": "sin_datos"
+  }
+ ],
+ "entradas": {
+  "clima.json": "646469c3c09d534aef3fd2feaa3060283dc4017fdd7690466e5ffc66042e9bc5",
+  "fenomenos_nicaragua.json": "8f91fdaf6dd4d89b941473ecf2f8a7c4b6310418d06bded66abe90a469e024a5"
+ }
+}

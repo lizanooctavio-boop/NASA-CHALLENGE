@@ -9,8 +9,9 @@
     fetch('/__resultado', { method: 'POST', body: v }).catch(function () {});
   }
 
-  // Dispara desde el inicio la carga de Climate indicators
+  // Dispara desde el inicio la carga de Climate indicators y de Investigate
   document.dispatchEvent(new CustomEvent('sicc:pestana', { detail: 'indicadores' }));
+  document.dispatchEvent(new CustomEvent('sicc:pestana', { detail: 'investigar' }));
 
   async function correr() {
     var salida = { regiones: {}, indicadores: {}, enos: {}, textoCompleto: '' };
@@ -94,6 +95,30 @@
       numTarjetas: document.querySelectorAll('#enos-tarjetas .tarjeta').length
     };
 
+    // 4. Pestañas Investigate, Learn y Sources
+    var btnInv = document.querySelector('nav button[data-tab="investigar"]');
+    if (btnInv) btnInv.click();
+    var datosInv = await fetch('data/recursos_integrados.json').then(function (r) { return r.json(); });
+    salida.investigar = { categorias: Array.from(document.querySelectorAll('#inv-categorias button')).map(function (b) { return b.dataset.id; }), casos: {} };
+    for (var ii = 0; ii < datosInv.investigaciones.length; ii++) {
+      var caso = datosInv.investigaciones[ii];
+      window.SICC_investigar.elegir({ categoria: caso.categoria, lugar: caso.lugar, investigacion: caso.id });
+      blobs.length = 0; descargasNombres.length = 0;
+      await document.getElementById('inv-csv').onclick();
+      salida.investigar.casos[caso.id] = {
+        seleccion: window.SICC_investigar.estado().sel.investigacion,
+        estado: document.querySelector('#inv-veredicto .estado').textContent,
+        contrastes: document.querySelectorAll('#inv-contrastes-lista .contraste').length,
+        csvNombre: descargasNombres[0] || null,
+        csvTexto: blobs.length ? await blobs[0].text() : null
+      };
+    }
+    salida.investigar.demos = Array.from(document.querySelectorAll('#inv-demos button')).map(function (b) { return b.dataset.demo; });
+    document.querySelector('nav button[data-tab="fuentes"]').click();
+    salida.investigar.fuentes = Array.from(document.querySelectorAll('#fuentes-recursos li')).map(function (li) { return Number(li.dataset.recurso); });
+    salida.investigar.aprender = document.querySelectorAll('#aprender article[id^="aprender-"]').length;
+    salida.investigar.error = document.getElementById('error').hidden ? null : txt('error-texto');
+
     await Promise.all(todoBlobs);
     salida.textoCompleto = document.body.textContent.replace(/\s+/g, ' ').trim();
     escribir('__out', JSON.stringify(salida));
@@ -107,7 +132,8 @@
     if (!indOk && window.SICC_indicadores) {
       document.dispatchEvent(new CustomEvent('sicc:pestana', { detail: 'indicadores' }));
     }
-    if ((tendOk && indOk && enosOk) || ++intentos > 50) {
+    var invOk = !!(window.SICC_investigar && window.SICC_investigar.estado().cargado);
+    if ((tendOk && indOk && enosOk && invOk) || ++intentos > 50) {
       correr().catch(function (e) { escribir('__out', 'ERROR ' + (e && e.stack ? e.stack : e)); });
     } else {
       setTimeout(esperarTodo, 200);

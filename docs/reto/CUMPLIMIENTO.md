@@ -26,6 +26,21 @@ Requisitos tomados de [`REQUISITOS_NASA.md`](REQUISITOS_NASA.md) (consulta del 1
 | Tendencias no lineales / cambios abruptos | `tendencia_robusta.pettitt` y advertencia de inhomogeneidad | `test_pettitt_localiza_salto` | Cumplido (descriptivo) |
 | Tendencia no significativa también informa | Veredicto `evidencia_insuficiente` con texto «no demuestra que no haya cambio» | `test_analizar_veredictos_y_campos` | Cumplido |
 
+## Recursos de la pestaña Resources (13-11-2026)
+
+Integrados por `backend/clima_nic/recursos.py` en `data/recursos_integrados.json` y mostrados en las pestañas *Investigate*, *Learn* y *Sources*. Detalle en [`recursos/interfaz.md`](recursos/interfaz.md) y en los documentos de cada agente (`recursos/tierra.md`, `recursos/contraste.md`, `recursos/csa.md`).
+
+| Requisito | Dónde | Prueba | Estado |
+|---|---|---|---|
+| Preguntas guiadas qué/dónde en la interfaz | `app/investigar.js` (categorías y lugares con datos) | `test_pestana_investigate_veredictos_contrastes_csv_y_fuentes` (E2E) | Cumplido |
+| Definición sencilla de cada variable | `definicion_en` de cada investigación | ídem | Cumplido |
+| Ejemplos de demostración que el usuario puede seguir | `demostraciones` (lluvia de Nicaragua; Nicaragua frente a las Praderas de Canadá) | `test_demostraciones_usan_investigaciones_existentes` | Cumplido |
+| Una variable cambia distinto según la región | Recorrido Nicaragua (+0,40 °C/década, detectada) frente a Praderas (+0,18, sin evidencia), 2001–2024 | ídem | Cumplido |
+| Segunda opinión con otras fuentes y métodos | `contrastes` (CRU, GPCC, estaciones NOAA, SWOT, método NTRS) | `test_integra_las_salidas_de_los_tres_agentes` | Cumplido con los PR #7 y #9 fusionados |
+| Explicación de la significancia para el público | Sección *Learn* (Statsig y artículo NTRS) | E2E (9 apartados) | Cumplido |
+| Registros cortos sin tendencia | `papel: demostracion_registro_corto` (SWOT) | `test_integra_las_salidas_de_los_tres_agentes` | Cumplido |
+| Recursos citados con licencia | Pestaña *Sources* (solo recursos con datos) | E2E | Cumplido para 6 de 13; el resto, bloqueado por credenciales o, en el caso de Medium, sin leer |
+
 ## Ampliaciones propias (fuera del enunciado)
 
 | Requisito del proyecto | Módulo | Prueba |

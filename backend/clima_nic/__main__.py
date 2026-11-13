@@ -31,6 +31,7 @@ def main(argv=None):
     p.add_argument("--hilos", type=int, default=8)
     p = sub.add_parser("productos")
     p.add_argument("--permutaciones", type=int, default=1000)
+    sub.add_parser("recursos", help="integra data/recursos/ en data/recursos_integrados.json")
     p = sub.add_parser("actualizar")
     p.add_argument("--descargar", action="store_true")
     p.add_argument("--tierra", type=Path)
@@ -63,6 +64,9 @@ def main(argv=None):
     elif a.orden == "productos":
         from .productos import escribir
         escribir(a.permutaciones)
+    elif a.orden == "recursos":
+        from .recursos import escribir as escribir_recursos
+        print(escribir_recursos())
     elif a.orden == "actualizar":
         from .actualizar import actualizar
         print(json.dumps(actualizar(a.descargar, a.tierra, a.permutaciones), ensure_ascii=False, indent=2))
