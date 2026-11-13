@@ -1,0 +1,56 @@
+[
+  {
+    "ProductAndVersion": "MOD13A3.061",
+    "Layer": "_1_km_monthly_EVI",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "QualityLayers": [
+      "_1_km_monthly_VI_Quality"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MOD13A3.061",
+    "Layer": "_1_km_monthly_NDVI",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "QualityLayers": [
+      "_1_km_monthly_VI_Quality"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MOD13A3.061",
+    "Layer": "_1_km_monthly_blue_reflectance",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "QualityLayers": [
+      "_1_km_monthly_pixel_reliability"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MOD13A3.061",
+    "Layer": "_1_km_monthly_MIR_reflectance",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "QualityLayers": [
+      "_1_km_monthly_pixel_reliability"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MOD13A3.061",
+    "Layer": "_1_km_monthly_NIR_reflectance",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "QualityLayers": [
+      "_1_km_monthly_pixel_reliability"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MOD13A3.061",
+    "Layer": "_1_km_monthly_red_reflectance",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "QualityLayers": [
+      "_1_km_monthly_pixel_reliability"
+    ],
+    "VisibleToWorker": true
+  }
+]

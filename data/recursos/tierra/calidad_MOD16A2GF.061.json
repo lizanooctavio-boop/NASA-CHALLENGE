@@ -1,0 +1,38 @@
+[
+  {
+    "ProductAndVersion": "MOD16A2GF.061",
+    "Layer": "ET_500m",
+    "QualityProductAndVersion": "MOD16A2GF.061",
+    "QualityLayers": [
+      "ET_QC_500m"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MOD16A2GF.061",
+    "Layer": "LE_500m",
+    "QualityProductAndVersion": "MOD16A2GF.061",
+    "QualityLayers": [
+      "ET_QC_500m"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MOD16A2GF.061",
+    "Layer": "PET_500m",
+    "QualityProductAndVersion": "MOD16A2GF.061",
+    "QualityLayers": [
+      "ET_QC_500m"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MOD16A2GF.061",
+    "Layer": "PLE_500m",
+    "QualityProductAndVersion": "MOD16A2GF.061",
+    "QualityLayers": [
+      "ET_QC_500m"
+    ],
+    "VisibleToWorker": true
+  }
+]

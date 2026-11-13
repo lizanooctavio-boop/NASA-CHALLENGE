@@ -1,0 +1,90 @@
+[
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "QualityLayer": "QC",
+    "Name": "Name",
+    "Value": 0,
+    "Description": "Classified land (Has a classification label and is land according to the water mask.)",
+    "Acceptable": null
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "QualityLayer": "QC",
+    "Name": "Name",
+    "Value": 1,
+    "Description": "Unclassified land (Not classified because of missing data but land according to the water mask, labeled as barren.)",
+    "Acceptable": null
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "QualityLayer": "QC",
+    "Name": "Name",
+    "Value": 2,
+    "Description": "Classified water (Has a classification label and is water according to the water mask.)",
+    "Acceptable": null
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "QualityLayer": "QC",
+    "Name": "Name",
+    "Value": 3,
+    "Description": "Unclassified water (Not classified because of missing data but water according to the water mask.)",
+    "Acceptable": null
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "QualityLayer": "QC",
+    "Name": "Name",
+    "Value": 4,
+    "Description": "Classified sea ice (Classified as snow/ice but water mask says it is water and less than 100m elevation, switched to water.)",
+    "Acceptable": null
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "QualityLayer": "QC",
+    "Name": "Name",
+    "Value": 5,
+    "Description": "Misclassified water (Classified as water but water mask says it is land, switched to secondary label.)",
+    "Acceptable": null
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "QualityLayer": "QC",
+    "Name": "Name",
+    "Value": 6,
+    "Description": "Omitted snow/ice (Land according to the water mask that was classified as something other than snow but with a maximum annual temperature below 1◦C, relabeled as snow/ice.)",
+    "Acceptable": null
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "QualityLayer": "QC",
+    "Name": "Name",
+    "Value": 7,
+    "Description": "Misclassified snow/ice (Land according to the water mask that was classified as snow but with a minimum annual temperature greater than 1◦C, relabeled as barren.)",
+    "Acceptable": null
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "QualityLayer": "QC",
+    "Name": "Name",
+    "Value": 8,
+    "Description": "Backfilled label (Missing label from stabilization, filled with the pre-stabilized result.)",
+    "Acceptable": null
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "QualityLayer": "QC",
+    "Name": "Name",
+    "Value": 9,
+    "Description": "Forest type changed (Climate-based change to forest class.)",
+    "Acceptable": null
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "QualityLayer": "QC",
+    "Name": "Name",
+    "Value": 10,
+    "Description": "No data (Missing label from the water mask.)",
+    "Acceptable": null
+  }
+]
