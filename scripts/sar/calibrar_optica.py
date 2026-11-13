@@ -117,7 +117,9 @@ def main():
                 'classifier_test_gate_passed':report['quality_gate_passed'],
                 'reference_common_coverage_fraction':reference_fraction,
                 'surface_quality_gate_passed':publishable,
-                'area_water_validated_km2':candidate if publishable else None,
+                'area_water_validated_km2':candidate if publishable else 'NO_VALIDADA',
+                'estado_superficie':'controles_superados' if publishable else 'estimacion_no_validada',
+                'motivo_no_validacion':'no_aplica' if publishable else 'metricas_insuficientes_o_referencia_comun_menor_80pct',
                 'papel':'demostracion_registro_corto'})
     (out/'sar_validacion_optica.json').write_text(json.dumps({
         'reference':'OPERA_L3_DSWX-HLS_V1 B02_BWTR; clear 0=land,1=water only',

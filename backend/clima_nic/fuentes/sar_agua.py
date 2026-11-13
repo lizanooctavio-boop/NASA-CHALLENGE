@@ -8,6 +8,28 @@ import numpy as np
 PAPEL = "demostracion_registro_corto"
 
 
+def caracteristicas_dualpol(vv_power, vh_power):
+    """Radar-only features: VV/VH dB, ratio, and 300 m local mean/std.
+
+    No coordinates, shoreline prior or optical labels enter the predictors.
+    """
+    from scipy.ndimage import uniform_filter
+    vv, vh = potencia_a_db(vv_power), potencia_a_db(vh_power)
+    valid = np.isfinite(vv) & np.isfinite(vh)
+    weights = uniform_filter(valid.astype(float),size=3,mode='constant')
+    def local(x):
+        mean = np.divide(uniform_filter(np.where(valid,x,0.),3,mode='constant'),
+                         weights,out=np.zeros_like(x),where=weights>0)
+        second = np.divide(uniform_filter(np.where(valid,x*x,0.),3,mode='constant'),
+                           weights,out=np.zeros_like(x),where=weights>0)
+        return mean, np.sqrt(np.maximum(second-mean*mean,0.))
+    mv, sv = local(vv)
+    mh, sh = local(vh)
+    features = np.stack([vv,vh,vv-vh,mv,sv,mh,sh],axis=-1).astype('float32')
+    features[~valid] = 0.
+    return features, valid
+
+
 def potencia_a_db(power):
     """10 log10 of calibrated power. Zero/negative/nonfinite are not water."""
     x = np.asarray(power, dtype=float)

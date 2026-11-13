@@ -266,6 +266,19 @@ class CanadaImerg(unittest.TestCase):
 
 
 class SarAgua(unittest.TestCase):
+    def test_caracteristicas_dualpol_excluyen_nodata(self):
+        import numpy as np
+        from clima_nic.fuentes.sar_agua import caracteristicas_dualpol
+        vv=np.full((5,5),.01);vh=np.full((5,5),.001)
+        features,valid=caracteristicas_dualpol(vv,vh)
+        self.assertTrue(valid.all())
+        np.testing.assert_allclose(features[2,2],[-20,-30,10,-20,0,-30,0],atol=1e-5)
+        vh[2,2]=0
+        features,valid=caracteristicas_dualpol(vv,vh)
+        self.assertFalse(valid[2,2])
+        self.assertTrue((features[2,2]==0).all())
+        self.assertTrue(np.isfinite(features).all())
+
     def test_superficie_no_se_publica_con_nubes_o_error(self):
         from clima_nic.fuentes.sar_agua import superficie_publicable
         good = {'f1':.95,'recall_water':.95,'recall_land':.95}
@@ -326,6 +339,25 @@ class SarAgua(unittest.TestCase):
 
 
 class ResultadosRealesCanadaSar(unittest.TestCase):
+    def test_dualpol_campos_completos_y_evaluacion_temporal_separada(self):
+        import csv
+        report=json.loads((DIR_CSA/'sar_dualpol_validacion.json').read_text(encoding='utf-8'))
+        for r in report['reports']:
+            self.assertNotIn(r['date'],r['temporal_training_dates'])
+            self.assertEqual(len(r['temporal_training_dates']),2)
+        for name in ['sar_dualpol_superficie.csv','comparacion_swot_sar_dualpol.csv','sar_superficie_calibrada.csv']:
+            rows=list(csv.DictReader((DIR_CSA/name).open()))
+            self.assertGreater(len(rows),0)
+            self.assertTrue(all(v not in ('',None) for row in rows for v in row.values()),name)
+        rows=list(csv.DictReader((DIR_CSA/'sar_dualpol_superficie.csv').open()))
+        self.assertEqual(len(rows),9)
+        for row in rows:
+            self.assertGreaterEqual(float(row['area_estimacion_modelo_km2']),0)
+            self.assertLessEqual(float(row['area_estimacion_modelo_km2']),float(row['area_dominio_comun_km2']))
+            if row['estado']=='estimacion_no_validada':
+                self.assertEqual(row['area_agua_validada_km2'],'NO_VALIDADA')
+                self.assertNotEqual(row['motivo'],'controles_superados')
+
     def test_canada_imerg_periodo_completo_y_cobertura(self):
         p = DIR_CSA / 'canada_imerg.json'
         self.assertTrue(p.exists(), 'Missing real Canadian IMERG result')

@@ -107,7 +107,7 @@ Calibration selects a date-specific lower-backscatter threshold by maximizing **
 
 This provides a concrete improvement for March, **not a general solution**. Calibration still fails to transfer across spatial regions in April and July. Moreover, the clear optical area common to all three dates inside the observed lake is only **0.02 km²** out of 2,602.37 km². Large sample counts elsewhere in a scene do not compensate for missing lake reference coverage. No full-lake or seasonal water-area relation is validated by these results.
 
-`surface_quality_gate_passed` requires the classifier F1, water recall and land recall all >=0.90 **and** at least 80% common clear reference coverage in the analysis domain. This is a conservative necessary screening rule, not a universal validation standard. `area_water_validated_km2` is blank whenever the gate fails. **All nine date/domain combinations currently fail publication screening.** Calibrated candidate areas remain available for diagnosis, but are never relabelled as validated water measurements.
+`surface_quality_gate_passed` requires the classifier F1, water recall and land recall all >=0.90 **and** at least 80% common clear reference coverage in the analysis domain. This is a conservative necessary screening rule, not a universal validation standard. `area_water_validated_km2` contains `NO_VALIDADA` with an explicit reason whenever the gate fails. **All nine date/domain combinations currently fail publication screening.** Calibrated candidate areas remain available for diagnosis, but are never relabelled as validated water measurements.
 
 CMR queries for OPERA_L3_DSWX-S1_V1 on these three radar days returned no matching granules; this does not establish that the product is unavailable for other dates. EODMS RCM still needs its own access; Earthdata login does not confer EODMS authorization.
 
@@ -117,3 +117,36 @@ The Canadian region, IMERG/GISTEMP, SWOT/G-REALM, reproducible real-data SAR dem
 
 
 Verification after independent optical calibration: `python -m pytest tests -q` -> **114 passed, 1 skipped, 57 subtests passed**. Added checks that held-out labels do not alter the fitted threshold, undefined metrics cannot count as success, and good scores with inadequate reference coverage cannot publish a validated water area.
+
+
+## 9. Dual-polarization model, temporal evaluation and complete result states
+
+Reproduce the complete sequence after authentication:
+
+```text
+python -m pip install -r scripts/sar/requirements.txt
+python scripts/sar/opera_demostracion.py
+python scripts/sar/calibrar_optica.py
+python scripts/sar/modelo_dualpol.py
+```
+
+`requirements.txt` pins the actual tested package versions; `entorno_reproduccion.json` records them. `modelo_dualpol.py` additionally obtains **75 matching VH bands**, with URLs and SHA-256, for the original 75 VV burst acquisitions. These are **75 dual-polarization acquisitions / 150 band rasters**, not 150 independent observations. It mosaics/aligns to the fixed 100 m grid and uses seven radar-only predictors: VV dB, VH dB, their difference, local means and local standard deviations over 300 m. No coordinates, optical labels, lake boundary, date index or SWOT value are predictors.
+
+A RandomForest with 80 trees, depth limit 12, minimum leaf 30, fixed random seed 8687 and balanced bootstrap weights is trained on up to 10,000 clear optical training pixels per class/date. The same spatial stripes remain withheld on every date. In addition to spatial evaluation of the combined model, **leave-one-date-out** models train on two dates and evaluate the third date's reserved spatial stripes. Hyperparameters were fixed before these tests. [Estimator documentation](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html).
+
+| Date | Combined model spatial F1 | Leave-one-date-out F1 |
+|---|---:|---:|
+| 2024-03-04 | 0.8720 | 0.5062 |
+| 2024-04-21 | 0.1982 | 0.0467 |
+| 2024-07-14 | 0.8724 | 0.8967 |
+
+The dual-polarization estimate in the fixed observed lake domain is 2516.84, 2519.97 and 2515.06 km². This removes the extreme numerical swing of the fixed threshold, **but stability is not proof of correctness**. Spatial/temporal tests remain insufficient. July improves relative to the calibrated VV threshold, whereas March's calibrated threshold remains better on its spatial test; no method is declared universally superior and failed results are preserved.
+
+`area_ambigua_prob_025_075_km2` reports pixels with forest vote fractions between 0.25 and 0.75. These votes are not calibrated probabilities and this spread is **not** a confidence interval for lake area. `sar_dualpol_validacion.json` records the full metrics, model parameters, training sizes, excluded dates and VH source hashes. `comparacion_swot_sar_dualpol.csv` pairs the three model estimates with SWOT and includes radar start/end acquisition times, making their lack of simultaneity explicit.
+
+Every row in `sar_dualpol_superficie.csv` has a numerical model estimate, observed-domain area, ambiguity measure, coverage, state and reason. A missing validated physical measurement is represented by **NO_VALIDADA**, never an empty cell or invented zero. Currently all nine date/domain combinations remain estimated/unvalidated. The calibrated-threshold CSV uses the same explicit status convention. JSON nulls in the sklearn parameter snapshot are the estimator's documented defaults (e.g. no limit), not omitted measurements.
+
+`cumplimiento_csa.json` gives a nonempty technical state, scientific state, evidence, limitation and next action for **all six original tasks**. Region/data/text/reproducibility work is delivered. Physical water-extent validation and RCM availability are explicitly unresolved; the current reference does not permit converting estimates into certified measured surface area. Interface integration remains outside this agent's file ownership.
+
+
+Latest verification after the dual-polarization model: `python -m pytest tests -q` -> **116 passed, 1 skipped, 57 subtests passed**. Includes physical-unit/nodata feature checks, no empty cells in current result tables, explicit invalid-area states and exclusion of each target date from its temporal training split.

@@ -1,0 +1,54 @@
+{
+  "fecha": "2026-11-13",
+  "criterio": "sin_celdas_vacias;no_validado_es_estado_explicito_no_un_valor_cero",
+  "tareas": [
+    {
+      "tarea": 1,
+      "estado_tecnico": "entregada",
+      "estado_cientifico": "geometria_verificada",
+      "evidencia": "data/regiones_canada.geojson",
+      "limite": "la_cobertura_no_demuestra_ausencia_de_sesgo_IMERG",
+      "siguiente_accion": "validacion_con_estaciones_si_se_exige_exactitud_local"
+    },
+    {
+      "tarea": 2,
+      "estado_tecnico": "entregada",
+      "estado_cientifico": "registros_reales_y_filtros_verificados",
+      "evidencia": "data/recursos/csa/swot_observaciones.csv;grealm_lake000351.10d.2.txt",
+      "limite": "registro_SWOT_corto_y_observaciones_parciales",
+      "siguiente_accion": "mantener_como_demostracion_registro_corto"
+    },
+    {
+      "tarea": 3,
+      "estado_tecnico": "cuaderno_y_tres_metodos_ejecutados",
+      "estado_cientifico": "superficie_fisica_no_validada",
+      "evidencia": "sar_superficie.csv;sar_superficie_calibrada.csv;sar_dualpol_superficie.csv",
+      "limite": "nubes_y_generalizacion_temporal_insuficiente;RCM_no_confirmado",
+      "siguiente_accion": "referencia_independiente_con_cobertura;acceso_EODMS_para_RCM"
+    },
+    {
+      "tarea": 4,
+      "estado_tecnico": "entregada",
+      "estado_cientifico": "tendencias_calculadas_sin_evidencia_significativa_en_2001_2024",
+      "evidencia": "canada_imerg.json;canada_gistemp.json",
+      "limite": "incertidumbre_invernal_IMERG_y_celdas_gruesas_GISTEMP",
+      "siguiente_accion": "validacion_regional_con_estaciones_para_inferencia_mas_fuerte"
+    },
+    {
+      "tarea": 5,
+      "estado_tecnico": "entregada",
+      "estado_cientifico": "texto_didactico_con_fuente_CSA",
+      "evidencia": "docs/reto/recursos/csa.md",
+      "limite": "integracion_UI_corresponde_al_agente_4",
+      "siguiente_accion": "integrar_textos_y_citas_en_interfaz"
+    },
+    {
+      "tarea": 6,
+      "estado_tecnico": "pares_del_mismo_dia_entregados",
+      "estado_cientifico": "relacion_fisica_no_validada",
+      "evidencia": "comparacion_swot_sar.csv;comparacion_swot_sar_dualpol.csv",
+      "limite": "tres_fechas_y_superficies_modeladas_no_validadas",
+      "siguiente_accion": "validar_superficie_antes_de_inferir_relacion_con_altura"
+    }
+  ]
+}
