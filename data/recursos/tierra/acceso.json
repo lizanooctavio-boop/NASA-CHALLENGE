@@ -71,7 +71,7 @@
       "token_aceptado_por_Giovanni": false,
       "credencial_guardada_en_repositorio": false
     },
-    "visor_autenticado": "Hi, Manuel; petición de León falla: Failed to fetch subset job link contents; reproducido tras renovar sesión",
+    "visor_autenticado": "sesión iniciada; petición de León falla: Failed to fetch subset job link contents; reproducido tras renovar sesión",
     "advertencia_grafico": "El gráfico viejo seguía en 36.61,-80.24; no se exportó como serie de León"
   },
   "canada": {

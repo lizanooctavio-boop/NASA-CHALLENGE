@@ -1,6 +1,6 @@
 # Recursos de tierra: AppEEARS y Hydrology Time Series
 
-Rama: `codex/recursos-tierra`, base `codex/demo-render` (`544756a`). Actualización de navegador: 13 de noviembre de 2026, America/Managua. No se modifican los adaptadores existentes, la estadística, los datos fuente ni la demo de Render.
+Rama: `codex/recursos-tierra-v2`, rehecha sobre `codex/verificacion-entrega` con los dos commits propios de `codex/recursos-tierra` (sin el commit ajeno 544756a de `codex/demo-render`). Actualización de navegador: 13 de noviembre de 2026, America/Managua. No se modifican los adaptadores existentes, la estadística, los datos fuente ni la demo de Render.
 
 ## Estado de entrega
 
@@ -14,6 +14,7 @@ GLDAS sigue bloqueado: el visor autenticado no recupera el enlace del subconjunt
 | NDVI regional y cobertura estable | Media por área; cohorte fija multianual; QA y clase IGBP; prueba con cambio de cobertura | Valores reales y diferencia frente a los sitios ORNL |
 | Canadá | Diez tareas NDVI/LST aceptadas por la web con la geometría exacta del agente 3 (PR #7) | Completar/descargar; no se fusiona el PR del agente 3 |
 | GLDAS de punto | Catálogo y variables verificados; sesión web reconocida; intentos web y API con token Earthdata real documentados | Acceso que Giovanni acepte y recuperación del servicio; series aún no obtenidas |
+| GLDAS regional (13-11) | 5 variables × 6 regiones, 2001–2024, medias ponderadas por área desde el OPeNDAP en la nube de GES DISC; balance hídrico cerrado (residuo 0,7–2,6 % de la lluvia en 24 años) | Contrastar la humedad con SMAP (AppEEARS) y MERRA-2 antes de interpretar tendencias |
 | Contraste de humedad | Referencias MERRA-2 recalculadas; comparador local listo | GLDAS y SMAP reales; no se inventan correlaciones |
 | Estadística | 23 análisis de referencia con `estadistica/tendencia_robusta.py`, sin modificarla | Aplicar la misma función a las nuevas series cuando existan |
 
@@ -25,7 +26,7 @@ El endpoint histórico `https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/access/t
 
 `gldas_datarods.py` usa ese sustituto, conserva la trazabilidad del cambio y rechaza HTML/JSON de error incluso con HTTP 200. No fabrica URLs al archivo antiguo ni sustituye GLDAS por otro modelo.
 
-Prueba posterior con el navegador y un token creado con autorización del usuario: GES DISC muestra `Hi, Manuel`; cambiar el punto a León (12.45, −86.85) produce `Failed to fetch subset job link contents:`. El gráfico conservaba el punto anterior (36.61, −80.24): **no se exportó ni se trató como dato de Nicaragua**. También apareció el aviso de cinco intentos fallidos de renovación de sesión. Tras recargar y volver a consultar León se reprodujo el error. `hydrology_error.jpg` conserva evidencia de la interfaz.
+Prueba posterior con el navegador y un token creado con autorización del usuario: GES DISC muestra la sesión iniciada; cambiar el punto a León (12.45, −86.85) produce `Failed to fetch subset job link contents:`. El gráfico conservaba el punto anterior (36.61, −80.24): **no se exportó ni se trató como dato de Nicaragua**. También apareció el aviso de cinco intentos fallidos de renovación de sesión. Tras recargar y volver a consultar León se reprodujo el error. `evidencia_tierra/hydrology_error.jpg` conserva evidencia de la interfaz (con el nombre del titular tapado).
 
 La API `/timeseries` devolvió HTTP 500 `{"message":null}` para `SoilMoi0_10cm_inst` y `Evap_tavg` de tres horas y para humedad mensual, con y sin el parámetro de versión de API documentado. `/quota` devolvió HTTP 401 `Invalid bearer token`. Se comprobó que el token leído de la página estaba completo (704 caracteres, RS256, emisor Earthdata, sin elipsis); no se afirma que Giovanni lo acepte. No se almacenó en el repositorio ni en configuración permanente; la transferencia temporal se eliminó al leerla y se retiró de memoria al terminar su uso. Para continuar GLDAS hace falta una autenticación aceptada por Giovanni o resolver el fallo de su visor/API; no basta con ver una sesión iniciada en la web.
 
@@ -77,7 +78,7 @@ Esta importación no usa red ni crea tareas. Valida nombre, UUID, duplicados y c
 
 Cada solicitud se identifica por SHA-256 del payload. La caché conserva solicitud, geometría, identificador y hora de envío; los archivos se añadirán cuando puedan descargarse. Tras completar, `procedencia_nicaragua.json` guarda fechas `created`, `updated`, `completed`, productos, periodos y SHA-256 de archivos.
 
-Tiempos reales parciales: el primer pedido, SMAP NIC 2015, ID `5c1e5da0-a4a3-40d2-bda1-eee9dec63163`, se envió el 12 de noviembre a las 23:50:34 CST y estaba al 28% a las 00:30:48 CST del día 13: **40 min 14 s transcurridos desde el envío**. El siguiente estaba al 17%; los otros 158 seguían pendientes. Ese tiempo incluye espera y trabajo; no se conoce el comienzo exacto de procesamiento, ni la duración final. No extrapolar una ETA a partir del porcentaje. Todavía no hay tiempos completos de cola/ejecución ni bundles finalizados. `solicitudes_navegador.jpg` acredita el total de 160 pedidos; los sondeos públicos y pruebas sintéticas no se usan como medidas de procesamiento.
+Tiempos reales parciales: el primer pedido, SMAP NIC 2015, ID `5c1e5da0-a4a3-40d2-bda1-eee9dec63163`, se envió el 12 de noviembre a las 23:50:34 CST y estaba al 28% a las 00:30:48 CST del día 13: **40 min 14 s transcurridos desde el envío**. El siguiente estaba al 17%; los otros 158 seguían pendientes. Ese tiempo incluye espera y trabajo; no se conoce el comienzo exacto de procesamiento, ni la duración final. No extrapolar una ETA a partir del porcentaje. Todavía no hay tiempos completos de cola/ejecución ni bundles finalizados. `evidencia_tierra/solicitudes_navegador.jpg` acredita el total de 160 pedidos; los sondeos públicos y pruebas sintéticas no se usan como medidas de procesamiento.
 
 Canadá: el archivo no está en la base `codex/demo-render`, pero ya existe en el [PR #7 del agente 3](https://github.com/lizanooctavio-boop/NASA-CHALLENGE/pull/7). Se guarda una copia exacta en `data/recursos/tierra/regiones_canada_agente3.geojson`: commit `ddad804318868dae8be71162f41678a574978e34`, SHA-256 `05e0f0dc1cf0a7c7476436028b5443812d44b9087fb5c0812e9ab588bbf4b402`. La procedencia está en `procedencia_geometria_canada.json`. Es la ecozona Prairies de AAFC, 467127.9 km² según sus metadatos; se conserva la atribución/licencia del agente 3. Las diez tareas de `plan_canada.json` (cinco bloques por producto) ya están aceptadas por AppEEARS y registradas en los recibos. Los siguientes comandos se conservan como referencia del flujo; **no reenviar desde una caché vacía**:
 
@@ -128,6 +129,33 @@ Los tres puntos son el primer sitio existente de cada región en `fuentes/modis.
 | `Qsb_acc` | `escorrentia_subterranea_gldas`, mm/mes | acumulado kg/m² por paso de 3 h, suma |
 
 `undef` y valores no finitos quedan ausentes. Humedad fuera de 0–1 y escorrentía negativa se excluyen; ET conserva posibles flujos negativos de condensación. Se exigen todos los pasos de tres horas por mes y 12 meses por año. Sin extrapolación ni interpolación. No hay una QA de observación de suelo para estos campos modelados. El código comprueba cadencia, duplicados y bloques solapados antes de agregar.
+
+## GLDAS regional mensual desde GES DISC (13-11-2026)
+
+Mientras Hydrology Time Series y la API de series de Giovanni sigan fallando, `backend/clima_nic/fuentes/gldas_mensual.py` obtiene el mismo modelo, GLDAS-2.1 Noah, en su producto mensual (`GLDAS_NOAH025_M` 2.1, colección CMR `C1342986036-GES_DISC`) desde el OPeNDAP en la nube de GES DISC. Recorta por índices la ventana de cada grupo de regiones, sin descargar el archivo global de 24 MB por mes. El OPeNDAP antiguo (`hydro1.gesdisc.eosdis.nasa.gov/opendap`) responde 410 y no se usa. El acceso usa Earthdata mediante `_netrc`, sin imprimir ni guardar credenciales. Las respuestas crudas quedan en `backend/.cache/gldas_mensual/`.
+
+```powershell
+cd backend
+python -m clima_nic.fuentes.gldas_mensual --inicio 2001 --fin 2024
+```
+
+**Salidas.** `series_gldas_mensual.json` y `series_gldas_anual.json` (listas de `SerieRegional`) y `procedencia_gldas_mensual.json` (granulo y SHA-256 de cada respuesta, ventana de índices y balance hídrico de control). Regiones: `NIC`, `pacifico`, `central`, `caribe`, `caja_sicc` y `CAN_prairies`. A diferencia de las series de punto previstas, son **medias regionales** ponderadas por la intersección de cada celda de 0,25° con el polígono (EPSG:6933), con las celdas de agua del modelo excluidas y los pesos renormalizados.
+
+**Conversiones** (README GLDAS-2, §3.5): las tasas `_tavg` se multiplican por 10 800 s × 8 × días del mes; los acumulados `_acc` (promedio de los acumulados de 3 h), por 8 × días del mes; la humedad, de kg m⁻² a m³/m³ dividiendo por 100 (0–10 cm) y por 300 (10–40 cm). Los años exigen los 12 meses. Humedad: media anual. Flujos: suma anual.
+
+**Balance hídrico de control.** Lluvia del forzamiento − ET − escorrentía total, en promedio 2001–2024, deja un residuo de 0,7–2,6 % de la lluvia en todas las regiones. En 2001 solo, el residuo varía entre −18 % y +31 % según la región, porque el almacenamiento todavía se ajusta (GLDAS-2.1 empieza en 2000). La lluvia media del forzamiento en las Praderas (441 mm/año) es coherente con la de IMERG que calculó el agente 3 (435 mm/año).
+
+**Tendencias preliminares** (Theil–Sen por década, `tendencia_robusta.analizar`):
+
+| Región | Humedad 0–10 cm | ET | Escorrentía subterránea |
+|---|---|---|---|
+| NIC | −0,0071 m³/m³, métodos discrepan | +19,0 mm, evidencia insuficiente | −78,3 mm, métodos discrepan |
+| Central | −0,0090 m³/m³, tendencia detectada | −10,0 mm, evidencia insuficiente | −58,6 mm, evidencia insuficiente |
+| Praderas de Canadá | −0,0139 m³/m³, tendencia detectada | −27,1 mm, evidencia insuficiente | −0,27 mm, métodos discrepan |
+
+**Límites.** La prueba de Pettitt sitúa el cambio de la mayoría de las series de Nicaragua en 2011–2013. El README de GLDAS-2 advierte reescalados de la radiación AGRMET desde 2008 y un desplazamiento de origen desconocido después de 2011. Por eso, un descenso de humedad en Nicaragua puede ser un artefacto del forzamiento y no un cambio climático. En la región Central, el veredicto pasa a «métodos discrepan» al quitar 2001–2002. Antes de interpretarlo hay que contrastar con SMAP (AppEEARS, desde 2015) y con la humedad de MERRA-2. La caída en las Praderas se mantiene sin 2001–2002 y es coherente con las sequías de la década, pero tampoco se ha contrastado. GLDAS es un modelo forzado con observaciones, no una medición.
+
+**Recursos del reto.** No se usó la herramienta Hydrology Time Series ni Giovanni, que siguen fallando. Estos datos proceden del archivo de GES DISC del mismo conjunto GLDAS y no se presentan como uso de esos recursos.
 
 ## Formato y contraste para el agente 4
 
