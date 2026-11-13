@@ -39,10 +39,10 @@ El panel «Cross-checks» usa el campo `frase_en` de cada entrada.
 | noaa_estaciones_nic_lluvia | contraste | 1981–1991 | POWER, no aplica | GSOM, no aplica | mediana −1 092 mm | mediana 0,22 |
 | clorofila_golfo_fonseca | tendencia | 2003–2024 | Sen +0,68 mg m⁻³, **métodos discrepan** (MK p = 0,08) | OLS NTRS +1,21 mg m⁻³, p(F) = 0,0007 | — | — |
 | clorofila_pacifico_fonseca | tendencia | 2003–2024 | Sen −0,06 mg m⁻³, ev. insuficiente (MK p = 0,13) | OLS NTRS −0,08 mg m⁻³, p(F) = 0,017 | — | — |
-| giovanni_imerg_caja_sicc | contraste | 2001–2024 | IMERG −28,7 mm, ev. insuficiente | OPeNDAP −28,7 mm, ev. insuficiente | −0,0 mm | 1,00 |
-| giovanni_imerg_nic | contraste | 2001–2024 | IMERG −64,9 mm, ev. insuficiente | OPeNDAP −52,3 mm, ev. insuficiente | −25,0 mm | 0,999 |
-| noaa_tegucigalpa_lluvia_vs_imerg_caja | contraste | 2001–2024 | IMERG caja +6,7 mm, ev. insuficiente | GSOM: 5 años completos, sin tendencia | −481 mm | 0,75 (anual, n=5); 0,87 (mensual, n=150) |
-| airs_tas_nic | tendencia | 2003–2024 | Sen +0,13 °C, **tendencia detectada** (MK p = 0,010) | OLS +0,14 °C, p(F) = 0,073 | — | r = 0,92 (GISTEMP); 0,82 (POWER) |
+| opendap_imerg_caja_sicc | contraste | 2001–2024 | IMERG −28,7 mm, ev. insuficiente | GES DISC OPeNDAP (GPM_3IMERGM 07) −28,7 mm, ev. insuficiente | −0,0 mm | 1,00 |
+| opendap_imerg_nic | contraste | 2001–2024 | IMERG −64,9 mm, ev. insuficiente | GES DISC OPeNDAP (GPM_3IMERGM 07) −52,3 mm, ev. insuficiente | −25,0 mm | 0,999 |
+| noaa_tegucigalpa_lluvia_vs_imerg_caja | contraste | 2001–2024 | IMERG caja (OPeNDAP) +6,7 mm, ev. insuficiente | GSOM: 5 años completos, sin tendencia | −481 mm | 0,75 (anual, n=5); 0,87 (mensual, n=150) |
+| airs_tas_nic | tendencia | 2003–2024 | Sen +0,13 °C, tendencia detectada (MK p = 0,010; **señal frágil**) | OLS +0,14 °C, no sig. p(F) = 0,073; Sen mensual −0,01 a +0,25 | — | r = 0,92 (GISTEMP); 0,82 (POWER) |
 | omi_no2_managua | tendencia | 2005–2024 | Sen −0,043 × 10¹⁵, **tendencia detectada** (MK p = 0,035) | OLS −0,049 × 10¹⁵, p(F) = 0,011 | — | — |
 | omi_no2_rural | tendencia | 2005–2024 | Sen −0,049 × 10¹⁵, **métodos discrepan** (MK p = 0,056) | OLS −0,050 × 10¹⁵, p(F) = 0,009 | — | r = 0,37 (urbano/rural) |
 | clorofila_rio_coco | tendencia | 2003–2024 | +0,01, ev. insuficiente | OLS +0,05, p = 0,26 | — | — |
@@ -53,25 +53,24 @@ En la tabla, «ev. insuficiente» significa evidencia insuficiente. En todas las
 
 ## 3. Lluvia: caja SICC y Nicaragua frente a IMERG
 
-### 3.1 Giovanni / GES DISC (IMERG, papel contraste): RESUELTO vía OPeNDAP
+### 3.1 GES DISC OPeNDAP (IMERG, papel contraste): RESUELTO
 
-- **Desbloqueo de Earthdata (13-11-2026).** Tras autorizar la aplicación «NASA GESDISC DATA ARCHIVE» (`client_id=e2WVk8Pw6weeLUKZYOxvTQ`), `giovanni.iniciar_sesion()` y las descargas en OPeNDAP pasaron a responder **HTTP 200**.
-- **Cola de Giovanni y ruta equivalente.** El endpoint `service_manager.pl` (`ArAvTs`) aceptó las peticiones, pero quedó en espera continua (*«Request pending: 40 requests ahead of you...»* > 10 min), y `api.giovanni.earthdata.nasa.gov` devolvió **HTTP 403** sin `EARTHDATA_TOKEN` en el entorno. Por ello, usando exactamente la misma sesión Earthdata, se consultaron los subconjuntos de Hyrax Cloud OPeNDAP (`opendap.earthdata.nasa.gov`, CMR `GPM_3IMERGM.07`, 288 meses, 2001–2024) aplicando la misma máscara y ponderación `cos(lat)` de Giovanni.
+- **Fuente real y bloqueo de Giovanni (13-11-2026).** Tras autorizar la aplicación «NASA GESDISC DATA ARCHIVE» (`client_id=e2WVk8Pw6weeLUKZYOxvTQ`), `giovanni.iniciar_sesion()` y las descargas en OPeNDAP pasaron a responder **HTTP 200**. Sin embargo, Giovanni no entregó series: el endpoint web `service_manager.pl` (`ArAvTs`) quedó detenido en cola (*«Request pending: 40 requests ahead of you...»* > 10 min) y `api.giovanni.earthdata.nasa.gov` devolvió **HTTP 403** sin `EARTHDATA_TOKEN` en el entorno. En su lugar, las series de IMERG se extrajeron directamente de **GES DISC Hyrax Cloud OPeNDAP** (`opendap.earthdata.nasa.gov`, producto **`GPM_3IMERGM 07`**, 288 meses de 2001–2024, consulta `2026-11-13`).
 
 **Resultados observados frente a `data/clima.json`:**
 
-- **Caja SICC:** `r = 1,000`, diferencia media **`−0,0001 mm/año`**, Sen `−28,7` frente a `−28,7 mm/década` (`diferencia_pendiente = 0,0`), ambos **evidencia insuficiente** (MK p = 0,785). Confirma que la ponderación EPSG:6933 frente a `cos(lat)` y el recorte de borde son despreciables.
-- **Nicaragua (NIC):** `r = 0,999`, diferencia media **`−25,0 mm/año`**, Sen `−52,3` (OPeNDAP con lagos) frente a `−64,9 mm/década` (`clima.json` sin lagos), ambos **evidencia insuficiente** (MK p = 0,60 frente a 0,44). Confirma exactamente la hipótesis previa: incluir los lagos Cocibolca y Xolotlán reduce la media en decenas de mm/año.
+- **Caja SICC (`opendap_imerg_caja_sicc`):** `r = 1,000`, diferencia media **`−0,0001 mm/año`**, Sen `−28,7` frente a `−28,7 mm/década` (`diferencia_pendiente = 0,0`), ambos **evidencia insuficiente** (MK p = 0,785). Muestra que la diferencia entre pesos EPSG:6933 frente a `cos(lat)` y el recorte de borde es despreciable.
+- **Nicaragua (`opendap_imerg_nic`):** `r = 0,999`, diferencia media **`−25,0 mm/año`**, Sen `−52,3` (GES DISC OPeNDAP, con lagos) frente a `−64,9 mm/década` (`clima.json` sin lagos), ambos **evidencia insuficiente** (MK p = 0,60 frente a 0,44). Concuerda con el efecto esperado de máscara: incluir los lagos Cocibolca y Xolotlán reduce la media anual del dominio nacional en torno a 25 mm/año sin cambiar el veredicto.
 
-**Token EDL.** No había ningún token EDL en el entorno ni en la cuenta (`api.giovanni.earthdata.nasa.gov` respondió HTTP 403), por lo que el equivalente de GES DISC se extrajo autenticando directamente contra Hyrax Cloud OPeNDAP con la autorización Earthdata ya concedida.
+**Token EDL.** No había ningún token EDL en el entorno ni en la cuenta (`api.giovanni.earthdata.nasa.gov` respondió HTTP 403), por lo que se autenticó directamente contra GES DISC Hyrax Cloud OPeNDAP con la sesión Earthdata ya autorizada.
 
 **Comparación de método (explica exactamente los resultados anteriores):**
 
-1. **Máscara.** Giovanni con `bbox` promedia las celdas cuyo centro cae en la caja. Nuestra caja pondera por la fracción exacta de cada celda de 0,1° dentro del rectángulo, así que solo cambia el borde: menos de 1 % del área.
-   Con `shape` Giovanni usa el contorno del Departamento de Estado de EE. UU. (2017). Es un polígono de país que previsiblemente incluye los lagos Cocibolca y Xolotlán; hay que comprobarlo con el CSV. Nuestro NIC los resta. Sobre los lagos llueve menos que en la vertiente caribe, así que se espera una diferencia de unas decenas de mm/año.
-2. **Ponderación.** Giovanni pondera por cos(latitud); nosotros, por el área de intersección en EPSG:6933. Entre 10,7 y 12,6° N el cos(lat) varía un 0,7 %. Según `clima.json` (`comprobacion_pesos_caja`), cambiar de pesos esféricos a pesos de igual área mueve el total anual de la caja como máximo 0,016 mm. La diferencia de ponderación es, por tanto, despreciable frente a la de máscara.
-3. **Versión.** Ambas usan GPM_3IMERGM V07B. Si Giovanni sirviera aún V07A en algún mes, se vería como un salto.
-4. **Unidades.** Giovanni devuelve la tasa media en mm/h. Se convierte con horas del mes × tasa (`giovanni.mensual_tasa_a_anual`), igual que en `clima.json`. Usar 730 h fijas o mm/día × 30 introduce errores de hasta un 3 % por mes.
+1. **Máscara.** La extracción en GES DISC OPeNDAP para la caja `bbox` promedia las celdas cuyo centro cae en la caja; `data/clima.json` pondera por la fracción exacta de cada celda de 0,1° dentro del rectángulo, de modo que solo difiere en el borde (< 1 % del área; `−0,0001 mm/año`, `r = 1,000`).
+   Para `NIC`, la serie en GES DISC OPeNDAP se extrajo con el contorno nacional del Departamento de Estado de EE. UU. (2017) e incluye los lagos Cocibolca y Xolotlán, mientras que `clima.json` los resta. El resultado comprobado con los CSV (`data/recursos/contraste/opendap/imerg_nic.csv`) es **con lagos: `−25,0 mm/año` y `r = 0,999`** (Sen `−52,3` frente a `−64,9 mm/década`).
+2. **Ponderación.** En GES DISC OPeNDAP aplicamos ponderación por `cos(latitud)` por centro de celda; `clima.json` usa el área de intersección en EPSG:6933. Entre 10,7 y 12,6° N el `cos(lat)` varía un 0,7 %. Según `clima.json` (`comprobacion_pesos_caja`), cambiar de pesos esféricos a pesos de igual área mueve el total anual de la caja como máximo 0,016 mm, despreciable frente al efecto de máscara.
+3. **Versión.** Ambas series usan `GPM_3IMERGM 07` (V07B).
+4. **Unidades.** `GPM_3IMERGM 07` entrega la tasa media en mm/h (`precipitation`). Se convierte con horas del mes × tasa (`giovanni.mensual_tasa_a_anual`), igual que en `clima.json`. Usar 730 h fijas o mm/día × 30 introduciría errores de hasta un 3 % por mes.
 
 ### 3.2 KNMI Climate Explorer: BLOQUEADO
 
@@ -177,7 +176,7 @@ Se compara con la celda de NASA POWER (MERRA-2) más cercana y con GISTEMP v4 (r
 - Correlación de anomalías con las estaciones: r = 0,60 (Managua), 0,83 (Juigalpa) y 0,57 (Tegucigalpa).
 - Pendiente 2001–2024: +0,40 °C/década, con **tendencia detectada**.
 - Ni las estaciones ni la celda POWER detectan ese calentamiento en 24 años. La diferencia de pendiente entre estación y GISTEMP va de −0,19 a −0,43 °C/década.
-- Hipótesis confirmada en parte con AIRS (§5.2): AIRS (2003–2024) sí detecta calentamiento (`+0,13 °C/década`, MK p = 0,010) y se correlaciona estrechamente con GISTEMP (`r = 0,92`), pero a un tercio de su pendiente (`+0,38 °C/década` en 2003–2024), más cerca de POWER (`+0,22`) y Juigalpa (`+0,21`). Esto sugiere que el radio de 250 km de GISTEMP amplifica la magnitud al mezclar estaciones homogeneizadas de países vecinos.
+- **Lectura matizada frente a AIRS (§5.2):** la tendencia de AIRS (2003–2024) es **frágil**: el veredicto anual da «tendencia detectada» (`+0,13 °C/década`, MK `p = 0,010`), pero la regresión mensual cruda da `p(F) = 0,073` (`+0,14 °C/década`, no significativa) y el IC 95 % de Theil–Sen mensual va de `−0,01` a `+0,25 °C/década`. AIRS coincide con GISTEMP en el signo y en la variabilidad interanual (`r = 0,92`), pero con una tasa de un tercio (`+0,13` frente a `+0,38 °C/década` en 2003–2024; más cerca de POWER `+0,22` y Juigalpa `+0,21`). Por tanto, **la magnitud de GISTEMP no queda respaldada**, y además deben considerarse limitaciones de estabilidad instrumental y deriva orbital de AIRS a largo plazo (§5.2).
 
 ### 4.4 Lluvia de Tegucigalpa
 
@@ -187,7 +186,7 @@ Se compara con la celda de NASA POWER (MERRA-2) más cercana y con GISTEMP v4 (r
 - En los 150 meses comunes: r = 0,73 mensual y 0,57 en anomalías.
 - La estación recibe el 55 % de la lluvia media nacional. Es un problema de representatividad (valle a 1 007 m, a sotavento), no un sesgo de IMERG.
 
-**Frente a IMERG en una caja pequeña** (13,95–14,25° N; 87,35–87,05° O; 2001–2024): completado vía OPeNDAP. En 150 meses comunes, `r = 0,87` mensual (`r = 0,74` en anomalías mensuales; `r = 0,75` anual en 5 años completos), superior al contraste contra todo Honduras (`0,73` y `0,57`). La estación recibe el **64 %** de la lluvia de su caja de 0,3° (`−481 mm/año`), lo que confirma el efecto local de sombra orográfica del valle de Tegucigalpa (Sen en la caja: `+6,7 mm/década`, evidencia insuficiente).
+**Frente a IMERG en una caja pequeña** (13,95–14,25° N; 87,35–87,05° O; 2001–2024): completado vía OPeNDAP. En 150 meses comunes, `r = 0,87` mensual (`r = 0,74` en anomalías mensuales; `r = 0,75` anual en 5 años completos), superior al contraste contra todo Honduras (`0,73` y `0,57`). La estación recibe el **64 %** de la lluvia de su caja de 0,3° en GES DISC OPeNDAP (`GPM_3IMERGM 07`, `−481 mm/año`), resultado coherente con la diferencia de representatividad punto-celda y una posible sombra orográfica local en el valle de Tegucigalpa (Sen en la caja: `+6,7 mm/década`, evidencia insuficiente).
 
 ### 4.5 Lluvia de las estaciones de Nicaragua en la década de 1980
 
@@ -200,24 +199,28 @@ Es una validación débil, útil solo para mostrar que POWER suaviza la lluvia o
 
 ## 5. Variables nuevas (papel tendencia)
 
-### 5.1 OMI NO₂ troposférico urbano y rural (Managua y Chontales): RESUELTO vía OPeNDAP
+### 5.1 OMI NO₂ troposférico urbano y rural (Managua y Chontales): GES DISC OPeNDAP
 
-- Producto: OMNO2d v003, `ColumnAmountNO2TropCloudScreened` (fracción de nubes < 30 %), 2005–2024 (`240` meses, `7 282` gránulos diarios vía Hyrax Cloud OPeNDAP, CMR `OMNO2d.003`).
+- Producto: **`OMNO2d 003`** (`ColumnAmountNO2TropCloudScreened`, fracción de nubes < 30 %), 2005–2024 (`240` meses, `7 282` gránulos diarios desde **GES DISC Hyrax Cloud OPeNDAP**, CMR `OMNO2d.003`, consulta `2026-11-13`).
 - Como las cajas caen entre centros de celdas de 0,25°, se usó ponderación exacta por área de intersección (`regiones.pesos_malla`) sobre las dos celdas que cubre cada caja (`180,6 km²` cada celda):
   - **Caja urbana (Managua):** 12,05–12,20° N; 86,35–86,15° O (centros en 12,125° N; 86,375° y 86,125° O). Cubre el casco urbano, el aeropuerto internacional y la orilla sur del Xolotlán. `4 863` días válidos (mediana `20` días/mes), media `0,745 × 10¹⁵ molec cm⁻²`.
   - **Caja rural de fondo (Chontales):** 12,35–12,50° N; 85,10–84,90° O (centros en 12,375° N; 85,125° y 84,875° O), ~130 km al este en zona ganadera fuera del eje Managua–Granada–Masaya. `3 558` días válidos (mediana `15` días/mes), media `0,490 × 10¹⁵ molec cm⁻²`.
 - **Tendencias 2005–2024:**
   - **Managua:** Theil–Sen anual `−0,043 × 10¹⁵ molec cm⁻²/década` (**tendencia detectada**, MK p = 0,035); OLS mensual `−0,049 × 10¹⁵` (p = 0,011). Ambos métodos coinciden.
   - **Chontales rural:** Theil–Sen anual `−0,049 × 10¹⁵ molec cm⁻²/década` (MK p = 0,056, **métodos discrepan**); OLS mensual `−0,050 × 10¹⁵` (p = 0,009).
-- **Lectura del contraste urbano–rural:** Managua presenta en promedio **1,52×** más NO₂ troposférico que Chontales (`+0,255 × 10¹⁵ molec cm⁻²`, `r_anual = 0,37`), lo que confirma una señal urbana diferenciada. Sin embargo, ambas cajas descienden casi al mismo ritmo (`~−0,04` a `−0,05 × 10¹⁵/década`), por lo que la pendiente negativa temporal no debe atribuirse únicamente a emisiones locales de Managua sin descartar deriva regional, cambios de nubosidad o la *row anomaly* de OMI.
+- **Lectura del contraste urbano–rural:** Managua presenta en promedio **1,52×** más NO₂ troposférico que Chontales (`+0,255 × 10¹⁵ molec cm⁻²`, `r_anual = 0,37`), resultado coherente con una carga urbana más alta sobre Managua. Sin embargo, ambas cajas descienden casi al mismo ritmo (`~−0,04` a `−0,05 × 10¹⁵/década`), por lo que la pendiente negativa temporal no debe atribuirse únicamente a emisiones locales de Managua sin descartar deriva regional, cambios de nubosidad o la *row anomaly* de OMI.
 
-### 5.2 AIRS, temperatura del aire en superficie: RESUELTO vía OPeNDAP y tercera opinión
+### 5.2 AIRS, temperatura del aire en superficie: GES DISC OPeNDAP y tercera opinión
 
-- Producto: AIRS3STM v7, promedio de los pasos ascendente (`SurfAirTemp_A`, ~13:30) y descendente (`SurfAirTemp_D`, ~01:30), ponderado por área sobre el polígono NIC sin lagos (`265` meses de 2002-12 a 2024-12 vía Hyrax Cloud OPeNDAP, CMR `AIRS3STM.7.0`).
-- **Tendencia de AIRS sobre Nicaragua (2003–2024):** climatología `25,35 °C`, Theil–Sen anual **`+0,13 °C/década` (`+0,1261`, tendencia detectada, MK p = 0,0095)**; OLS mensual cruda `+0,14 °C/década` (no significativa, p(F) = 0,073; Theil–Sen mensual `+0,12`, IC 95 % `−0,01` a `+0,25`).
+- Producto: **`AIRS3STM 7.0`** (`AIRS3STM v7`), promedio de los pasos ascendente (`SurfAirTemp_A`, ~13:30) y descendente (`SurfAirTemp_D`, ~01:30), ponderado por área sobre el polígono NIC sin lagos (`265` meses de 2002-12 a 2024-12 desde **GES DISC Hyrax Cloud OPeNDAP**, CMR `AIRS3STM.7.0`, consulta `2026-11-13`).
+- **Tendencia frágil de AIRS sobre Nicaragua (2003–2024):** climatología `25,35 °C`. Sobre la serie anual (22 años), el veredicto es **«tendencia detectada»** (Theil–Sen `+0,13 °C/década`, `+0,1261`, MK `p = 0,010` —exacto `0,0095`—). Sin embargo, la tendencia se presenta como **frágil**: la regresión OLS sobre los meses da `p(F) = 0,073` (`+0,14 °C/década`, no significativa al 5 %) y el IC 95 % de Theil–Sen mensual abarca de `−0,01` a `+0,25 °C/década` (`+0,12 °C/década` puntual), cruzando el cero.
 - **Tercera opinión en la discrepancia GISTEMP frente a POWER/estaciones (ventana común 2003–2024, 22 años):**
   - AIRS sigue de cerca las anomalías interanuales tanto de **GISTEMP** (`r = 0,92`) como de **NASA POWER/MERRA-2** (`r = 0,82`, con sesgo de POWER de `+0,53 °C`).
-  - **Conclusión:** el sensor infrarrojo independiente **AIRS respalda el signo positivo y la significancia de GISTEMP** (AIRS `+0,13 °C/década`, MK p = 0,010; GISTEMP `+0,38 °C/década` en 2003–2024 y `+0,40` en 2001–2024, MK p = 0,001), frente a POWER (`+0,22 °C/década`, MK p = 0,21, evidencia insuficiente) y Managua cruda. Es decir, sí hay señal de calentamiento en 2003–2024. No obstante, la **tasa** de AIRS es un tercio de la de GISTEMP y queda próxima a la de POWER y Juigalpa (`+0,21`), lo que apoya la hipótesis de que el radio de interpolación de 250 km de GISTEMP amplifica la magnitud al incorporar estaciones homogeneizadas de fuera del país.
+  - **Conclusión:** **AIRS coincide con GISTEMP en el signo y en la variabilidad interanual (`r = 0,92`), pero con una tasa de un tercio (`+0,13` frente a `+0,38 °C/década` en 2003–2024). La magnitud de GISTEMP no queda respaldada**, y la propia significancia de AIRS depende del paso a medias anuales (`MK p = 0,010` frente a OLS mensual `p(F) = 0,073` e IC mensual `−0,01` a `+0,25`). Queda como hipótesis abierta si el radio de interpolación de 250 km de GISTEMP amplifica la pendiente sobre Nicaragua.
+- **Limitaciones de estabilidad instrumental y muestreo a largo plazo (documentación oficial AIRS v7):**
+  - *Producto solo IR y nubosidad:* la guía del producto Level 3 v7 (Baijun Tian et al., JPL, abril de 2020, v1.0, §1.1 p. 3 y §5.1 p. 31) indica que `AIRS3STM` utiliza la recuperación solo infrarroja (*AIRS-Only*) para conservar la continuidad tras el fallo de `AMSU-A2` (24 de septiembre de 2016), con menor rendimiento en zonas muy nubosas, y falla cuando la nubosidad supera el 70 %.
+  - *Estabilidad radiométrica frente a deriva orbital:* *Overview of the AIRS Mission* (Heidar Th. Thrastarson et al., 2.ª ed., JPL/GES DISC, 6 de mayo de 2021, p. 10 y §2 p. 7) documenta que la deriva de las radiancias de ventana a 1231 cm⁻¹ se estimó en `< 0,2–0,3 mK/década` en 2002–2019 (Aumann et al., 2019), pero señala que Aqua mantuvo la órbita nominal hasta finales de 2022 y comenzó entonces a derivar hacia horas locales más tardías, afectando al muestreo diurno al final del período (`2023–2024`).
+  - *Maniobra DSM de 2021:* el informe técnico sobre la maniobra de espacio profundo del 23 de septiembre de 2021 (Tao Wang y Qing Yue, JPL, 10 de diciembre de 2025, §1, §5.2.2 pp. 3–5 y 22–23; §6 y §8 pp. 31–38) describe un desplazamiento del plano focal (~1 µm) que provocó sesgo frío y discontinuidades en `SurfAirTemp` en compilaciones previas `v7.0.7.0` (sobre todo en pasos descendentes sobre tierra tropical) hasta el reprocesamiento `v7.0.9.3`/`v7.0.10.0`. Aunque nuestros gránulos `AIRS3STM.7.0` de 2024 en CMR ya corresponden a `v7.0.9.3`, cualquier deriva orbital o ajuste posmaniobra debe tratarse como limitación al interpretar pendientes débiles (`~0,1 °C/década`).
 
 ### 5.3 Clorofila-a, MODIS-Aqua (OB.DAAC)
 
@@ -232,7 +235,7 @@ Es una validación débil, útil solo para mostrar que POWER suaviza la lluvia o
 
 **Promedio por caja**
 
-- Igual que en Giovanni: media con peso cos(lat) de los píxeles válidos cuyo centro cae en la caja.
+- Con el mismo criterio espacial que en nuestra extracción OPeNDAP: media con peso cos(lat) de los píxeles válidos cuyo centro cae en la caja.
 - Un mes vale si tiene al menos el 20 % del máximo de píxeles válidos de esa caja; las nubes vacían muchos meses en el Caribe.
 
 **Cajas** (0,5° × 0,5°, del lado del mar)
@@ -329,7 +332,7 @@ Unidades: mg m⁻³ por década.
 | Golfo de Fonseca | 7,02 (mediana 5,9) | **no** |
 | Pacífico abierto frente a Fonseca | 0,44 | **sí** |
 
-La caja dentro del golfo (`7,02 mg m⁻³`) incumple el criterio de Acker et al. al caer en aguas someras y turbias donde el algoritmo OCx confunde sedimento y CDOM con clorofila. Al repetir el experimento en mar abierto frente a Fonseca (`12,20–12,70° N; 88,30–87,80° O`, media **`0,44 mg m⁻³`**, cumple ≤ 1 mg m⁻³ en el 100 % de los 144 píxeles), no aparece ningún aumento: OLS mensual `−0,08 mg m⁻³/década` (p = 0,017) y Theil–Sen anual `−0,06 mg m⁻³/década` (`evidencia insuficiente`, MK p = 0,13). Eso confirma que la señal positiva observada dentro del golfo corresponde a turbidez y aporte estuarino, no a eutrofización en aguas abiertas.
+La caja dentro del golfo (`7,02 mg m⁻³`) incumple el criterio de Acker et al. al caer en aguas someras y turbias donde el algoritmo OCx confunde sedimento y CDOM con clorofila. Al repetir el experimento en mar abierto frente a Fonseca (`12,20–12,70° N; 88,30–87,80° O`, media **`0,44 mg m⁻³`**, cumple ≤ 1 mg m⁻³ en el 100 % de los 144 píxeles), no aparece ningún aumento: OLS mensual `−0,08 mg m⁻³/década` (p = 0,017) y Theil–Sen anual `−0,06 mg m⁻³/década` (`evidencia insuficiente`, MK p = 0,13). Ese contraste es coherente con que la señal positiva observada dentro del golfo se deba a turbidez y aporte estuarino, y no a eutrofización en aguas abiertas.
 
 **Otras diferencias de método con el artículo** (ninguna cambia la conclusión):
 
@@ -341,7 +344,7 @@ La caja dentro del golfo (`7,02 mg m⁻³`) incumple el criterio de Acker et al.
 
 | clave | URL de la petición | código | fecha | motivo |
 |---|---|---|---|---|
-| giovanni_imerg_*, giovanni_airs_tas_*, giovanni_omi_no2_* | ver `bloqueos.json` (`service_manager.pl`, `ArAvTs`) | 200 (en espera) | 13-11-2026 | Earthdata autorizado el 13-11-2026; la cola de Giovanni quedó estancada (`40 requests ahead of you`) → **suplido con Hyrax OPeNDAP** |
+| giovanni_imerg_*, giovanni_airs_tas_*, giovanni_omi_no2_* | ver `bloqueos.json` (`service_manager.pl`, `ArAvTs`) | 200 (en espera) | 13-11-2026 | cola detenida (`40 requests ahead of you`) / respuesta vacía de sesión → **datos reales obtenidos de `GES DISC OPeNDAP`** (claves `opendap_*` en `consultas.json`) |
 | giovanni_api_token | <https://api.giovanni.earthdata.nasa.gov/timeseries> | 403 | 13-11-2026 | sin `EARTHDATA_TOKEN` Bearer en el entorno → **suplido con Hyrax OPeNDAP** |
 | knmi_climate_explorer | <https://climexp.knmi.nl/start.cgi?id=someone@somewhere> | 200, página de verificación | 12-11-2026 | control «verify that I am human»; se usaron CRU y GPCC |
 | noaa_cdo_v2 | <https://www.ncei.noaa.gov/cdo-web/api/v2/stations?datasetid=GSOM&extent=10.7%2C-89.4%2C16.5%2C-83.1&limit=1000> | 400 | 12-11-2026 | falta `NOAA_CDO_TOKEN`; se usó NCEI v1 |
@@ -352,19 +355,19 @@ La caja dentro del golfo (`7,02 mg m⁻³`) incumple el criterio de Acker et al.
 
 - `backend/clima_nic/fuentes/giovanni.py`:
   - cliente de Giovanni (inicio de sesión OAuth, `service_manager`, sondeo, lector de CSV y API Bearer opcional);
-  - abridor y sesión HTTP `requests` Earthdata con Basic preventivo solo hacia URS;
+  - abridor y cliente HTTP `httpx` Earthdata (`sesion_urs_http`) con Basic preventivo solo hacia URS;
   - consulta CMR y parsers DAP2 / Hyrax Cloud ASCII (`parsear_hyrax_ascii`, `opendap_hyrax_ascii`), y promedio cos(lat);
   - conversión de mm/h a mm;
   - comparación con los métodos del backend.
 - `backend/clima_nic/fuentes/noaa_cdo.py`: CDO v2 (token leído del entorno), buscador y Access Data Service v1 de NCEI, y parsers.
-- `data/recursos/contraste/generar_contrastes.py`: pasos `noaa`, `knmi`, `cru`, `gpcc`, `giovanni`, `clorofila` y `resumen`.
+- `data/recursos/contraste/generar_contrastes.py`: pasos `noaa`, `knmi`, `cru`, `gpcc`, `giovanni`, `opendap`, `clorofila` y `resumen`.
 
 **Datos** en `data/recursos/contraste/`:
 
 - `resumen_contrastes.json`, `series_anuales.csv`, `bloqueos.json` y `consultas.json`;
 - `lluvia_mensual_externa_{cru,gpcc}.csv` y `cru_estaciones_mensual.csv`;
 - `clorofila_modis_mensual.csv`;
-- `giovanni/{imerg_caja_sicc,imerg_nic,imerg_tegucigalpa,airs_tas_a_nic,airs_tas_d_nic,omi_no2_managua,omi_no2_rural}.csv`;
+- `opendap/{imerg_caja_sicc,imerg_nic,imerg_tegucigalpa,airs_tas_a_nic,airs_tas_d_nic,omi_no2_managua,omi_no2_rural}.csv`;
 - `noaa/gsom_estaciones.csv`, `noaa/estaciones_mensual.csv` y `noaa/estaciones_ncei.csv`.
 
 Los archivos crudos y cacheados por año (CRU, GHCN-Daily, MODIS y OMI diario) quedan en `backend/.cache/contraste/`, fuera de git.
@@ -386,4 +389,9 @@ Ningún archivo contiene credenciales. El `.netrc` se lee en memoria y los token
   - selección y descarga de la caja de control en Pacífico abierto frente al golfo de Fonseca (`pacifico_fonseca`, 264 meses, `0,44 mg m⁻³`);
   - rebase de la rama `codex/recursos-contraste` sobre `origin/codex/verificacion-entrega`;
   - tras la autorización Earthdata de `NASA GESDISC DATA ARCHIVE`, verificación de bloqueo por cola en `ArAvTs` / HTTP 403 sin `EARTHDATA_TOKEN` y extracción equivalente completa vía GES DISC Hyrax OPeNDAP de IMERG (`288` meses), AIRS (`265` meses) y OMI (`7 282` días, 2005–2024); regeneración íntegra de `resumen_contrastes.json` y `series_anuales.csv` con `20/20` entradas en estado `ok`.
+- **13-11-2026 (cierre y revisión previa al evento del 14–15 de noviembre):**
+  - declaración explícita de la fuente real (`GES DISC OPeNDAP`, nombres cortos/versiones `GPM_3IMERGM 07`, `AIRS3STM 7.0`, `OMNO2d 003` y fecha `2026-11-13`), renombre de la carpeta `giovanni/` → `opendap/` e ids `opendap_*`, conservando el motivo de bloqueo de Giovanni en `bloqueos.json`;
+  - migración de `sesion_urs_requests` a `sesion_urs_http` con `httpx.Client` en `giovanni.py` y limpieza de `import os` en `generar_contrastes.py`;
+  - matización de AIRS (señal frágil: MK `p = 0,010` frente a OLS `p(F) = 0,073` e IC mensual `−0,01` a `+0,25`; magnitud de GISTEMP no respaldada; limitaciones con documentación oficial JPL de AIRS v7) y de conclusiones de Tegucigalpa, OMI urbano y Fonseca;
+  - regeneración reproducible de `resumen_contrastes.json` / `series_anuales.csv` y verificación en rama e integrada con `pytest` y `scripts/datos/verificar_clima.py`.
 - **Uso de IA:** trabajo asistido por agentes de programación basados en LLM (Codex en la fase del 12–13-11 y Antigravity en la finalización del 13-11) para la escritura del código en `giovanni.py`, `generar_contrastes.py`, pruebas y documentación. Todas las cifras publicadas provienen exclusivamente de descargas directas reales y cálculos locales reproducibles verificados con `pytest`.
