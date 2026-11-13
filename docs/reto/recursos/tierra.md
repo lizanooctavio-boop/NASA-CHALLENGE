@@ -155,6 +155,14 @@ python -m clima_nic.fuentes.gldas_mensual --inicio 2001 --fin 2024
 
 **Límites.** La prueba de Pettitt sitúa el cambio de la mayoría de las series de Nicaragua en 2011–2013. El README de GLDAS-2 advierte reescalados de la radiación AGRMET desde 2008 y un desplazamiento de origen desconocido después de 2011. Por eso, un descenso de humedad en Nicaragua puede ser un artefacto del forzamiento y no un cambio climático. En la región Central, el veredicto pasa a «métodos discrepan» al quitar 2001–2002. Antes de interpretarlo hay que contrastar con SMAP (AppEEARS, desde 2015) y con la humedad de MERRA-2. La caída en las Praderas se mantiene sin 2001–2002 y es coherente con las sequías de la década, pero tampoco se ha contrastado. GLDAS es un modelo forzado con observaciones, no una medición.
 
+**Contraste de humedad con MERRA-2** (`data/recursos/tierra/contrastar_humedad.py`, salidas `contrastes_tierra.json` y `contrastes_tierra_series.csv`). Se comparó GLDAS 0–10 cm con GWETTOP y GLDAS 10–40 cm con GWETROOT de MERRA-2 (vía NASA POWER, medias regionales ya existentes en el proyecto), 2001–2024. Como las unidades difieren (m³/m³ frente a un índice de saturación de 0 a 1), las series se comparan como anomalías estandarizadas y cada tendencia se calcula en sus propias unidades.
+
+- La correlación anual entre ambos modelos es casi nula: r = −0,03 a 0,36 según la región y la capa.
+- Las tendencias van en sentidos opuestos. MERRA-2 detecta humedecimiento en todas las regiones (GWETTOP en NIC +0,048 por década; media de 0,56 en 2001–2005 frente a 0,66 en 2020–2024). GLDAS da descenso (NIC −0,0071 m³/m³ por década).
+- Cada modelo es coherente con su propia lluvia: la humedad anual de GLDAS se correlaciona con la lluvia de su forzamiento (r = 0,81 en NIC), y GWETTOP con la lluvia de MERRA-2 (r = 0,87–0,91). La lluvia de GLDAS y la de IMERG se correlacionan con r = 0,69 en NIC. La discrepancia viene de los forzamientos y de la física de cada modelo, no del procesado.
+
+**Conclusión.** En Nicaragua, la tendencia de humedad del suelo depende del modelo y no se presenta como hallazgo climático. Dos modelos de NASA con forzamientos distintos discrepan incluso en el signo. La referencia observacional disponible es SMAP L4 desde 2015, pedida por AppEEARS; el mismo script añadirá ese contraste cuando existan sus series. En la interfaz, el contraste aparece en *Cross-checks* junto a cada serie de humedad de GLDAS. No hay MERRA-2 para las Praderas de Canadá en el proyecto, así que la caída de humedad allí sigue sin contraste.
+
 **Recursos del reto.** No se usó la herramienta Hydrology Time Series ni Giovanni, que siguen fallando. Estos datos proceden del archivo de GES DISC del mismo conjunto GLDAS y no se presentan como uso de esos recursos.
 
 ## Formato y contraste para el agente 4
