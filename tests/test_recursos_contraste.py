@@ -70,12 +70,24 @@ def test_resumen_forma():
 
 def test_resumen_incluye_variables_nuevas_y_papeles():
     cs = {c["id"]: c for c in _resumen()["contrastes"]}
-    assert any(k.startswith("omi_no2") for k in cs)
-    assert any(k.startswith("airs_tas") for k in cs)
-    assert any(k.startswith("clorofila_") for k in cs)
+    series = _series()
+    req = {"omi_no2_managua", "omi_no2_rural", "airs_tas_nic",
+           "clorofila_golfo_fonseca", "clorofila_pacifico_fonseca",
+           "giovanni_imerg_caja_sicc", "giovanni_imerg_nic", "noaa_tegucigalpa_lluvia_vs_imerg_caja"}
+    assert req.issubset(cs)
+    for k in req:
+        assert cs[k]["estado"] == "ok", k
+    assert cs["clorofila_pacifico_fonseca"].get("cumple_criterio_ntrs_1mg") is True
     for k, c in cs.items():
         if k.startswith(("omi_no2", "airs_tas", "clorofila_")):
             assert c["papel"] == "tendencia", k
+            if c.get("estado") == "ok":
+                assert c.get("titulo_en") and c.get("definicion_en"), k
+                assert c.get("region") and not re.search(r"[áéíóú¿¡ñ]", c["region"].lower()), k
+                assert c["serie_nuestra"].get("unidad", "").count("/") == 1, k
+                assert (k, "nuestra") in series, k
+                if k.startswith("omi_no2"):
+                    assert "caja" in c and c["serie_nuestra"].get("unidad") == "1e15 molec cm-2/década", k
         if k.startswith(("cru_", "gpcc_", "noaa_", "giovanni_imerg")):
             assert c["papel"] == "contraste", k
 
@@ -138,12 +150,12 @@ def test_veredictos_coinciden_con_csv():
         for lado in ("nuestra", "externa"):
             bloque = c[f"serie_{lado}"]
             if bloque.get("pendiente") is None or bloque.get("veredicto") in (None, "no_aplica") \
-                    or c["id"].startswith("clorofila_") and lado == "externa":
+                    or (c["papel"] == "tendencia" and lado == "externa" and "p_valor_F" in bloque):
                 continue
             _comprobar_serie(bloque, series[(c["id"], lado)])
             revisados += 1
         if c["serie_nuestra"].get("pendiente") is not None and c["serie_externa"].get("pendiente") is not None \
-                and not c["id"].startswith("clorofila_"):
+                and not (c["papel"] == "tendencia" and "p_valor_F" in c["serie_externa"]):
             esperado = c["serie_externa"]["pendiente"] - c["serie_nuestra"]["pendiente"]
             assert c["diferencia"]["diferencia_pendiente"] == pytest.approx(esperado, abs=2e-4)
     assert revisados >= 10
@@ -361,3 +373,33 @@ def test_ntrs_clorofila_sintetica():
     an = nt["anomalias_anuales"]
     assert an[2012] - an[2011] == pytest.approx(0.02, abs=1e-3)
     assert nt["meses_por_anio"][2003] == 11
+
+
+def test_parsear_hyrax_ascii_y_api_sin_token(monkeypatch):
+    from clima_nic.fuentes import giovanni
+
+    txt = (
+        "Dataset: ejemplo.nc4\n"
+        "lat, 12.125, 12.375\n"
+        "lon, -86.375, -86.125\n"
+        "precipitation[0][0], 100.0, 200.0\n"
+        "precipitation[0][1], 300.0, -9999.9\n"
+    )
+    d = giovanni.parsear_hyrax_ascii(txt)
+    assert d["lat"].tolist() == [12.125, 12.375]
+    assert d["lon"].tolist() == [-86.375, -86.125]
+    assert d["precipitation"][0, 0] == 100.0
+    assert d["precipitation"][1, 1] == -9999.9
+
+    txt3 = (
+        "Dataset: air.nc\n"
+        "Latitude, 12.5\n"
+        "Longitude, -85.5\n"
+        "T[time=0][0], 298.15\n"
+    )
+    d3 = giovanni.parsear_hyrax_ascii(txt3)
+    assert d3["T"][0, 0] == 298.15
+
+    monkeypatch.delenv("EARTHDATA_TOKEN", raising=False)
+    with pytest.raises(RuntimeError, match="EARTHDATA_TOKEN"):
+        giovanni.api_giovanni_serie("A", (-86, 12, -85, 13), "2020-01-01", "2020-01-31")

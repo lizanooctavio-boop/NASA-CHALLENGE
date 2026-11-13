@@ -272,9 +272,10 @@ def urllib_request():
 
 # ---------------------------------------------------------------- paso clorofila (MODIS-Aqua L3m, OB.DAAC)
 
-# Cajas de 0,5° × 0,5° frente a las desembocaduras (lado mar) y el golfo de Fonseca. (oeste, sur, este, norte)
+# Cajas de 0,5° × 0,5° frente a las desembocaduras (lado mar), el golfo de Fonseca y el Pacífico abierto. (oeste, sur, este, norte)
 CAJAS_CHL = {
     "golfo_fonseca": (-87.9, 12.9, -87.3, 13.5),
+    "pacifico_fonseca": (-88.3, 12.2, -87.8, 12.7),
     "rio_coco": (-83.15, 14.75, -82.65, 15.25),
     "rio_grande_matagalpa": (-83.5, 12.65, -83.0, 13.15),
     "rio_escondido_bluefields": (-83.68, 11.75, -83.18, 12.25),
@@ -309,8 +310,8 @@ def paso_clorofila(a0=2003, a1=2024, hilos=3):
     from concurrent.futures import ThreadPoolExecutor
 
     from clima_nic.fuentes.base import descargar_url
-    hechos = {(r["caja"], r["mes"]) for r in leer_csv(CHL_CSV)} if CHL_CSV.exists() else set()
-    filas = [list(r.values()) for r in leer_csv(CHL_CSV)] if CHL_CSV.exists() else []
+    hechos = {(r["caja"], r["mes"]): [r["caja"], r["mes"], r["chl_mg_m3"], r["fraccion_valida"], r["pixeles_validos"]]
+              for r in leer_csv(CHL_CSV)} if CHL_CSV.exists() else {}
     pend = [(a, m) for a in range(a0, a1 + 1) for m in range(1, 13)
             if any((k, f"{a:04d}-{m:02d}") not in hechos for k in CAJAS_CHL)]
     op = gv.abridor_urs()
@@ -337,8 +338,10 @@ def paso_clorofila(a0=2003, a1=2024, hilos=3):
                 errores.append(f"{a}-{m:02d}: {err}")
                 continue
             for k, (media, frac, n) in res.items():
-                filas.append([k, f"{a:04d}-{m:02d}", r4(media) if math.isfinite(media) else "", r4(frac), n])
-            filas.sort(key=lambda f: (f[0], f[1]))
+                mes = f"{a:04d}-{m:02d}"
+                if (k, mes) not in hechos:
+                    hechos[(k, mes)] = [k, mes, r4(media) if math.isfinite(media) else "", r4(frac), n]
+            filas = [hechos[clave] for clave in sorted(hechos)]
             escribir_csv(CHL_CSV, ["caja", "mes", "chl_mg_m3", "fraccion_valida", "pixeles_validos"], filas)
             print(f"clorofila {a}-{m:02d}", flush=True)
     anotar_consulta("clorofila", url=OBDAAC + CHL_ARCHIVO, errores=errores[:20])
@@ -369,30 +372,264 @@ GIOVANNI_SERIES = {
 GIOVANNI_CSV = AQUI / "giovanni"
 
 
-def paso_giovanni(claves=None):
-    op, motivo = gv.iniciar_sesion()
-    for k in claves or GIOVANNI_SERIES:
-        var, i, f, bbox, shape = GIOVANNI_SERIES[k]
-        url = gv.url_serie_area(var, i, f, bbox=bbox, shape=shape)
-        destino = GIOVANNI_CSV / f"{k}.csv"
-        if destino.exists():
-            continue
-        if op is None:
-            anotar_bloqueo(f"giovanni_{k}", url=url, http=302,
-                           motivo=f"Earthdata Login: {motivo}. Giovanni responde «Giovanni now requires a login for "
-                                  "data access» y el flujo ArAvTs falla.")
-            continue
+def _escribir_csv_giovanni(ruta, titulo, var, relleno, filas):
+    """Escribe un CSV compatible con `gv.leer_csv_giovanni`."""
+    ruta = Path(ruta)
+    ruta.parent.mkdir(parents=True, exist_ok=True)
+    lineas = [f'Title:,"{titulo}"', f"Fill Value ({var}):,{relleno}", "", f"time,{var}"]
+    for t, v in filas:
+        lineas.append(f"{t},{relleno if v is None or not math.isfinite(v) else f'{v:.6g}'}")
+    ruta.write_text("\n".join(lineas) + "\n", encoding="utf-8", newline="\n")
+
+
+def _nic_exterior():
+    from shapely.geometry import Polygon, shape
+    from shapely.ops import unary_union
+    dom = json.loads((DATOS / "dominios.geojson").read_text(encoding="utf-8"))
+    nic = next(shape(f["geometry"]) for f in dom["features"] if f["id"] == "NIC")
+    partes = list(getattr(nic, "geoms", [nic]))
+    return unary_union([Polygon(p.exterior) for p in partes])
+
+
+def _hyrax_get_con_reintento(tl_session_fn, url, restriccion, intentos=5, timeout=30):
+    import time
+    import urllib.parse
+    u = f"{url}.ascii?" + urllib.parse.quote(restriccion, safe="/:,")
+    espera = 1.0
+    for k in range(intentos):
         try:
-            _, urls = gv.ejecutar(op, url)
-            csvs = [u for u in urls if u.lower().endswith(".csv")] or urls
-            texto = op.open(csvs[0] if csvs[0].startswith("http") else gv.GIOVANNI + csvs[0], timeout=600).read()
-            gv.leer_csv_giovanni(texto.decode("utf-8"))  # valida el formato antes de guardar
-            destino.parent.mkdir(parents=True, exist_ok=True)
-            destino.write_bytes(texto.replace(b"\r\n", b"\n"))
-            quitar_bloqueo(f"giovanni_{k}")
-            anotar_consulta(f"giovanni_{k}", url=url)
+            r = tl_session_fn().get(u, timeout=timeout)
+            if r.status_code == 200 and r.text.lstrip().startswith("Dataset:"):
+                return r.text
+            if r.status_code not in (429, 500, 502, 503, 504) and not r.text.lstrip().startswith("<"):
+                raise RuntimeError(f"{u}: HTTP {r.status_code}")
         except Exception as e:  # noqa: BLE001
-            anotar_bloqueo(f"giovanni_{k}", url=url, motivo=str(e)[:400])
+            if k == intentos - 1:
+                raise RuntimeError(f"{u}: {e}") from e
+        time.sleep(espera)
+        espera *= 1.5
+    raise RuntimeError(u)
+
+
+def _paso_imerg_opendap(tl_s, pend):
+    if not any(k in pend for k in ("imerg_caja_sicc", "imerg_nic", "imerg_tegucigalpa")):
+        return
+    from concurrent.futures import ThreadPoolExecutor
+    from shapely.geometry import Point
+
+    grans = gv.cmr_granulos_opendap("GPM_3IMERGM", "07", "2001-01-01T00:00:00Z,2024-12-31T23:59:59Z")
+    lon = np.array([-179.95 + 0.1 * j for j in range(920, 971)])
+    lat = np.array([-89.95 + 0.1 * i for i in range(1000, 1061)])
+    nic_ext = _nic_exterior()
+    mascara_nic = np.array([[nic_ext.contains(Point(lo, la)) for lo in lon] for la in lat])
+    pesos_nic = np.where(mascara_nic, np.cos(np.radians(lat))[:, None], 0.0)
+
+    def uno(item):
+        ts, u = item
+        d = gv.parsear_hyrax_ascii(_hyrax_get_con_reintento(
+            tl_s, u, "/Grid/precipitation[0:1:0][920:1:970][1000:1:1060]"))
+        pr = np.where(d["precipitation"] < -9000, np.nan, d["precipitation"]).T
+        sicc, _ = gv.media_caja_coslat(lat, lon, pr, CAJA_SICC)
+        teg, _ = gv.media_caja_coslat(lat, lon, pr, CAJA_TEGUCIGALPA)
+        ok = np.isfinite(pr) & (pesos_nic > 0)
+        nic_v = float(np.sum(pr[ok] * pesos_nic[ok]) / np.sum(pesos_nic[ok])) if ok.any() else math.nan
+        return f"{ts[:10]} 00:00:00", float(sicc), nic_v, float(teg)
+
+    with ThreadPoolExecutor(12) as ex:
+        res = sorted(ex.map(uno, grans), key=lambda x: x[0])
+    print(f"opendap IMERG: {len(res)} meses", flush=True)
+    url_base = "https://opendap.earthdata.nasa.gov/collections/C2723754851-GES_DISC (CMR GPM_3IMERGM.07)"
+    if "imerg_caja_sicc" in pend:
+        _escribir_csv_giovanni(GIOVANNI_CSV / "imerg_caja_sicc.csv",
+                               "GPM_3IMERGM v07 precipitation mm/hr (GES DISC OPeNDAP, cos-lat box SICC)",
+                               "mean_GPM_3IMERGM_07_precipitation", -9999.9, [(t, s) for t, s, _, _ in res])
+        anotar_consulta("giovanni_imerg_caja_sicc", url=url_base, metodo="opendap")
+    if "imerg_nic" in pend:
+        _escribir_csv_giovanni(GIOVANNI_CSV / "imerg_nic.csv",
+                               "GPM_3IMERGM v07 precipitation mm/hr (GES DISC OPeNDAP, cos-lat NIC con lagos)",
+                               "mean_GPM_3IMERGM_07_precipitation", -9999.9, [(t, n) for t, _, n, _ in res])
+        anotar_consulta("giovanni_imerg_nic", url=url_base, metodo="opendap")
+    if "imerg_tegucigalpa" in pend:
+        _escribir_csv_giovanni(GIOVANNI_CSV / "imerg_tegucigalpa.csv",
+                               "GPM_3IMERGM v07 precipitation mm/hr (GES DISC OPeNDAP, cos-lat caja Tegucigalpa)",
+                               "mean_GPM_3IMERGM_07_precipitation", -9999.9, [(t, g) for t, _, _, g in res])
+        anotar_consulta("giovanni_imerg_tegucigalpa", url=url_base, metodo="opendap")
+
+
+def _paso_airs_opendap(tl_s, pend):
+    if not any(k in pend for k in ("airs_tas_a_nic", "airs_tas_d_nic")):
+        return
+    from concurrent.futures import ThreadPoolExecutor
+    from clima_nic import regiones as reg
+
+    grans = gv.cmr_granulos_opendap("AIRS3STM", "7.0", "2003-01-01T00:00:00Z,2024-12-31T23:59:59Z")
+    lat = np.array([16.5 - i for i in range(8)])
+    lon = np.array([-89.5 + j for j in range(9)])
+    pesos = reg.pesos_malla(lat, lon, 1.0, 1.0, {"NIC": _nic_exterior()})
+    lat_idx = {round(float(v), 4): i for i, v in enumerate(lat)}
+    lon_idx = {round(float(v), 4): j for j, v in enumerate(lon)}
+    wl = [(lat_idx[p["lat"]], lon_idx[p["lon"]], p["NIC"]) for p in pesos if p["NIC"] > 0]
+
+    def uno(item):
+        ts, u = item
+        da = gv.parsear_hyrax_ascii(_hyrax_get_con_reintento(
+            tl_s, u, "/ascending/Data_Fields/SurfAirTemp_A[73:1:80][90:1:98],"
+                     "/descending/Data_Fields/SurfAirTemp_D[73:1:80][90:1:98]"))
+        out = {}
+        for k in ("SurfAirTemp_A", "SurfAirTemp_D"):
+            arr = np.where(da[k] < 0, np.nan, da[k])
+            num = sum(arr[i, j] * w for i, j, w in wl if np.isfinite(arr[i, j]))
+            den = sum(w for i, j, w in wl if np.isfinite(arr[i, j]))
+            out[k] = float(num / den) if den > 0 else math.nan
+        return f"{ts[:7]}-01 00:00:00", out["SurfAirTemp_A"], out["SurfAirTemp_D"]
+
+    with ThreadPoolExecutor(12) as ex:
+        por_mes = {t: (a, d) for t, a, d in ex.map(uno, grans)}
+    res = sorted(por_mes.items())
+    print(f"opendap AIRS: {len(res)} meses", flush=True)
+    url_base = "https://opendap.earthdata.nasa.gov/collections/C1701805662-GES_DISC (CMR AIRS3STM.7.0)"
+    if "airs_tas_a_nic" in pend:
+        _escribir_csv_giovanni(GIOVANNI_CSV / "airs_tas_a_nic.csv",
+                               "AIRS3STM v7 SurfAirTemp_A K (GES DISC OPeNDAP, area-weighted NIC)",
+                               "mean_AIRS3STM_7_0_SurfAirTemp_A", -9999.0, [(t, a) for t, (a, _) in res])
+        anotar_consulta("giovanni_airs_tas_a_nic", url=url_base, metodo="opendap")
+    if "airs_tas_d_nic" in pend:
+        _escribir_csv_giovanni(GIOVANNI_CSV / "airs_tas_d_nic.csv",
+                               "AIRS3STM v7 SurfAirTemp_D K (GES DISC OPeNDAP, area-weighted NIC)",
+                               "mean_AIRS3STM_7_0_SurfAirTemp_D", -9999.0, [(t, d) for t, (_, d) in res])
+        anotar_consulta("giovanni_airs_tas_d_nic", url=url_base, metodo="opendap")
+
+
+def _paso_omi_opendap(tl_s, pend):
+    if not any(k in pend for k in ("omi_no2_managua", "omi_no2_rural")):
+        return
+    from concurrent.futures import ThreadPoolExecutor
+    from shapely.geometry import box
+    from clima_nic import regiones as reg
+
+    lat_o = np.array([11.875 + 0.25 * i for i in range(5)])
+    lon_o = np.array([-86.375 + 0.25 * j for j in range(8)])
+    pesos = reg.pesos_malla(lat_o, lon_o, 0.25, 0.25, {"managua": box(*CAJA_MANAGUA), "rural": box(*CAJA_RURAL)})
+    lat_idx = {round(float(v), 4): i for i, v in enumerate(lat_o)}
+    lon_idx = {round(float(v), 4): j for j, v in enumerate(lon_o)}
+    w_m = [(lat_idx[round(p["lat"], 4)], lon_idx[round(p["lon"], 4)], p["managua"]) for p in pesos if p["managua"] > 0]
+    w_r = [(lat_idx[round(p["lat"], 4)], lon_idx[round(p["lon"], 4)], p["rural"]) for p in pesos if p["rural"] > 0]
+    cache_omi = CACHE_C / "omi"
+    cache_omi.mkdir(parents=True, exist_ok=True)
+    todas_m, todas_r = [], []
+
+    for anio in range(2005, P1 + 1):
+        c_anio = cache_omi / f"{anio}.csv"
+        if c_anio.exists():
+            filas = leer_csv(c_anio)
+            todas_m.extend((f["fecha"], float(f["managua"]) if f["managua"] else None) for f in filas)
+            todas_r.extend((f["fecha"], float(f["rural"]) if f["rural"] else None) for f in filas)
+            continue
+        grans = gv.cmr_granulos_opendap("OMNO2d", "003", f"{anio}-01-01T00:00:00Z,{anio}-12-31T23:59:59Z")
+
+        def uno(item):
+            ts, u = item
+            do = gv.parsear_hyrax_ascii(_hyrax_get_con_reintento(
+                tl_s, u, "/HDFEOS/GRIDS/ColumnAmountNO2/Data_Fields/ColumnAmountNO2TropCloudScreened[407:1:411][374:1:381]"))
+            arr = np.where(do["ColumnAmountNO2TropCloudScreened"] < -1e20, np.nan, do["ColumnAmountNO2TropCloudScreened"])
+            def avg(wl):
+                num = sum(arr[i, j] * w for i, j, w in wl if np.isfinite(arr[i, j]))
+                den = sum(w for i, j, w in wl if np.isfinite(arr[i, j]))
+                return float(num / den) if den > 0 else None
+            return f"{ts[:10]} 00:00:00", avg(w_m), avg(w_r)
+
+        with ThreadPoolExecutor(16) as ex:
+            rows = sorted(ex.map(uno, grans), key=lambda x: x[0])
+        escribir_csv(c_anio, ["fecha", "managua", "rural"],
+                     [[t, f"{m:.6g}" if m is not None else "", f"{r:.6g}" if r is not None else ""] for t, m, r in rows])
+        todas_m.extend((t, m) for t, m, _ in rows)
+        todas_r.extend((t, r) for t, _, r in rows)
+        print(f"opendap OMI {anio}: {len(rows)} dias", flush=True)
+
+    url_base = "https://opendap.earthdata.nasa.gov/collections/C1266136111-GES_DISC (CMR OMNO2d.003)"
+    if "omi_no2_managua" in pend:
+        _escribir_csv_giovanni(GIOVANNI_CSV / "omi_no2_managua.csv",
+                               "OMI OMNO2d v003 ColumnAmountNO2TropCloudScreened molec/cm2 (OPeNDAP, Managua)",
+                               "mean_OMNO2d_003_ColumnAmountNO2TropCloudScreened", -1.26765e+30, todas_m)
+        anotar_consulta("giovanni_omi_no2_managua", url=url_base, metodo="opendap")
+    if "omi_no2_rural" in pend:
+        _escribir_csv_giovanni(GIOVANNI_CSV / "omi_no2_rural.csv",
+                               "OMI OMNO2d v003 ColumnAmountNO2TropCloudScreened molec/cm2 (OPeNDAP, Chontales rural)",
+                               "mean_OMNO2d_003_ColumnAmountNO2TropCloudScreened", -1.26765e+30, todas_r)
+        anotar_consulta("giovanni_omi_no2_rural", url=url_base, metodo="opendap")
+
+
+def paso_giovanni_opendap(claves=None):
+    import threading
+    pend = {k for k in (claves or GIOVANNI_SERIES) if not (GIOVANNI_CSV / f"{k}.csv").exists()}
+    if not pend:
+        return
+    tls = threading.local()
+    def tl_s():
+        if not hasattr(tls, "s"):
+            tls.s = gv.sesion_urs_requests(conexiones=4)
+        return tls.s
+    _paso_imerg_opendap(tl_s, pend)
+    _paso_airs_opendap(tl_s, pend)
+    _paso_omi_opendap(tl_s, pend)
+
+
+def paso_giovanni(claves=None, max_espera=45, usar_opendap=True):
+    pend = [k for k in (claves or GIOVANNI_SERIES) if not (GIOVANNI_CSV / f"{k}.csv").exists()]
+    if not pend:
+        return
+    tok = os.environ.get("EARTHDATA_TOKEN", "").strip() if "os" in globals() else __import__("os").environ.get("EARTHDATA_TOKEN", "").strip()
+    if tok:
+        for k in list(pend):
+            var, i, f, bbox, shape = GIOVANNI_SERIES[k]
+            try:
+                txt = gv.api_giovanni_serie(var, i, f, bbox=bbox, shape=shape, token=tok)
+                gv.leer_csv_giovanni(txt)
+                destino = GIOVANNI_CSV / f"{k}.csv"
+                destino.parent.mkdir(parents=True, exist_ok=True)
+                destino.write_text(txt.replace("\r\n", "\n"), encoding="utf-8", newline="\n")
+                quitar_bloqueo(f"giovanni_{k}")
+                anotar_consulta(f"giovanni_{k}", url="https://api.giovanni.earthdata.nasa.gov/timeseries")
+                pend.remove(k)
+            except Exception as e:  # noqa: BLE001
+                anotar_bloqueo(f"giovanni_{k}", url="https://api.giovanni.earthdata.nasa.gov/timeseries", motivo=str(e)[:400])
+    else:
+        anotar_bloqueo("giovanni_api_token", url="https://api.giovanni.earthdata.nasa.gov/timeseries", http=403,
+                       motivo="EARTHDATA_TOKEN no está en el entorno; api.giovanni.earthdata.nasa.gov exige Bearer token.")
+
+    if pend:
+        op, motivo = gv.iniciar_sesion()
+        if op is None:
+            for k in pend:
+                var, i, f, bbox, shape = GIOVANNI_SERIES[k]
+                anotar_bloqueo(f"giovanni_{k}", url=gv.url_serie_area(var, i, f, bbox=bbox, shape=shape), http=302,
+                               motivo=f"Earthdata Login: {motivo}.")
+        else:
+            k0 = pend[0]
+            var, i, f, bbox, shape = GIOVANNI_SERIES[k0]
+            url0 = gv.url_serie_area(var, i, f, bbox=bbox, shape=shape)
+            try:
+                _, urls = gv.ejecutar(op, url0, espera=5, max_espera=max_espera)
+                for k in list(pend):
+                    var, i, f, bbox, shape = GIOVANNI_SERIES[k]
+                    u = gv.url_serie_area(var, i, f, bbox=bbox, shape=shape)
+                    _, urls = gv.ejecutar(op, u, espera=5, max_espera=300)
+                    csvs = [x for x in urls if x.lower().endswith(".csv")] or urls
+                    texto = op.open(csvs[0] if csvs[0].startswith("http") else gv.GIOVANNI + csvs[0], timeout=600).read()
+                    gv.leer_csv_giovanni(texto.decode("utf-8"))
+                    destino = GIOVANNI_CSV / f"{k}.csv"
+                    destino.parent.mkdir(parents=True, exist_ok=True)
+                    destino.write_bytes(texto.replace(b"\r\n", b"\n"))
+                    quitar_bloqueo(f"giovanni_{k}")
+                    anotar_consulta(f"giovanni_{k}", url=u)
+                    pend.remove(k)
+            except Exception as e:  # noqa: BLE001
+                for k in pend:
+                    var, i, f, bbox, shape = GIOVANNI_SERIES[k]
+                    anotar_bloqueo(f"giovanni_{k}", url=gv.url_serie_area(var, i, f, bbox=bbox, shape=shape), http=200,
+                                   motivo=f"Giovanni ArAvTs ({str(e)[:220]}). Se usó el equivalente GES DISC OPeNDAP.")
+    if pend and usar_opendap:
+        paso_giovanni_opendap(pend)
 
 
 # ---------------------------------------------------------------- resumen (sin red)
@@ -734,7 +971,8 @@ def contrastes_clorofila(filas_series, min_meses=9):
     filas = leer_csv(CHL_CSV)
     meta = _meta("clorofila", "NASA OBPG MODIS-Aqua L3m CHL chlor_a 4 km mensual", "R2022.0",
                  OBDAAC + CHL_ARCHIVO)
-    nombres = {"golfo_fonseca": "Gulf of Fonseca", "rio_coco": "Coco River mouth",
+    nombres = {"golfo_fonseca": "Gulf of Fonseca", "pacifico_fonseca": "Open Pacific off Gulf of Fonseca",
+               "rio_coco": "Coco River mouth",
                "rio_grande_matagalpa": "Grande de Matagalpa River mouth",
                "rio_escondido_bluefields": "Escondido River / Bluefields Bay"}
     out = []
@@ -755,7 +993,11 @@ def contrastes_clorofila(filas_series, min_meses=9):
         mco = nt["mco_mensual"]
         coinciden = (v is not None and (v.get("mann_kendall") or {}).get("significativo") == mco["significativa_5pct"]
                      and (sen or 0) * (mco["pendiente_por_decada"] or 0) >= 0)
+        tit_chl = f"Chlorophyll-a ({nombres[caja]}, MODIS-Aqua)"
+        def_chl = ("NASA OBPG MODIS-Aqua R2022.0 monthly 4 km chlor_a deseasonalized annual mean (mg/m^3) over the "
+                   f"{nombres[caja]} 0.5x0.5 deg box, 2003-2024.")
         c = {"id": cid, "papel": "tendencia", "region": nombres[caja], "caja": list(CAJAS_CHL[caja]),
+             "titulo_en": tit_chl, "definicion_en": def_chl,
              "periodo": [min(anual), max(anual)] if anual else None,
              "serie_nuestra": {**_serie_resumen(v, f"{meta['fuente']} ({caja}), anual desestacionalizada", "mg m-3"),
                                "anios_validos": len(anual), "meses_validos": nt["n_meses"]},
@@ -784,6 +1026,232 @@ def contrastes_clorofila(filas_series, min_meses=9):
             c["frase_en"] += (f" Caution: mean {clim_media:.1f} mg/m³ exceeds the 1 mg/m³ limit used by Acker et al. "
                               "to avoid turbid water, so sediment may be read as chlorophyll.")
         out.append(c)
+    return out
+
+
+def _meta_giovanni(clave, fuente_def, version, url_def):
+    cons = fecha_consulta(f"giovanni_{clave}") or {}
+    metodo = cons.get("metodo", "giovanni")
+    fuente = (f"{fuente_def} (GES DISC OPeNDAP equivalent to ArAvTs)"
+              if metodo == "opendap" else f"{fuente_def} (Giovanni ArAvTs)")
+    return {"fuente": fuente, "version": version, "fecha_consulta": cons.get("fecha"),
+            "url": cons.get("url") or url_def}
+
+
+def _giovanni_mensual_mm_h(clave):
+    d = gv.leer_csv_giovanni((GIOVANNI_CSV / f"{clave}.csv").read_text(encoding="utf-8"))
+    out = {}
+    for t, v in zip(d["tiempos"], d["valores"]):
+        if v is not None:
+            a, m = int(t[:4]), int(t[5:7])
+            out[f"{a:04d}-{m:02d}"] = v * gv.horas_mes(a, m)
+    return d, out
+
+
+def _ols_f(meses, vals):
+    nt = ntrs_clorofila(meses, vals)
+    return nt, nt["mco_mensual"]
+
+
+def contrastes_giovanni(filas_series):
+    cj = _clima()
+    dom = {d["id"]: d for d in cj["dominios"]}
+    out = []
+
+    # a) IMERG Giovanni/OPeNDAP vs clima.json (caja_sicc y NIC)
+    nombres = {"caja_sicc": "SICC box (10.7–12.6 N, 86.5–83.6 W)", "NIC": "Nicaragua"}
+    for cid, reg, clave in (("giovanni_imerg_caja_sicc", "caja_sicc", "imerg_caja_sicc"),
+                            ("giovanni_imerg_nic", "NIC", "imerg_nic")):
+        ruta = GIOVANNI_CSV / f"{clave}.csv"
+        if not ruta.exists():
+            continue
+        d = gv.leer_csv_giovanni(ruta.read_text(encoding="utf-8"))
+        an_idx, an_val = gv.mensual_tasa_a_anual(d["tiempos"], d["valores"])
+        ext = dict(zip(an_idx, an_val))
+        imerg = dict(zip(dom[reg]["anios_validos"], dom[reg]["serie_anual_mm"]))
+        url_def = gv.url_serie_area(*GIOVANNI_SERIES[clave][:3], bbox=GIOVANNI_SERIES[clave][3],
+                                    shape=GIOVANNI_SERIES[clave][4])
+        meta = _meta_giovanni(clave, "GPM IMERG Final V07B area-averaged", "GPM_3IMERGM V07B", url_def)
+        c = _contraste(cid, "contraste", reg, (P0, P1), imerg, ext, "mm",
+                       "GPM IMERG Final V07B (data/clima.json)", meta["fuente"], "", filas_series, meta)
+        dif, sn, se = c["diferencia"], c["serie_nuestra"], c["serie_externa"]
+        ver_txt = f"both '{en(sn['veredicto'])}'" if sn["veredicto"] == se["veredicto"] \
+            else f"verdicts differ ({en(se['veredicto'])} vs {en(sn['veredicto'])})"
+        nota_mascara = ("polygon includes lakes and uses cell-center cos(lat) weights" if reg == "NIC"
+                        else "cos(lat) cell-center box mean vs EPSG:6933 polygon-overlap weights")
+        c["frase_en"] = (f"GES DISC area-averaged IMERG vs data/clima.json over {nombres[reg]}, 2001–2024: "
+                         f"r = {dif['r']:.3f}, mean difference {dif['media']:+.0f} mm/yr ({nota_mascara}); "
+                         f"Sen slopes {se['pendiente']:+.0f} vs {sn['pendiente']:+.0f} mm/decade, {ver_txt}.")
+        out.append(c)
+
+    # d) Tegucigalpa gauge (GSOM) vs caja IMERG 0.3°
+    ruta_teg = GIOVANNI_CSV / "imerg_tegucigalpa.csv"
+    if ruta_teg.exists():
+        d_t, im_m = _giovanni_mensual_mm_h("imerg_tegucigalpa")
+        an_i, an_v = gv.mensual_tasa_a_anual(d_t["tiempos"], d_t["valores"])
+        im_an = dict(zip(an_i, an_v))
+        mens = leer_csv(NOAA / "estaciones_mensual.csv")
+        teg_m = {r["mes"]: float(r["prcp_mm_gsom"]) for r in mens if r["estacion"] == "HO000078720" and r["prcp_mm_gsom"]}
+        teg_an = nc.anual_desde_mensual(teg_m, "suma")
+        meta_gsom = _meta("gsom")
+        c = _contraste("noaa_tegucigalpa_lluvia_vs_imerg_caja", "contraste", "Tegucigalpa (0.3° box)", (P0, P1),
+                       im_an, teg_an, "mm", "GPM IMERG V07B, box 13.95–14.25 N, 87.35–87.05 W",
+                       f"{meta_gsom['fuente']} PRCP HO000078720", "", filas_series, meta_gsom)
+        com = sorted(m for m in teg_m if m in im_m and P0 <= int(m[:4]) <= P1)
+        x = np.array([im_m[m] for m in com])
+        y = np.array([teg_m[m] for m in com])
+        cx = {k: np.mean([im_m[m] for m in com if int(m[5:7]) == k]) for k in range(1, 13)}
+        cy = {k: np.mean([teg_m[m] for m in com if int(m[5:7]) == k]) for k in range(1, 13)}
+        ax = np.array([im_m[m] - cx[int(m[5:7])] for m in com])
+        ay = np.array([teg_m[m] - cy[int(m[5:7])] for m in com])
+        c["mensual"] = {"meses_comunes": len(com), "r_mensual": r4(np.corrcoef(x, y)[0, 1]),
+                        "r_anomalias_mensuales": r4(np.corrcoef(ax, ay)[0, 1]),
+                        "cociente_medio_estacion_imerg": r4(y.sum() / x.sum())}
+        m, dif = c["mensual"], c["diferencia"]
+        c["frase_en"] = (f"Tegucigalpa rain gauge (GSOM) vs 0.3° IMERG pixel box, {m['meses_comunes']} common months "
+                         f"in 2001–2024: r = {m['r_mensual']:.2f} (anomalies {m['r_anomalias_mensuales']:.2f}); gauge "
+                         f"gets {100 * m['cociente_medio_estacion_imerg']:.0f}% of the 0.3° box mean rainfall "
+                         f"(valley rain shadow; {dif['anios_comunes']} complete gauge years in window).")
+        out.append(c)
+
+    # b) AIRS3STM v7 SurfAirTemp (A+D) over Nicaragua, 2003-2024 (tercera opinión GISTEMP vs POWER)
+    ra, rd = GIOVANNI_CSV / "airs_tas_a_nic.csv", GIOVANNI_CSV / "airs_tas_d_nic.csv"
+    if ra.exists() and rd.exists():
+        da = gv.leer_csv_giovanni(ra.read_text(encoding="utf-8"))
+        dd = gv.leer_csv_giovanni(rd.read_text(encoding="utf-8"))
+        def _to_c(parsed):
+            vals = [v for v in parsed["valores"] if v is not None]
+            off = -273.15 if vals and np.mean(vals) > 150 else 0.0
+            return {t[:7]: v + off for t, v in zip(parsed["tiempos"], parsed["valores"]) if v is not None}
+        ma, md = _to_c(da), _to_c(dd)
+        meses = sorted(set(ma) & set(md))
+        vals = [(ma[m] + md[m]) / 2.0 for m in meses]
+        nt, mco = _ols_f(meses, vals)
+        clim = float(np.mean(vals))
+        anom = {a: v for a, v in nt["anomalias_anuales"].items() if 2003 <= a <= P1 and nt["meses_por_anio"][a] >= 9}
+        anual = {a: clim + v for a, v in anom.items()}
+        _guardar_series(filas_series, "airs_tas_nic", anual, {})
+        vn = gv.veredicto_serie(sorted(anual), [anual[a] for a in sorted(anual)], "°C")
+        meta = _meta_giovanni("airs_tas_a_nic", "AIRS3STM v7 SurfAirTemp (A+D)", "7.0",
+                              gv.url_serie_area(*GIOVANNI_SERIES["airs_tas_a_nic"][:3], shape=SHAPE_NIC))
+        gis = _ventana(_gistemp_anual("NIC"), 2003, P1)
+        pw = _ventana(_power_region("t2m_media", "NIC"), 2003, P1)
+        vg = gv.veredicto_serie(sorted(gis), [gis[a] for a in sorted(gis)], "°C")
+        vp = gv.veredicto_serie(sorted(pw), [pw[a] for a in sorted(pw)], "°C")
+        rg, _ = _corr(anual, gis)
+        rp, _ = _corr(anual, pw)
+        sen = vn.get("sen_por_decada")
+        coinciden = (vn is not None and (vn.get("mann_kendall") or {}).get("significativo") == mco["significativa_5pct"]
+                     and (sen or 0) * (mco["pendiente_por_decada"] or 0) >= 0)
+        sig = "significant" if mco["significativa_5pct"] else "not significant"
+        p_txt = "p < 0.001" if mco["p_valor_F"] < 0.001 else f"p = {mco['p_valor_F']:.2f}"
+        c = {
+            "id": "airs_tas_nic", "papel": "tendencia", "region": "NIC",
+            "titulo_en": "Surface air temperature (AIRS, Nicaragua)",
+            "definicion_en": ("NASA AIRS3STM v7 monthly near-surface air temperature over Nicaragua (mean of daytime "
+                              "13:30 and nighttime 01:30 overpasses, °C), 2003–2024."),
+            "periodo": [min(anual), max(anual)],
+            "serie_nuestra": {**_serie_resumen(vn, "NASA AIRS3STM v7 SurfAirTemp (A+D)", "°C"),
+                              "anios_validos": len(anual), "meses_validos": nt["n_meses"],
+                              "climatologia_c": r4(clim)},
+            "serie_externa": {"fuente": "Monthly raw OLS + ANOVA F (AIRS3STM v7)",
+                              "version": meta["version"], "fecha_consulta": meta["fecha_consulta"],
+                              "url": meta["url"], "pendiente": mco["pendiente_por_decada"], "unidad": "°C/década",
+                              "veredicto": "significativa_p<0.05" if mco["significativa_5pct"] else "no_significativa",
+                              "r2": mco["r2"], "p_valor_F": mco["p_valor_F"],
+                              "theil_sen_mensual": nt["theil_sen_mensual"]},
+            "diferencia": {"media": None, "r": None,
+                           "diferencia_pendiente": r4(mco["pendiente_por_decada"] - sen) if sen is not None else None},
+            "tercera_opinion": {
+                "periodo_comun": [2003, P1],
+                "airs_sen_c_decada": sen, "airs_veredicto": vn["veredicto_contrato"],
+                "airs_mk_p": (vn.get("mann_kendall") or {}).get("p_valor"),
+                "gistemp_sen_c_decada": vg.get("sen_por_decada"), "gistemp_veredicto": vg.get("veredicto_contrato"),
+                "gistemp_mk_p": (vg.get("mann_kendall") or {}).get("p_valor"), "r_airs_gistemp": rg,
+                "power_sen_c_decada": vp.get("sen_por_decada"), "power_veredicto": vp.get("veredicto_contrato"),
+                "power_mk_p": (vp.get("mann_kendall") or {}).get("p_valor"), "r_airs_power": rp,
+                "diferencia_power_menos_airs_c": r4(np.mean([pw[a] - anual[a] for a in sorted(set(pw) & set(anual))])),
+            },
+            "metodos_coinciden": coinciden, "estado": "ok",
+            "frase_en": (f"AIRS3STM v7 surface air temperature over Nicaragua (2003–2024): Theil–Sen {sen:+.2f} "
+                         f"°C/decade ('{en(vn['veredicto_contrato'])}'; monthly OLS {mco['pendiente_por_decada']:+.2f}, "
+                         f"{sig}, {p_txt}); third opinion vs GISTEMP ({vg['sen_por_decada']:+.2f} °C/dec, "
+                         f"'{en(vg['veredicto_contrato'])}', r={rg:.2f}) and NASA POWER MERRA-2 "
+                         f"({vp['sen_por_decada']:+.2f} °C/dec, '{en(vp['veredicto_contrato'])}', r={rp:.2f})."),
+        }
+        out.append(c)
+
+    # c) OMI OMNO2d v003 (Managua urbana y Chontales rural), 2005-2024
+    omi_specs = [
+        ("omi_no2_managua", "Managua (urban box)", CAJA_MANAGUA, "Tropospheric NO2 column (Managua, OMI)",
+         "OMI OMNO2d v003 cloud-screened tropospheric NO2 column (10^15 molecules/cm^2) over the Managua urban box "
+         "(12.05–12.20 N, 86.35–86.15 W), 2005–2024."),
+        ("omi_no2_rural", "Chontales (rural box)", CAJA_RURAL, "Tropospheric NO2 column (rural background, OMI)",
+         "OMI OMNO2d v003 cloud-screened tropospheric NO2 column (10^15 molecules/cm^2) over the Chontales rural "
+         "background box (12.35–12.50 N, 85.10–84.90 W), 2005–2024."),
+    ]
+    omi_anuales = {}
+    omi_cards = []
+    for cid, region_en, caja, tit, defn in omi_specs:
+        ruta = GIOVANNI_CSV / f"{cid}.csv"
+        if not ruta.exists():
+            continue
+        d = gv.leer_csv_giovanni(ruta.read_text(encoding="utf-8"))
+        por_mes = {}
+        for t, v in zip(d["tiempos"], d["valores"]):
+            if v is not None:
+                por_mes.setdefault(t[:7], []).append(v * 1e-15)
+        meses = sorted(por_mes)
+        vals = [float(np.mean(por_mes[m])) for m in meses]
+        nt, mco = _ols_f(meses, vals)
+        clim = float(np.mean(vals))
+        anom = {a: v for a, v in nt["anomalias_anuales"].items() if 2005 <= a <= P1 and nt["meses_por_anio"][a] >= 9}
+        anual = {a: clim + v for a, v in anom.items()}
+        omi_anuales[cid] = anual
+        _guardar_series(filas_series, cid, anual, {})
+        vn = gv.veredicto_serie(sorted(anual), [anual[a] for a in sorted(anual)], "1e15 molec cm-2")
+        sen = vn.get("sen_por_decada")
+        meta = _meta_giovanni(cid, "OMI OMNO2d v003", "003",
+                              gv.url_serie_area(*GIOVANNI_SERIES[cid][:3], bbox=caja))
+        coinciden = (vn is not None and (vn.get("mann_kendall") or {}).get("significativo") == mco["significativa_5pct"]
+                     and (sen or 0) * (mco["pendiente_por_decada"] or 0) >= 0)
+        sig = "significant" if mco["significativa_5pct"] else "not significant"
+        p_txt = "p < 0.001" if mco["p_valor_F"] < 0.001 else f"p = {mco['p_valor_F']:.2f}"
+        c = {
+            "id": cid, "papel": "tendencia", "region": region_en, "caja": list(caja),
+            "titulo_en": tit, "definicion_en": defn, "periodo": [min(anual), max(anual)],
+            "serie_nuestra": {**_serie_resumen(vn, f"NASA OMI OMNO2d v003 ({region_en})", "1e15 molec cm-2"),
+                              "anios_validos": len(anual), "meses_validos": nt["n_meses"],
+                              "dias_validos_totales": sum(len(v) for v in por_mes.values()),
+                              "mediana_dias_mes": int(np.median([len(v) for v in por_mes.values()])),
+                              "media_serie_1e15": r4(clim)},
+            "serie_externa": {"fuente": "Monthly raw OLS + ANOVA F (OMNO2d v003)",
+                              "version": meta["version"], "fecha_consulta": meta["fecha_consulta"],
+                              "url": meta["url"], "pendiente": mco["pendiente_por_decada"],
+                              "unidad": "1e15 molec cm-2/década",
+                              "veredicto": "significativa_p<0.05" if mco["significativa_5pct"] else "no_significativa",
+                              "r2": mco["r2"], "p_valor_F": mco["p_valor_F"],
+                              "theil_sen_mensual": nt["theil_sen_mensual"]},
+            "diferencia": {"media": None, "r": None,
+                           "diferencia_pendiente": r4(mco["pendiente_por_decada"] - sen) if sen is not None else None},
+            "metodos_coinciden": coinciden, "estado": "ok",
+            "frase_en": (f"OMI tropospheric NO2 over {region_en} ({min(anual)}–{max(anual)}, mean {clim:.2f} x 10^15 "
+                         f"molec/cm^2): monthly OLS {mco['pendiente_por_decada']:+.3f} ({sig}, {p_txt}); "
+                         f"annual Theil–Sen {sen:+.3f} x 10^15 molec/cm^2 per decade, verdict "
+                         f"'{en(vn['veredicto_contrato'])}'."),
+        }
+        omi_cards.append(c)
+    if len(omi_cards) == 2:
+        um, ur = omi_anuales["omi_no2_managua"], omi_anuales["omi_no2_rural"]
+        com = sorted(set(um) & set(ur))
+        r_ur, n_ur = _corr(um, ur)
+        mm, mr = float(np.mean([um[a] for a in com])), float(np.mean([ur[a] for a in com]))
+        extra_ur = {"media_managua_1e15": r4(mm), "media_rural_1e15": r4(mr), "diferencia_1e15": r4(mm - mr),
+                    "cociente_urbano_rural": r4(mm / mr) if mr else None, "r_anual": r_ur, "anios_comunes": n_ur}
+        for c in omi_cards:
+            c["contraste_urbano_rural"] = extra_ur
+            c["frase_en"] += f" Managua averages {mm:.2f} vs {mr:.2f} x 10^15 molec/cm^2 in Chontales rural box."
+    out.extend(omi_cards)
     return out
 
 
@@ -822,19 +1290,26 @@ def contrastes_bloqueados():
                               {"fuente": "GISTEMP v4 / NASA POWER (MERRA-2)", "version": None, "fecha_consulta": None,
                                "url": None}))
     if not (GIOVANNI_CSV / "omi_no2_managua.csv").exists():
-        out.append(_bloqueado("omi_no2_managua", "tendencia", "Managua (12.05–12.20 N, 86.35–86.15 O)", (2005, P1),
-                              "OMI OMNO2d v003 ColumnAmountNO2TropCloudScreened", "caja rural de fondo (OMNO2d)",
-                              "molec cm-2", motivo("giovanni_omi_no2_managua"),
+        out.append(_bloqueado("omi_no2_managua", "tendencia", "Managua (urban box)", (2005, P1),
+                              "OMI OMNO2d v003 ColumnAmountNO2TropCloudScreened", "OLS mensual cruda + ANOVA F",
+                              "1e15 molec cm-2", motivo("giovanni_omi_no2_managua"),
                               "OMI tropospheric NO2 over Managua: blocked (Earthdata application not authorized).",
-                              {"fuente": "OMNO2d v003, caja rural 12.35–12.50 N, 85.10–84.90 O", "version": "003",
-                               "fecha_consulta": None, "url": None}))
+                              {"fuente": "OMNO2d v003, Managua urban box 12.05–12.20 N, 86.35–86.15 W",
+                               "version": "003", "fecha_consulta": None, "url": None}))
+    if not (GIOVANNI_CSV / "omi_no2_rural.csv").exists():
+        out.append(_bloqueado("omi_no2_rural", "tendencia", "Chontales (rural box)", (2005, P1),
+                              "OMI OMNO2d v003 ColumnAmountNO2TropCloudScreened", "OLS mensual cruda + ANOVA F",
+                              "1e15 molec cm-2", motivo("giovanni_omi_no2_rural"),
+                              "OMI tropospheric NO2 over rural Chontales: blocked (Earthdata application not authorized).",
+                              {"fuente": "OMNO2d v003, Chontales rural box 12.35–12.50 N, 85.10–84.90 W",
+                               "version": "003", "fecha_consulta": None, "url": None}))
     return out
 
 
 def paso_resumen():
     filas_series = []
     contrastes = contrastes_lluvia(filas_series) + contrastes_estaciones(filas_series) + \
-        contrastes_clorofila(filas_series) + contrastes_bloqueados()
+        contrastes_clorofila(filas_series) + contrastes_giovanni(filas_series) + contrastes_bloqueados()
     escribir_csv(AQUI / "series_anuales.csv", ["contraste", "serie", "anio", "valor"], filas_series)
     bloq = json.loads(BLOQUEOS.read_text(encoding="utf-8")) if BLOQUEOS.exists() else {}
     doc = {"esquema": "nasa-challenge/contrastes", "version": "1.0.0", "generado": HOY,
@@ -844,12 +1319,14 @@ def paso_resumen():
            "bloqueos": bloq, "contrastes": contrastes}
     (AQUI / "resumen_contrastes.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1) + "\n",
                                                   encoding="utf-8", newline="\n")
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     for c in contrastes:
         print(f"{c['id']:42s} {c['estado']:9s} {c.get('frase_en', '')[:150]}")
 
 
 if __name__ == "__main__":
     PASOS = {"noaa": paso_noaa, "knmi": paso_knmi, "cru": paso_cru, "gpcc": paso_gpcc, "clorofila": paso_clorofila,
-             "giovanni": paso_giovanni, "resumen": paso_resumen}
+             "giovanni": paso_giovanni, "opendap": paso_giovanni_opendap, "resumen": paso_resumen}
     for p in sys.argv[1:] or ["resumen"]:
         PASOS[p]()

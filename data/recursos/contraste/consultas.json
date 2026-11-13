@@ -12,6 +12,41 @@
   "fecha": "2026-11-12",
   "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
  },
+ "giovanni_airs_tas_a_nic": {
+  "fecha": "2026-11-13",
+  "metodo": "opendap",
+  "url": "https://opendap.earthdata.nasa.gov/collections/C1701805662-GES_DISC (CMR AIRS3STM.7.0)"
+ },
+ "giovanni_airs_tas_d_nic": {
+  "fecha": "2026-11-13",
+  "metodo": "opendap",
+  "url": "https://opendap.earthdata.nasa.gov/collections/C1701805662-GES_DISC (CMR AIRS3STM.7.0)"
+ },
+ "giovanni_imerg_caja_sicc": {
+  "fecha": "2026-11-13",
+  "metodo": "opendap",
+  "url": "https://opendap.earthdata.nasa.gov/collections/C2723754851-GES_DISC (CMR GPM_3IMERGM.07)"
+ },
+ "giovanni_imerg_nic": {
+  "fecha": "2026-11-13",
+  "metodo": "opendap",
+  "url": "https://opendap.earthdata.nasa.gov/collections/C2723754851-GES_DISC (CMR GPM_3IMERGM.07)"
+ },
+ "giovanni_imerg_tegucigalpa": {
+  "fecha": "2026-11-13",
+  "metodo": "opendap",
+  "url": "https://opendap.earthdata.nasa.gov/collections/C2723754851-GES_DISC (CMR GPM_3IMERGM.07)"
+ },
+ "giovanni_omi_no2_managua": {
+  "fecha": "2026-11-13",
+  "metodo": "opendap",
+  "url": "https://opendap.earthdata.nasa.gov/collections/C1266136111-GES_DISC (CMR OMNO2d.003)"
+ },
+ "giovanni_omi_no2_rural": {
+  "fecha": "2026-11-13",
+  "metodo": "opendap",
+  "url": "https://opendap.earthdata.nasa.gov/collections/C1266136111-GES_DISC (CMR OMNO2d.003)"
+ },
  "gpcc": {
   "atributos": {
    "data_modified": "2019-03-12",

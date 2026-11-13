@@ -5,45 +5,51 @@
  "metodo": "Pendientes de Theil–Sen por década; veredicto del contrato 1.0.0 (tendencia.py: tres intervalos del 95 %) y veredicto robusto (tendencia_robusta: además Mann–Kendall modificado). diferencia.media = externa − nuestra en los años comunes; r de Pearson anual.",
  "bloqueos": {
   "giovanni_airs_tas_a_nic": {
-   "fecha": "2026-11-12",
-   "http": 302,
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "fecha": "2026-11-13",
+   "http": 200,
+   "motivo": "Giovanni ArAvTs (list index out of range). Se usó el equivalente GES DISC OPeNDAP.",
    "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2003-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=AIRS3STM_7_0_SurfAirTemp_A&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
   },
   "giovanni_airs_tas_d_nic": {
-   "fecha": "2026-11-12",
-   "http": 302,
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "fecha": "2026-11-13",
+   "http": 200,
+   "motivo": "Giovanni ArAvTs (list index out of range). Se usó el equivalente GES DISC OPeNDAP.",
    "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2003-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=AIRS3STM_7_0_SurfAirTemp_D&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
   },
+  "giovanni_api_token": {
+   "fecha": "2026-11-13",
+   "http": 403,
+   "motivo": "EARTHDATA_TOKEN no está en el entorno; api.giovanni.earthdata.nasa.gov exige Bearer token.",
+   "url": "https://api.giovanni.earthdata.nasa.gov/timeseries"
+  },
   "giovanni_imerg_caja_sicc": {
-   "fecha": "2026-11-12",
-   "http": 302,
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "fecha": "2026-11-13",
+   "http": 200,
+   "motivo": "Giovanni ArAvTs (list index out of range). Se usó el equivalente GES DISC OPeNDAP.",
    "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-86.5%2C10.7%2C-83.6%2C12.6&portal=GIOVANNI&format=json"
   },
   "giovanni_imerg_nic": {
-   "fecha": "2026-11-12",
-   "http": 302,
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "fecha": "2026-11-13",
+   "http": 200,
+   "motivo": "Giovanni ArAvTs (list index out of range). Se usó el equivalente GES DISC OPeNDAP.",
    "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
   },
   "giovanni_imerg_tegucigalpa": {
-   "fecha": "2026-11-12",
-   "http": 302,
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "fecha": "2026-11-13",
+   "http": 200,
+   "motivo": "Giovanni ArAvTs (list index out of range). Se usó el equivalente GES DISC OPeNDAP.",
    "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-87.35%2C13.95%2C-87.05%2C14.25&portal=GIOVANNI&format=json"
   },
   "giovanni_omi_no2_managua": {
-   "fecha": "2026-11-12",
-   "http": 302,
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "fecha": "2026-11-13",
+   "http": 200,
+   "motivo": "Giovanni ArAvTs (tiempo agotado esperando a Giovanni; petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_Column). Se usó el equivalente GES DISC OPeNDAP.",
    "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_ColumnAmountNO2TropCloudScreened&bbox=-86.35%2C12.05%2C-86.15%2C12.2&portal=GIOVANNI&format=json"
   },
   "giovanni_omi_no2_rural": {
-   "fecha": "2026-11-12",
-   "http": 302,
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla.",
+   "fecha": "2026-11-13",
+   "http": 200,
+   "motivo": "Giovanni ArAvTs (tiempo agotado esperando a Giovanni; petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_Column). Se usó el equivalente GES DISC OPeNDAP.",
    "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_ColumnAmountNO2TropCloudScreened&bbox=-85.1%2C12.35%2C-84.9%2C12.5&portal=GIOVANNI&format=json"
   },
   "knmi_climate_explorer": {
@@ -731,6 +737,8 @@
     -87.3,
     13.5
    ],
+   "titulo_en": "Chlorophyll-a (Gulf of Fonseca, MODIS-Aqua)",
+   "definicion_en": "NASA OBPG MODIS-Aqua R2022.0 monthly 4 km chlor_a deseasonalized annual mean (mg/m^3) over the Gulf of Fonseca 0.5x0.5 deg box, 2003-2024.",
    "periodo": [
     2003,
     2024
@@ -781,6 +789,67 @@
    "frase_en": "MODIS-Aqua chlorophyll-a, Gulf of Fonseca (2003–2024): OLS on raw monthly data +1.21 mg/m³ per decade (significant, p < 0.001); Theil–Sen on deseasonalized annual means +0.68, verdict 'methods disagree'. Caution: mean 7.0 mg/m³ exceeds the 1 mg/m³ limit used by Acker et al. to avoid turbid water, so sediment may be read as chlorophyll."
   },
   {
+   "id": "clorofila_pacifico_fonseca",
+   "papel": "tendencia",
+   "region": "Open Pacific off Gulf of Fonseca",
+   "caja": [
+    -88.3,
+    12.2,
+    -87.8,
+    12.7
+   ],
+   "titulo_en": "Chlorophyll-a (Open Pacific off Gulf of Fonseca, MODIS-Aqua)",
+   "definicion_en": "NASA OBPG MODIS-Aqua R2022.0 monthly 4 km chlor_a deseasonalized annual mean (mg/m^3) over the Open Pacific off Gulf of Fonseca 0.5x0.5 deg box, 2003-2024.",
+   "periodo": [
+    2003,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "NASA OBPG MODIS-Aqua L3m CHL chlor_a 4 km mensual (pacifico_fonseca), anual desestacionalizada",
+    "pendiente": -0.06,
+    "pendiente_mco": -0.077,
+    "unidad": "mg m-3/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2003,
+     2024
+    ],
+    "anios": 22,
+    "mann_kendall_p": 0.1278,
+    "anios_validos": 22,
+    "meses_validos": 264
+   },
+   "serie_externa": {
+    "fuente": "Método NTRS 20090042747 (Acker et al.): OLS mensual cruda + ANOVA F",
+    "version": "R2022.0",
+    "fecha_consulta": "2026-11-13",
+    "url": "https://oceandata.sci.gsfc.nasa.gov/getfile/AQUA_MODIS.{a:04d}{m:02d}01_{a:04d}{m:02d}{d:02d}.L3m.MO.CHL.chlor_a.4km.nc",
+    "pendiente": -0.0776,
+    "unidad": "mg m-3/década",
+    "veredicto": "significativa_p<0.05",
+    "r2": 0.0214,
+    "p_valor_F": 0.0174,
+    "theil_sen_mensual": {
+     "pendiente_por_decada": -0.0525,
+     "ic95_por_decada": [
+      -0.086,
+      -0.0222
+     ]
+    }
+   },
+   "diferencia": {
+    "media": null,
+    "r": null,
+    "diferencia_pendiente": -0.0176
+   },
+   "metodos_coinciden": false,
+   "estado": "ok",
+   "media_serie_mg_m3": 0.4361,
+   "cumple_criterio_ntrs_1mg": true,
+   "frase_en": "MODIS-Aqua chlorophyll-a, Open Pacific off Gulf of Fonseca (2003–2024): OLS on raw monthly data -0.08 mg/m³ per decade (significant, p = 0.02); Theil–Sen on deseasonalized annual means -0.06, verdict 'insufficient evidence'."
+  },
+  {
    "id": "clorofila_rio_coco",
    "papel": "tendencia",
    "region": "Coco River mouth",
@@ -790,6 +859,8 @@
     -82.65,
     15.25
    ],
+   "titulo_en": "Chlorophyll-a (Coco River mouth, MODIS-Aqua)",
+   "definicion_en": "NASA OBPG MODIS-Aqua R2022.0 monthly 4 km chlor_a deseasonalized annual mean (mg/m^3) over the Coco River mouth 0.5x0.5 deg box, 2003-2024.",
    "periodo": [
     2003,
     2024
@@ -849,6 +920,8 @@
     -83.0,
     13.15
    ],
+   "titulo_en": "Chlorophyll-a (Grande de Matagalpa River mouth, MODIS-Aqua)",
+   "definicion_en": "NASA OBPG MODIS-Aqua R2022.0 monthly 4 km chlor_a deseasonalized annual mean (mg/m^3) over the Grande de Matagalpa River mouth 0.5x0.5 deg box, 2003-2024.",
    "periodo": [
     2003,
     2024
@@ -908,6 +981,8 @@
     -83.18,
     12.25
    ],
+   "titulo_en": "Chlorophyll-a (Escondido River / Bluefields Bay, MODIS-Aqua)",
+   "definicion_en": "NASA OBPG MODIS-Aqua R2022.0 monthly 4 km chlor_a deseasonalized annual mean (mg/m^3) over the Escondido River / Bluefields Bay 0.5x0.5 deg box, 2003-2024.",
    "periodo": [
     2003,
     2024
@@ -967,27 +1042,44 @@
    ],
    "serie_nuestra": {
     "fuente": "GPM IMERG Final V07B (data/clima.json)",
-    "pendiente": null,
+    "pendiente": -28.7051,
+    "pendiente_mco": -13.132,
     "unidad": "mm/década",
-    "veredicto": null
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.785
    },
    "serie_externa": {
-    "fuente": "NASA Giovanni, Time Series Area-Averaged",
-    "pendiente": null,
+    "fuente": "GPM IMERG Final V07B area-averaged (GES DISC OPeNDAP equivalent to ArAvTs)",
+    "pendiente": -28.7051,
+    "pendiente_mco": -13.131,
     "unidad": "mm/década",
-    "veredicto": null,
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.785,
     "version": "GPM_3IMERGM V07B",
-    "fecha_consulta": null,
-    "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-86.5%2C10.7%2C-83.6%2C12.6&portal=GIOVANNI&format=json"
+    "fecha_consulta": "2026-11-13",
+    "url": "https://opendap.earthdata.nasa.gov/collections/C2723754851-GES_DISC (CMR GPM_3IMERGM.07)"
    },
    "diferencia": {
-    "media": null,
-    "r": null,
-    "diferencia_pendiente": null
+    "media": -0.0001,
+    "r": 1.0,
+    "diferencia_pendiente": 0.0,
+    "anios_comunes": 24,
+    "unidad_media": "mm"
    },
-   "estado": "bloqueado",
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla. Petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-86.5%2C10.7%2C-83.6%2C12.6&portal=GIOVANNI&format=json (HTTP 302, 2026-11-12).",
-   "frase_en": "Giovanni area-averaged IMERG for caja_sicc: blocked (Earthdata application not authorized)."
+   "estado": "ok",
+   "frase_en": "GES DISC area-averaged IMERG vs data/clima.json over SICC box (10.7–12.6 N, 86.5–83.6 W), 2001–2024: r = 1.000, mean difference -0 mm/yr (cos(lat) cell-center box mean vs EPSG:6933 polygon-overlap weights); Sen slopes -29 vs -29 mm/decade, both 'insufficient evidence'."
   },
   {
    "id": "giovanni_imerg_nic",
@@ -999,123 +1091,303 @@
    ],
    "serie_nuestra": {
     "fuente": "GPM IMERG Final V07B (data/clima.json)",
-    "pendiente": null,
+    "pendiente": -64.9226,
+    "pendiente_mco": -62.332,
     "unidad": "mm/década",
-    "veredicto": null
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.4419
    },
    "serie_externa": {
-    "fuente": "NASA Giovanni, Time Series Area-Averaged",
-    "pendiente": null,
+    "fuente": "GPM IMERG Final V07B area-averaged (GES DISC OPeNDAP equivalent to ArAvTs)",
+    "pendiente": -52.3226,
+    "pendiente_mco": -53.549,
     "unidad": "mm/década",
-    "veredicto": null,
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.6024,
     "version": "GPM_3IMERGM V07B",
-    "fecha_consulta": null,
-    "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
+    "fecha_consulta": "2026-11-13",
+    "url": "https://opendap.earthdata.nasa.gov/collections/C2723754851-GES_DISC (CMR GPM_3IMERGM.07)"
    },
    "diferencia": {
-    "media": null,
-    "r": null,
-    "diferencia_pendiente": null
+    "media": -25.0048,
+    "r": 0.9988,
+    "diferencia_pendiente": 12.6,
+    "anios_comunes": 24,
+    "unidad_media": "mm"
    },
-   "estado": "bloqueado",
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla. Petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json (HTTP 302, 2026-11-12).",
-   "frase_en": "Giovanni area-averaged IMERG for NIC: blocked (Earthdata application not authorized)."
+   "estado": "ok",
+   "frase_en": "GES DISC area-averaged IMERG vs data/clima.json over Nicaragua, 2001–2024: r = 0.999, mean difference -25 mm/yr (polygon includes lakes and uses cell-center cos(lat) weights); Sen slopes -52 vs -65 mm/decade, both 'insufficient evidence'."
   },
   {
    "id": "noaa_tegucigalpa_lluvia_vs_imerg_caja",
    "papel": "contraste",
-   "region": "Tegucigalpa (caja 0,3°)",
+   "region": "Tegucigalpa (0.3° box)",
    "periodo": [
     2001,
     2024
    ],
    "serie_nuestra": {
-    "fuente": "GPM IMERG V07B, caja 13.95–14.25 N, 87.35–87.05 O (Giovanni)",
-    "pendiente": null,
+    "fuente": "GPM IMERG V07B, box 13.95–14.25 N, 87.35–87.05 W",
+    "pendiente": 6.6634,
+    "pendiente_mco": 8.908,
     "unidad": "mm/década",
-    "veredicto": null
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.9013
    },
    "serie_externa": {
-    "fuente": "NOAA NCEI Global Summary of the Month",
+    "fuente": "NOAA NCEI Global Summary of the Month PRCP HO000078720",
     "pendiente": null,
-    "unidad": "mm/década",
+    "unidad": "mm",
     "veredicto": null,
     "version": "GSOM 1.0 (servicio NCEI v1)",
     "fecha_consulta": "2026-11-12",
     "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
    },
    "diferencia": {
-    "media": null,
-    "r": null,
-    "diferencia_pendiente": null
+    "media": -480.5786,
+    "r": 0.7502,
+    "diferencia_pendiente": null,
+    "anios_comunes": 5,
+    "unidad_media": "mm"
    },
-   "estado": "bloqueado",
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla. Petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-87.35%2C13.95%2C-87.05%2C14.25&portal=GIOVANNI&format=json (HTTP 302, 2026-11-12).",
-   "frase_en": "Tegucigalpa gauge vs IMERG pixel box: blocked (Earthdata application not authorized)."
+   "estado": "ok",
+   "frase_en": "Tegucigalpa rain gauge (GSOM) vs 0.3° IMERG pixel box, 150 common months in 2001–2024: r = 0.87 (anomalies 0.74); gauge gets 64% of the 0.3° box mean rainfall (valley rain shadow; 5 complete gauge years in window).",
+   "mensual": {
+    "meses_comunes": 150,
+    "r_mensual": 0.8707,
+    "r_anomalias_mensuales": 0.7448,
+    "cociente_medio_estacion_imerg": 0.6448
+   }
   },
   {
    "id": "airs_tas_nic",
    "papel": "tendencia",
    "region": "NIC",
+   "titulo_en": "Surface air temperature (AIRS, Nicaragua)",
+   "definicion_en": "NASA AIRS3STM v7 monthly near-surface air temperature over Nicaragua (mean of daytime 13:30 and nighttime 01:30 overpasses, °C), 2003–2024.",
    "periodo": [
     2003,
     2024
    ],
    "serie_nuestra": {
-    "fuente": "AIRS3STM v7 SurfAirTemp (A+D)",
-    "pendiente": null,
+    "fuente": "NASA AIRS3STM v7 SurfAirTemp (A+D)",
+    "pendiente": 0.1261,
+    "pendiente_mco": 0.125,
     "unidad": "°C/década",
-    "veredicto": null
+    "veredicto": "tendencia_detectada",
+    "veredicto_robusto": "tendencia_detectada",
+    "periodo": [
+     2003,
+     2024
+    ],
+    "anios": 22,
+    "mann_kendall_p": 0.0095,
+    "anios_validos": 22,
+    "meses_validos": 265,
+    "climatologia_c": 25.3511
    },
    "serie_externa": {
-    "fuente": "GISTEMP v4 / NASA POWER (MERRA-2)",
-    "pendiente": null,
+    "fuente": "Monthly raw OLS + ANOVA F (AIRS3STM v7)",
+    "version": "7.0",
+    "fecha_consulta": "2026-11-13",
+    "url": "https://opendap.earthdata.nasa.gov/collections/C1701805662-GES_DISC (CMR AIRS3STM.7.0)",
+    "pendiente": 0.1365,
     "unidad": "°C/década",
-    "veredicto": null,
-    "version": null,
-    "fecha_consulta": null,
-    "url": null
+    "veredicto": "no_significativa",
+    "r2": 0.0122,
+    "p_valor_F": 0.0726,
+    "theil_sen_mensual": {
+     "pendiente_por_decada": 0.1189,
+     "ic95_por_decada": [
+      -0.0123,
+      0.2496
+     ]
+    }
    },
    "diferencia": {
     "media": null,
     "r": null,
-    "diferencia_pendiente": null
+    "diferencia_pendiente": 0.0104
    },
-   "estado": "bloqueado",
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla. Petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2003-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=AIRS3STM_7_0_SurfAirTemp_A&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json (HTTP 302, 2026-11-12).",
-   "frase_en": "AIRS surface air temperature over Nicaragua: blocked (Earthdata application not authorized)."
+   "tercera_opinion": {
+    "periodo_comun": [
+     2003,
+     2024
+    ],
+    "airs_sen_c_decada": 0.1261,
+    "airs_veredicto": "tendencia_detectada",
+    "airs_mk_p": 0.0095,
+    "gistemp_sen_c_decada": 0.3811,
+    "gistemp_veredicto": "tendencia_detectada",
+    "gistemp_mk_p": 0.0011,
+    "r_airs_gistemp": 0.9243,
+    "power_sen_c_decada": 0.2232,
+    "power_veredicto": "evidencia_insuficiente",
+    "power_mk_p": 0.2147,
+    "r_airs_power": 0.8171,
+    "diferencia_power_menos_airs_c": 0.5268
+   },
+   "metodos_coinciden": false,
+   "estado": "ok",
+   "frase_en": "AIRS3STM v7 surface air temperature over Nicaragua (2003–2024): Theil–Sen +0.13 °C/decade ('trend detected'; monthly OLS +0.14, not significant, p = 0.07); third opinion vs GISTEMP (+0.38 °C/dec, 'trend detected', r=0.92) and NASA POWER MERRA-2 (+0.22 °C/dec, 'insufficient evidence', r=0.82)."
   },
   {
    "id": "omi_no2_managua",
    "papel": "tendencia",
-   "region": "Managua (12.05–12.20 N, 86.35–86.15 O)",
+   "region": "Managua (urban box)",
+   "caja": [
+    -86.35,
+    12.05,
+    -86.15,
+    12.2
+   ],
+   "titulo_en": "Tropospheric NO2 column (Managua, OMI)",
+   "definicion_en": "OMI OMNO2d v003 cloud-screened tropospheric NO2 column (10^15 molecules/cm^2) over the Managua urban box (12.05–12.20 N, 86.35–86.15 W), 2005–2024.",
    "periodo": [
     2005,
     2024
    ],
    "serie_nuestra": {
-    "fuente": "OMI OMNO2d v003 ColumnAmountNO2TropCloudScreened",
-    "pendiente": null,
-    "unidad": "molec cm-2/década",
-    "veredicto": null
+    "fuente": "NASA OMI OMNO2d v003 (Managua (urban box))",
+    "pendiente": -0.0434,
+    "pendiente_mco": -0.05,
+    "unidad": "1e15 molec cm-2/década",
+    "veredicto": "tendencia_detectada",
+    "veredicto_robusto": "tendencia_detectada",
+    "periodo": [
+     2005,
+     2024
+    ],
+    "anios": 20,
+    "mann_kendall_p": 0.035,
+    "anios_validos": 20,
+    "meses_validos": 240,
+    "dias_validos_totales": 4863,
+    "mediana_dias_mes": 20,
+    "media_serie_1e15": 0.7445
    },
    "serie_externa": {
-    "fuente": "OMNO2d v003, caja rural 12.35–12.50 N, 85.10–84.90 O",
-    "pendiente": null,
-    "unidad": "molec cm-2/década",
-    "veredicto": null,
+    "fuente": "Monthly raw OLS + ANOVA F (OMNO2d v003)",
     "version": "003",
-    "fecha_consulta": null,
-    "url": null
+    "fecha_consulta": "2026-11-13",
+    "url": "https://opendap.earthdata.nasa.gov/collections/C1266136111-GES_DISC (CMR OMNO2d.003)",
+    "pendiente": -0.049,
+    "unidad": "1e15 molec cm-2/década",
+    "veredicto": "significativa_p<0.05",
+    "r2": 0.0271,
+    "p_valor_F": 0.0106,
+    "theil_sen_mensual": {
+     "pendiente_por_decada": -0.0452,
+     "ic95_por_decada": [
+      -0.0825,
+      -0.0088
+     ]
+    }
    },
    "diferencia": {
     "media": null,
     "r": null,
-    "diferencia_pendiente": null
+    "diferencia_pendiente": -0.0056
    },
-   "estado": "bloqueado",
-   "motivo": "Earthdata Login: Pre authorization required for this application, please authorize by visiting the resolution url (https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ). Giovanni responde «Giovanni now requires a login for data access» y el flujo ArAvTs falla. Petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_ColumnAmountNO2TropCloudScreened&bbox=-86.35%2C12.05%2C-86.15%2C12.2&portal=GIOVANNI&format=json (HTTP 302, 2026-11-12).",
-   "frase_en": "OMI tropospheric NO2 over Managua: blocked (Earthdata application not authorized)."
+   "metodos_coinciden": true,
+   "estado": "ok",
+   "frase_en": "OMI tropospheric NO2 over Managua (urban box) (2005–2024, mean 0.74 x 10^15 molec/cm^2): monthly OLS -0.049 (significant, p = 0.01); annual Theil–Sen -0.043 x 10^15 molec/cm^2 per decade, verdict 'trend detected'. Managua averages 0.74 vs 0.49 x 10^15 molec/cm^2 in Chontales rural box.",
+   "contraste_urbano_rural": {
+    "media_managua_1e15": 0.7445,
+    "media_rural_1e15": 0.4898,
+    "diferencia_1e15": 0.2547,
+    "cociente_urbano_rural": 1.52,
+    "r_anual": 0.3659,
+    "anios_comunes": 20
+   }
+  },
+  {
+   "id": "omi_no2_rural",
+   "papel": "tendencia",
+   "region": "Chontales (rural box)",
+   "caja": [
+    -85.1,
+    12.35,
+    -84.9,
+    12.5
+   ],
+   "titulo_en": "Tropospheric NO2 column (rural background, OMI)",
+   "definicion_en": "OMI OMNO2d v003 cloud-screened tropospheric NO2 column (10^15 molecules/cm^2) over the Chontales rural background box (12.35–12.50 N, 85.10–84.90 W), 2005–2024.",
+   "periodo": [
+    2005,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "NASA OMI OMNO2d v003 (Chontales (rural box))",
+    "pendiente": -0.0487,
+    "pendiente_mco": -0.052,
+    "unidad": "1e15 molec cm-2/década",
+    "veredicto": "metodos_discrepan",
+    "veredicto_robusto": "metodos_discrepan",
+    "periodo": [
+     2005,
+     2024
+    ],
+    "anios": 20,
+    "mann_kendall_p": 0.0556,
+    "anios_validos": 20,
+    "meses_validos": 240,
+    "dias_validos_totales": 3558,
+    "mediana_dias_mes": 15,
+    "media_serie_1e15": 0.4898
+   },
+   "serie_externa": {
+    "fuente": "Monthly raw OLS + ANOVA F (OMNO2d v003)",
+    "version": "003",
+    "fecha_consulta": "2026-11-13",
+    "url": "https://opendap.earthdata.nasa.gov/collections/C1266136111-GES_DISC (CMR OMNO2d.003)",
+    "pendiente": -0.0495,
+    "unidad": "1e15 molec cm-2/década",
+    "veredicto": "significativa_p<0.05",
+    "r2": 0.028,
+    "p_valor_F": 0.0094,
+    "theil_sen_mensual": {
+     "pendiente_por_decada": -0.0443,
+     "ic95_por_decada": [
+      -0.0809,
+      -0.0084
+     ]
+    }
+   },
+   "diferencia": {
+    "media": null,
+    "r": null,
+    "diferencia_pendiente": -0.0008
+   },
+   "metodos_coinciden": false,
+   "estado": "ok",
+   "frase_en": "OMI tropospheric NO2 over Chontales (rural box) (2005–2024, mean 0.49 x 10^15 molec/cm^2): monthly OLS -0.050 (significant, p = 0.01); annual Theil–Sen -0.049 x 10^15 molec/cm^2 per decade, verdict 'methods disagree'. Managua averages 0.74 vs 0.49 x 10^15 molec/cm^2 in Chontales rural box.",
+   "contraste_urbano_rural": {
+    "media_managua_1e15": 0.7445,
+    "media_rural_1e15": 0.4898,
+    "diferencia_1e15": 0.2547,
+    "cociente_urbano_rural": 1.52,
+    "r_anual": 0.3659,
+    "anios_comunes": 20
+   }
   }
  ]
 }

@@ -21,6 +21,7 @@ Ningún secreto se escribe en disco ni en la salida: el abridor de `earthdata.ab
 import calendar
 import json
 import math
+import os
 import re
 import time
 import urllib.error
@@ -71,6 +72,34 @@ def abridor_urs():
             return req
 
     return urllib.request.build_opener(_Urs(), urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+
+
+def sesion_urs_requests(conexiones=24):
+    """`requests.Session` con keep-alive que solo envía Basic auth a urs.earthdata.nasa.gov."""
+    import netrc
+    import requests
+    from requests.adapters import HTTPAdapter
+
+    from .base import RequiereEarthdata
+    from .earthdata import URS as URS_HOST, ruta_netrc
+
+    ruta = ruta_netrc()
+    cred = netrc.netrc(str(ruta)).authenticators(URS_HOST) if ruta else None
+    if not cred:
+        raise RequiereEarthdata("Configure .netrc con urs.earthdata.nasa.gov.")
+
+    class _UrsSession(requests.Session):
+        def rebuild_auth(self, prepared_request, response):
+            if urllib.parse.urlsplit(prepared_request.url).hostname == URS_HOST:
+                prepared_request.prepare_auth((cred[0], cred[2]))
+            else:
+                prepared_request.headers.pop("Authorization", None)
+
+    s = _UrsSession()
+    s.headers["User-Agent"] = "nasa-challenge-clima/1.0"
+    adp = HTTPAdapter(pool_connections=conexiones, pool_maxsize=conexiones)
+    s.mount("https://", adp)
+    return s
 
 
 # ---------------------------------------------------------------- Giovanni: sesión y servicio
@@ -268,6 +297,87 @@ def opendap_ascii(url, restriccion, abridor=None, intentos=6, timeout=300):
         time.sleep(espera)
         espera *= 2
     raise RuntimeError(u)
+
+
+def api_giovanni_serie(data, inicio, fin, bbox=None, shape=None, token=None, timeout=180):
+    """Consulta la API nueva de Giovanni (`api.giovanni.earthdata.nasa.gov/timeseries`) con token Bearer.
+
+    Lee `EARTHDATA_TOKEN` del entorno si `token` es None; nunca escribe ni imprime credenciales.
+    """
+    tok = (token if token is not None else os.environ.get("EARTHDATA_TOKEN", "")).strip()
+    if not tok:
+        raise GiovanniNoDisponible("EARTHDATA_TOKEN no está en el entorno para api.giovanni.earthdata.nasa.gov")
+    q = {"data": data, "time": f"{inicio}T00:00:00Z/{fin}T23:59:59Z"}
+    if bbox is not None:
+        q["location"] = "[" + ",".join(f"{v:g}" for v in bbox) + "]"
+    elif shape is not None:
+        q["shape"] = shape
+    url = "https://api.giovanni.earthdata.nasa.gov/timeseries?" + urllib.parse.urlencode(q)
+    req = urllib.request.Request(url, headers={"Authorization": f"Bearer {tok}",
+                                               "User-Agent": "nasa-challenge-clima/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return r.read().decode("utf-8", "replace")
+    except urllib.error.HTTPError as e:
+        raise GiovanniNoDisponible(f"{url}: HTTP {e.code}") from e
+
+
+def parsear_hyrax_ascii(texto):
+    """Respuesta `.ascii` de Hyrax Cloud (`opendap.earthdata.nasa.gov`) → {nombre_corto: np.ndarray}."""
+    if not texto.lstrip().startswith("Dataset:"):
+        raise ValueError("Respuesta Hyrax ASCII inválida")
+    grupos, filas_ord, orden_1d = {}, {}, {}
+    for ln in texto.replace("\r\n", "\n").split("\n"):
+        s = ln.strip()
+        if not s or s.startswith("Dataset:"):
+            continue
+        primero, *resto = [x.strip() for x in s.split(",")]
+        vals = [float(x) for x in resto if x]
+        m = re.match(r"^([^[]+)(\[.+\])$", primero)
+        if m:
+            nombre = m.group(1).strip().split("/")[-1].split(".")[-1]
+            idx_m = re.fullmatch(r"\[(\d+)\]", m.group(2))
+            if idx_m:
+                grupos.setdefault(nombre, {})[int(idx_m.group(1))] = vals
+            else:
+                filas_ord.setdefault(nombre, []).append(vals)
+        else:
+            nombre = primero.split("/")[-1].split(".")[-1]
+            orden_1d[nombre] = np.array(vals, float)
+    for nombre, filas in grupos.items():
+        orden_1d[nombre] = np.array([filas[i] for i in sorted(filas)], float)
+    for nombre, filas in filas_ord.items():
+        orden_1d[nombre] = np.array(filas, float)
+    return orden_1d
+
+
+def opendap_hyrax_ascii(url, restriccion, abridor=None, intentos=6, timeout=60):
+    """GET `<url>.ascii?<restriccion_codificada>` para Hyrax Cloud con reintentos (429/5xx/red)."""
+    return opendap_ascii(url, urllib.parse.quote(restriccion, safe="/:,"), abridor=abridor,
+                         intentos=intentos, timeout=timeout)
+
+
+def cmr_granulos_opendap(short_name, version, temporal, page_size=2000):
+    """Consulta CMR y devuelve [(time_start, opendap_url), ...] ordenados cronológicamente."""
+    out, pagina = [], 1
+    while True:
+        q = urllib.parse.urlencode({"short_name": short_name, "version": version, "temporal": temporal,
+                                    "page_size": page_size, "page_num": pagina, "sort_key[]": "start_date"})
+        url = "https://cmr.earthdata.nasa.gov/search/granules.json?" + q
+        with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "nasa-challenge-clima/1.0"}),
+                                    timeout=60) as r:
+            entries = json.load(r).get("feed", {}).get("entry", [])
+        if not entries:
+            break
+        for e in entries:
+            op_u = next((lk["href"] for lk in e.get("links", [])
+                         if (lk.get("href") or "").startswith("https://opendap.earthdata.nasa.gov/")), None)
+            if op_u:
+                out.append((e.get("time_start", ""), op_u))
+        if len(entries) < page_size:
+            break
+        pagina += 1
+    return out
 
 
 def indices_rango(centros, minimo, maximo):
