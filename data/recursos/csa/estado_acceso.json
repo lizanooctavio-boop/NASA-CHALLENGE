@@ -1,0 +1,16 @@
+{
+  "fecha": "2026-11-13",
+  "earthdata_login": "authenticated",
+  "gesdisc": {
+    "http": 403,
+    "reason": "EULA Acceptance Failure",
+    "resolution_url": "https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ"
+  },
+  "asf": {
+    "http": 401,
+    "reason": "Pre authorization required",
+    "resolution_url": "https://urs.earthdata.nasa.gov/approve_app?client_id=BO_n7nTIlMljdvU6kRRB3g"
+  },
+  "imerg_descargado": false,
+  "sar_procesado": false
+}

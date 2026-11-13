@@ -155,3 +155,8 @@ Satellite radar can map water extent, while SWOT measures water-surface elevatio
 ## Access update — 2026-11-13
 
 The user created an Earthdata account, but account creation does not establish local download authentication. Browser origin access was denied by a saved permission. A user-run local earthaccess login is required; no credentials are copied from browser storage. No authenticated Canadian rainfall or SAR measurement is claimed until acquisition succeeds.
+
+
+## Provider access check — 2026-11-13
+
+Earthdata login now succeeds locally. IMERG direct download still returns HTTP 403 `EULA Acceptance Failure` (GES DISC client `e2WVk8Pw6weeLUKZYOxvTQ`); ASF RTC authentication returns HTTP 401 with `Pre authorization required` (ASF client `BO_n7nTIlMljdvU6kRRB3g`). Provider authorization/terms must be completed by the account holder. No terms are accepted by the script. `descargar_canada.py --destino <directory outside Git>` is prepared to acquire 288 monthly originals (2001–2024), verify HDF5 responses and invoke the Canadian reader after authorization. Acquisition is not reported as completed. CMR also confirmed real OPERA RTC-S1 catalogue entries over southern Cocibolca for January 2024; protected raster retrieval remains blocked. OPERA RTC is gamma0 power, not sigma0 dB: these products must not be passed directly to the current sigma0-dB mask processor.
