@@ -1,87 +1,96 @@
 # Propuestas de cambios fuera de `docs/entrega/`
 
-> **Propósito:** De acuerdo con las instrucciones de entrega, no se ha modificado ningún archivo existente fuera de `docs/entrega/`. Este documento recopila las acciones concretas sugeridas sobre el código, los datos, la documentación previa y la configuración del repositorio para que la persona responsable de cada área decida y aplique los cambios antes del **domingo 15-11-2026 a las 23:59 (hora de Managua)**.
+> **Propósito:** De acuerdo con las reglas de trabajo, no se ha modificado ningún archivo existente del código, datos ni documentación previa fuera de `docs/entrega/`. Este documento recopila las acciones concretas propuestas para que las personas responsables de cada módulo las apliquen antes del cierre oficial (**domingo `15-11-2026` a las `23:59`, hora de Managua `UTC−6`**).
 
 ---
 
-## 1. Prioridad crítica (bloqueantes de admisión o puntuación)
+## 1. Prioridad crítica (bloqueantes de admisión, elegibilidad o puntuación)
 
-### P-01 — Visibilidad pública del repositorio y revisión de secretos
+### P-00 — Consulta obligatoria al *Local Lead* de Managua antes de marcar `Confirm All Work is Original`
+- **Responsable:** Representante / líder del equipo en la sede **Managua**.
+- **Problema comprobado:** El historial Git registra `54` commits previos a la apertura del evento (`f5fad37` el `2026-11-11 22:34:36 -0600`; `15` el `11-11`, `15` el `12-11` y `24` el `13-11`, más el visor previo `SICC-952`), mientras las *Participant FAQs* indican *"Teams are not allowed to begin working on the challenges prior to the hackathon"* y el envío exige marcar **`Confirm All Work is Original`**.
+- **Acción propuesta:**
+  1. Enviar hoy mismo al *Local Lead* de Managua la consulta transparente preparada en `docs/entrega/REQUISITOS_ENTREGA_2026.md` §4 (sin minimizar ni ocultar fechas ni editar el historial Git).
+  2. Documentar su respuesta por escrito y seleccionar en consecuencia la **Opción A** o la **Opción B** de `docs/entrega/FORMULARIO_PROYECTO_EN.md` §8 (y actualizar `README.md` antes del envío).
+
+### P-01 — Visibilidad pública del repositorio y auditoría de secretos
 - **Responsable:** Propietario del repositorio (`lizanooctavio-boop/NASA-CHALLENGE`).
-- **Problema comprobado (`13-11-2026`):** Tanto la API como la web pública de GitHub (`https://github.com/lizanooctavio-boop/NASA-CHALLENGE`) devuelven **HTTP `404`** (repositorio privado). Además, las guías exigen que todo enlace de código y demo sea público y sin inicio de sesión durante el periodo de evaluación.
+- **Problema comprobado (`13-11-2026`):** `https://github.com/lizanooctavio-boop/NASA-CHALLENGE` y su endpoint en la API de GitHub devuelven **HTTP `404`** sin autenticación (repositorio **privado**). Si permanece privado tras el `15-11` a las `23:59`, el proyecto no podrá evaluarse.
 - **Cambio propuesto:**
-  1. Revisar el historial y archivos temporales para confirmar que no hay credenciales (`.netrc`, tokens Earthdata/NOAA/EODMS, rutas locales sensibles o claves personales).
-  2. Cambiar la visibilidad del repositorio a **Public** en GitHub.
-  3. Anotar el enlace público definitivo en `docs/entrega/FORMULARIO_PROYECTO_EN.md`, `DEMO_VIDEO_30S_EN.md` y `DEMO_DIAPOSITIVAS_EN.md`.
+  1. Revisar historial, archivos ignorados y ramas activas para confirmar ausencia de credenciales (`.netrc`, tokens Earthdata/NOAA/EODMS, rutas locales sensibles o PII).
+  2. Cambiar el repositorio a **Public** en GitHub y confirmar acceso HTTPS limpio (regla FortiGuard).
+  3. Rellenar los enlaces públicos definitivos en el formulario de entrega y en el guion o diapositivas finales.
 
-### P-02 — Crear archivo `LICENSE` en la raíz y delimitar código vs. datos
+### P-02 — Crear `LICENSE` OSI en la raíz y separar licencias de datos/servicios externos
 - **Responsable:** Equipo completo / propietario del repositorio.
-- **Problema comprobado:** No existe archivo `LICENSE` en la raíz (`origin/codex/verificacion-entrega` ni `origin/codex/recursos-interfaz`), mientras que existen dependencias y fuentes con condiciones distintas:
-  - El tutorial SAR adaptado conserva `scripts/sar/LICENSE-CSA.txt` (**MIT** con cláusula de no respaldo publicitario por la CSA).
-  - Los datos de **CRU TS 4.10** usan **ODbL / DbCL** (cláusula *Share-Alike* para bases de datos redistribuidas).
-  - La API **RainViewer** (si sigue integrada en capas del visor) restringe su uso gratuito a ámbito **personal y educativo**.
-  - **Open-Meteo** en nivel gratuito aplica restricción **no comercial** (aunque ECMWF IFS es `CC BY 4.0`).
+- **Problema comprobado:** No existe archivo `LICENSE` en la raíz de `origin/codex/verificacion-entrega` ni de `origin/codex/recursos-interfaz`, y coexisten recursos con condiciones distintas:
+  - El módulo SAR adaptado conserva `scripts/sar/LICENSE-CSA.txt` (**MIT** con cláusula de no respaldo publicitario por la CSA).
+  - **CRU TS 4.10** se distribuye bajo **ODbL / DbCL** (*Share-Alike* para derivados redistribuidos).
+  - **RainViewer API** restringe el nivel gratuito a **uso personal y educativo** con enlace obligatorio.
+  - **Open-Meteo** limita el nivel gratuito a **uso no comercial** (aunque ECMWF IFS subyacente sea `CC BY 4.0`).
+  - **CSA RCM (`Order #3787605`)** sigue pendiente de lectura íntegra de EULA (EODMS devolvió `403`).
 - **Cambio propuesto:**
-  1. Decidir licencia abierta estándar para el **código fuente del repositorio** (recomendado: **Apache License 2.0**, coherente con la licencia por defecto de los términos de Space Apps, o **MIT** compatible con `scripts/sar/LICENSE-CSA.txt`) y crear `LICENSE` en la raíz.
-  2. Separar explícitamente en `README.md` y `LICENSE`: *"El código original está bajo `<Apache-2.0 / MIT>`; los conjuntos científicos de entrada y APIs externas conservan las licencias de sus proveedores (`NASA ESDIS`, `OGL-Canada`, `ODbL CRU`, `CSA`, etc.)"*.
-  3. Decidir sobre **RainViewer API** y **Open-Meteo**: o bien desactivar/retirar llamadas de RainViewer si entran en conflicto con la licencia abierta del producto, o documentar expresamente que las capas heredadas de tiempo real consumen servicios externos de uso no comercial sin redistribución de su caché.
+  1. Añadir `LICENSE` OSI en la raíz (recomendado **Apache License 2.0**, alineado con el estándar por defecto de los *Terms* de Space Apps, o **MIT** compatible con `LICENSE-CSA.txt`).
+  2. Declarar expresamente en `README.md` y en el formulario que la licencia OSI cubre el código propio, mientras los datos de entrada y APIs externas conservan las licencias de sus proveedores.
+  3. Evaluar si se deshabilita por defecto o se aísla **RainViewer** (y la nota no comercial de **Open-Meteo**) para evitar fricciones con requisitos OSI sin restricciones.
 
-### P-03 — Integrar los PRs en paralelo y regenerar `data/recursos_integrados.json`
-- **Responsable:** Integración / Agente 4 (`PR #10`) junto con responsables de `PR #7`, `PR #9` y `PR #12`.
-- **Problema comprobado (`origin/codex/recursos-interfaz`):** Sin la fusión previa de `PR #7` (Canadá, SWOT, radar), `PR #9` (contrastes CRU/GPCC/NOAA/OBPG) y `PR #12` (GLDAS/AppEEARS), el JSON que alimenta **Investigate** (`data/recursos_integrados.json`) contiene actualmente solo **12 elementos base** y **`contrastes = []`** en lugar de las **20 investigaciones y 12 contrastes** completos descritos en el plan y necesarios para grabar la demo (`Nicaragua vs. Canadian Prairies` + discrepancias cruzadas).
+### P-03 — Integrar los PRs abiertos y regenerar `data/recursos_integrados.json`
+- **Responsable:** Integración de interfaz (`PR #10`, `origin/codex/recursos-interfaz`) junto con responsables de `PR #7`, `PR #9` y `PR #12`.
+- **Problema comprobado (`13-11-2026`):** En GitHub constan `11` PRs abiertos (`#1`, `#2`, `#3`, `#4`, `#5`, `#7`, `#8` [borrador], `#9`, `#10`, `#12` [borrador], `#13` [borrador]). En `origin/codex/recursos-interfaz` (`91ede22`), `data/recursos_integrados.json` contiene actualmente **solo las `12` investigaciones base de Nicaragua y `contrastes = []`** porque aún no se han fusionado `PR #7` (Canadá/SWOT/OPERA/RCM), `PR #9` (contrastes y nuevas series `AIRS3STM`, `OMNO2d`, `IMERG OPeNDAP`, `OBPG`, `CRU/GPCC/NOAA`) ni `PR #12` (GLDAS/AppEEARS).
 - **Cambio propuesto:**
-  1. Revisar y fusionar `PR #7`, `PR #9`, `PR #12` y `PR #10` en la rama candidata de despliegue público.
-  2. Ejecutar el comando integrador de backend (`python -m clima_nic recursos` `[CONFIRMAR]` punto de entrada vigente tras fusionar PRs) y verificar que `data/recursos_integrados.json` incluye `nicaragua_vs_praderas`, contrastes `GLDAS` vs `MERRA-2`, `CRU`/`GPCC`/`POWER` y `G-REALM`/`SWOT`.
-  3. Ejecutar la suite completa de pruebas (`pytest`) y validar manualmente en navegador la ruta de `DEMO_VIDEO_30S_EN.md` antes de grabar.
+  1. Revisar y fusionar `PR #7`, `PR #9`, `PR #12` y `PR #10` (más los PRs complementarios aprobados) en una rama unificada de publicación.
+  2. Verificar en `backend/clima_nic/recursos.py` el mapeo completo de las series incorporadas en `5d64ab9` (`clorofila_pacifico_fonseca`, `airs_tas_nic`, `omi_no2_managua`, `omi_no2_rural`, `giovanni_imerg_*`) y de los nuevos contrastes antes de regenerar.
+  3. Ejecutar desde `backend/` el comando CLI real verificado en `backend/clima_nic/__main__.py`:
+     - `python -m clima_nic recursos`
+  4. Ejecutar `pytest` completo tras fusionar y validar en navegador que `Tropics vs. prairies` (`nicaragua_vs_praderas`) y **Cross-checks** (`GLDAS` vs `MERRA-2`, `GISTEMP` vs `POWER/AIRS`, `SWOT` vs `G-REALM`, `MODIS CHL` Fonseca vs Pacífico abierto) se muestran en vivo antes de grabar el demo o capturar pantallas.
 
 ---
 
-## 2. Prioridad alta (rigor científico, coherencia documental y accesibilidad)
+## 2. Prioridad alta (coherencia científica y accesibilidad)
 
-### P-04 — Corregir cifras desactualizadas en `docs/auditoria.md` y unificar el NDVI de `MOD13Q1`
-- **Responsable:** Responsable de documentación técnica / estadísticas.
+### P-04 — Corregir cifras antiguas de CMIP6 en `docs/auditoria.md` y documentar la diferencia de NDVI (`-0.0432` vs. `-0.0438`)
+- **Responsable:** Responsable de análisis estadístico / documentación técnica.
 - **Problema comprobado:**
-  1. En `docs/auditoria.md` (línea `47`, rama `origin/codex/verificacion-entrega`) figuran cifras antiguas de `NEX-GDDP-CMIP6` para Nicaragua (`+1,55 / +1,96 °C` y lluvia `+0,9 % / −4,3 %`), mientras que el archivo actual `data/fenomenos_nicaragua.json` arroja medianas de **+1,399 °C (`ssp245`) / +1,980 °C (`ssp585`)** y lluvia **−5,446 % (`ssp245`) / −10,488 % (`ssp585`)**.
-  2. La muestra puntual `MOD13Q1` en `Central` figura como `-0.0432` en la salida actual del JSON de interfaz y `-0.0438` en documentos previos de análisis (`tabla_analisis.md`).
+  1. En `origin/codex/verificacion-entrega:docs/auditoria.md` **línea `47`** figuran valores antiguos de `NEX-GDDP-CMIP6` para Nicaragua (**`+1,55 / +1,96 °C`** y lluvia **`+0,9 % / −4,3 %`**), mientras el archivo vigente `data/fenomenos_nicaragua.json` arroja medianas de **`+1,399 °C` (`ssp245`) / `+1,980 °C` (`ssp585`)** y precipitación **`−5,446 %` (`ssp245`) / `−10,488 %` (`ssp585`)**.
+  2. La muestra puntual `MOD13Q1` (`2000–2024`) en sitio `Central` figura como **`-0.0432` NDVI/década** en `origin/codex/recursos-interfaz:data/recursos_integrados.json`, frente a **`-0.0438`** en `origin/codex/recursos-tierra-v2:data/recursos/tierra/tabla_analisis.md:20` y `docs/reto/recursos/tierra.md:179`.
 - **Cambio propuesto:**
-  - Regenerar o actualizar `docs/auditoria.md` línea `47` para reflejar los valores exactos de `data/fenomenos_nicaragua.json` (`+1,399 / +1,980 °C` y `−5,446 % / −10,488 %`).
-  - Confirmar cuál es la fuente canónica del cálculo NDVI de muestra (`-0.0432` vs `-0.0438`) y añadir nota explícita hasta que se procesen las tareas regionales completas de `AppEEARS`.
+  - Actualizar `docs/auditoria.md` línea `47` con los valores exactos vigentes de `data/fenomenos_nicaragua.json` (`+1,399 / +1,980 °C` y `−5,446 % / −10,488 %`) para evitar contradicciones si los jueces revisan el informe de auditoría.
+  - Unificar o explicar en nota metodológica la pequeña diferencia (`-0.0432` vs. `-0.0438`) según el recálculo exacto en `recursos.py` (`tendencia_robusta`), manteniendo explícita la salvedad de muestra puntual sin máscara regional.
 
 ### P-05 — Aplicar mejoras rápidas de accesibilidad antes de grabar el demo (`REVISION_ACCESIBILIDAD.md`)
 - **Responsable:** Responsable de interfaz (`PR #10`, `origin/codex/recursos-interfaz`).
-- **Archivo(s):** `index.html`, `app/estilos.css`, `app/investigar.js`, `app/shell.js`.
-- **Cambio propuesto (priorizando las 4 incidencias **Altas** + adaptación móvil a `390 px`):**
-  1. **`A-01` (Contraste en `.vista.ventana`):** Aplicar fondo `rgba(14, 20, 34, .88)` en `.vista.ventana` y elevar `--tenue` al menos a `#b7c5d4` (`app/estilos.css:1,75,303`) para evitar caídas por debajo de `4.5:1` cuando el globo iluminado o nubes pasan detrás del panel.
-  2. **`A-03` y `A-04` (Foco y *roving tabindex*):** En `app/investigar.js:35-41` implementar `tabindex` rotativo (`0` en el radio activo, `-1` en los demás) con `Home`/`End` sin destruir el foco; en `pasoDemo()` (`app/investigar.js:154-176`) devolver el foco al encabezado del paso o al botón iniciador al pulsar *Finish*.
-  3. **`A-07` (Gráficas `Chart.js`):** Añadir `role="img"`, resumen estadístico completo en `aria-label` (pendiente Theil–Sen, IC 95 %, `p` y veredicto) y tabla desplegable accesible (`<details><table>`) bajo `<canvas id="inv-serie">` (`index.html:71`, `app/investigar.js:111,137`).
-  4. **`A-11` (Vista móvil `390 px`):** Permitir `flex-wrap: wrap` o indicador visible en `nav` (`app/estilos.css:156`) para que *Learn* y *Sources* sean visibles sin descubrir un scroll oculto, y asegurar áreas táctiles mínimas de `44×44 px`.
-  *(El resto de incidencias `A-02`, `A-05`, `A-06`, `A-08`, `A-09`, `A-10`, `A-12` se detallan con línea exacta en `docs/entrega/REVISION_ACCESIBILIDAD.md`.)*
+- **Archivos implicados:** `index.html`, `app/estilos.css`, `app/investigar.js`, `app/shell.js`.
+- **Cambio propuesto (priorizando las 4 incidencias Altas + vista móvil a `390 px`):**
+  1. **`A-01` (Contraste en `.vista.ventana`):** Aplicar `background: rgba(14, 20, 34, .88);` en `.vista.ventana` y elevar `--tenue` al menos a `#b7c5d4` (`app/estilos.css:1,75,303`).
+  2. **`A-03` y `A-04` (Foco y *roving tabindex*):** En `app/investigar.js:35-41`, aplicar `tabindex` rotativo (`0` activo, `-1` resto) más `Home`/`End` sin destruir nodos si el grupo no cambia; en `pasoDemo()` (`app/investigar.js:154-176`), restaurar foco al titular del paso o al botón iniciador al pulsar *Finish*.
+  3. **`A-07` (Gráficas `Chart.js`):** Añadir `role="img"`, resumen estadístico completo en `aria-label` (pendiente, IC 95 %, `p` y veredicto) y `<details><table>` accesible bajo `<canvas id="inv-serie">` (`index.html:71`, `app/investigar.js:111,137`).
+  4. **`A-11` (Móvil `390 px`):** Habilitar `flex-wrap: wrap` o indicador visible en `nav` (`app/estilos.css:156`) para que *Learn* y *Sources* no queden ocultos y asegurar objetivos táctiles de `44×44 px`.
+  *(Detalle completo de `A-01` a `A-12` con líneas exactas en `docs/entrega/REVISION_ACCESIBILIDAD.md`.)*
 
-### P-06 — Actualizar `README.md` de la raíz para jueces internacionales
-- **Responsable:** Responsable de documentación / repositorio.
-- **Problema comprobado:** El `README.md` actual está centrado en la estructura interna en español y menciona `SICC-952` sin incluir todavía una portada bilingüe/en inglés con: descripción ejecutiva en inglés, guía reproducible rápida (`pytest`, regeneración de datos, servicio estático), tabla resumen de citas/licencias y aviso explícito de uso de **Super Intelligence (SI)** y trabajo previo (`SICC-952`, commits `11–13-11-2026`).
-- **Cambio propuesto:** Añadir en la cabecera de `README.md` un bloque completo en inglés (*Project Overview, Quick Start, Methodology Summary, Data Attribution & Licenses, SI Disclosure & Prior Infrastructure Note*) y enlazar a `LICENSE` una vez creado.
+### P-06 — Actualizar `README.md` raíz para jueces internacionales
+- **Responsable:** Responsable de repositorio / documentación.
+- **Problema comprobado:** El `README.md` actual (`origin/main` solo contiene `README.md`; `origin/codex/verificacion-entrega` está en español) necesita portada en inglés orientada a jueces internacionales, enlace a `LICENSE` y nota explícita del trabajo previo (`SICC-952` y commits `11–13-11-2026`) y uso de SI.
+- **Cambio propuesto:** Incorporar al inicio de `README.md` un resumen ejecutivo en inglés (*Project Overview, Quick Start, Statistical Methodology, Sources & Licenses, SI Disclosure & Pre-Event Infrastructure Notice*), enlazar `LICENSE` y mantener los textos de entrega coherentes con la decisión acordada en `P-00`.
 
 ---
 
-## 3. Prioridad media (calidad científica post-cola y mantenimiento)
+## 3. Prioridad media (colas en curso y verificaciones manuales del equipo)
 
-### P-07 — Procesar tareas pendientes (`AppEEARS` y `CSA RCM`) cuando completen los servidores
-- **Responsable:** Agente 1 (`PR #12` — Tierra) y Agente 3 (`PR #7` — CSA/SAR).
-- **Situación actual:**
+### P-07 — Procesar tareas pendientes (`AppEEARS` y `CSA RCM`) solo si completan antes del cierre
+- **Responsable:** Responsables de `PR #12` (Tierra / AppEEARS) y `PR #7` (CSA / SAR).
+- **Situación actual (`13-11-2026`):**
   - `160` tareas en AppEEARS (`SPL4SMGP.008`, `MOD11A2.061`, `MOD16A2GF.061`, `MOD13A3.061`, `MCD12Q1.061`) siguen en `0` completadas (`158 Pending`, `2 Processing`).
-  - Pedido EODMS `RCM` (`#3787605`, escenas `5616847` y `5600935`) sigue en estado `SUBMITTED`, y la página de términos EODMS devolvió `403`.
+  - Pedido EODMS `RCM` (`#3787605`, escenas `5616847` y `5600935`) sigue en `SUBMITTED`, con acceso de documentación/EULA bloqueado (`403/404`).
 - **Cambio propuesto:**
-  - Si completan **antes del domingo 15-11 a las 18:00 CST**, descargar resultados, verificar QA (`MODIS`/`SMAP`), leer la EULA exacta del pedido EODMS antes de subir cualquier derivado de `RCM` y re-ejecutar el pipeline integrador.
-  - Si **no completan antes del cierre**, mantener explícitamente el estado `pendiente` / `NO_VALIDADA` sin rellenar valores artificiales ni cambiar las etiquetas de honestidad en la interfaz ni en el formulario.
+  - Si completan antes de la tarde del `15-11`, validar QA, revisar la EULA exacta de EODMS antes de redistribuir cualquier derivado `RCM` y regenerar con `python -m clima_nic recursos`.
+  - Si no completan a tiempo, mantener intactas las etiquetas `pendiente` y `NO_VALIDADA` sin rellenar valores estimados ni ocultar colas.
 
-### P-08 — Completar enlaces, comprobaciones manuales `[VERIFICAR]` y decisiones del equipo
+### P-08 — Completar inspecciones humanas pendientes y decisiones finales del equipo
 - **Responsable:** Todo el equipo en Managua.
-- **Lista de decisiones e inspecciones pendientes (no delegables):**
-  1. **Sede y cuentas:** Confirmar que todos los miembros están registrados, verificados y dentro del mismo equipo en la **sede de Managua** (y resolver autorizaciones si hubiera menores de `< 18` años).
-  2. **Formato del demo y publicación:** Elegir entre vídeo `<= 30 s` (`DEMO_VIDEO_30S_EN.md`) o `<= 7` diapositivas (`DEMO_DIAPOSITIVAS_EN.md`), generar el entregable **sin logotipos de NASA/CSA/NOAA**, aplicar **marca de agua visible + metadatos** si lleva voz/medios SI (p. ej. ElevenLabs) y verificar el `[ENLACE]` público desde una red sin sesión y considerando filtros **FortiGuard** (sin acortadores).
-  3. **Inspecciones manuales `[VERIFICAR]`:**
-     - Abrir manualmente el recurso #7 en Medium (`403` automático) para confirmar la lista literal de pruebas de su autor y completar `LECTURA_MEDIUM.md`.
-     - Consultar el PDF de NASA NTRS `20090042747` para añadir los apellidos de autores omitidos en la API JSON (`authors: []`).
-     - Verificar en el portal DWD/NOAA PSL el DOI exacto de `GPCC Full Data Monthly v2025`, la cita oficial de `NOAA GSOM 1.0` / `POWER`, y la atribución conjunta exacta NASA/CNES para `SWOT`.
-     - Resolver el conflicto visual de nombre final del proyecto (`Earth Trend Detective` `[CONFIRMAR]`) y completar el envío pulsando **Submit for Judging** antes del **domingo 15-11-2026 a las 23:59 (UTC−6)**.
+- **Pendientes no automatizables:**
+  1. **Elegibilidad y sede:** Confirmar edades de todos los participantes (reglas `< 18` años en sede y exclusión absoluta de nombres reconocibles, voces e imagen de menores en la entrega), cuenta y registro unificado en la sede **Managua**.
+  2. **Demo único y publicación:** Elegir vídeo `<= 30 s` O presentación `<= 7` diapositivas, confirmar si hay voz/visuales SI (aplicar **marca de agua visible** y metadatos), prohibir logotipos NASA/CSA/NOAA, comprobar URLs públicas aptas para **FortiGuard** y pulsar **Submit for Judging** antes del **domingo `15-11-2026` a las `23:59` (`UTC−6`)**.
+  3. **Verificaciones manuales restantes `[VERIFICAR]`:**
+     - Abrir manualmente el artículo #7 en Medium (`HTTP 403` Cloudflare en descarga automática) para completar `LECTURA_MEDIUM.md`.
+     - Comprobar en las páginas oficiales de los proveedores los datos marcados `[VERIFICAR]` en `FUENTES_Y_LICENCIAS.md` (cita completa Hansen et al. 2010 en GISTEMP, DOI de `GPCC v2025`, URL/DOI canónico de `NOAA GSOM 1.0`, DOI actual de `NASA POWER`, texto literal de atribución conjunta CNES en `SWOT`).
+     - Decidir título único definitivo (`Earth Trend Detective` vs. `Earth System Trend Detective`).
