@@ -1,45 +1,67 @@
 # Super Intelligence (SI / AI) Disclosure — Earth Trend Detective
 
 > **Resumen en español (para el equipo)**  
-> Este documento recoge la declaración exigida por las guías oficiales de NASA Space Apps 2026 sobre el uso de herramientas de IA (*Super Intelligence*, SI). Detalla qué modelos se utilizaron en código, análisis, documentación y auditoría (**Claude Code (Opus)**, **Codex**, **Claude Opus** y **Gemini**), deja constancia de que la idea del proyecto, las decisiones científicas y estadísticas y las comprobaciones corresponden al equipo humano, e incorpora las reglas obligatorias de **marca de agua visible**, **declaración en el texto** y **metadatos** si el vídeo o las diapositivas de la entrega final incluyen voz, imágenes o vídeo generados por IA (por ejemplo, locución sintética con ElevenLabs). Revisa y valida todos los puntos marcados con **`[CONFIRMAR]`** antes de pulsar *Submit for Judging*.
+> Este documento prepara la declaración de uso de herramientas de IA (*Super Intelligence*, SI) exigida por las guías de NASA Space Apps 2026. Incluye: (1) una plantilla honesta para que el equipo rellene qué decisiones tomó por su cuenta y qué trabajo propusieron o redactaron las herramientas de SI; (2) el inventario real de herramientas empleadas (**Claude Code (Opus)**, **Codex**, **Claude Opus**, **Gemini** y, de forma condicional, **ElevenLabs** u otra herramienta de medios si se usara en el vídeo); (3) las reglas obligatorias de **marca de agua visible**, **declaración en texto**, **metadatos**, exclusión de **menores de 18 años** y prohibición de logotipos oficiales; y (4) un **bloque limpio listo para pegar** en el formulario de la plataforma separado de la lista **`Pendiente del equipo`**.
 
 ---
 
-## 1. Human Ownership & Core Responsibility
+## 1. Fillable Ownership & Accountability Template (`[CONFIRMAR]` / `[DECISIÓN DEL EQUIPO]`)
 
-- **Team Ownership (`[CONFIRMAR]`):** The original concept, scientific questions focused on Nicaragua and contrasting regions (Central America and the Canadian Prairies), the choice of strict multi-method trend criteria (requiring agreement across adjusted-df OLS, Newey–West HAC, Theil–Sen, and modified Mann–Kendall rather than a single uncorrected p-value), and every analytical trade-off were directed, reviewed, and decided by the human team.
-- **Accountability:** The team inspected datasets, verified statistical outputs against reproducible scripts and automated tests, documented data gaps and failed/pending endpoints transparently (*e.g.*, blocked Giovanni services, pending AppEEARS/RCM orders, short-record SWOT/OPERA boundaries), and holds full responsibility for the final submission (`[CONFIRMAR]`).
+Complete and sign off internally on each line below before submitting the project so that the public disclosure reflects exact team responsibility:
+
+- **Decisions made independently by human team members (`[CONFIRMAR]`):**
+  - Selection of the Nicaragua and Canadian Prairies geographic study domains and comparative framing (`[CONFIRMAR: team member(s) responsible]`).
+  - Adoption of conservative multi-method trend thresholds (`Trend detected`, `Not enough evidence of a trend`, `Methods disagree`, plus `MIN_ANIOS = 10` short-record guard and `NO_VALIDADA` SAR calibration gate) (`[CONFIRMAR: team member(s) responsible]`).
+  - Determination not to fabricate missing outputs for queued `AppEEARS` jobs, pending `RCM` orders, or Cloudflare-blocked articles (`[CONFIRMAR]`).
+  - Final go/no-go approval of submitted repository, open-source license choice, and pre-event work disclosure after consulting the Managua Local Lead (`[DECISIÓN DEL EQUIPO]`).
+- **Work in which SI tools proposed approaches, generated code/text, or audited deliverables (`[CONFIRMAR]`):**
+  - Scaffolding and refactoring Python ingestion scripts, statistical test modules, and FastAPI/CLI endpoints (`Claude Code (Opus)`, `Codex`).
+  - Drafting frontend HTML/CSS/JavaScript components, 3D/2D map wiring, and plain-language *Learn* explanations (`Codex`, `Claude Code (Opus)`).
+  - Reviewing statistical trade-offs, regional dataset caveats, submission compliance, accessibility checks, and drafting English/Spanish delivery documentation (`Claude Opus`, `Gemini`).
+- **Human verification & accountability sign-off:**
+  - *We confirm that every statistical figure, DOI, license entry, and visual shown in the final submission has been reviewed and verified by the human team against actual repository outputs and primary sources.* (`[CONFIRMAR: Team Lead / Date]`)
 
 ---
 
 ## 2. Inventory of Super Intelligence (SI) Tools Used
 
-In compliance with NASA Space Apps Challenge 2026 Participant Terms, Participant FAQs, and Project Submission Guidelines, the team discloses the following SI assistants used during preparation and development:
-
-| SI Tool / Model | Scope of Assistance | Specific Artifacts & Tasks Assisted | Human Oversight & Verification |
+| SI Tool / Model | Scope of Assistance | Specific Artifacts & Tasks Assisted | Human Oversight Required |
 | --- | --- | --- | --- |
-| **Claude Code (Opus)** | Code authoring, geospatial/statistical backend & refactoring | Backend adapters (`backend/clima_nic/fuentes/`), statistical pipeline (`tendencia_robusta.py`, `fdr.py`, `indicadores.py`, `modelo_estacional.py`), integration and test scaffolding (`[CONFIRMAR]`) | Team reviewed statistical formulas, verified outputs against contract rules (`tendencia.py`), and checked caveats on sample sites, Pettitt step breaks, and GLDAS/MERRA-2 divergence. |
-| **Codex** | Code implementation, data-pipeline scripts, UI & cross-checks | Data preparation and validation scripts (`scripts/datos/`, `data/recursos/contraste/`, `data/recursos/csa/`, `data/recursos/tierra/`), 3D/2D web UI (`index.html`, `app/`, `src/`), and *Investigate / Learn / Sources* tabs (`[CONFIRMAR]`) | Team audited branch outputs (`resources`, cross-checks, SAR calibration gates), rejected unvalidated radar masks (`NO_VALIDADA`), and verified numerical consistency across JSON outputs. |
-| **Claude Opus** | Scientific framing, methodological design & review | Literature/method comparison, design of statistical safeguards against autocorrelation and multiple comparisons, synthesis of regional climate caveats (`[CONFIRMAR]`) | Team validated methodological choices (e.g., annual aggregation + modified Mann–Kendall instead of inflated monthly OLS) against raw series and reference records. |
-| **Gemini** | Submission compliance audit, documentation, accessibility review & script/deck drafting | Compliance checklist against official 2026 rules (`docs/entrega/REQUISITOS_ENTREGA_2026.md`), SI disclosure, English project form draft, 30 s video script & 7-slide deck draft, license/DOI verification, read-only accessibility audit (`docs/entrega/REVISION_ACCESIBILIDAD.md`) | Team reviews and approves all `[CONFIRMAR]`, `[ENLACE]`, and `[VERIFICAR]` placeholders before finalizing submission materials (`[CONFIRMAR]`). |
+| **Claude Code (Opus)** | Software engineering & statistical backend scaffolding | Data ingestion adapters, climate indices, trend and FDR test modules, test scaffolding | `[CONFIRMAR]` Team verification of statistical formulas, parameter choices, and test passes. |
+| **Codex** | Code authoring, cross-source verification scripts & UI implementation | Data-processing pipelines, cross-check scripts, web UI (*Investigate / Learn / Sources*), submission documentation revisions | `[CONFIRMAR]` Team review of generated JSON outputs, UI behavior, and scientific caveats. |
+| **Claude Opus** | Methodological review & caveat synthesis | Multi-method comparison design, autocorrelation/multiple-testing rationale, regional interpretation notes | `[CONFIRMAR]` Team validation of methodological framing against project data. |
+| **Gemini** | Compliance checking, delivery drafting & accessibility audit | Review against 2026 submission guides, drafting and refinement of submission forms, demo scripts, license tables, and static accessibility checks | `[CONFIRMAR]` Team sign-off on final wording and manual verification of blocked/pending items. |
+| **ElevenLabs / Media SI tool *(conditional)*** | Demo voiceover or visual media generation *(only if used)* | Spoken narration track or slide/video visual asset if not recorded by team members | `[CONFIRMAR]` Remove row if 100% human-recorded; otherwise enforce Section 3 rules. |
 
 ---
 
-## 3. Compliance with 2026 Media Watermark, Text & Metadata Rules (Demo Video & Slides)
+## 3. Compliance with 2026 Media Watermark, Privacy & Branding Rules
 
-Per the 2026 NASA Space Apps Project Submission Guidelines and Participant FAQs:
-
-1. **Images, Video & Voiceover Generated with SI (`[CONFIRMAR]` — select applicable option before export):**
-   - **Option A — Purely human-recorded voice/screen capture (no SI voice or generated images):** State explicitly in the submission text and video/slide metadata: *"Screen captures of our web application, live charts, and team-recorded voiceover contain no SI-generated video, imagery, or synthetic voice. SI tools (Claude Code (Opus), Codex, Claude Opus, Gemini) assisted code development, data analysis scaffolding, documentation, and review."*
-   - **Option B — SI-generated voiceover (e.g., ElevenLabs) or SI-generated graphics/clips included in the 30 s demo or slides:**
-     - **Visible On-Screen Watermark (MANDATORY):** Place a permanent, clearly legible visual badge/watermark across every frame containing SI audio, imagery, or video — for example, bottom-right overlay: `SI-Generated Voiceover / SI-Assisted Media` (plus tool name, e.g., `Audio: ElevenLabs SI`).
-     - **Written Text Disclosure (MANDATORY):** Disclose the specific SI media tool (`[CONFIRMAR: e.g., ElevenLabs / image tool]`) inside the *Project Submission Form* (`Use of Super Intelligence` / `Detailed Project Description`) and on the final slide (`Slide 7` credits).
-     - **File & Platform Metadata (MANDATORY):** Include SI tool attribution in the video upload title/description (YouTube/Vimeo/Loom description), slide deck speaker notes/file properties (`Author/Comments`), and repository release notes.
-2. **Prohibited Branding Check:**
-   - Do **not** overlay NASA, CSA, or NOAA logos, Space Apps mission patches, or official agency flags onto SI-generated or team-created visuals. Text attribution of datasets and resources is used exclusively.
+1. **SI-Generated Images, Video & Voiceover Rule (Demo Video & Slides):**
+   - **If 100% human-recorded screen captures and human team narration are used:** No visible media watermark is required on visuals; state explicitly in both the submission form and video/slide metadata that captures and narration contain no SI-generated media, while disclosing SI software/documentation assistance listed in Section 2.
+   - **If any SI-generated voiceover (e.g., ElevenLabs), image, or video clip is included:**
+     - **Visible On-Screen Watermark (MANDATORY):** Place a permanent, readable watermark directly on every affected frame or slide (e.g., `SI-Generated Audio: ElevenLabs` or `SI-Generated Visual: <Tool Name>`).
+     - **Text Disclosure (MANDATORY):** Name the exact SI media tool in the Space Apps project form and in Slide 7 / video end credits.
+     - **Metadata Disclosure (MANDATORY):** Include the SI media tool attribution in the uploaded video description and PDF/presentation document properties (`Author / Subject / Comments`).
+2. **Minors (`< 18` years) Privacy Rule (*Participant Terms*):**
+   - «Recognizable names, voices, and likenesses of persons under the age of 18 should not be included in any submission.» Verify ages of anyone speaking, filmed, or credited in the demo and slides.
+3. **No Agency Logos Rule:**
+   - Do **not** include NASA, CSA, or NOAA logos, Space Apps mission badges, or official flags on any generated or human-made graphic. Use text credits only.
 
 ---
 
-## 4. Short Disclosure Statement (Ready to Paste into the Space Apps Submission Form)
+## 4. Textos para la plataforma NASA Space Apps
 
-> We developed **Earth Trend Detective** with human-directed design, data selection, and scientific validation, supported by Super Intelligence (SI) software assistants: **Claude Code (Opus)**, **Codex**, **Claude Opus**, and **Gemini** assisted with Python/JavaScript implementation, Earthdata/NOAA/CSA data-ingestion scripts, statistical verification tests, accessibility auditing, and bilingual documentation. All research questions, statistical acceptance thresholds (requiring agreement across adjusted-df OLS, Newey–West HAC, Theil–Sen, and modified Mann–Kendall), interpretation of conflicting cross-checks, and final project decisions were made and verified by the team. `[CONFIRMAR: Specify whether the 30-second demo narration is human-recorded ("All demo narration and UI screen captures are team-recorded without synthetic media") OR uses synthetic voice/imagery ("Synthetic voiceover generated with <Tool> is visibly watermarked in the video frames and noted in the video metadata and project credits.")]`
+### (a) Bloque limpio, listo para pegar (`Use of Super Intelligence` / plataforma — en inglés)
+
+> We developed Earth Trend Detective with human-directed scientific design and final verification, supported by Super Intelligence (SI) tools: Claude Code (Opus), Codex, Claude Opus, and Gemini assisted with Python data-ingestion scripts, statistical test modules, web interface implementation, accessibility review, and documentation drafting. Team members directed the research questions, multi-method trend criteria (requiring consensus across effective-df OLS, Newey–West HAC, Theil–Sen, and modified Mann–Kendall), interpretation of conflicting datasets, and manual verification of pending or inaccessible endpoints. Screen captures and human narration in our demo contain no SI-generated images, video, or synthetic voice; all datasets and methods are cited in text without agency logos.
+
+---
+
+### (b) Pendiente del equipo (NO pegar en la plataforma)
+
+- **`[CONFIRMAR]`** Verificar si todos los roles reales de **Claude Code (Opus)**, **Codex**, **Claude Opus** y **Gemini** en la tabla §2 coinciden exactamente con lo usado por los 5 autores del repositorio y completar la plantilla de autoría humana de §1.
+- **`[CONFIRMAR]`** Si graban el vídeo o las diapositivas con **voz sintética (p. ej. ElevenLabs) o visuales generados por IA**, **sustituir la última oración** del bloque limpio `(a)` por esta versión exacta (rellenando solo el nombre real de la herramienta antes de pegar):
+  - *"Synthetic voiceover and/or visuals generated with `<SI Tool Name>` carry a permanent visible on-screen watermark in every affected frame/slide and are disclosed in the file metadata and credits; all remaining UI screen captures are genuine application recordings."*
+- **`[CONFIRMAR]`** Comprobar que ninguna persona menor de `18` años aparezca por nombre reconocible, voz o imagen en el vídeo, audio, diapositivas o créditos.
+- **`[DECISIÓN DEL EQUIPO]`** Aprobar el texto final de declaración de autoría y trabajo previo antes de marcar **`Confirm All Work is Original`** en el envío.
