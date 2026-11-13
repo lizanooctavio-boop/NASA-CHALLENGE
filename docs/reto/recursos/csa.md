@@ -1,15 +1,15 @@
 # Recursos CSA y caso de contraste canadiense
 
 Agente 3 · CSA · rama `codex/recursos-csa` (base `codex/verificacion-entrega`) · 13-11-2026.
-Cubre los recursos #10 (Geo.ca) y #11 (SWOT) del [plan de integración](../PLAN_INTEGRACION_RECURSOS.md). Los recursos #9, #12 y #13 quedan en «Pendiente».
+Cubre los recursos CSA del [plan de integración](../PLAN_INTEGRACION_RECURSOS.md). Geo.ca y SWOT tienen resultados reales; SAR tiene código probado pero faltan escenas procesadas. Los textos de ecosistemas están redactados en inglés al final.
 
 | Recurso | Estado | Salida | Prueba |
 |---|---|---|---|
 | #10 Geo.ca — región canadiense | Hecho | `data/regiones_canada.geojson` | `tests/test_recursos_csa.py::RegionCanada` |
 | #11 SWOT — nivel de lagos | Hecho (Hydrocron) | `backend/clima_nic/fuentes/lagos.py`, `data/recursos/csa/` | `tests/test_recursos_csa.py::Hydrocron` |
-| #9 RCM | Pendiente | — | — |
-| #12 Monitoring and protecting our ecosystem from space | Pendiente | — | — |
-| #13 Tutorial SAR | Pendiente | — | — |
+| #9 RCM | Búsqueda bloqueada por autenticación; catálogo alternativo Sentinel-1 | `data/recursos/csa/sentinel1_catalogo.geojson` | Sin áreas medidas |
+| #12 Monitoring and protecting our ecosystem from space | Textos redactados | Guided questions al final | Revisión documental |
+| #13 Tutorial SAR | Implementación parcial: necesita imágenes calibradas | `scripts/sar/agua_superficial.ipynb`, `fuentes/sar_agua.py` | Máscara y área con raster de prueba |
 
 ## 1. Región de contraste: ecozona Prairies (Canadá)
 
@@ -103,16 +103,16 @@ Las cotas también son coherentes con la referencia de INETER del análisis geoc
 ## 3. Pendiente
 
 ### RCM (#9)
-Pendiente: Angel enviará la tarea.
+Estado detallado en el suplemento: la tarea ya está asignada; no se espera otra instrucción.
 
 ### Tutorial SAR en Python (#13)
-Pendiente: Angel enviará la tarea. La carpeta reservada es `scripts/sar/`.
+Cuaderno y módulo implementados; adquisición, calibración y validación con imágenes reales pendientes. Véase el suplemento SAR.
 
 ### Geo.ca (#10), ampliaciones
 Pendiente: la región ya está (sección 1). Si se piden otras capas o regiones de Geo.ca, se añadirán aquí.
 
 ### Monitoring and protecting our ecosystem from space (#12)
-Pendiente: Angel enviará la tarea.
+Estado detallado en el suplemento: la tarea ya está asignada; no se espera otra instrucción.
 
 
 ## Supplement: Canadian climate, SAR and guided questions
@@ -123,7 +123,7 @@ Pendiente: Angel enviará la tarea.
 
 For 2001–2024 (24 annual values), GISTEMP 250 km gives Sen +0.1751 °C/decade, 95% CI [−0.5684, +0.7535]; modified Mann–Kendall p=0.6374, insufficient evidence. This describes this region and period only. Years require at least ten valid months, as in the existing adapter; spatial missing values are renormalized, not filled. A separate spatial-coverage sensitivity assessment remains necessary.
 
-**IMERG is blocked, not calculated.** No Earthdata credentials are configured in this environment. In addition, `Imerg.leer` has a Nicaragua-only BBOX and cannot read Canadian cells as-is. Do not use its Nicaragua result for Canada. Resolution requires authenticated Canadian HDF5 acquisition and a separate regional reader/wrapper, without editing the read-only adapter. No Canadian rainfall trend is published. NDVI and LST belong to agent 1.
+**IMERG is blocked, not calculated.** No Earthdata credentials are configured in this environment. In addition, `Imerg.leer` has a Nicaragua-only BBOX and cannot read Canadian cells as-is. Do not use its Nicaragua result for Canada. The regional reader is now implemented in `canada.py`: run `python data/recursos/csa/canada.py --imerg-dir <directory>` with monthly V07B HDF5 files. It converts mm/hr with calendar-month hours, requires twelve valid months/year and at least 95% valid polygon area/month, and records file hashes. Authenticated acquisition is still pending; the read-only adapter is unchanged. No Canadian rainfall trend is published. NDVI and LST belong to agent 1.
 
 ## RCM / Sentinel-1 and reproducible SAR notebook
 
@@ -150,3 +150,8 @@ Satellite observations can help identify changes in forest condition, land cover
 ### Water bodies
 
 Satellite radar can map water extent, while SWOT measures water-surface elevation. Ask whether a lake's height and mapped area change together on comparable dates. Changes can reflect seasonal inflows, evaporation and water management, so a short record should be presented as a demonstration rather than a climatic trend. [CSA ecosystem monitoring](https://www.asc-csa.gc.ca/eng/satellites/everyday-lives/monitoring-and-protecting-our-ecosystems-from-space.asp).
+
+
+## Access update — 2026-11-13
+
+The user created an Earthdata account, but account creation does not establish local download authentication. Browser origin access was denied by a saved permission. A user-run local earthaccess login is required; no credentials are copied from browser storage. No authenticated Canadian rainfall or SAR measurement is claimed until acquisition succeeds.

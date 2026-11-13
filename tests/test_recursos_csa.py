@@ -207,6 +207,64 @@ class Hydrocron(unittest.TestCase):
             self.assertTrue(all(25 < f["wse"] < 50 for f in validas), ruta.name)  # cotas de ambos lagos
 
 
+class CanadaImerg(unittest.TestCase):
+    def test_total_anual_bisiesto_y_falta_mes(self):
+        import runpy
+        import tempfile
+        import numpy as np
+        import h5py
+        from shapely.geometry import box
+        module = runpy.run_path(str(RAIZ / 'data/recursos/csa/canada.py'))
+        with tempfile.TemporaryDirectory() as td:
+            files = []
+            for month in range(1, 13):
+                path = Path(td) / f'3B-MO.MS.MRG.3IMERG.2020{month:02d}01-S000000.HDF5'
+                with h5py.File(path, 'w') as f:
+                    g = f.create_group('Grid')
+                    g['lat'] = [50., 51., 52.]
+                    g['lon'] = [-113., -112., -111.]
+                    v = g.create_dataset('precipitation', data=np.ones((1, 3, 3)))
+                    v.attrs['units'] = 'mm/hr'
+                files.append(path)
+            # Patch only the spatial domain; exercise real HDF5, weights, calendar and annual aggregation.
+            module['lluvia_canada'].__globals__['cargar'] = lambda _: {'CAN_prairies': box(-112.5, 50.5, -111.5, 51.5)}
+            result = module['lluvia_canada'](files, Path(td)/'annual.json')
+            self.assertEqual(result['anios'], [2020])
+            self.assertAlmostEqual(result['valores'][0], 366*24)
+            self.assertIsNone(result['tendencia'])
+            result = module['lluvia_canada'](files[:-1], Path(td)/'missing.json')
+            self.assertEqual(result['anios'], [])
+            with self.assertRaisesRegex(ValueError, 'Duplicate month'):
+                module['lluvia_canada'](files + files[:1], Path(td)/'duplicate.json')
+
+    def test_lectura_canadiense_y_relleno(self):
+        import runpy
+        import tempfile
+        import numpy as np
+        import h5py
+        module = runpy.run_path(str(RAIZ / 'data/recursos/csa/canada.py'))
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / 'test.HDF5'
+            with h5py.File(path, 'w') as f:
+                g = f.create_group('Grid')
+                g['lat'] = [11., 49., 51.]
+                g['lon'] = [-113., -111., -85.]
+                values = np.ones((1, 3, 3))
+                values[0, 0, 1] = -9999.9
+                v = g.create_dataset('precipitation', data=values)
+                v.attrs['units'] = 'mm/hr'
+                v.attrs['_FillValue'] = -9999.9
+            lat, lon, field = module['leer_imerg_canada'](path)
+            self.assertEqual(lat.tolist(), [49., 51.])
+            self.assertEqual(lon.tolist(), [-113., -111.])
+            self.assertTrue(np.isnan(field[0, 0]))
+            self.assertEqual(field[1, 1], 1.)
+            with h5py.File(path, 'a') as f:
+                f['Grid/precipitation'].attrs['units'] = 'mm/day'
+            with self.assertRaises(ValueError):
+                module['leer_imerg_canada'](path)
+
+
 class SarAgua(unittest.TestCase):
     def test_mascara_nodata_y_area(self):
         import numpy as np
