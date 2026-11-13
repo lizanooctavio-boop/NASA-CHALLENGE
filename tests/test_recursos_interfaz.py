@@ -86,6 +86,14 @@ def datos_sinteticos(tmp_path):
          "diferencia": {"media": 15.0, "r": 0.8}, "frase_en": "Synthetic Prairies station."}]}), encoding="utf-8")
     _escribir_csv(csa / "contrastes_canada_series.csv", ["contraste", "serie", "anio", "valor"],
                   [["noaa_canada_lluvia", s, a, 400 + v * 50] for a, v in zip(anios, plano) for s in ("nuestra", "externa")])
+    # agente 1: GLDAS regional (archivo de GES DISC) y de punto (API de Giovanni)
+    (tierra / "series_gldas_anual.json").write_text(json.dumps([
+        {"region": "NIC", "variable": "et_gldas", "unidad": "mm", "frecuencia": "anual", "tiempos": anios,
+         "valores": [1200 + 10 * v for v in plano], "fuente": "GES DISC GLDAS_NOAH025_M 2.1 (OPeNDAP en la nube), media regional",
+         "version": "2.1", "notas": [], "sintetico": True},
+        {"region": "pacifico", "variable": "et_gldas", "unidad": "mm", "frecuencia": "anual", "tiempos": anios,
+         "valores": [1400 + 10 * v for v in plano], "fuente": "Giovanni time series API, GLDAS_NOAH025_3H 2.1",
+         "version": "2.1", "notas": [], "sintetico": True}]), encoding="utf-8")
     return tmp_path
 
 
@@ -117,6 +125,11 @@ def test_integra_las_salidas_de_los_tres_agentes(datos_sinteticos):
     assert canada["externa"]["nombre_en"] == "Regina weather station (NOAA GHCN-Daily)"
     # agente 1: serie de AppEEARS
     assert ids["ndvi_regional_central"]["recursos"] == [3]
+    assert ids["ndvi_regional_central"]["fuente"]["producto"] == "NASA MOD13A3.061 via AppEEARS"
+    # agente 1: GLDAS regional sin recurso del reto; el de punto acredita Hydrology Time Series y Giovanni
+    assert ids["et_gldas_NIC"]["recursos"] == [] and "sample point" not in ids["et_gldas_NIC"]["titulo_en"]
+    assert ids["et_gldas_NIC"]["fuente"]["producto"].startswith("NASA GLDAS-2.1")
+    assert ids["et_gldas_pacifico"]["recursos"] == [1, 2] and ids["et_gldas_pacifico"]["titulo_en"].endswith("at a sample point")
     # la interfaz solo ve nombres en inglés
     cru = next(c for c in d["contrastes"] if c["id"] == "cru_nic")
     assert cru["externa"]["nombre_en"] == "CRU TS 4.10 (University of East Anglia)"
