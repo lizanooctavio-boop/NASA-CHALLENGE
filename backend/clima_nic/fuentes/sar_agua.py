@@ -8,6 +8,14 @@ import numpy as np
 PAPEL = "demostracion_registro_corto"
 
 
+def potencia_a_db(power):
+    """10 log10 of calibrated power. Zero/negative/nonfinite are not water."""
+    x = np.asarray(power, dtype=float)
+    out = np.full(x.shape, np.nan)
+    np.log10(x, out=out, where=np.isfinite(x) & (x > 0))
+    return 10 * out
+
+
 def mascara_agua(db, valido=None, umbral_db=-17.0):
     """Return water mask; no-data must not become water. Threshold is site-specific."""
     x = np.asarray(db, dtype=float)

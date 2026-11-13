@@ -266,6 +266,14 @@ class CanadaImerg(unittest.TestCase):
 
 
 class SarAgua(unittest.TestCase):
+    def test_potencia_gamma0_sin_convertir_nodata_en_agua(self):
+        import numpy as np
+        from clima_nic.fuentes.sar_agua import potencia_a_db, mascara_agua
+        db = potencia_a_db([1., .01, 0., -1., np.inf, np.nan])
+        np.testing.assert_allclose(db[:2], [0., -20.])
+        self.assertTrue(np.isnan(db[2:]).all())
+        self.assertEqual(mascara_agua(db).tolist(), [False, True, False, False, False, False])
+
     def test_mascara_nodata_y_area(self):
         import numpy as np
         import rasterio
@@ -287,6 +295,38 @@ class SarAgua(unittest.TestCase):
     def test_fechas_comunes_sin_interpolar(self):
         from clima_nic.fuentes.sar_agua import fechas_comunes
         self.assertEqual(fechas_comunes({'2023-01-01':32}, {'2023-01-02':8000}), [])
+
+
+class ResultadosRealesCanadaSar(unittest.TestCase):
+    def test_canada_imerg_periodo_completo_y_cobertura(self):
+        p = DIR_CSA / 'canada_imerg.json'
+        self.assertTrue(p.exists(), 'Missing real Canadian IMERG result')
+        d = json.loads(p.read_text(encoding='utf-8'))
+        self.assertEqual(d['anios'], list(range(2001, 2025)))
+        self.assertEqual(len(d['fuentes']), 288)
+        self.assertEqual(len(set(d['meses'])), 288)
+        self.assertTrue(all(c >= .95 for c in d['cobertura_valida']))
+        self.assertTrue(all(math.isfinite(v) and v > 0 for v in d['valores']))
+
+    def test_sar_dominio_constante_sensibilidad_y_pares_swot(self):
+        import csv
+        rows = list(csv.DictReader((DIR_CSA/'sar_superficie.csv').open()))
+        self.assertEqual(len(rows), 27)
+        for domain in {r['dominio'] for r in rows}:
+            subset = [r for r in rows if r['dominio'] == domain]
+            coverages = {float(r['area_valida_comun_km2']) for r in subset}
+            self.assertEqual(len(coverages), 1)
+            self.assertGreater(next(iter(coverages)), 0)
+            for date in {r['fecha'] for r in subset}:
+                seq = sorted([r for r in subset if r['fecha'] == date],key=lambda r:float(r['umbral_db']))
+                areas = [float(r['area_candidata_agua_km2']) for r in seq]
+                self.assertEqual(areas, sorted(areas))
+                self.assertLessEqual(max(areas), next(iter(coverages)))
+        pairs = list(csv.DictReader((DIR_CSA/'comparacion_swot_sar.csv').open()))
+        self.assertEqual(len({r['fecha'] for r in pairs}), 3)
+        for r in pairs:
+            self.assertEqual(r['fecha'], r['swot_time_utc'][:10])
+            self.assertEqual(r['dominio'], 'cocibolca_observado')
 
 
 if __name__ == "__main__":

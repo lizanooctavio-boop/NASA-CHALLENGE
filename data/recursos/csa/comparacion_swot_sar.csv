@@ -1,0 +1,4 @@
+fecha,dominio,umbral_db,area_candidata_agua_km2,area_valida_comun_km2,radiometria,resolucion_m,papel,validacion,swot_time_utc,swot_wse_m,swot_wse_u_m
+2024-03-04,cocibolca_observado,-17.0,8.31,2602.37,gamma0 VV dB,100,demostracion_registro_corto,sin_validar_no_equivale_a_superficie_real,2024-03-04T12:10:49Z,31.528,0.0
+2024-04-21,cocibolca_observado,-17.0,2267.65,2602.37,gamma0 VV dB,100,demostracion_registro_corto,sin_validar_no_equivale_a_superficie_real,2024-04-21T16:59:44Z,31.258,0.0
+2024-07-14,cocibolca_observado,-17.0,171.02,2602.37,gamma0 VV dB,100,demostracion_registro_corto,sin_validar_no_equivale_a_superficie_real,2024-07-14T04:00:01Z,31.713,0.0

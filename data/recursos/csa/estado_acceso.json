@@ -2,15 +2,14 @@
   "fecha": "2026-11-13",
   "earthdata_login": "authenticated",
   "gesdisc": {
-    "http": 403,
-    "reason": "EULA Acceptance Failure",
-    "resolution_url": "https://urs.earthdata.nasa.gov/approve_app?client_id=e2WVk8Pw6weeLUKZYOxvTQ"
+    "http": 206,
+    "reason": "Authorized; 288 original monthly HDF5 downloaded"
   },
   "asf": {
-    "http": 401,
-    "reason": "Pre authorization required",
-    "resolution_url": "https://urs.earthdata.nasa.gov/approve_app?client_id=BO_n7nTIlMljdvU6kRRB3g"
+    "http": 206,
+    "reason": "Authorized; 75 OPERA VV bursts downloaded"
   },
-  "imerg_descargado": false,
-  "sar_procesado": false
+  "imerg_descargado": true,
+  "sar_procesado": true,
+  "sar_clasificador_validado": false
 }
