@@ -767,15 +767,22 @@ def contrastes_clorofila(filas_series, min_meses=9):
                                "theil_sen_mensual": nt["theil_sen_mensual"]},
              "diferencia": {"media": None, "r": None,
                             "diferencia_pendiente": r4(mco["pendiente_por_decada"] - sen) if sen is not None else None},
-             "metodos_coinciden": coinciden, "estado": "ok" if v else "bloqueado"}
+             "metodos_coinciden": coinciden, "estado": "ok" if v else "bloqueado",
+             "media_serie_mg_m3": r4(clim_media),
+             # Acker et al.: cajas con chl media <= 1 mg m-3 para limitar la turbidez y el CDOM.
+             "cumple_criterio_ntrs_1mg": clim_media <= 1.0}
         if not v:
             c["motivo"] = "menos de 10 años con datos suficientes"
         sig = "significant" if mco["significativa_5pct"] else "not significant"
+        p_txt = "p < 0.001" if mco["p_valor_F"] < 0.001 else f"p = {mco['p_valor_F']:.2f}"
         c["frase_en"] = (f"MODIS-Aqua chlorophyll-a, {nombres[caja]} ({c['periodo'][0]}–{c['periodo'][1]}): OLS on raw "
-                         f"monthly data {mco['pendiente_por_decada']:+.2f} mg/m³ per decade ({sig}, p = "
-                         f"{mco['p_valor_F']:.2f}); Theil–Sen on deseasonalized annual means {sen:+.2f}, verdict "
+                         f"monthly data {mco['pendiente_por_decada']:+.2f} mg/m³ per decade ({sig}, {p_txt}); "
+                         f"Theil–Sen on deseasonalized annual means {sen:+.2f}, verdict "
                          f"'{en(c['serie_nuestra']['veredicto'])}'.") if v else \
             f"MODIS-Aqua chlorophyll-a, {nombres[caja]}: not enough cloud-free months for a trend."
+        if v and clim_media > 1.0:
+            c["frase_en"] += (f" Caution: mean {clim_media:.1f} mg/m³ exceeds the 1 mg/m³ limit used by Acker et al. "
+                              "to avoid turbid water, so sediment may be read as chlorophyll.")
         out.append(c)
     return out
 

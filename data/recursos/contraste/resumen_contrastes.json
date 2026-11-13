@@ -776,7 +776,9 @@
    },
    "metodos_coinciden": false,
    "estado": "ok",
-   "frase_en": "MODIS-Aqua chlorophyll-a, Gulf of Fonseca (2003–2024): OLS on raw monthly data +1.21 mg/m³ per decade (significant, p = 0.00); Theil–Sen on deseasonalized annual means +0.68, verdict 'methods disagree'."
+   "media_serie_mg_m3": 7.0246,
+   "cumple_criterio_ntrs_1mg": false,
+   "frase_en": "MODIS-Aqua chlorophyll-a, Gulf of Fonseca (2003–2024): OLS on raw monthly data +1.21 mg/m³ per decade (significant, p < 0.001); Theil–Sen on deseasonalized annual means +0.68, verdict 'methods disagree'. Caution: mean 7.0 mg/m³ exceeds the 1 mg/m³ limit used by Acker et al. to avoid turbid water, so sediment may be read as chlorophyll."
   },
   {
    "id": "clorofila_rio_coco",
@@ -833,6 +835,8 @@
    },
    "metodos_coinciden": true,
    "estado": "ok",
+   "media_serie_mg_m3": 0.8428,
+   "cumple_criterio_ntrs_1mg": true,
    "frase_en": "MODIS-Aqua chlorophyll-a, Coco River mouth (2003–2024): OLS on raw monthly data +0.05 mg/m³ per decade (not significant, p = 0.26); Theil–Sen on deseasonalized annual means +0.01, verdict 'insufficient evidence'."
   },
   {
@@ -890,6 +894,8 @@
    },
    "metodos_coinciden": true,
    "estado": "ok",
+   "media_serie_mg_m3": 0.7528,
+   "cumple_criterio_ntrs_1mg": true,
    "frase_en": "MODIS-Aqua chlorophyll-a, Grande de Matagalpa River mouth (2003–2024): OLS on raw monthly data +0.04 mg/m³ per decade (not significant, p = 0.39); Theil–Sen on deseasonalized annual means +0.03, verdict 'insufficient evidence'."
   },
   {
@@ -947,6 +953,8 @@
    },
    "metodos_coinciden": true,
    "estado": "ok",
+   "media_serie_mg_m3": 0.9174,
+   "cumple_criterio_ntrs_1mg": true,
    "frase_en": "MODIS-Aqua chlorophyll-a, Escondido River / Bluefields Bay (2003–2024): OLS on raw monthly data +0.10 mg/m³ per decade (not significant, p = 0.13); Theil–Sen on deseasonalized annual means +0.10, verdict 'methods disagree'."
   },
   {

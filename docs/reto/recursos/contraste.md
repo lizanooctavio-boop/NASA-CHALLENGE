@@ -253,14 +253,46 @@ Es una validación débil, útil solo para mostrar que POWER suaviza la lluvia o
 
 ### 6.1 Procedimiento del artículo
 
-Acker, McMahon, Shen, Hearty y Casey, *Time-Series Analysis of Remotely-Sensed SeaWiFS Chlorophyll in River-Influenced Coastal Regions*. El resumen sigue la lectura que hizo la sesión coordinadora; aquí no se reprodujo el texto.
+Acker, McMahon, Shen, Hearty y Casey, *Time-Series Analysis of Remotely-Sensed SeaWiFS Chlorophyll in River-Influenced Coastal Regions* (EARSeL eProceedings; NTRS 20090042747). Resumen hecho tras leer el PDF completo (27 páginas, descargado el 13-11-2026).
 
-- Cajas de 0,5° × 0,5° frente a las desembocaduras, con Giovanni.
-- SeaWiFS L3 mensual, 1998–2007.
-- Regresión lineal OLS sobre la serie mensual cruda, con significancia por ANOVA (*significance F*, p < 0,05) y R².
-- Análisis secundario: anomalías restando la media de cada mes calendario y promediando por año, como Gregg et al. (2005).
-- Regresión robusta para los valores atípicos.
-- No corrige la autocorrelación ni da una fórmula de años necesarios.
+**Datos y cajas (sección Methods)**
+
+- SeaWiFS L3 mensual (9 km, malla de igual área) de enero de 1998 a diciembre de 2007, a través de Giovanni.
+- Diez zonas de nueve ríos: Amazonas, Congo, Eel, Ganges, Guadalquivir, Misisipi este y oeste, Orinoco, Perla y Po.
+- Cada zona es una caja de 0,5° × 0,5° tan cerca de la boca como sea posible, **pero con clorofila media de toda la serie ≤ 1 mg m⁻³**. Así se reduce la influencia de la turbidez y del CDOM, que SeaWiFS no separa bien de la clorofila. Por eso algunas cajas quedan a cientos de kilómetros de la boca (el Congo, a 1 100 km).
+- Giovanni promedia aritméticamente, sin ponderar, los valores de la caja.
+
+**Prueba**
+
+- Regresión lineal por mínimos cuadrados sobre la serie mensual completa, en Excel.
+- Significancia por ANOVA: «significance F» < 0,05, es decir, nivel del 95 %. La prueba F evalúa el modelo lineal.
+- El R² mide el ajuste. Son muy bajos (0,0006–0,079), y los autores lo atribuyen a la variabilidad entre meses y a episodios como crecidas.
+
+**Desestacionalización**
+
+Siguen a Gregg et al. (2005) en tres pasos:
+
+1. restar a cada mes la media de su mes calendario;
+2. promediar las anomalías de cada año;
+3. aplicar una regresión a esas anomalías anuales.
+
+**Regresión robusta y otros análisis**
+
+- Por la sensibilidad a los valores atípicos, repiten el ajuste con regresión lineal robusta (ROBUST_LINEFIT de la biblioteca de astronomía de IDL). La pendiente robusta suele ser menor, sobre todo cuando hay episodios extremos al principio o al final (Misisipi oeste: −0,0043 → −0,0005).
+- En el río Eel separan además la serie en invierno (noviembre–abril) y verano (mayo–octubre).
+
+**Lo que no hace**
+
+- No corrige la autocorrelación serial ni el ciclo estacional en la prueba F.
+- No estima cuántos años hacen falta para detectar una tendencia.
+- Los propios autores la presentan como una demostración sencilla con Excel.
+
+**Resultados**
+
+- Los ríos poco intervenidos (Amazonas, Congo, Orinoco) no dan tendencia significativa.
+- Ganges y Misisipi este y oeste dan tendencias negativas significativas.
+- El Eel da una positiva (p = 0,035).
+- El Perla da +, aunque con p = 0,068.
 
 ### 6.2 Aplicación (`ntrs_clorofila` + `veredicto_serie`)
 
@@ -286,7 +318,24 @@ Unidades: mg m⁻³ por década.
 
 **Por qué.** La OLS sobre 264 meses trata como independientes meses que no lo son: autocorrelación y ciclo estacional. Eso infla los grados de libertad, que es justo la limitación que el artículo reconoce.
 
-**Lectura.** Hay un indicio de aumento de la clorofila en Fonseca, pero con estos datos no llega a tendencia detectada. Además, la caja de Fonseca incluye aguas someras y turbias, donde el algoritmo OCx sobrestima la clorofila. Hace falta comprobarlo con productos de aguas costeras antes de interpretarlo como eutrofización.
+**Lectura.** Hay un indicio de aumento de la clorofila en Fonseca, pero con estos datos no llega a tendencia detectada.
+
+**Criterio de ≤ 1 mg m⁻³ del artículo.** Media mensual de toda la serie en cada caja:
+
+| caja | media (mg m⁻³) | ¿cumple? |
+|---|---|---|
+| Río Coco | 0,84 | sí |
+| Río Grande de Matagalpa | 0,75 | sí |
+| Río Escondido / Bluefields | 0,92 | sí |
+| Golfo de Fonseca | 7,0 (mediana 5,9) | **no** |
+
+La caja de Fonseca no cumple el criterio. Está dentro de aguas someras y turbias, donde el algoritmo OCx confunde sedimento y CDOM con clorofila. Su tendencia no debe leerse como eutrofización sin antes repetirla en una caja más afuera, en el Pacífico abierto, que cumpla el criterio.
+
+**Otras diferencias de método con el artículo** (ninguna cambia la conclusión):
+
+- usamos MODIS de 4 km y no SeaWiFS de 9 km;
+- ponderamos por cos(lat), aunque en 0,5° la diferencia con la media aritmética es despreciable;
+- como regresión robusta usamos Theil–Sen y no ROBUST_LINEFIT de IDL; las dos reducen el efecto de los valores atípicos.
 
 ## 7. Bloqueos
 
