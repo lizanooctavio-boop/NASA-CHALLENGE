@@ -74,6 +74,18 @@ def datos_sinteticos(tmp_path):
         {"region": "central", "variable": "ndvi_regional", "unidad": "adimensional", "frecuencia": "anual", "tiempos": anios,
          "valores": [0.6 + 0.001 * v for v in plano], "fuente": "appeears/MOD13A3.061", "version": "061", "notas": [], "sintetico": True}]),
         encoding="utf-8")
+    # agente 3: estación de las Praderas con el esquema del agente 2 y lluvia de mayo a septiembre
+    (csa / "canada_imerg.json").write_text(json.dumps({"sintetico": True, "region": "CAN_prairies", "anios": anios,
+                                                       "valores": [430 + 10 * v for v in plano]}), encoding="utf-8")
+    (csa / "canada_imerg_may_sep.json").write_text(json.dumps({"sintetico": True, "region": "CAN_prairies", "anios": anios,
+                                                               "valores": [300 + 10 * v for v in plano]}), encoding="utf-8")
+    (csa / "contrastes_canada.json").write_text(json.dumps({"sintetico": True, "contrastes": [
+        {"id": "noaa_canada_lluvia", "papel": "contraste", "estado": "ok", "periodo": [2001, 2024],
+         "serie_nuestra": {"fuente": "GPM IMERG Final V07B, Prairies", "pendiente": -30.0, "unidad": "mm/década", "veredicto": "evidencia_insuficiente"},
+         "serie_externa": {"fuente": "Regina weather station (NOAA GHCN-Daily)", "pendiente": -10.0, "veredicto": "evidencia_insuficiente"},
+         "diferencia": {"media": 15.0, "r": 0.8}, "frase_en": "Synthetic Prairies station."}]}), encoding="utf-8")
+    _escribir_csv(csa / "contrastes_canada_series.csv", ["contraste", "serie", "anio", "valor"],
+                  [["noaa_canada_lluvia", s, a, 400 + v * 50] for a, v in zip(anios, plano) for s in ("nuestra", "externa")])
     return tmp_path
 
 
@@ -98,6 +110,11 @@ def test_integra_las_salidas_de_los_tres_agentes(datos_sinteticos):
     assert ids["nivel_cocibolca"]["contrastes"] == ["swot_vs_grealm_cocibolca"]
     swot = ids["swot_cocibolca"]
     assert swot["papel"] == "demostracion_registro_corto" and "tendencia" not in swot
+    # agente 3: lluvia de mayo a septiembre y estación canadiense unida a la lluvia de las Praderas
+    assert ids["lluvia_may_sep_CAN_prairies"]["tendencia"]["anios"] == 24
+    canada = next(c for c in d["contrastes"] if c["id"] == "noaa_canada_lluvia")
+    assert canada["investigacion"] == "lluvia_CAN_prairies" and canada["recursos"] == [4]
+    assert canada["externa"]["nombre_en"] == "Regina weather station (NOAA GHCN-Daily)"
     # agente 1: serie de AppEEARS
     assert ids["ndvi_regional_central"]["recursos"] == [3]
     # la interfaz solo ve nombres en inglés

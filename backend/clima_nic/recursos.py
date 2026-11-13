@@ -68,6 +68,8 @@ CONTRASTE_A_INVESTIGACION = {
     "giovanni_imerg_nic": "lluvia_NIC", "giovanni_imerg_caja_sicc": "lluvia_caja_sicc",
     "noaa_tegucigalpa_lluvia_vs_imerg_hnd": "lluvia_HND",
     "noaa_managua_tavg": "temperatura_NIC", "noaa_juigalpa_tavg": "temperatura_NIC",
+    # Agente 3: estaciones de las Praderas (data/recursos/csa/contrastes_canada.json)
+    "noaa_canada_lluvia": "lluvia_CAN_prairies", "noaa_canada_tavg": "temperatura_CAN_prairies",
 }
 # Prefijo de id de una variable nueva del agente 2 → (categoría, lugar por defecto)
 PREFIJO_CATEGORIA = {"clorofila_": "costa", "omi_no2": "aire", "airs_tas": "temperatura"}
@@ -249,14 +251,14 @@ def _tierra(carpeta, permitir_sintetico):
     return invs, entradas
 
 
-def _contraste(carpeta, permitir_sintetico):
-    """Contrastes y variables nuevas del agente 2."""
+def _contraste(carpeta, permitir_sintetico, nombre_json="resumen_contrastes.json", nombre_csv="series_anuales.csv"):
+    """Contrastes y variables nuevas con el esquema del agente 2 (también lo usa el agente 3 para Canadá)."""
     carpeta = Path(carpeta)
-    ruta = carpeta / "resumen_contrastes.json"
+    ruta = carpeta / nombre_json
     if not ruta.is_file():
         return [], [], [], {}
     resumen = _leer_json(ruta, permitir_sintetico)
-    series_csv = carpeta / "series_anuales.csv"
+    series_csv = carpeta / nombre_csv
     series = {}
     if series_csv.is_file():
         for f in _leer_csv(series_csv):
@@ -324,6 +326,15 @@ def _csa(carpeta, permitir_sintetico):
         entradas.append(ruta)
         d = _leer_json(ruta, permitir_sintetico)
         invs.append(_investigacion("lluvia_CAN_prairies", "lluvia", "CAN_prairies", "Annual rainfall", "All the rain that fell in a year.",
+                                   "mm", d["anios"], d["valores"],
+                                   {"producto": "NASA GPM IMERG Final V07B", "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGM_07/summary"},
+                                   recursos=[10]))
+    ruta = carpeta / "canada_imerg_may_sep.json"
+    if ruta.is_file():
+        entradas.append(ruta)
+        d = _leer_json(ruta, permitir_sintetico)
+        invs.append(_investigacion("lluvia_may_sep_CAN_prairies", "lluvia", "CAN_prairies", "Warm-season rainfall (May–September)",
+                                   "Rain from May to September, when most of the Prairies' rain falls and satellite estimates are most reliable.",
                                    "mm", d["anios"], d["valores"],
                                    {"producto": "NASA GPM IMERG Final V07B", "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGM_07/summary"},
                                    recursos=[10]))
@@ -452,9 +463,11 @@ def construir(datos=DATOS, permitir_sintetico=False):
     t_inv, t_ent = _tierra(datos / "recursos" / "tierra", permitir_sintetico)
     c_inv, c_con, c_ent, lugares_extra = _contraste(datos / "recursos" / "contraste", permitir_sintetico)
     s_inv, s_con, s_ent = _csa(datos / "recursos" / "csa", permitir_sintetico)
-    invs += t_inv + c_inv + s_inv
-    contrastes = c_con + s_con
-    entradas += t_ent + c_ent + s_ent
+    k_inv, k_con, k_ent, _ = _contraste(datos / "recursos" / "csa", permitir_sintetico,
+                                        "contrastes_canada.json", "contrastes_canada_series.csv")
+    invs += t_inv + c_inv + s_inv + k_inv
+    contrastes = c_con + s_con + k_con
+    entradas += t_ent + c_ent + s_ent + k_ent
     por_id = {i["id"]: i for i in invs}
     for c in contrastes:
         inv = por_id.get(c["investigacion"])
