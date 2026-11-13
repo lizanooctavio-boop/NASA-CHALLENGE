@@ -1,1 +1,69 @@
-[]
+{
+ "fecha_consulta_utc": "2026-11-13T09:10:00Z",
+ "via": "Interfaz web EODMS (sesión iniciada por el titular de la cuenta); la API REST no se usó",
+ "coleccion": "RCM Image Products",
+ "area": {
+  "tipo": "polígono",
+  "vertices_lat_lon": [
+   [
+    10.5,
+    -86.0
+   ],
+   [
+    10.5,
+    -83.5
+   ],
+   [
+    12.7,
+    -83.5
+   ],
+   [
+    12.7,
+    -86.0
+   ]
+  ]
+ },
+ "fechas": "Any Time (RCM desde junio de 2019)",
+ "resultados": 2,
+ "escenas": [
+  {
+   "producto_id": 5616847,
+   "fecha_utc": "2023-08-22T23:55:36",
+   "orbita": "ascendente",
+   "antena": "derecha",
+   "haz": "ScanSAR 30m Resolution 125km Swath D",
+   "polarizacion": "HH HV",
+   "tipo": "GRD",
+   "nivel": "I1",
+   "formato": "GeoTIFF",
+   "lut": "Mixed",
+   "public_good": true,
+   "cobertura": "franja norte del lago (Masaya, Granada, Juigalpa)",
+   "nombre_pedido": "RCM2_OK2677342_PK2704547_1_SC30…"
+  },
+  {
+   "producto_id": 5600935,
+   "fecha_utc": "2023-08-16T11:29:21",
+   "orbita": "descendente",
+   "antena": "derecha",
+   "haz": "ScanSAR 30m Resolution 125km Swath D",
+   "polarizacion": "HH HV",
+   "tipo": "GRD",
+   "nivel": "I1",
+   "formato": "GeoTIFF",
+   "lut": "Mixed",
+   "public_good": true,
+   "cobertura": "centro y sur del lago (Ometepe, Rivas–Morrito)",
+   "nombre_pedido": "RCM1_OK2677342_PK2695245_1_SC30…"
+  }
+ ],
+ "pedido": {
+  "eodms_order_id": 3787605,
+  "enviado_utc": "2026-11-13T09:16:07Z",
+  "prioridad": "Medium",
+  "entrega": "Zip Online Download (My Orders)",
+  "estado_al_registrar": "SUBMITTED",
+  "nota": "EODMS indica que los productos RCM pasan un control de acceso antes de servirse"
+ },
+ "procesado": "scripts/sar/rcm_procesar.py (pendiente de la descarga)"
+}
