@@ -1,0 +1,31 @@
+{
+  "fecha_utc": "2026-11-13T08:39:46.483622+00:00",
+  "estado": "sin_serie_larga_descargada",
+  "dahiti": [
+    {
+      "url": "https://dahiti.dgfi.tum.de/en/",
+      "http": 200,
+      "requiere_cuenta": true
+    },
+    {
+      "url": "https://dahiti.dgfi.tum.de/en/download/",
+      "http": 404,
+      "requiere_cuenta": true
+    }
+  ],
+  "hydroweb": {
+    "url": "https://hydroweb.next.theia-land.fr/help",
+    "estado": "requiere_cuenta_y_clave_API_para_descargar",
+    "accion": "detenido_segun_encargo"
+  },
+  "nota": "No se creó cuenta ni se reutilizaron credenciales de otro servicio; la serie SWOT existente no cambia.",
+  "dahiti_objetivo": {
+    "id": 194,
+    "nombre": "Managua, Lake",
+    "url": "https://dahiti.dgfi.tum.de/en/194/",
+    "serie_descargada": false,
+    "estado": "requiere_registro_y_clave_API",
+    "documentacion": "https://dahiti.dgfi.tum.de/en/api/doc/v2/",
+    "nota": "El catálogo identifica el lago; no se transcriben recuentos variables de una página cacheada como si fueran una serie descargada."
+  }
+}

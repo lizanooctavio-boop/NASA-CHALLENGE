@@ -8,7 +8,7 @@
       "estado_cientifico": "geometria_verificada",
       "evidencia": "data/regiones_canada.geojson",
       "limite": "la_cobertura_no_demuestra_ausencia_de_sesgo_IMERG",
-      "siguiente_accion": "validacion_con_estaciones_si_se_exige_exactitud_local"
+      "siguiente_accion": "ninguna_en_este_encargo;region_y_trazabilidad_entregadas"
     },
     {
       "tarea": 2,
@@ -20,19 +20,19 @@
     },
     {
       "tarea": 3,
-      "estado_tecnico": "cuaderno_y_tres_metodos_ejecutados",
-      "estado_cientifico": "superficie_fisica_no_validada",
-      "evidencia": "sar_superficie.csv;sar_superficie_calibrada.csv;sar_dualpol_superficie.csv",
-      "limite": "nubes_y_generalizacion_temporal_insuficiente;RCM_no_confirmado",
-      "siguiente_accion": "referencia_independiente_con_cobertura;acceso_EODMS_para_RCM"
+      "estado_tecnico": "cerrado_como_demostracion_documentada",
+      "estado_cientifico": "NO_VALIDADA_registro_corto_sin_validacion_local",
+      "evidencia": "sar_superficie.csv;sar_dualpol_superficie.csv;dswx_s1_cierre.json;dswx_s1_serie_corta.csv",
+      "limite": "cobertura_parcial_y_productos_S1_no_independientes_del_modelo;RCM_requiere_cuenta_EODMS_del_equipo",
+      "siguiente_accion": "ninguna_en_este_encargo;conservar_NO_VALIDADA_sin_mas_ajustes"
     },
     {
       "tarea": 4,
-      "estado_tecnico": "entregada",
-      "estado_cientifico": "tendencias_calculadas_sin_evidencia_significativa_en_2001_2024",
-      "evidencia": "canada_imerg.json;canada_gistemp.json",
-      "limite": "incertidumbre_invernal_IMERG_y_celdas_gruesas_GISTEMP",
-      "siguiente_accion": "validacion_regional_con_estaciones_para_inferencia_mas_fuerte"
+      "estado_tecnico": "validacion_canadiense_entregada",
+      "estado_cientifico": "series_anual_y_may_sep_mas_contrastes_NOAA_sin_evidencia_significativa",
+      "evidencia": "canada_imerg.json;canada_imerg_may_sep.json;canada_gistemp.json;contrastes_canada.json;contrastes_canada_series.csv;noaa_canada_detalle.json",
+      "limite": "3_estaciones_de_Saskatchewan_no_media_areal;GSOM_permite_hasta_5_dias_ausentes;referencia_termica_parcial_1951_1980",
+      "siguiente_accion": "ninguna_en_este_encargo;agente_4_lee_los_formatos_acordados"
     },
     {
       "tarea": 5,
@@ -48,7 +48,19 @@
       "estado_cientifico": "relacion_fisica_no_validada",
       "evidencia": "comparacion_swot_sar.csv;comparacion_swot_sar_dualpol.csv",
       "limite": "tres_fechas_y_superficies_modeladas_no_validadas",
-      "siguiente_accion": "validar_superficie_antes_de_inferir_relacion_con_altura"
+      "siguiente_accion": "cerrada_la_comparacion_como_demostracion;no_inferir_relacion_fisica_con_superficie_NO_VALIDADA"
     }
-  ]
+  ],
+  "cierre_encargo": {
+    "estado": "lista_para_revision_y_publicacion_sin_fusion",
+    "lluvia_may_sep": "entregada_24_anios_completos_2001_2024",
+    "contraste_noaa": "entregado_3_estaciones_GSOM_20_anios_comunes_sin_relleno",
+    "documentacion": "espanol_preguntas_guiadas_en_ingles",
+    "duplicado_grealm": "eliminado_conservando_grealm_lake000351.10d.2.txt",
+    "radar": "cerrado_como_demostracion_NO_VALIDADA_con_serie_DSWx_S1",
+    "opcional_xolotlan": "bloqueado_por_cuenta_DAHITI_Hydroweb_no_se_crean_cuentas",
+    "verificar_clima": "88_88_en_version_actual_sin_modificar_verificador;encargo_mencionaba_80_80",
+    "rcm": "sin_cuenta_EODMS_aportada;no_se_intenta_crear",
+    "pruebas": "123_aprobadas_57_subpruebas_sin_omisiones"
+  }
 }

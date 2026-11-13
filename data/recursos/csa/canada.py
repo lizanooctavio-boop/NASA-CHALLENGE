@@ -46,7 +46,7 @@ def leer_imerg_canada(ruta):
         return lat[iy], lon[ix], field
 
 
-def lluvia_canada(archivos, salida):
+def lluvia_canada(archivos, salida, meses_objetivo=tuple(range(1,13))):
     """Area-weighted monthly rates -> annual mm; require twelve valid months.
 
     Track valid spatial fraction rather than silently accepting incomplete AOI.
@@ -79,11 +79,13 @@ def lluvia_canada(archivos, salida):
         vals.append(value if cov >= .95 else np.nan)
         coverage.append(cov)
         sources.append({'file': path.name, 'sha256': sha256(path)})
-    years, annual = a_anual(months, vals)
+    years, annual = a_anual(months, vals, meses=meses_objetivo)
+    season = tuple(meses_objetivo) == (5,6,7,8,9)
     out = {'region':'CAN_prairies', 'papel':'tendencia', 'producto':'GPM_3IMERGM V07B',
            'unidad':'mm/year', 'anios':years, 'valores':annual,
            'meses':months, 'cobertura_valida':coverage, 'fuentes':sources,
-           'criterio':'12 valid months per year; each month >=95% valid polygon area',
+           'criterio':('5 valid months (May–September) per year; each month >=95% valid polygon area; actual calendar-month hours'
+                       if season else '12 valid months per year; each month >=95% valid polygon area'),
            'tendencia':analizar(years, annual, 'mm') if len(years) >= 10 else None}
     Path(salida).write_text(json.dumps(out, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
     return out
@@ -111,11 +113,13 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('--imerg-dir', type=Path)
+    parser.add_argument('--may-sep',action='store_true')
     args = parser.parse_args()
     if args.imerg_dir:
         files = list(args.imerg_dir.glob('*.HDF5'))
         if not files:
             parser.error('No monthly IMERG HDF5 files found')
-        lluvia_canada(files, Path(__file__).parent / 'canada_imerg.json')
+        lluvia_canada(files, Path(__file__).parent / ('canada_imerg_may_sep.json' if args.may_sep else 'canada_imerg.json'),
+                      meses_objetivo=(5,6,7,8,9) if args.may_sep else tuple(range(1,13)))
     else:
         main()

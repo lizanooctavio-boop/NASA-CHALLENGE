@@ -232,6 +232,11 @@ class CanadaImerg(unittest.TestCase):
             self.assertEqual(result['anios'], [2020])
             self.assertAlmostEqual(result['valores'][0], 366*24)
             self.assertIsNone(result['tendencia'])
+            warm=module['lluvia_canada'](files[4:9],Path(td)/'warm.json',meses_objetivo=(5,6,7,8,9))
+            self.assertEqual(warm['anios'],[2020])
+            self.assertAlmostEqual(warm['valores'][0],153*24)
+            incomplete=module['lluvia_canada'](files[4:8],Path(td)/'warm_missing.json',meses_objetivo=(5,6,7,8,9))
+            self.assertEqual(incomplete['anios'],[])
             result = module['lluvia_canada'](files[:-1], Path(td)/'missing.json')
             self.assertEqual(result['anios'], [])
             with self.assertRaisesRegex(ValueError, 'Duplicate month'):
@@ -339,6 +344,113 @@ class SarAgua(unittest.TestCase):
 
 
 class ResultadosRealesCanadaSar(unittest.TestCase):
+    def test_lector_noaa_marcas_y_meses_ausentes(self):
+        import runpy
+        reader=runpy.run_path(str(DIR_CSA/'noaa_canada.py'))
+        blocks=[]
+        for day in range(1,32):
+            value,mflag,qflag=10,' ',' '
+            if day==2:mflag='P'
+            if day==3:qflag='X'
+            if day==4:value,mflag=0,'T'
+            blocks.append(f'{value:5d}{mflag}{qflag}C')
+        d=reader['leer_dly']('CAN04013660200101PRCP'+''.join(blocks))
+        self.assertEqual(len(d['PRCP'][2001]),29)
+        self.assertEqual(d['PRCP'][2001]['01-04'],0.)
+        self.assertNotIn('01-02',d['PRCP'][2001])
+        rows=[{'DATE':f'2001-{m:02d}','PRCP':'5','TAVG':'10','PRCP_ATTRIBUTES':',,,C'} for m in range(1,13)]
+        self.assertEqual(reader['resumir_gsom'](rows)['prcp'],{2001:60.})
+        self.assertEqual(reader['resumir_gsom'](rows[:-1])['complete_joint_years'],[])
+
+    def test_cierre_dswx_respeta_demostracion_y_dominio(self):
+        import csv
+        d=json.loads((DIR_CSA/'dswx_s1_cierre.json').read_text(encoding='utf-8'))
+        self.assertEqual(d['estado'],'cerrado_como_demostracion')
+        self.assertEqual(d['papel'],'demostracion_registro_corto')
+        rows=list(csv.DictReader((DIR_CSA/'dswx_s1_serie_corta.csv').open(encoding='utf-8')))
+        self.assertEqual(len(rows),3)
+        self.assertEqual(len({r['area_valida_comun_km2'] for r in rows}),1)
+        self.assertTrue(all(r['estado']=='NO_VALIDADA' for r in rows))
+        self.assertTrue(all(0<=float(r['superficie_clasificada_agua_km2'])<=float(r['area_valida_comun_km2']) for r in rows))
+        self.assertTrue(all(0<float(r['cobertura_fraccion_lago'])<=1 for r in rows))
+
+    def test_estacion_calida_formato_y_24_anios(self):
+        from scipy.stats import theilslopes
+        d=json.loads((DIR_CSA/'canada_imerg_may_sep.json').read_text(encoding='utf-8'))
+        self.assertTrue({'region','papel','producto','unidad','anios','valores','criterio','tendencia'}<=d.keys())
+        self.assertEqual(d['region'],'CAN_prairies')
+        self.assertEqual(d['papel'],'tendencia')
+        self.assertEqual(d['unidad'],'mm/year')
+        self.assertEqual(d['anios'],list(range(2001,2025)))
+        self.assertEqual(len(d['valores']),24)
+        slope=theilslopes(d['valores'],d['anios']).slope*10
+        self.assertAlmostEqual(slope,d['tendencia']['theil_sen']['por_decada'],delta=.00006)
+
+    def test_contrastes_canada_esquema_y_estaciones(self):
+        from shapely.geometry import Point,shape
+        d=json.loads((DIR_CSA/'contrastes_canada.json').read_text(encoding='utf-8'))
+        self.assertEqual(d['esquema'],'nasa-challenge/contrastes')
+        self.assertEqual(d['version'],'1.0.0')
+        self.assertEqual({c['id'] for c in d['contrastes']},{'noaa_canada_lluvia','noaa_canada_tavg'})
+        meta=json.loads((DIR_CSA/'noaa_canada_inventario_gsom.json').read_text(encoding='utf-8'))
+        selected=meta['seleccionadas'];self.assertGreaterEqual(len(selected),3)
+        polygon=shape(json.loads(REGION.read_text(encoding='utf-8'))['features'][0]['geometry'])
+        for station in selected:
+            self.assertTrue(polygon.covers(Point(station['lon'],station['lat'])))
+            self.assertGreaterEqual(station['anios_conjuntos'],20)
+            self.assertGreaterEqual(min(station['anios_base_por_mes'].values()),15)
+        for c in d['contrastes']:
+            self.assertEqual(c['papel'],'contraste');self.assertEqual(c['estado'],'ok')
+            self.assertEqual(c['region'],'CAN_prairies');self.assertEqual(c['periodo'],[2001,2024])
+            self.assertEqual(set(c['serie_externa']['estaciones']),{s['id'] for s in selected})
+            self.assertNotIn('evidencia_insuficiente',c['frase_en'])
+
+    def test_series_csv_reproducen_contrastes_json(self):
+        import csv
+        import numpy as np
+        from scipy.stats import pearsonr,theilslopes
+        rows=list(csv.DictReader((DIR_CSA/'contrastes_canada_series.csv').open(encoding='utf-8')))
+        self.assertEqual(set(rows[0]),{'contraste','serie','anio','valor'})
+        d=json.loads((DIR_CSA/'contrastes_canada.json').read_text(encoding='utf-8'))
+        for c in d['contrastes']:
+            pairs={kind:{int(r['anio']):float(r['valor']) for r in rows if r['contraste']==c['id'] and r['serie']==kind}
+                   for kind in ['nuestra','externa']}
+            self.assertEqual(set(pairs['nuestra']),set(pairs['externa']))
+            years=sorted(pairs['nuestra']);self.assertEqual(len(years),c['diferencia']['anios_comunes'])
+            self.assertGreaterEqual(len(years),20)
+            x=np.array([pairs['nuestra'][y] for y in years]);z=np.array([pairs['externa'][y] for y in years])
+            self.assertAlmostEqual(float(pearsonr(x,z).statistic),c['diferencia']['r'],places=12)
+            self.assertAlmostEqual(float(np.mean(z-x)),c['diferencia']['media'],places=12)
+            for values,field in [(x,'serie_nuestra'),(z,'serie_externa')]:
+                self.assertAlmostEqual(float(theilslopes(values,years).slope*10),c[field]['pendiente'],delta=.00006)
+            source=json.loads((DIR_CSA/('canada_imerg.json' if c['id'].endswith('lluvia') else 'canada_gistemp.json')).read_text(encoding='utf-8'))
+            mapping=dict(zip(source['anios'],source['valores']))
+            self.assertEqual(x.tolist(),[mapping[y] for y in years])
+
+    def test_estaciones_no_rellenan_meses_ni_cambian_red(self):
+        import csv
+        from collections import defaultdict
+        monthly=defaultdict(dict)
+        for r in csv.DictReader((DIR_CSA/'noaa_canada_mensual.csv').open(encoding='utf-8')):
+            monthly[(r['estacion'],int(r['fecha'][:4]))][int(r['fecha'][5:7])]=r
+        annual=list(csv.DictReader((DIR_CSA/'noaa_canada_estaciones_anuales.csv').open(encoding='utf-8')))
+        for r in annual:
+            months=monthly[(r['estacion'],int(r['anio']))]
+            self.assertEqual(set(months),set(range(1,13)))
+            self.assertTrue(all(m['prcp_mm']!='NA' and m['tavg_c']!='NA' for m in months.values()))
+            self.assertAlmostEqual(sum(float(m['prcp_mm']) for m in months.values()),float(r['prcp_mm']),places=9)
+        grouped=defaultdict(list)
+        for r in annual:grouped[int(r['anio'])].append(r)
+        contrasts=json.loads((DIR_CSA/'contrastes_canada.json').read_text(encoding='utf-8'))['contrastes']
+        series=list(csv.DictReader((DIR_CSA/'contrastes_canada_series.csv').open(encoding='utf-8')))
+        for c in contrasts:
+            field='prcp_mm' if c['id'].endswith('lluvia') else 'tavg_anomalia_1951_1980_c'
+            for r in series:
+                if r['contraste']==c['id'] and r['serie']=='externa':
+                    source=grouped[int(r['anio'])]
+                    self.assertEqual(len(source),len(c['serie_externa']['estaciones']))
+                    self.assertAlmostEqual(sum(float(s[field]) for s in source)/len(source),float(r['valor']),places=12)
+
     def test_dualpol_campos_completos_y_evaluacion_temporal_separada(self):
         import csv
         report=json.loads((DIR_CSA/'sar_dualpol_validacion.json').read_text(encoding='utf-8'))
