@@ -74,11 +74,11 @@ def abridor_urs():
     return urllib.request.build_opener(_Urs(), urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
 
 
-def sesion_urs_requests(conexiones=24):
-    """`requests.Session` con keep-alive que solo envía Basic auth a urs.earthdata.nasa.gov."""
+def sesion_urs_http(conexiones=24, transport=None):
+    """`httpx.Client` con keep-alive que solo envía Basic auth a urs.earthdata.nasa.gov."""
+    import base64
     import netrc
-    import requests
-    from requests.adapters import HTTPAdapter
+    import httpx
 
     from .base import RequiereEarthdata
     from .earthdata import URS as URS_HOST, ruta_netrc
@@ -87,19 +87,25 @@ def sesion_urs_requests(conexiones=24):
     cred = netrc.netrc(str(ruta)).authenticators(URS_HOST) if ruta else None
     if not cred:
         raise RequiereEarthdata("Configure .netrc con urs.earthdata.nasa.gov.")
+    valor_auth = "Basic " + base64.b64encode(f"{cred[0]}:{cred[2]}".encode()).decode()
 
-    class _UrsSession(requests.Session):
-        def rebuild_auth(self, prepared_request, response):
-            if urllib.parse.urlsplit(prepared_request.url).hostname == URS_HOST:
-                prepared_request.prepare_auth((cred[0], cred[2]))
-            else:
-                prepared_request.headers.pop("Authorization", None)
+    def _solo_urs(request):
+        if request.url.host == URS_HOST:
+            request.headers["Authorization"] = valor_auth
+        elif "authorization" in request.headers:
+            del request.headers["authorization"]
 
-    s = _UrsSession()
-    s.headers["User-Agent"] = "nasa-challenge-clima/1.0"
-    adp = HTTPAdapter(pool_connections=conexiones, pool_maxsize=conexiones)
-    s.mount("https://", adp)
-    return s
+    lim = httpx.Limits(max_connections=conexiones, max_keepalive_connections=conexiones)
+    return httpx.Client(
+        event_hooks={"request": [_solo_urs]},
+        follow_redirects=True,
+        headers={"User-Agent": "nasa-challenge-clima/1.0"},
+        limits=lim,
+        transport=transport,
+    )
+
+
+sesion_urs_requests = sesion_urs_http
 
 
 # ---------------------------------------------------------------- Giovanni: sesión y servicio
@@ -162,8 +168,11 @@ def url_serie_area(data, inicio, fin, bbox=None, shape=None, servicio="ArAvTs"):
 
 def _resultado(respuesta):
     s = respuesta["session"]
-    rs = s["resultset"][0]
-    return s["id"], rs["id"], rs["result"][0]
+    rs = s.get("resultset") or []
+    res = (rs[0].get("result") or []) if rs else []
+    if not rs or not res:
+        raise GiovanniNoDisponible("Giovanni devolvió una respuesta sin resultset/result.")
+    return s["id"], rs[0]["id"], res[0]
 
 
 def estado_resultado(resultado):

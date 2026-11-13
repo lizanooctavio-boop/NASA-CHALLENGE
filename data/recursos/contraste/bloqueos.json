@@ -2,13 +2,13 @@
  "giovanni_airs_tas_a_nic": {
   "fecha": "2026-11-13",
   "http": 200,
-  "motivo": "Giovanni ArAvTs (list index out of range). Se usó el equivalente GES DISC OPeNDAP.",
+  "motivo": "Giovanni ArAvTs no completó la extracción (la cola del servicio quedó detenida en «40 requests ahead of you» / respuesta vacía de sesión) y api.giovanni.earthdata.nasa.gov respondió HTTP 403 al faltar EARTHDATA_TOKEN. Las series finales se obtuvieron desde GES DISC Hyrax Cloud OPeNDAP.",
   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2003-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=AIRS3STM_7_0_SurfAirTemp_A&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
  },
  "giovanni_airs_tas_d_nic": {
   "fecha": "2026-11-13",
   "http": 200,
-  "motivo": "Giovanni ArAvTs (list index out of range). Se usó el equivalente GES DISC OPeNDAP.",
+  "motivo": "Giovanni ArAvTs no completó la extracción (la cola del servicio quedó detenida en «40 requests ahead of you» / respuesta vacía de sesión) y api.giovanni.earthdata.nasa.gov respondió HTTP 403 al faltar EARTHDATA_TOKEN. Las series finales se obtuvieron desde GES DISC Hyrax Cloud OPeNDAP.",
   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2003-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=AIRS3STM_7_0_SurfAirTemp_D&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
  },
  "giovanni_api_token": {
@@ -20,31 +20,31 @@
  "giovanni_imerg_caja_sicc": {
   "fecha": "2026-11-13",
   "http": 200,
-  "motivo": "Giovanni ArAvTs (list index out of range). Se usó el equivalente GES DISC OPeNDAP.",
+  "motivo": "Giovanni ArAvTs no completó la extracción (la cola del servicio quedó detenida en «40 requests ahead of you» / respuesta vacía de sesión) y api.giovanni.earthdata.nasa.gov respondió HTTP 403 al faltar EARTHDATA_TOKEN. Las series finales se obtuvieron desde GES DISC Hyrax Cloud OPeNDAP.",
   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-86.5%2C10.7%2C-83.6%2C12.6&portal=GIOVANNI&format=json"
  },
  "giovanni_imerg_nic": {
   "fecha": "2026-11-13",
   "http": 200,
-  "motivo": "Giovanni ArAvTs (list index out of range). Se usó el equivalente GES DISC OPeNDAP.",
+  "motivo": "Giovanni ArAvTs no completó la extracción (la cola del servicio quedó detenida en «40 requests ahead of you» / respuesta vacía de sesión) y api.giovanni.earthdata.nasa.gov respondió HTTP 403 al faltar EARTHDATA_TOKEN. Las series finales se obtuvieron desde GES DISC Hyrax Cloud OPeNDAP.",
   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&shape=state_dept_countries_2017%2Fshp_163&portal=GIOVANNI&format=json"
  },
  "giovanni_imerg_tegucigalpa": {
   "fecha": "2026-11-13",
   "http": 200,
-  "motivo": "Giovanni ArAvTs (list index out of range). Se usó el equivalente GES DISC OPeNDAP.",
+  "motivo": "Giovanni ArAvTs no completó la extracción (la cola del servicio quedó detenida en «40 requests ahead of you» / respuesta vacía de sesión) y api.giovanni.earthdata.nasa.gov respondió HTTP 403 al faltar EARTHDATA_TOKEN. Las series finales se obtuvieron desde GES DISC Hyrax Cloud OPeNDAP.",
   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2001-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=GPM_3IMERGM_07_precipitation&bbox=-87.35%2C13.95%2C-87.05%2C14.25&portal=GIOVANNI&format=json"
  },
  "giovanni_omi_no2_managua": {
   "fecha": "2026-11-13",
   "http": 200,
-  "motivo": "Giovanni ArAvTs (tiempo agotado esperando a Giovanni; petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_Column). Se usó el equivalente GES DISC OPeNDAP.",
+  "motivo": "Giovanni ArAvTs no completó la extracción (la cola del servicio quedó detenida en «40 requests ahead of you» / respuesta vacía de sesión) y api.giovanni.earthdata.nasa.gov respondió HTTP 403 al faltar EARTHDATA_TOKEN. Las series finales se obtuvieron desde GES DISC Hyrax Cloud OPeNDAP.",
   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_ColumnAmountNO2TropCloudScreened&bbox=-86.35%2C12.05%2C-86.15%2C12.2&portal=GIOVANNI&format=json"
  },
  "giovanni_omi_no2_rural": {
   "fecha": "2026-11-13",
   "http": 200,
-  "motivo": "Giovanni ArAvTs (tiempo agotado esperando a Giovanni; petición: https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_Column). Se usó el equivalente GES DISC OPeNDAP.",
+  "motivo": "Giovanni ArAvTs no completó la extracción (la cola del servicio quedó detenida en «40 requests ahead of you» / respuesta vacía de sesión) y api.giovanni.earthdata.nasa.gov respondió HTTP 403 al faltar EARTHDATA_TOKEN. Las series finales se obtuvieron desde GES DISC Hyrax Cloud OPeNDAP.",
   "url": "https://giovanni.gsfc.nasa.gov/giovanni/daac-bin/service_manager.pl?service=ArAvTs&starttime=2005-01-01T00%3A00%3A00Z&endtime=2024-12-31T23%3A59%3A59Z&data=OMNO2d_003_ColumnAmountNO2TropCloudScreened&bbox=-85.1%2C12.35%2C-84.9%2C12.5&portal=GIOVANNI&format=json"
  },
  "knmi_climate_explorer": {

@@ -73,11 +73,23 @@ def test_resumen_incluye_variables_nuevas_y_papeles():
     series = _series()
     req = {"omi_no2_managua", "omi_no2_rural", "airs_tas_nic",
            "clorofila_golfo_fonseca", "clorofila_pacifico_fonseca",
-           "giovanni_imerg_caja_sicc", "giovanni_imerg_nic", "noaa_tegucigalpa_lluvia_vs_imerg_caja"}
+           "opendap_imerg_caja_sicc", "opendap_imerg_nic", "noaa_tegucigalpa_lluvia_vs_imerg_caja"}
     assert req.issubset(cs)
     for k in req:
         assert cs[k]["estado"] == "ok", k
     assert cs["clorofila_pacifico_fonseca"].get("cumple_criterio_ntrs_1mg") is True
+    for k in ("opendap_imerg_caja_sicc", "opendap_imerg_nic"):
+        se = cs[k]["serie_externa"]
+        assert "GES DISC OPeNDAP" in se["fuente"] and "GPM_3IMERGM 07" in se["fuente"]
+        assert re.search(r"\d{4}-\d{2}-\d{2}", se["fuente"]) and se["fecha_consulta"]
+        assert cs[k].get("investigacion") == f"lluvia_{cs[k]['region']}"
+    assert "GES DISC OPeNDAP" in cs["noaa_tegucigalpa_lluvia_vs_imerg_caja"]["serie_nuestra"]["fuente"]
+    assert "GPM_3IMERGM 07" in cs["noaa_tegucigalpa_lluvia_vs_imerg_caja"]["serie_nuestra"]["fuente"]
+    for lado in ("serie_nuestra", "serie_externa"):
+        assert "GES DISC OPeNDAP" in cs["airs_tas_nic"][lado]["fuente"]
+        assert "AIRS3STM 7.0" in cs["airs_tas_nic"][lado]["fuente"]
+        assert "GES DISC OPeNDAP" in cs["omi_no2_managua"][lado]["fuente"]
+        assert "OMNO2d 003" in cs["omi_no2_managua"][lado]["fuente"]
     for k, c in cs.items():
         if k.startswith(("omi_no2", "airs_tas", "clorofila_")):
             assert c["papel"] == "tendencia", k
@@ -88,7 +100,7 @@ def test_resumen_incluye_variables_nuevas_y_papeles():
                 assert (k, "nuestra") in series, k
                 if k.startswith("omi_no2"):
                     assert "caja" in c and c["serie_nuestra"].get("unidad") == "1e15 molec cm-2/década", k
-        if k.startswith(("cru_", "gpcc_", "noaa_", "giovanni_imerg")):
+        if k.startswith(("cru_", "gpcc_", "noaa_", "opendap_imerg")):
             assert c["papel"] == "contraste", k
 
 
@@ -403,3 +415,45 @@ def test_parsear_hyrax_ascii_y_api_sin_token(monkeypatch):
     monkeypatch.delenv("EARTHDATA_TOKEN", raising=False)
     with pytest.raises(RuntimeError, match="EARTHDATA_TOKEN"):
         giovanni.api_giovanni_serie("A", (-86, 12, -85, 13), "2020-01-01", "2020-01-31")
+
+
+def test_resultado_giovanni_vacio_lanza_no_disponible():
+    with pytest.raises(gv.GiovanniNoDisponible):
+        gv._resultado({"session": {"id": "s1", "resultset": []}})
+    with pytest.raises(gv.GiovanniNoDisponible):
+        gv._resultado({"session": {"id": "s1", "resultset": [{"id": "rs1", "result": []}]}})
+
+
+def test_sesion_urs_http_solo_envia_basic_a_urs(monkeypatch, tmp_path):
+    httpx = pytest.importorskip("httpx")
+    from clima_nic.fuentes import earthdata
+    from clima_nic.fuentes.base import RequiereEarthdata
+
+    monkeypatch.setattr(earthdata, "ruta_netrc", lambda: None)
+    with pytest.raises(RequiereEarthdata):
+        gv.sesion_urs_http()
+
+    nrc = tmp_path / "netrc_tmp"
+    nrc.write_text("machine urs.earthdata.nasa.gov login demo password clave_demo\n", encoding="utf-8")
+    nrc.chmod(0o600)
+    monkeypatch.setattr(earthdata, "ruta_netrc", lambda: nrc)
+
+    vistos = []
+
+    def handler(request):
+        vistos.append((request.url.host, "authorization" in request.headers))
+        if request.url.host == "opendap.earthdata.nasa.gov" and request.url.path == "/paso1":
+            return httpx.Response(302, headers={"Location": "https://urs.earthdata.nasa.gov/oauth"})
+        if request.url.host == "urs.earthdata.nasa.gov":
+            assert request.headers.get("authorization", "").startswith("Basic ")
+            return httpx.Response(302, headers={"Location": "https://opendap.earthdata.nasa.gov/paso2"})
+        return httpx.Response(200, text="Dataset: ok")
+
+    with gv.sesion_urs_http(conexiones=2, transport=httpx.MockTransport(handler)) as cli:
+        r = cli.get("https://opendap.earthdata.nasa.gov/paso1")
+    assert r.status_code == 200 and r.text == "Dataset: ok"
+    assert vistos == [
+        ("opendap.earthdata.nasa.gov", False),
+        ("urs.earthdata.nasa.gov", True),
+        ("opendap.earthdata.nasa.gov", False),
+    ]
