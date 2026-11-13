@@ -1,0 +1,240 @@
+{
+  "reference": "OPERA_L3_DSWX-HLS_V1 B02_BWTR; clear 0=land,1=water only",
+  "reference_status": "provisional collection; independent optical product, not field truth",
+  "maximum_optical_offset_days": 2,
+  "spatial_split": "5 km column stripes: train 0 mod4, test2 mod4; 1/3 unused",
+  "calibration_objective": "training balanced accuracy; no threshold tuning on test metrics",
+  "quality_gate": "held-out F1, water recall and land recall all >=0.90",
+  "reports": [
+    {
+      "date": "2024-03-04",
+      "threshold_db": -10.600000000000001,
+      "test_metrics": {
+        "tp": 54935,
+        "fp": 5464,
+        "tn": 111903,
+        "fn": 813,
+        "precision": 0.909534926074935,
+        "recall_water": 0.985416517184473,
+        "recall_land": 0.9534451762420442,
+        "f1": 0.9459564172987679
+      },
+      "baseline_minus17_test_metrics": {
+        "tp": 42,
+        "fp": 0,
+        "tn": 117367,
+        "fn": 55706,
+        "precision": 1.0,
+        "recall_water": 0.0007533902561526871,
+        "recall_land": 1.0,
+        "f1": 0.00150564617314931
+      },
+      "quality_gate_passed": true,
+      "reference_valid_pixels": 677979,
+      "train_pixels": 164330,
+      "test_pixels": 173115
+    },
+    {
+      "date": "2024-04-21",
+      "threshold_db": -14.099999999999998,
+      "test_metrics": {
+        "tp": 210,
+        "fp": 66,
+        "tn": 52053,
+        "fn": 214,
+        "precision": 0.7608695652173914,
+        "recall_water": 0.49528301886792453,
+        "recall_land": 0.9987336671847119,
+        "f1": 0.6
+      },
+      "baseline_minus17_test_metrics": {
+        "tp": 209,
+        "fp": 0,
+        "tn": 52119,
+        "fn": 215,
+        "precision": 1.0,
+        "recall_water": 0.49292452830188677,
+        "recall_land": 1.0,
+        "f1": 0.660347551342812
+      },
+      "quality_gate_passed": false,
+      "reference_valid_pixels": 230006,
+      "train_pixels": 64803,
+      "test_pixels": 52543
+    },
+    {
+      "date": "2024-07-14",
+      "threshold_db": -7.299999999999997,
+      "test_metrics": {
+        "tp": 12009,
+        "fp": 11441,
+        "tn": 46512,
+        "fn": 1803,
+        "precision": 0.5121108742004264,
+        "recall_water": 0.8694613379669852,
+        "recall_land": 0.8025814021707246,
+        "f1": 0.6445708764961623
+      },
+      "baseline_minus17_test_metrics": {
+        "tp": 58,
+        "fp": 1,
+        "tn": 57952,
+        "fn": 13754,
+        "precision": 0.9830508474576272,
+        "recall_water": 0.004199247031566753,
+        "recall_land": 0.9999827446378963,
+        "f1": 0.008362771249369188
+      },
+      "quality_gate_passed": false,
+      "reference_valid_pixels": 307804,
+      "train_pixels": 77607,
+      "test_pixels": 71765
+    }
+  ],
+  "granules": [
+    {
+      "radar_date": "2024-03-04",
+      "optical_time_utc": "2024-03-03T16:20:33.967Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PFS_20240303T160141Z_20240306T154946Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PFS_20240303T160141Z_20240306T154946Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "a3af284964c71384169da543b2697c0042cf901c388ff2cf75c94b4f3c4aa81d"
+    },
+    {
+      "radar_date": "2024-03-04",
+      "optical_time_utc": "2024-03-03T16:20:19.385Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PFT_20240303T160141Z_20240306T154907Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PFT_20240303T160141Z_20240306T154907Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "70b27daff0720e92102f8dc5da6428406ea153056c67075e1ae99576d3f5b1f1"
+    },
+    {
+      "radar_date": "2024-03-04",
+      "optical_time_utc": "2024-03-03T16:20:05.001Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PFU_20240303T160141Z_20240306T154856Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PFU_20240303T160141Z_20240306T154856Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "91ff407f207f2c621cd5ffcea3bdfe0e22eb281138c8bd462c9a5e5a947967e5"
+    },
+    {
+      "radar_date": "2024-03-04",
+      "optical_time_utc": "2024-03-03T16:20:30.606Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PGS_20240303T160141Z_20240306T154812Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PGS_20240303T160141Z_20240306T154812Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "92e152f89fc7f8709849ce90a249c46d020ae0cf9c7379a6ccbe12f87d233be3"
+    },
+    {
+      "radar_date": "2024-03-04",
+      "optical_time_utc": "2024-03-03T16:20:01.318Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PGU_20240303T160141Z_20240306T155045Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PGU_20240303T160141Z_20240306T155045Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "baf0c4126efe74f9cd9863d5fed63546860aca74192d106173fef504781c1a53"
+    },
+    {
+      "radar_date": "2024-03-04",
+      "optical_time_utc": "2024-03-03T16:20:15.867Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PGT_20240303T160141Z_20240306T154848Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PGT_20240303T160141Z_20240306T154848Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "b8344fe109b0adbc9c1a1719be195473ab27769ec5056eb2fae3495618fbe757"
+    },
+    {
+      "radar_date": "2024-04-21",
+      "optical_time_utc": "2024-04-22T16:20:30.265Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PGS_20240422T155821Z_20240426T214244Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PGS_20240422T155821Z_20240426T214244Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "e650191df3de5ca6d35a1705a03f68eec7a8db4b295585fbc161bb21e4e15e06"
+    },
+    {
+      "radar_date": "2024-04-21",
+      "optical_time_utc": "2024-04-22T16:20:22.003Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PFT_20240422T155821Z_20240426T204443Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PFT_20240422T155821Z_20240426T204443Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "613227a3b66b6322d97cae04f5837cca45a4ce015b1af4edbaccc97dcb696508"
+    },
+    {
+      "radar_date": "2024-04-21",
+      "optical_time_utc": "2024-04-22T16:20:31.855Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PFS_20240422T155821Z_20240427T033505Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PFS_20240422T155821Z_20240427T033505Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "5408ac0993ee93c5b85d2854d03f77c0fdcf0e393dc039cf9c9798d192d9a0e3"
+    },
+    {
+      "radar_date": "2024-04-21",
+      "optical_time_utc": "2024-04-22T16:20:18.498Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PGT_20240422T155821Z_20240426T224333Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PGT_20240422T155821Z_20240426T224333Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "02cd6a988155b1e73bb59e41bb4cea7e1a312c09468b5a38f5e56c6df2e2dd20"
+    },
+    {
+      "radar_date": "2024-04-21",
+      "optical_time_utc": "2024-04-22T16:20:07.637Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PFU_20240422T155821Z_20240425T144918Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PFU_20240422T155821Z_20240425T144918Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "3a9a5cabf5a21b94a8c7ce32a8a242dc6ffa269e2761e9124c035f0531799bd5"
+    },
+    {
+      "radar_date": "2024-04-21",
+      "optical_time_utc": "2024-04-22T16:20:03.950Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PGU_20240422T155821Z_20240426T171051Z_S2A_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_PROVISIONAL_V1/OPERA_L3_DSWx-HLS_T16PGU_20240422T155821Z_20240426T171051Z_S2A_30_v1.0_B02_BWTR.tif",
+      "sha256": "84f86c012c9f5bb08443aab6da15543411394c8bbf21937ca11f0ffabe60021f"
+    },
+    {
+      "radar_date": "2024-07-14",
+      "optical_time_utc": "2024-07-15T15:59:17.375Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PFU_20240715T155917Z_20240717T052822Z_L8_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_V1/OPERA_L3_DSWx-HLS_T16PFU_20240715T155917Z_20240717T052822Z_L8_30_v1.0_B02_BWTR.tif",
+      "sha256": "599ddd09e193df8e1bb5ac6b388b57bc934e1e71dd5ac7a08fd4c0b1d74411c3"
+    },
+    {
+      "radar_date": "2024-07-14",
+      "optical_time_utc": "2024-07-15T15:59:41.283Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PFT_20240715T155941Z_20240717T052816Z_L8_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_V1/OPERA_L3_DSWx-HLS_T16PFT_20240715T155941Z_20240717T052816Z_L8_30_v1.0_B02_BWTR.tif",
+      "sha256": "d40056826ac5f666bc131aa17643f8bc176ff1ee343a48d9f11d3086717ca360"
+    },
+    {
+      "radar_date": "2024-07-14",
+      "optical_time_utc": "2024-07-15T15:59:41.283Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PFS_20240715T155941Z_20240717T052815Z_L8_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_V1/OPERA_L3_DSWx-HLS_T16PFS_20240715T155941Z_20240717T052815Z_L8_30_v1.0_B02_BWTR.tif",
+      "sha256": "8eed11398c24c45e8d056feae61dce6eeff0457382561bd4225fd613227fa969"
+    },
+    {
+      "radar_date": "2024-07-14",
+      "optical_time_utc": "2024-07-13T16:10:08.089Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PGU_20240713T160509Z_20240715T031606Z_S2B_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_V1/OPERA_L3_DSWx-HLS_T16PGU_20240713T160509Z_20240715T031606Z_S2B_30_v1.0_B02_BWTR.tif",
+      "sha256": "9e71a2b7958de476f59ad08e69ab95b2f7040fc88969587d929967f351117799"
+    },
+    {
+      "radar_date": "2024-07-14",
+      "optical_time_utc": "2024-07-13T16:10:22.616Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PGT_20240713T160509Z_20240715T031559Z_S2B_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_V1/OPERA_L3_DSWx-HLS_T16PGT_20240713T160509Z_20240715T031559Z_S2B_30_v1.0_B02_BWTR.tif",
+      "sha256": "95d10b2606d4f2d88474369e08a15e7cecae048e40ae6b29638895ad449e603f"
+    },
+    {
+      "radar_date": "2024-07-14",
+      "optical_time_utc": "2024-07-13T16:10:37.511Z",
+      "offset_days": 1,
+      "product_id": "OPERA_L3_DSWx-HLS_T16PGS_20240713T160509Z_20240715T031554Z_S2B_30_v1.0",
+      "url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/OPERA_L3_DSWX-HLS_V1/OPERA_L3_DSWx-HLS_T16PGS_20240713T160509Z_20240715T031554Z_S2B_30_v1.0_B02_BWTR.tif",
+      "sha256": "4e6ed178d14269417acbca49b02b9c88f47c60e51404e12a69cdca28f30cebf5"
+    }
+  ]
+}

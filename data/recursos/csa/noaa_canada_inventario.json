@@ -1,0 +1,1928 @@
+{
+  "fuente_inventario": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt",
+  "fuente_estaciones": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt",
+  "candidatas_evaluadas": 96,
+  "criterio": "Todos los días válidos; >=20 años conjuntos 2001–2024 y >=20 años completos de referencia 1951–1980 para anomalías térmicas; red fija de hasta tres estaciones separadas geográficamente",
+  "estaciones_evaluadas": [
+    {
+      "id": "CAN03011120",
+      "lat": 53.2897,
+      "lon": -113.8631,
+      "nombre": "CALMAR",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03011120.dly",
+      "sha256": "9c22b69fec7d46b71a3b03638fc804da6c5921c3c8544038ee44d59dfcc3dd9a",
+      "anios_prcp": 3,
+      "anios_tavg": 1,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 22,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03011240",
+      "lat": 53.05,
+      "lon": -112.8167,
+      "nombre": "CAMROSE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03011240.dly",
+      "sha256": "3a02b7a74a97fc1e9ab42641d1c03974c87d28963c3fbc06795ece39bc2ba373",
+      "anios_prcp": 4,
+      "anios_tavg": 4,
+      "anios_conjuntos": 4,
+      "anios_base_1951_1980": 18,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03011887",
+      "lat": 52.0742,
+      "lon": -111.4494,
+      "nombre": "CORONATION CLIMATE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03011887.dly",
+      "sha256": "a26e9429265ec9fbe60303f47b3719fb2eb19f5415f38fc0e81a842d67f2a207",
+      "anios_prcp": 1,
+      "anios_tavg": 2,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03012206",
+      "lat": 53.3067,
+      "lon": -113.6058,
+      "nombre": "EDMONTON INTERNATIONAL CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03012206.dly",
+      "sha256": "0a7a23dcb794d365ab1f4de1dc713dfc36ca0469fdcda50dd885605aede41079",
+      "anios_prcp": 3,
+      "anios_tavg": 9,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03012209",
+      "lat": 53.5731,
+      "lon": -113.5167,
+      "nombre": "EDMONTON BLATCHFORD",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03012209.dly",
+      "sha256": "30c780bddc1c484727503f7736bee36ff81be4c80c54e532002d84ad394d206d",
+      "anios_prcp": 1,
+      "anios_tavg": 7,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03012212",
+      "lat": 53.6667,
+      "lon": -113.4667,
+      "nombre": "EDMONTON NAMAO AWOS A",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03012212.dly",
+      "sha256": "687971db0cf3333e3c42c6a580d5a84297d3610c9f09fcaf442b1d19fa411b8e",
+      "anios_prcp": 1,
+      "anios_tavg": 0,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03012275",
+      "lat": 53.6828,
+      "lon": -112.8681,
+      "nombre": "ELK ISLAND NAT PARK",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03012275.dly",
+      "sha256": "4c30d6b56dad9e448919882838d29dac9e2c859ec09c8f66937034f83d1ff0e0",
+      "anios_prcp": 4,
+      "anios_tavg": 5,
+      "anios_conjuntos": 4,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03012515",
+      "lat": 52.9667,
+      "lon": -111.0,
+      "nombre": "FABYAN",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03012515.dly",
+      "sha256": "b88073bdf03ea2a4afd46f69d04b4e2bd73096b84ff3dd4fa7db823c29a20d9f",
+      "anios_prcp": 10,
+      "anios_tavg": 5,
+      "anios_conjuntos": 5,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03012652",
+      "lat": 52.4675,
+      "lon": -112.1203,
+      "nombre": "FORESTBURG PLANT SITE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03012652.dly",
+      "sha256": "1ce46c95385b83069c2cc7536d4b8841974bfa61dd27b83575981b87b491c0fd",
+      "anios_prcp": 6,
+      "anios_tavg": 4,
+      "anios_conjuntos": 4,
+      "anios_base_1951_1980": 5,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03012710",
+      "lat": 53.7167,
+      "lon": -113.1833,
+      "nombre": "FORT SASKATCHEWAN",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03012710.dly",
+      "sha256": "82279cd9e5253ebbffea5907e2b6d8d1a77c7079904d04d16d9aeadc97d10f34",
+      "anios_prcp": 1,
+      "anios_tavg": 0,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 5,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03013961",
+      "lat": 53.3092,
+      "lon": -110.0725,
+      "nombre": "LLOYDMINSTER A",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03013961.dly",
+      "sha256": "3026d7b509c2effe1e202954ffde13df9fc1fc862c81d19299b1eb81aebbdd5a",
+      "anios_prcp": 11,
+      "anios_tavg": 10,
+      "anios_conjuntos": 10,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03016GF0",
+      "lat": 53.5053,
+      "lon": -112.0978,
+      "nombre": "VEGREVILLE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03016GF0.dly",
+      "sha256": "3eeba5fee0b70304d7e87216af1b6ba13e07c3e6cda27f0ae7c9537ded4b4581",
+      "anios_prcp": 4,
+      "anios_tavg": 3,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN0301B460",
+      "lat": 51.6697,
+      "lon": -110.2061,
+      "nombre": "ESTHER 1",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN0301B460.dly",
+      "sha256": "47df391773dac34d16e74315ad67417a6ca8f88a13651e183ae266e26f37d8db",
+      "anios_prcp": 0,
+      "anios_tavg": 3,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN0301S001",
+      "lat": 52.8294,
+      "lon": -111.0956,
+      "nombre": "WAINWRIGHT CFB AIRFIELD 21",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN0301S001.dly",
+      "sha256": "23c0a421606adba2aab385a7476ef83156aa24748653574b0794ab3da07597ae",
+      "anios_prcp": 2,
+      "anios_tavg": 4,
+      "anios_conjuntos": 2,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN030221LG",
+      "lat": 51.4453,
+      "lon": -112.6767,
+      "nombre": "DRUMHELLER EAST",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN030221LG.dly",
+      "sha256": "67a23c8587eb668dba7e37ff746381062f4a85b39d53e4ca6228f4495c2eb277",
+      "anios_prcp": 0,
+      "anios_tavg": 7,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03023722",
+      "lat": 52.4489,
+      "lon": -113.7558,
+      "nombre": "LACOMBE CDA 2",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03023722.dly",
+      "sha256": "755d77084136868df35ff8b878455b576f4d17d11597140a909f2195dff078a6",
+      "anios_prcp": 2,
+      "anios_tavg": 4,
+      "anios_conjuntos": 2,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03030768",
+      "lat": 49.7342,
+      "lon": -111.4503,
+      "nombre": "BOW ISLAND",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03030768.dly",
+      "sha256": "c3ea25d24c6a8d21c0bc8d06457e3d694c7fa3cb2ad1690a11871d6bfd2417f3",
+      "anios_prcp": 1,
+      "anios_tavg": 6,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03030QLP",
+      "lat": 50.5553,
+      "lon": -111.8489,
+      "nombre": "BROOKS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03030QLP.dly",
+      "sha256": "559d90f31985ead2597fdbbe421992a09934656b78407d1d2039a25598369636",
+      "anios_prcp": 0,
+      "anios_tavg": 3,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03031094",
+      "lat": 51.1094,
+      "lon": -114.0003,
+      "nombre": "CALGARY INT'L CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03031094.dly",
+      "sha256": "4afa3e68f4d4dedb6f5ffce3f69ef3556a50abefa6a2289b25f026313c2fcf49",
+      "anios_prcp": 0,
+      "anios_tavg": 1,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03031322",
+      "lat": 49.2006,
+      "lon": -113.2858,
+      "nombre": "CARDSTON",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03031322.dly",
+      "sha256": "74137b2fff2766bc3a3b4bfe7e79df57f74f133c07ba0925af54595f89f06fc6",
+      "anios_prcp": 0,
+      "anios_tavg": 4,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03031640",
+      "lat": 50.0036,
+      "lon": -113.6386,
+      "nombre": "CLARESHOLM",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03031640.dly",
+      "sha256": "2b5751687c1ad60a5ff14e96395d6bd21ae00f07d654172ce0f0afe10c1e0d01",
+      "anios_prcp": 0,
+      "anios_tavg": 1,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 6,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03031875",
+      "lat": 51.0761,
+      "lon": -114.2222,
+      "nombre": "COP UPPER",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03031875.dly",
+      "sha256": "11a81909b9f019a88cc1116ee6aab9eecb7b2bf8d2bc6b09125fcbca78f51bc0",
+      "anios_prcp": 3,
+      "anios_tavg": 3,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03033890",
+      "lat": 49.695,
+      "lon": -112.7675,
+      "nombre": "LETHBRIDGE CDA",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03033890.dly",
+      "sha256": "b784bc7661b33f2ae3912af5112e84233d0b4269da7aff5eb6f3f6d597643788",
+      "anios_prcp": 1,
+      "anios_tavg": 2,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 25,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03034485",
+      "lat": 50.0251,
+      "lon": -110.7173,
+      "nombre": "MEDICINE HAT RCS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03034485.dly",
+      "sha256": "c266a0ba74bca6fe15247474dd07bcccbc62d00233e63683a63a4add6ca7bedb",
+      "anios_prcp": 1,
+      "anios_tavg": 1,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03035208",
+      "lat": 49.5217,
+      "lon": -114.0047,
+      "nombre": "PINCHER CREEK CLIMATE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03035208.dly",
+      "sha256": "25ec6ddbddb6029e400e65b377f279afab99f734d988f0ef1337713ca5c9add9",
+      "anios_prcp": 0,
+      "anios_tavg": 2,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03035340",
+      "lat": 50.6064,
+      "lon": -112.9833,
+      "nombre": "QUEENSTOWN",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03035340.dly",
+      "sha256": "29e2598d651e282e4c7917cfcc49e32b00274dd623dec6e1914c86708da185bc",
+      "anios_prcp": 14,
+      "anios_tavg": 12,
+      "anios_conjuntos": 11,
+      "anios_base_1951_1980": 14,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03036099",
+      "lat": 50.1833,
+      "lon": -113.8833,
+      "nombre": "STAVELY AAFC",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03036099.dly",
+      "sha256": "6fedcb053607de5afd6e4488626bf460dd3997e9b8cbaa43fbf948ed10044b77",
+      "anios_prcp": 2,
+      "anios_tavg": 4,
+      "anios_conjuntos": 2,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03036360",
+      "lat": 49.7919,
+      "lon": -112.1245,
+      "nombre": "TABER",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03036360.dly",
+      "sha256": "16f8deb92ab10087191b8470ebb9e586e81b03956d5cbb4fe1505d567880b59e",
+      "anios_prcp": 2,
+      "anios_tavg": 0,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 11,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03036682",
+      "lat": 50.05,
+      "lon": -112.1333,
+      "nombre": "VAUXHALL CDA CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03036682.dly",
+      "sha256": "4b0a75a72c7245347a8b4dbb6442705ae7751a10b575ab03771582a484c78070",
+      "anios_prcp": 2,
+      "anios_tavg": 5,
+      "anios_conjuntos": 2,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN0303M9JM",
+      "lat": 50.7292,
+      "lon": -113.9609,
+      "nombre": "OKOTOKS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN0303M9JM.dly",
+      "sha256": "b9219e18f672fdda7f127d9cba542019e2ad8d8476d34ae75134e685bffa391c",
+      "anios_prcp": 18,
+      "anios_tavg": 17,
+      "anios_conjuntos": 17,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN0303N1G3",
+      "lat": 49.8714,
+      "lon": -112.7883,
+      "nombre": "PICTURE BUTTE WEST",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN0303N1G3.dly",
+      "sha256": "366e01dbbc47326009902677a8f527d3493b3d3ab12f8feea4e502fd6ebd9474",
+      "anios_prcp": 1,
+      "anios_tavg": 0,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03044203",
+      "lat": 49.3667,
+      "lon": -110.6833,
+      "nombre": "MANYBERRIES AGCM",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03044203.dly",
+      "sha256": "29f8f656458325f6d00affb97f14e9c695dba588e03ee45cc95060315251bcc1",
+      "anios_prcp": 0,
+      "anios_tavg": 6,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 2,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03044533",
+      "lat": 49.1333,
+      "lon": -112.05,
+      "nombre": "MILK RIVER",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03044533.dly",
+      "sha256": "28b1b21291dad489a37943bdc0993a8587d4a4954b3252ed6a0119374b0e97e4",
+      "anios_prcp": 0,
+      "anios_tavg": 2,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03044923",
+      "lat": 49.1167,
+      "lon": -110.4667,
+      "nombre": "ONEFOUR CDA",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03044923.dly",
+      "sha256": "774bf58b3e3090968e8db316adee2365dcd8379a195f943e4ad2ae3ab9985cfd",
+      "anios_prcp": 1,
+      "anios_tavg": 1,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN03055119",
+      "lat": 50.3683,
+      "lon": -114.4156,
+      "nombre": "PEKISKO",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN03055119.dly",
+      "sha256": "c897ea100548f7d1b1324d55f574bd67ceef74470d0654e095abbc1a6eeaabf2",
+      "anios_prcp": 3,
+      "anios_tavg": 1,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04010811",
+      "lat": 50.2006,
+      "lon": -104.71,
+      "nombre": "BRATT'S LAKE CLIMATE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04010811.dly",
+      "sha256": "55d1464f1111268f0834473c24eec1be66c5413c1d88c0cc2b83297f7d6cfd5c",
+      "anios_prcp": 1,
+      "anios_tavg": 0,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04010879",
+      "lat": 50.3681,
+      "lon": -102.5708,
+      "nombre": "BROADVIEW",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04010879.dly",
+      "sha256": "aac5933dd3c7255cac6492d7ffa947438208f4afee5c0964d066fb5ece186303",
+      "anios_prcp": 4,
+      "anios_tavg": 4,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 15,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04010984",
+      "lat": 50.55,
+      "lon": -105.3833,
+      "nombre": "BUFFALO POUND LAKE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04010984.dly",
+      "sha256": "a82bf20357ec30b64f8aa8b6cea97cb31ad02b5cd376de15c934ce75d036564d",
+      "anios_prcp": 3,
+      "anios_tavg": 3,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04012300",
+      "lat": 51.1833,
+      "lon": -104.8667,
+      "nombre": "DUVAL",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04012300.dly",
+      "sha256": "19e1439bc68d8d1e1c1f5ca1ba7a581a522aad9c9fed4deddd862fa613f3e1f6",
+      "anios_prcp": 5,
+      "anios_tavg": 3,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 13,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04012400",
+      "lat": 49.2167,
+      "lon": -102.9667,
+      "nombre": "ESTEVAN A",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04012400.dly",
+      "sha256": "bb88afe5a4d3a7c1ef0613f0ca36faaddab4f4241d7c538ea8a0774f617ab850",
+      "anios_prcp": 15,
+      "anios_tavg": 18,
+      "anios_conjuntos": 15,
+      "anios_base_1951_1980": 30,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04013480",
+      "lat": 50.55,
+      "lon": -103.65,
+      "nombre": "INDIAN HEAD CDA",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04013480.dly",
+      "sha256": "e54f2ca014bc0b7d1e25721609853e4d49fe5d05f86ad02a1960d4b36e9eb34f",
+      "anios_prcp": 6,
+      "anios_tavg": 7,
+      "anios_conjuntos": 5,
+      "anios_base_1951_1980": 25,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04013660",
+      "lat": 51.2574,
+      "lon": -103.753,
+      "nombre": "KELLIHER",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04013660.dly",
+      "sha256": "218cb86e6c5c47df845d33d582fa2f7ba23440a675877863a49ba052fd2666c0",
+      "anios_prcp": 13,
+      "anios_tavg": 11,
+      "anios_conjuntos": 11,
+      "anios_base_1951_1980": 20,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04014040",
+      "lat": 50.2,
+      "lon": -102.7333,
+      "nombre": "KIPLING",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04014040.dly",
+      "sha256": "13d92f1684382f9333d6576496d53338748cade4476fde6482aebd27dfabcb1a",
+      "anios_prcp": 13,
+      "anios_tavg": 11,
+      "anios_conjuntos": 11,
+      "anios_base_1951_1980": 1,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04014145",
+      "lat": 50.9,
+      "lon": -101.7167,
+      "nombre": "LANGENBURG",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04014145.dly",
+      "sha256": "838e4a4132e98d92aa94f2e0ce3292dcd2b49d534fb64671cbdbb21d2055348a",
+      "anios_prcp": 6,
+      "anios_tavg": 2,
+      "anios_conjuntos": 2,
+      "anios_base_1951_1980": 6,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04014156",
+      "lat": 51.4167,
+      "lon": -105.25,
+      "nombre": "LAST MOUNTAIN CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04014156.dly",
+      "sha256": "6109db2f3c1be884f51e5d5c38830b7d846d75e6cc42626585336ee896df159c",
+      "anios_prcp": 5,
+      "anios_tavg": 8,
+      "anios_conjuntos": 5,
+      "anios_base_1951_1980": 1,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04014322",
+      "lat": 52.0,
+      "lon": -104.6333,
+      "nombre": "LEROY",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04014322.dly",
+      "sha256": "1cebf8459092f9256155bb3a895ca50415ba921bf01a7ab2f90b4460cd6bf6ce",
+      "anios_prcp": 12,
+      "anios_tavg": 11,
+      "anios_conjuntos": 11,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04014481",
+      "lat": 51.1522,
+      "lon": -103.8894,
+      "nombre": "LIPTON 2",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04014481.dly",
+      "sha256": "f7db4a109fa4470642e77cadcc0c8ceb9d9f1a1c20798e2203a8d69c3ced6bd3",
+      "anios_prcp": 5,
+      "anios_tavg": 1,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04015322",
+      "lat": 50.3317,
+      "lon": -105.5375,
+      "nombre": "MOOSE JAW CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04015322.dly",
+      "sha256": "bbfb001634052cae355e88a56266e5231df156625881100f2f1a136076b408ac",
+      "anios_prcp": 5,
+      "anios_tavg": 5,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04015440",
+      "lat": 52.3333,
+      "lon": -105.0,
+      "nombre": "MUENSTER",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04015440.dly",
+      "sha256": "672e93fc3702d67b13870c225321ff671db9e55806396e8f7b2b4a073cd8f96a",
+      "anios_prcp": 5,
+      "anios_tavg": 7,
+      "anios_conjuntos": 5,
+      "anios_base_1951_1980": 12,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04015800",
+      "lat": 49.3167,
+      "lon": -102.1167,
+      "nombre": "OXBOW",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04015800.dly",
+      "sha256": "3aaf3b2f528749a192d38c5db6492a6e77ebf2f30cea685f0041219a1bb2f0cf",
+      "anios_prcp": 5,
+      "anios_tavg": 2,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04015870",
+      "lat": 51.4032,
+      "lon": -103.2653,
+      "nombre": "PARKERVIEW",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04015870.dly",
+      "sha256": "64bfcf3ef4a66dab425e693c187bccc0b1a549ec165e6d34cb5512103067b800",
+      "anios_prcp": 5,
+      "anios_tavg": 1,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04016322",
+      "lat": 50.5667,
+      "lon": -103.9833,
+      "nombre": "QU'APPELLE 1",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04016322.dly",
+      "sha256": "3c4346fc965b92c11dd08b50d7c9145725456c4d41393efa3b1bb1930cee1968",
+      "anios_prcp": 17,
+      "anios_tavg": 14,
+      "anios_conjuntos": 14,
+      "anios_base_1951_1980": 16,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04016699",
+      "lat": 50.4333,
+      "lon": -104.6667,
+      "nombre": "REGINA RCS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04016699.dly",
+      "sha256": "7ef140fd701fd312db09037ed7a7afda4877a057394dca708834435329ef94fe",
+      "anios_prcp": 1,
+      "anios_tavg": 3,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04018642",
+      "lat": 51.6667,
+      "lon": -105.4,
+      "nombre": "WATROUS EAST",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04018642.dly",
+      "sha256": "4a14f5153a73a0bf00847836194e1fd7f21ac8893aa0089c6dfc93d4d3eff533",
+      "anios_prcp": 0,
+      "anios_tavg": 6,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN040190LN",
+      "lat": 51.7667,
+      "lon": -104.2,
+      "nombre": "WYNYARD (AUT)",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN040190LN.dly",
+      "sha256": "73aa5261b6fbf13cfd25e83b13c5bb858c9975fde9d8b2ab0d0cf6445e182600",
+      "anios_prcp": 4,
+      "anios_tavg": 6,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN0401HP5R",
+      "lat": 49.7,
+      "lon": -103.8,
+      "nombre": "WEYBURN",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN0401HP5R.dly",
+      "sha256": "8b21e8428e6e4b9970cde5d34f71b2796674b6b159b978ee339e88ddf9e68663",
+      "anios_prcp": 0,
+      "anios_tavg": 8,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04020286",
+      "lat": 49.7292,
+      "lon": -105.9461,
+      "nombre": "ASSINIBOIA AIRPORT",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04020286.dly",
+      "sha256": "c771386eea9c76e2282c21cca0a8eede8fd0b1b8cd39157944b84764136950a2",
+      "anios_prcp": 4,
+      "anios_tavg": 6,
+      "anios_conjuntos": 4,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04020560",
+      "lat": 50.832,
+      "lon": -107.3114,
+      "nombre": "BEECHY",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04020560.dly",
+      "sha256": "67a27b04613569f2a22b2e433c4278a4491fa877a9a7297cd7d495796604df9e",
+      "anios_prcp": 9,
+      "anios_tavg": 8,
+      "anios_conjuntos": 8,
+      "anios_base_1951_1980": 6,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04022359",
+      "lat": 51.1333,
+      "lon": -106.5833,
+      "nombre": "ELBOW CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04022359.dly",
+      "sha256": "46c4addcbe373bd919234c4ee251ff701e45f4a5c65ac661762389b66758fc16",
+      "anios_prcp": 1,
+      "anios_tavg": 3,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04022363",
+      "lat": 51.1667,
+      "lon": -106.55,
+      "nombre": "ELBOW 2 NE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04022363.dly",
+      "sha256": "4cd6d5df13d18e9ea366c196c2ade3243917b0f1b48ad9c23f86dc7a0022ce9e",
+      "anios_prcp": 6,
+      "anios_tavg": 5,
+      "anios_conjuntos": 5,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04024714",
+      "lat": 50.95,
+      "lon": -107.15,
+      "nombre": "LUCKY LAKE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04024714.dly",
+      "sha256": "12aa60d6f0ea4c85a15f8f9257c5a985ad1c6e99c599414c8f379dbf34ddd981",
+      "anios_prcp": 1,
+      "anios_tavg": 5,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04024919",
+      "lat": 49.9025,
+      "lon": -109.4661,
+      "nombre": "MAPLE CREEK",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04024919.dly",
+      "sha256": "081193da32479ace20530ca2860ca0f4a4eb38e13a314dee7a066efd5cae9d6b",
+      "anios_prcp": 2,
+      "anios_tavg": 5,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04026847",
+      "lat": 51.1539,
+      "lon": -107.2633,
+      "nombre": "ROCK POINT",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04026847.dly",
+      "sha256": "d09e7cab1284c0c78dea1e48c067baa6763d5788bd45d9103115be0ac806169d",
+      "anios_prcp": 18,
+      "anios_tavg": 17,
+      "anios_conjuntos": 17,
+      "anios_base_1951_1980": 5,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04027775",
+      "lat": 50.6,
+      "lon": -107.8,
+      "nombre": "STEWART VALLEY",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04027775.dly",
+      "sha256": "04a4f401bd1fbef02176843522d3c2fecc51db0d2f71f6729dbf6e647126f058",
+      "anios_prcp": 5,
+      "anios_tavg": 3,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04028060",
+      "lat": 50.2667,
+      "lon": -107.7333,
+      "nombre": "SWIFT CURRENT CDA",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04028060.dly",
+      "sha256": "5a286851b66b27623fc8ca0fcb47b17da1417b25aee3ba532248448b1d74d2b2",
+      "anios_prcp": 6,
+      "anios_tavg": 6,
+      "anios_conjuntos": 5,
+      "anios_base_1951_1980": 22,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN0402DAF0",
+      "lat": 50.9095,
+      "lon": -109.5014,
+      "nombre": "LEADER AIRPORT",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN0402DAF0.dly",
+      "sha256": "28cf139e8a61c32db0860576ab3d9d40c06cf947da841e4ad01c8f37796b6982",
+      "anios_prcp": 7,
+      "anios_tavg": 7,
+      "anios_conjuntos": 6,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN040318MN",
+      "lat": 49.05,
+      "lon": -105.4833,
+      "nombre": "CORONACH SPC",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN040318MN.dly",
+      "sha256": "fa392fb8bd99908af6a21a65c70b0a7f43d9aed82bb94872343a22c302fa47ed",
+      "anios_prcp": 4,
+      "anios_tavg": 8,
+      "anios_conjuntos": 4,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04031999",
+      "lat": 49.6406,
+      "lon": -109.5144,
+      "nombre": "CYPRESS HILLS PARK",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04031999.dly",
+      "sha256": "364129d0222e032df001a5346b7306a9022e93be5d93d5a8c7612fa0b75ae69e",
+      "anios_prcp": 7,
+      "anios_tavg": 7,
+      "anios_conjuntos": 6,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04032322",
+      "lat": 49.4378,
+      "lon": -108.9886,
+      "nombre": "EASTEND CYPRESS (AUT)",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04032322.dly",
+      "sha256": "c65dc708e07baf816b58475c0e6357a4fc7ae6c9069780f83a4e99b29492224e",
+      "anios_prcp": 1,
+      "anios_tavg": 7,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04034910",
+      "lat": 49.0992,
+      "lon": -107.0245,
+      "nombre": "MANKOTA",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04034910.dly",
+      "sha256": "9ab72e4753f3d1c155fb981cb962595b193695eac76b6388421d273ff973c79a",
+      "anios_prcp": 5,
+      "anios_tavg": 3,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 2,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04036844",
+      "lat": 49.1678,
+      "lon": -105.9792,
+      "nombre": "ROCKGLEN (AUT)",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04036844.dly",
+      "sha256": "cd6e38e459f61ff66c786ef725df239059bc6a1f247894e652c80a93ae9126db",
+      "anios_prcp": 2,
+      "anios_tavg": 2,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 8,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04038412",
+      "lat": 49.0583,
+      "lon": -107.5858,
+      "nombre": "VAL MARIE SOUTHEAST",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04038412.dly",
+      "sha256": "acf2eb349ab81e6babdfe7417df6aae4c457bb2c639fd1580dcd1d1c1b5df765",
+      "anios_prcp": 4,
+      "anios_tavg": 5,
+      "anios_conjuntos": 4,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04040587",
+      "lat": 51.2944,
+      "lon": -108.4067,
+      "nombre": "BICKLEIGH",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04040587.dly",
+      "sha256": "1ecce04207c1dac46478e3451a92eadd2f08a3b78ae2d40d42ae6e6dc3a977be",
+      "anios_prcp": 6,
+      "anios_tavg": 1,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04045607",
+      "lat": 52.7719,
+      "lon": -108.2556,
+      "nombre": "NORTH BATTLEFORD RCS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04045607.dly",
+      "sha256": "5416581750dae21cc5052359f2d8902b87201dabfb5d75b8dfe58f19ff6d3483",
+      "anios_prcp": 0,
+      "anios_tavg": 0,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04046884",
+      "lat": 51.5667,
+      "lon": -107.9167,
+      "nombre": "ROSETOWN EAST",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04046884.dly",
+      "sha256": "bfc2e7736d17918d4c75cee0a7c792ca8c32ced1b7a73ef783abf6ab284a12b0",
+      "anios_prcp": 6,
+      "anios_tavg": 5,
+      "anios_conjuntos": 4,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04047240",
+      "lat": 52.3597,
+      "lon": -108.8347,
+      "nombre": "SCOTT CDA",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04047240.dly",
+      "sha256": "6fa019923eb006db0e5147ae2ec8bc3697edc471a49f1857f28952d94097942d",
+      "anios_prcp": 1,
+      "anios_tavg": 4,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 27,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04047644",
+      "lat": 52.3167,
+      "lon": -107.7667,
+      "nombre": "SONNINGDALE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04047644.dly",
+      "sha256": "153dae095dfc1d4da38f306934c1c4b63c0d14c08b3a9f8164f0f700a6ca8b39",
+      "anios_prcp": 4,
+      "anios_tavg": 0,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN04055736",
+      "lat": 51.4833,
+      "lon": -107.05,
+      "nombre": "OUTLOOK PFRA",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN04055736.dly",
+      "sha256": "8900fc17614a07673f82e40c7ec14f6c0b30c40b444a19427a012af2479c2803",
+      "anios_prcp": 5,
+      "anios_tavg": 5,
+      "anios_conjuntos": 5,
+      "anios_base_1951_1980": 17,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05010140",
+      "lat": 49.2764,
+      "lon": -99.2924,
+      "nombre": "BALDUR",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05010140.dly",
+      "sha256": "2af691d0986ec2843ccc2eb937222ad40f4650e93f8c41564e51b272bbc7c803",
+      "anios_prcp": 4,
+      "anios_tavg": 3,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 10,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05010547",
+      "lat": 49.9058,
+      "lon": -99.3574,
+      "nombre": "CARBERRY CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05010547.dly",
+      "sha256": "15090f5dcc0553a2dc148ca2c24348c19f74dcbd8c52fa43dd44f374d233c955",
+      "anios_prcp": 6,
+      "anios_tavg": 6,
+      "anios_conjuntos": 6,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05010QFQ",
+      "lat": 49.9267,
+      "lon": -101.2028,
+      "nombre": "ELKHORN 2 EAST",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05010QFQ.dly",
+      "sha256": "a98d0d7bb39ec081665e8c46766ec70445158d8a3356687e3142c2448e0fd4eb",
+      "anios_prcp": 5,
+      "anios_tavg": 4,
+      "anios_conjuntos": 4,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05012324",
+      "lat": 49.9031,
+      "lon": -98.2841,
+      "nombre": "PORTAGE SOUTHPORT",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05012324.dly",
+      "sha256": "b0a886a2b98fb05460236cb864a74b40d57c169ffc3b644e130c82ef678d6e3c",
+      "anios_prcp": 5,
+      "anios_tavg": 6,
+      "anios_conjuntos": 5,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05012654",
+      "lat": 50.4549,
+      "lon": -100.6035,
+      "nombre": "SHOAL LAKE CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05012654.dly",
+      "sha256": "4b27586e832b903c126d0be13203691be449488b2aeff13d573c9bb721ce45cb",
+      "anios_prcp": 1,
+      "anios_tavg": 6,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN0501A7AR",
+      "lat": 49.2813,
+      "lon": -100.9864,
+      "nombre": "MELITA",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN0501A7AR.dly",
+      "sha256": "6b2a7fdf0c5653b5fca74f592ded4e2556bd29daf313000379b22fd85558acec",
+      "anios_prcp": 5,
+      "anios_tavg": 5,
+      "anios_conjuntos": 4,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05020725",
+      "lat": 49.3998,
+      "lon": -98.3192,
+      "nombre": "DEERWOOD RCS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05020725.dly",
+      "sha256": "90e0ce4b83a1e5080218bd530c391839a238b6672a5cbf0dec17f3364844e286",
+      "anios_prcp": 2,
+      "anios_tavg": 3,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05021220",
+      "lat": 49.0308,
+      "lon": -97.56,
+      "nombre": "GRETNA (AUT)",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05021220.dly",
+      "sha256": "ed483ff2da30ebde3b5291374dacb97cf9be48d16202b6cb169086b606cc17ab",
+      "anios_prcp": 1,
+      "anios_tavg": 6,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 8,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05021695",
+      "lat": 50.0134,
+      "lon": -97.8071,
+      "nombre": "MARQUETTE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05021695.dly",
+      "sha256": "f9eedd6018c012cafc912ce52912a2b2344971843272239aa5fe7dee2e5bca92",
+      "anios_prcp": 6,
+      "anios_tavg": 3,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 9,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05021849",
+      "lat": 49.1876,
+      "lon": -98.0839,
+      "nombre": "MORDEN CDA CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05021849.dly",
+      "sha256": "34bf70df2cd9fbbd19251e9294d3f0c3dd326155992ebdc431951724d0e4d820",
+      "anios_prcp": 5,
+      "anios_tavg": 6,
+      "anios_conjuntos": 4,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05022125",
+      "lat": 49.191,
+      "lon": -98.9049,
+      "nombre": "PILOT MOUND (AUT)",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05022125.dly",
+      "sha256": "d851dd1d2a756c4dadd783c633e2a0be08fc878716c45df05706d8078ed16a05",
+      "anios_prcp": 1,
+      "anios_tavg": 7,
+      "anios_conjuntos": 1,
+      "anios_base_1951_1980": 14,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05022791",
+      "lat": 50.1167,
+      "lon": -97.1667,
+      "nombre": "STONY MOUNTAIN",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05022791.dly",
+      "sha256": "595d99fdffa76d48036d32be8892f514709e428c56061cbbd912857d0d5c3e6d",
+      "anios_prcp": 10,
+      "anios_tavg": 7,
+      "anios_conjuntos": 7,
+      "anios_base_1951_1980": 5,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05023262",
+      "lat": 49.8883,
+      "lon": -97.1294,
+      "nombre": "WINNIPEG THE FORKS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05023262.dly",
+      "sha256": "98205e75e2692113277abc3f8d5e89a97aeafb6aa1b1fb3695796f9a6a402710",
+      "anios_prcp": 4,
+      "anios_tavg": 7,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN0502I001",
+      "lat": 49.4981,
+      "lon": -98.0298,
+      "nombre": "CARMAN U OF M CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN0502I001.dly",
+      "sha256": "d8b0a7ce77aa5dca57661682a4c6b24881ad8dcf337b1bc17aaf52e6c2377e7a",
+      "anios_prcp": 4,
+      "anios_tavg": 5,
+      "anios_conjuntos": 3,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN0502S001",
+      "lat": 49.9167,
+      "lon": -97.2494,
+      "nombre": "WINNIPEG A CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN0502S001.dly",
+      "sha256": "7da3af92d990d8954d53f1124c0cfe5416f8d6b1fd6d3c18d2f566cf622d92ee",
+      "anios_prcp": 0,
+      "anios_tavg": 6,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05040681",
+      "lat": 51.1004,
+      "lon": -100.0569,
+      "nombre": "DAUPHIN CS",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05040681.dly",
+      "sha256": "2fead69bd2ff590e82c9b33a60c3196a1a75b0a8ea6684a868085f1f20ba0c8d",
+      "anios_prcp": 0,
+      "anios_tavg": 6,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN05043158",
+      "lat": 50.7119,
+      "lon": -99.53,
+      "nombre": "MCCREARY",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN05043158.dly",
+      "sha256": "0c1e6b67255910ccf0ef79aa6c246c928ba3426a89ab4254a6f9151774084ca3",
+      "anios_prcp": 5,
+      "anios_tavg": 6,
+      "anios_conjuntos": 5,
+      "anios_base_1951_1980": 9,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    },
+    {
+      "id": "CAN0504K0NM",
+      "lat": 50.4995,
+      "lon": -98.0367,
+      "nombre": "OAKPOINT MARINE",
+      "elementos": [
+        "TMAX",
+        "TMIN",
+        "PRCP",
+        "TAVG"
+      ],
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CAN0504K0NM.dly",
+      "sha256": "ab6467867077787593996710d5abe25d24ee01e8e71cfceab496dbe2171ebb0e",
+      "anios_prcp": 1,
+      "anios_tavg": 6,
+      "anios_conjuntos": 0,
+      "anios_base_1951_1980": 0,
+      "metodo_tavg": "TAVG",
+      "estado": "ok"
+    }
+  ],
+  "seleccionadas": []
+}
