@@ -1,0 +1,3057 @@
+{
+  "geojson": "regiones_nicaragua.geojson",
+  "sha256_geojson": "bddb823cadf0811a656a5b247f593282cf152c53d14745c35482cc60d9620fd5",
+  "operacion": "plan_sin_envios_nuevos",
+  "tareas": [
+    {
+      "region": "NIC",
+      "producto": "SPL4SMGP.008",
+      "desde": "2015-03-31",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "SPL4SMGP.008",
+      "desde": "2016-01-01",
+      "hasta": "2016-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "SPL4SMGP.008",
+      "desde": "2017-01-01",
+      "hasta": "2017-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "SPL4SMGP.008",
+      "desde": "2018-01-01",
+      "hasta": "2018-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "SPL4SMGP.008",
+      "desde": "2019-01-01",
+      "hasta": "2019-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "SPL4SMGP.008",
+      "desde": "2020-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "SPL4SMGP.008",
+      "desde": "2021-01-01",
+      "hasta": "2021-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "SPL4SMGP.008",
+      "desde": "2022-01-01",
+      "hasta": "2022-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "SPL4SMGP.008",
+      "desde": "2023-01-01",
+      "hasta": "2023-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "SPL4SMGP.008",
+      "desde": "2024-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "SPL4SMGP.008",
+      "desde": "2015-03-31",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "SPL4SMGP.008",
+      "desde": "2016-01-01",
+      "hasta": "2016-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "SPL4SMGP.008",
+      "desde": "2017-01-01",
+      "hasta": "2017-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "SPL4SMGP.008",
+      "desde": "2018-01-01",
+      "hasta": "2018-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "SPL4SMGP.008",
+      "desde": "2019-01-01",
+      "hasta": "2019-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "SPL4SMGP.008",
+      "desde": "2020-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "SPL4SMGP.008",
+      "desde": "2021-01-01",
+      "hasta": "2021-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "SPL4SMGP.008",
+      "desde": "2022-01-01",
+      "hasta": "2022-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "SPL4SMGP.008",
+      "desde": "2023-01-01",
+      "hasta": "2023-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "SPL4SMGP.008",
+      "desde": "2024-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "SPL4SMGP.008",
+      "desde": "2015-03-31",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "SPL4SMGP.008",
+      "desde": "2016-01-01",
+      "hasta": "2016-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "SPL4SMGP.008",
+      "desde": "2017-01-01",
+      "hasta": "2017-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "SPL4SMGP.008",
+      "desde": "2018-01-01",
+      "hasta": "2018-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "SPL4SMGP.008",
+      "desde": "2019-01-01",
+      "hasta": "2019-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "SPL4SMGP.008",
+      "desde": "2020-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "SPL4SMGP.008",
+      "desde": "2021-01-01",
+      "hasta": "2021-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "SPL4SMGP.008",
+      "desde": "2022-01-01",
+      "hasta": "2022-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "SPL4SMGP.008",
+      "desde": "2023-01-01",
+      "hasta": "2023-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "SPL4SMGP.008",
+      "desde": "2024-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "SPL4SMGP.008",
+      "desde": "2015-03-31",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "SPL4SMGP.008",
+      "desde": "2016-01-01",
+      "hasta": "2016-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "SPL4SMGP.008",
+      "desde": "2017-01-01",
+      "hasta": "2017-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "SPL4SMGP.008",
+      "desde": "2018-01-01",
+      "hasta": "2018-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "SPL4SMGP.008",
+      "desde": "2019-01-01",
+      "hasta": "2019-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "SPL4SMGP.008",
+      "desde": "2020-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "SPL4SMGP.008",
+      "desde": "2021-01-01",
+      "hasta": "2021-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "SPL4SMGP.008",
+      "desde": "2022-01-01",
+      "hasta": "2022-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "SPL4SMGP.008",
+      "desde": "2023-01-01",
+      "hasta": "2023-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "SPL4SMGP.008",
+      "desde": "2024-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "SPL4SMGP.008",
+      "desde": "2015-03-31",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "SPL4SMGP.008",
+      "desde": "2016-01-01",
+      "hasta": "2016-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "SPL4SMGP.008",
+      "desde": "2017-01-01",
+      "hasta": "2017-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "SPL4SMGP.008",
+      "desde": "2018-01-01",
+      "hasta": "2018-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "SPL4SMGP.008",
+      "desde": "2019-01-01",
+      "hasta": "2019-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "SPL4SMGP.008",
+      "desde": "2020-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "SPL4SMGP.008",
+      "desde": "2021-01-01",
+      "hasta": "2021-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "SPL4SMGP.008",
+      "desde": "2022-01-01",
+      "hasta": "2022-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "SPL4SMGP.008",
+      "desde": "2023-01-01",
+      "hasta": "2023-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "SPL4SMGP.008",
+      "desde": "2024-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_surface"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_sm_rootzone"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_soil_temp_layer1"
+        },
+        {
+          "product": "SPL4SMGP.008",
+          "layer": "Geophysical_Data_land_fraction_snow_covered"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD16A2GF.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD16A2GF.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD16A2GF.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD16A2GF.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD16A2GF.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD16A2GF.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD16A2GF.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD16A2GF.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD16A2GF.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD16A2GF.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD16A2GF.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD16A2GF.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD16A2GF.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD16A2GF.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD16A2GF.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD16A2GF.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD16A2GF.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD16A2GF.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD16A2GF.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD16A2GF.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD16A2GF.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD16A2GF.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD16A2GF.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD16A2GF.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD16A2GF.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_500m"
+        },
+        {
+          "product": "MOD16A2GF.061",
+          "layer": "ET_QC_500m"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD11A2.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD11A2.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD11A2.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD11A2.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD11A2.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD11A2.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD11A2.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD11A2.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD11A2.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD11A2.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD11A2.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD11A2.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD11A2.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD11A2.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD11A2.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD11A2.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD11A2.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD11A2.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD11A2.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD11A2.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD11A2.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD11A2.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD11A2.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD11A2.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD11A2.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD13A3.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD13A3.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD13A3.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD13A3.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MOD13A3.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD13A3.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD13A3.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD13A3.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD13A3.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MOD13A3.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD13A3.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD13A3.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD13A3.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD13A3.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MOD13A3.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD13A3.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD13A3.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD13A3.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD13A3.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MOD13A3.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD13A3.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD13A3.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD13A3.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD13A3.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MOD13A3.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MCD12Q1.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MCD12Q1.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MCD12Q1.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MCD12Q1.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "NIC",
+      "producto": "MCD12Q1.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MCD12Q1.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MCD12Q1.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MCD12Q1.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MCD12Q1.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "pacifico",
+      "producto": "MCD12Q1.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MCD12Q1.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MCD12Q1.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MCD12Q1.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MCD12Q1.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "central",
+      "producto": "MCD12Q1.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MCD12Q1.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MCD12Q1.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MCD12Q1.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MCD12Q1.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "caribe",
+      "producto": "MCD12Q1.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MCD12Q1.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MCD12Q1.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MCD12Q1.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MCD12Q1.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    },
+    {
+      "region": "caja_sicc",
+      "producto": "MCD12Q1.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MCD12Q1.061",
+          "layer": "LC_Type1"
+        },
+        {
+          "product": "MCD12Q1.061",
+          "layer": "QC"
+        }
+      ]
+    }
+  ]
+}
