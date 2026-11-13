@@ -102,22 +102,112 @@ class RegionCanada(unittest.TestCase):
         self.assertTrue(math.isclose(area, self.props["area_km2"], rel_tol=1e-3))
 
 
-class HydrocronYSar(unittest.TestCase):
-    def test_grealm_gsfc_no_confunde_coordenadas_con_alturas(self):
-        from clima_nic.fuentes.lagos import leer_grealm
-        text = '11.792 -85.714 : coordinates\nSEN6A 220 20261107 16 4 0.15 0.043 18.53 AMR GIM ECM 1 2 0 32.18 1'
-        self.assertEqual(leer_grealm(text), (['2026-11-07'], [32.18]))
+# ---------------------------------------------------------------- SWOT / Hydrocron
 
-    def test_no_data_y_rellenos(self):
-        from clima_nic.fuentes.lagos import leer_hydrocron
-        csv = ('time_str,wse,no_data\n2023-08-01T00:00:00Z,32.5,0\n'
-               '2023-08-02T00:00:00Z,-999999999999,0\n'
-               '2023-08-03T00:00:00Z,nan,0\n'
-               '2023-08-04T00:00:00Z,33,1\nno_data,34,0\n')
-        rows = leer_hydrocron({'results': {'csv': csv}})
-        self.assertEqual(len(rows), 1)
-        self.assertEqual(rows[0]['altura_m'], 32.5)
+# Fixture: filas reales de la respuesta de Hydrocron para Cocibolca (7530096743), con un duplicado exacto, dos
+# pasadas sin observación (relleno) y una observación con quality_f = 3 (mala).
+CSV_HYDROCRON = (
+    "lake_id,time_str,wse,wse_u,area_total,quality_f,partial_f,dark_frac,ice_clim_f,xovr_cal_q,cycle_id,pass_id,"
+    "wse_units,wse_u_units,area_total_units,dark_frac_units\n"
+    "7530096743,2023-07-28T22:17:15Z,31.743,0.0,2892.224042,0,1,0.006901,0,0,001,216,m,m,km^2,1\n"
+    "7530096743,2023-08-04T09:35:50Z,31.613,0.0,947.743729,1,1,0.020464,0,0,001,397,m,m,km^2,1\n"
+    "7530096743,2023-08-04T09:35:50Z,31.613,0.0,947.743729,1,1,0.020464,0,0,001,397,m,m,km^2,1\n"
+    "7530096743,no_data,-999999999999.0,-999999999999.0,-999999999999.0,-999,-999,-999999999999.0,0,-999,002,397,"
+    "m,m,km^2,1\n"
+    "7530096743,no_data,-999999999999.0,-999999999999.0,-999999999999.0,-999,-999,-999999999999.0,0,-999,002,522,"
+    "m,m,km^2,1\n"
+    "7530096743,2023-09-15T03:06:01Z,31.801,0.0,944.905664,0,1,0.007183,0,0,003,397,m,m,km^2,1\n"
+    "7530096743,2023-10-05T23:51:02Z,30.262,0.001,905.304859,3,1,0.002014,0,2,004,397,m,m,km^2,1\n"
+    "7530096743,2023-10-10T10:55:13Z,31.723,0.0,3454.81382,0,1,0.003838,0,0,004,522,m,m,km^2,1\n"
+)
+DIR_CSA = RAIZ / "data" / "recursos" / "csa"
 
+
+class Hydrocron(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        from clima_nic.fuentes import lagos
+        cls.lagos = lagos
+
+    def test_lake_id_10_digitos(self):
+        L = self.lagos
+        for lago, lid in L.SWOT_LAKE_IDS.items():
+            self.assertTrue(L.es_lake_id(lid), lago)
+            self.assertEqual(len(lid), 10)
+        self.assertEqual(L.SWOT_LAKE_IDS, {"cocibolca": "7530096743", "xolotlan": "7530093763"})
+        for malo in ("753009674", "75300967430", "0530096743", "75300967a3", ""):
+            self.assertFalse(L.es_lake_id(malo), malo)
+        with self.assertRaises(ValueError):
+            L.url_hydrocron("123", "2023-07-26", "2024-01-01")
+
+    def test_url_peticion(self):
+        u = self.lagos.url_hydrocron("7530096743", "2023-07-26", "2026-11-12")
+        self.assertTrue(u.startswith("https://soto.podaac.earthdatacloud.nasa.gov/hydrocron/v1/timeseries?"))
+        for parte in ("feature=PriorLake", "feature_id=7530096743", "start_time=2023-07-26T00:00:00Z",
+                      "end_time=2026-11-12T00:00:00Z", "output=csv", "fields=lake_id,time_str,wse"):
+            self.assertIn(parte, u)
+
+    def test_parseo_csv_y_sobre_json(self):
+        L = self.lagos
+        filas = L.leer_hydrocron(CSV_HYDROCRON)
+        self.assertEqual(len(filas), 7)  # el duplicado exacto se elimina
+        sobre = json.dumps({"status": "200 OK", "hits": 8, "results": {"csv": CSV_HYDROCRON}})
+        self.assertEqual(L.leer_hydrocron(sobre), filas)
+        self.assertEqual(filas[0]["wse"], 31.743)
+        self.assertEqual(filas[0]["quality_f"], 0)
+        self.assertEqual(filas[2]["quality_f"], -999)
+
+    def test_filtro_relleno_y_calidad(self):
+        L = self.lagos
+        validas, conteo = L.filtrar_hydrocron(L.leer_hydrocron(CSV_HYDROCRON))
+        self.assertEqual(conteo, {"total": 7, "relleno": 2, "calidad": 1, "validas": 4})
+        self.assertTrue(all(f["wse"] > 0 and f["quality_f"] <= 1 for f in validas))
+        self.assertNotIn(30.262, [f["wse"] for f in validas])
+        estrictas, c0 = L.filtrar_hydrocron(L.leer_hydrocron(CSV_HYDROCRON), calidad_max=0)
+        self.assertEqual(c0["validas"], 3)
+
+    def test_mensual_y_tendencia_corta(self):
+        L = self.lagos
+        validas, _ = L.filtrar_hydrocron(L.leer_hydrocron(CSV_HYDROCRON))
+        meses, medias, n = L.mensual_hydrocron(validas)
+        self.assertEqual(meses, ["2023-07", "2023-08", "2023-09", "2023-10"])
+        self.assertEqual(n, [1, 1, 1, 1])
+        self.assertAlmostEqual(medias[1], 31.613)
+        b, motivo = L.tendencia_si_suficiente(meses, medias)
+        self.assertIsNone(b)
+        self.assertIn("corta", motivo)
+        # Con una serie larga sí se calcula.
+        largos = [f"{a}-{m:02d}" for a in range(2001, 2025) for m in range(1, 13)]
+        b, _ = L.tendencia_si_suficiente(largos, [0.01 * i / 12 for i in range(len(largos))])
+        self.assertAlmostEqual(b, 0.01, places=6)
+
+    def test_grealm_gsfc_compatible(self):
+        L = self.lagos
+        texto = ("000351 Nicaragua           : Target database id number and name\n"
+                 "POSDN   1 19921002  14 54   -0.19  0.051  11.88 ERA NIC ERA 3 9 0    31.84   0\n"
+                 "TOPEX   2 19921012  12 52  999.99 99.999 999.99 ERA DOR ERA 4 0 0  9999.99   0\n")
+        self.assertEqual(L.leer_grealm(texto), (["1992-10-02"], [31.84]))
+        self.assertEqual(L.leer_grealm_gsfc(texto)[0]["mision"], "POSDN")
+
+    def test_respuestas_guardadas(self):
+        """Las respuestas crudas guardadas en data/recursos/csa se leen y la tabla limpia es coherente."""
+        L = self.lagos
+        crudos = sorted(DIR_CSA.glob("hydrocron_*.json"))
+        if not crudos:
+            self.skipTest("sin respuestas de Hydrocron guardadas")
+        meta = json.loads((DIR_CSA / "consultas_hydrocron.json").read_text(encoding="utf-8"))
+        for c in meta["consultas"]:
+            self.assertTrue(L.es_lake_id(c["lake_id"]))
+            self.assertIn(f"feature_id={c['lake_id']}", c["url"])
+            self.assertRegex(c["consulta_utc"], r"^\d{4}-\d{2}-\d{2}T")
+        for ruta in crudos:
+            validas, conteo = L.filtrar_hydrocron(L.leer_hydrocron(ruta.read_text(encoding="utf-8")))
+            self.assertGreater(conteo["validas"], 0)
+            self.assertTrue(all(L.es_lake_id(f["lake_id"]) for f in validas))
+            self.assertTrue(all(25 < f["wse"] < 50 for f in validas), ruta.name)  # cotas de ambos lagos
+
+
+class SarAgua(unittest.TestCase):
     def test_mascara_nodata_y_area(self):
         import numpy as np
         import rasterio
