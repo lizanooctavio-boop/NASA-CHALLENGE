@@ -15,6 +15,7 @@ import re
 import time
 import urllib.error
 import urllib.request
+import uuid
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -170,6 +171,36 @@ class AppEEARS(Adaptador):
                 estado = {**tarea, "task_id": respuesta["task_id"], "enviada_utc": datetime.now(timezone.utc).isoformat()}
                 guardar_json(registro, estado)
             yield registro, estado
+
+    def registrar_recibos(self, tareas, recibos):
+        """Importa IDs cotejados en la UI sin crear solicitudes ni necesitar un token.
+
+        Rechaza nombres/IDs duplicados y conflictos con la caché antes de escribir.
+        Después enviar()/descargar() reutiliza estos mismos task_id.
+        """
+        por_nombre = {t["solicitud"]["task_name"]: t for t in tareas}
+        nombres, ids, pendientes = set(), set(), []
+        for recibo in recibos:
+            nombre, task_id = recibo["task_name"], recibo["task_id"]
+            uuid.UUID(task_id)
+            if nombre not in por_nombre or nombre in nombres or task_id in ids:
+                raise ValueError("Recibo ajeno al plan o nombre/ID duplicado")
+            nombres.add(nombre)
+            ids.add(task_id)
+            tarea = por_nombre[nombre]
+            huella = hashlib.sha256(json.dumps(tarea["solicitud"], sort_keys=True).encode()).hexdigest()[:20]
+            ruta = self.cache() / (huella + ".json")
+            if ruta.exists():
+                previo = json.loads(ruta.read_text(encoding="utf-8"))
+                if previo["task_id"] != task_id:
+                    raise ValueError("El recibo contradice un task_id ya registrado")
+            else:
+                pendientes.append((ruta, tarea | {"task_id": task_id,
+                    "enviada_utc": recibo["enviada_utc"], "origen": "navegador AppEEARS",
+                    "estado_ui_observado": recibo["estado_ui"]}))
+        for ruta, estado in pendientes:
+            guardar_json(ruta, estado)
+        return len(nombres)
 
     def esperar(self, task_id, max_segundos=3600, intervalo=30):
         limite = time.monotonic() + max_segundos
@@ -472,12 +503,13 @@ def agregar_registros(registros, frecuencia="mensual"):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("accion", choices=["plan", "enviar", "procesar"])
+    parser.add_argument("accion", choices=["plan", "enviar", "procesar", "registrar-navegador"])
     parser.add_argument("--inicio", type=int, default=2001)
     parser.add_argument("--fin", type=int, default=2024)
     parser.add_argument("--geojson", type=Path, help="geometría explícita; por defecto regiones_nicaragua o regiones_canada")
     parser.add_argument("--canada", action="store_true", help="NDVI y LST; exige data/regiones_canada.geojson")
     parser.add_argument("--max-segundos", type=int, default=3600)
+    parser.add_argument("--recibos", type=Path, default=SALIDA / "tareas_navegador.json")
     args = parser.parse_args()
     a = AppEEARS()
     geo = args.geojson or (DATOS / "regiones_canada.geojson" if args.canada else REGIONES_GEOJSON)
@@ -485,13 +517,21 @@ def main():
         parser.error(f"Falta {geo}; no se inventa una geometría de Canadá")
     productos = ["MOD13A3.061", "MOD11A2.061"] if args.canada else None
     sufijo = "canada" if args.canada else "nicaragua"
-    if args.accion == "plan":
+    if args.accion == "registrar-navegador":
+        tareas = a.plan(args.inicio, args.fin, geo, productos)
+        nombres = {t["solicitud"]["task_name"] for t in tareas}
+        todos = json.loads(args.recibos.read_text(encoding="utf-8"))["recibos"]
+        seleccion = [r for r in todos if r["task_name"] in nombres]
+        if not seleccion:
+            parser.error("No hay recibos para este plan")
+        print(f"{a.registrar_recibos(tareas, seleccion)} tareas del navegador registradas; no se envió ninguna nueva")
+    elif args.accion == "plan":
         tareas = a.plan(args.inicio, args.fin, geo, productos)
         guardar_json(SALIDA / f"plan_{sufijo}.json", {
-            "geojson": geo.name, "sha256_geojson": sha256(geo), "estado": "no_enviado",
+            "geojson": geo.name, "sha256_geojson": sha256(geo), "operacion": "plan_sin_envios_nuevos",
             "tareas": [{k: v for k, v in t.items() if k not in ("geometria", "solicitud")}
                        | {"tipo": "area", "capas": t["solicitud"]["params"]["layers"]} for t in tareas]})
-        print(f"Plan: {len(tareas)} tareas de área; no enviadas")
+        print(f"Plan: {len(tareas)} tareas de área; este comando no envía solicitudes")
     elif args.accion == "enviar":
         tareas = a.plan(args.inicio, args.fin, geo, productos)
         ids = [{"task_id": e["task_id"], "region": e["region"], "producto": e["producto"],

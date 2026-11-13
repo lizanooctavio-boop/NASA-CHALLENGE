@@ -62,6 +62,27 @@ def test_envio_reanudable_sin_duplicar_y_sin_secretos(tmp_path, monkeypatch):
     assert 'secreto-prueba' not in primera[0][0].read_text(encoding='utf-8')
 
 
+def test_recibos_navegador_reutilizan_id_sin_reenviar(tmp_path, monkeypatch):
+    a = AppEEARS()
+    monkeypatch.setattr(a, 'cache', lambda: tmp_path)
+    plan = a.plan(2024, 2024, productos=['MOD13A3.061'])[:1]
+    recibo = {'task_name': plan[0]['solicitud']['task_name'],
+              'task_id': '5c1e5da0-a4a3-40d2-bda1-eee9dec63163',
+              'enviada_utc': '2026-11-13T05:50:34+00:00', 'estado_ui': 'Pending'}
+    assert a.registrar_recibos(plan, [recibo]) == 1
+    def api(ruta, datos=None, **kw):
+        assert ruta.startswith('product/'), 'No se debe enviar otra tarea'
+        return {c['layer']: {'Available': True} for c in plan[0]['solicitud']['params']['layers']}
+    monkeypatch.setattr(a, 'api', api)
+    assert list(a.enviar(plan))[0][1]['task_id'] == recibo['task_id']
+    with pytest.raises(ValueError):
+        a.registrar_recibos(plan, [recibo, recibo])
+    with pytest.raises(ValueError, match='contradice'):
+        a.registrar_recibos(plan, [recibo | {'task_id': '8b96ce89-736c-457c-80b2-095ac9f50d27'}])
+    with pytest.raises(ValueError):
+        a.registrar_recibos(plan, [recibo | {'task_name': 'tarea-ajena'}])
+
+
 def test_espera_error_timeout_y_vacio(monkeypatch):
     a = AppEEARS()
     monkeypatch.setattr(a, 'api', lambda *args: {'status': 'processing'})

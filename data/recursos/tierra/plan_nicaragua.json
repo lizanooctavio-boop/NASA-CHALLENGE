@@ -1,7 +1,7 @@
 {
   "geojson": "regiones_nicaragua.geojson",
   "sha256_geojson": "bddb823cadf0811a656a5b247f593282cf152c53d14745c35482cc60d9620fd5",
-  "estado": "no_enviado",
+  "operacion": "plan_sin_envios_nuevos",
   "tareas": [
     {
       "region": "NIC",
