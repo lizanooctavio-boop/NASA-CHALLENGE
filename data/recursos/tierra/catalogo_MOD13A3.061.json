@@ -1,0 +1,332 @@
+{
+  "_1_km_monthly_EVI": {
+    "AddOffset": 0.0,
+    "Available": true,
+    "DataType": "float32",
+    "Description": "1 km monthly EVI",
+    "Dimensions": [
+      "time",
+      "YDim",
+      "XDim"
+    ],
+    "FillValue": -3000,
+    "FillValueAll": [
+      -3000
+    ],
+    "Group": "",
+    "Info": {},
+    "IsQA": false,
+    "Layer": "_1_km_monthly_EVI",
+    "OrigDataType": "int16",
+    "OrigValidMax": 10000,
+    "OrigValidMin": -2000,
+    "QualityLayers": "['_1_km_monthly_VI_Quality']",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "ScaleFactor": 0.0001,
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": -0.200000003,
+    "XSize": 1200,
+    "YSize": 1200
+  },
+  "_1_km_monthly_MIR_reflectance": {
+    "AddOffset": 0.0,
+    "Available": true,
+    "DataType": "float32",
+    "Description": "1 km monthly MIR reflectance",
+    "Dimensions": [
+      "time",
+      "YDim",
+      "XDim"
+    ],
+    "FillValue": -1000,
+    "FillValueAll": [
+      -1000
+    ],
+    "Group": "",
+    "Info": {},
+    "IsQA": false,
+    "Layer": "_1_km_monthly_MIR_reflectance",
+    "OrigDataType": "int16",
+    "OrigValidMax": 10000,
+    "OrigValidMin": 0,
+    "QualityLayers": "['_1_km_monthly_pixel_reliability']",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "ScaleFactor": 0.0001,
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 1200,
+    "YSize": 1200
+  },
+  "_1_km_monthly_NDVI": {
+    "AddOffset": 0.0,
+    "Available": true,
+    "DataType": "float32",
+    "Description": "1 km monthly NDVI",
+    "Dimensions": [
+      "time",
+      "YDim",
+      "XDim"
+    ],
+    "FillValue": -3000,
+    "FillValueAll": [
+      -3000
+    ],
+    "Group": "",
+    "Info": {},
+    "IsQA": false,
+    "Layer": "_1_km_monthly_NDVI",
+    "OrigDataType": "int16",
+    "OrigValidMax": 10000,
+    "OrigValidMin": -2000,
+    "QualityLayers": "['_1_km_monthly_VI_Quality']",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "ScaleFactor": 0.0001,
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": -0.200000003,
+    "XSize": 1200,
+    "YSize": 1200
+  },
+  "_1_km_monthly_NIR_reflectance": {
+    "AddOffset": 0.0,
+    "Available": true,
+    "DataType": "float32",
+    "Description": "1 km monthly NIR reflectance",
+    "Dimensions": [
+      "time",
+      "YDim",
+      "XDim"
+    ],
+    "FillValue": -1000,
+    "FillValueAll": [
+      -1000
+    ],
+    "Group": "",
+    "Info": {},
+    "IsQA": false,
+    "Layer": "_1_km_monthly_NIR_reflectance",
+    "OrigDataType": "int16",
+    "OrigValidMax": 10000,
+    "OrigValidMin": 0,
+    "QualityLayers": "['_1_km_monthly_pixel_reliability']",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "ScaleFactor": 0.0001,
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 1200,
+    "YSize": 1200
+  },
+  "_1_km_monthly_VI_Quality": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "uint16",
+    "Description": "1 km monthly VI Quality",
+    "Dimensions": [
+      "time",
+      "YDim",
+      "XDim"
+    ],
+    "FillValue": 65535,
+    "FillValueAll": [
+      65535
+    ],
+    "Group": "",
+    "Info": {},
+    "IsQA": true,
+    "Layer": "_1_km_monthly_VI_Quality",
+    "OrigDataType": "uint16",
+    "OrigValidMax": 65534,
+    "OrigValidMin": 0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "",
+    "ValidMax": 65534.0,
+    "ValidMin": 0.0,
+    "XSize": 1200,
+    "YSize": 1200
+  },
+  "_1_km_monthly_blue_reflectance": {
+    "AddOffset": 0.0,
+    "Available": true,
+    "DataType": "float32",
+    "Description": "1 km monthly blue reflectance",
+    "Dimensions": [
+      "time",
+      "YDim",
+      "XDim"
+    ],
+    "FillValue": -1000,
+    "FillValueAll": [
+      -1000
+    ],
+    "Group": "",
+    "Info": {},
+    "IsQA": false,
+    "Layer": "_1_km_monthly_blue_reflectance",
+    "OrigDataType": "int16",
+    "OrigValidMax": 10000,
+    "OrigValidMin": 0,
+    "QualityLayers": "['_1_km_monthly_pixel_reliability']",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "ScaleFactor": 0.0001,
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 1200,
+    "YSize": 1200
+  },
+  "_1_km_monthly_pixel_reliability": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "int32",
+    "Description": "1 km monthly pixel reliability",
+    "Dimensions": [
+      "time",
+      "YDim",
+      "XDim"
+    ],
+    "FillValue": -1,
+    "FillValueAll": [
+      -1
+    ],
+    "Group": "",
+    "Info": {},
+    "IsQA": true,
+    "Layer": "_1_km_monthly_pixel_reliability",
+    "OrigDataType": "int32",
+    "OrigValidMax": 3,
+    "OrigValidMin": 0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "",
+    "ValidMax": 3.0,
+    "ValidMin": 0.0,
+    "XSize": 1200,
+    "YSize": 1200
+  },
+  "_1_km_monthly_red_reflectance": {
+    "AddOffset": 0.0,
+    "Available": true,
+    "DataType": "float32",
+    "Description": "1 km monthly red reflectance",
+    "Dimensions": [
+      "time",
+      "YDim",
+      "XDim"
+    ],
+    "FillValue": -1000,
+    "FillValueAll": [
+      -1000
+    ],
+    "Group": "",
+    "Info": {},
+    "IsQA": false,
+    "Layer": "_1_km_monthly_red_reflectance",
+    "OrigDataType": "int16",
+    "OrigValidMax": 10000,
+    "OrigValidMin": 0,
+    "QualityLayers": "['_1_km_monthly_pixel_reliability']",
+    "QualityProductAndVersion": "MOD13A3.061",
+    "ScaleFactor": 0.0001,
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 1200,
+    "YSize": 1200
+  },
+  "_1_km_monthly_relative_azimuth_angle": {
+    "AddOffset": 0.0,
+    "Available": true,
+    "DataType": "float32",
+    "Description": "1 km monthly relative azimuth angle",
+    "Dimensions": [
+      "time",
+      "YDim",
+      "XDim"
+    ],
+    "FillValue": -4000,
+    "FillValueAll": [
+      -4000
+    ],
+    "Group": "",
+    "Info": {},
+    "IsQA": false,
+    "Layer": "_1_km_monthly_relative_azimuth_angle",
+    "OrigDataType": "int16",
+    "OrigValidMax": 18000,
+    "OrigValidMin": -18000,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": 0.01,
+    "Units": "",
+    "ValidMax": 180.0,
+    "ValidMin": -180.0,
+    "XSize": 1200,
+    "YSize": 1200
+  },
+  "_1_km_monthly_sun_zenith_angle": {
+    "AddOffset": 0.0,
+    "Available": true,
+    "DataType": "float32",
+    "Description": "1 km monthly sun zenith angle",
+    "Dimensions": [
+      "time",
+      "YDim",
+      "XDim"
+    ],
+    "FillValue": -10000,
+    "FillValueAll": [
+      -10000
+    ],
+    "Group": "",
+    "Info": {},
+    "IsQA": false,
+    "Layer": "_1_km_monthly_sun_zenith_angle",
+    "OrigDataType": "int16",
+    "OrigValidMax": 18000,
+    "OrigValidMin": 0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": 0.01,
+    "Units": "",
+    "ValidMax": 180.0,
+    "ValidMin": 0.0,
+    "XSize": 1200,
+    "YSize": 1200
+  },
+  "_1_km_monthly_view_zenith_angle": {
+    "AddOffset": 0.0,
+    "Available": true,
+    "DataType": "float32",
+    "Description": "1 km monthly view zenith angle",
+    "Dimensions": [
+      "time",
+      "YDim",
+      "XDim"
+    ],
+    "FillValue": -10000,
+    "FillValueAll": [
+      -10000
+    ],
+    "Group": "",
+    "Info": {},
+    "IsQA": false,
+    "Layer": "_1_km_monthly_view_zenith_angle",
+    "OrigDataType": "int16",
+    "OrigValidMax": 18000,
+    "OrigValidMin": 0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": 0.01,
+    "Units": "",
+    "ValidMax": 180.0,
+    "ValidMin": 0.0,
+    "XSize": 1200,
+    "YSize": 1200
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "repositorio": "lizanooctavio-boop/NASA-CHALLENGE",
+  "pr": "https://github.com/lizanooctavio-boop/NASA-CHALLENGE/pull/7",
+  "rama": "codex/recursos-csa",
+  "commit": "ddad804318868dae8be71162f41678a574978e34",
+  "ruta_origen": "data/regiones_canada.geojson",
+  "sha256": "05e0f0dc1cf0a7c7476436028b5443812d44b9087fb5c0812e9ab588bbf4b402",
+  "nota": "Copia exacta para peticiones de área; no fusiona ni modifica los archivos del agente 3."
+}
