@@ -89,3 +89,31 @@ Earthdata, GES DISC and ASF access now work. No credential is part of this PR. T
 ## Verification
 
 `python -m pytest tests -q`: **111 passed, 1 skipped, 57 subtests passed**. Includes real-result consistency checks (24 Canadian years, 288 unique months, >=95% coverage; constant SAR domains and monotonic threshold sensitivity; three exact-day SWOT pairs), plus synthetic checks for units, leap years, missing months, fill values and power-to-dB conversion. Data acquisition and both processing scripts ran on real provider data. Existing imerg.py/gistemp.py are unchanged. Statistical significance and classifier validity are not inferred from software tests.
+
+
+## 8. Independent optical calibration attempt — outcome and publication gate
+
+Reproduce with `python scripts/sar/calibrar_optica.py` after running the RTC demonstration. It obtains **OPERA_L3_DSWX-HLS_V1 B02_BWTR** optical water/land classifications from PO.DAAC, with acquisition offsets no greater than two calendar days. The retrieved collection is marked **PROVISIONAL** in its paths; this is independent optical evidence, not field truth. [NASA JPL DSWx product documentation](https://www.jpl.nasa.gov/go/opera/products/dswx-product-suite/) describes the optical and radar product families. Only clear binary classes 0/1 are used; cloud, shadow, snow, ocean and fill values are excluded. Categorical masks are reprojected using nearest-neighbour, not averaged.
+
+The first experiment selected one nearest tile per date; its unfavorable and favorable results are preserved in `sar_validacion_optica_tile_unico.json` and `sar_superficie_calibrada_tile_unico.csv`. The second uses the nearest **clear observation per pixel** within the same +/-2-day limit, retaining provenance of every source. This improves cloud handling without relaxing time limits or treating clouds as land. Land/water can still change within two days, and optical products have their own errors.
+
+Calibration selects a date-specific lower-backscatter threshold by maximizing **training balanced accuracy**. Training uses 5-km column stripes (0 modulo 4); testing uses stripes 2 modulo 4; stripes 1 and 3 are unused gaps. Thresholds are not optimized against test scores, SWOT height or a desired lake area. These are spatial holdouts within each date, not a claim of temporal transferability. No out-of-date holdout is available.
+
+| Radar date | Threshold dB | Held-out F1 | Water recall | Land recall | Classifier gate |
+|---|---:|---:|---:|---:|---|
+| 2024-03-04 | -10.6 | 0.9344 | 0.9802 | 0.9648 | Pass |
+| 2024-04-21 | -15.8 | 0.0222 | 0.0112 | 0.9999 | Fail |
+| 2024-07-14 | -8.0 | 0.7523 | 0.8390 | 0.9389 | Fail |
+
+This provides a concrete improvement for March, **not a general solution**. Calibration still fails to transfer across spatial regions in April and July. Moreover, the clear optical area common to all three dates inside the observed lake is only **0.02 km²** out of 2,602.37 km². Large sample counts elsewhere in a scene do not compensate for missing lake reference coverage. No full-lake or seasonal water-area relation is validated by these results.
+
+`surface_quality_gate_passed` requires the classifier F1, water recall and land recall all >=0.90 **and** at least 80% common clear reference coverage in the analysis domain. This is a conservative necessary screening rule, not a universal validation standard. `area_water_validated_km2` is blank whenever the gate fails. **All nine date/domain combinations currently fail publication screening.** Calibrated candidate areas remain available for diagnosis, but are never relabelled as validated water measurements.
+
+CMR queries for OPERA_L3_DSWX-S1_V1 on these three radar days returned no matching granules; this does not establish that the product is unavailable for other dates. EODMS RCM still needs its own access; Earthdata login does not confer EODMS authorization.
+
+### What remains before calling the original CSA assignment scientifically complete
+
+The Canadian region, IMERG/GISTEMP, SWOT/G-REALM, reproducible real-data SAR demonstration, English ecosystem copy and same-day comparisons are delivered. The SAR physical-extent requirement remains **partial**. Closing it requires a usable independent shoreline/reference over the target domain, a method that passes spatial and temporal evaluation in difficult dates, and coverage beyond the current partial lake if total lake area is claimed. A longer time series alone does not repair a classifier or missing optical reference. No climate trend or reliable height–area relationship is inferred from the present SAR estimates.
+
+
+Verification after independent optical calibration: `python -m pytest tests -q` -> **114 passed, 1 skipped, 57 subtests passed**. Added checks that held-out labels do not alter the fitted threshold, undefined metrics cannot count as success, and good scores with inadequate reference coverage cannot publish a validated water area.

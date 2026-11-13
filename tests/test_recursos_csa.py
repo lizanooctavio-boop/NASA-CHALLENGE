@@ -266,6 +266,34 @@ class CanadaImerg(unittest.TestCase):
 
 
 class SarAgua(unittest.TestCase):
+    def test_superficie_no_se_publica_con_nubes_o_error(self):
+        from clima_nic.fuentes.sar_agua import superficie_publicable
+        good = {'f1':.95,'recall_water':.95,'recall_land':.95}
+        self.assertFalse(superficie_publicable(good,.01))
+        self.assertTrue(superficie_publicable(good,.90))
+        self.assertFalse(superficie_publicable({**good,'recall_water':.4},.99))
+        self.assertFalse(superficie_publicable({**good,'f1':None},.99))
+
+    def test_calibracion_no_usa_etiquetas_de_validacion(self):
+        import numpy as np
+        from clima_nic.fuentes.sar_agua import calibrar_umbral, evaluar_mascara
+        db = np.r_[np.full(60,-20.),np.full(60,-5.),np.full(60,-15.)]
+        labels = np.r_[np.ones(60,bool),np.zeros(60,bool),np.ones(60,bool)]
+        train = np.r_[np.ones(120,bool),np.zeros(60,bool)]
+        threshold = calibrar_umbral(db,labels,train)
+        labels[120:] = False
+        self.assertEqual(calibrar_umbral(db,labels,train),threshold)
+        metrics = evaluar_mascara(db<threshold,labels,train)
+        self.assertEqual(metrics['f1'],1.)
+        with self.assertRaises(ValueError):
+            calibrar_umbral(db,labels,np.zeros(180,bool))
+
+    def test_metricas_indefinidas_no_son_exito(self):
+        from clima_nic.fuentes.sar_agua import evaluar_mascara
+        m = evaluar_mascara([False],[False],[True])
+        self.assertIsNone(m['recall_water'])
+        self.assertIsNone(m['f1'])
+
     def test_potencia_gamma0_sin_convertir_nodata_en_agua(self):
         import numpy as np
         from clima_nic.fuentes.sar_agua import potencia_a_db, mascara_agua

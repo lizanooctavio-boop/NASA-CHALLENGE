@@ -16,6 +16,45 @@ def potencia_a_db(power):
     return 10 * out
 
 
+def calibrar_umbral(db, agua, entrenamiento):
+    """Fit one lower-backscatter threshold on explicitly selected training pixels.
+
+    Optimize balanced accuracy, not an area target or the held-out score.
+    Reference water is optical BWTR=1; clear reference land is BWTR=0.
+    """
+    x, y, train = np.asarray(db), np.asarray(agua, bool), np.asarray(entrenamiento, bool)
+    train = train & np.isfinite(x)
+    wet, dry = x[train & y], x[train & ~y]
+    if min(len(wet), len(dry)) < 50:
+        raise ValueError('At least 50 training pixels of each class are required')
+    thresholds = np.linspace(-45, 10, 551)
+    wet, dry = np.sort(wet), np.sort(dry)
+    sensitivity = np.searchsorted(wet, thresholds, side='left') / len(wet)
+    specificity = 1 - np.searchsorted(dry, thresholds, side='left') / len(dry)
+    return float(thresholds[np.argmax((sensitivity + specificity)/2)])
+
+
+def evaluar_mascara(pred, ref, evaluacion):
+    """Confusion metrics on a held-out mask; None for undefined denominators."""
+    p, r, mask = np.asarray(pred, bool), np.asarray(ref, bool), np.asarray(evaluacion, bool)
+    tp, fp = int((mask&p&r).sum()), int((mask&p&~r).sum())
+    tn, fn = int((mask&~p&~r).sum()), int((mask&~p&r).sum())
+    ratio = lambda a,b: a/b if b else None
+    return {'tp':tp,'fp':fp,'tn':tn,'fn':fn,
+            'precision':ratio(tp,tp+fp),'recall_water':ratio(tp,tp+fn),
+            'recall_land':ratio(tn,tn+fp),'f1':ratio(2*tp,2*tp+fp+fn)}
+
+
+def superficie_publicable(metrics, cobertura_referencia):
+    """Conservative screening gate, not a claim of universal validation.
+
+    Good scores on a tiny cloud-free sample do not validate a full AOI area.
+    """
+    return (np.isfinite(cobertura_referencia) and cobertura_referencia >= .80 and
+            all(metrics.get(k) is not None and metrics[k] >= .90
+                for k in ('f1','recall_water','recall_land')))
+
+
 def mascara_agua(db, valido=None, umbral_db=-17.0):
     """Return water mask; no-data must not become water. Threshold is site-specific."""
     x = np.asarray(db, dtype=float)
