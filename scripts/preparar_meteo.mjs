@@ -7,10 +7,18 @@ const capas = ['GOES-East_ABI_GeoColor', 'IMERG_Precipitation_Rate_30min',
   'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies', 'MODIS_Combined_Value_Added_AOD'];
 const csv = ['enos', 'tormentas'];
 
-async function obtener(ruta) {
-  const respuesta = await fetch(origen + '/api/' + ruta, { signal: AbortSignal.timeout(25000) });
-  if (!respuesta.ok) throw Error(ruta + ': HTTP ' + respuesta.status);
-  return respuesta;
+// SICC-952 corre en Render gratuito: dormido responde 502/503 o se agota hasta que arranca (~1 min).
+async function obtener(ruta, intentos = 6) {
+  for (let i = 1; ; i++) {
+    try {
+      const respuesta = await fetch(origen + '/api/' + ruta, { signal: AbortSignal.timeout(25000) });
+      if (respuesta.ok) return respuesta;
+      if (respuesta.status < 500 || i >= intentos) throw Error(ruta + ': HTTP ' + respuesta.status);
+    } catch (e) {
+      if (i >= intentos || e.message.startsWith(ruta + ': HTTP 4')) throw e;
+    }
+    await new Promise(r => setTimeout(r, 15000));
+  }
 }
 
 async function json(ruta) { return (await obtener(ruta)).json(); }
@@ -28,7 +36,14 @@ async function ejecutar(tareas, concurrencia = 5) {
 }
 
 await mkdir(salida, { recursive: true });
-const meta = await json('global_meta');
+let meta;
+try {
+  meta = await json('global_meta');
+} catch (e) {
+  // Sin fuente no se tumba el despliegue: public/clima-base conserva la instantánea anterior.
+  console.warn('Pronóstico no disponible; se conserva la instantánea anterior:', e.message);
+  process.exit(0);
+}
 const tareas = meta.horas_utc.flatMap((_, paso) => variables.map(variable => async () => {
   const campo = await json(`global?var=${variable}&paso=${paso}`);
   if (campo.corrida_utc !== meta.corrida_utc || campo.hora_utc !== meta.horas_utc[paso]) {
