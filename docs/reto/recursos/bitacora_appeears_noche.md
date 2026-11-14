@@ -299,3 +299,38 @@ Horarios de Managua (UTC−06:00), 14 de noviembre de 2026. Rama `codex/herramie
 ## 05:15 · Fase 2 · Punto de control
 
 - 378e89e2706322e9d5e35ad599f759054f7176bc: 197 passed, 3 warnings, 130 subtests passed in 12.09s.
+
+## 05:16 · Verificación y publicación
+
+- Clon nuevo del commit 56b760051eda35d0ad3c7b82a68dff8fbd993569: 198 passed, 3 warnings, 131 subtests passed in 12.76s. Coinciden todas las huellas de entradas en disco.
+- GitHub confirmó la punta 56b760051eda35d0ad3c7b82a68dff8fbd993569 de la rama.
+- 378e89e2706322e9d5e35ad599f759054f7176bc · AppEEARS: validación SMAP 2015-2019.
+- 56b760051eda35d0ad3c7b82a68dff8fbd993569 · AppEEARS: integrar humedad superficial SMAP.
+
+## 05:17 · Copia de trabajo verificada
+
+- Se restauraron finales LF en los cuatro JSON de AppEEARS y en la copia local de GLDAS anual. Se comprobó que los bytes resultantes coinciden con cada blob publicado y con las huellas del integrador. El índice se refrescó sin diferencias de contenido.
+
+## 05:18 · Revisión del corte publicado
+
+- Se abrió en Chrome el JSON del clon verificado de `56b7600`. La selección de SMAP muestra 57 meses, periodo 2015-04 a 2019-12, estado «Not validated» y gráfica con decimales en inglés.
+- También se ejecutó la suite en el directorio de trabajo después de normalizar finales de línea: 198 pruebas y 131 subpruebas correctas. Las tres advertencias son las mismas de la rama base.
+
+## 05:42 · Fase 4 · Consulta de cierre
+
+- 6 done, 1 processing, 143 pending
+- 1 bundles terminados por incorporar.
+
+## 05:42 · Cierre
+
+- Terminó la ventana de seguimiento al amanecer en Managua (05:42).
+- Procesadas 5 tareas. 55.609 archivos de bundle (55.584 GeoTIFF). Estado: NO_VALIDADA.
+- NIC: 57 meses válidos (2015-04 a 2019-12). Rango mensual 0,1804–0,4227 m³/m³, rango de medias regionales de 3 h 0,1532–0,4601 m³/m³. Mayo–octubre: 0,3394 (30 meses). Noviembre–abril: 0,2991 (27 meses).
+- NIC 2015-03: 8/248 intervalos válidos, 8 presentes. El producto comenzó el 31 de marzo.
+- GLDAS regional 0–10 cm frente a SMAP 0–5 cm en NIC: 57 pares mensuales, Pearson r = 0,9183, r de anomalías respecto al mes del calendario = 0,8813 (57 pares), sesgo SMAP − GLDAS 0,0555 m³/m³. Años completos comunes: 2016, 2017, 2018, 2019. Pendientes Sen descriptivas en m³/m³ por década, SMAP y GLDAS: -0,1391 y -0,0647. Mismo signo.
+- La comparación de capas y mallas distintas es descriptiva. Sigue pendiente validar con mediciones locales y ampliar años completos antes de inferir una tendencia.
+- Cola nicaragüense en la última consulta completa: 6 done, 1 processing, 143 pending.
+- Caducidad informada en el encargo para los cinco bundles iniciales: 13–14/12/2026. La consulta de tarea no expone ese campo.
+- Commit subido: 378e89e2706322e9d5e35ad599f759054f7176bc · AppEEARS: validación SMAP 2015-2019.
+- Commit subido: 56b760051eda35d0ad3c7b82a68dff8fbd993569 · AppEEARS: integrar humedad superficial SMAP.
+- Pruebas en clon nuevo: 198 passed, 3 warnings, 131 subtests passed in 12.76s. Retomar desde el último commit de datos y consultar solo los IDs registrados.
