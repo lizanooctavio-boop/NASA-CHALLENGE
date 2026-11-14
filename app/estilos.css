@@ -366,3 +366,4 @@ body.en-transicion .interruptor button{cursor:progress}
 #aprender article p{font-size:13.5px;line-height:1.55}
 #aprender article.resaltado{outline:2px solid var(--ambar);outline-offset:2px;transition:outline-color .4s}
 .fuentes-lista li{margin:10px 0}.fuentes-lista p{margin:2px 0 0;font-size:12.5px;color:var(--texto-2)}.fuentes-lista .tenue{color:var(--tenue);font-size:12px}
+.hora-capa{display:block;font-size:.72em;opacity:.7}
