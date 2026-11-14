@@ -16,6 +16,7 @@ import time
 import urllib.error
 import urllib.request
 import uuid
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -112,13 +113,18 @@ class AppEEARS(Adaptador):
             headers["Content-Type"] = "application/json"
         req = urllib.request.Request(API + "/" + ruta, headers=headers,
                                      data=json.dumps(datos).encode() if datos is not None else None)
-        try:
-            with urllib.request.urlopen(req, timeout=180) as r:
-                return r.read() if binario else json.load(r)
-        except urllib.error.HTTPError as e:
-            if e.code in (401, 403):
-                raise RequiereEarthdata(f"AppEEARS HTTP {e.code}; renueve el token de su API (~48 h) o revise autorización.") from None
-            raise RuntimeError(f"AppEEARS {ruta.split('/')[0]}: HTTP {e.code}; las tareas ya enviadas quedan guardadas.") from None
+        for intento in range(8):
+            try:
+                with urllib.request.urlopen(req, timeout=180) as r:
+                    return r.read() if binario else json.load(r)
+            except urllib.error.HTTPError as e:
+                # 429/503: límite de peticiones de AppEEARS; se espera (Retry-After o espera creciente) y se reintenta.
+                if e.code in (429, 503) and intento < 7:
+                    time.sleep(float(e.headers.get("Retry-After") or 0) or min(60, 2 ** intento))
+                    continue
+                if e.code in (401, 403):
+                    raise RequiereEarthdata(f"AppEEARS HTTP {e.code}; renueve el token de su API (~48 h) o revise autorización.") from None
+                raise RuntimeError(f"AppEEARS {ruta.split('/')[0]}: HTTP {e.code}; las tareas ya enviadas quedan guardadas.") from None
 
     def plan(self, inicio, fin, geojson=REGIONES_GEOJSON, productos=None, bloque_anios=5):
         """Un polígono por tarea: no depender de identificadores aid asignados por el servidor."""
@@ -217,13 +223,21 @@ class AppEEARS(Adaptador):
                 raise TimeoutError(f"AppEEARS {task_id}: sigue {estado['status']}; vuelva a ejecutar para reanudar")
             time.sleep(min(intervalo, restante, 30))
 
-    def bajar_bundle(self, task_id):
+    def bajar_bundle(self, task_id, hilos=1):
         bundle = self.api("bundle/" + task_id)
         directorio = self.cache() / task_id
         directorio.mkdir(parents=True, exist_ok=True)
         guardar_json(directorio / "bundle.json", bundle)
+        if hilos > 1:
+            # Un bundle de SMAP de 3 h tiene ~8800 GeoTIFF: se piden en paralelo, archivo por archivo como en serie.
+            with ThreadPoolExecutor(hilos) as ex:
+                listas = list(ex.map(lambda a: self._bajar_archivos(task_id, directorio, [a]), bundle["files"]))
+            return [r for lista in listas for r in lista]
+        return self._bajar_archivos(task_id, directorio, bundle["files"])
+
+    def _bajar_archivos(self, task_id, directorio, archivos):
         rutas = []
-        for archivo in bundle["files"]:
+        for archivo in archivos:
             # El nombre del bundle no puede escribir fuera del directorio de esta tarea.
             nombre = archivo["file_name"].replace("\\", "/").split("/")[-1]
             ruta = directorio / nombre
@@ -247,6 +261,27 @@ class AppEEARS(Adaptador):
             estado["tiempos"] = {k: detalle.get(k) for k in ("created", "updated", "completed")}
             guardar_json(registro, estado)
         return [e for _, e in pendientes]
+
+    def terminadas(self, registros, geojson=REGIONES_GEOJSON, productos=None, hilos=8):
+        """Descarga solo las tareas ya registradas que AppEEARS da por terminadas. Nunca envía tareas.
+
+        `registros` son las filas de tareas_*.json (task_id, region, producto, desde, hasta). La geometría se toma
+        del plan, que no hace peticiones. Devuelve (estados terminados, recuento por estado).
+        """
+        geometrias = {(t["region"], t["producto"], t["desde"], t["hasta"]): t["geometria"]
+                      for t in self.plan(2001, 2024, geojson, productos)}
+        hechos, cuenta = [], {}
+        for r in registros:
+            estado = self.api("task/" + r["task_id"])
+            cuenta[estado["status"]] = cuenta.get(estado["status"], 0) + 1
+            if estado["status"] != "done" or estado.get("summary", {}).get("empty"):
+                continue
+            clave = r["region"], r["producto"], r["desde"], r["hasta"]
+            if clave not in geometrias:
+                raise ValueError(f"Tarea {r['task_id']} sin geometría en el plan: {clave}")
+            hechos.append({**r, "geometria": geometrias[clave], "archivos": self.bajar_bundle(r["task_id"], hilos),
+                           "tiempos": {k: estado.get(k) for k in ("created", "updated", "completed")}})
+        return hechos, cuenta
 
     def recortar(self, archivos, regiones=None):
         """Lee GeoTIFF, aplica QA, área exacta y máscara de cobertura constante 500 m → 1 km."""
@@ -503,7 +538,8 @@ def agregar_registros(registros, frecuencia="mensual"):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("accion", choices=["plan", "enviar", "procesar", "registrar-navegador"])
+    parser.add_argument("accion", choices=["plan", "enviar", "procesar", "procesar-terminadas", "registrar-navegador"])
+    parser.add_argument("--hilos", type=int, default=8, help="descargas simultáneas en procesar-terminadas")
     parser.add_argument("--inicio", type=int, default=2001)
     parser.add_argument("--fin", type=int, default=2024)
     parser.add_argument("--geojson", type=Path, help="geometría explícita; por defecto regiones_nicaragua o regiones_canada")
@@ -539,6 +575,23 @@ def main():
                for _, e in a.enviar(tareas)]
         guardar_json(SALIDA / f"tareas_{sufijo}.json", ids)
         print(f"{len(ids)} tareas enviadas/reutilizadas; ejecute procesar para esperar y descargar")
+    elif args.accion == "procesar-terminadas":
+        # Procesa lo que ya terminó y deja el resto en cola: no espera ni reenvía.
+        registros = json.loads((SALIDA / f"tareas_{sufijo}.json").read_text(encoding="utf-8"))
+        tareas, cuenta = a.terminadas(registros, geo, productos, args.hilos)
+        print(f"AppEEARS {sufijo}: {cuenta}; se procesan {len(tareas)} tareas terminadas")
+        if not tareas:
+            return
+        registros = recortar_tareas(tareas, exigir_estable=not args.canada)
+        guardar_json(SALIDA / f"registros_appeears_{sufijo}.json", registros)
+        for frecuencia in ("mensual", "anual"):
+            guardar_json(SALIDA / f"series_appeears_{sufijo}_{frecuencia}.json",
+                         [s.como_dict() for s in a.agregar(registros, frecuencia)])
+        guardar_json(SALIDA / f"procedencia_{sufijo}.json", [
+            {k: v for k, v in e.items() if k in ("task_id", "region", "producto", "desde", "hasta", "tiempos", "enviada_utc")}
+            | {"archivos": len(e["archivos"]), "sha256_lista": hashlib.sha256(
+                "\n".join(sorted(f"{Path(p).name} {sha256(p)}" for p in e["archivos"])).encode()).hexdigest()}
+            for e in tareas])
     else:
         tareas = a.descargar(args.inicio, args.fin, geo, productos, args.max_segundos)
         registros = recortar_tareas(tareas, exigir_estable=not args.canada)
