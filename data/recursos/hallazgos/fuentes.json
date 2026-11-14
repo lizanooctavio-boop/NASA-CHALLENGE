@@ -1,5 +1,5 @@
 {
- "generado_utc": "2026-11-14T16:53:22+00:00",
+ "generado_utc": "2026-11-14T17:50:21+00:00",
  "chirps": {
   "producto": "CHIRPS v2.0 daily 0.25° (UCSB Climate Hazards Center)",
   "acceso": "IRI Data Library",
@@ -60,6 +60,16 @@
     -81.66
    ]
   },
-  "generado_utc": "2026-11-14T16:49:53+00:00"
+  "generado_utc": "2026-11-14T17:50:55+00:00"
+ },
+ "crw": {
+  "producto": "NOAA Coral Reef Watch v3.1 daily 5 km Regional Virtual Station «Nicaragua»",
+  "url": "https://coralreefwatch.noaa.gov/product/vs/",
+  "datos": "https://coralreefwatch.noaa.gov/product/vs/data/nicaragua.txt",
+  "ultimo_dia": "2026-11-12",
+  "dhw_ultimo": 11.7143,
+  "alerta_ultima": 4,
+  "dias_ola_calor_anio_en_curso": 59,
+  "dhw_max_anio_en_curso": 11.7143
  }
 }

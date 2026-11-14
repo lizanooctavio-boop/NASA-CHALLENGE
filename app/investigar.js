@@ -6,7 +6,7 @@ const $=id=>document.getElementById(id);
 const nodo=(t,txt,c)=>{const n=document.createElement(t);if(txt!==undefined)n.textContent=txt;if(c)n.className=c;return n};
 const num=(v,d=2)=>Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 const signo=(v,d=2)=>(v>0?'+':v<0?'−':'')+num(Math.abs(v),d);
-const DECIMALES={mm:0,'°C':2,NDVI:3,m:2,'mg/m³':2,days:1,'mm/day':2,'million km²':2,storms:1,months:1};
+const DECIMALES={mm:0,'°C':2,NDVI:3,m:2,'mg/m³':2,days:1,'mm/day':2,'million km²':2,storms:1,months:1,Gt:0,cm:1,pH:3,'Ω':2,fraction:2,'°C-weeks':1};
 const dec=u=>DECIMALES[u]??2;
 
 const VEREDICTO={
@@ -106,7 +106,7 @@ function resultado(){
   serie(x,t,ok);
 }
 function serie(x,t,ok){
-  const u=x.unidad,barras=['mm','storms','months'].includes(u)&&!x.id.startsWith('nivel_mar_');
+  const u=x.unidad,barras=['mm','storms','months','Gt'].includes(u)&&!x.id.startsWith('nivel_mar_');
   $('inv-serie-titulo').textContent=`${x.titulo_en} · ${lugar(x.lugar).nombre_en}`;
   const ds=[{type:barras?'bar':'line',label:`${x.titulo_en} (${u})`,data:x.valores,borderColor:'#6fd8ff',backgroundColor:barras?'rgba(79,143,232,.7)':'rgba(111,216,255,.15)',pointRadius:barras?0:2,borderWidth:barras?0:2,spanGaps:false}];
   if(ok){
