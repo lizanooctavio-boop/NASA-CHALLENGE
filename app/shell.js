@@ -11,7 +11,9 @@ function nodo(tag,texto,clase){const n=document.createElement(tag);if(texto!==un
 function tarjeta(contenedor,titulo,valor,detalle){const d=nodo('div',undefined,'tarjeta');d.append(nodo('small',titulo),nodo('strong',valor));if(detalle)d.append(nodo('p',detalle));contenedor.append(d)}
 const decimal=(v,n=2)=>Number(v).toLocaleString('en-US',{maximumFractionDigits:n,minimumFractionDigits:n});
 async function api(url){const r=await window.FuentesMeteo.fetch(url);const d=await leerJSON(r);if(!r.ok)throw Error(d.error||'Data unavailable');return d}
-function tab(id){document.querySelectorAll('.vista').forEach(v=>v.hidden=v.id!==id);document.querySelectorAll('nav button').forEach(b=>{b.classList.toggle('activo',b.dataset.tab===id);if(b.dataset.tab===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});$('titulo').textContent=document.querySelector(`[data-tab="${id}"]`).textContent;soloMapa(false);document.dispatchEvent(new CustomEvent('sicc:pestana',{detail:id}))}
+// Capas, línea de tiempo e indicador meteorológico solo acompañan a las pestañas que los usan.
+const PESTANAS_METEO=['meteorologia','fenomenos'];
+function tab(id){document.body.classList.toggle('sin-meteo',!PESTANAS_METEO.includes(id));document.body.classList.toggle('pestana-tendencias',id==='tendencias');document.querySelectorAll('.vista').forEach(v=>v.hidden=v.id!==id);document.querySelectorAll('nav button').forEach(b=>{b.classList.toggle('activo',b.dataset.tab===id);if(b.dataset.tab===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});$('titulo').textContent=document.querySelector(`[data-tab="${id}"]`).textContent;soloMapa(false);document.dispatchEvent(new CustomEvent('sicc:pestana',{detail:id}))}
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 
 // ---------------------------------------------------------------- mapa 2D
@@ -26,7 +28,8 @@ function iniciarMapa(){
   mapa.on('click',e=>{if($('consultar').disabled)return;elegirPunto(e.latlng.lat,L.Util.wrapNum(e.latlng.lng,[-180,180]))});
   baseVectorial();
 }
-function elegirPunto(lat,lon){$('lat').value=lat.toFixed(3);$('lon').value=lon.toFixed(3);if(!$('meteorologia').hidden||true)$('consulta-punto').requestSubmit()}
+// En la pestaña del reto un clic en el globo o el mapa no abre el pronóstico: la vista sigue en el resultado.
+function elegirPunto(lat,lon){if(!$('tendencias').hidden)return;$('lat').value=lat.toFixed(3);$('lon').value=lon.toFixed(3);$('consulta-punto').requestSubmit()}
 
 // ---------------------------------------------------------------- consulta puntual (Open-Meteo, mundial)
 let pronostico=null;

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="app/estilos.css">
 </head>
-<body class="modo-globo cargando">
+<body class="modo-globo cargando sin-meteo pestana-tendencias">
 <canvas id="espacio" tabindex="0" aria-label="3D Earth. Drag to rotate, scroll to zoom, click to get a forecast."></canvas>
 <div id="mapa" aria-label="2D weather map"></div>
 
@@ -20,9 +20,9 @@
   </div>
   <p class="sub">Earth system explorer</p>
   <nav id="menu-principal" aria-label="Sections">
-    <button class="activo" data-tab="meteorologia" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 1 1 .8-7.9A5.5 5.5 0 0 1 18.4 12 3 3 0 0 1 18 18z"/></svg><span class="txt">Weather</span></button>
+    <button class="activo" data-tab="tendencias" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M5 16l5-5 4 3 6-7M16 7h4v4"/></svg><span class="txt">Rainfall trend</span></button>
+    <button data-tab="meteorologia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 1 1 .8-7.9A5.5 5.5 0 0 1 18.4 12 3 3 0 0 1 18 18z"/></svg><span class="txt">Weather</span></button>
     <button data-tab="investigar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/></svg><span class="txt">Investigate</span></button>
-    <button data-tab="tendencias"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M5 16l5-5 4 3 6-7M16 7h4v4"/></svg><span class="txt">Rainfall trend</span></button>
     <button data-tab="indicadores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span class="txt">Climate indicators</span></button>
     <button data-tab="fenomenos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/></svg><span class="txt">El Niño &amp; cyclones</span></button>
     <button data-tab="escenarios"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 14.8V4.5a2.5 2.5 0 0 0-5 0v10.3a4.5 4.5 0 1 0 5 0zM11.5 9v8"/></svg><span class="txt">Climate scenarios</span></button>
@@ -35,7 +35,7 @@
 
 <main>
 <header>
-  <div><p class="etiqueta">NASA SPACE APPS</p><h1 id="titulo">Weather</h1></div>
+  <div><p class="etiqueta">NASA SPACE APPS</p><h1 id="titulo">Rainfall trend</h1></div>
   <div class="acciones">
     <div class="interruptor" role="group" aria-label="View">
       <button type="button" id="vista-globo" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Globe</button>
@@ -47,7 +47,7 @@
 </header>
 <div id="error" role="alert" hidden><span id="error-texto"></span><button id="error-cerrar" type="button" aria-label="Close">×</button></div>
 
-<section id="meteorologia" class="vista">
+<section id="meteorologia" class="vista" hidden>
   <label class="rango" for="opacidad-temp">Layer opacity<input id="opacidad-temp" type="range" min="15" max="95" value="60"></label>
   <article>
     <h2 id="meteograma-titulo">Point forecast</h2>
@@ -74,19 +74,30 @@
   <article><h2>Guided examples</h2><div id="inv-demos" class="demos"></div></article>
 </section>
 
-<section id="tendencias" class="vista" hidden>
-  <div class="intro"><h2>Has annual rainfall changed in Nicaragua?</h2><p id="tend-sub">NASA GPM IMERG Final V07B · 2001–2024</p></div>
+<section id="tendencias" class="vista">
+  <div class="intro">
+    <p class="etiqueta-reto">Challenge question</p>
+    <h2 id="tend-pregunta">Has annual rainfall changed in Nicaragua?</h2>
+    <dl class="ficha" id="tend-ficha">
+      <div><dt>Variable</dt><dd>Annual rainfall (mm/yr)</dd></div>
+      <div><dt>Period</dt><dd id="tend-periodo">2001–2024</dd></div>
+      <div><dt>Data</dt><dd>NASA GPM IMERG Final V07B</dd></div>
+    </dl>
+  </div>
   <div class="botones-region" role="radiogroup" aria-label="Area" id="botones-region"></div>
-  <article id="tarjeta-resultado" aria-live="polite"><div id="veredicto"></div></article>
+  <article id="tarjeta-resultado" aria-live="polite"><div id="veredicto" role="status"><p class="detalle cargando-datos">Loading NASA rainfall data…</p></div></article>
   <article>
-    <h2>Annual rainfall</h2>
-    <ul class="leyenda" id="leyenda-serie"></ul>
-    <div class="grafica" id="serie"></div>
-  </article>
-  <article>
-    <h2>Trend and 95% confidence interval by area</h2>
+    <h2>Compare areas on one scale</h2>
+    <p class="sub-art" id="comp-explica">Each bar is a 95% confidence interval for the trend. A bar that crosses the zero line means “no change” still fits the data, so the evidence is insufficient.</p>
     <ul class="leyenda" id="leyenda-comp"></ul>
     <div class="grafica" id="comparacion"></div>
+    <details class="cifras" id="comp-cifras"><summary>Figures as text</summary><div class="tabla" id="comp-tabla"></div></details>
+  </article>
+  <article>
+    <h2 id="serie-titulo">Annual rainfall</h2>
+    <ul class="leyenda" id="leyenda-serie"></ul>
+    <div class="grafica" id="serie"></div>
+    <div class="controles"><button type="button" id="tend-mapa">Show area on the map</button></div>
   </article>
   <article>
     <h2>Download the evidence</h2>

@@ -179,15 +179,21 @@
   function dibujarComparacion(cont, regiones, selId, meta, alElegir) {
     cont.innerHTML = '';
     var W = Math.max(280, cont.clientWidth || 800), estrecho = W < 560;
-    var etq = estrecho ? 112 : 190, m = { l: etq, r: 16, t: 8, b: 34 }, fila = estrecho ? 58 : 52;
+    var etq = estrecho ? 112 : 190, m = { l: etq, r: 28, t: 24, b: 34 }, fila = estrecho ? 58 : 52;
     var H = m.t + m.b + fila * regiones.length;
     var vals = [0];
     regiones.forEach(function (r) { ['mco', 'sen'].forEach(function (k) { var t = r.analisis[k]; if (t) vals.push(t.ic_inf, t.ic_sup); }); });
     var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), pad = (hi - lo) * 0.06 || 1;
     lo -= pad; hi += pad;
     var X = function (v) { return m.l + (v - lo) / (hi - lo) * (W - m.l - m.r); };
+    var nivel = Math.round(meta.nivel_confianza * 100);
+    var lectura = regiones.map(function (r) {
+      var t = r.analisis.mco;
+      return r.nombre + ': ' + ESTADOS[r.analisis.veredicto.estado].etiqueta.toLowerCase() +
+        (t ? ', least squares ' + leerNumero(t.pendiente) + ', interval ' + leerNumero(t.ic_inf) + ' to ' + leerNumero(t.ic_sup) : '');
+    }).join('; ');
     var svg = el('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img',
-      'aria-label': 'Theil–Sen and least-squares slopes with ' + Math.round(meta.nivel_confianza * 100) + '% intervals for each area on a common scale with a zero line.' }, cont);
+      'aria-label': 'Trend per decade with ' + nivel + '% intervals for each area on a common scale, ' + meta.unidades_pendiente + '. ' + lectura + '.' }, cont);
 
     var g = el('g', { class: 'eje' }, svg);
     ticksBonitos(lo, hi, estrecho ? 4 : 7).forEach(function (v) {
@@ -195,7 +201,7 @@
       texto(g, X(v), H - m.b + 16, conSigno(v, nf0), { 'text-anchor': 'middle' });
     });
     texto(g, W - m.r, H - 4, meta.unidades_pendiente, { 'text-anchor': 'end', style: 'fill:var(--texto-3)', 'font-size': 11 });
-    texto(g, X(0), H - 4, estrecho ? '' : 'no change', { 'text-anchor': 'middle', style: 'fill:var(--texto-3)', 'font-size': 11 });
+    texto(g, X(0), 14, '0 = no change', { 'text-anchor': 'middle', style: 'fill:var(--texto)', 'font-size': 11, 'font-weight': 600 });
 
     regiones.forEach(function (r, i) {
       var y0 = m.t + i * fila, yc = y0 + fila / 2;
@@ -210,10 +216,13 @@
       if (!r.analisis.mco) {
         texto(grupo, X(0) + 8, yc + 4, 'no trend available', { style: 'fill:var(--texto-3)', 'font-size': 12 });
       }
-      [['mco', -7, 'var(--serie-mco)', 'Least squares'], ['sen', 7, 'var(--serie-sen)', 'Theil–Sen']].forEach(function (cfg) {
+      [['mco', -7, 'var(--serie-mco)', 'Least squares', 'LS'], ['sen', 7, 'var(--serie-sen)', 'Theil–Sen', 'TS']].forEach(function (cfg) {
         var t = r.analisis[cfg[0]]; if (!t) return;
         var y = yc + cfg[1];
         el('line', { x1: X(t.ic_inf), x2: X(t.ic_sup), y1: y, y2: y, stroke: cfg[2], 'stroke-width': 2.5, 'stroke-linecap': 'round', 'stroke-dasharray': cfg[0] === 'sen' ? '6 3' : null }, grupo);
+        // Rótulo corto junto a cada intervalo: el método se lee sin depender del color.
+        var cabe = X(t.ic_sup) + 22 < W - m.r;
+        texto(grupo, cabe ? X(t.ic_sup) + 6 : X(t.ic_inf) - 6, y + 3.5, cfg[4], { 'text-anchor': cabe ? 'start' : 'end', 'font-size': 10, 'font-weight': 700, style: 'fill:var(--texto-3)' });
         var forma = cfg[0] === 'mco'
           ? el('circle', { cx: X(t.pendiente), cy: y, r: 5, fill: cfg[2], stroke: 'var(--superficie)', 'stroke-width': 2 }, grupo)
           : el('rect', { x: X(t.pendiente) - 5, y: y - 5, width: 10, height: 10, fill: cfg[2], stroke: 'var(--superficie)', 'stroke-width': 2, transform: 'rotate(45 ' + X(t.pendiente) + ' ' + y + ')' }, grupo);
@@ -231,6 +240,9 @@
     el('line', { x1: X(0), x2: X(0), y1: m.t, y2: H - m.b, class: 'cero' }, svg);
   }
 
+  // Lectura en voz: «minus 62.3» en lugar del signo tipográfico, que algunos lectores de pantalla omiten.
+  function leerNumero(v, f) { return (v < 0 ? 'minus ' : v > 0 ? 'plus ' : '') + (f || nf1).format(Math.abs(v)); }
+
   function escapar(s) {
     return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
   }
@@ -238,6 +250,6 @@
   window.SofGraficas = {
     ESTADOS: ESTADOS, colorMapa: colorMapa, dibujarSerie: dibujarSerie,
     dibujarComparacion: dibujarComparacion, ocultarTip: ocultarTip,
-    formato: { nf0: nf0, nf1: nf1, nf2: nf2, conSigno: conSigno }, escapar: escapar
+    formato: { nf0: nf0, nf1: nf1, nf2: nf2, conSigno: conSigno, leerNumero: leerNumero }, escapar: escapar
   };
 })();
