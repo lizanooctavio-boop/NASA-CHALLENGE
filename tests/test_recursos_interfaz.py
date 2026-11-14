@@ -279,3 +279,17 @@ def test_estudios_publicados_acompanan_las_series_que_contrastan():
     assert rec.ESTUDIOS["estaciones_mallas"] in ids["chirps_prcptot_caribe"]["notas"]
     assert rec.ESTUDIOS["racha_ciclones"] in ids["ciclones_huracanes_NIC"]["notas"]
     assert all("doi:10." in t for t in rec.ESTUDIOS.values())
+
+
+def test_hiato_ciclones_desde_1851_y_lluvia_total_con_estudios():
+    d = json.loads((RAIZ / "data" / "recursos_integrados.json").read_text(encoding="utf-8"))
+    ids = {i["id"]: i for i in d["investigaciones"]}
+    hiato, largo = ids["temperatura_banda_global_1998_2012"], ids["temperatura_banda_global"]
+    assert hiato["tiempos"][0] == 1998 and hiato["tiempos"][-1] == 2012
+    assert hiato["tendencia"]["sen"]["por_decada"] < largo["tendencia"]["sen"]["por_decada"]
+    historico = ids["ciclones_tormentas_NIC_1851"]
+    assert historico["tiempos"][0] == 1851 and rec.ESTUDIOS["subregistro_ciclones"] in historico["notas"]
+    reciente = ids["ciclones_tormentas_NIC"]
+    assert dict(zip(historico["tiempos"], historico["valores"]))[2020] == dict(zip(reciente["tiempos"], reciente["valores"]))[2020]
+    for region in ("NIC", "pacifico", "central", "caribe"):
+        assert rec.ESTUDIOS["lluvia_total_estaciones"] in ids[f"chirps_prcptot_{region}"]["notas"]

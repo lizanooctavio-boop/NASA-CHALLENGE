@@ -545,6 +545,15 @@ ESTUDIOS = {
     "racha_ciclones": "Published check: the cluster of storms near the Caribbean coasts of Nicaragua and Costa Rica "
                       "in 2016–2022 was rare, but no human influence was detected at 95% confidence "
                       "(Hidalgo et al. 2025, Natural Hazards, doi:10.1007/s11069-025-07427-5).",
+    "lluvia_total_estaciones": "Published check: rain-gauge studies found no significant trend in total rainfall across "
+                               "Central America in 1961–2003 (Aguilar et al. 2005, doi:10.1029/2005JD006119) or at 57 "
+                               "stations in 1976–2015 (Maldonado et al. 2021, doi:10.15517/rmta.v28i2.42322).",
+    "ventanas_cortas": "Published check: trends over windows shorter than about 17 years are easily dominated by "
+                       "natural swings such as El Niño (Santer et al. 2011, doi:10.1029/2011JD016263; Foster and "
+                       "Rahmstorf 2011, doi:10.1088/1748-9326/6/4/044022).",
+    "subregistro_ciclones": "Published check: after correcting for storms missed before satellites, Atlantic major "
+                            "hurricanes show no robust long-term rise since the late 1800s (Vecchi et al. 2021, "
+                            "Nature Communications, doi:10.1038/s41467-021-24268-5).",
 }
 BANDAS_GISTEMP = {"global": "Glob", "artico": "64N-90N", "boreal": "44N-64N", "templado_norte": "24N-44N",
                   "tropico_norte": "EQU-24N", "tropico_sur": "24S-EQU", "antartico": "90S-64S"}
@@ -623,6 +632,8 @@ def _hallazgos(carpeta, permitir_sintetico):
                     notas.append(ESTUDIOS["dias_fuertes_2001_2016"])
                 if region in ("NIC", "caribe"):
                     notas.append(ESTUDIOS["estaciones_mallas"])
+                if indice == "prcptot":
+                    notas.append(ESTUDIOS["lluvia_total_estaciones"])
                 invs.append(_investigacion(f"chirps_{indice}_{region}", "lluvia", region, titulo, definicion, unidad,
                                            anios, valores, chirps, notas=notas))
     ruta = carpeta / "chirps_acumulado_parcial.csv"
@@ -696,6 +707,17 @@ def _hallazgos(carpeta, permitir_sintetico):
                                        "Air temperature anomaly" + ("" if lugar == "global" else " (latitude band)"),
                                        "How much warmer or cooler the air near the surface was than the 1951–1980 average, "
                                        "over land and ocean at every longitude in this band.", "°C", anios, valores, gistemp))
+        # Ventana corta que empieza en el El Niño de 1997–98: el ejemplo clásico de elegir mal el periodo.
+        tramo = [f for f in filas if 1998 <= int(f["anio"]) <= 2012]
+        largo = tendencia_compacta([int(f["anio"]) for f in filas], [float(f["Glob"]) for f in filas], "°C")
+        invs.append(_investigacion("temperatura_banda_global_1998_2012", "temperatura", "global",
+                                   "Air temperature anomaly, 1998–2012 only",
+                                   "The same global record, cut to the years often called the warming 'hiatus'. The "
+                                   "window starts right after the strong El Niño of 1997–98.", "°C",
+                                   [int(f["anio"]) for f in tramo], [float(f["Glob"]) for f in tramo], gistemp,
+                                   notas=[f"Full record since {filas[0]['anio']}: {_frase_tendencia(largo, '°C')}. "
+                                          "Compare the size of the slope, not only the verdict.",
+                                          ESTUDIOS["ventanas_cortas"]]))
 
     ruta = carpeta / "ersst_caribe_nicaragua.csv"
     if ruta.is_file():
@@ -778,6 +800,16 @@ def _hallazgos(carpeta, permitir_sintetico):
             invs.append(_investigacion(f"ciclones_{sufijo}_NIC", "ciclones", "NIC", titulo, definicion, "storms", anios,
                                        [sum(1 for f in fuertes if int(f["temporada"]) == a) for a in anios], ibtracs,
                                        notas=notas))
+        # Registro completo sin corregir: antes de los satélites se perdían tormentas en mar abierto.
+        historicas = [f for f in _leer_csv(ruta) if int(f["temporada"]) >= 1851 and float(f["viento_max_kt"]) >= 34]
+        largo = list(range(1851, ultimo + 1))
+        invs.append(_investigacion("ciclones_tormentas_NIC_1851", "ciclones", "NIC",
+                                   "Tropical storms and hurricanes nearby, raw record since 1851",
+                                   "The same count as above, back to 1851, with no correction for storms missed before "
+                                   "satellites and aircraft reconnaissance.", "storms", largo,
+                                   [sum(1 for f in historicas if int(f["temporada"]) == a) for a in largo], ibtracs,
+                                   notas=["Compare with the record since 1981: an older record can suggest a rise "
+                                          "that partly comes from better detection.", ESTUDIOS["subregistro_ciclones"]]))
     return invs, entradas
 
 
