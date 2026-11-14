@@ -7,7 +7,8 @@
  "coleccion": "EODMS RCM Image Products (Public Good)",
  "licencia": "Open Government Licence – Canada / EULA RCM",
  "zips_sha256": {
-  "RCM1_OK2677342_PK2695245_1_SC30MD_20230816_112921_HH_HV_GRD.zip": "cd44d8f389861ed4d77e1c32447707501971d769437b5e2283993c2925347631"
+  "RCM1_OK2677342_PK2695245_1_SC30MD_20230816_112921_HH_HV_GRD.zip": "cd44d8f389861ed4d77e1c32447707501971d769437b5e2283993c2925347631",
+  "RCM2_OK2677342_PK2704547_1_SC30MD_20230822_235536_HH_HV_GRD.zip": "6eacc0c0643b8d148e13a8f5175a382cef781df5a84e3b801390e98b6f221d5d"
  },
  "imagenes": [
   {
@@ -24,6 +25,22 @@
    "fecha_utc": "2023-08-16T11:29:21",
    "imagen": "2695245_1_HV.tif",
    "sha256_imagen": "02babf7fa35d06308f4d0575d02f1fa21c760b2352e1700210e04b333233949b",
+   "lut": "lutSigma_HV.xml"
+  },
+  {
+   "producto": "RCM2_OK2677342_PK2704547_1_SC30MD_20230822_235536_HH_HV_GRD",
+   "polarizacion": "HH",
+   "fecha_utc": "2023-08-22T23:55:36",
+   "imagen": "2704547_1_HH.tif",
+   "sha256_imagen": "548930f738152815fe6467f38ae00de84d55ea3109fc96fa2a56e2343b06afbe",
+   "lut": "lutSigma_HH.xml"
+  },
+  {
+   "producto": "RCM2_OK2677342_PK2704547_1_SC30MD_20230822_235536_HH_HV_GRD",
+   "polarizacion": "HV",
+   "fecha_utc": "2023-08-22T23:55:36",
+   "imagen": "2704547_1_HV.tif",
+   "sha256_imagen": "f5c9b17b6f1ba2235917c5e494a05006dc0b2d1d4acd0a84cd03c6ed02f0dba0",
    "lut": "lutSigma_HV.xml"
   }
  ],

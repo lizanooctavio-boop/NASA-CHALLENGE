@@ -234,8 +234,10 @@ El integrador (`clima_nic.recursos`) publica `dswx_s1_serie_corta.csv` como la i
 
 ## RCM (recurso 9) procesado, 13-11-2026
 
-El pedido EODMS 3787605 estaba listo desde el 13-11 a las 09:18 UTC. El usuario inició sesión y descargó la escena **RCM1** (16-08-2023, 11:29 UTC, ScanSAR 30 m GRD, HH+HV, 156 MB). El ZIP queda fuera del repositorio, en `Desktop\rcm_crudo`; su SHA-256 está en `rcm_fuentes.json`. La escena **RCM2** (22-08-2023) todavía no se ha descargado.
+El pedido EODMS 3787605 estaba listo desde el 13-11 a las 09:18 UTC. El usuario inició sesión y descargó la escena **RCM1** (16-08-2023, 11:29 UTC, ScanSAR 30 m GRD, HH+HV, 156 MB). El ZIP queda fuera del repositorio, en `Desktop\rcm_crudo`; su SHA-256 está en `rcm_fuentes.json`. La escena **RCM2** (22-08-2023, 23:55 UTC, órbita ascendente, 157 MB) se descargó después, en la misma sesión.
 
 `python scripts/sar/rcm_procesar.py --entrada ../rcm_crudo` funcionó con la escena real sin cambios en el código. La escena observa 2945 km² del lago (38 % del polígono de Natural Earth). En HH, la superficie candidata de agua es de 2875, 2877 y 2879 km² con umbrales de −19, −17 y −15 dB (97,6–97,8 % de lo observado); en HV, de 2883 a 2907 km². La poca sensibilidad al umbral indica un contraste agua–tierra nítido. No hay observaciones SWOT a ±2 días, así que `rcm_vs_swot.csv` queda sin pares. El estado sigue siendo `NO_VALIDADA`: una fecha y ninguna referencia local independiente.
 
-El integrador publica `radar_rcm_cocibolca` («Lake water area from RCM radar»), con HH a −17 dB, como registro corto atribuido a los recursos 9 y 13. Con una sola escena, la interfaz muestra la fecha y «Value» en lugar de un rango.
+**RCM2:** la escena observa solo 1221 km² del lago (16 %), porque la órbita y la franja son distintas. En HH se clasifican 1207, 1208 y 1209 km² (−19, −17 y −15 dB), el 98,8–99,0 % de lo observado. Tampoco hay SWOT a ±2 días.
+
+Como las dos escenas ven partes distintas del lago, el área absoluta no es comparable entre fechas: pasar de 2877 a 1208 km² no es una pérdida de agua. El integrador publica `radar_rcm_cocibolca` («Open water seen by RCM radar») como **porcentaje de la parte observada clasificado como agua** (HH, −17 dB): 97,7 % el 16-08 y 98,9 % el 22-08. Es un registro corto atribuido a los recursos 9 y 13; las áreas absolutas quedan en `notas` y en `rcm_superficie.csv`. Con una sola escena, la interfaz muestra la fecha y «Value» en lugar de un rango.

@@ -7880,16 +7880,18 @@
    "id": "radar_rcm_cocibolca",
    "categoria": "agua",
    "lugar": "cocibolca",
-   "titulo_en": "Lake water area from RCM radar",
-   "definicion_en": "Area of the lake classified as open water in RADARSAT Constellation Mission images, inside the part of the lake each image observed.",
-   "unidad": "km²",
+   "titulo_en": "Open water seen by RCM radar",
+   "definicion_en": "Share of the lake area seen in each RADARSAT Constellation Mission image that is classified as open water.",
+   "unidad": "%",
    "papel": "demostracion_registro_corto",
    "frecuencia": "escena",
    "tiempos": [
-    "2023-08-16"
+    "2023-08-16",
+    "2023-08-22"
    ],
    "valores": [
-    2876.82
+    97.6793,
+    98.8882
    ],
    "fuente": {
     "producto": "RADARSAT Constellation Mission (CSA), ScanSAR 30 m GRD, via EODMS",
@@ -7901,7 +7903,8 @@
    ],
    "contrastes": [],
    "notas": [
-    "2023-08-16: 2877 of 2945 km² observed classified as water (HH, −17 dB); not validated against local data."
+    "2023-08-16: 2877 of 2945 km² observed classified as water (HH, −17 dB); not validated against local data.",
+    "2023-08-22: 1208 of 1221 km² observed classified as water (HH, −17 dB); not validated against local data."
    ]
   }
  ],
@@ -11487,7 +11490,7 @@
   "recursos/csa/comparacion_cocibolca_grealm_swot.csv": "8c05c145bac4e8d1073fad3cc2843d427b95a234b54bb8294a7604c9827b47f7",
   "recursos/csa/swot_mensual.csv": "2508ce4a06c61a55dfc9aaf2fbced35ca6102a5d004a11b46b51c9eee932f237",
   "recursos/csa/dswx_s1_serie_corta.csv": "fdf11b4a86b8c96965b99e52f1f9bdb6302165647dfcb19248547fae8b96e923",
-  "recursos/csa/rcm_superficie.csv": "bdbb9252ba42f39e14e9915a47b1496ca15be67938ec70055a8d1c1a7c6c57d5",
+  "recursos/csa/rcm_superficie.csv": "460bc40f5f13a4c19d3fe8050ae73249ac649d925a15b10e408f9d8c1fcda915",
   "regiones_canada.geojson": "05e0f0dc1cf0a7c7476436028b5443812d44b9087fb5c0812e9ab588bbf4b402",
   "recursos/csa/contrastes_canada.json": "af2581d06b9ca41dfb01d60d00c1efe170355722726663888f8ad22264d2b2cd",
   "recursos/csa/contrastes_canada_series.csv": "677dce021000ca5e0f2a952a48d30647e9cf944c1f4bb1e21d5497b5f18e74a7",

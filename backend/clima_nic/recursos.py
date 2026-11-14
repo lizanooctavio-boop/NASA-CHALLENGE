@@ -427,16 +427,19 @@ def _csa(carpeta, permitir_sintetico):
                                        notas=[f"Common observed area {float(filas[0]['area_valida_comun_km2']):.0f} km² "
                                               f"({cob:.0%} of the lake); not validated against local data."]))
     # RCM (recurso 9) procesado con scripts/sar/rcm_procesar.py: HH con el umbral central de −17 dB, una fila por escena.
+    # Cada escena ve una parte distinta del lago (órbitas ascendente y descendente), así que se publica el porcentaje de la
+    # parte observada clasificado como agua: el área absoluta no es comparable entre fechas.
     ruta = carpeta / "rcm_superficie.csv"
     if ruta.is_file():
         entradas.append(ruta)
         filas = sorted((f for f in _leer_csv(ruta) if f["polarizacion"] == "HH" and float(f["umbral_db"]) == -17.0),
                        key=lambda f: f["fecha_utc"])
         if filas:
-            invs.append(_investigacion("radar_rcm_cocibolca", "agua", "cocibolca", "Lake water area from RCM radar",
-                                       "Area of the lake classified as open water in RADARSAT Constellation Mission images, "
-                                       "inside the part of the lake each image observed.", "km²",
-                                       [f["fecha_utc"][:10] for f in filas], [float(f["area_candidata_agua_km2"]) for f in filas],
+            invs.append(_investigacion("radar_rcm_cocibolca", "agua", "cocibolca", "Open water seen by RCM radar",
+                                       "Share of the lake area seen in each RADARSAT Constellation Mission image that is "
+                                       "classified as open water.", "%",
+                                       [f["fecha_utc"][:10] for f in filas],
+                                       [100 * float(f["area_candidata_agua_km2"]) / float(f["area_observada_lago_km2"]) for f in filas],
                                        {"producto": "RADARSAT Constellation Mission (CSA), ScanSAR 30 m GRD, via EODMS",
                                         "url": "https://donnees-data.asc-csa.gc.ca/en/dataset/rcm"},
                                        recursos=[9, 13], papel="demostracion_registro_corto", frecuencia="escena",
