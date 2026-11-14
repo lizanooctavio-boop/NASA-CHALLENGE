@@ -43,6 +43,9 @@ CATEGORIAS = [
      "recurso": 12},
     {"id": "aire", "nombre_en": "Air quality", "pregunta_en": "Is the air over the city changing?"},
     {"id": "costa", "nombre_en": "Coast & ocean", "pregunta_en": "Are coastal waters changing?"},
+    {"id": "ciclones", "nombre_en": "Hurricanes", "pregunta_en": "Do tropical storms and hurricanes come near Nicaragua more often?",
+     "descripcion_en": "Storm tracks from NOAA IBTrACS since 1981, counting every storm whose centre passed within about "
+                       "150 km of a box around Nicaragua, from the Caribbean or the Pacific."},
     {"id": "polos", "nombre_en": "Ice & poles", "pregunta_en": "Is polar sea ice shrinking?",
      "descripcion_en": "Satellites have mapped sea ice at both poles every day since 1978. Arctic ice is smallest in "
                        "September and largest in March; around Antarctica it is the other way round."},
@@ -69,7 +72,16 @@ LUGARES = {
     "tropico_norte": ("Central America and Caribbean latitudes", "0–24°N", [12.0, -80.0], 3),
     "tropico_sur": ("Amazon and Andes latitudes", "0–24°S", [-12.0, -60.0], 3),
     "global": ("Whole planet", "Global mean", [15.0, -60.0], 2),
+    # Océano y costa (data/recursos/hallazgos/generar_oceano.py).
+    "mar_caribe_nic": ("Caribbean Sea off Nicaragua", "12–14°N, 80–82°W", [13.0, -81.0], 6),
+    "san_juan": ("San Juan tide gauge", "Puerto Rico", [18.46, -66.12], 10),
+    "magueyes": ("Magueyes Island tide gauge", "Puerto Rico", [17.97, -67.05], 10),
+    "charlotte_amalie": ("Charlotte Amalie tide gauge", "US Virgin Islands", [18.34, -64.92], 10),
+    "balboa": ("Balboa tide gauge (Pacific)", "Panama", [8.97, -79.57], 10),
+    "key_west": ("Key West tide gauge", "Florida, USA", [24.56, -81.81], 10),
 }
+# Mareógrafos PSMSL publicados → lugar.
+MAREOGRAFOS = {"1001": "san_juan", "759": "magueyes", "1393": "charlotte_amalie", "163": "balboa", "188": "key_west"}
 NOMBRES_PAIS = {"NIC": "Nicaragua", "HND": "Honduras", "CRI": "Costa Rica"}
 
 # Contrastes del agente 2 → investigación a la que aportan una segunda opinión.
@@ -538,7 +550,9 @@ def _menos(texto):
 def _frase_tendencia(t, unidad):
     if t["veredicto"] == "datos_insuficientes":
         return VEREDICTO_EN[t["veredicto"]]
-    return f"{_menos(format(t['sen']['por_decada'], '+.3g'))} {unidad}/decade, {VEREDICTO_EN[t['veredicto']]}"
+    pendiente = t['sen']['por_decada']
+    texto = "0" if abs(pendiente) < 5e-4 else _menos(format(pendiente, '+.3g'))
+    return f"{texto} {unidad}/decade, {VEREDICTO_EN[t['veredicto']]}"
 
 
 def _hallazgos(carpeta, permitir_sintetico):
@@ -560,7 +574,8 @@ def _hallazgos(carpeta, permitir_sintetico):
                 por_anio.setdefault(int(f["anio"]), []).append(float(f["oni"]))
         oni = {a: sum(v) / len(v) for a, v in por_anio.items() if len(v) == 4}
 
-    def notas_lluvia(anios, valores, unidad):
+    def notas_lluvia(anios, valores, unidad, aviso=" CHIRPS blends rain-gauge reports whose number changed over time, "
+                                                   "so a trend seen only in the full record should be confirmed."):
         notas = []
         pares = [(a, v) for a, v in zip(anios, valores) if a in oni]
         if len(pares) >= MIN_ANIOS_TENDENCIA:
@@ -576,8 +591,7 @@ def _hallazgos(carpeta, permitir_sintetico):
                          f"With their effect removed: {_frase_tendencia(t, unidad)}.")
         desde_2001 = [(a, v) for a, v in zip(anios, valores) if a >= 2001]
         t = tendencia_compacta(*zip(*desde_2001), unidad)
-        notas.append(f"Since 2001 only: {_frase_tendencia(t, unidad)}. CHIRPS blends rain-gauge reports whose number "
-                     f"changed over time, so a trend seen only in the full record should be confirmed.")
+        notas.append(f"Since 2001 only: {_frase_tendencia(t, unidad)}.{aviso}")
         return notas
 
     ruta = carpeta / "chirps_indices_regiones.csv"
@@ -641,9 +655,18 @@ def _hallazgos(carpeta, permitir_sintetico):
                 t = tendencia_compacta([a for a in anios if a >= 2016], [v for a, v in puntos if a >= 2016], "million km²")
                 notas.append(f"Antarctic sea ice grew slowly until 2015 and has been low since 2016. "
                              f"Since 2016 only: {_frase_tendencia(t, 'million km²')}; the record is still short.")
-            invs.append(_investigacion(f"hielo_{MESES_EN[clave[1] - 1].lower()}_{lugar}", "polos", lugar, titulo,
-                                       "Ocean area where at least 15% of the surface is covered by ice, monthly mean.",
-                                       "million km²", anios, valores, nsidc, notas=notas))
+            id_ = f"hielo_{MESES_EN[clave[1] - 1].lower()}_{lugar}"
+            definicion = "Ocean area where at least 15% of the surface is covered by ice, monthly mean."
+            invs.append(_investigacion(id_, "polos", lugar, titulo, definicion, "million km²", anios, valores, nsidc, notas=notas))
+            if clave == ("S", 9):
+                # El mismo registro partido en el cambio de régimen: la conclusión depende del periodo elegido.
+                for sufijo, desde, hasta, texto in (("_1979_2015", anios[0], 2015, f"{anios[0]}–2015"),
+                                                    ("_desde_2016", 2016, anios[-1], "since 2016")):
+                    tramo = [(a, v) for a, v in puntos if desde <= a <= hasta]
+                    invs.append(_investigacion(id_ + sufijo, "polos", lugar, f"{titulo}, {texto} only", definicion,
+                                               "million km²", [a for a, _ in tramo], [v for _, v in tramo], nsidc,
+                                               notas=["The same record split where Antarctic sea ice changed behaviour. "
+                                                      "Compare the verdict with the full record and with the other period."]))
 
     ruta = carpeta / "gistemp_bandas.csv"
     if ruta.is_file():
@@ -656,6 +679,87 @@ def _hallazgos(carpeta, permitir_sintetico):
                                        "Air temperature anomaly" + ("" if lugar == "global" else " (latitude band)"),
                                        "How much warmer or cooler the air near the surface was than the 1951–1980 average, "
                                        "over land and ocean at every longitude in this band.", "°C", anios, valores, gistemp))
+
+    ruta = carpeta / "ersst_caribe_nicaragua.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        ersst = {"producto": "NOAA ERSSTv5 sea surface temperature, 2°", "url": fuentes["ersst"]["url"]}
+        filas = [(int(f["anio"]), int(f["mes"]), float(f["sst_c"])) for f in _leer_csv(ruta)]
+        por_anio = {}
+        for a, _, v in filas:
+            por_anio.setdefault(a, []).append(v)
+        anios = [a for a in sorted(por_anio) if len(por_anio[a]) == 12]
+        valores = [sum(por_anio[a]) / 12 for a in anios]
+        clima = {m: sum(v for a, mm, v in filas if mm == m and 1991 <= a <= 2020) / 30 for m in range(1, 13)}
+        anomalias = [(a, m, v - clima[m]) for a, m, v in filas]
+        base = sorted(x for a, _, x in anomalias if 1991 <= a <= 2020)
+        p90 = base[int(round(0.9 * (len(base) - 1)))]
+        calidos = {a: sum(1 for b, _, x in anomalias if b == a and x > p90) for a in anios}
+        record = max(anios, key=lambda a: valores[anios.index(a)])
+        ultimo, meses = filas[-1][0], [x for a, _, x in anomalias if a == filas[-1][0]]
+        notas = [f"Warmest year: {record}."]
+        if ultimo not in anios:
+            notas.append(f"{ultimo} so far ({MESES_EN[0]}–{MESES_EN[filas[-1][1] - 1]}): "
+                         f"{_menos(format(sum(meses) / len(meses), '+.2f'))} °C compared with 1991–2020.")
+        invs.append(_investigacion("sst_mar_caribe_nic", "costa", "mar_caribe_nic", "Sea surface temperature",
+                                   "Yearly mean temperature of the top layer of the sea, reconstructed from ships, buoys "
+                                   "and satellites.", "°C", anios, valores, ersst,
+                                   notas=notas + notas_lluvia(anios, valores, "°C", aviso="")))
+        invs.append(_investigacion("meses_calidos_mar_caribe_nic", "costa", "mar_caribe_nic", "Unusually warm months",
+                                   f"Months each year warmer than 9 in 10 months of 1991–2020 for the time of year "
+                                   f"(more than {p90:.2f} °C above normal). Daily data would be needed to count marine "
+                                   f"heatwaves.", "months", anios, [calidos[a] for a in anios], ersst,
+                                   notas=[f"{max(anios, key=calidos.get)}: {max(calidos.values())} of 12 months."]))
+
+    ruta = carpeta / "psmsl_nivel_mar_anual.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        psmsl = {"producto": "PSMSL tide-gauge annual means (Revised Local Reference)", "url": fuentes["psmsl"]["url"]}
+        por_estacion = {}
+        for f in _leer_csv(ruta):
+            por_estacion.setdefault(f["estacion"], []).append((int(f["anio"]), float(f["nivel_mm"])))
+        for estacion, lugar in MAREOGRAFOS.items():
+            puntos = sorted(por_estacion.get(estacion, []))
+            if not puntos:
+                continue
+            anios = [a for a, _ in puntos]
+            base = [v for a, v in puntos if 1991 <= a <= 2020] or [v for _, v in puntos]
+            valores = [v - sum(base) / len(base) for _, v in puntos]  # respecto de la media 1991–2020 de la estación
+            reciente = [(a, v) for a, v in zip(anios, valores) if a >= 1981]
+            t = tendencia_compacta(*zip(*reciente), "mm")
+            invs.append(_investigacion(f"nivel_mar_{lugar}", "costa", lugar, "Sea level at the tide gauge",
+                                       "Yearly mean sea level measured against the land at the gauge, compared with its "
+                                       "1991–2020 average. It includes any rise or sinking of the land itself.", "mm",
+                                       anios, valores, psmsl,
+                                       notas=[f"Since 1981 only: {_frase_tendencia(t, 'mm')}.",
+                                              "The long tide-gauge records on Central America's coasts end between 1966 "
+                                              "and 2000; newer gauges such as Limón (Costa Rica, since 2010) are still "
+                                              "too short. The nearest long records are in Panama and the northern Caribbean."]))
+
+    ruta = carpeta / "ibtracs_cerca_nicaragua.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        ibtracs = {"producto": "NOAA IBTrACS v04r01 storm tracks", "url": fuentes["ibtracs"]["url"]}
+        tormentas = [f for f in _leer_csv(ruta) if int(f["temporada"]) >= 1981]
+        ultimo = max(int(f["temporada"]) for f in tormentas)
+        anios = list(range(1981, ultimo + 1))
+        for umbral, sufijo, titulo, definicion in (
+                (34, "tormentas", "Tropical storms and hurricanes nearby",
+                 "Storms per year with winds of at least 34 knots (63 km/h) while near Nicaragua."),
+                (64, "huracanes", "Hurricanes nearby",
+                 "Storms per year with hurricane winds of at least 64 knots (119 km/h) while near Nicaragua.")):
+            fuertes = [f for f in tormentas if float(f["viento_max_kt"]) >= umbral]
+            notas = []
+            if umbral == 64:
+                notas.append("Hurricanes: " + ", ".join(f"{f['nombre'].title().replace(':', '/')} {f['temporada']}" for f in fuertes) + ".")
+            notas.append("Only a few storms come this close each year, so a trend would need a much longer record "
+                         "to stand out.")
+            if str(ultimo) == fuentes["ibtracs"]["generado_utc"][:4]:
+                notas.append(f"The {ultimo} season was still running when the tracks were downloaded "
+                             f"({fuentes['ibtracs']['generado_utc'][:10]}).")
+            invs.append(_investigacion(f"ciclones_{sufijo}_NIC", "ciclones", "NIC", titulo, definicion, "storms", anios,
+                                       [sum(1 for f in fuertes if int(f["temporada"]) == a) for a in anios], ibtracs,
+                                       notas=notas))
     return invs, entradas
 
 

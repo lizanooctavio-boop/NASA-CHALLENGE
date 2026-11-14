@@ -132,7 +132,10 @@ def main():
             if all(fila[b].strip() not in ("", "***") for b in BANDAS):
                 w.writerow([fila["Year"]] + [fila[b] for b in BANDAS])
 
-    (AQUI / "fuentes.json").write_text(json.dumps({
+    # Se actualiza, no se reemplaza: generar_oceano.py añade sus propias fuentes al mismo archivo.
+    ruta = AQUI / "fuentes.json"
+    fuentes = json.loads(ruta.read_text(encoding="utf-8")) if ruta.is_file() else {}
+    fuentes.update({
         "generado_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "chirps": {"producto": "CHIRPS v2.0 daily 0.25° (UCSB Climate Hazards Center)", "acceso": "IRI Data Library",
                    "url": "https://www.chc.ucsb.edu/data/chirps", "primer_dia": str(fechas[0]), "ultimo_dia": str(ultimo),
@@ -141,7 +144,8 @@ def main():
         "oni": {"producto": "NOAA CPC Oceanic Niño Index (ERSSTv5)", "url": ONI},
         "nsidc": {"producto": "NSIDC Sea Ice Index, Version 4 (G02135)", "url": "https://nsidc.org/data/g02135"},
         "gistemp": {"producto": "NASA GISS GISTEMP v4, zonal annual means", "url": GISTEMP},
-    }, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
+    })
+    ruta.write_text(json.dumps(fuentes, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":

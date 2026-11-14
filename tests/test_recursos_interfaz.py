@@ -245,3 +245,23 @@ def test_textos_de_contraste_sin_rutas_internas_ni_espanol():
     for c in d["contrastes"]:
         textos = [c.get("frase_en", ""), c["externa"]["nombre_en"], (c.get("nuestra") or {}).get("nombre_en", "")]
         assert not any("data/" in t or "consulta" in t for t in textos), c["id"]
+
+
+def test_hielo_antartico_por_periodos_mar_caribe_mareografos_y_ciclones():
+    d = json.loads((RAIZ / "data" / "recursos_integrados.json").read_text(encoding="utf-8"))
+    ids = {i["id"]: i for i in d["investigaciones"]}
+    # El mismo registro antártico da veredictos distintos según el periodo.
+    completo, antes = ids["hielo_september_antartico"], ids["hielo_september_antartico_1979_2015"]
+    assert antes["tiempos"][-1] == 2015 and ids["hielo_september_antartico_desde_2016"]["tiempos"][0] == 2016
+    assert completo["tendencia"]["veredicto"] != antes["tendencia"]["veredicto"]
+    sst = ids["sst_mar_caribe_nic"]
+    assert sst["unidad"] == "°C" and sst["tiempos"][0] == 1981 and sst["tendencia"]["sen"]["por_decada"] > 0
+    assert max(ids["meses_calidos_mar_caribe_nic"]["valores"]) <= 12
+    for lugar in rec.MAREOGRAFOS.values():
+        x = ids[f"nivel_mar_{lugar}"]
+        assert x["categoria"] == "costa" and any(n.startswith("Since 1981 only") for n in x["notas"])
+    huracanes = ids["ciclones_huracanes_NIC"]
+    assert next(c for c in d["categorias"] if c["id"] == "ciclones")["con_datos"]
+    assert huracanes["valores"][huracanes["tiempos"].index(2020)] == 2  # Eta e Iota
+    assert all(t <= h for t, h in zip(huracanes["valores"], ids["ciclones_tormentas_NIC"]["valores"]))
+    assert "−0 " not in json.dumps(d, ensure_ascii=False)

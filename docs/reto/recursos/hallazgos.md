@@ -52,3 +52,21 @@ resta con una regresión lineal simple; no recoge efectos no lineales ni el retr
 - *Investigate › Ice & poles* (categoría nueva) y *Temperature* por bandas de latitud.
 - Recorrido guiado «Same total, different rain?» y artículo de *Learn* «Record years, El Niño and how it rains».
 - Corregidos dos textos de contrastes que mostraban «consulta» y una ruta interna del repositorio.
+
+## Ampliación: océano, costa, ciclones y hielo antártico por periodos
+
+Datos generados con `generar_oceano.py` (sin cuenta). Se integraron después de revisar un informe externo de tendencias
+para América y los polos; solo se usaron fuentes primarias comprobables.
+
+| Serie | Datos | Periodo | Resultado |
+|---|---|---|---|
+| Temperatura del mar, Caribe frente a Nicaragua (12-14° N, 80-82° O) | NOAA ERSSTv5, 2° | 1981-2025 | +0,19 °C/década, detectada; 2024 el año más cálido; 2026 (ene-oct) +0,45 °C |
+| Meses anormalmente cálidos (sobre el percentil 90 de 1991-2020) | ERSSTv5 | 1981-2025 | métodos discrepan; 2024 con 12 de 12 |
+| Nivel del mar en mareógrafos (San Juan, Magueyes, Charlotte Amalie, Balboa, Key West) | PSMSL RLR anual | registro completo | ascenso detectado en los cinco; desde 1981 de +23 a +41 mm/década, salvo Balboa (sin tendencia) |
+| Tormentas y huracanes cerca de Nicaragua (≤ ~150 km de su rectángulo) | NOAA IBTrACS v04r01, Atlántico Norte y Pacífico Este | 1981-2026 | evidencia insuficiente; 13 huracanes, dos en 2020 (Eta e Iota) |
+| Máximo de hielo antártico, por periodos | NSIDC v4 | 1979-2015 / desde 2016 | +0,22 Mkm²/década detectada antes de 2016; sin tendencia en el registro completo |
+
+Límites: OISST diario se descartó porque el servidor de PSL devolvía errores 502 y 429 al recortarlo, así que no se
+cuentan olas de calor marinas en sentido estricto (requieren datos diarios). Los mareógrafos miden el nivel relativo a la
+tierra, que también puede subir o hundirse. Los registros largos de la costa centroamericana en PSMSL terminan entre 1966
+y 2000. La temporada de ciclones de 2026 seguía en curso al descargar las trayectorias.
