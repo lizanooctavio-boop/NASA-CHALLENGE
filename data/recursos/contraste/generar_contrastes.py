@@ -7,6 +7,7 @@ se versiona):
     python data/recursos/contraste/generar_contrastes.py cru       # CRU TS 4.10 (UEA), lluvia mensual
     python data/recursos/contraste/generar_contrastes.py gpcc      # GPCC 0,5° de PSL (OPeNDAP)
     python data/recursos/contraste/generar_contrastes.py opendap   # IMERG, AIRS, OMI NO2 (GES DISC OPeNDAP)
+    python data/recursos/contraste/generar_contrastes.py nube      # Giovanni en la nube (Harmony): IMERG y GLDAS
     python data/recursos/contraste/generar_contrastes.py clorofila # MODIS-Aqua L3m CHL 4 km (OB.DAAC)
     python data/recursos/contraste/generar_contrastes.py resumen   # series_anuales.csv + resumen_contrastes.json
 
@@ -1030,6 +1031,88 @@ def contrastes_clorofila(filas_series, min_meses=9):
     return out
 
 
+# ---------------------------------------------------------------- Giovanni en la nube (servicio oficial)
+# Servicio «Area-Averaged Time Series» de Giovanni a través de Harmony, según el cuaderno oficial de GES DISC
+# How_To_Access_the_Giovanni_Averaging_Service_Using_Python.ipynb (nasa/gesdisc-tutorials, abril de 2026).
+# Solo admite cajas (no polígonos), así que se usa la caja SICC, que es una caja exacta en data/dominios.geojson.
+# Requiere `earthaccess` y `harmony-py` y una cuenta Earthdata en el .netrc; el token no se guarda.
+GIOVANNI_NUBE = AQUI / "giovanni"
+GIOVANNI_NUBE_SERIES = {
+    # clave: (short_name, versión, variable de Giovanni, caja oeste-sur-este-norte)
+    "imerg_caja_sicc": ("GPM_3IMERGM", "07", "GPM_3IMERGM_07_precipitation", (-86.5, 10.7, -83.6, 12.6)),
+    "gldas_sm0_10_caja_sicc": ("GLDAS_NOAH025_M", "2.1", "GLDAS_NOAH025_M_2_1_SoilMoi0_10cm_inst", (-86.5, 10.7, -83.6, 12.6)),
+}
+GIOVANNI_CUOTA = "https://api.giovanni.earthdata.nasa.gov/quota"
+
+
+def paso_giovanni_nube():
+    import earthaccess
+    import requests
+    from harmony import BBox, Client, Collection, Request
+
+    earthaccess.login(strategy="netrc")
+    token = earthaccess.get_edl_token()["access_token"]
+    cuota = requests.get(GIOVANNI_CUOTA, headers={"Authorization": f"Bearer {token}"}, timeout=60).json()
+    print("Cuota de Giovanni usada este mes:", cuota.get("quota"))
+    cliente = Client(token=token)
+    GIOVANNI_NUBE.mkdir(exist_ok=True)
+    CACHE_C.mkdir(parents=True, exist_ok=True)
+    for clave, (corto, ver, var, caja) in GIOVANNI_NUBE_SERIES.items():
+        cid = earthaccess.search_datasets(short_name=corto, version=ver)[0].concept_id
+        pet = Request(collection=Collection(id=cid), temporal={"start": dt.datetime(P0, 1, 1), "stop": dt.datetime(P1, 12, 31)},
+                      spatial=BBox(*caja), variables=[var], format="text/csv", average="area")
+        trabajo = cliente.submit(pet)
+        for res in cliente.download_all(trabajo, directory=str(CACHE_C), overwrite=True):
+            texto = Path(res.result()).read_text(encoding="utf-8")
+        (GIOVANNI_NUBE / f"{clave}.csv").write_text(texto.replace("\r\n", "\n"), encoding="utf-8", newline="\n")
+        anotar_consulta(f"giovanni_{clave}", metodo="Giovanni Area-Averaged Time Series vía Harmony",
+                        url=f"https://harmony.earthdata.nasa.gov/jobs/{trabajo}", variable=var, caja=list(caja))
+        print("Giovanni", clave, ":", GIOVANNI_NUBE / f"{clave}.csv")
+
+
+def contrastes_giovanni_nube(filas_series):
+    out = []
+    cj = _clima()
+    caja = next(d for d in cj["dominios"] if d["id"] == "caja_sicc")
+    imerg = dict(zip(caja["anios_validos"], caja["serie_anual_mm"]))
+    fuente = "NASA Giovanni, Area-Averaged Time Series ({}; consulta {})"
+    ruta = GIOVANNI_NUBE / "imerg_caja_sicc.csv"
+    if ruta.exists():
+        d = gv.leer_csv_giovanni(ruta.read_text(encoding="utf-8"))
+        ext = dict(zip(*gv.mensual_tasa_a_anual(d["tiempos"], d["valores"])))
+        cons = fecha_consulta("giovanni_imerg_caja_sicc") or {}
+        meta = {"fuente": fuente.format("GPM_3IMERGM 07", cons.get("fecha")), "version": "GPM_3IMERGM 07",
+                "fecha_consulta": cons.get("fecha"), "url": cons.get("url")}
+        c = _contraste("giovanni_imerg_caja_sicc", "contraste", "caja_sicc", (P0, P1), imerg, ext, "mm",
+                       "GPM IMERG Final V07B (data/clima.json)", meta["fuente"], "", filas_series, meta,
+                       investigacion="lluvia_caja_sicc")
+        dif = c["diferencia"]
+        c["frase_en"] = (f"NASA Giovanni's own area average of IMERG monthly over the SICC box reproduces this app's "
+                         f"series: r = {dif['r']:.3f}, mean difference {dif['media']:+.1f} mm/yr over 2001–2024.")
+        out.append(c)
+    ruta = GIOVANNI_NUBE / "gldas_sm0_10_caja_sicc.csv"
+    tierra = DATOS / "recursos" / "tierra" / "series_gldas_anual.json"
+    if ruta.exists() and tierra.exists():
+        nuestra = next(s for s in json.loads(tierra.read_text(encoding="utf-8"))
+                       if s["region"] == "caja_sicc" and s["variable"] == "humedad_gldas_0_10")
+        d = gv.leer_csv_giovanni(ruta.read_text(encoding="utf-8"))
+        # SoilMoi0_10cm_inst viene en kg/m² para una capa de 0,1 m: /100 da m³/m³.
+        anios, medias = gv.anual_media(d["tiempos"], [None if v is None else v / 100 for v in d["valores"]])
+        cons = fecha_consulta("giovanni_gldas_sm0_10_caja_sicc") or {}
+        meta = {"fuente": fuente.format("GLDAS_NOAH025_M 2.1, SoilMoi0_10cm_inst", cons.get("fecha")),
+                "version": "GLDAS_NOAH025_M 2.1", "fecha_consulta": cons.get("fecha"), "url": cons.get("url")}
+        c = _contraste("giovanni_gldas_sm0_10_caja_sicc", "contraste", "caja_sicc", (P0, P1),
+                       dict(zip(nuestra["tiempos"], nuestra["valores"])), dict(zip(anios, medias)), "m³/m³",
+                       "GLDAS-2.1 por OPeNDAP, media por área sin celdas de agua", meta["fuente"], "", filas_series, meta,
+                       investigacion="humedad_gldas_0_10_caja_sicc")
+        dif = c["diferencia"]
+        c["frase_en"] = (f"NASA Giovanni's area average of GLDAS-2.1 0–10 cm soil moisture over the SICC box vs this "
+                         f"app's area-weighted GLDAS series: r = {dif['r']:.3f}, mean difference {dif['media']:+.3f} m³/m³ "
+                         f"(Giovanni averages every cell in the box; this app excludes model water cells).")
+        out.append(c)
+    return out
+
+
 def _meta_opendap(clave, producto_ver, url_def):
     cons = fecha_consulta(f"opendap_{clave}") or {}
     fecha = cons.get("fecha")
@@ -1332,7 +1415,7 @@ def contrastes_bloqueados():
 def paso_resumen():
     filas_series = []
     contrastes = contrastes_lluvia(filas_series) + contrastes_estaciones(filas_series) + \
-        contrastes_clorofila(filas_series) + contrastes_giovanni(filas_series) + contrastes_bloqueados()
+        contrastes_clorofila(filas_series) + contrastes_giovanni(filas_series) +         contrastes_giovanni_nube(filas_series) + contrastes_bloqueados()
     escribir_csv(AQUI / "series_anuales.csv", ["contraste", "serie", "anio", "valor"], filas_series)
     bloq = json.loads(BLOQUEOS.read_text(encoding="utf-8")) if BLOQUEOS.exists() else {}
     doc = {"esquema": "nasa-challenge/contrastes", "version": "1.0.0", "generado": HOY,
@@ -1350,6 +1433,7 @@ def paso_resumen():
 
 if __name__ == "__main__":
     PASOS = {"noaa": paso_noaa, "knmi": paso_knmi, "cru": paso_cru, "gpcc": paso_gpcc, "clorofila": paso_clorofila,
-             "giovanni": paso_giovanni, "opendap": paso_giovanni_opendap, "resumen": paso_resumen}
+             "giovanni": paso_giovanni, "opendap": paso_giovanni_opendap, "nube": paso_giovanni_nube,
+             "resumen": paso_resumen}
     for p in sys.argv[1:] or ["resumen"]:
         PASOS[p]()

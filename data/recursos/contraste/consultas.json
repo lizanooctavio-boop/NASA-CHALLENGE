@@ -12,6 +12,45 @@
   "fecha": "2026-11-12",
   "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
  },
+ "giovanni_gldas_sm0_10_caja_sicc": {
+  "caja": [
+   -86.5,
+   10.7,
+   -83.6,
+   12.6
+  ],
+  "fecha": "2026-11-13",
+  "metodo": "Giovanni Area-Averaged Time Series vía Harmony",
+  "url": "https://harmony.earthdata.nasa.gov/jobs/caa73e3a-64b4-4a4c-a9c2-57dca2268b87",
+  "variable": "GLDAS_NOAH025_M_2_1_SoilMoi0_10cm_inst"
+ },
+ "giovanni_imerg_caja_sicc": {
+  "caja": [
+   -86.5,
+   10.7,
+   -83.6,
+   12.6
+  ],
+  "fecha": "2026-11-13",
+  "metodo": "Giovanni Area-Averaged Time Series vía Harmony",
+  "url": "https://harmony.earthdata.nasa.gov/jobs/2909a5db-3690-4f34-b4f3-b6d9c90b79fb",
+  "variable": "GPM_3IMERGM_07_precipitation"
+ },
+ "gpcc": {
+  "atributos": {
+   "data_modified": "2019-03-12",
+   "history": "Created 10/2026 based on V2022 data obtained via opendap",
+   "title": "GPCC Full Data Reanalysis Version 2018 0.5x0.5 Monthly Total",
+   "version": "v2025"
+  },
+  "fecha": "2026-11-12",
+  "ultimo_mes": "2026-08",
+  "url": "https://psl.noaa.gov/thredds/dodsC/Datasets/gpcc/full_v2025/precip.mon.total.0.50x0.50.v2025.nc"
+ },
+ "gsom": {
+  "fecha": "2026-11-12",
+  "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
+ },
  "opendap_airs_tas_a_nic": {
   "fecha": "2026-11-13",
   "metodo": "opendap",
@@ -46,20 +85,5 @@
   "fecha": "2026-11-13",
   "metodo": "opendap",
   "url": "https://opendap.earthdata.nasa.gov/collections/C1266136111-GES_DISC (CMR OMNO2d.003)"
- },
- "gpcc": {
-  "atributos": {
-   "data_modified": "2019-03-12",
-   "history": "Created 10/2026 based on V2022 data obtained via opendap",
-   "title": "GPCC Full Data Reanalysis Version 2018 0.5x0.5 Monthly Total",
-   "version": "v2025"
-  },
-  "fecha": "2026-11-12",
-  "ultimo_mes": "2026-08",
-  "url": "https://psl.noaa.gov/thredds/dodsC/Datasets/gpcc/full_v2025/precip.mon.total.0.50x0.50.v2025.nc"
- },
- "gsom": {
-  "fecha": "2026-11-12",
-  "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
  }
 }

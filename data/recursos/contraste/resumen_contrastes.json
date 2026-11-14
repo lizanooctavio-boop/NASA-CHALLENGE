@@ -1390,6 +1390,106 @@
     "r_anual": 0.3659,
     "anios_comunes": 20
    }
+  },
+  {
+   "id": "giovanni_imerg_caja_sicc",
+   "papel": "contraste",
+   "region": "caja_sicc",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GPM IMERG Final V07B (data/clima.json)",
+    "pendiente": -28.7051,
+    "pendiente_mco": -13.132,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.785
+   },
+   "serie_externa": {
+    "fuente": "NASA Giovanni, Area-Averaged Time Series (GPM_3IMERGM 07; consulta 2026-11-13)",
+    "pendiente": -28.7046,
+    "pendiente_mco": -13.132,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.785,
+    "version": "GPM_3IMERGM 07",
+    "fecha_consulta": "2026-11-13",
+    "url": "https://harmony.earthdata.nasa.gov/jobs/2909a5db-3690-4f34-b4f3-b6d9c90b79fb"
+   },
+   "diferencia": {
+    "media": -0.0007,
+    "r": 1.0,
+    "diferencia_pendiente": 0.0005,
+    "anios_comunes": 24,
+    "unidad_media": "mm"
+   },
+   "estado": "ok",
+   "frase_en": "NASA Giovanni's own area average of IMERG monthly over the SICC box reproduces this app's series: r = 1.000, mean difference -0.0 mm/yr over 2001–2024.",
+   "investigacion": "lluvia_caja_sicc"
+  },
+  {
+   "id": "giovanni_gldas_sm0_10_caja_sicc",
+   "papel": "contraste",
+   "region": "caja_sicc",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GLDAS-2.1 por OPeNDAP, media por área sin celdas de agua",
+    "pendiente": -0.0038,
+    "pendiente_mco": -0.005,
+    "unidad": "m³/m³/década",
+    "veredicto": "metodos_discrepan",
+    "veredicto_robusto": "metodos_discrepan",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.1574
+   },
+   "serie_externa": {
+    "fuente": "NASA Giovanni, Area-Averaged Time Series (GLDAS_NOAH025_M 2.1, SoilMoi0_10cm_inst; consulta 2026-11-13)",
+    "pendiente": -0.0039,
+    "pendiente_mco": -0.005,
+    "unidad": "m³/m³/década",
+    "veredicto": "metodos_discrepan",
+    "veredicto_robusto": "metodos_discrepan",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.1725,
+    "version": "GLDAS_NOAH025_M 2.1",
+    "fecha_consulta": "2026-11-13",
+    "url": "https://harmony.earthdata.nasa.gov/jobs/caa73e3a-64b4-4a4c-a9c2-57dca2268b87"
+   },
+   "diferencia": {
+    "media": 0.0007,
+    "r": 0.9999,
+    "diferencia_pendiente": -0.0001,
+    "anios_comunes": 24,
+    "unidad_media": "m³/m³"
+   },
+   "estado": "ok",
+   "frase_en": "NASA Giovanni's area average of GLDAS-2.1 0–10 cm soil moisture over the SICC box vs this app's area-weighted GLDAS series: r = 1.000, mean difference +0.001 m³/m³ (Giovanni averages every cell in the box; this app excludes model water cells).",
+   "investigacion": "humedad_gldas_0_10_caja_sicc"
   }
  ]
 }

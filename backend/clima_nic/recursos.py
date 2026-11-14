@@ -66,6 +66,7 @@ CONTRASTE_A_INVESTIGACION = {
     "cru_nic": "lluvia_NIC", "gpcc_nic": "lluvia_NIC",
     "cru_caja_sicc": "lluvia_caja_sicc", "gpcc_caja_sicc": "lluvia_caja_sicc",
     "giovanni_imerg_nic": "lluvia_NIC", "giovanni_imerg_caja_sicc": "lluvia_caja_sicc",
+    "giovanni_gldas_sm0_10_caja_sicc": "humedad_gldas_0_10_caja_sicc",
     "noaa_tegucigalpa_lluvia_vs_imerg_hnd": "lluvia_HND",
     "noaa_managua_tavg": "temperatura_NIC", "noaa_juigalpa_tavg": "temperatura_NIC",
     # Agente 3: estaciones de las Praderas (data/recursos/csa/contrastes_canada.json)

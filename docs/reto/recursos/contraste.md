@@ -395,3 +395,16 @@ Ningún archivo contiene credenciales. El `.netrc` se lee en memoria y los token
   - matización de AIRS (señal frágil: MK `p = 0,010` frente a OLS `p(F) = 0,073` e IC mensual `−0,01` a `+0,25`; magnitud de GISTEMP no respaldada; limitaciones con documentación oficial JPL de AIRS v7) y de conclusiones de Tegucigalpa, OMI urbano y Fonseca;
   - regeneración reproducible de `resumen_contrastes.json` / `series_anuales.csv` y verificación en rama e integrada con `pytest` y `scripts/datos/verificar_clima.py`.
 - **Uso de IA:** trabajo asistido por agentes de programación basados en LLM (Codex en la fase del 12–13-11 y Antigravity en la finalización del 13-11) para la escritura del código en `giovanni.py`, `generar_contrastes.py`, pruebas y documentación. Todas las cifras publicadas provienen exclusivamente de descargas directas reales y cálculos locales reproducibles verificados con `pytest`.
+
+## Giovanni en la nube (recurso 1), 13-11-2026
+
+Servicio oficial «Area-Averaged Time Series» de Giovanni a través de Harmony, siguiendo el cuaderno de GES DISC `How_To_Access_the_Giovanni_Averaging_Service_Using_Python.ipynb` (repositorio `nasa/gesdisc-tutorials`, abril de 2026). Paso: `python data/recursos/contraste/generar_contrastes.py nube`. Necesita `earthaccess` y `harmony-py` y una cuenta Earthdata en el `.netrc`; el token se pide en cada ejecución y no se guarda. Antes de pedir datos se consulta la cuota mensual (`https://api.giovanni.earthdata.nasa.gov/quota`). Los CSV quedan tal como los devuelve Giovanni en `data/recursos/contraste/giovanni/`, y el identificador del trabajo de Harmony queda en `consultas.json`.
+
+El servicio solo promedia sobre cajas: al pedir el polígono de Nicaragua responde que la operación requiere `spatialSubset`. Por eso se usa la caja SICC, que en `data/dominios.geojson` es exactamente una caja.
+
+| Contraste | Variable de Giovanni | Resultado |
+|---|---|---|
+| `giovanni_imerg_caja_sicc` | `GPM_3IMERGM_07_precipitation` | r = 1,000 y diferencia media de 0,0 mm/año: Giovanni reproduce la serie anual de `data/clima.json` en los 24 años. |
+| `giovanni_gldas_sm0_10_caja_sicc` | `GLDAS_NOAH025_M_2_1_SoilMoi0_10cm_inst` (kg m⁻² / 100 = m³/m³) | r = 1,000 tras corregir los meses repetidos de la serie OPeNDAP (ver `tierra.md`). Antes de la corrección daba r = 0,714. |
+
+Este contraste detectó que el OPeNDAP en la nube había servido otro granulo para 14 meses de 2001–2003. Así, el recurso 1 cumple dos papeles: confirma con la herramienta oficial de NASA las cifras que muestra la aplicación y sirvió de control de calidad.
