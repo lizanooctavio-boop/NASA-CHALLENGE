@@ -23,3 +23,5 @@ const recorte = {
 };
 writeFileSync('public/data/fenomenos_nicaragua.json', JSON.stringify(recorte));
 cpSync('data/regiones_nicaragua.geojson', 'public/data/regiones_nicaragua.geojson');
+// Pestaña Investigate: solo el JSON integrado (clima_nic.recursos); data/recursos/ y sus fixtures no se publican.
+cpSync('data/recursos_integrados.json', 'public/data/recursos_integrados.json');

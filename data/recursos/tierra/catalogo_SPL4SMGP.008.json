@@ -1,0 +1,1487 @@
+{
+  "Geophysical_Data_baseflow_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Baseflow",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "baseflow_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_baseflow_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.009999999776,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "kg/m^2/s",
+    "ValidMax": 0.009999999776,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_depth_to_water_table_from_surface": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Depth to water table from mean surface elevation in peatlands (positive above ground)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "depth_to_water_table_from_surface"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_depth_to_water_table_from_surface",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.15,
+    "OrigValidMin": -5.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "m",
+    "ValidMax": 0.15,
+    "ValidMin": -5.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_free_surface_water_on_peat_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Change in free surface water storage on peatlands",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "free_surface_water_on_peat_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_free_surface_water_on_peat_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.001,
+    "OrigValidMin": -0.001,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "kg m⁻² s⁻¹",
+    "ValidMax": 0.001,
+    "ValidMin": -0.001,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_heat_flux_ground": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Downward ground heat flux into layer 1 of soil heat diffusion model",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "heat_flux_ground"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_heat_flux_ground",
+    "OrigDataType": "float32",
+    "OrigValidMax": 1000.0,
+    "OrigValidMin": -1000.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "W/m^2",
+    "ValidMax": 1000.0,
+    "ValidMin": -1000.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_heat_flux_latent": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Latent heat flux from land (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "heat_flux_latent"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_heat_flux_latent",
+    "OrigDataType": "float32",
+    "OrigValidMax": 3000.0,
+    "OrigValidMin": -2500.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "W/m^2",
+    "ValidMax": 3000.0,
+    "ValidMin": -2500.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_heat_flux_sensible": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Sensible heat flux from land (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "heat_flux_sensible"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_heat_flux_sensible",
+    "OrigDataType": "float32",
+    "OrigValidMax": 3000.0,
+    "OrigValidMin": -2500.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "W/m^2",
+    "ValidMax": 3000.0,
+    "ValidMin": -2500.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_height_lowatmmodlay": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Center height of lowest atmospheric model layer",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "height_lowatmmodlay"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_height_lowatmmodlay",
+    "OrigDataType": "float32",
+    "OrigValidMax": 80.0,
+    "OrigValidMin": 40.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "m",
+    "ValidMax": 80.0,
+    "ValidMin": 40.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_land_evapotranspiration_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Evapotranspiration from land (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "land_evapotranspiration_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_land_evapotranspiration_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.001000000047,
+    "OrigValidMin": -0.001000000047,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "kg/m^2/s",
+    "ValidMax": 0.001000000047,
+    "ValidMin": -0.001000000047,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_land_fraction_saturated": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Fractional land area that is saturated and snow-free (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "land_fraction_saturated"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_land_fraction_saturated",
+    "OrigDataType": "float32",
+    "OrigValidMax": 1.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_land_fraction_snow_covered": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Fractional land area that is snow-covered (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "land_fraction_snow_covered"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_land_fraction_snow_covered",
+    "OrigDataType": "float32",
+    "OrigValidMax": 1.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_land_fraction_unsaturated": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Fractional land area that is unsaturated (but non-wilting) and snow-free (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "land_fraction_unsaturated"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_land_fraction_unsaturated",
+    "OrigDataType": "float32",
+    "OrigValidMax": 1.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_land_fraction_wilting": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Fractional land area that is wilting and snow-free (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "land_fraction_wilting"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_land_fraction_wilting",
+    "OrigDataType": "float32",
+    "OrigValidMax": 1.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_leaf_area_index": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Vegetation leaf area index",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "leaf_area_index"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_leaf_area_index",
+    "OrigDataType": "float32",
+    "OrigValidMax": 10.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "m^2/m^2",
+    "ValidMax": 10.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_mwrtm_vegopacity": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Microwave radiative transfer model: Vegetation opacity.",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "mwrtm_vegopacity"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_mwrtm_vegopacity",
+    "OrigDataType": "float32",
+    "OrigValidMax": 2.5,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "dimensionless",
+    "ValidMax": 2.5,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_net_downward_longwave_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Net downward longwave flux over land (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "net_downward_longwave_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_net_downward_longwave_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 200.0,
+    "OrigValidMin": -1000.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "W/m^2",
+    "ValidMax": 200.0,
+    "ValidMin": -1000.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_net_downward_shortwave_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Net downward shortwave flux over land (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "net_downward_shortwave_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_net_downward_shortwave_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 1365.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "W/m^2",
+    "ValidMax": 1365.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_overland_runoff_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Overland (surface) runoff (including throughflow - excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "overland_runoff_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_overland_runoff_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.05000000075,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "kg/m^2/s",
+    "ValidMax": 0.05000000075,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_precipitation_total_surface_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Total surface precipitation (incl. snow fall)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "precipitation_total_surface_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_precipitation_total_surface_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.05000000075,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "kg/m^2/s",
+    "ValidMax": 0.05000000075,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_radiation_longwave_absorbed_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Absorbed (downward) longwave radiation at the surface",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "radiation_longwave_absorbed_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_radiation_longwave_absorbed_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 800.0,
+    "OrigValidMin": 35.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "W/m^2",
+    "ValidMax": 800.0,
+    "ValidMin": 35.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_radiation_shortwave_downward_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Downward shortwave flux incident on the surface",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "radiation_shortwave_downward_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_radiation_shortwave_downward_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 1500.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "W/m^2",
+    "ValidMax": 1500.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_sm_profile": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Total profile soil moisture (0 cm to model bedrock depth)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "sm_profile"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_sm_profile",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.8999999762,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "W/m^2",
+    "ValidMax": 0.8999999762,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_sm_profile_pctl": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Total profile soil moisture (0 cm to model bedrock depth; percentile units)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "sm_profile_pctl"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_sm_profile_pctl",
+    "OrigDataType": "float32",
+    "OrigValidMax": 100.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "Percent",
+    "ValidMax": 100.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_sm_profile_wetness": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Total profile soil wetness (0 cm to model bedrock depth; wetness units). Soil wetness units (dimensionless) vary between 0 and 1, indicating relative saturation between completely dry conditions and completely saturated conditions, respectively.  See also Appendix E in the PSD.",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "sm_profile_wetness"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_sm_profile_wetness",
+    "OrigDataType": "float32",
+    "OrigValidMax": 1.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_sm_rootzone": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Root zone soil moisture (0-100 cm)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "sm_rootzone"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_sm_rootzone",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.8999999762,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "m^3/m^3",
+    "ValidMax": 0.8999999762,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_sm_rootzone_pctl": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Root zone soil moisture (0-100 cm; percentile units)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "sm_rootzone_pctl"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_sm_rootzone_pctl",
+    "OrigDataType": "float32",
+    "OrigValidMax": 100.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "Percent",
+    "ValidMax": 100.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_sm_rootzone_wetness": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Root zone soil wetness (0-100 cm; wetness units). Soil wetness units (dimensionless) vary between 0 and 1, indicating relative saturation between completely dry conditions and completely saturated conditions, respectively.  See also Appendix E in the PSD.",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "sm_rootzone_wetness"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_sm_rootzone_wetness",
+    "OrigDataType": "float32",
+    "OrigValidMax": 1.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_sm_surface": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Top layer soil moisture (0-5 cm)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "sm_surface"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_sm_surface",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.8999999762,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "m^3/m^3",
+    "ValidMax": 0.8999999762,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_sm_surface_wetness": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Top layer soil wetness (0-5 cm; wetness units). Soil wetness units (dimensionless) vary between 0 and 1, indicating relative saturation between completely dry conditions and completely saturated conditions, respectively.  See also Appendix E in the PSD.",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "sm_surface_wetness"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_sm_surface_wetness",
+    "OrigDataType": "float32",
+    "OrigValidMax": 1.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_snow_depth": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Snow depth within snow-covered land fraction of grid cell (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "snow_depth"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_snow_depth",
+    "OrigDataType": "float32",
+    "OrigValidMax": 50.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "m",
+    "ValidMax": 50.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_snow_mass": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Average snow mass (or snow water equivalent) over land fraction of grid cell (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "snow_mass"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_snow_mass",
+    "OrigDataType": "float32",
+    "OrigValidMax": 10000.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "kg/m^2/s",
+    "ValidMax": 10000.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_snow_melt_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Snowmelt (excluding areas of open water and permanent ice)",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "snow_melt_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_snow_melt_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.05000000075,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "kg/m^2/s",
+    "ValidMax": 0.05000000075,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_snowfall_surface_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Surface snow fall",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "snowfall_surface_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_snowfall_surface_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.05000000075,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "kg/m^2/s",
+    "ValidMax": 0.05000000075,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_soil_temp_layer1": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Soil temperature in layer 1 of soil heat diffusion model",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "soil_temp_layer1"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_soil_temp_layer1",
+    "OrigDataType": "float32",
+    "OrigValidMax": 340.0,
+    "OrigValidMin": 210.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "K",
+    "ValidMax": 340.0,
+    "ValidMin": 210.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_soil_temp_layer2": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Soil temperature in layer 2 of soil heat diffusion model",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "soil_temp_layer2"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_soil_temp_layer2",
+    "OrigDataType": "float32",
+    "OrigValidMax": 330.0,
+    "OrigValidMin": 210.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "K",
+    "ValidMax": 330.0,
+    "ValidMin": 210.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_soil_temp_layer3": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Soil temperature in layer 3 of soil heat diffusion model",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "soil_temp_layer3"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_soil_temp_layer3",
+    "OrigDataType": "float32",
+    "OrigValidMax": 325.0,
+    "OrigValidMin": 215.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "K",
+    "ValidMax": 325.0,
+    "ValidMin": 215.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_soil_temp_layer4": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Soil temperature in layer 4 of soil heat diffusion model",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "soil_temp_layer4"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_soil_temp_layer4",
+    "OrigDataType": "float32",
+    "OrigValidMax": 325.0,
+    "OrigValidMin": 220.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "K",
+    "ValidMax": 325.0,
+    "ValidMin": 220.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_soil_temp_layer5": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Soil temperature in layer 5 of soil heat diffusion model",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "soil_temp_layer5"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_soil_temp_layer5",
+    "OrigDataType": "float32",
+    "OrigValidMax": 325.0,
+    "OrigValidMin": 225.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "K",
+    "ValidMax": 325.0,
+    "ValidMin": 225.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_soil_temp_layer6": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Soil temperature in layer 6 of soil heat diffusion model",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "soil_temp_layer6"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_soil_temp_layer6",
+    "OrigDataType": "float32",
+    "OrigValidMax": 320.0,
+    "OrigValidMin": 230.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "K",
+    "ValidMax": 320.0,
+    "ValidMin": 230.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_soil_water_infiltration_flux": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Soil water infiltration rate",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "soil_water_infiltration_flux"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_soil_water_infiltration_flux",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.05000000075,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "kg/m^2/s",
+    "ValidMax": 0.05000000075,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_specific_humidity_lowatmmodlay": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Air specific humidity at center height of lowest atmospheric model layer",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "specific_humidity_lowatmmodlay"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_specific_humidity_lowatmmodlay",
+    "OrigDataType": "float32",
+    "OrigValidMax": 0.400000006,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "kg/kg",
+    "ValidMax": 0.400000006,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_surface_pressure": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Surface pressure",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "surface_pressure"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_surface_pressure",
+    "OrigDataType": "float32",
+    "OrigValidMax": 110000.0,
+    "OrigValidMin": 40000.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "Pa",
+    "ValidMax": 110000.0,
+    "ValidMin": 40000.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_surface_temp": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Mean land surface temperature (incl. snow-covered land area). Excluding areas of open water and permanent ice.",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "surface_temp"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_surface_temp",
+    "OrigDataType": "float32",
+    "OrigValidMax": 350.0,
+    "OrigValidMin": 180.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "K",
+    "ValidMax": 350.0,
+    "ValidMin": 180.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_temp_lowatmmodlay": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Air temperature at center height of lowest atmospheric model layer",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "temp_lowatmmodlay"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_temp_lowatmmodlay",
+    "OrigDataType": "float32",
+    "OrigValidMax": 350.0,
+    "OrigValidMin": 180.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "K",
+    "ValidMax": 350.0,
+    "ValidMin": 180.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_vegetation_greenness_fraction": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Vegetation \\\"greenness\\\" or fraction of transpiring leaves averaged over the land area (excluding areas of open water and permanent ice) of the grid cell",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "vegetation_greenness_fraction"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_vegetation_greenness_fraction",
+    "OrigDataType": "float32",
+    "OrigValidMax": 1.0,
+    "OrigValidMin": 0.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "",
+    "ValidMax": 1.0,
+    "ValidMin": 0.0,
+    "XSize": 3856,
+    "YSize": 1624
+  },
+  "Geophysical_Data_windspeed_lowatmmodlay": {
+    "AddOffset": "",
+    "Available": true,
+    "DataType": "float32",
+    "Description": "Surface wind speed at center height of lowest atmospheric model layer",
+    "Dimensions": [
+      "time",
+      "y",
+      "x"
+    ],
+    "FillValue": -9999.0,
+    "FillValueAll": [
+      -9999.0
+    ],
+    "Group": "",
+    "Info": {
+      "group_name": "Geophysical_Data",
+      "layer_name": "windspeed_lowatmmodlay"
+    },
+    "IsQA": false,
+    "Layer": "Geophysical_Data_windspeed_lowatmmodlay",
+    "OrigDataType": "float32",
+    "OrigValidMax": 60.0,
+    "OrigValidMin": -60.0,
+    "QualityLayers": "",
+    "QualityProductAndVersion": "",
+    "ScaleFactor": "",
+    "Units": "m/s",
+    "ValidMax": 60.0,
+    "ValidMin": -60.0,
+    "XSize": 3856,
+    "YSize": 1624
+  }
+}

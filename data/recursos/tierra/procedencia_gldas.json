@@ -1,0 +1,3602 @@
+[
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "56c6c668acf61f8ae236bc166ecea50c1226ce23d9ee7928a9f4921094a747d6"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c28c6f37c786605fea2a405ba330fcea8a843ffc395a111bcb5430bd8fd59579"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "02a04c45757a1227bd52fb720b3bff891f7750832c7ed850b3a672d0ae3beb37"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b30f6ad306a806c77e960d5896e51a204e1b0ad299def40e958457bc66a5eab6"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "5bcf843d414b81aead0bf81f059bceeade26115402338e533dfc51c277af4834"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d37926f7fe0b2e9abf988b495c1dfb9cc8dcc7a0ea3ad405b7548014547df4d6"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "bb794ed09027b5827e38e31d406787a455835d970b14a254dcf69632be683886"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8de7178b34341e24a29bb0be33c75a9c5678d93c3d50e907c59bc4bf503376c4"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a0d30a86123e3371fb249dbc4d5a7292defb28b3472ece7c977dbf2a2c58230a"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a9b662f333b22438a083f5713bbe95d31f960e4326e42fff8963039cf56935fa"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "dadeb3ea5a90120b06bac38853461e51ea13b711921423f798f553cdbf7c8d6d"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "3a76ee6f8bcc42501645675bb2cde04eac3439544317daf1917719a57e80e16d"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "7a992039403665a0bbfc437bf74892ea797d73441703d6abc37cb012720c7e4b"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "1c20882fcb914edb161bb379d0e07a5fa274c7c035d87f1df76fabcb5748185c"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6a99c45586f360bd51850296bed390548c00742a91ee4a7a87c186d7cb6a4940"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6b8af359d2d3866bbaf5a92fc15e3c918ec87124ef18cdc8f6b71f3e20d1b28b"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "ef8eebf973ac05346d561be7228c0313c0bfe37f4214361da62c08f9ad79b69b"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e47051569af0556d54032bfa26175c7183276d638ccc84a86f621c39db025867"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c22975f819fd11d169a3049fa5863f2293d361157d04faadf069e6a9df5cec94"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "27593671b731479cec556fc6deea62db19391da4db4bfa01aeec4279c27fbc95"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "2d62a3215f138c31e65b1868dd4db727f1b8c2f33932bdb34564d4b3633f0417"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0ab9cc76bd00cb3e2f50d7fb121458fdfc62a5a1b5e54ca793e889e941935c89"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "3b715a57d80249e5a6c9b37c2ae1271c1d82940a183e5f06741303e3e8f4fb18"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Evap_tavg",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.75%2C-84.8%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "37b6edba3167e87d0ea04ac75b3af4f817bc02b3e4dd26d9521f6d403c65763a"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b51ac5db07d235d21129c80f07ae63516dc12e946c16c3b53e6a0296e12c4e1b"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "aac35ae5ca2cb89a2c2f6f8ad18c6862d73f068a304ddffd75a791cc18e85533"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "4ee4ee8454e553bc3d8e26cbef9e79f60e55f0c9a645545ac30d93a6e344c976"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "691c605e18accc88ca503f8c4b7f0b3775ebcdecc6d03634c011271f5ec22229"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "9bc1ed24bbd678636989bad8293f92e6636651164011a7e6ab80d465cd966d25"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "3917f9f98e6b0ab1b2e5b8e1bf6aa51bacb2aa95f7742db0755917f9b4786220"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "2baefaa1c9825b99bdca6d4783e99c19c6550907074514233dfb5631c4385143"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "40f689e0e7dc8c94d06500703ac9fb2056211fb3cfeea7c99076d28a85c79d4a"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "652bec958b0f223d5b92c754db86a20b3b1d0f3b79df61f46fd0ca38ada9409b"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "26229ae0c63d3bbc659f4db76b9545c1c54de07aa2f525292ec164b1a587f7ec"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "46813f2219dce611f4f16c11c4f24b59d3048d474492a51cfe602f3abb09b6eb"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e6fe105648e731e0948460375f1f342c338a90e7e7a544030b01eca0fedf35bd"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "41fc0a2ab7cb093e4719091ac771473f6c8e4bc791c762fc41be741bce1c497a"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "18d588c18e4260225862c70b41300a9adf08d8d5af4f26bdebe2bfc256fda2f8"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6735963908e10230f8f7ab6fd6d3c83e0ef6b0ab24d7e67737782467701b450e"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a7f89e34686cb9d529dd27a3ea4b3213d906dd20ad0a1063e922d3a8085a19e2"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "932977940b5088fe5c4f14d3c77202926e26e2480de330ff477a14dd00ed0d83"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0e99a55a22e2b7ba9b8c8e1a66c5fd1c8ddf34ed97e1ef64dacfc36079e92c2c"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "1305ab11a538d2eef7c3da87eb9f920b42997ad238d86bb6af5d2adc5d552d6d"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "5047e40957ca57c70a56ab95e76c641569ae097a9a1e5015ab7f51944126468f"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "296d56449ac47276d55788cf6049683835f890e73bdd81c6cd3b5c8ea1eef246"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "86248cfbee0492eb649745cca67879b81a76254ba9f2577a2632b91cf18de959"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a5707bfd620cc09ae851532d238803487a326cfdb94eb5422820e0e461b4ca1d"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qs_acc",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.75%2C-84.8%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "fd1f686b7e5ffa83eb49e412c1b5d9b7b368aa98c7829bb3753227f789d24ae7"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "eba486848454852bef548a8dbc717413bb2c90151ed62d8ac9ff5ac890181f5b"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "372e15a23c8f23a774e861e6616a70110aac8ed439f6598c578adef468fa2f05"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "7fc6a817040d88316457428d05db994128ee74c72e269de2da031133415ddc2d"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "af7df71dd501f1560091b747ca3adf8dc178b2c43d0d35fe1932cbe2be62dd7f"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "ec096a4b4edeac32e0c0aa36a8ed60bc70e2d633ada92832eab420cb2f4d8ee4"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d56bde199e798dcce57f83127f13230cde07f40c3623afc1bad3d1f24df4a934"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c326b46af098f53f156421f28a868b6ee5de1c648a30a45146845638e757bc28"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "45486866e22355972f63af78ab4bef1cb3083da663c013dbe4bf4049e77aee1c"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6df8d92e1b0835fad86800fdc94034433893e6dcb189168cfe587086c13b8c32"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "596026f92d0d0670df93c9b240463432fd68bea8f38ed1ed9eda8ed1a2017d78"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "1bfd08fbbfc4a9acc3607869f085cfbb4284ad5784681ac621817d1c2c842ffa"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "379132b88b3a9a72342a58c275453b9d053904ef2b158629ec08ed66a04cad46"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b2e3f0ee26f08bd61a815df2a8e873c2440454274d73e1a1b28d972ead803fdc"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a66c239be8a0a4ba1278880dcb2994684b5bdc1c27aef006187de61f1694d12d"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "81018ea636cd6b9077716f036c6f18c8c345957a29fa5f8bc17c8c5a2d9bd111"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "699ee183b83b0ec190bf3db1438af58b288d34e613e997c2e3b911e251db528c"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b601c10a7fb674a1c4e6528342e12cb5eee52d870f49aed61cd8b32fd36b257d"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "bc0fe465d31df7c182b7d848b7bad9c6c98ac1337b790819dc5f819bcc6e1800"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "afb15b32164e86996ddc519f2a8ac65026eb3157c6390882c5ec94ed97166768"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "633b726f42f7357421f09dbd44947951f4b8c41fd23f1a4b5002805e70d0c601"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e5b930e4615824b4e2786fdc53adc4bea063c5ad1523e96a318e342a1bde0b89"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "09b095d62af3069d3c7ee2473bbd4e09bb97306bd154ebb7a7227cc7b8bab34b"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "3e2fe0498ea77ff8118816bcd978e817d1a7fae361adc468a00d30c8c974ad21"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "Qsb_acc",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.75%2C-84.8%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0488939089dfb9dc1978452005325a87203b449534b15bd5101364b184d44e7f"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "09ede45639d6996b7fdc3dfe39e3d9bc197c814579c83996bcbb80178bf34ffe"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "11c65fb284846bdd26b214dd57a49e9fefd6cc397d74c4d3937cb61085790125"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "582f0935b056da1952ec63540092a374d381df952e8fc1927d58320614ca8848"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "92669bdd67250498c7e1051a7cb2c6f695ad6bab2d2503fbbe1ee41fe38ba415"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "289fb7df3cafcca0a468931119ab9836e59b62a9459349bd8438d80859dca5ac"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6fdec137cd959b382419784b44dc67553966b3a56fddc77bcdab586eb69e55ed"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c2d97c818ec830dce6559779f31e7514198d9aaf752f584cea0e542f29bd9751"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "77b64ed3ae2fe115745083fa4bfd9ca961ccc041ec78485b7320442a56f685e4"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "92c1497df1ef169a2bc07fa701a2b23362a233288a9b1e2a4d6e76851ee2cb6b"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "57ada6eefb5e52e24f61df3ab66166c016354ce47ef656a78a819cca4d419405"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "03aec9bd8aa9163771fa7c956d393586ca890662d039dc184f8044407796d95a"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "75f9171fc27a8d37ddc213fc2cca1165606fd0deba88d1afe8e4aa96ce8db80d"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b47d3ef773558540fd69002dfb5d33e8627ac09c622a13ccc3f291484630c4de"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "66d990e8089f20803255a72f020317e7f0cc3635a68a77ad648d2245a608fc09"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "dc7fb6f54833cdd972a5d9948bb392888c2f3de7559169341f7da9f3c18e236d"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c2d460530dbac2d74febb4f35e032279a7747bf612463d4c2a3b205141775f26"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8aa04d4638e4add1174dd6f665a94d11fe2ed026a3d7da33ed5c823d75c19ad3"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "02dab6c421df0e5cba2b0de4740e3c1feeb9f333c6e9b139676871e252d6f090"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "040016d4e3d04340d99ea6354f46bd18726393689fc2b43e1140c03c74ec7274"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8f6e0a250ce557abb8fe649c1fbfa7c1254b9e811c480c79dc19128d82a62b16"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d0fb08d33db7993a4635b855117979cb4e5e21bdfbdd2aa6109c020e493b8be3"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c25b2b7da60d0162612e12539e123bcfa581358f44075dcda8e11e014c5e35f8"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "85d06b1b8de4633ffdb38a43f57265381596b798cfab56ac952b7ec421c8c0c7"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.75%2C-84.8%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "80bfd82a80e1d599323fc0627a9dc2fae52e685b29186073588e20f797a6adf9"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a9a1fab10754db126d8a52acc62b69d219df62385a3709b5968a35bf11bfd7c9"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "9e5692f6007ac7a2b2634f21b250dfda5def6f3da74f7aa3758849db955d0a54"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "81ca11e602b6eb95017bcd4f020fa58eccbb0dd8b2fe8ba09cb4e958890a3e9d"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "2948b73f41dba2279006e96688649e4ec9526f61633bd05a8ef214756c318b2c"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "aa5ec430dbe5486ff2a220a7aef0462430f2eb05ac70efa898f32aec3efd7af7"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6cb04edb540f465e60084fb28faa6e28bdf3fb64e0513e66e93c0303f06fa009"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8d933c5e459be97e19c540c5035e23e1985a1c2a089c361e2324e7626a295021"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "7e8b8a9ff66faac861cddb84da6c2ced6c8e61335f0b9b99e5e4a31f37863c84"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "78aaf7276fc8671636a89998e90ac12c22a9597c87ecd9fe03d81c1eb4e11805"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8ebbd248ed73bda36b28ecd83d7f2f8669dfc2ff3a6401a880f54ae6569f6386"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e67859a09891b4987f4f2a9fe31658261547e8e8ebd484bde138f2632796b744"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "4ae23d9b01f6c62b9a6bae40d722c49f55b781bc3584abfae02210aa95da7f7d"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e1feaadf3e03a92bea049b77c04740d8368a50cb9edd30a241a0d3a0716886c0"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "9059e8322ac3079035532df04d35cc841c042266ddbfb3099271e0318d6b3620"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b17f2783f29788437180445db2a84894be0b599259d71fb496103c0dd79fe0a3"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "2ba227649d1e70bb078ae89dd1007c7e6f145dfe5676c57759bb58ee0a2c1ec5"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6b0e54ef190f861024c72a6d39f757d26d49ff45521e8c13ad32c329cfdb719a"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c4fefea3b73959dd63c797e7cc3d74730fef0a1706d6e980e82eae63adb7349a"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "4bd3793ac75cf7f9d6e6b633c215f11f974139b83a6d2d1264a530619379b9e9"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e4604deea59203457ed37ef34f68dafaef45eb26dc5514419c790ab06524d2b7"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c2fa0ef9a6d4909cc2f01f767b7659234b93101b5ae721ec06ae71adbd03e034"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "9e0fb565d1e89cfae7bdf77969758c410b8e5c8abebd9a40cf1f182bf410e9c0"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0d3a8e8a2f91ad43988a602cd968ea2ff57b02b90495acaadb21ddd2e0ae28f1"
+  },
+  {
+    "region": "caribe",
+    "sitio": "siuna_bosque",
+    "lat": 13.75,
+    "lon": -84.8,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.75%2C-84.8%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b85868473165d9bcce03b025ba708520170a9571ec9969c73c48e0ae4db933c1"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0421ba7a4a349c5755790bdd9e1c613b6dcbcaced7e59938dd8906c416022fd2"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "442c7bb3cf20fd7e629acbfc5e40803d208441b1484e0427757ec77e96511ce8"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "bd97b75d137c9537292d82c166afc0cf07ea65cea24bd1f60dfc7b4d3d5304f8"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "56dd0b0d2921d36377d6fc6ed6fa2e42f54a6973692251b87ce193d13042fad2"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "eba41ac0ca9217ad418af4f39da710fb388e7cbe8092662da43a9b9db56e8112"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "857491ab567c3bc615db96887fdb5318abdde6758eec9888d3fafb9973735fca"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "520940234e934c2acd0adb951a0375ce940360c9a98c8e4d30c226e7c10bd286"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "5ed4f172e33c874766fd8517e365062de5b13d97f11945638fc7b2a2ed3527d3"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "5c9fde082c8d9874cb623edbbe3688a16a83431a7da6feb040fffa154430281e"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "425744cf8f1ff252164970203f75dd14cd14403fdc2afc4afb7cba30f463b5f1"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8ff99a33bade785c96b655f4655916494dc3f0292a6325d7058089526ed1b5e3"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "07d99a6e14707ba08d0eeac3a6089b9fbf408c690272d0e859536e0b348ecfbe"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "ef4bd7765b236aca4f42a2ca93b82196f109a6a721e9293c98f020076a816f60"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "922b0233d8248879b68e5dc8e8386b8ec9ba5b09fc67e89d2c27cfc13ec66bcb"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "fee63a07d722de8a26c3a2cb52871505c402ea4cc13858c70b5532428d6ecf9b"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "dbe558f4e9987790d78addc43abeb4b01f58cffa773084dfa4292835c33ce6cb"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "31128c06cf43c4636b306ecdad67e5b8e632521aa5459c62254b869d89dc4f5b"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "80edbe92580e361aa1d00e9f3e5e5726246a6269043cb084fb45231791a3a94f"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e7bffb962a015253b15ca55d9e35eb9635c37b18e8d0d3682fedbb8222f2024d"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "1cb8ca2781fc73d9c157b829761143218a1f330a1aeba07f1e6610022cdc9062"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "4eb4d660fe3daf340112523c338eeec1aece77af077483c0179da727e8679733"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "3cac165852a28b3ad3fcc29ca3ac17ff9c5a428c9fa80ddb3f31a8497102508e"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "517996b7329fd9142eb3826ca1e57e30eb59929362b5d18d7166af191f77fc51"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Evap_tavg",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B13.1%2C-86.35%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "7154acdf66a16d9ca0905fa07563457d6cde3ed12f0b1e628757e1f26899cb15"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "611dea2c78925b3c81e496b68b1a47ab0847cdc26ddb54929f9e33b83f39718f"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "472104f8de260a39ff6e2455ff27180787d2647080a072bd27ed0781d9fac8dd"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "f7121045ccdba7fca9fcf3d6e902376579e42be2a6e3a36116fe21cae8c56927"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d21b05ee019fd88d9dab2bea59ea52b4bf65d84c4d1825ddb00882fc0e3b8923"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "ed570324ef0b34ebf4981d0008da9b1208854a52e9dcea1ece7e33f7d32af309"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "84c28a80cffb8a95113e20c3a94205370787ec4167810f59d191c20dee38ef82"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "660f30a873d1d7108d31d18b60f0c17df2ec9535b8190dc57f0585641747bf04"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c4e956b277905b305ceeb1efafc7d6307876ac8d0dabfed157a9b872689f99e2"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "04a1393f9b3d3617879afbcbe8a529a710e0d6303573d9a436ffa026160b61e6"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "5af2cb612ee48ff051c48b3abed0e6764c191185d3ff5964150329be6e4e1174"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "40afbfefe4ffe46118e2c26588c086d042e75a2587f3749e7afaf6258a4df30f"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a4885b777d0209e834495e9736e1351612edeb563323bd11f58d764fe9d28e30"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "5c7e30a6bdc7dadbbde21b884ac100522a4a26cbf3b4046572d5f8c606aece4d"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "7e740c705bbf17fb07f5878abfdb2b3beeb7fbd59a3e4a5ed4c182c4bfe17e4e"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6188da03bb40e665f0ea5794c4c0d8d72454cfaa777e09c781ed36ef60dd0eed"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "05d26674eee4cb4c4b792f9169b98ca3b6d584cb041795306b5406a46cac97c1"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c07d06d66bff0d67c300a0d4364aa05cec01089e91cb42886ca5230bbe5bc3d7"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "46c5717ae7cd56a3f41dc2051c249072cd8b3caa8dba08f5c24690e230e0a68b"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b218519401d1182e03c191fd83c137617cc52a6658faf6f57e1df8c55de98337"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0eb663faa0910a7a0224ff5c238f03d1c273b7a24790e215f20c54ec74e0bd42"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "4b3d73669f890d55247a68c9b893811e6704b6cfb98938aa317a65305a607b41"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0fd70e215f92091b232a05754277ea29d2ff2972d7721cf07bf1003d31ebe467"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "f2709805e69104412b3c072295f0e101d298f27e92ad864b8e4134c26c0e3f29"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qs_acc",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B13.1%2C-86.35%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0690e5c82e349c891a62239e969dd2a3fc7b2763dc1bd06ac3b72b522bf6fda6"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "cadd7275b6d1d2709b3506534ebcf034170088241d4a953f1d5ea5463fae289b"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c7f779194d1af860fd1d9ded6680f081f8585b16e5b31e4456e95df1eb433a2c"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "5788f7c28b6526ed58e01c7efb1c24fe40e8e49c8606ede8086932615c14ca96"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b6eadadb98bd1c9fc20f6d07e433ec6e40ba8d7680fbbcc8ab0cc460dc120117"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "027ced74ec54f9a86020637f7039e163c1116feda52dae9da4b6968b748bedfd"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "68a0f6e368d5e4a4afeb76ba55bb895fb4d40ead635dfc360192b052ed325a39"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "3cbf046e45738ae93eb8d327fbbcac96635ce3d523f84ae6f54141123785f1d5"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a4803a7e154bf24d88cbf69d6809c6b82b26ab9e048d18fb487e601d8683bb3c"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b69bcf4a6b192622c755da3785a08a535f4c58db787e8938a3a166d6089d9bc3"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "4dcaeb2f2823b2623bcd1dc6fd0eedc552aeb2e311a1db046c551eebfceb73af"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "7f9b4b05ffbc6508b99780d2728123f519263831b37f28a4d8e7547476c43821"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "13c4b24a11c1161ef94c0df8a073b87b5bd339120c672b3c6af8dc344f54b019"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8c7b5b760e44f4f17362e23dc6005af076110977902ebcfb15f55fee69c3ffd3"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "05772c3dd624d62ea29894707662236ab4504b305c7f15cb3002c17619491b0b"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "ddad71df1abf5697caa46cc788c73d933f3c9a1c861dab742a349fe3ff72ddc2"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "df032113f9120275535aa4d6b9d2198bc471e4a1e338ff0e9be610c3a491deec"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "cfd48463d03764ca4359f492f20fcd36cdb254008c1497bd77f0d3d2a90286be"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "fb874d2b3626c8d5bf28dad70d1e7ad5f4c5fb7e904f0866f9e2c8dd3c340562"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a47e0df285e2bbe0e44b1652331fcbfff8b568b9ef18126b945eed7ed5f7f314"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "7af4e2679b63ede9bfc49b233c10253f9fc20a0ad586e28f181dd6fc988d1e3c"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6760c5e0d5d9ac60ab9bf48c89d8863df3e09234e4eb57b70c46bd11f1c2f754"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8d62049546e6188cf14247f2d65758e23eb526f8c1bf220c8c664815a838741e"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c4b7bcd017fb067286c2ed6d558e34c2b9b5d1e9d32a259ce48e28afdc6108a9"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "Qsb_acc",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B13.1%2C-86.35%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d8e5b118f8f2a5ec262bb7b838c61db91c3c873bea9fa0912e2a24709f513398"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "920f4667ec350b16c827a9746649870218cbbd6a46aed15282b3004d23c753f0"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "49aa772ea833fc588db67f49ac3d7e8f3b4fbdb0487abb15eb1a9531664d63c7"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "9e9b7fd6daddfe8cae33b306a33fe3a7390c45b94e08bf07a5c9e10f4b9fbeef"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "74545d64c836bef4b131350544d4350a74e706ed848ce45ff35c2874c6668811"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0503f1cd4bd49d26f17a5b7d550a8b856d8dfc088aca8ab7d3fff674a5ef267b"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0382ef0087f2d8337d953b4484883b32ac21c2c61970daed969055686bf28387"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "94cb8e68e4545bdb92e9ff09db3e71b687a0e2821c3a39633e3d535fe45663a2"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "f085ec53952cb62ce188d3b4bb27cb77a681448181a852847860e6b3e1d2aa17"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "f1bcc0d9f8a05e42f21f1b5449e0b9d1d18b06c2050a7f531d761be4b5330086"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c615477c0519f2a322f7556786503cfdf10e8e51bea6db6921cd3aa4db491500"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "fb364e7f6689713ebc2a6f6388f2adcb81e37171d4c03ef2160f8ec3154fe6f7"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6cf188fa9637341ca47a241fb95d86c594950a578570d6a08e54e71b8f63a195"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c4b2b257ffcefc6a6a3849c1b9fb2491ae5dde307e4a9f5d89fec0c9c6945afd"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "eb1c35b2625aa133150d3d24276b7df1ba218d92cc799eef8178d4666a7e58a4"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6f2dae20565563c85e0256fcb972fbd33bb9dbb5ce853b21e3a7284abc5c5161"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "354b0f901852092f91f1ee7237bd670c8ac4149fd3a3ebdf3b2539d2976b3045"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "552907f85c4b66ee0f84599fe7a0f0b26029e31f5a51066322df4550f025d7e8"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "352a842d36318563c6ef55375e67cd58f7dd906e148f1961f2a66c4d357bf80c"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "42557dbf5355583b1aeffa66794d7aa2408345aee4670cc05868d14d0451acaf"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "551aad663fa4d99613faac1784d6a1bc0d26939bf048c7bd01c19e6cb724df83"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "62468f8bf54d00fcdaa9e91718c2bfe11bf62984b3820cd7287c47d216ce1f3c"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "64fcef9e42a164de41990118797f0f1983ba5cefb40d5d8459b0c86b44d15edb"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "256d0eb03b47685c36efee3a952f1e42a6176a8bee266d48dd18b9d70b6d0881"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B13.1%2C-86.35%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "7aa63a2202f0d0ad7d67de9f8b3f2b3ba0bb42a33dbd2896f2ab9294f581ab9a"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a92622b70d1026610ea175353d1fdbd8c65ee9f2f1c2b4cbf808b798b3657812"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8fe17f0ca187e8f045190da77ec72d34313db6cddd8ebd1262ee2ea1b2ff0cce"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d518dd1db3a9ccacf8a3d144bab13e5d36a8212a3a9cd4f0eb968dce8f57292d"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d12a61670a04be524e7a3217d745d1304d46436445d287734fb968e1a0a55f48"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "f02c18d63ecd355332797b816e207638dc6d600b2b122ba6fbf361504e1d9d89"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "9e4ddfd819fcaa5ef559a86b63a6157f23e7b9b20a7c1da1c36b54d95b326e74"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c67d34fd6230d4286f98e410262f60e7aedd10eec3447d5b415e0f618e5d838a"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "3632cbd96df0ca109c5bd62a384aa480fca26f9f5429851889f8bf3230185141"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "1eac46b49344896b8b4d77f7bee543fa2afbdd4ba55322be7d02d29abe625432"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "4b09aa541f2e53063acd78264f79b85cd209a6c619caa149d5912fc730a666ed"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "32971d1e9a07965f2df9d559d451b5398af331923a08acacec5ade26aa634335"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "889d9307c9c1b71e388da983d388426e39fc35f4f3ebf23f4fa8bff73765e84c"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "fdd9be5462b0728667cfd3dba03afb1bbb0504de8ec96b2752815ba9f9c3e2c3"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0205139c3ab83d6a354c42e97555c432790cc0da8041e82af7bbd8f33b719d90"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e7f575f164f6dc256612b26d0c0a90a956979e17c7cdc532a75dabceaf2cd192"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "9e85bba2eab9c1d2b0b2edbfbf9a5c13637ac6b516eaf0dfc24a00267b5fe9cc"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "22147428b72e29965de253abd3efbc672ba9e90d3176bd46756533ced0f16189"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c85945fc2b585d401d6d2ca71fd2ecdc3dc33b4f94993bf22d7f844994d3b6f9"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "9562fada507104bc80ac8815fe0de28fa4d02a09b6689fde968df051a9c82f9e"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a7c0a1de1581ebd33c67b4ab63d117417790bf92526c264e70b820aa3d06d000"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "53b1540a513e2a679b74a93c3603386a977ff00d1f4d7a06d19d46311c6efbc3"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "436a10fb8a77e3ed08ce29e425c3338f8e9d1a961ff2eea447ac9a5f49eb5d3f"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "5796c7e1e73ecfef3262835a2cc92f1e7c5ea41facc86eda9a51e6d7f2658214"
+  },
+  {
+    "region": "central",
+    "sitio": "esteli_corredor_seco",
+    "lat": 13.1,
+    "lon": -86.35,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B13.1%2C-86.35%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "9c2c0bc3bef8ec622751ec8a195e1fe9cacf988af4a2b16f7f5c357ec7c0625b"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8451e8f1b68ce6d5e5cb6c17a51700280654e0bd7cf96fa6b7fb2601aa9a9ab8"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "24aab361e6be6a42710d06d4a38c66062d1a486277764b0f0cc70e10feacfa65"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "bb974ddb831e2267e7e12175cd2ebb1768802416f549e3285397ec97a852e228"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "2a14d685b415f49886bcea4dc73f382f6f9f43ae27ba863297eee3c6fcee9c49"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c15cd059abb07c33c7d132fbd5256ab0461176f2b9111f473c9cc83eb5ab7d25"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "99d1801d0b2ed78f8e5e78ba5e21045b3c602e4a9c5bc845f2c8ae26137b7328"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "53a6d061cb9767880ed6df59b0223d01701b37b8cb67a89c67675325d9226a40"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0ae9536632a806433f7bb817c77aabcc9cce2e4b881543355c1997b9bb78caa1"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d86e76d74a8c81ed891cfc3902c648a87a74621311753237589be0943021c5e0"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "379c90527141d2fcf4903b0432c313081d89cf0fa25fe40cca136521810eb507"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a7948f3616ada17b2488824ba461e32e89c8779d61779ae52fef4f708bbc7bfa"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0482802549b5db91ab23f9fd1395f41dabf0ca60ab8ee588c5097e16c905a59b"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d6d2fb48914002c80a130d4ab652c574b115479ae2b2d3171143e11599e8c8cb"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "311dcb3ed06b3571c06f71329aedb90be1e86447062865b323c93ab7d9928fc5"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "614e98dc83bd4cfde61eed46c1cbc947f5b1aa385713ac0e4f02e4097cfc62cf"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e32e2059e52de2436c093f16e6680f23bf1898dd59f7e0f70850c6c5609e8015"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0a8b195e3039c963931eed30210479087d408bf246e57f0aba8f9297c0e5f16d"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "7ebf0295d28810bc9b363b777134d899ca866bbdbf052691290c3fd7cd0dc6de"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0a122b3d1a2cc5ba8b07e7ce8a4934271c21f9740ca60f181ec432c23b3c12b8"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b2b9108835c8e6336e4760dcf110e5e818d2b7962ab2564bb7afc8cf5482bc47"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "89a43fcd7a0f028cfee09b351188096f803b5aff6da5fd194624e88773be4f33"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "1ea03adb33f0bfbb7e921078c5627b3d16045ed9dc14f7d1b43a4d55e405290f"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a0d85b3d4f60fd79e5f513eeb416598684d9216b4c7aa9918dcc0b022b4df6ed"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Evap_tavg",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Evap_tavg&location=%5B12.45%2C-86.85%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "35d4e19f682d04261e5bc448ccfe7809635a0d7f12b0e0e4f45660d6cd7a47ed"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e58005149b144abce4aa59717d7d0d12ff473ab8088e02054609463167b9a9a1"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b3ab66ceccccbcedbdcc2296cc038147ad232fb8c9419db7bd04d7b5fa762bcc"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "da3737e45ff6971a20451bef1c28caf9182d9676975a4badb39a02d6c79cdce8"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "377b9b05500fe8d68ac63d73d1828bb1a847b6c0c7bc33833a61d39901b0b6c1"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "ccc83e2e12d7ab6673c33c6caa0aa819df3637cbd2a6467cfa8ecfca91a874cf"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8b6c20cad014d3061c6af3fc248af2a1ef3959cafda043e3e19c30d3f9fca645"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "cbf82a073c304fcf2dc7cc9de3a4adc824447df8f826d0f427b6f5e82dbb3f97"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "2e71c52e7c975264aa5a91e254d31224057d92029ce86de4f8647e124969574a"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "045f72f87c9f58d21486525ddbeeb5bdc4b45a90c7f9c70d7689843cb86eb8fc"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "193fb348fc2263e44120db0ea511d1d23394f3ec11be138a00ca745b0f73f360"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8a4565c0da51b2bd66cd43d2f9f4c3ec37c900384b57cd4eba2afebbce75fa5c"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "37015f3aba8f0689b4315cf3baa5cba426ef67a6398320e450fd2e18b9f93452"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "373bfd24b5e402c69910221d621c35c4e5fdf5ba9fdc2ef2a1c11d4007d4296a"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c470661b0480a26bc71aea16208a6c154f7afc5b1a1b798416019039e9dc2c99"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "acb8aa12f5f1e21d35c593c8c27b373dcf66d0a7a185b13f91f50d6fd87b7822"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "819826a49830f291dbdd93b5b58be9e4c09b87fe5e63c49b3ac58e1bc98abb30"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "98af870c21686f8f78ac53c814e5e0f4179440c61dbfd5d2c30c6a9106bc3c1a"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "adee3ebbf984ca26e5373ad36267642fcfaf32f2e978eb2325e7d83dcaee0bc0"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a497a01bcf9596c05b9ae3f00d7d99da004e19cbd6516ed0925b4d21478ea44f"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "16de046495705660ff62274f01abc9357c6e0dffc3a3f94b779a2f0616366b72"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "3d88c088521600c2418bf5ed9dabbf27242c6d9e4d44dc3dad0d95dd9eec5ebe"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "40ebc5726f0a653bed11e354f50dd16602ac34172dfdaea00b04f6f697bbaf3b"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "656c0d22b40e4e9cffd3261d8a68fe279df607cf1e841343976d730ebc196b24"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qs_acc",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qs_acc&location=%5B12.45%2C-86.85%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b33a6554437bdac2c6f4b0798d1c8974e5644e83d25c6cc7b6694c496accb877"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "b31076c47b0c3a409d32289e9c42a2c92e625948b7892d698b24ee34324799d3"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "88d8121358766c76828acebb0c317061009c8a3bb22e0fd38dcb1eaea7ab0fa3"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "825fabfe91b2e5547ebc3ff41607e6855b2545e7c6b5802bbb03600bcf3de1bb"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c5b8fd2cdd2582bc7ae3705a7c839e6ba650f05ecd9def4f42dd27672e4075b6"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "931c286a8f0bdc9c385dca8122fbeae9b108155e7bc12ff5377b59d8688bc898"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "25c89da34c1bb3d1fb6cfacd4c6d24eae90bac27c13b229c7d570b679cc258ca"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "aebd8c0e2c77d0f738f000ad6fd40ba0c581d3180a518518cea5d9381eef7805"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d5350cac5c183053f59393829f0bdf1d7b6bbc0d30c7dd94e87ab46953be1598"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "ca96fa8b5d866280c52616c63ef4a3e663a73622cb46ffd36d08b5790790e051"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "f1e349cbecef4a9b6b6fbe41e5aed946892a03d11f1d7014bb5fba19d623eefb"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "84d22246ec796d48c38874f17f898193478345c9b3aa1499ad1185d68a48c918"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "f476815bc6330ce6eecc20b9ee6cd3ac98109a8bd8f8cf461eb431420a4d10d7"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "ca3972a75ceeddcab66fd8400fc2ec8e3c0233d61a70b2d24164e521569eea64"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a5fd54da1ab23772d9b71b6411543644df48d0bcf1fc84856bb7330789eb2429"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "24024c6b28b5b5708906e4c8c26f37cfd3945fa8199d9a52e229a7a5cdeba6ca"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "775247d21d77ad1b29995a85ba04c81d0cab3891b2d5f96b6bd1ff5c2165e26b"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "c5c076f3104cb03d063cc41fd23adfb283e38fcff88ce474246c0cbeab397c55"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "87fcc4937430eed9e867383b929bdaf09959d032fc0bcacf0006fe3cc601693b"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "ebb525853ca414073523359a8f2fef7b79c5b889be4f270cdce9974a46dfd632"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "33fcabfdaeb2d0ecb3c2a468526584cefb5d80d9d8f5d03f59d8e40328bfef2d"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "4f867429e155415ff2c45242836bcebc536dd8aff71f62da24da2fec9af67679"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d8b243882e94e5d615f4dfc89deaaae88c62d8acaf21ffc956f989f1259cc7ee"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "eb2cda261f47c8bf14aba1b85d51dfc64dad68bdbec9a9b608c802317424219e"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "Qsb_acc",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_Qsb_acc&location=%5B12.45%2C-86.85%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "5016133253493e5a48af3b904b804b74eaac4eff25f51f06b50d7e7dc49175e3"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "19b172dd6397064591a65ff645342974dbbdd4c41fac2faeb80081d0132edb7d"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "01f8c69c1489a43fe6529926bea79cfe9d26012160d8d225c0099568103f5161"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "dee6cf1e1be309b8f15f3013ad5916e06e782a72945ba75effd8d14f086b89df"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "9d2e15b71266143e6b01165ea557134176be29bb7d3c0386f14799c5cda24214"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a521ec0de1c08e76ed34fc023ab24ac8aaa20a62075d6d8206f2ac2ab3d4f485"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a1521a59d96d481aeed9b699dcf33f6e291efcbc3953768fa299b85635d0f383"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "611a8d75e14361df79c7822036e5f8dd973a2625d4b81df9be202fb98e9c2714"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e4000460a015837d43d6126793a0c68e0ac90b436cdba30303a2bd6ad68bd418"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "1a1db813977098d2b096f4eebcb6bee509f9991688ff3ae117c880b920450b5b"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "435ed0017507e87b9d9632cb208416c5cc4b5a7afd63e2fbd2a2b3010f91df2f"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "580d2a18c96ac6c99543dc5f5e596b655d2bd0df5cd3895f4ea6b9f10b1b37b5"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "4f94b689ae2a80184fda42caf3db7ca80b2894ab6f7df20ff56d674e860c58c8"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0b0eabe20fb2f07932b348f87dc0901d5b6d8e3e6192417aed06bac10a0b4e14"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "6e2d2f82f063376674d75be606de301257a45b489459a9ba6c3ac584244a2514"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "55bf34eb84d485b30eb11a4efa679c169d9e7ccd5e4ecb64bfab252b091fea05"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "332b371c62d3662a7302968e0fbe3293acaca2b22e21efa2bbc2f5594b1c1778"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "74f33ea0b78f614457a863e9dcc0cdadc88e50d4677a5849e3e2ea960aff82f0"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "56667faaa997bcf14d1104f47e3e6ca8005fdf1d3fb13d239c7028f61717a858"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "952a7d732b6fa73751b0c608b91306dd958bd4586a2c99153acdabaa23f22724"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "4c71cb15930e4967f8ffb9174f4d023efb065bc6e5ad1b4f46320e14e01f0a8e"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "aa9714db42425f02cc3cec04ad54760015405bb03ffa65326e6b7eb72c2f8f75"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "ef2fb84d1eef5a944dd483049ea37a9c8a32981d8e265dabe8fdf354b7a164f9"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "1accffb83be1478dd711ddc3a2caefd17ea9093a74aa8151421b73a7ebaabb68"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi0_10cm_inst",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi0_10cm_inst&location=%5B12.45%2C-86.85%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "45e1f685673b318bec356fc141e34d5ba4173074be425f5a430e278f33a1564b"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2001,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2001-01-01T00%3A00%3A00%2F2001-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "13f2736318ade86927bfcef613c327db551a11dfd15e72c9a3537640600a900f"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2002,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2002-01-01T00%3A00%3A00%2F2002-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "2c7678930c712e3c008cd151c5ad6b3ffa70d4a708a85c29a8758cfc546ede93"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2003,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2003-01-01T00%3A00%3A00%2F2003-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "955da87a13e8164ac76f61792ebda257fbac1bb460077f3a3b1f950270073e20"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2004,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2004-01-01T00%3A00%3A00%2F2004-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "951072c98ee18564fe6964b7ca1c4a5f8d6a5de4dc92dbdf0e6b3dc94384ce44"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2005,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2005-01-01T00%3A00%3A00%2F2005-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "ad04995b20c8a537fee6b1d88a4a8c0a6ede8e1040b48243ba015158752ffb03"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2006,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2006-01-01T00%3A00%3A00%2F2006-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "a4a1c2c8d6a617920d8480704e0f50aa22f49ad8cfec3c0a0b2136aafe6034f6"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2007,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2007-01-01T00%3A00%3A00%2F2007-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "3a5248b5ecfe77014be8979a40b5012e9fb702050b6420763252b884f275d55f"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2008,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2008-01-01T00%3A00%3A00%2F2008-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8b52a4746910f90da76a9cf2a2f6b321790cb43b0bae1f6faea23efe07079a82"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2009,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2009-01-01T00%3A00%3A00%2F2009-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "77fe062aa2ab1359d4c72a1a5367d503fcea6c82542c04dc6258e7f6cde4ce19"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2010,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2010-01-01T00%3A00%3A00%2F2010-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e69a0429e03afd00282f31f9474a15295eaac5fe28b62b58c42711a5e26015b6"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2011,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2011-01-01T00%3A00%3A00%2F2011-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "8a298d319520fc2aa9f1196bcf1c1ebb648c19248bdf9b6bc52d1d8908cef57f"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2012,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2012-01-01T00%3A00%3A00%2F2012-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "81fee36fbff3c62ad188dbcfe80ac6c1e8c692347580b7551af8ac5a559361c3"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2013,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2013-01-01T00%3A00%3A00%2F2013-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "90388f3386b8a1575f6c39cea0687db07dd76cf373a6cd46cb0e9dcb05e88f7d"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2014,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2014-01-01T00%3A00%3A00%2F2014-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "d2ec974137cb16a7149eb662da0a2dd25fae5a84da0d4ee6f9c56b15e812d8c1"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2015,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2015-01-01T00%3A00%3A00%2F2015-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "2352f6fabdb35ecaabe9afc27b409b7a45886d1af4a20d970ec60c1ad6f19578"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2016,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2016-01-01T00%3A00%3A00%2F2016-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "00b67654f519e5da6eefa1b51c14c9ff6b0a9ad1c598d5487aa0f308291dc713"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2017,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2017-01-01T00%3A00%3A00%2F2017-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "76fa1a4dde9ccef5913dca79c55359ff76b49bc8aa41677b8e88521d79271d22"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2018,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2018-01-01T00%3A00%3A00%2F2018-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "f86a0c72547c88e7074445d1055cb1c355ea2510c514b68c01e451733c477277"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2019,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2019-01-01T00%3A00%3A00%2F2019-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "60686e55be39b5c9fe395cfc2e83140c1778ca1597105f9c6593be207ea04870"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2020,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2020-01-01T00%3A00%3A00%2F2020-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "0cf9ae67980abd68139057b9c4264a8132e19546851e669b1a817afb881f69c5"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2021,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2021-01-01T00%3A00%3A00%2F2021-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "f19fd0e0356b63eac6fa9787183881b22b333c7a75c2a266ebe8b4f490de6c3b"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2022,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2022-01-01T00%3A00%3A00%2F2022-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "5530a28a7a73b20d9e4270012546b78e7654fa3c4ac8c4323e4eaa9bbe8b2e46"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2023,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2023-01-01T00%3A00%3A00%2F2023-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "9f38ab72cd60e5c0b8b046114cb65ec901a16bb8ae5f45abcc2199a568800850"
+  },
+  {
+    "region": "pacifico",
+    "sitio": "leon_llanura",
+    "lat": 12.45,
+    "lon": -86.85,
+    "variable": "SoilMoi10_40cm_inst",
+    "year": 2024,
+    "url": "https://api.giovanni.earthdata.nasa.gov/timeseries?data=GLDAS_NOAH025_3H_2_1_SoilMoi10_40cm_inst&location=%5B12.45%2C-86.85%5D&time=2024-01-01T00%3A00%3A00%2F2024-12-31T23%3A59%3A59&version=2.0",
+    "sha256": "e8952646e506b47b2747e8322d1cfbea03ddb267c562173b8830bc8c90a1c70e"
+  }
+]

@@ -1,0 +1,2975 @@
+{
+  "producto": "GLDAS_NOAH025_M 2.1",
+  "coleccion_cmr": "C1342986036-GES_DISC",
+  "consulta_utc": "2026-11-14T03:58:41Z",
+  "periodo": [
+    2001,
+    2024
+  ],
+  "variables": [
+    "SoilMoi0_10cm_inst",
+    "SoilMoi10_40cm_inst",
+    "Evap_tavg",
+    "Qs_acc",
+    "Qsb_acc",
+    "Rainf_f_tavg"
+  ],
+  "balance_hidrico_control": {
+    "NIC": {
+      "lluvia_media_mm": 1685.5,
+      "et_media_mm": 1156.2,
+      "escorrentia_media_mm": 524.7,
+      "residuo_medio_mm": 4.5,
+      "residuo_relativo": 0.0027
+    },
+    "caja_sicc": {
+      "lluvia_media_mm": 1891.5,
+      "et_media_mm": 1211.8,
+      "escorrentia_media_mm": 707.6,
+      "residuo_medio_mm": -27.9,
+      "residuo_relativo": -0.0147
+    },
+    "caribe": {
+      "lluvia_media_mm": 1864.7,
+      "et_media_mm": 1181.8,
+      "escorrentia_media_mm": 679.6,
+      "residuo_medio_mm": 3.4,
+      "residuo_relativo": 0.0018
+    },
+    "central": {
+      "lluvia_media_mm": 1420.9,
+      "et_media_mm": 1112.8,
+      "escorrentia_media_mm": 302.6,
+      "residuo_medio_mm": 5.4,
+      "residuo_relativo": 0.0038
+    },
+    "pacifico": {
+      "lluvia_media_mm": 1563.4,
+      "et_media_mm": 1151.5,
+      "escorrentia_media_mm": 404.4,
+      "residuo_medio_mm": 7.4,
+      "residuo_relativo": 0.0047
+    },
+    "CAN_prairies": {
+      "lluvia_media_mm": 446.0,
+      "et_media_mm": 424.3,
+      "escorrentia_media_mm": 14.7,
+      "residuo_medio_mm": 7.0,
+      "residuo_relativo": 0.0157
+    }
+  },
+  "grupos": {
+    "nicaragua": {
+      "celdas_con_peso": 229,
+      "ejemplo_url": "https://opendap.earthdata.nasa.gov/collections/C1342986036-GES_DISC/granules/GLDAS_NOAH025_M.2.1%3AGLDAS_NOAH025_M.A200101.021.nc4.dap.csv?dap4.ce=%2Flat%5B282%3A1%3A301%5D%3B%2Flon%5B367%3A1%3A390%5D%3B%2FSoilMoi0_10cm_inst%5B0%3A1%3A0%5D%5B282%3A1%3A301%5D%5B367%3A1%3A390%5D%3B%2FSoilMoi10_40cm_inst%5B0%3A1%3A0%5D%5B282%3A1%3A301%5D%5B367%3A1%3A390%5D%3B%2FEvap_tavg%5B0%3A1%3A0%5D%5B282%3A1%3A301%5D%5B367%3A1%3A390%5D%3B%2FQs_acc%5B0%3A1%3A0%5D%5B282%3A1%3A301%5D%5B367%3A1%3A390%5D%3B%2FQsb_acc%5B0%3A1%3A0%5D%5B282%3A1%3A301%5D%5B367%3A1%3A390%5D%3B%2FRainf_f_tavg%5B0%3A1%3A0%5D%5B282%3A1%3A301%5D%5B367%3A1%3A390%5D",
+      "ventana_indices": {
+        "lat": [
+          282,
+          301
+        ],
+        "lon": [
+          367,
+          390
+        ]
+      },
+      "consultas": [
+        {
+          "mes": "2001-01",
+          "granulo": "GLDAS_NOAH025_M.A200101.021.nc4",
+          "sha256_respuesta": "5dbbfb678fa7978dc8282f39b7da0de63ebb4e0a710d8bf626330e131ea2b32d"
+        },
+        {
+          "mes": "2001-02",
+          "granulo": "GLDAS_NOAH025_M.A200102.021.nc4",
+          "sha256_respuesta": "9366dac7dac669c8f8d25acfd40ff4c6e00de197b64ab26e2774ea8b5e7b3e79"
+        },
+        {
+          "mes": "2001-03",
+          "granulo": "GLDAS_NOAH025_M.A200103.021.nc4",
+          "sha256_respuesta": "8f930a52de7205dbea426697cd39201d5f72c0ce7422b7d371c88cf08c25cfee"
+        },
+        {
+          "mes": "2001-04",
+          "granulo": "GLDAS_NOAH025_M.A200104.021.nc4",
+          "sha256_respuesta": "2efbbe8c014c9430caf9c4bac160de02187bcdff77273a2697b103d39cc37c95"
+        },
+        {
+          "mes": "2001-05",
+          "granulo": "GLDAS_NOAH025_M.A200105.021.nc4",
+          "sha256_respuesta": "d04fa5364d02c7fcdd65dddabdbd5ffd279f3bdc0a15a04ed19f945a50acda86"
+        },
+        {
+          "mes": "2001-06",
+          "granulo": "GLDAS_NOAH025_M.A200106.021.nc4",
+          "sha256_respuesta": "028283f275e6ad569d3a261612d7ce893e7608a3fb385dafecd65756fd5cf07a"
+        },
+        {
+          "mes": "2001-07",
+          "granulo": "GLDAS_NOAH025_M.A200107.021.nc4",
+          "sha256_respuesta": "ab5878cad5ae69aac7e3820f79bf943d6e4bec5a82f6e2c57bec9811223b6656"
+        },
+        {
+          "mes": "2001-08",
+          "granulo": "GLDAS_NOAH025_M.A200108.021.nc4",
+          "sha256_respuesta": "862502fafc4f788e031ddcf38a82b4b23511425a4f43eae96c7d21b418304478"
+        },
+        {
+          "mes": "2001-09",
+          "granulo": "GLDAS_NOAH025_M.A200109.021.nc4",
+          "sha256_respuesta": "35915a6857d94fe85ddd0764c4c208d672dc02dfb7a798919724c34f305d9f5a"
+        },
+        {
+          "mes": "2001-10",
+          "granulo": "GLDAS_NOAH025_M.A200110.021.nc4",
+          "sha256_respuesta": "a97d52cdeb915bfcea039e2e10b62a59b4fa79580488ccc093b0e4ec0c36c1a6"
+        },
+        {
+          "mes": "2001-11",
+          "granulo": "GLDAS_NOAH025_M.A200111.021.nc4",
+          "sha256_respuesta": "fc0006059a0bd820f1e033ef8ee7762a6fab3c57d330c45a0c6e243b9908948d"
+        },
+        {
+          "mes": "2001-12",
+          "granulo": "GLDAS_NOAH025_M.A200112.021.nc4",
+          "sha256_respuesta": "c457de7cbbaa089f81ab6372be75b894c061552e5549a661a7e9520db61cdd4f"
+        },
+        {
+          "mes": "2002-01",
+          "granulo": "GLDAS_NOAH025_M.A200201.021.nc4",
+          "sha256_respuesta": "a683aa37bf57f4469b47f78e86340c2da2af452a89f7d0c1242d3dee1133ac91"
+        },
+        {
+          "mes": "2002-02",
+          "granulo": "GLDAS_NOAH025_M.A200202.021.nc4",
+          "sha256_respuesta": "731261494c6700b755dd5d54ea194b15162440532c191642e37de482fc043b27"
+        },
+        {
+          "mes": "2002-03",
+          "granulo": "GLDAS_NOAH025_M.A200203.021.nc4",
+          "sha256_respuesta": "997b8895d856df264fcc2c500b7584879cbd23b1bf6c74a4bed641eaacbc794b"
+        },
+        {
+          "mes": "2002-04",
+          "granulo": "GLDAS_NOAH025_M.A200204.021.nc4",
+          "sha256_respuesta": "1548d78523683f71230c274aa684599cfb4183eab21e960e8821cc12e012fe74"
+        },
+        {
+          "mes": "2002-05",
+          "granulo": "GLDAS_NOAH025_M.A200205.021.nc4",
+          "sha256_respuesta": "ae5ae57b41f6995cf2ff5cce180bb4964aa64c1ffdeb4f5503c175e366a50f4b"
+        },
+        {
+          "mes": "2002-06",
+          "granulo": "GLDAS_NOAH025_M.A200206.021.nc4",
+          "sha256_respuesta": "87804a6c72beeed442b96f849ab1a85f91f3d1fbe15c13948a40487d10f38b77"
+        },
+        {
+          "mes": "2002-07",
+          "granulo": "GLDAS_NOAH025_M.A200207.021.nc4",
+          "sha256_respuesta": "890f3f59072c00be3e020110240d07fb95ed949aa1a856adbf7098258d0c3a19"
+        },
+        {
+          "mes": "2002-08",
+          "granulo": "GLDAS_NOAH025_M.A200208.021.nc4",
+          "sha256_respuesta": "8594c887972fd1b892c97ba53b2ab5da8d3b976b7be9b602b9d722efe2af873c"
+        },
+        {
+          "mes": "2002-09",
+          "granulo": "GLDAS_NOAH025_M.A200209.021.nc4",
+          "sha256_respuesta": "1457483e52bfcc5ace9d64e65e9f86e329b21a46beba17a16910e60d6ebc903c"
+        },
+        {
+          "mes": "2002-10",
+          "granulo": "GLDAS_NOAH025_M.A200210.021.nc4",
+          "sha256_respuesta": "083f11ba56db5c88243ca06284e2f3eb2753a2e0c1e7b517c0202a245279dc6a"
+        },
+        {
+          "mes": "2002-11",
+          "granulo": "GLDAS_NOAH025_M.A200211.021.nc4",
+          "sha256_respuesta": "2c54fc66f2635a3e0a6bf9eb2905d8c3c7948ac2e33691376eca0ac590040635"
+        },
+        {
+          "mes": "2002-12",
+          "granulo": "GLDAS_NOAH025_M.A200212.021.nc4",
+          "sha256_respuesta": "67bd8c1043cf733690c29e87a9061693dd9decc08c319116268323775b2b0a1f"
+        },
+        {
+          "mes": "2003-01",
+          "granulo": "GLDAS_NOAH025_M.A200301.021.nc4",
+          "sha256_respuesta": "e5dae065f45a2fbd5e3c058ecdb5de7cd890631cfa15abff87dedca0301c8054"
+        },
+        {
+          "mes": "2003-02",
+          "granulo": "GLDAS_NOAH025_M.A200302.021.nc4",
+          "sha256_respuesta": "09bf2bcabf4103f783ea545de46a7a0158a2e3977cc5de3fa8b11410e8616003"
+        },
+        {
+          "mes": "2003-03",
+          "granulo": "GLDAS_NOAH025_M.A200303.021.nc4",
+          "sha256_respuesta": "a16af39d58db64bee28fd80ceb2148f218dbcbdc6f69debaf5b5d83f60bce2d6"
+        },
+        {
+          "mes": "2003-04",
+          "granulo": "GLDAS_NOAH025_M.A200304.021.nc4",
+          "sha256_respuesta": "dea6b506400b44940df0224e45538ec27911a1eda74e6a8bcdf7f41f31405c94"
+        },
+        {
+          "mes": "2003-05",
+          "granulo": "GLDAS_NOAH025_M.A200305.021.nc4",
+          "sha256_respuesta": "6213dd42212f9c4cb55c098efd6d9651349c3f505d540c54fcac2a5a3c3878d2"
+        },
+        {
+          "mes": "2003-06",
+          "granulo": "GLDAS_NOAH025_M.A200306.021.nc4",
+          "sha256_respuesta": "c3bbbef6939f55eaed0edab4a4dd1e007f152d995adfff380242c319f0d1b838"
+        },
+        {
+          "mes": "2003-07",
+          "granulo": "GLDAS_NOAH025_M.A200307.021.nc4",
+          "sha256_respuesta": "2cbc890f4eb6b0ab477f0f02586b08574929c0ce12565c7b6782db792964da18"
+        },
+        {
+          "mes": "2003-08",
+          "granulo": "GLDAS_NOAH025_M.A200308.021.nc4",
+          "sha256_respuesta": "b1d011c6f6c2cc92653d509920443498d8308a0b05c08d3911174d2bd3fb31ec"
+        },
+        {
+          "mes": "2003-09",
+          "granulo": "GLDAS_NOAH025_M.A200309.021.nc4",
+          "sha256_respuesta": "980bc5334de4186e5918ced6217f512727158876ce593445f5b2c98ee3b56119"
+        },
+        {
+          "mes": "2003-10",
+          "granulo": "GLDAS_NOAH025_M.A200310.021.nc4",
+          "sha256_respuesta": "d088f3a0a9ba7065ae181b09818b600655a8ad9b5efe6ca3dda4cf7b292f7132"
+        },
+        {
+          "mes": "2003-11",
+          "granulo": "GLDAS_NOAH025_M.A200311.021.nc4",
+          "sha256_respuesta": "6d0ac4b0680abe5e9aa29fb0efbd6bf3022fc27c451fbed307281cd587c0c52b"
+        },
+        {
+          "mes": "2003-12",
+          "granulo": "GLDAS_NOAH025_M.A200312.021.nc4",
+          "sha256_respuesta": "c4ee6c6a08bee85c20d3ad2d0bb4386bb28f2a663fa98c14cc622070884c15ee"
+        },
+        {
+          "mes": "2004-01",
+          "granulo": "GLDAS_NOAH025_M.A200401.021.nc4",
+          "sha256_respuesta": "0d4fdf8efb2e9d2e441ac462faae2ad6914c597f3c43476e3df95692a6412cec"
+        },
+        {
+          "mes": "2004-02",
+          "granulo": "GLDAS_NOAH025_M.A200402.021.nc4",
+          "sha256_respuesta": "c9c2b4d2710c581b7068e35118ff4e464ea7367738c48a6760d1a277c81e7257"
+        },
+        {
+          "mes": "2004-03",
+          "granulo": "GLDAS_NOAH025_M.A200403.021.nc4",
+          "sha256_respuesta": "9d3eb43ede3c12eb58db788cc167e9eee04b9600685eea13bbfcae0a29efcebf"
+        },
+        {
+          "mes": "2004-04",
+          "granulo": "GLDAS_NOAH025_M.A200404.021.nc4",
+          "sha256_respuesta": "4a7f49a6487dbdd7899102c86539e6c4967f82abdb73a6c467209ee991bb5df6"
+        },
+        {
+          "mes": "2004-05",
+          "granulo": "GLDAS_NOAH025_M.A200405.021.nc4",
+          "sha256_respuesta": "2e4a8b06e1a6a6fb60ce7b0af4821afb0fddbda491d588350c1534e62a96c137"
+        },
+        {
+          "mes": "2004-06",
+          "granulo": "GLDAS_NOAH025_M.A200406.021.nc4",
+          "sha256_respuesta": "439e879b2e8ddad332433a54639c677d00ec55c095bb34778212a2ee6cef4562"
+        },
+        {
+          "mes": "2004-07",
+          "granulo": "GLDAS_NOAH025_M.A200407.021.nc4",
+          "sha256_respuesta": "3b75c6d1975660b1b93a66886d962c00376eff7672f3debf2a7948fc0a95f5a1"
+        },
+        {
+          "mes": "2004-08",
+          "granulo": "GLDAS_NOAH025_M.A200408.021.nc4",
+          "sha256_respuesta": "18fae495a847208d2cdda2232335a4c75293f16645c5cf8ad493e8dfffcac4c4"
+        },
+        {
+          "mes": "2004-09",
+          "granulo": "GLDAS_NOAH025_M.A200409.021.nc4",
+          "sha256_respuesta": "55ace44e679c0ab8e4b620bd078fd543b4a806b327eb319a5efd91854f25059c"
+        },
+        {
+          "mes": "2004-10",
+          "granulo": "GLDAS_NOAH025_M.A200410.021.nc4",
+          "sha256_respuesta": "2cfde3613805b8b2eaee04f86171f6156007242819c8f426dbc172ba0962df70"
+        },
+        {
+          "mes": "2004-11",
+          "granulo": "GLDAS_NOAH025_M.A200411.021.nc4",
+          "sha256_respuesta": "e15db98dd80fe99dfc82a28c27db3b8816c6b7086754fc51e4b33e10bb4764cd"
+        },
+        {
+          "mes": "2004-12",
+          "granulo": "GLDAS_NOAH025_M.A200412.021.nc4",
+          "sha256_respuesta": "e14ee40a17186ca77a0357991c46852910505ff42f59b1ab5f02d40897edac61"
+        },
+        {
+          "mes": "2005-01",
+          "granulo": "GLDAS_NOAH025_M.A200501.021.nc4",
+          "sha256_respuesta": "371907663041698e8343b940ecaecd5814709769a4a8a2fb982e38ab00084a47"
+        },
+        {
+          "mes": "2005-02",
+          "granulo": "GLDAS_NOAH025_M.A200502.021.nc4",
+          "sha256_respuesta": "ce4011661d3be4df10010e9eaae452a017c74d30646db5746e2d0927f19dd15c"
+        },
+        {
+          "mes": "2005-03",
+          "granulo": "GLDAS_NOAH025_M.A200503.021.nc4",
+          "sha256_respuesta": "55f1b991c7cd6764f1cb5b6c0ad651a69d7429138d9a2816a6ac451af2b43027"
+        },
+        {
+          "mes": "2005-04",
+          "granulo": "GLDAS_NOAH025_M.A200504.021.nc4",
+          "sha256_respuesta": "5d38556d8f4cb9eb3bdc785bfebf6b2e4619e13dbad372434ff41acc27a62580"
+        },
+        {
+          "mes": "2005-05",
+          "granulo": "GLDAS_NOAH025_M.A200505.021.nc4",
+          "sha256_respuesta": "f87697f33471829949546f361d530fb114db80926750c70b99b3a6058c0cb8ef"
+        },
+        {
+          "mes": "2005-06",
+          "granulo": "GLDAS_NOAH025_M.A200506.021.nc4",
+          "sha256_respuesta": "5f62b85c837a404a4fd2f8a1181d5ec9af679a501b8894f2c33b03d68a12c776"
+        },
+        {
+          "mes": "2005-07",
+          "granulo": "GLDAS_NOAH025_M.A200507.021.nc4",
+          "sha256_respuesta": "491d706e886bb10e8f058a89272c27886a49c3153922aac3a26abbcf8ad63a85"
+        },
+        {
+          "mes": "2005-08",
+          "granulo": "GLDAS_NOAH025_M.A200508.021.nc4",
+          "sha256_respuesta": "bbd39baf06f636757e1b90dcbb92b14f77738c696d11a2fa0615d44446e2cb5c"
+        },
+        {
+          "mes": "2005-09",
+          "granulo": "GLDAS_NOAH025_M.A200509.021.nc4",
+          "sha256_respuesta": "c138a93e8c251b72748aca98c9e0bfbb959c8be63f632ec6c864919e8aa30a61"
+        },
+        {
+          "mes": "2005-10",
+          "granulo": "GLDAS_NOAH025_M.A200510.021.nc4",
+          "sha256_respuesta": "27726643074bac51581f83e22a1f4eac6723a37414d1dddedb956ed47f9a54be"
+        },
+        {
+          "mes": "2005-11",
+          "granulo": "GLDAS_NOAH025_M.A200511.021.nc4",
+          "sha256_respuesta": "04cd206f916398cb69e8231521b81a5333eb8ba116d7f61f0ade15d19217e931"
+        },
+        {
+          "mes": "2005-12",
+          "granulo": "GLDAS_NOAH025_M.A200512.021.nc4",
+          "sha256_respuesta": "728813b28cf2a1a29ad031b67040c8863ec3899cf9622a8397d77082e818cb87"
+        },
+        {
+          "mes": "2006-01",
+          "granulo": "GLDAS_NOAH025_M.A200601.021.nc4",
+          "sha256_respuesta": "9be40710dc2d70c81c104581172efd251db283302986e1f072bdbda948da26fd"
+        },
+        {
+          "mes": "2006-02",
+          "granulo": "GLDAS_NOAH025_M.A200602.021.nc4",
+          "sha256_respuesta": "296486173fbf263321e04a51c06fd80010ded79c20bddc5bc9373ffc05e7de38"
+        },
+        {
+          "mes": "2006-03",
+          "granulo": "GLDAS_NOAH025_M.A200603.021.nc4",
+          "sha256_respuesta": "bf7519f7bf39ba6eb4455f19fdecb772e73725e01a25c6b26ff5fdf9a467a6ea"
+        },
+        {
+          "mes": "2006-04",
+          "granulo": "GLDAS_NOAH025_M.A200604.021.nc4",
+          "sha256_respuesta": "a1cca24ccdc21e57272db8869a28095268045622ea810dc900539d243df3481b"
+        },
+        {
+          "mes": "2006-05",
+          "granulo": "GLDAS_NOAH025_M.A200605.021.nc4",
+          "sha256_respuesta": "644f54abc42d70a0763eed47d7390c998cc976b843038275b7d88fe0390eb47b"
+        },
+        {
+          "mes": "2006-06",
+          "granulo": "GLDAS_NOAH025_M.A200606.021.nc4",
+          "sha256_respuesta": "8af8a67b09dabca0a87561acb3598ab2054c2b72ee0b7b597d902deb11e58b3c"
+        },
+        {
+          "mes": "2006-07",
+          "granulo": "GLDAS_NOAH025_M.A200607.021.nc4",
+          "sha256_respuesta": "399a24fa5111f75948951f16002251da343c74acbb4b123649330673fc85fd80"
+        },
+        {
+          "mes": "2006-08",
+          "granulo": "GLDAS_NOAH025_M.A200608.021.nc4",
+          "sha256_respuesta": "684fbc7789f10299f05d07932fabe4f529c54e6938584f8b3894f990e2cc322d"
+        },
+        {
+          "mes": "2006-09",
+          "granulo": "GLDAS_NOAH025_M.A200609.021.nc4",
+          "sha256_respuesta": "d12bb5889905473f5b75ab3d41a6669d1ed7ce18b232a906aec043d2765a9de7"
+        },
+        {
+          "mes": "2006-10",
+          "granulo": "GLDAS_NOAH025_M.A200610.021.nc4",
+          "sha256_respuesta": "1a3fc8aa2ab7a4eb8a6dde89fc1000d777d7e83edc5d99cd0cc822e9117ab0d2"
+        },
+        {
+          "mes": "2006-11",
+          "granulo": "GLDAS_NOAH025_M.A200611.021.nc4",
+          "sha256_respuesta": "daa3dcef24f2b89c516a45894ece676930d67e37d98b6d6a879c5e1b93cd2462"
+        },
+        {
+          "mes": "2006-12",
+          "granulo": "GLDAS_NOAH025_M.A200612.021.nc4",
+          "sha256_respuesta": "dd3d193f55ada882a174d85767c21fda000e6265206b671dd1ef53335c744d4a"
+        },
+        {
+          "mes": "2007-01",
+          "granulo": "GLDAS_NOAH025_M.A200701.021.nc4",
+          "sha256_respuesta": "b0cce81d8cc873df461469d45b4cd485951d94d58ce534071c18ea9165508d47"
+        },
+        {
+          "mes": "2007-02",
+          "granulo": "GLDAS_NOAH025_M.A200702.021.nc4",
+          "sha256_respuesta": "feafd682fa2c04d6b64e9a9adc5b6fca214e9cc334e69a40856e4c6844e8f7ce"
+        },
+        {
+          "mes": "2007-03",
+          "granulo": "GLDAS_NOAH025_M.A200703.021.nc4",
+          "sha256_respuesta": "ab108b1f4cdec75ef91ea44ec41d1e59efa1defd2c0690f143fa53852f1cd53a"
+        },
+        {
+          "mes": "2007-04",
+          "granulo": "GLDAS_NOAH025_M.A200704.021.nc4",
+          "sha256_respuesta": "2ec055b49196e1fa42a6013556961be5af7558021cebe60f825aa2f5e8079770"
+        },
+        {
+          "mes": "2007-05",
+          "granulo": "GLDAS_NOAH025_M.A200705.021.nc4",
+          "sha256_respuesta": "8e2972e0b7d0d608d4d8f681e9989f7fb0116bbdb74e3fa22e53a7e893501a80"
+        },
+        {
+          "mes": "2007-06",
+          "granulo": "GLDAS_NOAH025_M.A200706.021.nc4",
+          "sha256_respuesta": "b7f410160486ce75ea05c6bea2c93951bf1c82e16423e16be0c2d216e2b64686"
+        },
+        {
+          "mes": "2007-07",
+          "granulo": "GLDAS_NOAH025_M.A200707.021.nc4",
+          "sha256_respuesta": "52d18f44b4a7655a5bede155ae65fa3320acbb7bf57bdd274f1331a188f34282"
+        },
+        {
+          "mes": "2007-08",
+          "granulo": "GLDAS_NOAH025_M.A200708.021.nc4",
+          "sha256_respuesta": "e09609e1e8a69f643892dfd72f3c05798b3cc85918b58f4af9462fae286d992d"
+        },
+        {
+          "mes": "2007-09",
+          "granulo": "GLDAS_NOAH025_M.A200709.021.nc4",
+          "sha256_respuesta": "a253764caa703530da2bf71bd6d6b641ad47b3cf0c4c564e51afe4b3c8e83199"
+        },
+        {
+          "mes": "2007-10",
+          "granulo": "GLDAS_NOAH025_M.A200710.021.nc4",
+          "sha256_respuesta": "27d111968989b6260f538fa8daad81ac2333148e26176e76fc778f7eb324dcb3"
+        },
+        {
+          "mes": "2007-11",
+          "granulo": "GLDAS_NOAH025_M.A200711.021.nc4",
+          "sha256_respuesta": "1903bd8befdd6fa9dc69f4833e6f3349420438e7a4d9c0cb3f510825d542daa5"
+        },
+        {
+          "mes": "2007-12",
+          "granulo": "GLDAS_NOAH025_M.A200712.021.nc4",
+          "sha256_respuesta": "1d49d289dcf31627b639de135817197b935c56c786a77f8c136b67ab6bd2ca9e"
+        },
+        {
+          "mes": "2008-01",
+          "granulo": "GLDAS_NOAH025_M.A200801.021.nc4",
+          "sha256_respuesta": "e4c0f29a92d771f75d5e0b3333eb25082e49c0dd32ab59ee102e7e0c0dbabfea"
+        },
+        {
+          "mes": "2008-02",
+          "granulo": "GLDAS_NOAH025_M.A200802.021.nc4",
+          "sha256_respuesta": "0a02f37fe28269e2131d2493b477afaa5068319b269bbfd4b647d20d45152b9c"
+        },
+        {
+          "mes": "2008-03",
+          "granulo": "GLDAS_NOAH025_M.A200803.021.nc4",
+          "sha256_respuesta": "ab69529444ae59307c60f7a486331e283a3c5c5b86a973f462695e652e8c45f1"
+        },
+        {
+          "mes": "2008-04",
+          "granulo": "GLDAS_NOAH025_M.A200804.021.nc4",
+          "sha256_respuesta": "080ffd2bacdb4d0aea76c6efe9a43f6f585fb77870f965ccbb515c6ff5c0ba1b"
+        },
+        {
+          "mes": "2008-05",
+          "granulo": "GLDAS_NOAH025_M.A200805.021.nc4",
+          "sha256_respuesta": "7451e7e7aad73e176b77349cd68180aa42f53f300124d50b729caba4aaebd089"
+        },
+        {
+          "mes": "2008-06",
+          "granulo": "GLDAS_NOAH025_M.A200806.021.nc4",
+          "sha256_respuesta": "4bc0a70dbda199d25509d8431cbbc155cf6425069b008126f73077e840d6dd69"
+        },
+        {
+          "mes": "2008-07",
+          "granulo": "GLDAS_NOAH025_M.A200807.021.nc4",
+          "sha256_respuesta": "3e0f787f7ebab1f4184b5963c189d9bf4cec6ff1d3bacde5c9cb3bbaf6944c02"
+        },
+        {
+          "mes": "2008-08",
+          "granulo": "GLDAS_NOAH025_M.A200808.021.nc4",
+          "sha256_respuesta": "517efaba698f2198c8c9c295886164809cd1afb8f74b87add18763c0b36c9f1e"
+        },
+        {
+          "mes": "2008-09",
+          "granulo": "GLDAS_NOAH025_M.A200809.021.nc4",
+          "sha256_respuesta": "ec39bd65f1123707ff38d17486b50ecd7e024b2bf069223a273bb67092ab353e"
+        },
+        {
+          "mes": "2008-10",
+          "granulo": "GLDAS_NOAH025_M.A200810.021.nc4",
+          "sha256_respuesta": "023f47ae3fc9bcda2e6b721fb2217a6a2a10e081b64464e5c5e040af974479cd"
+        },
+        {
+          "mes": "2008-11",
+          "granulo": "GLDAS_NOAH025_M.A200811.021.nc4",
+          "sha256_respuesta": "20f2ab10d0883d8276baa8e0887de5120792f7f2822f0d728d5c82e45a764e3c"
+        },
+        {
+          "mes": "2008-12",
+          "granulo": "GLDAS_NOAH025_M.A200812.021.nc4",
+          "sha256_respuesta": "a5673af9da6a3001c2241ec3b6c81ab4fe09d0e8b8f870b1a3b2ce86447d0ce6"
+        },
+        {
+          "mes": "2009-01",
+          "granulo": "GLDAS_NOAH025_M.A200901.021.nc4",
+          "sha256_respuesta": "41cfca507c88d22672370a081c5a6252c91184076316e94e6fbb6c3e603f2a2d"
+        },
+        {
+          "mes": "2009-02",
+          "granulo": "GLDAS_NOAH025_M.A200902.021.nc4",
+          "sha256_respuesta": "ec7004d4f46343048f294cb1bd56bb4a66727b0ba2d4aa452ecedb5b693a91f3"
+        },
+        {
+          "mes": "2009-03",
+          "granulo": "GLDAS_NOAH025_M.A200903.021.nc4",
+          "sha256_respuesta": "8c9df4dfa83edf3eb9199a1adf8021be033514407f24282ba4830da8107beb6a"
+        },
+        {
+          "mes": "2009-04",
+          "granulo": "GLDAS_NOAH025_M.A200904.021.nc4",
+          "sha256_respuesta": "b1bf6d2a0e36914b3733efd0930ec5d093a3eee8da6e6e19dbe0ad85c5ed73ff"
+        },
+        {
+          "mes": "2009-05",
+          "granulo": "GLDAS_NOAH025_M.A200905.021.nc4",
+          "sha256_respuesta": "c93be7616cc00d82173d5c2a865d639743b060486abf352fb4ca5485f139298c"
+        },
+        {
+          "mes": "2009-06",
+          "granulo": "GLDAS_NOAH025_M.A200906.021.nc4",
+          "sha256_respuesta": "f00bff512461476db4b5c9e9a1fb7e888b2071b64d950254f2d62e05c3773c03"
+        },
+        {
+          "mes": "2009-07",
+          "granulo": "GLDAS_NOAH025_M.A200907.021.nc4",
+          "sha256_respuesta": "ef0453982b2a27d38ba6c4dcfeaf5652ad489ef1085b09e41f6d58f897c91520"
+        },
+        {
+          "mes": "2009-08",
+          "granulo": "GLDAS_NOAH025_M.A200908.021.nc4",
+          "sha256_respuesta": "bebe0afc26dde99eb189c30ecf419224aa7154f35142622c3d459a3559a8f296"
+        },
+        {
+          "mes": "2009-09",
+          "granulo": "GLDAS_NOAH025_M.A200909.021.nc4",
+          "sha256_respuesta": "2440002f95528b014cd6ab5c18dcdbbe703a4b61379d7a44f48fb4e3918bdbd6"
+        },
+        {
+          "mes": "2009-10",
+          "granulo": "GLDAS_NOAH025_M.A200910.021.nc4",
+          "sha256_respuesta": "fec8025cd80084fc82bd1e0fad2eb7f1675f9ca391cebf05dd86a84bd441cb48"
+        },
+        {
+          "mes": "2009-11",
+          "granulo": "GLDAS_NOAH025_M.A200911.021.nc4",
+          "sha256_respuesta": "dc1f6a352bb2abc7945630aa73829c829dd7665e7fe1b3ce655331973e281262"
+        },
+        {
+          "mes": "2009-12",
+          "granulo": "GLDAS_NOAH025_M.A200912.021.nc4",
+          "sha256_respuesta": "0c9e4888785c5d0c5cb1f75aa2ad02d447a464a7f7f83c56bb67f4506ce54cf9"
+        },
+        {
+          "mes": "2010-01",
+          "granulo": "GLDAS_NOAH025_M.A201001.021.nc4",
+          "sha256_respuesta": "b181635158886a900fb6dd5459ea3d79ea689132afac6dd628c8f397f845b780"
+        },
+        {
+          "mes": "2010-02",
+          "granulo": "GLDAS_NOAH025_M.A201002.021.nc4",
+          "sha256_respuesta": "fa059ae587472606b2f352473e53d1c41d003c33d6fff21aa1d7ac2619d554fd"
+        },
+        {
+          "mes": "2010-03",
+          "granulo": "GLDAS_NOAH025_M.A201003.021.nc4",
+          "sha256_respuesta": "5d7c0460a165f0d239ce586ef86bc9a652eb2f8059ca83fda062da4e1a8b3289"
+        },
+        {
+          "mes": "2010-04",
+          "granulo": "GLDAS_NOAH025_M.A201004.021.nc4",
+          "sha256_respuesta": "db3cb45109d37c733ab1a8016f9c1190ebf6da120d133e3f301eea034ff6ee1e"
+        },
+        {
+          "mes": "2010-05",
+          "granulo": "GLDAS_NOAH025_M.A201005.021.nc4",
+          "sha256_respuesta": "162337c1c32d9c8900bff62a8895df21fde76d7819b5b35ba60820f6dffd8782"
+        },
+        {
+          "mes": "2010-06",
+          "granulo": "GLDAS_NOAH025_M.A201006.021.nc4",
+          "sha256_respuesta": "851c1bd8d8c84320087be7670394ca895db2cf4aab1c58a4aaa8530e5024a569"
+        },
+        {
+          "mes": "2010-07",
+          "granulo": "GLDAS_NOAH025_M.A201007.021.nc4",
+          "sha256_respuesta": "78a36281ba39e7c7d7108196acb9905e13ec3e8c41f2aeb9d431d68f1ff7713c"
+        },
+        {
+          "mes": "2010-08",
+          "granulo": "GLDAS_NOAH025_M.A201008.021.nc4",
+          "sha256_respuesta": "01ab056a4e5318291bef037916b902f7b0c329c452fa055b0f2a8ae6e6eb1b0b"
+        },
+        {
+          "mes": "2010-09",
+          "granulo": "GLDAS_NOAH025_M.A201009.021.nc4",
+          "sha256_respuesta": "318189527968f31e8246e9c777e57a1f0d2ed994b00e75dfedb63e46b4ab9378"
+        },
+        {
+          "mes": "2010-10",
+          "granulo": "GLDAS_NOAH025_M.A201010.021.nc4",
+          "sha256_respuesta": "96aa542ba07a2de19b9dd3ebbf0258fd0bd6f83abfb03e23ca3b7a3caf6b96a8"
+        },
+        {
+          "mes": "2010-11",
+          "granulo": "GLDAS_NOAH025_M.A201011.021.nc4",
+          "sha256_respuesta": "20b62f641a0d50e832527611f7ee2fec2e7ad464a92bb38dba334c52b97e6163"
+        },
+        {
+          "mes": "2010-12",
+          "granulo": "GLDAS_NOAH025_M.A201012.021.nc4",
+          "sha256_respuesta": "2a41c5af0dff192bbbed8c2e26f69a14d46c3f339aa75f31928db6f0d14072d6"
+        },
+        {
+          "mes": "2011-01",
+          "granulo": "GLDAS_NOAH025_M.A201101.021.nc4",
+          "sha256_respuesta": "c393cb1c1813a89ff470184f15185e08252c672dbbe7a1112632c5db855442e9"
+        },
+        {
+          "mes": "2011-02",
+          "granulo": "GLDAS_NOAH025_M.A201102.021.nc4",
+          "sha256_respuesta": "c67c4b055d48ad46fed05471158b0cb99444529518dcff4ce680e05655ad8c47"
+        },
+        {
+          "mes": "2011-03",
+          "granulo": "GLDAS_NOAH025_M.A201103.021.nc4",
+          "sha256_respuesta": "a946210d6bf46debda5a7404ce81ac9cb65753a73c195d2f2e4b54b4aa0db244"
+        },
+        {
+          "mes": "2011-04",
+          "granulo": "GLDAS_NOAH025_M.A201104.021.nc4",
+          "sha256_respuesta": "e77f67e1fec9e669644ccba9bc731a82c02302688c3b3f7e95511e2bab18d491"
+        },
+        {
+          "mes": "2011-05",
+          "granulo": "GLDAS_NOAH025_M.A201105.021.nc4",
+          "sha256_respuesta": "1b96a7a3d0edc44920048f6c5e398c4a7e20f3b40ec5be874e225bce51aaff6a"
+        },
+        {
+          "mes": "2011-06",
+          "granulo": "GLDAS_NOAH025_M.A201106.021.nc4",
+          "sha256_respuesta": "963f853fa75d8b282a0e80950cb55c800b9b7d30c6ba93e2ab77bd2daae7b32a"
+        },
+        {
+          "mes": "2011-07",
+          "granulo": "GLDAS_NOAH025_M.A201107.021.nc4",
+          "sha256_respuesta": "8a8228e6118d88707b2cb5c93f3efa9c6918971d01540a0f93e4faad91ad9525"
+        },
+        {
+          "mes": "2011-08",
+          "granulo": "GLDAS_NOAH025_M.A201108.021.nc4",
+          "sha256_respuesta": "d7e6353dadbd11dc73ee04495159f85d2c6d940b17c6f86c37480ea76679b135"
+        },
+        {
+          "mes": "2011-09",
+          "granulo": "GLDAS_NOAH025_M.A201109.021.nc4",
+          "sha256_respuesta": "fa70b735c5977c8642c11fd4d521535b5b150c2969f84ddac6bd010d15e1ce67"
+        },
+        {
+          "mes": "2011-10",
+          "granulo": "GLDAS_NOAH025_M.A201110.021.nc4",
+          "sha256_respuesta": "d239db1fedac060a7b3db0221df6739342d5d1e3552900ec5e07fcbf4a65ab7f"
+        },
+        {
+          "mes": "2011-11",
+          "granulo": "GLDAS_NOAH025_M.A201111.021.nc4",
+          "sha256_respuesta": "e71824311f7bef41f0d9b5ca77fc0a5d31ef89df471271b31f16d25cb2834ad1"
+        },
+        {
+          "mes": "2011-12",
+          "granulo": "GLDAS_NOAH025_M.A201112.021.nc4",
+          "sha256_respuesta": "4f8aec8598f6b1a2bf596ecadf3d2adac820689e0c303bc59771196dc2b6ab67"
+        },
+        {
+          "mes": "2012-01",
+          "granulo": "GLDAS_NOAH025_M.A201201.021.nc4",
+          "sha256_respuesta": "0e9c1156139762f2eaabe24b92814ed01f01b1213dbbd2ba38d107b3d999618e"
+        },
+        {
+          "mes": "2012-02",
+          "granulo": "GLDAS_NOAH025_M.A201202.021.nc4",
+          "sha256_respuesta": "880af0e4729976e86b716ab07528c9ac87d620cab59b2b279e62dd482cfde0c0"
+        },
+        {
+          "mes": "2012-03",
+          "granulo": "GLDAS_NOAH025_M.A201203.021.nc4",
+          "sha256_respuesta": "f16d7fa9fcddd8b845e60d2266a182ac7f8c6fb5a61226f698578e5f47b76592"
+        },
+        {
+          "mes": "2012-04",
+          "granulo": "GLDAS_NOAH025_M.A201204.021.nc4",
+          "sha256_respuesta": "4af3a31224c37c8ebc3a820684b3a4fff3d4d42ba5c89e7d6b1909aa0f2b60ac"
+        },
+        {
+          "mes": "2012-05",
+          "granulo": "GLDAS_NOAH025_M.A201205.021.nc4",
+          "sha256_respuesta": "8ff55088b392a893127ed851579d47b8dda7e40da8af978dc2fcf54905acaa44"
+        },
+        {
+          "mes": "2012-06",
+          "granulo": "GLDAS_NOAH025_M.A201206.021.nc4",
+          "sha256_respuesta": "ce1f2fdcaf0b355a75bc0a9891707b2c023b4c94a6df47f61f88821bec806445"
+        },
+        {
+          "mes": "2012-07",
+          "granulo": "GLDAS_NOAH025_M.A201207.021.nc4",
+          "sha256_respuesta": "b127dd877e78aff2745056140c1519030ef937a5ddf6c8c95ee4727492a2ce16"
+        },
+        {
+          "mes": "2012-08",
+          "granulo": "GLDAS_NOAH025_M.A201208.021.nc4",
+          "sha256_respuesta": "68aa44e32738e07c6f9e0660272bad1a93b1c240f41e81945180fd4dff5f126d"
+        },
+        {
+          "mes": "2012-09",
+          "granulo": "GLDAS_NOAH025_M.A201209.021.nc4",
+          "sha256_respuesta": "4864fa9b2cefd8844ce903ef900ecce6028ba247cf51618d7feca3a47ca27f10"
+        },
+        {
+          "mes": "2012-10",
+          "granulo": "GLDAS_NOAH025_M.A201210.021.nc4",
+          "sha256_respuesta": "172cfc996c63d9f487d3cfbacde49c449a1c6f70d5b4df0b4db648744bcf3ee3"
+        },
+        {
+          "mes": "2012-11",
+          "granulo": "GLDAS_NOAH025_M.A201211.021.nc4",
+          "sha256_respuesta": "1e4f2000cac508439c02222901fb3c873bb1bb027e10a6dfcdd2c045a0a00b57"
+        },
+        {
+          "mes": "2012-12",
+          "granulo": "GLDAS_NOAH025_M.A201212.021.nc4",
+          "sha256_respuesta": "2985b25e3e9e43ba15967bfdbaabf441c5a6f09d1e5f81c37ab0ad9619179a34"
+        },
+        {
+          "mes": "2013-01",
+          "granulo": "GLDAS_NOAH025_M.A201301.021.nc4",
+          "sha256_respuesta": "a01d9bed3cc7562b8070c6950e734ad7e7fee36a5980b49e9e9c91f558b60a25"
+        },
+        {
+          "mes": "2013-02",
+          "granulo": "GLDAS_NOAH025_M.A201302.021.nc4",
+          "sha256_respuesta": "5f1a12d2f35223358e99d27cb7be4c0f795c6bcc4a69e14078ebb29f1b436dc2"
+        },
+        {
+          "mes": "2013-03",
+          "granulo": "GLDAS_NOAH025_M.A201303.021.nc4",
+          "sha256_respuesta": "7bd46ada0647f83392baf7874e4929ed17434735bc80b50afc11b47b75efacbd"
+        },
+        {
+          "mes": "2013-04",
+          "granulo": "GLDAS_NOAH025_M.A201304.021.nc4",
+          "sha256_respuesta": "d394304a1ea73276ab06698b584b377fc9ab85ca93cd7305f63290f8c0aa1af9"
+        },
+        {
+          "mes": "2013-05",
+          "granulo": "GLDAS_NOAH025_M.A201305.021.nc4",
+          "sha256_respuesta": "7ba43847d5e55e67bbf5296e7478995e661456d8ca39c4e71214d0a516e7729a"
+        },
+        {
+          "mes": "2013-06",
+          "granulo": "GLDAS_NOAH025_M.A201306.021.nc4",
+          "sha256_respuesta": "bba42b9a9ffa5b8805727535347be7213343091b86b4cbac5b27b63d2b6e5cb4"
+        },
+        {
+          "mes": "2013-07",
+          "granulo": "GLDAS_NOAH025_M.A201307.021.nc4",
+          "sha256_respuesta": "32a4c63ee3e8a6c81cd6b7157507fd29f91e559eae46d5e57c07a36b7924ffe4"
+        },
+        {
+          "mes": "2013-08",
+          "granulo": "GLDAS_NOAH025_M.A201308.021.nc4",
+          "sha256_respuesta": "b182e2cd60944b9e56a6180d4c362468490cec5bdd0b9f64ea2e3ff5c4defc05"
+        },
+        {
+          "mes": "2013-09",
+          "granulo": "GLDAS_NOAH025_M.A201309.021.nc4",
+          "sha256_respuesta": "3e96552c026e9aed15ef49073c709b286987953fecde8f04e15af919c18bab24"
+        },
+        {
+          "mes": "2013-10",
+          "granulo": "GLDAS_NOAH025_M.A201310.021.nc4",
+          "sha256_respuesta": "7ee6f6ee0ebe641d624f7c5b016a3183f57c61c9d159940af6b3504eed118ed0"
+        },
+        {
+          "mes": "2013-11",
+          "granulo": "GLDAS_NOAH025_M.A201311.021.nc4",
+          "sha256_respuesta": "9a9d725fc528c3697ee8d19fa948f74bed1fde40331bfc73c0c86523fa59a482"
+        },
+        {
+          "mes": "2013-12",
+          "granulo": "GLDAS_NOAH025_M.A201312.021.nc4",
+          "sha256_respuesta": "5d1e96a8540739a476a3a986a658e7f22023307204dae4e7335dfeb2c2fb2e92"
+        },
+        {
+          "mes": "2014-01",
+          "granulo": "GLDAS_NOAH025_M.A201401.021.nc4",
+          "sha256_respuesta": "fb4b2a7e030cafc5b681574293280034b42d4e7e82ed9dbd30e785215bda53c8"
+        },
+        {
+          "mes": "2014-02",
+          "granulo": "GLDAS_NOAH025_M.A201402.021.nc4",
+          "sha256_respuesta": "a06264055305c77294589fe32621b9a9aa55aa3b6249b03fb5c4e8da6f8c5ea8"
+        },
+        {
+          "mes": "2014-03",
+          "granulo": "GLDAS_NOAH025_M.A201403.021.nc4",
+          "sha256_respuesta": "d5855165a79ad37eccab116a9a588944940540aaa62e2c5002f630ac16e28935"
+        },
+        {
+          "mes": "2014-04",
+          "granulo": "GLDAS_NOAH025_M.A201404.021.nc4",
+          "sha256_respuesta": "9e19b93f6e441f006e6509ccc1d6fc05f7fad83c3f188431dfcc559355fd7262"
+        },
+        {
+          "mes": "2014-05",
+          "granulo": "GLDAS_NOAH025_M.A201405.021.nc4",
+          "sha256_respuesta": "a81750eceedc52977b4dd44942d37fe088a77ef3a7bb73121d6a77996727ff3a"
+        },
+        {
+          "mes": "2014-06",
+          "granulo": "GLDAS_NOAH025_M.A201406.021.nc4",
+          "sha256_respuesta": "72003fff23700a8643e053ba882af3c9961d41275a41d5b592ff5c85b71decf5"
+        },
+        {
+          "mes": "2014-07",
+          "granulo": "GLDAS_NOAH025_M.A201407.021.nc4",
+          "sha256_respuesta": "5055ad1d232435287316f4ba5fb97899ff19b75607d6d293f59f496fb624dd7b"
+        },
+        {
+          "mes": "2014-08",
+          "granulo": "GLDAS_NOAH025_M.A201408.021.nc4",
+          "sha256_respuesta": "c9b1f142b1136466fa6f38370133fc6cafb986a25ad77d697c7b2057d787c679"
+        },
+        {
+          "mes": "2014-09",
+          "granulo": "GLDAS_NOAH025_M.A201409.021.nc4",
+          "sha256_respuesta": "5464c04b5b3e1117132181d9d426875706e740ef1cd9d86b91b81397b9d1bc1d"
+        },
+        {
+          "mes": "2014-10",
+          "granulo": "GLDAS_NOAH025_M.A201410.021.nc4",
+          "sha256_respuesta": "83f4de1c6be6fd288846b2a6ca5607c82bc597cc4e2e1dea8cb599ef93c11cd2"
+        },
+        {
+          "mes": "2014-11",
+          "granulo": "GLDAS_NOAH025_M.A201411.021.nc4",
+          "sha256_respuesta": "65e542b4ed547d7657336b7a6aacf16361f70bdfa767b6558fbe297815e93cb6"
+        },
+        {
+          "mes": "2014-12",
+          "granulo": "GLDAS_NOAH025_M.A201412.021.nc4",
+          "sha256_respuesta": "0395f03a34b26ccc808e3456b0f6bd3fa17cd03b8539f09a7d165df368ca68f2"
+        },
+        {
+          "mes": "2015-01",
+          "granulo": "GLDAS_NOAH025_M.A201501.021.nc4",
+          "sha256_respuesta": "dea01a2aa5309f49cd1635f26e3b55d275ab870a432a116549cb54a123e6a3c1"
+        },
+        {
+          "mes": "2015-02",
+          "granulo": "GLDAS_NOAH025_M.A201502.021.nc4",
+          "sha256_respuesta": "a7d0abad50f8ad7a087c1e4f9498d669c5f73653a44891585a794b042a44c270"
+        },
+        {
+          "mes": "2015-03",
+          "granulo": "GLDAS_NOAH025_M.A201503.021.nc4",
+          "sha256_respuesta": "4c8a9a334dbfc53ea5f0d5b7a1ef7c2e88526f916ab4ac5188ca9b314ba33ec1"
+        },
+        {
+          "mes": "2015-04",
+          "granulo": "GLDAS_NOAH025_M.A201504.021.nc4",
+          "sha256_respuesta": "36047b94fc857f6a8982b095c994e02b4e20fc57ae73ddd9ff394706affde245"
+        },
+        {
+          "mes": "2015-05",
+          "granulo": "GLDAS_NOAH025_M.A201505.021.nc4",
+          "sha256_respuesta": "51635f6c45fd4afd16b4ef9f7519650a28cecb928a0c8c3c18331efd2c6697ff"
+        },
+        {
+          "mes": "2015-06",
+          "granulo": "GLDAS_NOAH025_M.A201506.021.nc4",
+          "sha256_respuesta": "00c10afc9e3c122326353974da3741a441e6bff2e48426865c6dbeb7c739069f"
+        },
+        {
+          "mes": "2015-07",
+          "granulo": "GLDAS_NOAH025_M.A201507.021.nc4",
+          "sha256_respuesta": "c79e877ac628d8a55988081654b505be688f2b7c67a68fc665fbceab55392487"
+        },
+        {
+          "mes": "2015-08",
+          "granulo": "GLDAS_NOAH025_M.A201508.021.nc4",
+          "sha256_respuesta": "794fe676572d4d4399489dfb72141073d35a789e07899b41ab4f2d2ca44a52ff"
+        },
+        {
+          "mes": "2015-09",
+          "granulo": "GLDAS_NOAH025_M.A201509.021.nc4",
+          "sha256_respuesta": "b70e451f88f61e287d00cd06b2e649dc9499e92bf576b71d19646d019907c185"
+        },
+        {
+          "mes": "2015-10",
+          "granulo": "GLDAS_NOAH025_M.A201510.021.nc4",
+          "sha256_respuesta": "95adf3bc5da6a7a4c3158501afea7095ba5a42a8e36990d2088afb314a837de4"
+        },
+        {
+          "mes": "2015-11",
+          "granulo": "GLDAS_NOAH025_M.A201511.021.nc4",
+          "sha256_respuesta": "a2549ebb5571950c9d4ae4c8e117e7f624ef0767f4fbf90d93641a1bb812d119"
+        },
+        {
+          "mes": "2015-12",
+          "granulo": "GLDAS_NOAH025_M.A201512.021.nc4",
+          "sha256_respuesta": "94fd9322f09b1fac41fc03421012b1926140bd00ffd9cb79995b93b6aca3274a"
+        },
+        {
+          "mes": "2016-01",
+          "granulo": "GLDAS_NOAH025_M.A201601.021.nc4",
+          "sha256_respuesta": "135386509df5fd68d4f5cfb3dc7f2cff0f7e41abebdc199abb05870dae9aca74"
+        },
+        {
+          "mes": "2016-02",
+          "granulo": "GLDAS_NOAH025_M.A201602.021.nc4",
+          "sha256_respuesta": "aefa7535606d5a499d536fa53d3e7eaad8397ea4cface3d6b21dcd9a281f7722"
+        },
+        {
+          "mes": "2016-03",
+          "granulo": "GLDAS_NOAH025_M.A201603.021.nc4",
+          "sha256_respuesta": "57df9e6ce33d37304a841c1426687cdb8ac1ed36e5028935276b9d149326d3f6"
+        },
+        {
+          "mes": "2016-04",
+          "granulo": "GLDAS_NOAH025_M.A201604.021.nc4",
+          "sha256_respuesta": "1f028bad4aed0dba029a3abb96ab8fcd04aef965ffc89a366a8f39768bbc22a8"
+        },
+        {
+          "mes": "2016-05",
+          "granulo": "GLDAS_NOAH025_M.A201605.021.nc4",
+          "sha256_respuesta": "ffacdb715756837742d4bca9036181fc7a1080feaefa554a7486c00b0976225a"
+        },
+        {
+          "mes": "2016-06",
+          "granulo": "GLDAS_NOAH025_M.A201606.021.nc4",
+          "sha256_respuesta": "562f288b63ba0fc5d96fcef1bb9ff452e72147935b9a527878fd989189b6334e"
+        },
+        {
+          "mes": "2016-07",
+          "granulo": "GLDAS_NOAH025_M.A201607.021.nc4",
+          "sha256_respuesta": "ad687f24ec133b2b324517e9f07a6cc4c65fdf01c8e20f2a1244e02a66e9f656"
+        },
+        {
+          "mes": "2016-08",
+          "granulo": "GLDAS_NOAH025_M.A201608.021.nc4",
+          "sha256_respuesta": "2983fbd7f3b30ae88d0a3ca2320a3678bddfe2f3d79e173d420ad57404be8958"
+        },
+        {
+          "mes": "2016-09",
+          "granulo": "GLDAS_NOAH025_M.A201609.021.nc4",
+          "sha256_respuesta": "d93c2c2b61ead60e84e65711f3ccf137be2bb3ee3dc77d2b890415d7e13fa001"
+        },
+        {
+          "mes": "2016-10",
+          "granulo": "GLDAS_NOAH025_M.A201610.021.nc4",
+          "sha256_respuesta": "488e4ff77fca4b2cd35bf4542149bc27b6bb295d2b92cfa4c59b22bac076da03"
+        },
+        {
+          "mes": "2016-11",
+          "granulo": "GLDAS_NOAH025_M.A201611.021.nc4",
+          "sha256_respuesta": "827d762767de24837d7324f484353618578d6d3570c5a96dc15d4669a26f0292"
+        },
+        {
+          "mes": "2016-12",
+          "granulo": "GLDAS_NOAH025_M.A201612.021.nc4",
+          "sha256_respuesta": "8fce59c55ad7647471ff856150c02bcb943ae1c955b26f5f2ca71ebebe54b903"
+        },
+        {
+          "mes": "2017-01",
+          "granulo": "GLDAS_NOAH025_M.A201701.021.nc4",
+          "sha256_respuesta": "c5ca6d0d9e747d9d99fcf3cd5fe2a21b1822b2fe6b79b576ed379dc456683f4b"
+        },
+        {
+          "mes": "2017-02",
+          "granulo": "GLDAS_NOAH025_M.A201702.021.nc4",
+          "sha256_respuesta": "fb45d754ebd78c07a8de5f30dfb20a7e8f1e6d9fdcb8cfc5a068fe8ac5464ad9"
+        },
+        {
+          "mes": "2017-03",
+          "granulo": "GLDAS_NOAH025_M.A201703.021.nc4",
+          "sha256_respuesta": "4631315cac3a5c6d0ee260909046ca2c364a1be301db366cfc2eb0e3ca617077"
+        },
+        {
+          "mes": "2017-04",
+          "granulo": "GLDAS_NOAH025_M.A201704.021.nc4",
+          "sha256_respuesta": "d1f7c894a0c017a9799a8f2e881c701d2d9f717c4e8c701a5471f0a8a37d1312"
+        },
+        {
+          "mes": "2017-05",
+          "granulo": "GLDAS_NOAH025_M.A201705.021.nc4",
+          "sha256_respuesta": "2855383ba3b438208fdc2a1658037ae3bd1d83a0a8aa71a3dbbfaa0503a8bbdb"
+        },
+        {
+          "mes": "2017-06",
+          "granulo": "GLDAS_NOAH025_M.A201706.021.nc4",
+          "sha256_respuesta": "50f6ed0ed97e7a0ce14c7e84c685d318500b6524f41dc2a7ca417e654995baca"
+        },
+        {
+          "mes": "2017-07",
+          "granulo": "GLDAS_NOAH025_M.A201707.021.nc4",
+          "sha256_respuesta": "a67dcaec7c81687d0a1e88c2e55869cb1c38826ef72ab6cef002c20b17d303b2"
+        },
+        {
+          "mes": "2017-08",
+          "granulo": "GLDAS_NOAH025_M.A201708.021.nc4",
+          "sha256_respuesta": "c6d5fec8a2a23f813df47def0278f3a168a1a1857e53387aa24fb22b28fa1ba0"
+        },
+        {
+          "mes": "2017-09",
+          "granulo": "GLDAS_NOAH025_M.A201709.021.nc4",
+          "sha256_respuesta": "2c03c56afaccca0a933db3d147e07de61151638c5cff0c602efe4dbf4ca338b6"
+        },
+        {
+          "mes": "2017-10",
+          "granulo": "GLDAS_NOAH025_M.A201710.021.nc4",
+          "sha256_respuesta": "8749d9b1ffd6804f6216fe84f61acd851431a08e0e3f84459ebc8b519155e632"
+        },
+        {
+          "mes": "2017-11",
+          "granulo": "GLDAS_NOAH025_M.A201711.021.nc4",
+          "sha256_respuesta": "0d17fc0765a1f7a67f8afb3ef33fd8901112742f6a89a049d5fd0e27724cbe93"
+        },
+        {
+          "mes": "2017-12",
+          "granulo": "GLDAS_NOAH025_M.A201712.021.nc4",
+          "sha256_respuesta": "98a291071f51a28de6d4df9b5cbd06ffe4d6fee5071be05a929fad1bfb3ae6b5"
+        },
+        {
+          "mes": "2018-01",
+          "granulo": "GLDAS_NOAH025_M.A201801.021.nc4",
+          "sha256_respuesta": "ef7487fbf50be9b3fdef1e474afc3fbe8e274446067ddcc9479ecc0bd4c67898"
+        },
+        {
+          "mes": "2018-02",
+          "granulo": "GLDAS_NOAH025_M.A201802.021.nc4",
+          "sha256_respuesta": "8b909a9dd46058d88baa00954bca6ab020fa5ec7ac220e9dcaf471e0202ab8f9"
+        },
+        {
+          "mes": "2018-03",
+          "granulo": "GLDAS_NOAH025_M.A201803.021.nc4",
+          "sha256_respuesta": "4783efa8b2d36d4d8d97e4a60d6fb95523e19663dc3851adcba73cd1e2078e7c"
+        },
+        {
+          "mes": "2018-04",
+          "granulo": "GLDAS_NOAH025_M.A201804.021.nc4",
+          "sha256_respuesta": "76bd9e87d887cea0888efe7fff1e2d51770558d0dc5b9bed4eede207fd9aafbc"
+        },
+        {
+          "mes": "2018-05",
+          "granulo": "GLDAS_NOAH025_M.A201805.021.nc4",
+          "sha256_respuesta": "dd48542cd95c19486b62dfc6868752e4c4d9dbc3bc50e37b61fa6d0d12ee9456"
+        },
+        {
+          "mes": "2018-06",
+          "granulo": "GLDAS_NOAH025_M.A201806.021.nc4",
+          "sha256_respuesta": "a45fdb58bdde506efcae5553c4b4458ffb6e1456195d481ab8de7ad63c6ff618"
+        },
+        {
+          "mes": "2018-07",
+          "granulo": "GLDAS_NOAH025_M.A201807.021.nc4",
+          "sha256_respuesta": "709359ef32a1306ab8e39f92a5d3d070d6d44ab4b6b349f544c0df88dadaa96b"
+        },
+        {
+          "mes": "2018-08",
+          "granulo": "GLDAS_NOAH025_M.A201808.021.nc4",
+          "sha256_respuesta": "f9541c9bd7be6323afc41bb1fc309d08f7a67a3c3e3aefabc74165ff47bd704c"
+        },
+        {
+          "mes": "2018-09",
+          "granulo": "GLDAS_NOAH025_M.A201809.021.nc4",
+          "sha256_respuesta": "a43611e6178a2f6dc7b8bd81b78da765c1b6c86266f5e19716eff966e0dea036"
+        },
+        {
+          "mes": "2018-10",
+          "granulo": "GLDAS_NOAH025_M.A201810.021.nc4",
+          "sha256_respuesta": "0d389a838820d38dcecf4d70768aa9d4733005d9a7fe4e0b5dc518aa04e46441"
+        },
+        {
+          "mes": "2018-11",
+          "granulo": "GLDAS_NOAH025_M.A201811.021.nc4",
+          "sha256_respuesta": "8817c909d12c77069c081e3327103c83ed73e81c9645076318ea13e3a38e804b"
+        },
+        {
+          "mes": "2018-12",
+          "granulo": "GLDAS_NOAH025_M.A201812.021.nc4",
+          "sha256_respuesta": "f0c5fe25b653180ee6d874f5754aab261f68c4c2ff48ed65218786e145b0c0c0"
+        },
+        {
+          "mes": "2019-01",
+          "granulo": "GLDAS_NOAH025_M.A201901.021.nc4",
+          "sha256_respuesta": "e13c3dac81684557322da855334c4481e4bdad36f3e050a9f4e30e8da567f8d8"
+        },
+        {
+          "mes": "2019-02",
+          "granulo": "GLDAS_NOAH025_M.A201902.021.nc4",
+          "sha256_respuesta": "08bf49ba2b4a76cdd78854c4f636a0e980e8c61fe138008af3ff0d29141da38d"
+        },
+        {
+          "mes": "2019-03",
+          "granulo": "GLDAS_NOAH025_M.A201903.021.nc4",
+          "sha256_respuesta": "171fdfebfe100631f7b8ce2dac944f2860f32d92cdec3053ad9ccd34e08be823"
+        },
+        {
+          "mes": "2019-04",
+          "granulo": "GLDAS_NOAH025_M.A201904.021.nc4",
+          "sha256_respuesta": "87edc8a7e58b602e7a21a2c4823ae807c6d6858ecde90ec1b1d762a2db9db831"
+        },
+        {
+          "mes": "2019-05",
+          "granulo": "GLDAS_NOAH025_M.A201905.021.nc4",
+          "sha256_respuesta": "bb99573c54a2eca5dbf6dd11dfbf81458de0538982e72d0d5adc77487420ebf4"
+        },
+        {
+          "mes": "2019-06",
+          "granulo": "GLDAS_NOAH025_M.A201906.021.nc4",
+          "sha256_respuesta": "0fbe935211be79332f00be7fbac0416fb7769eb440035e2660214e8cecb2ed49"
+        },
+        {
+          "mes": "2019-07",
+          "granulo": "GLDAS_NOAH025_M.A201907.021.nc4",
+          "sha256_respuesta": "8c5baf6bc54cb3df75f8500d8823ee8be2372826913a9f457c5f96fc05ee62db"
+        },
+        {
+          "mes": "2019-08",
+          "granulo": "GLDAS_NOAH025_M.A201908.021.nc4",
+          "sha256_respuesta": "83db90494c174b8dfc855ddb620b4a79e283df66802a273d222d5171a2640821"
+        },
+        {
+          "mes": "2019-09",
+          "granulo": "GLDAS_NOAH025_M.A201909.021.nc4",
+          "sha256_respuesta": "763913e703ba2b0f307af482fbb2da0260ef49be37b19dca8d56fa1bc379475e"
+        },
+        {
+          "mes": "2019-10",
+          "granulo": "GLDAS_NOAH025_M.A201910.021.nc4",
+          "sha256_respuesta": "857acd5e7e2fe534e17c85fc10b3a45c2d773837a0532c050deb82b05a560e26"
+        },
+        {
+          "mes": "2019-11",
+          "granulo": "GLDAS_NOAH025_M.A201911.021.nc4",
+          "sha256_respuesta": "dbeebd3395eff286e5230444253420b929f320473a1becbe5b2aa4774f63c15a"
+        },
+        {
+          "mes": "2019-12",
+          "granulo": "GLDAS_NOAH025_M.A201912.021.nc4",
+          "sha256_respuesta": "e4e51c0ddf3d79af2ccd16f400a684e626286fc70268ac77db8474ca485ec90a"
+        },
+        {
+          "mes": "2020-01",
+          "granulo": "GLDAS_NOAH025_M.A202001.021.nc4",
+          "sha256_respuesta": "6c6a17638d78504b12a7129b508654a124cf266df0d6da8606fcd7bc54dda55d"
+        },
+        {
+          "mes": "2020-02",
+          "granulo": "GLDAS_NOAH025_M.A202002.021.nc4",
+          "sha256_respuesta": "04de230fabf572db5ab0b50543d6616514e635967a29028404980d5088ef6678"
+        },
+        {
+          "mes": "2020-03",
+          "granulo": "GLDAS_NOAH025_M.A202003.021.nc4",
+          "sha256_respuesta": "a031233827367426d65cb8e0f7497bcf286a6f1f641271f9b03c3ea273dc325d"
+        },
+        {
+          "mes": "2020-04",
+          "granulo": "GLDAS_NOAH025_M.A202004.021.nc4",
+          "sha256_respuesta": "f742e49fa371d6c50e2b04e534ad60811f20b0b6a92a353de9cd13ecde89bf12"
+        },
+        {
+          "mes": "2020-05",
+          "granulo": "GLDAS_NOAH025_M.A202005.021.nc4",
+          "sha256_respuesta": "b5846f1b6043fe2846657c24cf1553e248d9873c9de2f9e43d1f105508eb9173"
+        },
+        {
+          "mes": "2020-06",
+          "granulo": "GLDAS_NOAH025_M.A202006.021.nc4",
+          "sha256_respuesta": "624a5a5e30d37cffa054746dfb57576a544fb109a505692904894a7db1a14fba"
+        },
+        {
+          "mes": "2020-07",
+          "granulo": "GLDAS_NOAH025_M.A202007.021.nc4",
+          "sha256_respuesta": "809a217fecc89f48948f1b6ef00651fc0f8adead39d551c01eae49b6349fd731"
+        },
+        {
+          "mes": "2020-08",
+          "granulo": "GLDAS_NOAH025_M.A202008.021.nc4",
+          "sha256_respuesta": "b132efc04df1733c2b489b7f72de28e20112bfa8df8ce1a4b8342ddb902fe2a6"
+        },
+        {
+          "mes": "2020-09",
+          "granulo": "GLDAS_NOAH025_M.A202009.021.nc4",
+          "sha256_respuesta": "04c76b52b33112826eb7b48b6be8b8d15181d1b0575c50e27ea5e68a521620b0"
+        },
+        {
+          "mes": "2020-10",
+          "granulo": "GLDAS_NOAH025_M.A202010.021.nc4",
+          "sha256_respuesta": "fb4dd2b5458f72db4611b6d4b2e53a93e75c182e036a5351a94175275ad501e0"
+        },
+        {
+          "mes": "2020-11",
+          "granulo": "GLDAS_NOAH025_M.A202011.021.nc4",
+          "sha256_respuesta": "f3f98fb64edf90aa75e2290287ea295ec353e84a656ca8fb9473f579936cbb70"
+        },
+        {
+          "mes": "2020-12",
+          "granulo": "GLDAS_NOAH025_M.A202012.021.nc4",
+          "sha256_respuesta": "c142dc215f7e756f9469197d45612ddf24a810dcb3cbc016b0fda7d7a9c9e00f"
+        },
+        {
+          "mes": "2021-01",
+          "granulo": "GLDAS_NOAH025_M.A202101.021.nc4",
+          "sha256_respuesta": "51b8cb929d4aa56466ff3d528a8601d4480cbf79d358bbfeed599f15b9a2ac31"
+        },
+        {
+          "mes": "2021-02",
+          "granulo": "GLDAS_NOAH025_M.A202102.021.nc4",
+          "sha256_respuesta": "dfb293b6d178c10a32fcba35c3a9995e9d6d9a0743f3fadee698d147158e36db"
+        },
+        {
+          "mes": "2021-03",
+          "granulo": "GLDAS_NOAH025_M.A202103.021.nc4",
+          "sha256_respuesta": "f5a17960c66ba30bfbab978c8970f242676645590505c62ca9a778c7690cf6df"
+        },
+        {
+          "mes": "2021-04",
+          "granulo": "GLDAS_NOAH025_M.A202104.021.nc4",
+          "sha256_respuesta": "a950cbc1ee8dbedd43f33ba53e2def928db38226913d5b4c85d9e0513de17d68"
+        },
+        {
+          "mes": "2021-05",
+          "granulo": "GLDAS_NOAH025_M.A202105.021.nc4",
+          "sha256_respuesta": "ef0b1fb3f6a3ee4465da55551d1256f6d96ddf0c9acbb7b3ef0b9c8e6fd8ecb5"
+        },
+        {
+          "mes": "2021-06",
+          "granulo": "GLDAS_NOAH025_M.A202106.021.nc4",
+          "sha256_respuesta": "e91c8259a1967fd574af0b2518a0f1edac920c4363ce136dac261d045dffe8cc"
+        },
+        {
+          "mes": "2021-07",
+          "granulo": "GLDAS_NOAH025_M.A202107.021.nc4",
+          "sha256_respuesta": "2b5adf1a6c20f6062499f03b346e6f0ca61a4ed10554d524bd1355e84e4e50fb"
+        },
+        {
+          "mes": "2021-08",
+          "granulo": "GLDAS_NOAH025_M.A202108.021.nc4",
+          "sha256_respuesta": "b19a4b6c0ee6bd4e812a6028c19a8ee41e5fb1c4209d8d77c6c4d9a2162aa9cb"
+        },
+        {
+          "mes": "2021-09",
+          "granulo": "GLDAS_NOAH025_M.A202109.021.nc4",
+          "sha256_respuesta": "4679dc9b89117ef5a9371ba12bbd2de845114383b1341cb6103baf582b5c5fa4"
+        },
+        {
+          "mes": "2021-10",
+          "granulo": "GLDAS_NOAH025_M.A202110.021.nc4",
+          "sha256_respuesta": "27b05db18b0c247ca9fa7bc1093321abfbcd882cab5f647128d253c0875d96b6"
+        },
+        {
+          "mes": "2021-11",
+          "granulo": "GLDAS_NOAH025_M.A202111.021.nc4",
+          "sha256_respuesta": "e7608c6abbe3418152e5691c25116a05dc452fb82941c93f3a852b67ed339eee"
+        },
+        {
+          "mes": "2021-12",
+          "granulo": "GLDAS_NOAH025_M.A202112.021.nc4",
+          "sha256_respuesta": "de1d4a36aedbdc49fc3c9a5397beb8493b59e0e6ae8de2c49eaf91e0283167f8"
+        },
+        {
+          "mes": "2022-01",
+          "granulo": "GLDAS_NOAH025_M.A202201.021.nc4",
+          "sha256_respuesta": "9baaea42dbbe3e740bfe2bbcecb37d4693d9fb3cc24817e504f78488718df92c"
+        },
+        {
+          "mes": "2022-02",
+          "granulo": "GLDAS_NOAH025_M.A202202.021.nc4",
+          "sha256_respuesta": "a53ad81444e3d882f9f83248c12024d7cacb1f82ad214af5ffa96c6317f5b435"
+        },
+        {
+          "mes": "2022-03",
+          "granulo": "GLDAS_NOAH025_M.A202203.021.nc4",
+          "sha256_respuesta": "893cdfd59f978ec4b87a5d03ab240dd5f310a71a94afb2220f86cdf12ec49a4b"
+        },
+        {
+          "mes": "2022-04",
+          "granulo": "GLDAS_NOAH025_M.A202204.021.nc4",
+          "sha256_respuesta": "7443a8f59e11b7e4baa3627129f937955dfd8b974f3d3d4621a3a612feafd262"
+        },
+        {
+          "mes": "2022-05",
+          "granulo": "GLDAS_NOAH025_M.A202205.021.nc4",
+          "sha256_respuesta": "493059f89f33a41102d32c9ab09aa809f460990205dc11419f6a7282c6811ced"
+        },
+        {
+          "mes": "2022-06",
+          "granulo": "GLDAS_NOAH025_M.A202206.021.nc4",
+          "sha256_respuesta": "c2e2b472ae781f0fe876c2f9788f50bb31350dfeda5ec176b8e935e68fa56e32"
+        },
+        {
+          "mes": "2022-07",
+          "granulo": "GLDAS_NOAH025_M.A202207.021.nc4",
+          "sha256_respuesta": "7eb5aec0ebc737a005a1fbb080ea9d7b37ecc7037de0da521a970e6d7cc98e0c"
+        },
+        {
+          "mes": "2022-08",
+          "granulo": "GLDAS_NOAH025_M.A202208.021.nc4",
+          "sha256_respuesta": "6a63af9319960e34b220812c145b40468479f11517af4eb6e3c12e136c11391a"
+        },
+        {
+          "mes": "2022-09",
+          "granulo": "GLDAS_NOAH025_M.A202209.021.nc4",
+          "sha256_respuesta": "6eb612285a658905c04f4465d35a1669eddf6a8ad10c9f42c916e8451886b2f8"
+        },
+        {
+          "mes": "2022-10",
+          "granulo": "GLDAS_NOAH025_M.A202210.021.nc4",
+          "sha256_respuesta": "4a22cb859787646f4adea6a77ccdf658149279afd039ad491bdf959c453140ec"
+        },
+        {
+          "mes": "2022-11",
+          "granulo": "GLDAS_NOAH025_M.A202211.021.nc4",
+          "sha256_respuesta": "12a9e24ce8290217b67667b844bcc20b6d525b7576decedd2d1a38546a571d70"
+        },
+        {
+          "mes": "2022-12",
+          "granulo": "GLDAS_NOAH025_M.A202212.021.nc4",
+          "sha256_respuesta": "bfe71cd97e174b629aa42c7b6b781c5138c78ecf84e4593a97b08dce6243d171"
+        },
+        {
+          "mes": "2023-01",
+          "granulo": "GLDAS_NOAH025_M.A202301.021.nc4",
+          "sha256_respuesta": "dc242ae0c53df7d1f5065bd3b7df8ecaccff1f7ac6fa0a5a65ae3c8766b5b5c9"
+        },
+        {
+          "mes": "2023-02",
+          "granulo": "GLDAS_NOAH025_M.A202302.021.nc4",
+          "sha256_respuesta": "f93eb9e5d7357683269c6cf7f82d784ec85abc893b5333e6265e05a39778b10b"
+        },
+        {
+          "mes": "2023-03",
+          "granulo": "GLDAS_NOAH025_M.A202303.021.nc4",
+          "sha256_respuesta": "c00f94ae7e883b07e7c2de33835df0d13c786835b5bcef9de2c199ba1441dca0"
+        },
+        {
+          "mes": "2023-04",
+          "granulo": "GLDAS_NOAH025_M.A202304.021.nc4",
+          "sha256_respuesta": "206a11885560f739bc59152c465d5bfe0c8a213d8ab0b50cfc1aec8a32446967"
+        },
+        {
+          "mes": "2023-05",
+          "granulo": "GLDAS_NOAH025_M.A202305.021.nc4",
+          "sha256_respuesta": "db43d2983075b5eebf7eea0bec86015c79b6d370395963c36314e3a13734134a"
+        },
+        {
+          "mes": "2023-06",
+          "granulo": "GLDAS_NOAH025_M.A202306.021.nc4",
+          "sha256_respuesta": "5a9101e676037a2191e1bd163103f145d09152954bc8ed76c329ffa145b77156"
+        },
+        {
+          "mes": "2023-07",
+          "granulo": "GLDAS_NOAH025_M.A202307.021.nc4",
+          "sha256_respuesta": "2f9b6f19d4b34ba1d74161ba061d26cd37cf3415d5e2dfd60066f002096360bc"
+        },
+        {
+          "mes": "2023-08",
+          "granulo": "GLDAS_NOAH025_M.A202308.021.nc4",
+          "sha256_respuesta": "40b99ce6a935e16c649bf4a074ded45c370f018c1ff10e376d884c9ae9e60742"
+        },
+        {
+          "mes": "2023-09",
+          "granulo": "GLDAS_NOAH025_M.A202309.021.nc4",
+          "sha256_respuesta": "40f41f53d77ed265e10999438a0a66c896a1624bc6b8ea230d2d6214dd3e86d5"
+        },
+        {
+          "mes": "2023-10",
+          "granulo": "GLDAS_NOAH025_M.A202310.021.nc4",
+          "sha256_respuesta": "fcd57f975760cf324a37417d0e54ba521543bad720c0e4e5dbd43b4bf58f0e44"
+        },
+        {
+          "mes": "2023-11",
+          "granulo": "GLDAS_NOAH025_M.A202311.021.nc4",
+          "sha256_respuesta": "dba9e1b26600bdab38276fbf0e07e59aeeade1372da6c007516425bf046da2fa"
+        },
+        {
+          "mes": "2023-12",
+          "granulo": "GLDAS_NOAH025_M.A202312.021.nc4",
+          "sha256_respuesta": "4a13f8eb336e28a770d76e4cc72681ce53c59b1bc12f7149808944c7b08ca50d"
+        },
+        {
+          "mes": "2024-01",
+          "granulo": "GLDAS_NOAH025_M.A202401.021.nc4",
+          "sha256_respuesta": "0a59e7a6a8179026fce892fcd4c84abff0536eaf2b5f9d47c6e1a6c4dd227b67"
+        },
+        {
+          "mes": "2024-02",
+          "granulo": "GLDAS_NOAH025_M.A202402.021.nc4",
+          "sha256_respuesta": "d12bdea4e75106520e834c102f51bc9429df12d9e924a4fed6c39eb24b660441"
+        },
+        {
+          "mes": "2024-03",
+          "granulo": "GLDAS_NOAH025_M.A202403.021.nc4",
+          "sha256_respuesta": "153eab9b2a8100b7fcf2b38c5436c39f6308c33ec0a08158fe1b32083cd7342c"
+        },
+        {
+          "mes": "2024-04",
+          "granulo": "GLDAS_NOAH025_M.A202404.021.nc4",
+          "sha256_respuesta": "262a1ee50ac9e26bd9d8ed2f5d784829c7d2feb9882b7a4de50534cda60880ba"
+        },
+        {
+          "mes": "2024-05",
+          "granulo": "GLDAS_NOAH025_M.A202405.021.nc4",
+          "sha256_respuesta": "a120d49e26c98988949a403148dc68798481afce972498c5b6857d4ceb38fd28"
+        },
+        {
+          "mes": "2024-06",
+          "granulo": "GLDAS_NOAH025_M.A202406.021.nc4",
+          "sha256_respuesta": "d9b51b40a4980a342ee8e233c9180359df326fb1151390bf4937364d581c246a"
+        },
+        {
+          "mes": "2024-07",
+          "granulo": "GLDAS_NOAH025_M.A202407.021.nc4",
+          "sha256_respuesta": "f1bf4827c0a7e5b0bc2c4b49aebb5cd9d57591eb8dc269c13a097bad08190778"
+        },
+        {
+          "mes": "2024-08",
+          "granulo": "GLDAS_NOAH025_M.A202408.021.nc4",
+          "sha256_respuesta": "1e3530e8cf48303119d5a6061fec730b9d1f4012eeaff9a2eb398c2760694bb3"
+        },
+        {
+          "mes": "2024-09",
+          "granulo": "GLDAS_NOAH025_M.A202409.021.nc4",
+          "sha256_respuesta": "82d83dc02577275bd121ee2b58fd3f54d44cf4fe2d0029ce4158df5241d4b14c"
+        },
+        {
+          "mes": "2024-10",
+          "granulo": "GLDAS_NOAH025_M.A202410.021.nc4",
+          "sha256_respuesta": "ed385f0b7f542c88fc115745bb648c15408df0f6891676f3f2e2f513462e33b7"
+        },
+        {
+          "mes": "2024-11",
+          "granulo": "GLDAS_NOAH025_M.A202411.021.nc4",
+          "sha256_respuesta": "276b7bf824e8de665848b15d1301dce75b70d6cec8b0316074ce9719b84cd727"
+        },
+        {
+          "mes": "2024-12",
+          "granulo": "GLDAS_NOAH025_M.A202412.021.nc4",
+          "sha256_respuesta": "ef330b224b87999692f1dd8932ca740c1a8a6c8a34097ef4db21ccfb6c6957d7"
+        }
+      ]
+    },
+    "canada": {
+      "celdas_con_peso": 1112,
+      "ejemplo_url": "https://opendap.earthdata.nasa.gov/collections/C1342986036-GES_DISC/granules/GLDAS_NOAH025_M.2.1%3AGLDAS_NOAH025_M.A200101.021.nc4.dap.csv?dap4.ce=%2Flat%5B434%3A1%3A458%5D%3B%2Flon%5B259%3A1%3A335%5D%3B%2FSoilMoi0_10cm_inst%5B0%3A1%3A0%5D%5B434%3A1%3A458%5D%5B259%3A1%3A335%5D%3B%2FSoilMoi10_40cm_inst%5B0%3A1%3A0%5D%5B434%3A1%3A458%5D%5B259%3A1%3A335%5D%3B%2FEvap_tavg%5B0%3A1%3A0%5D%5B434%3A1%3A458%5D%5B259%3A1%3A335%5D%3B%2FQs_acc%5B0%3A1%3A0%5D%5B434%3A1%3A458%5D%5B259%3A1%3A335%5D%3B%2FQsb_acc%5B0%3A1%3A0%5D%5B434%3A1%3A458%5D%5B259%3A1%3A335%5D%3B%2FRainf_f_tavg%5B0%3A1%3A0%5D%5B434%3A1%3A458%5D%5B259%3A1%3A335%5D",
+      "ventana_indices": {
+        "lat": [
+          434,
+          458
+        ],
+        "lon": [
+          259,
+          335
+        ]
+      },
+      "consultas": [
+        {
+          "mes": "2001-01",
+          "granulo": "GLDAS_NOAH025_M.A200101.021.nc4",
+          "sha256_respuesta": "703694c6b9f9d0fb6be38fb0ac8affdcbdc79cd20ed89710082f0cc29a8314a9"
+        },
+        {
+          "mes": "2001-02",
+          "granulo": "GLDAS_NOAH025_M.A200102.021.nc4",
+          "sha256_respuesta": "879687a9f85f3923c9074d66ed0130906ca03baeb0027df93e7a8bed464cca21"
+        },
+        {
+          "mes": "2001-03",
+          "granulo": "GLDAS_NOAH025_M.A200103.021.nc4",
+          "sha256_respuesta": "c06eec95465953973746308ee1facddca412a3283b7463283df542d00d814a32"
+        },
+        {
+          "mes": "2001-04",
+          "granulo": "GLDAS_NOAH025_M.A200104.021.nc4",
+          "sha256_respuesta": "7957b41f1efdbd6ccd59208c85d370cbb7ba465cec065f2d99ea1b7c1c032b5d"
+        },
+        {
+          "mes": "2001-05",
+          "granulo": "GLDAS_NOAH025_M.A200105.021.nc4",
+          "sha256_respuesta": "955c87c2e4e0664c673c663ffc7e764d2138855fd687b96092ce4990a4c62633"
+        },
+        {
+          "mes": "2001-06",
+          "granulo": "GLDAS_NOAH025_M.A200106.021.nc4",
+          "sha256_respuesta": "7532daf3f0076fac28d13c814bfbe2888ae23d0cd0e25c8401c30aa22e803209"
+        },
+        {
+          "mes": "2001-07",
+          "granulo": "GLDAS_NOAH025_M.A200107.021.nc4",
+          "sha256_respuesta": "2f411a495790236667029568f2e20c7494557c84eefd28ae53f700b3c1403fcc"
+        },
+        {
+          "mes": "2001-08",
+          "granulo": "GLDAS_NOAH025_M.A200108.021.nc4",
+          "sha256_respuesta": "4085438596f868eb50b3ab3e2dbefcf2cd162ee2c1d017ebba77baea267e5a4e"
+        },
+        {
+          "mes": "2001-09",
+          "granulo": "GLDAS_NOAH025_M.A200109.021.nc4",
+          "sha256_respuesta": "9af8950ffbc618bdb7f3ef9f5b90f988bbc0c3b1262096816e9ebdf4e857d93c"
+        },
+        {
+          "mes": "2001-10",
+          "granulo": "GLDAS_NOAH025_M.A200110.021.nc4",
+          "sha256_respuesta": "a5a93437ef206a57ed966c5bde04a6ff101f8c3e0b8ebb027a9761a889b10096"
+        },
+        {
+          "mes": "2001-11",
+          "granulo": "GLDAS_NOAH025_M.A200111.021.nc4",
+          "sha256_respuesta": "801677870b765f63283e1b3deccc4c89cb16aff9fe19b959b77b88cb1ba7a0a6"
+        },
+        {
+          "mes": "2001-12",
+          "granulo": "GLDAS_NOAH025_M.A200112.021.nc4",
+          "sha256_respuesta": "fee508140ba9f4ec46d5896d6b10a3b853868cb71aea9f9e28c2117439e9583b"
+        },
+        {
+          "mes": "2002-01",
+          "granulo": "GLDAS_NOAH025_M.A200201.021.nc4",
+          "sha256_respuesta": "fd5742bd363372fe4d02f85a84f8a0cab30881550cc9f5d3212b7695143f0e24"
+        },
+        {
+          "mes": "2002-02",
+          "granulo": "GLDAS_NOAH025_M.A200202.021.nc4",
+          "sha256_respuesta": "728e89ace90bd216ce16fa9fbfe0674b3a225eb100ce9233d9d3500814180376"
+        },
+        {
+          "mes": "2002-03",
+          "granulo": "GLDAS_NOAH025_M.A200203.021.nc4",
+          "sha256_respuesta": "e60d07366b84a84c78c9f30c2346e0a60d2404708ee7ce9b3363f24278526315"
+        },
+        {
+          "mes": "2002-04",
+          "granulo": "GLDAS_NOAH025_M.A200204.021.nc4",
+          "sha256_respuesta": "0344327e24353200377531b97d0ac6879553eb50008d3ad557613f60ad9c32a1"
+        },
+        {
+          "mes": "2002-05",
+          "granulo": "GLDAS_NOAH025_M.A200205.021.nc4",
+          "sha256_respuesta": "ac4e74f3d9314c70e360704c8723ec719ba768f73a273a8e0024b93c6d4a29dc"
+        },
+        {
+          "mes": "2002-06",
+          "granulo": "GLDAS_NOAH025_M.A200206.021.nc4",
+          "sha256_respuesta": "1affd6c200646c80494d959377327c1a906e3f6188d88a39db73c4d21a5b4dd1"
+        },
+        {
+          "mes": "2002-07",
+          "granulo": "GLDAS_NOAH025_M.A200207.021.nc4",
+          "sha256_respuesta": "7f93458200baa54d53652c0b67a2b7d02148efea055192371394354a0bb985f9"
+        },
+        {
+          "mes": "2002-08",
+          "granulo": "GLDAS_NOAH025_M.A200208.021.nc4",
+          "sha256_respuesta": "05c6e61cd70e51cb14555c95d56738ba18f97f2cb109d9335a67fd4bc5b60ddc"
+        },
+        {
+          "mes": "2002-09",
+          "granulo": "GLDAS_NOAH025_M.A200209.021.nc4",
+          "sha256_respuesta": "95f82d34e124cabf646905778efe04f322d93e78bf5034914726b3cfd66dae49"
+        },
+        {
+          "mes": "2002-10",
+          "granulo": "GLDAS_NOAH025_M.A200210.021.nc4",
+          "sha256_respuesta": "a0b4907b50b137aa4dab26ec6f3782aa126413382c3570b1116d9fe75f867388"
+        },
+        {
+          "mes": "2002-11",
+          "granulo": "GLDAS_NOAH025_M.A200211.021.nc4",
+          "sha256_respuesta": "7b7d2dcc79c50189d3ca64ad2854536ac49cf0f2d7266cda5e31aa70afa40dbb"
+        },
+        {
+          "mes": "2002-12",
+          "granulo": "GLDAS_NOAH025_M.A200212.021.nc4",
+          "sha256_respuesta": "6946b758c2628dd28e80fc4a3e69ab7f8390b5a3ebc35a2cf73c40dba1310e32"
+        },
+        {
+          "mes": "2003-01",
+          "granulo": "GLDAS_NOAH025_M.A200301.021.nc4",
+          "sha256_respuesta": "3966911bf67590e0698d83af93a6e2e047b4d8cbdd630098f39ac2b2c6ec7582"
+        },
+        {
+          "mes": "2003-02",
+          "granulo": "GLDAS_NOAH025_M.A200302.021.nc4",
+          "sha256_respuesta": "5cd7b19316d011808b5694f4e2c0e6a4ab3637ea0f7bf21aa330b49ae1077c4c"
+        },
+        {
+          "mes": "2003-03",
+          "granulo": "GLDAS_NOAH025_M.A200303.021.nc4",
+          "sha256_respuesta": "96ede64348789b770fa025b2649f4e104eadf48404b2e995c5bab1be4fcb3f79"
+        },
+        {
+          "mes": "2003-04",
+          "granulo": "GLDAS_NOAH025_M.A200304.021.nc4",
+          "sha256_respuesta": "18a4672447778dde67abf7ad24581ed040222a42638e04fe9400471747fe9e43"
+        },
+        {
+          "mes": "2003-05",
+          "granulo": "GLDAS_NOAH025_M.A200305.021.nc4",
+          "sha256_respuesta": "8147f6bb5f785fd073ba0345c7866a7b3febd90ac6bf12d8f5ba3180a14557f2"
+        },
+        {
+          "mes": "2003-06",
+          "granulo": "GLDAS_NOAH025_M.A200306.021.nc4",
+          "sha256_respuesta": "a6ba83f038c1445331ae4e9399a45ed746eed65083c2093408db5276a948127e"
+        },
+        {
+          "mes": "2003-07",
+          "granulo": "GLDAS_NOAH025_M.A200307.021.nc4",
+          "sha256_respuesta": "3dc958d4ba772e8a1c0b454687cbb35cbe19184182e12c6cb53802c20093f799"
+        },
+        {
+          "mes": "2003-08",
+          "granulo": "GLDAS_NOAH025_M.A200308.021.nc4",
+          "sha256_respuesta": "0885f6c11d58e28e5f93d9f11d358bc4bb4940e1b39827ca1cb5c68b838114f3"
+        },
+        {
+          "mes": "2003-09",
+          "granulo": "GLDAS_NOAH025_M.A200309.021.nc4",
+          "sha256_respuesta": "2e7c5eb9158c95dbed4c8a453896d1ea03e84b7ec74ac18825332579d1933b92"
+        },
+        {
+          "mes": "2003-10",
+          "granulo": "GLDAS_NOAH025_M.A200310.021.nc4",
+          "sha256_respuesta": "9d160a90a6d91c987e309c9cc37f14f318a776a29d84c5a9f31398cab61c99ba"
+        },
+        {
+          "mes": "2003-11",
+          "granulo": "GLDAS_NOAH025_M.A200311.021.nc4",
+          "sha256_respuesta": "f7c6031f889304e98568e2afc104cec61f8da2dee9a8729e2398c78d075b84c8"
+        },
+        {
+          "mes": "2003-12",
+          "granulo": "GLDAS_NOAH025_M.A200312.021.nc4",
+          "sha256_respuesta": "25c3205c49cbe1de1ff602cb2ee100730360d6b4b4e2dfc08364ac06e5fe86ba"
+        },
+        {
+          "mes": "2004-01",
+          "granulo": "GLDAS_NOAH025_M.A200401.021.nc4",
+          "sha256_respuesta": "4f4e6ab46eabd808275e698cddc557a72f2f3156af6ccc5c1f62c41276a57156"
+        },
+        {
+          "mes": "2004-02",
+          "granulo": "GLDAS_NOAH025_M.A200402.021.nc4",
+          "sha256_respuesta": "5c0a8d7695c5a85a9a3791b7df226939fc85a272ca58f1096a3f42ef27b2ba52"
+        },
+        {
+          "mes": "2004-03",
+          "granulo": "GLDAS_NOAH025_M.A200403.021.nc4",
+          "sha256_respuesta": "e62fc9e51e652527874f4dd531eac02c60c1eb0445968953e5dcff09bcaae518"
+        },
+        {
+          "mes": "2004-04",
+          "granulo": "GLDAS_NOAH025_M.A200404.021.nc4",
+          "sha256_respuesta": "f2c4ebac6d640878a63d91dffaae513feaef9510f3ca2bce7a57b55016e6c4fe"
+        },
+        {
+          "mes": "2004-05",
+          "granulo": "GLDAS_NOAH025_M.A200405.021.nc4",
+          "sha256_respuesta": "08c389a994b73027e9b4a4706c6b78b2926ca12665869a82e482e7b26e92e9d6"
+        },
+        {
+          "mes": "2004-06",
+          "granulo": "GLDAS_NOAH025_M.A200406.021.nc4",
+          "sha256_respuesta": "e239476a877e1366ad4b1bb60ef72842ef18389ef6558ca1e88ee346caacabd9"
+        },
+        {
+          "mes": "2004-07",
+          "granulo": "GLDAS_NOAH025_M.A200407.021.nc4",
+          "sha256_respuesta": "078149728a2ea461faa9d0eeb2b36f8ac2b10a4e9c7c0e2cc5ea8617c182da2c"
+        },
+        {
+          "mes": "2004-08",
+          "granulo": "GLDAS_NOAH025_M.A200408.021.nc4",
+          "sha256_respuesta": "df05577cceb63f24ee20b4a7545efccecc4c18843190409ef01e65e36d978c08"
+        },
+        {
+          "mes": "2004-09",
+          "granulo": "GLDAS_NOAH025_M.A200409.021.nc4",
+          "sha256_respuesta": "f8fb64aa53c5cb89e241d48f8c9e090006c6c1e1df6de4b043bd0f7aaf91ceae"
+        },
+        {
+          "mes": "2004-10",
+          "granulo": "GLDAS_NOAH025_M.A200410.021.nc4",
+          "sha256_respuesta": "87481d1e2b2d11b0dd6b30aca76e5e2ef2d2d889b962afde21b922c7911b295a"
+        },
+        {
+          "mes": "2004-11",
+          "granulo": "GLDAS_NOAH025_M.A200411.021.nc4",
+          "sha256_respuesta": "b3cf5f19a8a68331aa5de74f24487db382068282f7623ffc31fb668502a2e985"
+        },
+        {
+          "mes": "2004-12",
+          "granulo": "GLDAS_NOAH025_M.A200412.021.nc4",
+          "sha256_respuesta": "cb38e02d4d547b3bbe82c6d255f45f7bf8c4780864a5b359795f8e32d757bfaf"
+        },
+        {
+          "mes": "2005-01",
+          "granulo": "GLDAS_NOAH025_M.A200501.021.nc4",
+          "sha256_respuesta": "2e6c2baf08ed2431953ba0617c1211437a48ae45acf5c3c9dafdc9243583459e"
+        },
+        {
+          "mes": "2005-02",
+          "granulo": "GLDAS_NOAH025_M.A200502.021.nc4",
+          "sha256_respuesta": "8a4bc8ad6a1c1b1a087e0167e891c6429def9a776e7a3742ea7e9025c323ed80"
+        },
+        {
+          "mes": "2005-03",
+          "granulo": "GLDAS_NOAH025_M.A200503.021.nc4",
+          "sha256_respuesta": "7f94e66858576293c8a881c54657914f3f93f1c45a6a560e3871b02c3c232845"
+        },
+        {
+          "mes": "2005-04",
+          "granulo": "GLDAS_NOAH025_M.A200504.021.nc4",
+          "sha256_respuesta": "bdef55b01e240aefa0021bdf16c0f4c5ba374a349a888e5b426d173608a3db6b"
+        },
+        {
+          "mes": "2005-05",
+          "granulo": "GLDAS_NOAH025_M.A200505.021.nc4",
+          "sha256_respuesta": "3bbca8836d1d8fa442741d3e2a55c38f0d23532b832719c81a3dc69907e19012"
+        },
+        {
+          "mes": "2005-06",
+          "granulo": "GLDAS_NOAH025_M.A200506.021.nc4",
+          "sha256_respuesta": "997a8899bcf7f9a8be9dfa087d113310ead520781ec7da28624d7d3309d678eb"
+        },
+        {
+          "mes": "2005-07",
+          "granulo": "GLDAS_NOAH025_M.A200507.021.nc4",
+          "sha256_respuesta": "fe8742a8a8bfb53a956dbfd964bc62ee46cfd47752efa41be5fccbdbfba2c57d"
+        },
+        {
+          "mes": "2005-08",
+          "granulo": "GLDAS_NOAH025_M.A200508.021.nc4",
+          "sha256_respuesta": "954694a17b8f89e229a6d9c415feecf413648a8782660df897aad4ce3cd87a42"
+        },
+        {
+          "mes": "2005-09",
+          "granulo": "GLDAS_NOAH025_M.A200509.021.nc4",
+          "sha256_respuesta": "295990112d167028731e1e84b7313b038d783a9b7bc43eb0995b27914feef285"
+        },
+        {
+          "mes": "2005-10",
+          "granulo": "GLDAS_NOAH025_M.A200510.021.nc4",
+          "sha256_respuesta": "1af266d33e4113fcc290f1ad1519c284004b20f6d2cbd114270726db3699d39e"
+        },
+        {
+          "mes": "2005-11",
+          "granulo": "GLDAS_NOAH025_M.A200511.021.nc4",
+          "sha256_respuesta": "1c1b81dbb1ceb36a888e10b7bce4849ff417418ca92ccdb912938ec5677a937c"
+        },
+        {
+          "mes": "2005-12",
+          "granulo": "GLDAS_NOAH025_M.A200512.021.nc4",
+          "sha256_respuesta": "9970a3601918199fe4913b9e895e340ba52a8542e2df75efc41154469c7f9810"
+        },
+        {
+          "mes": "2006-01",
+          "granulo": "GLDAS_NOAH025_M.A200601.021.nc4",
+          "sha256_respuesta": "6e7f8ed2f4e893c1da57efacb41d901e928c155785f45f48186f693bf37b03f6"
+        },
+        {
+          "mes": "2006-02",
+          "granulo": "GLDAS_NOAH025_M.A200602.021.nc4",
+          "sha256_respuesta": "dcd0a5ffdc3a3360cf7754598155b1916b19c233b1f421be6309b0234bf2db20"
+        },
+        {
+          "mes": "2006-03",
+          "granulo": "GLDAS_NOAH025_M.A200603.021.nc4",
+          "sha256_respuesta": "5fb0d32be43aac50be1849c9c11c4b8f9463201121b8e417e6cc0b28d57f43df"
+        },
+        {
+          "mes": "2006-04",
+          "granulo": "GLDAS_NOAH025_M.A200604.021.nc4",
+          "sha256_respuesta": "e586cbf8f76d8e04b9fb3c399a2690a022e0be12e0682077793e046ce7b0d5ec"
+        },
+        {
+          "mes": "2006-05",
+          "granulo": "GLDAS_NOAH025_M.A200605.021.nc4",
+          "sha256_respuesta": "0cd9fe80efa01590a5c7cbf43f2dda92362995ee98a748b814136cf28c492410"
+        },
+        {
+          "mes": "2006-06",
+          "granulo": "GLDAS_NOAH025_M.A200606.021.nc4",
+          "sha256_respuesta": "f398f8d6c02d8592e89a82013049c2a01f16b9d604856cd7654db93e4d4a6825"
+        },
+        {
+          "mes": "2006-07",
+          "granulo": "GLDAS_NOAH025_M.A200607.021.nc4",
+          "sha256_respuesta": "d14e64132ebc9a86b081b85f769e5dfc8ef4f91e00d0a99721389612325b6b9e"
+        },
+        {
+          "mes": "2006-08",
+          "granulo": "GLDAS_NOAH025_M.A200608.021.nc4",
+          "sha256_respuesta": "c4ff33b58b47cb6a26e0f63149444f8ca2edef8696f87f0f364ca800bf6cf457"
+        },
+        {
+          "mes": "2006-09",
+          "granulo": "GLDAS_NOAH025_M.A200609.021.nc4",
+          "sha256_respuesta": "4f9352adff48b5b4b4d255f947306eb07a5375157f7b57b9cd1b5812caf5d88e"
+        },
+        {
+          "mes": "2006-10",
+          "granulo": "GLDAS_NOAH025_M.A200610.021.nc4",
+          "sha256_respuesta": "28249fcbc5d4ea7c77383a500e7a34a166413383281167cf0f6bdf869d6ef57e"
+        },
+        {
+          "mes": "2006-11",
+          "granulo": "GLDAS_NOAH025_M.A200611.021.nc4",
+          "sha256_respuesta": "89a73534a829df53790b847e740a74453cd1ab49da313f7e9297aba037f4623f"
+        },
+        {
+          "mes": "2006-12",
+          "granulo": "GLDAS_NOAH025_M.A200612.021.nc4",
+          "sha256_respuesta": "093e48e64fc49fadd8b13838665cc8bf7a30ec7afcd9223da7a8abbcff8e4d88"
+        },
+        {
+          "mes": "2007-01",
+          "granulo": "GLDAS_NOAH025_M.A200701.021.nc4",
+          "sha256_respuesta": "a91812c2edaeff7f17f222333d4a238853714d1d1797f9b9f1630807a11740c4"
+        },
+        {
+          "mes": "2007-02",
+          "granulo": "GLDAS_NOAH025_M.A200702.021.nc4",
+          "sha256_respuesta": "a04f87cab2f282ed569f873d5790743b35e40354db25ec55171431609469e95b"
+        },
+        {
+          "mes": "2007-03",
+          "granulo": "GLDAS_NOAH025_M.A200703.021.nc4",
+          "sha256_respuesta": "49ac714bc55b97c476da716b8ee7b4bf62818f1537f4a610bad809d0456a1e5d"
+        },
+        {
+          "mes": "2007-04",
+          "granulo": "GLDAS_NOAH025_M.A200704.021.nc4",
+          "sha256_respuesta": "16a73c6a80c8e906eae3e2a87fe53fa20b237a20a8873edae82e6a256b733f36"
+        },
+        {
+          "mes": "2007-05",
+          "granulo": "GLDAS_NOAH025_M.A200705.021.nc4",
+          "sha256_respuesta": "be253162b6adb7171039b7babfa9e0e58eab1ac1c4b35efeeb6b81a6ec4fcdbc"
+        },
+        {
+          "mes": "2007-06",
+          "granulo": "GLDAS_NOAH025_M.A200706.021.nc4",
+          "sha256_respuesta": "e2f69bf64d8cb0d3c73b095a2f38853b8de9d9f7d1392a750930c4f2b8a960c7"
+        },
+        {
+          "mes": "2007-07",
+          "granulo": "GLDAS_NOAH025_M.A200707.021.nc4",
+          "sha256_respuesta": "313cbd8b75ddf2d8befb9569945606c8bee5906d31b10f2c8e3be08ac929a7a2"
+        },
+        {
+          "mes": "2007-08",
+          "granulo": "GLDAS_NOAH025_M.A200708.021.nc4",
+          "sha256_respuesta": "1572561c5ddeeae4939aed35dd5db823886b4e66652f63123c70352dac18e810"
+        },
+        {
+          "mes": "2007-09",
+          "granulo": "GLDAS_NOAH025_M.A200709.021.nc4",
+          "sha256_respuesta": "a3edf12f079beb17c8521127fa3ef19480fe8171058de4a2ee2311fae1670628"
+        },
+        {
+          "mes": "2007-10",
+          "granulo": "GLDAS_NOAH025_M.A200710.021.nc4",
+          "sha256_respuesta": "3344ec61edc353905a0b92467da74e84cc6a400ff802267930b5984a5cd6d053"
+        },
+        {
+          "mes": "2007-11",
+          "granulo": "GLDAS_NOAH025_M.A200711.021.nc4",
+          "sha256_respuesta": "ae9c690cacb1f622a9f4179460a8d69de68b910f7e6c51b1e2291f6c58cc8908"
+        },
+        {
+          "mes": "2007-12",
+          "granulo": "GLDAS_NOAH025_M.A200712.021.nc4",
+          "sha256_respuesta": "7d0691f813f74ccfe9a385817107ee7ba16accefa8df0c4d4407ebf32be01fa3"
+        },
+        {
+          "mes": "2008-01",
+          "granulo": "GLDAS_NOAH025_M.A200801.021.nc4",
+          "sha256_respuesta": "4c448cee61f65a1136ee983e877280ab77cb4a52ab07b409603f4d68b32e1e1f"
+        },
+        {
+          "mes": "2008-02",
+          "granulo": "GLDAS_NOAH025_M.A200802.021.nc4",
+          "sha256_respuesta": "f0b1ce59570eeb7753a54b7dab6ab37c5cec46c4dda65da3030b086c56fbeda8"
+        },
+        {
+          "mes": "2008-03",
+          "granulo": "GLDAS_NOAH025_M.A200803.021.nc4",
+          "sha256_respuesta": "a7576de575fbd4956d44d122013b48f744c1a60f62221fc30cd3d12922b2d3a0"
+        },
+        {
+          "mes": "2008-04",
+          "granulo": "GLDAS_NOAH025_M.A200804.021.nc4",
+          "sha256_respuesta": "7e4b901ec71c71f2b51f3d7bcae4efbf689158d78ec8d6d621a07f69285445aa"
+        },
+        {
+          "mes": "2008-05",
+          "granulo": "GLDAS_NOAH025_M.A200805.021.nc4",
+          "sha256_respuesta": "830d5c32da366b52111390bac722d030874737906ff83c2bc83b8daf509c7beb"
+        },
+        {
+          "mes": "2008-06",
+          "granulo": "GLDAS_NOAH025_M.A200806.021.nc4",
+          "sha256_respuesta": "b610cac40808a37e57bf1441f90472b2a79fd66ff7c228e671c66d7ebebc2e5e"
+        },
+        {
+          "mes": "2008-07",
+          "granulo": "GLDAS_NOAH025_M.A200807.021.nc4",
+          "sha256_respuesta": "93c4d8c56570a675fbef1f511f8e6735d830e45a3e136b8b105778223306948f"
+        },
+        {
+          "mes": "2008-08",
+          "granulo": "GLDAS_NOAH025_M.A200808.021.nc4",
+          "sha256_respuesta": "aafe1704b37ec821cb32e1a81df5b37c1e937306856ee3ebe8ccda92fc06ad69"
+        },
+        {
+          "mes": "2008-09",
+          "granulo": "GLDAS_NOAH025_M.A200809.021.nc4",
+          "sha256_respuesta": "6fc8870a7a7dd7e616c38d783f283488fb9bac940e007c26d739d4b96a7d1440"
+        },
+        {
+          "mes": "2008-10",
+          "granulo": "GLDAS_NOAH025_M.A200810.021.nc4",
+          "sha256_respuesta": "9434febf94282613a8253be64ddb0b87d011d86d8cbcc0819735376212ef323c"
+        },
+        {
+          "mes": "2008-11",
+          "granulo": "GLDAS_NOAH025_M.A200811.021.nc4",
+          "sha256_respuesta": "986ff5f211fa307aea4f86f307ca48a62e57b8b0a7e1d762676cd788a0af8a4f"
+        },
+        {
+          "mes": "2008-12",
+          "granulo": "GLDAS_NOAH025_M.A200812.021.nc4",
+          "sha256_respuesta": "fcf0181da8e7af9b07958d48f0783fb57b9f572dbd3aca1775bcaeeb554d06a4"
+        },
+        {
+          "mes": "2009-01",
+          "granulo": "GLDAS_NOAH025_M.A200901.021.nc4",
+          "sha256_respuesta": "4010581f643a3c2a706af8172f58e48acd371615da26a785433b017c3a2a9b4b"
+        },
+        {
+          "mes": "2009-02",
+          "granulo": "GLDAS_NOAH025_M.A200902.021.nc4",
+          "sha256_respuesta": "aae86021111014cc84eec5f7ac8638642eae174ba882244481330c038fa51b7f"
+        },
+        {
+          "mes": "2009-03",
+          "granulo": "GLDAS_NOAH025_M.A200903.021.nc4",
+          "sha256_respuesta": "32f291b22013fb02013ff6b075b1f868fb4a295141feef0f23077642f1429df4"
+        },
+        {
+          "mes": "2009-04",
+          "granulo": "GLDAS_NOAH025_M.A200904.021.nc4",
+          "sha256_respuesta": "5b3f8b6c07051b6e2fd3f5b201e181db018392d76c52976d589f7562492dd155"
+        },
+        {
+          "mes": "2009-05",
+          "granulo": "GLDAS_NOAH025_M.A200905.021.nc4",
+          "sha256_respuesta": "2ee23ae1c9f540d6f359f49de2c4e70564437912b92758d1e1b9894b75cbd795"
+        },
+        {
+          "mes": "2009-06",
+          "granulo": "GLDAS_NOAH025_M.A200906.021.nc4",
+          "sha256_respuesta": "5c260f217e95c4708b33bf78deb4a51530a171eb0d8bbc1e45d81daf2b66679b"
+        },
+        {
+          "mes": "2009-07",
+          "granulo": "GLDAS_NOAH025_M.A200907.021.nc4",
+          "sha256_respuesta": "90b7f699e7ae5640b2a20db833e56e062de7d4dd697d9ceef6dff373e49857ac"
+        },
+        {
+          "mes": "2009-08",
+          "granulo": "GLDAS_NOAH025_M.A200908.021.nc4",
+          "sha256_respuesta": "05025db3741cd1ce71cd86ebd2a5e36898c17bda6f799a473334ca5d3653fbe2"
+        },
+        {
+          "mes": "2009-09",
+          "granulo": "GLDAS_NOAH025_M.A200909.021.nc4",
+          "sha256_respuesta": "ba8e76dcd8920f51b671c245bb0be8af5f75568264188c4b8fd990e550095b6e"
+        },
+        {
+          "mes": "2009-10",
+          "granulo": "GLDAS_NOAH025_M.A200910.021.nc4",
+          "sha256_respuesta": "7997964193131b46c4ba4db18f80e83ca216d9e572e4721eb4154c463964c632"
+        },
+        {
+          "mes": "2009-11",
+          "granulo": "GLDAS_NOAH025_M.A200911.021.nc4",
+          "sha256_respuesta": "215ae5b842833e2166cc0e587867e069a70e31c0f471705b2960e333a17401e6"
+        },
+        {
+          "mes": "2009-12",
+          "granulo": "GLDAS_NOAH025_M.A200912.021.nc4",
+          "sha256_respuesta": "a66b093d58782ca3772afad54aa174a2607191ec9b3fd456929c0e5233f47b52"
+        },
+        {
+          "mes": "2010-01",
+          "granulo": "GLDAS_NOAH025_M.A201001.021.nc4",
+          "sha256_respuesta": "feff27383073d1d88eca2ff6de8885cd4f780f9ac11cbb02ef51fcce742088a3"
+        },
+        {
+          "mes": "2010-02",
+          "granulo": "GLDAS_NOAH025_M.A201002.021.nc4",
+          "sha256_respuesta": "2e463d405bfbed29cbd208a176e190aec1af4f02e6a5d915d8e51a948a413f6f"
+        },
+        {
+          "mes": "2010-03",
+          "granulo": "GLDAS_NOAH025_M.A201003.021.nc4",
+          "sha256_respuesta": "f953aeae9180f541784aa36b2ab75d36d608e9c4e12fbdc6e3075360518677fa"
+        },
+        {
+          "mes": "2010-04",
+          "granulo": "GLDAS_NOAH025_M.A201004.021.nc4",
+          "sha256_respuesta": "8c35a0a45f06e5471b5cbdee68bfa01dc26363d6ed729ff70212597070affb8f"
+        },
+        {
+          "mes": "2010-05",
+          "granulo": "GLDAS_NOAH025_M.A201005.021.nc4",
+          "sha256_respuesta": "34a5101fc7b00b9edf22262a816f47b9b94b943dd17927205e6ce0cd75261554"
+        },
+        {
+          "mes": "2010-06",
+          "granulo": "GLDAS_NOAH025_M.A201006.021.nc4",
+          "sha256_respuesta": "d9ffe5b5e10c66d8180c2ab09b118aa6b2893c3d95de07b8ad92afafcd7dfa91"
+        },
+        {
+          "mes": "2010-07",
+          "granulo": "GLDAS_NOAH025_M.A201007.021.nc4",
+          "sha256_respuesta": "6992e42156a6354828e73163c1666f2c2e78d6ad7cd7d5a4adf51e66fc82acbc"
+        },
+        {
+          "mes": "2010-08",
+          "granulo": "GLDAS_NOAH025_M.A201008.021.nc4",
+          "sha256_respuesta": "3f9869bf84ffaeed1ab47d32d9bda8ebd88d4af161c0caa5ad85a702a7fbd404"
+        },
+        {
+          "mes": "2010-09",
+          "granulo": "GLDAS_NOAH025_M.A201009.021.nc4",
+          "sha256_respuesta": "dff36b5bdab07f87f61ccb3d5f89cc67207ddb527596732215b61297f6312b8a"
+        },
+        {
+          "mes": "2010-10",
+          "granulo": "GLDAS_NOAH025_M.A201010.021.nc4",
+          "sha256_respuesta": "86956cd834f3a71293c0b3897fa2172912f3a4a9a20512ac80cabe68397dea20"
+        },
+        {
+          "mes": "2010-11",
+          "granulo": "GLDAS_NOAH025_M.A201011.021.nc4",
+          "sha256_respuesta": "8013c36eb5f7b29bfd84cc6ae1c37e1fecdcef1c99b3fee63aab4fb98af889a5"
+        },
+        {
+          "mes": "2010-12",
+          "granulo": "GLDAS_NOAH025_M.A201012.021.nc4",
+          "sha256_respuesta": "1014b6dbdb78dffbe17131f02abc9b1934bab679f371e9c74c0fcf90c3bfb0b5"
+        },
+        {
+          "mes": "2011-01",
+          "granulo": "GLDAS_NOAH025_M.A201101.021.nc4",
+          "sha256_respuesta": "7abfc1046e363016b7261fa4e0cd5c86840f37c86d4263243d1b96d653e5fc78"
+        },
+        {
+          "mes": "2011-02",
+          "granulo": "GLDAS_NOAH025_M.A201102.021.nc4",
+          "sha256_respuesta": "052970f8227c4be7991ecfef92d9f55c104d510b9f5869ea07ac56a0fc4250b6"
+        },
+        {
+          "mes": "2011-03",
+          "granulo": "GLDAS_NOAH025_M.A201103.021.nc4",
+          "sha256_respuesta": "d8f9f23f804900f0f86bcd32cc8050412d19b4cc34030f7ff79b268584890895"
+        },
+        {
+          "mes": "2011-04",
+          "granulo": "GLDAS_NOAH025_M.A201104.021.nc4",
+          "sha256_respuesta": "afc0896e251f2af6f45ef8e72c70d985efd2c014e7622fab6ee7928c0f898360"
+        },
+        {
+          "mes": "2011-05",
+          "granulo": "GLDAS_NOAH025_M.A201105.021.nc4",
+          "sha256_respuesta": "9af7d5df1e5f39f5b8ce92862bbd8158207ba64f8e4c4023292284cefe90f1e1"
+        },
+        {
+          "mes": "2011-06",
+          "granulo": "GLDAS_NOAH025_M.A201106.021.nc4",
+          "sha256_respuesta": "7503637c21cb242c0c998fbb808ed05a3c7723fac7b069bef1ade28ceab4df9a"
+        },
+        {
+          "mes": "2011-07",
+          "granulo": "GLDAS_NOAH025_M.A201107.021.nc4",
+          "sha256_respuesta": "9a1e89f22c82d79054f6eea2cf29ff64df03dae88a8401e72db8c38c068d15e6"
+        },
+        {
+          "mes": "2011-08",
+          "granulo": "GLDAS_NOAH025_M.A201108.021.nc4",
+          "sha256_respuesta": "88cf1a6071ea186a86a6adca701d99afd0d6e0abad7a2282bc68da94d8bb255c"
+        },
+        {
+          "mes": "2011-09",
+          "granulo": "GLDAS_NOAH025_M.A201109.021.nc4",
+          "sha256_respuesta": "469bba4c6a27864beb4d9106d9385c4ab2dafcd5ed23dbbdc880c8d138c04ce4"
+        },
+        {
+          "mes": "2011-10",
+          "granulo": "GLDAS_NOAH025_M.A201110.021.nc4",
+          "sha256_respuesta": "20ccf78acfed3e1a3935e75f44dafb76e6f4e5fadc780b645465d09677040586"
+        },
+        {
+          "mes": "2011-11",
+          "granulo": "GLDAS_NOAH025_M.A201111.021.nc4",
+          "sha256_respuesta": "5aa86036ed2c2fe9910b588563314732a36a7223337497b37341c584d7595ba2"
+        },
+        {
+          "mes": "2011-12",
+          "granulo": "GLDAS_NOAH025_M.A201112.021.nc4",
+          "sha256_respuesta": "e88e9d30a6891fc22b752854a81d44aedd99bb1a097da1cc4d97b2125ea213e9"
+        },
+        {
+          "mes": "2012-01",
+          "granulo": "GLDAS_NOAH025_M.A201201.021.nc4",
+          "sha256_respuesta": "c1c07b8914f12dea0f869aaf6ce95d5dffe248c464cec916dd9d0472cab6f384"
+        },
+        {
+          "mes": "2012-02",
+          "granulo": "GLDAS_NOAH025_M.A201202.021.nc4",
+          "sha256_respuesta": "d0dfb4471f83c133e312dae465403c433bda74623715ecd1b29d7de0cac7a4fe"
+        },
+        {
+          "mes": "2012-03",
+          "granulo": "GLDAS_NOAH025_M.A201203.021.nc4",
+          "sha256_respuesta": "49d61f2664aea64ccb7b9326a72042d896bbc44b542bab6f22f558d4cdf24e82"
+        },
+        {
+          "mes": "2012-04",
+          "granulo": "GLDAS_NOAH025_M.A201204.021.nc4",
+          "sha256_respuesta": "53fefb36ba639a7f6c9050f9b3d7e323dee0c8b2cab3e5ccc8c6c6773960b1c0"
+        },
+        {
+          "mes": "2012-05",
+          "granulo": "GLDAS_NOAH025_M.A201205.021.nc4",
+          "sha256_respuesta": "9238647f59223af335c1c81464f7eb13fc8d9011999f21774272dda4191b673b"
+        },
+        {
+          "mes": "2012-06",
+          "granulo": "GLDAS_NOAH025_M.A201206.021.nc4",
+          "sha256_respuesta": "1ac4f0343f60fc0ae6808d00fd4324bae6fa01028475491f74b2544dd334d9df"
+        },
+        {
+          "mes": "2012-07",
+          "granulo": "GLDAS_NOAH025_M.A201207.021.nc4",
+          "sha256_respuesta": "0b2c826ca77ecb4be3022535b905cf88b4076504c0399b06e5c7949c34c78351"
+        },
+        {
+          "mes": "2012-08",
+          "granulo": "GLDAS_NOAH025_M.A201208.021.nc4",
+          "sha256_respuesta": "4c32ec2571ad2f92290001ad27cdf249852b717ad9f8d23b1aba6e43c3955307"
+        },
+        {
+          "mes": "2012-09",
+          "granulo": "GLDAS_NOAH025_M.A201209.021.nc4",
+          "sha256_respuesta": "622ad16edb49e49ad3bf6facb0713e5f5cf5ddf084664934268f2fb52771384b"
+        },
+        {
+          "mes": "2012-10",
+          "granulo": "GLDAS_NOAH025_M.A201210.021.nc4",
+          "sha256_respuesta": "b8d2f31d6229f70bb8064f299058d9d8732980a9424382d635e813c21bffb14a"
+        },
+        {
+          "mes": "2012-11",
+          "granulo": "GLDAS_NOAH025_M.A201211.021.nc4",
+          "sha256_respuesta": "d1e6b039a33082f1a1562da799cd93330a4aef87c213314c665a9fbba2d429c8"
+        },
+        {
+          "mes": "2012-12",
+          "granulo": "GLDAS_NOAH025_M.A201212.021.nc4",
+          "sha256_respuesta": "3a907c92d9cb361b8276e4a7cdc8e4fef48a7a77c423eb3bea03ffddc84e8678"
+        },
+        {
+          "mes": "2013-01",
+          "granulo": "GLDAS_NOAH025_M.A201301.021.nc4",
+          "sha256_respuesta": "e0e2ded52245cd3418f32c7a2e9eeb9ee2f2d2aa4404a65f80dc6e991d1c532c"
+        },
+        {
+          "mes": "2013-02",
+          "granulo": "GLDAS_NOAH025_M.A201302.021.nc4",
+          "sha256_respuesta": "1468e080c6d85dc4a4444958a741134514155e5ac2f109fbd99a45398716e99e"
+        },
+        {
+          "mes": "2013-03",
+          "granulo": "GLDAS_NOAH025_M.A201303.021.nc4",
+          "sha256_respuesta": "479845f45430305d686e8cbeb75a8113cff0688e1def8211455c2577c8cf27f1"
+        },
+        {
+          "mes": "2013-04",
+          "granulo": "GLDAS_NOAH025_M.A201304.021.nc4",
+          "sha256_respuesta": "4ab9b13de77b24b3e8669b7f13ab3e3ac3952591a153d3f021bb67c81234d0f0"
+        },
+        {
+          "mes": "2013-05",
+          "granulo": "GLDAS_NOAH025_M.A201305.021.nc4",
+          "sha256_respuesta": "dbebb3f29f0e1d24cbb0560c3b284460d20ed444ca435733b520c2984a24c299"
+        },
+        {
+          "mes": "2013-06",
+          "granulo": "GLDAS_NOAH025_M.A201306.021.nc4",
+          "sha256_respuesta": "3f7ca750c56c2a10a267ce3ec748e522acaeaa80546d1a9d43eca004fdcc5451"
+        },
+        {
+          "mes": "2013-07",
+          "granulo": "GLDAS_NOAH025_M.A201307.021.nc4",
+          "sha256_respuesta": "291e67d814cbf949ede77a0908f6bf1ea297406eb8e954b84282884d61face8f"
+        },
+        {
+          "mes": "2013-08",
+          "granulo": "GLDAS_NOAH025_M.A201308.021.nc4",
+          "sha256_respuesta": "46a466fa801364947062d447a1ae030c851b1f26c69f078701a1e58087971a89"
+        },
+        {
+          "mes": "2013-09",
+          "granulo": "GLDAS_NOAH025_M.A201309.021.nc4",
+          "sha256_respuesta": "d0bb3f4e0af1ce389efbd1202fb31671dd1ace09bc7d05aa6bb2f80d98b6e5c8"
+        },
+        {
+          "mes": "2013-10",
+          "granulo": "GLDAS_NOAH025_M.A201310.021.nc4",
+          "sha256_respuesta": "aea1bc9b1f214cda31da1ee3b6ad4bc41566dea115946fd9333400fd624e8fb3"
+        },
+        {
+          "mes": "2013-11",
+          "granulo": "GLDAS_NOAH025_M.A201311.021.nc4",
+          "sha256_respuesta": "9663f581cbb1181ac08f57137da21ce1d7245bc445f972f92659cec1d9931cd7"
+        },
+        {
+          "mes": "2013-12",
+          "granulo": "GLDAS_NOAH025_M.A201312.021.nc4",
+          "sha256_respuesta": "8e5b68cd3abbd33b1e35869b1b68b6fe8a44ab61ae8411822fe2a8702f94bbb1"
+        },
+        {
+          "mes": "2014-01",
+          "granulo": "GLDAS_NOAH025_M.A201401.021.nc4",
+          "sha256_respuesta": "a563cca88c605cea9d5db689a7e0b0d3aaf7181ff834f4558f8f4d97cdccbd68"
+        },
+        {
+          "mes": "2014-02",
+          "granulo": "GLDAS_NOAH025_M.A201402.021.nc4",
+          "sha256_respuesta": "2146d61d570c1dd68aab7752412e6f88a5851f502bda0d57bcf19c2a164bca84"
+        },
+        {
+          "mes": "2014-03",
+          "granulo": "GLDAS_NOAH025_M.A201403.021.nc4",
+          "sha256_respuesta": "3a7924df88bed23cfb61c53cfd6fcc23c5cb574266362ebecf0e865c49654943"
+        },
+        {
+          "mes": "2014-04",
+          "granulo": "GLDAS_NOAH025_M.A201404.021.nc4",
+          "sha256_respuesta": "fe66d6e89255e92f1977ef0d287d0d9ef5fc284f6b86ac487bd39ebcd54164ea"
+        },
+        {
+          "mes": "2014-05",
+          "granulo": "GLDAS_NOAH025_M.A201405.021.nc4",
+          "sha256_respuesta": "0739b7d6e2c741ce32dde8df2604307afaf0cd3c7e282e4fecdc2ca4514b312a"
+        },
+        {
+          "mes": "2014-06",
+          "granulo": "GLDAS_NOAH025_M.A201406.021.nc4",
+          "sha256_respuesta": "1d395d254739808fc9775a9c07ba39b383795464ee0f73a92331786e2752b69a"
+        },
+        {
+          "mes": "2014-07",
+          "granulo": "GLDAS_NOAH025_M.A201407.021.nc4",
+          "sha256_respuesta": "4e71a4057bda4a6acf1188ee6da8ea4f9f8d7e6cfc94a623b2695b756a68c7b0"
+        },
+        {
+          "mes": "2014-08",
+          "granulo": "GLDAS_NOAH025_M.A201408.021.nc4",
+          "sha256_respuesta": "3c27d45454bd4c386482006842f24cf09390ce4d569bc5d22ca98e6a3bbfa3a3"
+        },
+        {
+          "mes": "2014-09",
+          "granulo": "GLDAS_NOAH025_M.A201409.021.nc4",
+          "sha256_respuesta": "ed1c67d637c505ab1b3bea5f3446f384d6953b772927ba361b13c7ed279570f0"
+        },
+        {
+          "mes": "2014-10",
+          "granulo": "GLDAS_NOAH025_M.A201410.021.nc4",
+          "sha256_respuesta": "862db9062857df05281f4d171dd747ae5fa15c4328cbd66fea8d585916d38d29"
+        },
+        {
+          "mes": "2014-11",
+          "granulo": "GLDAS_NOAH025_M.A201411.021.nc4",
+          "sha256_respuesta": "f97faf48d10e517e64b553c5b0c36692b5bc8b0538c038cb253fe6c11428a6a1"
+        },
+        {
+          "mes": "2014-12",
+          "granulo": "GLDAS_NOAH025_M.A201412.021.nc4",
+          "sha256_respuesta": "789afca7924a1f7cde8d2cb644cf59bb5ee4314ad1f8f7fb64193f2f269c97af"
+        },
+        {
+          "mes": "2015-01",
+          "granulo": "GLDAS_NOAH025_M.A201501.021.nc4",
+          "sha256_respuesta": "aba525b77e7e179ef036cd9ebc7d993f50f44016cd2f8c3bf41a672670f3b41c"
+        },
+        {
+          "mes": "2015-02",
+          "granulo": "GLDAS_NOAH025_M.A201502.021.nc4",
+          "sha256_respuesta": "a1204b130a12abd0eb1969769dba9bd47bacad2e25ca8bfaec1fa7be14f1cb93"
+        },
+        {
+          "mes": "2015-03",
+          "granulo": "GLDAS_NOAH025_M.A201503.021.nc4",
+          "sha256_respuesta": "ae3f9b52de56975994658394487e6aae6a2ad970d12bdcd7824423b7d0ce7c4f"
+        },
+        {
+          "mes": "2015-04",
+          "granulo": "GLDAS_NOAH025_M.A201504.021.nc4",
+          "sha256_respuesta": "3457adc6e686ddb5cb30734ae76742fdd8f092fd68fdf53e44ae05cff8b1733f"
+        },
+        {
+          "mes": "2015-05",
+          "granulo": "GLDAS_NOAH025_M.A201505.021.nc4",
+          "sha256_respuesta": "1fa9e46bce092682aef92cb4921ad8a1cfdfef0ceea1cc56127b4dbca2226388"
+        },
+        {
+          "mes": "2015-06",
+          "granulo": "GLDAS_NOAH025_M.A201506.021.nc4",
+          "sha256_respuesta": "af6f70894880bee25f5af27ae048cd57fb1523805c95dddac1e8ff656cb4719a"
+        },
+        {
+          "mes": "2015-07",
+          "granulo": "GLDAS_NOAH025_M.A201507.021.nc4",
+          "sha256_respuesta": "085ea30c101d52af19ede6510cb5460ddc9149a1c866f0efb93c90b411ef801d"
+        },
+        {
+          "mes": "2015-08",
+          "granulo": "GLDAS_NOAH025_M.A201508.021.nc4",
+          "sha256_respuesta": "91b325d29882c3e9397bd46f364e42da4f0050c470e2167160bb873e6110c99b"
+        },
+        {
+          "mes": "2015-09",
+          "granulo": "GLDAS_NOAH025_M.A201509.021.nc4",
+          "sha256_respuesta": "55fded137bb016429eb988b4b999e6a455b3a675895ea78b0f73f2b075600ded"
+        },
+        {
+          "mes": "2015-10",
+          "granulo": "GLDAS_NOAH025_M.A201510.021.nc4",
+          "sha256_respuesta": "479ff7d505246df6559e2883675108c96665dfe3c5864f796a7f8b384979777e"
+        },
+        {
+          "mes": "2015-11",
+          "granulo": "GLDAS_NOAH025_M.A201511.021.nc4",
+          "sha256_respuesta": "78997e106c72abbc5f71715659633f0a3a8ceee0be18828e311cf2de6d800534"
+        },
+        {
+          "mes": "2015-12",
+          "granulo": "GLDAS_NOAH025_M.A201512.021.nc4",
+          "sha256_respuesta": "52db8c6532126e29bc37d56bde0dccf4e98868c953ea3557f71b0be4d1c134cb"
+        },
+        {
+          "mes": "2016-01",
+          "granulo": "GLDAS_NOAH025_M.A201601.021.nc4",
+          "sha256_respuesta": "74199e7ac7aa731c73cb9acf02c5b1d536785aba7c2c6d7a011afa9e77c91031"
+        },
+        {
+          "mes": "2016-02",
+          "granulo": "GLDAS_NOAH025_M.A201602.021.nc4",
+          "sha256_respuesta": "d6dbeba06bc1e16b0fca6809ed161075d159cb65c3bf9e0da388a326dd5e000c"
+        },
+        {
+          "mes": "2016-03",
+          "granulo": "GLDAS_NOAH025_M.A201603.021.nc4",
+          "sha256_respuesta": "f98416c7147c42b19455fdb6ecbdd955750b25ed3c3d94127234098535fdb7d9"
+        },
+        {
+          "mes": "2016-04",
+          "granulo": "GLDAS_NOAH025_M.A201604.021.nc4",
+          "sha256_respuesta": "4d85c2715b6e797dcb798c25da29cecc3a8f66fe0c5e9b178f27e6aa4a06d6ab"
+        },
+        {
+          "mes": "2016-05",
+          "granulo": "GLDAS_NOAH025_M.A201605.021.nc4",
+          "sha256_respuesta": "8e306659e23b7ff41aeca0e11fd7bb59d37f0247a920741cc0824b4ef84739ad"
+        },
+        {
+          "mes": "2016-06",
+          "granulo": "GLDAS_NOAH025_M.A201606.021.nc4",
+          "sha256_respuesta": "5b64d0398e840734756c7c0a74f4ec62d2883f63581e871e568c8eed20f9a5db"
+        },
+        {
+          "mes": "2016-07",
+          "granulo": "GLDAS_NOAH025_M.A201607.021.nc4",
+          "sha256_respuesta": "948914d8cf00646a8676f63a2b78fc7d964fad4857a097edaa6554cc4df91964"
+        },
+        {
+          "mes": "2016-08",
+          "granulo": "GLDAS_NOAH025_M.A201608.021.nc4",
+          "sha256_respuesta": "8697039133edff3e11afecfeaac34989b6712768e171a69afb4000078e686e74"
+        },
+        {
+          "mes": "2016-09",
+          "granulo": "GLDAS_NOAH025_M.A201609.021.nc4",
+          "sha256_respuesta": "b682c275696ebda594604a45209a777c4831214562595ac9f1c1f760e5411a3f"
+        },
+        {
+          "mes": "2016-10",
+          "granulo": "GLDAS_NOAH025_M.A201610.021.nc4",
+          "sha256_respuesta": "92a244d3b3999b72c071467713f11c91c05b77e6256368a68329957e4fb6b8be"
+        },
+        {
+          "mes": "2016-11",
+          "granulo": "GLDAS_NOAH025_M.A201611.021.nc4",
+          "sha256_respuesta": "4405498cf05b88eed6cdb570b5f3d87ff646ab7cb9b4acae64dc0b93776ef095"
+        },
+        {
+          "mes": "2016-12",
+          "granulo": "GLDAS_NOAH025_M.A201612.021.nc4",
+          "sha256_respuesta": "795feea6980ac89ba4cbcd4fc57d240296784dfa6d326f7243b5afa21c175405"
+        },
+        {
+          "mes": "2017-01",
+          "granulo": "GLDAS_NOAH025_M.A201701.021.nc4",
+          "sha256_respuesta": "7acbcc538bbdee5bb2107c9783b94142e9465ec88f7f40e3ef12ab54db8dc2a7"
+        },
+        {
+          "mes": "2017-02",
+          "granulo": "GLDAS_NOAH025_M.A201702.021.nc4",
+          "sha256_respuesta": "b0aa9f6e24c06db700a8a1c8a56be210ab4130ef9e81e6dbdf0c4e4a35a92352"
+        },
+        {
+          "mes": "2017-03",
+          "granulo": "GLDAS_NOAH025_M.A201703.021.nc4",
+          "sha256_respuesta": "8091654c9f3dc07a0bb2d7aea94b200088eb0ff9ea4bcee3424c8c62fe0a382a"
+        },
+        {
+          "mes": "2017-04",
+          "granulo": "GLDAS_NOAH025_M.A201704.021.nc4",
+          "sha256_respuesta": "5a1356208bdb0887f66b82ac14d7cf93477915c612b863e3af76badaef582c06"
+        },
+        {
+          "mes": "2017-05",
+          "granulo": "GLDAS_NOAH025_M.A201705.021.nc4",
+          "sha256_respuesta": "90a3964df2d97a4a089484d5d131e930ef2446f5bd11e48d051b14ee3a2325e0"
+        },
+        {
+          "mes": "2017-06",
+          "granulo": "GLDAS_NOAH025_M.A201706.021.nc4",
+          "sha256_respuesta": "6e813f076bd5ba3521879c8c5aecf616cf01962867f156066c00f4f94c083858"
+        },
+        {
+          "mes": "2017-07",
+          "granulo": "GLDAS_NOAH025_M.A201707.021.nc4",
+          "sha256_respuesta": "7a2eda91b59e125caec8344fc722d53c40a2075ed3e15ad36648b6f78c21b1bc"
+        },
+        {
+          "mes": "2017-08",
+          "granulo": "GLDAS_NOAH025_M.A201708.021.nc4",
+          "sha256_respuesta": "71795a6c067415f05efc8c03e52799a9433b744746a4ff1207e370dedcede381"
+        },
+        {
+          "mes": "2017-09",
+          "granulo": "GLDAS_NOAH025_M.A201709.021.nc4",
+          "sha256_respuesta": "cac84283a426417d73a9a943f810fec5b46aefe8ebc08b6467f328a881ea4877"
+        },
+        {
+          "mes": "2017-10",
+          "granulo": "GLDAS_NOAH025_M.A201710.021.nc4",
+          "sha256_respuesta": "333bdd32c93638a3f0d2c0440d504de5805e864ef1401300a2da0216c570d31c"
+        },
+        {
+          "mes": "2017-11",
+          "granulo": "GLDAS_NOAH025_M.A201711.021.nc4",
+          "sha256_respuesta": "2bad1fdc52ddff631544ed96634216d7c4df195709d061c929d4f1068e83c66b"
+        },
+        {
+          "mes": "2017-12",
+          "granulo": "GLDAS_NOAH025_M.A201712.021.nc4",
+          "sha256_respuesta": "2a1c852d40b0cd6ab64d32cea2bda83f253ff497f7b5e9a57f7adde46f19c764"
+        },
+        {
+          "mes": "2018-01",
+          "granulo": "GLDAS_NOAH025_M.A201801.021.nc4",
+          "sha256_respuesta": "04aec33e446d3c254a44bc1683d0c23946d2ad408dd4c8fd91978745c5e29084"
+        },
+        {
+          "mes": "2018-02",
+          "granulo": "GLDAS_NOAH025_M.A201802.021.nc4",
+          "sha256_respuesta": "0776f061f26a4371b17f05718efc6a8ecfe2b598d03deab0610addd0677bd1aa"
+        },
+        {
+          "mes": "2018-03",
+          "granulo": "GLDAS_NOAH025_M.A201803.021.nc4",
+          "sha256_respuesta": "ca0aa49a8b981de334f75c6bd1105903429c42ffd7358ced944d8b97987cd3a4"
+        },
+        {
+          "mes": "2018-04",
+          "granulo": "GLDAS_NOAH025_M.A201804.021.nc4",
+          "sha256_respuesta": "92ea10b0c412b56513073e06ce8f66589f5adbace94d805ff4d919ac1ef8a7d3"
+        },
+        {
+          "mes": "2018-05",
+          "granulo": "GLDAS_NOAH025_M.A201805.021.nc4",
+          "sha256_respuesta": "80543edf50e42e80926b71cc9819831e9631c157d07ee80e67af6aaab4123467"
+        },
+        {
+          "mes": "2018-06",
+          "granulo": "GLDAS_NOAH025_M.A201806.021.nc4",
+          "sha256_respuesta": "1cf81fd98f6af338faa8a1431a22dcc83955f00a015994474a8e2a9eb2344349"
+        },
+        {
+          "mes": "2018-07",
+          "granulo": "GLDAS_NOAH025_M.A201807.021.nc4",
+          "sha256_respuesta": "15d709816a21039e961b655cc3528ffbdb933b51daed9d1357e34b87f47eab4c"
+        },
+        {
+          "mes": "2018-08",
+          "granulo": "GLDAS_NOAH025_M.A201808.021.nc4",
+          "sha256_respuesta": "85ad995cd4d5d623fa36032ee2a1aedc424eb51e228ae720ce0665b1d0cc4e89"
+        },
+        {
+          "mes": "2018-09",
+          "granulo": "GLDAS_NOAH025_M.A201809.021.nc4",
+          "sha256_respuesta": "1f327779e26164898912be6c67790f9cb38f2248eba9d60aa8766c42aa664865"
+        },
+        {
+          "mes": "2018-10",
+          "granulo": "GLDAS_NOAH025_M.A201810.021.nc4",
+          "sha256_respuesta": "0ca27d5e096939ebad1c9a79250cd62e9a77d30258361b49d29b9885a0c7c33c"
+        },
+        {
+          "mes": "2018-11",
+          "granulo": "GLDAS_NOAH025_M.A201811.021.nc4",
+          "sha256_respuesta": "529d5da00ff68daf67141f7f27b336be1c5564b41bbce5c11759e9b6edb9fb5e"
+        },
+        {
+          "mes": "2018-12",
+          "granulo": "GLDAS_NOAH025_M.A201812.021.nc4",
+          "sha256_respuesta": "392bf167ab91cf3954c7ed945c17e8cfc12bd48042d42361a18720bcda78b224"
+        },
+        {
+          "mes": "2019-01",
+          "granulo": "GLDAS_NOAH025_M.A201901.021.nc4",
+          "sha256_respuesta": "4c9b1c2a900bfb0ac4f0102ac517fef334e585d3f313ef2b8d38900761f952ed"
+        },
+        {
+          "mes": "2019-02",
+          "granulo": "GLDAS_NOAH025_M.A201902.021.nc4",
+          "sha256_respuesta": "7de3903aa028aface4b31494ff3709d3ae2e7161d6f2c75fdc36b46b280eb8b9"
+        },
+        {
+          "mes": "2019-03",
+          "granulo": "GLDAS_NOAH025_M.A201903.021.nc4",
+          "sha256_respuesta": "87f9254402fdb310a841f9e520df3f6901d345d8e87375ab468cb60cda67d5a7"
+        },
+        {
+          "mes": "2019-04",
+          "granulo": "GLDAS_NOAH025_M.A201904.021.nc4",
+          "sha256_respuesta": "82d65f47ec7524d3edaf9b8d84763846949063e6c81163451db3e4c10c34b47c"
+        },
+        {
+          "mes": "2019-05",
+          "granulo": "GLDAS_NOAH025_M.A201905.021.nc4",
+          "sha256_respuesta": "34ed4fe946cb45d02c704557dfdbb74acf270604df8c29a456a1aa436c7922a9"
+        },
+        {
+          "mes": "2019-06",
+          "granulo": "GLDAS_NOAH025_M.A201906.021.nc4",
+          "sha256_respuesta": "c6db802cd8e757a3cf0a80cad964f5315ceefca3f80c2ad2aa96890774527929"
+        },
+        {
+          "mes": "2019-07",
+          "granulo": "GLDAS_NOAH025_M.A201907.021.nc4",
+          "sha256_respuesta": "7005c51210bce31a66cef80313de4d2e2180e15f861d7b3a0de3e5f2b02140f8"
+        },
+        {
+          "mes": "2019-08",
+          "granulo": "GLDAS_NOAH025_M.A201908.021.nc4",
+          "sha256_respuesta": "afe363bcc99289b91fb250a59dd1a07d6b127867912bccdea826231114763f91"
+        },
+        {
+          "mes": "2019-09",
+          "granulo": "GLDAS_NOAH025_M.A201909.021.nc4",
+          "sha256_respuesta": "65c6b3b7839650d734075d5d1dbd97b16362e706f8500f8a5078d3c3752d007a"
+        },
+        {
+          "mes": "2019-10",
+          "granulo": "GLDAS_NOAH025_M.A201910.021.nc4",
+          "sha256_respuesta": "ca2177265299b761d1b7e5617c637bc3636af25c107657a08c7404ef5c70e076"
+        },
+        {
+          "mes": "2019-11",
+          "granulo": "GLDAS_NOAH025_M.A201911.021.nc4",
+          "sha256_respuesta": "28cba73ee8d2eeab6de58e53cdb385ed71c36ff75b4e8ee6e6caeb101203e149"
+        },
+        {
+          "mes": "2019-12",
+          "granulo": "GLDAS_NOAH025_M.A201912.021.nc4",
+          "sha256_respuesta": "c8612972f59305ed3187e9cb739fd78bc823201b2ef90689a24d603aee10543c"
+        },
+        {
+          "mes": "2020-01",
+          "granulo": "GLDAS_NOAH025_M.A202001.021.nc4",
+          "sha256_respuesta": "4423c3739d6fcef08e9855353ad354360f7924447d7ee045b28b939297c2f329"
+        },
+        {
+          "mes": "2020-02",
+          "granulo": "GLDAS_NOAH025_M.A202002.021.nc4",
+          "sha256_respuesta": "ca9902bbe1922c8a0eec42513691da594316092e618c18f1735cf6cc4b8e0fd9"
+        },
+        {
+          "mes": "2020-03",
+          "granulo": "GLDAS_NOAH025_M.A202003.021.nc4",
+          "sha256_respuesta": "6b9a8c2f7658214ef77953e6a6ac71cb5b6661b4e50931cec0b0117830944d53"
+        },
+        {
+          "mes": "2020-04",
+          "granulo": "GLDAS_NOAH025_M.A202004.021.nc4",
+          "sha256_respuesta": "ee6d4d14bb1fd3a3809e0bda6e773cccd59a675ab2b09df98df588bcbd7978fb"
+        },
+        {
+          "mes": "2020-05",
+          "granulo": "GLDAS_NOAH025_M.A202005.021.nc4",
+          "sha256_respuesta": "873136b40d4a6a9bd1015ac4756598c6a26a42960bcb44db3dc7fed22468c9ce"
+        },
+        {
+          "mes": "2020-06",
+          "granulo": "GLDAS_NOAH025_M.A202006.021.nc4",
+          "sha256_respuesta": "d9910ffcc805ad7ee1db932bd55c0d83acb19e7918dd2e30dffd1d191d4f6a4e"
+        },
+        {
+          "mes": "2020-07",
+          "granulo": "GLDAS_NOAH025_M.A202007.021.nc4",
+          "sha256_respuesta": "3e6c09083ee553ec4db833d562879d3972c5b26bca7ff5101e8c739e89c91eeb"
+        },
+        {
+          "mes": "2020-08",
+          "granulo": "GLDAS_NOAH025_M.A202008.021.nc4",
+          "sha256_respuesta": "3d9ffc5112b7a89d3e50cc573c53da79e910b60937572ac0141a72aef9d72212"
+        },
+        {
+          "mes": "2020-09",
+          "granulo": "GLDAS_NOAH025_M.A202009.021.nc4",
+          "sha256_respuesta": "38a03b289821024fabb3c6d03701d5bed1dbfde81d1f780a5b75653b2a158f77"
+        },
+        {
+          "mes": "2020-10",
+          "granulo": "GLDAS_NOAH025_M.A202010.021.nc4",
+          "sha256_respuesta": "5a14d941c21fde2e30a3cb17255786091789df34f62b783ad9d761b3e264e631"
+        },
+        {
+          "mes": "2020-11",
+          "granulo": "GLDAS_NOAH025_M.A202011.021.nc4",
+          "sha256_respuesta": "b1e3e4de3b60e5e883a2ea91b1101af72718667cffcdd0d07b1c5a2465e7e70d"
+        },
+        {
+          "mes": "2020-12",
+          "granulo": "GLDAS_NOAH025_M.A202012.021.nc4",
+          "sha256_respuesta": "7eb2d2fadb2df83a89df08c34c5bca93f03a9a3cbb2102eff5cada5e3588026e"
+        },
+        {
+          "mes": "2021-01",
+          "granulo": "GLDAS_NOAH025_M.A202101.021.nc4",
+          "sha256_respuesta": "1d00eccaa5f7b21ed811a66bb69c495f24b1d2ecff279ba50f1b45e9b99a4e2f"
+        },
+        {
+          "mes": "2021-02",
+          "granulo": "GLDAS_NOAH025_M.A202102.021.nc4",
+          "sha256_respuesta": "0d7c78acafceeb00e5e47ad899cdd7643bdb718490217f826a96037954772539"
+        },
+        {
+          "mes": "2021-03",
+          "granulo": "GLDAS_NOAH025_M.A202103.021.nc4",
+          "sha256_respuesta": "41ab30617bb28f32017a8349bf1b325f61b41bd48526a7f51cb13e1ddeee020e"
+        },
+        {
+          "mes": "2021-04",
+          "granulo": "GLDAS_NOAH025_M.A202104.021.nc4",
+          "sha256_respuesta": "61a7f7511087c45fac74dca2a118d2d581aca4f11cc439b178f69018231369e4"
+        },
+        {
+          "mes": "2021-05",
+          "granulo": "GLDAS_NOAH025_M.A202105.021.nc4",
+          "sha256_respuesta": "5daf37e0411928a4512e3d75ed505299c4d0f73d7dacf6c54a174d73ff72546d"
+        },
+        {
+          "mes": "2021-06",
+          "granulo": "GLDAS_NOAH025_M.A202106.021.nc4",
+          "sha256_respuesta": "e66221e99f9f92c6d1e3b6efec124d4700525a24917a03bac3330b58e23fa1d1"
+        },
+        {
+          "mes": "2021-07",
+          "granulo": "GLDAS_NOAH025_M.A202107.021.nc4",
+          "sha256_respuesta": "2b3a52665816d746ec4c5bbe0e56c2d40669fafd8be4da41cd754f02a0e1c502"
+        },
+        {
+          "mes": "2021-08",
+          "granulo": "GLDAS_NOAH025_M.A202108.021.nc4",
+          "sha256_respuesta": "8456976f1fdbe8ce477115192adbfd28dda709cc8fc978fd1f865ad0dbadbd3a"
+        },
+        {
+          "mes": "2021-09",
+          "granulo": "GLDAS_NOAH025_M.A202109.021.nc4",
+          "sha256_respuesta": "da30963d719aff25f63e3f5dd0cbe62e756453421b010c0efdaa83e7ee8dd79e"
+        },
+        {
+          "mes": "2021-10",
+          "granulo": "GLDAS_NOAH025_M.A202110.021.nc4",
+          "sha256_respuesta": "fadfed670cf99935f2c37e8016119635e2d054c9b5e5b1fcf8373c23563eb87d"
+        },
+        {
+          "mes": "2021-11",
+          "granulo": "GLDAS_NOAH025_M.A202111.021.nc4",
+          "sha256_respuesta": "350241b638fad1ba0feaf7bfeff0647da36e11d8b570c26b97751ba1385733ca"
+        },
+        {
+          "mes": "2021-12",
+          "granulo": "GLDAS_NOAH025_M.A202112.021.nc4",
+          "sha256_respuesta": "2ee5fc389c1382c3ba8e029a21e691a6dddb74af6b54970dc719833282f37864"
+        },
+        {
+          "mes": "2022-01",
+          "granulo": "GLDAS_NOAH025_M.A202201.021.nc4",
+          "sha256_respuesta": "2e148b14a28139752c12bb0797a7a54c7b16624b431d302d9c96e1090cb187fa"
+        },
+        {
+          "mes": "2022-02",
+          "granulo": "GLDAS_NOAH025_M.A202202.021.nc4",
+          "sha256_respuesta": "48069567ea4b46a7cd3c176f8017fb41900103f9f52c1878a92d389f4d0a4795"
+        },
+        {
+          "mes": "2022-03",
+          "granulo": "GLDAS_NOAH025_M.A202203.021.nc4",
+          "sha256_respuesta": "a7e1cb78d4733dedc8f26e3694635dcc7592a72912c02909b151347eb6bdbf41"
+        },
+        {
+          "mes": "2022-04",
+          "granulo": "GLDAS_NOAH025_M.A202204.021.nc4",
+          "sha256_respuesta": "77ae1c3bcfc7f0988b8bc1e4b7d3dd31c8560abc00ca6b17d99421311d46da57"
+        },
+        {
+          "mes": "2022-05",
+          "granulo": "GLDAS_NOAH025_M.A202205.021.nc4",
+          "sha256_respuesta": "bf89e43dc9586c88fdfe0530c08e6ac88f1510aecdc3c98ed440d883543f1297"
+        },
+        {
+          "mes": "2022-06",
+          "granulo": "GLDAS_NOAH025_M.A202206.021.nc4",
+          "sha256_respuesta": "804b6acf5b2f4e073ffedeca5055c070ea5e111b1da345b1757ce789cab069c4"
+        },
+        {
+          "mes": "2022-07",
+          "granulo": "GLDAS_NOAH025_M.A202207.021.nc4",
+          "sha256_respuesta": "cb497a5c46d954f3d7312338873904e578eaf6bcc78d4c5bc24b2d38fcc97de7"
+        },
+        {
+          "mes": "2022-08",
+          "granulo": "GLDAS_NOAH025_M.A202208.021.nc4",
+          "sha256_respuesta": "f73c3c02df2dd78ccb844eb5cc3fb366f3c1f9f0bccadbf33081fb86baed492e"
+        },
+        {
+          "mes": "2022-09",
+          "granulo": "GLDAS_NOAH025_M.A202209.021.nc4",
+          "sha256_respuesta": "e4e7d50de34049ea42b41649014f3efaf3e937dc0938c9851df2328c1fd57f5d"
+        },
+        {
+          "mes": "2022-10",
+          "granulo": "GLDAS_NOAH025_M.A202210.021.nc4",
+          "sha256_respuesta": "d33d6184acecf6434b6d7bba8db85b15af6c57ac7a2b7720b9a07679ef7eb1eb"
+        },
+        {
+          "mes": "2022-11",
+          "granulo": "GLDAS_NOAH025_M.A202211.021.nc4",
+          "sha256_respuesta": "70175d0fc70ad2b357c6543f7a7eb942f5f87a99fcee6cea8ffd7eade08b8f82"
+        },
+        {
+          "mes": "2022-12",
+          "granulo": "GLDAS_NOAH025_M.A202212.021.nc4",
+          "sha256_respuesta": "354f5c056c5c58a0d74a015d220068ec8049051f27aea1f6b5caf24f5eb0c0ed"
+        },
+        {
+          "mes": "2023-01",
+          "granulo": "GLDAS_NOAH025_M.A202301.021.nc4",
+          "sha256_respuesta": "af1c5848ba5cfadff2cfe49e4af1839a70efa615db12f66ffb62394febe9c528"
+        },
+        {
+          "mes": "2023-02",
+          "granulo": "GLDAS_NOAH025_M.A202302.021.nc4",
+          "sha256_respuesta": "33098588cf044de95c44f99c493e04cd89860de1b2180ff5f6acadc80ae4fee5"
+        },
+        {
+          "mes": "2023-03",
+          "granulo": "GLDAS_NOAH025_M.A202303.021.nc4",
+          "sha256_respuesta": "1cbda033aa6eef2b3f3bf9a1e6c1b2325d58d905ab15f5ca2008a48f70d3f37e"
+        },
+        {
+          "mes": "2023-04",
+          "granulo": "GLDAS_NOAH025_M.A202304.021.nc4",
+          "sha256_respuesta": "00405fb654301b29719ad38b737af0c4ec018987831685f7a1648272a5fa7222"
+        },
+        {
+          "mes": "2023-05",
+          "granulo": "GLDAS_NOAH025_M.A202305.021.nc4",
+          "sha256_respuesta": "24a067e951a3b8fd849fe96c3feffe9730ca968a2d9c204227068791ce706d56"
+        },
+        {
+          "mes": "2023-06",
+          "granulo": "GLDAS_NOAH025_M.A202306.021.nc4",
+          "sha256_respuesta": "41d4d6828bd5301a75d771a0935e1b0cffdacf3d40e19eba01e2adeba3b6e50b"
+        },
+        {
+          "mes": "2023-07",
+          "granulo": "GLDAS_NOAH025_M.A202307.021.nc4",
+          "sha256_respuesta": "4da3c250ea552e03f8fb97e49be123be8721a4a9b4b2c5a9e0eb4ebe82365875"
+        },
+        {
+          "mes": "2023-08",
+          "granulo": "GLDAS_NOAH025_M.A202308.021.nc4",
+          "sha256_respuesta": "2b768503ec4cc44776f761625df079a1ce50d919a1de57750aadc948977f2377"
+        },
+        {
+          "mes": "2023-09",
+          "granulo": "GLDAS_NOAH025_M.A202309.021.nc4",
+          "sha256_respuesta": "11a364bbca082cdc72d721f55c6c85da5c89b0a15a4178aa25fb9836aa4cbbe6"
+        },
+        {
+          "mes": "2023-10",
+          "granulo": "GLDAS_NOAH025_M.A202310.021.nc4",
+          "sha256_respuesta": "d216679de0e197435e159c5fd9cd61c9a48ca6f395aeb869248a9c6640892aa5"
+        },
+        {
+          "mes": "2023-11",
+          "granulo": "GLDAS_NOAH025_M.A202311.021.nc4",
+          "sha256_respuesta": "0d84ad342c8d71dd6b2a5e6ab977684ff5c343bdf4f5de2b56d24368751b08b3"
+        },
+        {
+          "mes": "2023-12",
+          "granulo": "GLDAS_NOAH025_M.A202312.021.nc4",
+          "sha256_respuesta": "d92fee8e90382f97892a7ff99b259393b14ab545f6d9c3642142852861ab3c30"
+        },
+        {
+          "mes": "2024-01",
+          "granulo": "GLDAS_NOAH025_M.A202401.021.nc4",
+          "sha256_respuesta": "1e71f3b2c2b9284c8deb7250513e99cdb3e7443ebfa6adf70c21e8bdfb07a32c"
+        },
+        {
+          "mes": "2024-02",
+          "granulo": "GLDAS_NOAH025_M.A202402.021.nc4",
+          "sha256_respuesta": "99b1515a21220ae001c9c69e810f8fc22da8033e2fbbd7799e2d1707e0198228"
+        },
+        {
+          "mes": "2024-03",
+          "granulo": "GLDAS_NOAH025_M.A202403.021.nc4",
+          "sha256_respuesta": "31cb4a58cc364d25a7c5e1dbf8fe90cd7cdf255caadecc1146399b3f045cbd46"
+        },
+        {
+          "mes": "2024-04",
+          "granulo": "GLDAS_NOAH025_M.A202404.021.nc4",
+          "sha256_respuesta": "7116e503b75aa9c8748d86c031af256d34037fad4c35373ba5539943bb81bab2"
+        },
+        {
+          "mes": "2024-05",
+          "granulo": "GLDAS_NOAH025_M.A202405.021.nc4",
+          "sha256_respuesta": "a8b62988edb0c844800411cb23adcc7b054e6e5ee5f6a3c837c4ab29cdd6a9ce"
+        },
+        {
+          "mes": "2024-06",
+          "granulo": "GLDAS_NOAH025_M.A202406.021.nc4",
+          "sha256_respuesta": "9cb8789c6a64fbe63bb74c6d1bbb1893680011d03ddeb43256f959ab88c5f19d"
+        },
+        {
+          "mes": "2024-07",
+          "granulo": "GLDAS_NOAH025_M.A202407.021.nc4",
+          "sha256_respuesta": "961f706dcafeb48481e19c22d19ff21c62bd06e90b95882ae7f27d25d6f0339d"
+        },
+        {
+          "mes": "2024-08",
+          "granulo": "GLDAS_NOAH025_M.A202408.021.nc4",
+          "sha256_respuesta": "ec16cab0e0e7cfc030e7bae4f95c15473f91267bf288f6fb789fe9cd61bdbc0a"
+        },
+        {
+          "mes": "2024-09",
+          "granulo": "GLDAS_NOAH025_M.A202409.021.nc4",
+          "sha256_respuesta": "feeb40914ba7e1c90d71ec2e64a087a9a769f589c97ce38b4ded800a743ba4b5"
+        },
+        {
+          "mes": "2024-10",
+          "granulo": "GLDAS_NOAH025_M.A202410.021.nc4",
+          "sha256_respuesta": "a36c34200afd9a7596d77baace7d9aac101127b8f2e606497276da4f235fb3e2"
+        },
+        {
+          "mes": "2024-11",
+          "granulo": "GLDAS_NOAH025_M.A202411.021.nc4",
+          "sha256_respuesta": "b83a53f95aa4d16fc4c6898d6061c2e83767d57730c821e7efb28c1a58b7163f"
+        },
+        {
+          "mes": "2024-12",
+          "granulo": "GLDAS_NOAH025_M.A202412.021.nc4",
+          "sha256_respuesta": "e1737080b9d2927c5645308b65295d52f77ae05350d2793f003af6c53bf0ca83"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+ "servicio": "https://soto.podaac.earthdatacloud.nasa.gov/hydrocron/v1/timeseries",
+ "documentacion": "https://podaac.github.io/hydrocron/",
+ "filtro": {
+  "quality_f_max": 1,
+  "relleno": -999999999999.0,
+  "duplicados": "eliminados"
+ },
+ "consultas": [
+  {
+   "lago": "cocibolca",
+   "lake_id": "7530096743",
+   "url": "https://soto.podaac.earthdatacloud.nasa.gov/hydrocron/v1/timeseries?feature=PriorLake&feature_id=7530096743&start_time=2023-07-26T00:00:00Z&end_time=2026-11-13T00:00:00Z&output=csv&fields=lake_id,time_str,wse,wse_u,area_total,quality_f,partial_f,dark_frac,ice_clim_f,xovr_cal_q,cycle_id,pass_id",
+   "archivo": "hydrocron_7530096743_cocibolca.json",
+   "consulta_utc": "2026-11-13T05:26:02Z",
+   "http": 200,
+   "hits": 224,
+   "sha256": "5a37c0a275f6915f5597b7cfe95c98d902644f2eabb6262ed982dce1de4de148"
+  },
+  {
+   "lago": "xolotlan",
+   "lake_id": "7530093763",
+   "url": "https://soto.podaac.earthdatacloud.nasa.gov/hydrocron/v1/timeseries?feature=PriorLake&feature_id=7530093763&start_time=2023-07-26T00:00:00Z&end_time=2026-11-13T00:00:00Z&output=csv&fields=lake_id,time_str,wse,wse_u,area_total,quality_f,partial_f,dark_frac,ice_clim_f,xovr_cal_q,cycle_id,pass_id",
+   "archivo": "hydrocron_7530093763_xolotlan.json",
+   "consulta_utc": "2026-11-13T05:26:03Z",
+   "http": 200,
+   "hits": 224,
+   "sha256": "eebc89698f6ff8e569d908309e9c913aac856342689669b258bd1085f75d5f28"
+  }
+ ],
+ "resumen": {
+  "cocibolca": {
+   "lake_id": "7530096743",
+   "total": 223,
+   "relleno": 9,
+   "calidad": 3,
+   "validas": 211,
+   "meses": 41,
+   "primera": "2023-07-28T22:17:15Z",
+   "ultima": "2026-11-05T16:25:17Z",
+   "wse_media_m": 32.059,
+   "wse_min_m": 30.997,
+   "wse_max_m": 33.059,
+   "tendencia_m_anio": null,
+   "tendencia_nota": "serie de 3.3 años (< 10): demasiado corta para una tendencia; se usa como contraste"
+  },
+  "xolotlan": {
+   "lake_id": "7530093763",
+   "total": 224,
+   "relleno": 98,
+   "calidad": 3,
+   "validas": 123,
+   "meses": 40,
+   "primera": "2023-08-05T09:36:42Z",
+   "ultima": "2026-11-06T16:26:10Z",
+   "wse_media_m": 40.026,
+   "wse_min_m": 38.683,
+   "wse_max_m": 41.539,
+   "tendencia_m_anio": null,
+   "tendencia_nota": "serie de 3.2 años (< 10): demasiado corta para una tendencia; se usa como contraste"
+  },
+  "comparacion_cocibolca": {
+   "meses_comunes": 41,
+   "desde": "2023-07",
+   "hasta": "2026-11",
+   "sesgo_medio_m": -0.437,
+   "rmsd_m": 0.443,
+   "desv_dif_m": 0.073,
+   "correlacion": 0.99,
+   "grealm_obs_total": 1332,
+   "grealm_ultima": "2026-11-07"
+  }
+ }
+}

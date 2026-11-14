@@ -1,0 +1,2 @@
+# Además del núcleo de backend/requirements.txt. GeoTIFF de AppEEARS:
+rasterio>=1.4,<2

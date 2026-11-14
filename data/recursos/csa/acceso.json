@@ -1,0 +1,38 @@
+{
+  "ecozones": {
+    "url": "https://agriculture.canada.ca/atlas/data_donnees/nationalEcologicalFramework/data_donnees/geoJSON/ez/nef_ca_ter_ecozone_v2_2.geojson",
+    "status": 200,
+    "bytes": 4707877,
+    "preview": "{\n  \"type\" : \"FeatureCollection\",\n  \"features\" : [{\"type\":\"Feature\",\"id\":1,\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-79.350160073079877,79.108873472697113]"
+  },
+  "license": {
+    "url": "https://raw.githubusercontent.com/asc-csa/Synthetic_Aperture_Radar_Tutorial/main/LICENSE",
+    "status": 200,
+    "bytes": 3555,
+    "preview": "MIT License\n\nDroit d\u2019auteur (c) Sa Majest\u00e9 le Roi du chef du Canada, repr\u00e9sent\u00e9e par l'Agence Spatiale Canadienne, 2022.\n\nCopyright (c) His Majesty the King in "
+  },
+  "eodms": {
+    "url": "https://www.eodms-sgdot.nrcan-rncan.gc.ca/wes/rapi/search?collection=RCM&query=INTERSECTS(FOOTPRINT,POLYGON((-86%2010.5,-83.5%2010.5,-83.5%2012.7,-86%2012.7,-86%2010.5)))&maxResults=10&format=json",
+    "status": 400,
+    "bytes": 241,
+    "preview": "<html>\n<head>\n   <title>Error Page</title>\n</head>\n<body style=\"font-family: sans-serif;\">\n<p style=\"font-size: 1.2em;font-weight: bold;margin: 1em 0px;\">400 - "
+  },
+  "asf": {
+    "url": "https://api.daac.asf.alaska.edu/services/search/param?platform=Sentinel-1&processingLevel=GRD_HD&bbox=-86,10.5,-83.5,12.7&start=2023-01-01T00:00:00Z&end=2024-01-01T00:00:00Z&maxResults=10&output=geojson",
+    "status": 200,
+    "bytes": 25702,
+    "preview": "{\n    \"type\": \"FeatureCollection\",\n    \"features\": [\n        {\n            \"type\": \"Feature\",\n            \"geometry\": {\n                \"coordinates\": [\n       "
+  },
+  "hydrocron": {
+    "url": "https://soto.podaac.earthdatacloud.nasa.gov/hydrocron/v1/timeseries?feature=PriorLake&feature_id=6350036102&start_time=2023-01-01T00:00:00Z&end_time=2024-01-01T00:00:00Z&fields=lake_id,time_str,wse,area_total&output=csv",
+    "status": 200,
+    "bytes": 989,
+    "preview": "{\"status\":\"200 OK\",\"time\":63.942,\"hits\":15,\"results\":{\"csv\":\"lake_id,time_str,wse,area_total,wse_units,area_total_units\\n6350036102,2023-08-03T19:03:42Z,260.854"
+  },
+  "grealm": {
+    "url": "https://earth.gsfc.nasa.gov/gwm/lake/Index",
+    "status": 200,
+    "bytes": 34302,
+    "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n  <meta http-equiv=\"Content-Ty"
+  }
+}

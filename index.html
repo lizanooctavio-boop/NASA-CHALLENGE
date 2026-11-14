@@ -21,11 +21,14 @@
   <p class="sub">Earth system explorer</p>
   <nav id="menu-principal" aria-label="Sections">
     <button class="activo" data-tab="meteorologia" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 1 1 .8-7.9A5.5 5.5 0 0 1 18.4 12 3 3 0 0 1 18 18z"/></svg><span class="txt">Weather</span></button>
+    <button data-tab="investigar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/></svg><span class="txt">Investigate</span></button>
     <button data-tab="tendencias"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M5 16l5-5 4 3 6-7M16 7h4v4"/></svg><span class="txt">Rainfall trend</span></button>
     <button data-tab="indicadores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span class="txt">Climate indicators</span></button>
     <button data-tab="fenomenos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/></svg><span class="txt">El Niño &amp; cyclones</span></button>
     <button data-tab="escenarios"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 14.8V4.5a2.5 2.5 0 0 0-5 0v10.3a4.5 4.5 0 1 0 5 0zM11.5 9v8"/></svg><span class="txt">Climate scenarios</span></button>
     <button data-tab="exportar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span class="txt">Data downloads</span></button>
+    <button data-tab="aprender"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4zM7 9v5c0 1.7 2.2 3 5 3s5-1.3 5-3V9"/></svg><span class="txt">Learn</span></button>
+    <button data-tab="fuentes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5zM9 10h7M9 14h7"/></svg><span class="txt">Sources</span></button>
   </nav>
   <div class="pie">NASA Space Apps 2026<br>Earth System Trend Detective</div>
 </aside>
@@ -53,6 +56,22 @@
     <div class="graf alta" hidden><canvas id="graf-meteograma" aria-label="Hourly forecast at the selected point"></canvas></div>
     <div class="controles"><button id="exp-punto" type="button" disabled>Download forecast (CSV)</button></div>
   </article>
+</section>
+
+<section id="investigar" class="vista" hidden>
+  <div class="intro"><h2>Be an Earth system trend detective</h2><p>Choose what to investigate and where. Each answer tells what changed, where, by how much and how sure we can be.</p></div>
+  <h3 class="paso">What do you want to investigate?</h3>
+  <div class="botones-region" role="radiogroup" aria-label="Topic" id="inv-categorias"></div>
+  <p class="pregunta" id="inv-pregunta"></p><p class="pista" id="inv-descripcion" hidden></p>
+  <h3 class="paso">Where?</h3>
+  <div class="botones-region" role="radiogroup" aria-label="Place" id="inv-lugares"></div>
+  <div class="botones-region botones-variable" role="radiogroup" aria-label="Variable" id="inv-variables" hidden></div>
+  <article id="inv-demo-panel" class="demo-panel" aria-live="polite" hidden></article>
+  <article aria-live="polite"><div id="inv-veredicto" class="veredicto"></div></article>
+  <article><h2 id="inv-serie-titulo">Series</h2><div class="graf"><canvas id="inv-serie"></canvas></div>
+    <div class="controles"><button type="button" id="inv-csv">Series (CSV)</button><button type="button" id="inv-mapa">Show on the map</button></div></article>
+  <article id="inv-contrastes" hidden><h2>Cross-checks</h2><p class="sub-art">The same question answered with another source or another method.</p><div id="inv-contrastes-lista"></div></article>
+  <article><h2>Guided examples</h2><div id="inv-demos" class="demos"></div></article>
 </section>
 
 <section id="tendencias" class="vista" hidden>
@@ -127,6 +146,25 @@
     <li><a class="boton" href="/clima-base/proyecciones.csv" download>Climate projections</a><span>CMIP6 · SCA</span></li>
   </ul></article>
 </section>
+<section id="aprender" class="vista" hidden>
+  <div class="intro"><h2>How a trend detective decides</h2><p>The ideas behind every verdict in this app.</p></div>
+  <article id="aprender-tendencia"><h2>What is a trend?</h2><p>A trend is a change that keeps going in one direction over many years: rising or falling, wetter or drier, warmer or cooler. Single years jump up and down for many reasons, so a detective looks at the whole record and asks whether the long-term slope stands out from that year-to-year noise.</p><p>We report the slope as change per decade, in the same units as the data, so &ldquo;+0.30 &deg;C per decade&rdquo; means about three tenths of a degree warmer every ten years.</p></article>
+  <article id="aprender-ic"><h2>Confidence interval</h2><p>The slope is an estimate. The 95% confidence interval is the range of slopes that are consistent with the data: if we could repeat the measurement many times, about 95 out of 100 intervals built this way would contain the true value. A narrow interval means a precise estimate; a wide one means a lot of uncertainty.</p><p>If the interval includes zero, the data cannot rule out &ldquo;no change&rdquo;.</p></article>
+  <article id="aprender-pvalor"><h2>p-value</h2><p>The p-value answers one question: if there were no trend at all, how often would random year-to-year variation produce a pattern at least this strong? A small p-value (below 0.05 here) means that would rarely happen by chance.</p><p>It is <strong>not</strong> the probability that the trend is real, and a small p-value does not prove the cause of a change. It also says nothing about whether the change is large enough to matter: always read it next to the size of the slope.</p></article>
+  <article id="aprender-no-significativo"><h2>&ldquo;Not significant&rdquo; is not &ldquo;no change&rdquo;</h2><p>When the verdict is &ldquo;Not enough evidence of a trend&rdquo;, the record and the methods could not tell a trend apart from natural variability. The change may still be there. Missing a real change is called a Type II error, and it is common when the record is short or the year-to-year swings are large.</p><p>A longer record can make the same change detectable. That is why a trend that falls short of significance is still worth reporting.</p></article>
+  <article id="aprender-autocorrelacion"><h2>Why months are not independent</h2><p>A wet month is often followed by another wet month, and every year repeats the same seasonal cycle. Tests that treat each month as an independent sample count the same information many times and become overconfident.</p><p>Example from this app: chlorophyll in the Gulf of Fonseca. A straight line through 264 raw monthly values gives p = 0.0007. After removing the seasonal cycle, averaging each year and correcting for autocorrelation, the Mann&ndash;Kendall test gives p = 0.08: the evidence is much weaker than it first looked.</p></article>
+  <article id="aprender-metodos"><h2>Three methods, one verdict</h2><p>Every series is tested three ways: a least-squares line with an interval corrected for autocorrelation, the same line with Newey&ndash;West (HAC) errors, and the Theil&ndash;Sen slope, which is robust to unusual years. The Mann&ndash;Kendall test, corrected for autocorrelation, checks whether values tend to rise or fall without assuming a straight line.</p><ul class="lista"><li><strong>Trend detected</strong>: all three intervals exclude zero with the same sign and both tests agree.</li><li><strong>Not enough evidence of a trend</strong>: all three intervals include zero.</li><li><strong>Methods disagree</strong>: anything in between. The result depends on the method, so it is not presented as a confirmed trend.</li></ul></article>
+  <article id="aprender-comparaciones"><h2>Many questions, more false alarms</h2><p>Each test has about a 5% chance of a false alarm. Test many variables and places and some will look significant just by luck. Maps of many grid cells use the false discovery rate correction to keep that in check, and a single significant result is always read next to its cross-checks.</p></article>
+  <article id="aprender-registro-corto"><h2>Short records</h2><p>Some satellites are new. SWOT has measured lake levels only since 2023, so its record shows the seasons clearly but is far too short for a trend test. We use it to confirm an older, longer record instead.</p></article>
+  <article id="aprender-otras-pruebas"><h2>Other trend tests</h2><p><strong>Seasonal Mann&ndash;Kendall.</strong> In monthly data the seasonal cycle swamps a slow trend, so the ordinary Mann&ndash;Kendall test loses sensitivity. The seasonal version compares each month only with the same month in other years. This app reaches the same goal by testing annual totals and season totals instead of raw months.</p><p><strong>Unit-root tests (augmented Dickey&ndash;Fuller).</strong> They ask a different question: whether a series wanders like a random walk, not whether it rises or falls. A series with a clear trend can pass or fail them, so they are not used here to decide whether a trend exists.</p><p>Based on <a href="https://medium.com/@snp.kriss/statistical-test-methods-to-detect-trends-in-time-series-data-b361a0ec530b" target="_blank" rel="noopener">Statistical test methods to detect trends in time series data</a> (MCMC Addict, 2024).</p></article>
+  <article id="aprender-contraste"><h2>Cross-checks</h2><p>Every dataset has its own errors. A satellite can confuse sediment with algae; a weather station can move; a reanalysis can jump when new observations are added. When a second source or a second method reaches the same verdict, the conclusion is more trustworthy. When they disagree, the disagreement itself is a clue worth investigating.</p></article>
+</section>
+
+<section id="fuentes" class="vista" hidden>
+  <article><h2>NASA Space Apps challenge resources used</h2><ul class="lista fuentes-lista" id="fuentes-recursos"></ul></article>
+  <article><h2>Datasets in this app</h2><ul class="lista" id="fuentes-datos"></ul></article>
+  <article><h2>Licences</h2><p>Canadian Prairies boundary: Agriculture and Agri-Food Canada, National Ecological Framework for Canada. Contains information licensed under the Open Government Licence &ndash; Canada.</p></article>
+</section>
 </main>
 
 <div id="controles-mapa" role="region" aria-label="Map controls">
@@ -180,6 +218,7 @@
 <script src="src/graficas.js"></script>
 <script src="src/tendencias.js"></script>
 <script src="app/indicadores.js"></script>
+<script src="app/investigar.js"></script>
 <script src="app/globo.js"></script>
 <script type="module" src="app/espacio.js"></script>
 </body>

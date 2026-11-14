@@ -1,0 +1,197 @@
+{
+  "geojson": "regiones_canada_agente3.geojson",
+  "sha256_geojson": "05e0f0dc1cf0a7c7476436028b5443812d44b9087fb5c0812e9ab588bbf4b402",
+  "operacion": "plan_sin_envios_nuevos",
+  "tareas": [
+    {
+      "region": "CAN_prairies",
+      "producto": "MOD11A2.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "CAN_prairies",
+      "producto": "MOD11A2.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "CAN_prairies",
+      "producto": "MOD11A2.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "CAN_prairies",
+      "producto": "MOD11A2.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "CAN_prairies",
+      "producto": "MOD11A2.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD11A2.061",
+          "layer": "LST_Day_1km"
+        },
+        {
+          "product": "MOD11A2.061",
+          "layer": "QC_Day"
+        }
+      ]
+    },
+    {
+      "region": "CAN_prairies",
+      "producto": "MOD13A3.061",
+      "desde": "2001-01-01",
+      "hasta": "2005-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "CAN_prairies",
+      "producto": "MOD13A3.061",
+      "desde": "2006-01-01",
+      "hasta": "2010-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "CAN_prairies",
+      "producto": "MOD13A3.061",
+      "desde": "2011-01-01",
+      "hasta": "2015-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "CAN_prairies",
+      "producto": "MOD13A3.061",
+      "desde": "2016-01-01",
+      "hasta": "2020-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    },
+    {
+      "region": "CAN_prairies",
+      "producto": "MOD13A3.061",
+      "desde": "2021-01-01",
+      "hasta": "2024-12-31",
+      "tipo": "area",
+      "capas": [
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_NDVI"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_VI_Quality"
+        },
+        {
+          "product": "MOD13A3.061",
+          "layer": "_1_km_monthly_pixel_reliability"
+        }
+      ]
+    }
+  ]
+}

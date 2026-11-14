@@ -81,6 +81,16 @@ El proyecto calcula todos los índices oceánicos (`nino34`, `tna`, `amo`, `pdo`
 
 ---
 
+### 3.5 Contrastes de los recursos del reto (agentes 2 y 3)
+
+Cifras de `data/recursos/contraste/resumen_contrastes.json` y `data/recursos/csa/`, recalculadas por `clima_nic.recursos` con `tendencia_robusta.analizar` en una copia que junta la base con los PR #7, #8 y #9 (13-11-2026). Entran en el repositorio al fusionar esos PR.
+
+- **Lluvia.** CRU TS 4.10 y GPCC llegan al mismo veredicto que IMERG (evidencia insuficiente) en Nicaragua y en la caja. GPCC no es independiente de IMERG, que se calibra con sus pluviómetros. CRU pierde la mitad de sus estaciones desde 2015.
+- **Temperatura.** GISTEMP detecta +0,40 °C/década en Nicaragua en 2001–2024, mientras que las estaciones de Managua y Juigalpa (GHCN-Daily, sin homogeneizar) y la celda POWER más cercana no detectan tendencia. La discrepancia queda abierta; AIRS, bloqueado, serviría de tercera opinión.
+- **Lago Cocibolca.** SWOT y G-REALM coinciden en los meses comunes (r = 0,99) con un desfase casi constante de unos −0,44 m. El nivel anual de G-REALM en 1993–2025 no muestra tendencia (+0,11 m/década; IC −0,01 a +0,23).
+- **Clorofila.** En el golfo de Fonseca, la regresión mensual del artículo NTRS da p = 0,0007, pero la serie anual desestacionalizada da «métodos discrepan» (Mann–Kendall p = 0,08). Además, la caja incumple el criterio de ≤ 1 mg/m³ del artículo.
+- **Sin datos todavía:** Giovanni (IMERG, AIRS, OMI), AppEEARS, GLDAS, KNMI, RCM y SAR.
+
 ## 4. Comprobación de la interfaz actual (`origin/codex/demo-render` + correcciones)
 
 Se revisaron los tres puntos solicitados sobre la interfaz espacial en inglés (`index.html`, `app/`, `src/`):
