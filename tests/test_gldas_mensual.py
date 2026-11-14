@@ -89,3 +89,10 @@ def test_salidas_versionadas_coherentes():
             assert all(0 < v < 0.6 for v in s["valores"])
         else:
             assert all(v >= 0 for v in s["valores"])
+
+
+def test_rechaza_respuesta_de_otro_granulo():
+    # El OPeNDAP en la nube devolvió junio de 2001 al pedir enero: el adaptador debe detectarlo.
+    nombre = gm.url_granulo(2001, 1)[1]
+    assert gm.es_granulo(f"Dataset: {nombre}\n/lon, -88.125\n", nombre)
+    assert not gm.es_granulo("Dataset: GLDAS_NOAH025_M.A200106.021.nc4\n/lon, -88.125\n", nombre)

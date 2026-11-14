@@ -14,7 +14,7 @@ GLDAS sigue bloqueado: el visor autenticado no recupera el enlace del subconjunt
 | NDVI regional y cobertura estable | Media por área; cohorte fija multianual; QA y clase IGBP; prueba con cambio de cobertura | Valores reales y diferencia frente a los sitios ORNL |
 | Canadá | Diez tareas NDVI/LST aceptadas por la web con la geometría exacta del agente 3 (PR #7) | Completar/descargar; no se fusiona el PR del agente 3 |
 | GLDAS de punto | Catálogo y variables verificados; sesión web reconocida; intentos web y API con token Earthdata real documentados | Acceso que Giovanni acepte y recuperación del servicio; series aún no obtenidas |
-| GLDAS regional (13-11) | 5 variables × 6 regiones, 2001–2024, medias ponderadas por área desde el OPeNDAP en la nube de GES DISC; balance hídrico cerrado (residuo 0,7–2,6 % de la lluvia en 24 años) | Contrastar la humedad con SMAP (AppEEARS) y MERRA-2 antes de interpretar tendencias |
+| GLDAS regional (13-11) | 5 variables × 6 regiones, 2001–2024, medias ponderadas por área desde el OPeNDAP en la nube de GES DISC; balance hídrico cerrado (residuo medio de −1,5 a +1,6 % de la lluvia en 24 años) | Contrastar la humedad con SMAP (AppEEARS) y MERRA-2 antes de interpretar tendencias |
 | Contraste de humedad | Referencias MERRA-2 recalculadas; comparador local listo | GLDAS y SMAP reales; no se inventan correlaciones |
 | Estadística | 23 análisis de referencia con `estadistica/tendencia_robusta.py`, sin modificarla | Aplicar la misma función a las nuevas series cuando existan |
 
@@ -143,27 +143,31 @@ python -m clima_nic.fuentes.gldas_mensual --inicio 2001 --fin 2024
 
 **Conversiones** (README GLDAS-2, §3.5): las tasas `_tavg` se multiplican por 10 800 s × 8 × días del mes; los acumulados `_acc` (promedio de los acumulados de 3 h), por 8 × días del mes; la humedad, de kg m⁻² a m³/m³ dividiendo por 100 (0–10 cm) y por 300 (10–40 cm). Los años exigen los 12 meses. Humedad: media anual. Flujos: suma anual.
 
-**Balance hídrico de control.** Lluvia del forzamiento − ET − escorrentía total, en promedio 2001–2024, deja un residuo de 0,7–2,6 % de la lluvia en todas las regiones. En 2001 solo, el residuo varía entre −18 % y +31 % según la región, porque el almacenamiento todavía se ajusta (GLDAS-2.1 empieza en 2000). La lluvia media del forzamiento en las Praderas (441 mm/año) es coherente con la de IMERG que calculó el agente 3 (435 mm/año).
+**Balance hídrico de control.** Lluvia del forzamiento − ET − escorrentía total, en promedio 2001–2024, deja un residuo medio de −1,5 a +1,6 % de la lluvia según la región. El residuo de cada año refleja cambios de almacenamiento: entre −11 % y +10 % en Nicaragua y entre −19 % y +18 % en las Praderas, donde también interviene la nieve.
+
+**Corrección del 13-11 (meses repetidos).** El OPeNDAP en la nube de GES DISC respondió a veces con otro granulo: al pedir enero de 2001 devolvió junio de 2001. Así se repitieron 14 meses de Nicaragua (enero–junio de 2001, cuatro de 2002 y enero–junio de 2003) y 6 de Canadá, lo que explicaba el residuo anómalo que antes se atribuía a un ajuste inicial de 2001. Lo detectó el contraste con el servicio oficial de Giovanni (ver `contraste.md`). Ahora `gldas_mensual.descargar_mes` comprueba la línea `Dataset:` de cada respuesta, también en la caché, y reintenta si no coincide. Las 576 respuestas son distintas y la serie coincide con Giovanni (r = 1,000). La lluvia media del forzamiento en las Praderas (441 mm/año) es coherente con la de IMERG que calculó el agente 3 (435 mm/año).
 
 **Tendencias preliminares** (Theil–Sen por década, `tendencia_robusta.analizar`):
 
 | Región | Humedad 0–10 cm | ET | Escorrentía subterránea |
 |---|---|---|---|
-| NIC | −0,0071 m³/m³, métodos discrepan | +19,0 mm, evidencia insuficiente | −78,3 mm, métodos discrepan |
-| Central | −0,0090 m³/m³, tendencia detectada | −10,0 mm, evidencia insuficiente | −58,6 mm, evidencia insuficiente |
-| Praderas de Canadá | −0,0139 m³/m³, tendencia detectada | −27,1 mm, evidencia insuficiente | −0,27 mm, métodos discrepan |
+| NIC | −0,0044 m³/m³, métodos discrepan | +11,5 mm, evidencia insuficiente | −82,0 mm, métodos discrepan |
+| Central | −0,0056 m³/m³, métodos discrepan | −2,3 mm, evidencia insuficiente | −58,6 mm, evidencia insuficiente |
+| Praderas de Canadá | −0,0136 m³/m³, tendencia detectada | −25,3 mm, evidencia insuficiente | −0,26 mm, métodos discrepan |
 
-**Límites.** La prueba de Pettitt sitúa el cambio de la mayoría de las series de Nicaragua en 2011–2013. El README de GLDAS-2 advierte reescalados de la radiación AGRMET desde 2008 y un desplazamiento de origen desconocido después de 2011. Por eso, un descenso de humedad en Nicaragua puede ser un artefacto del forzamiento y no un cambio climático. En la región Central, el veredicto pasa a «métodos discrepan» al quitar 2001–2002. Antes de interpretarlo hay que contrastar con SMAP (AppEEARS, desde 2015) y con la humedad de MERRA-2. La caída en las Praderas se mantiene sin 2001–2002 y es coherente con las sequías de la década, pero tampoco se ha contrastado. GLDAS es un modelo forzado con observaciones, no una medición.
+Con la serie corregida, la humedad de Central deja de ser «tendencia detectada» (antes −0,0090 m³/m³ por década).
+
+**Límites.** La prueba de Pettitt sitúa el cambio de la mayoría de las series de Nicaragua en 2011–2013. El README de GLDAS-2 advierte reescalados de la radiación AGRMET desde 2008 y un desplazamiento de origen desconocido después de 2011. Por eso, un descenso de humedad en Nicaragua puede ser un artefacto del forzamiento y no un cambio climático. Antes de interpretarlo hay que contrastar con SMAP (AppEEARS, desde 2015) y con la humedad de MERRA-2. La caída en las Praderas se mantiene sin 2001–2002 y es coherente con las sequías de la década, pero tampoco se ha contrastado. GLDAS es un modelo forzado con observaciones, no una medición.
 
 **Contraste de humedad con MERRA-2** (`data/recursos/tierra/contrastar_humedad.py`, salidas `contrastes_tierra.json` y `contrastes_tierra_series.csv`). Se comparó GLDAS 0–10 cm con GWETTOP y GLDAS 10–40 cm con GWETROOT de MERRA-2 (vía NASA POWER, medias regionales ya existentes en el proyecto), 2001–2024. Como las unidades difieren (m³/m³ frente a un índice de saturación de 0 a 1), las series se comparan como anomalías estandarizadas y cada tendencia se calcula en sus propias unidades.
 
-- La correlación anual entre ambos modelos es casi nula: r = −0,03 a 0,36 según la región y la capa.
-- Las tendencias van en sentidos opuestos. MERRA-2 detecta humedecimiento en todas las regiones (GWETTOP en NIC +0,048 por década; media de 0,56 en 2001–2005 frente a 0,66 en 2020–2024). GLDAS da descenso (NIC −0,0071 m³/m³ por década).
-- Cada modelo es coherente con su propia lluvia: la humedad anual de GLDAS se correlaciona con la lluvia de su forzamiento (r = 0,81 en NIC), y GWETTOP con la lluvia de MERRA-2 (r = 0,87–0,91). La lluvia de GLDAS y la de IMERG se correlacionan con r = 0,69 en NIC. La discrepancia viene de los forzamientos y de la física de cada modelo, no del procesado.
+- La correlación anual entre ambos modelos es baja: r = 0,24 a 0,68 según la región y la capa.
+- Las tendencias van en sentidos opuestos. MERRA-2 detecta humedecimiento en todas las regiones (GWETTOP en NIC +0,048 por década; media de 0,56 en 2001–2005 frente a 0,66 en 2020–2024). GLDAS da descenso (NIC −0,0044 m³/m³ por década, métodos discrepan).
+- Cada modelo es coherente con su propia lluvia: la humedad anual de GLDAS se correlaciona con la lluvia de su forzamiento (r = 0,74 en NIC), y GWETTOP con la lluvia de MERRA-2 (r = 0,87–0,91). La lluvia de GLDAS y la de IMERG se correlacionan con r = 0,92 en NIC. La discrepancia viene de los forzamientos y de la física de cada modelo, no del procesado.
 
 **Conclusión.** En Nicaragua, la tendencia de humedad del suelo depende del modelo y no se presenta como hallazgo climático. Dos modelos de NASA con forzamientos distintos discrepan incluso en el signo. La referencia observacional disponible es SMAP L4 desde 2015, pedida por AppEEARS; el mismo script añadirá ese contraste cuando existan sus series. En la interfaz, el contraste aparece en *Cross-checks* junto a cada serie de humedad de GLDAS. No hay MERRA-2 para las Praderas de Canadá en el proyecto, así que la caída de humedad allí sigue sin contraste.
 
-**Recursos del reto.** No se usó la herramienta Hydrology Time Series ni Giovanni, que siguen fallando. Estos datos proceden del archivo de GES DISC del mismo conjunto GLDAS y no se presentan como uso de esos recursos.
+**Recursos del reto.** Estas series proceden del archivo OPeNDAP de GES DISC. Giovanni (recurso 1) se usa para verificarlas: su promedio por área de GLDAS-2.1 en la caja SICC coincide con nuestra serie (contraste `giovanni_gldas_sm0_10_caja_sicc`). La herramienta Hydrology Time Series (recurso 2) se trata aparte.
 
 ## Formato y contraste para el agente 4
 

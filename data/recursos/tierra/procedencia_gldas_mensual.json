@@ -1,7 +1,7 @@
 {
   "producto": "GLDAS_NOAH025_M 2.1",
   "coleccion_cmr": "C1342986036-GES_DISC",
-  "consulta_utc": "2026-11-13T08:42:31Z",
+  "consulta_utc": "2026-11-14T03:58:41Z",
   "periodo": [
     2001,
     2024
@@ -16,46 +16,46 @@
   ],
   "balance_hidrico_control": {
     "NIC": {
-      "lluvia_media_mm": 1714.1,
-      "et_media_mm": 1155.8,
-      "escorrentia_media_mm": 522.1,
-      "residuo_medio_mm": 36.3,
-      "residuo_relativo": 0.0212
+      "lluvia_media_mm": 1685.5,
+      "et_media_mm": 1156.2,
+      "escorrentia_media_mm": 524.7,
+      "residuo_medio_mm": 4.5,
+      "residuo_relativo": 0.0027
     },
     "caja_sicc": {
-      "lluvia_media_mm": 1930.1,
-      "et_media_mm": 1211.4,
-      "escorrentia_media_mm": 704.4,
-      "residuo_medio_mm": 14.3,
-      "residuo_relativo": 0.0074
+      "lluvia_media_mm": 1891.5,
+      "et_media_mm": 1211.8,
+      "escorrentia_media_mm": 707.6,
+      "residuo_medio_mm": -27.9,
+      "residuo_relativo": -0.0147
     },
     "caribe": {
-      "lluvia_media_mm": 1901.9,
-      "et_media_mm": 1176.1,
-      "escorrentia_media_mm": 677.2,
-      "residuo_medio_mm": 48.6,
-      "residuo_relativo": 0.0256
+      "lluvia_media_mm": 1864.7,
+      "et_media_mm": 1181.8,
+      "escorrentia_media_mm": 679.6,
+      "residuo_medio_mm": 3.4,
+      "residuo_relativo": 0.0018
     },
     "central": {
-      "lluvia_media_mm": 1440.9,
-      "et_media_mm": 1115.8,
-      "escorrentia_media_mm": 300.6,
-      "residuo_medio_mm": 24.5,
-      "residuo_relativo": 0.017
+      "lluvia_media_mm": 1420.9,
+      "et_media_mm": 1112.8,
+      "escorrentia_media_mm": 302.6,
+      "residuo_medio_mm": 5.4,
+      "residuo_relativo": 0.0038
     },
     "pacifico": {
-      "lluvia_media_mm": 1577.8,
-      "et_media_mm": 1164.5,
-      "escorrentia_media_mm": 399.3,
-      "residuo_medio_mm": 14.0,
-      "residuo_relativo": 0.0089
+      "lluvia_media_mm": 1563.4,
+      "et_media_mm": 1151.5,
+      "escorrentia_media_mm": 404.4,
+      "residuo_medio_mm": 7.4,
+      "residuo_relativo": 0.0047
     },
     "CAN_prairies": {
-      "lluvia_media_mm": 441.1,
-      "et_media_mm": 419.3,
-      "escorrentia_media_mm": 14.4,
-      "residuo_medio_mm": 7.3,
-      "residuo_relativo": 0.0166
+      "lluvia_media_mm": 446.0,
+      "et_media_mm": 424.3,
+      "escorrentia_media_mm": 14.7,
+      "residuo_medio_mm": 7.0,
+      "residuo_relativo": 0.0157
     }
   },
   "grupos": {
@@ -76,27 +76,27 @@
         {
           "mes": "2001-01",
           "granulo": "GLDAS_NOAH025_M.A200101.021.nc4",
-          "sha256_respuesta": "028283f275e6ad569d3a261612d7ce893e7608a3fb385dafecd65756fd5cf07a"
+          "sha256_respuesta": "5dbbfb678fa7978dc8282f39b7da0de63ebb4e0a710d8bf626330e131ea2b32d"
         },
         {
           "mes": "2001-02",
           "granulo": "GLDAS_NOAH025_M.A200102.021.nc4",
-          "sha256_respuesta": "028283f275e6ad569d3a261612d7ce893e7608a3fb385dafecd65756fd5cf07a"
+          "sha256_respuesta": "9366dac7dac669c8f8d25acfd40ff4c6e00de197b64ab26e2774ea8b5e7b3e79"
         },
         {
           "mes": "2001-03",
           "granulo": "GLDAS_NOAH025_M.A200103.021.nc4",
-          "sha256_respuesta": "028283f275e6ad569d3a261612d7ce893e7608a3fb385dafecd65756fd5cf07a"
+          "sha256_respuesta": "8f930a52de7205dbea426697cd39201d5f72c0ce7422b7d371c88cf08c25cfee"
         },
         {
           "mes": "2001-04",
           "granulo": "GLDAS_NOAH025_M.A200104.021.nc4",
-          "sha256_respuesta": "028283f275e6ad569d3a261612d7ce893e7608a3fb385dafecd65756fd5cf07a"
+          "sha256_respuesta": "2efbbe8c014c9430caf9c4bac160de02187bcdff77273a2697b103d39cc37c95"
         },
         {
           "mes": "2001-05",
           "granulo": "GLDAS_NOAH025_M.A200105.021.nc4",
-          "sha256_respuesta": "028283f275e6ad569d3a261612d7ce893e7608a3fb385dafecd65756fd5cf07a"
+          "sha256_respuesta": "d04fa5364d02c7fcdd65dddabdbd5ffd279f3bdc0a15a04ed19f945a50acda86"
         },
         {
           "mes": "2001-06",
@@ -136,7 +136,7 @@
         {
           "mes": "2002-01",
           "granulo": "GLDAS_NOAH025_M.A200201.021.nc4",
-          "sha256_respuesta": "1548d78523683f71230c274aa684599cfb4183eab21e960e8821cc12e012fe74"
+          "sha256_respuesta": "a683aa37bf57f4469b47f78e86340c2da2af452a89f7d0c1242d3dee1133ac91"
         },
         {
           "mes": "2002-02",
@@ -146,7 +146,7 @@
         {
           "mes": "2002-03",
           "granulo": "GLDAS_NOAH025_M.A200203.021.nc4",
-          "sha256_respuesta": "67bd8c1043cf733690c29e87a9061693dd9decc08c319116268323775b2b0a1f"
+          "sha256_respuesta": "997b8895d856df264fcc2c500b7584879cbd23b1bf6c74a4bed641eaacbc794b"
         },
         {
           "mes": "2002-04",
@@ -156,12 +156,12 @@
         {
           "mes": "2002-05",
           "granulo": "GLDAS_NOAH025_M.A200205.021.nc4",
-          "sha256_respuesta": "1548d78523683f71230c274aa684599cfb4183eab21e960e8821cc12e012fe74"
+          "sha256_respuesta": "ae5ae57b41f6995cf2ff5cce180bb4964aa64c1ffdeb4f5503c175e366a50f4b"
         },
         {
           "mes": "2002-06",
           "granulo": "GLDAS_NOAH025_M.A200206.021.nc4",
-          "sha256_respuesta": "1548d78523683f71230c274aa684599cfb4183eab21e960e8821cc12e012fe74"
+          "sha256_respuesta": "87804a6c72beeed442b96f849ab1a85f91f3d1fbe15c13948a40487d10f38b77"
         },
         {
           "mes": "2002-07",
@@ -196,22 +196,22 @@
         {
           "mes": "2003-01",
           "granulo": "GLDAS_NOAH025_M.A200301.021.nc4",
-          "sha256_respuesta": "6213dd42212f9c4cb55c098efd6d9651349c3f505d540c54fcac2a5a3c3878d2"
+          "sha256_respuesta": "e5dae065f45a2fbd5e3c058ecdb5de7cd890631cfa15abff87dedca0301c8054"
         },
         {
           "mes": "2003-02",
           "granulo": "GLDAS_NOAH025_M.A200302.021.nc4",
-          "sha256_respuesta": "6213dd42212f9c4cb55c098efd6d9651349c3f505d540c54fcac2a5a3c3878d2"
+          "sha256_respuesta": "09bf2bcabf4103f783ea545de46a7a0158a2e3977cc5de3fa8b11410e8616003"
         },
         {
           "mes": "2003-03",
           "granulo": "GLDAS_NOAH025_M.A200303.021.nc4",
-          "sha256_respuesta": "6213dd42212f9c4cb55c098efd6d9651349c3f505d540c54fcac2a5a3c3878d2"
+          "sha256_respuesta": "a16af39d58db64bee28fd80ceb2148f218dbcbdc6f69debaf5b5d83f60bce2d6"
         },
         {
           "mes": "2003-04",
           "granulo": "GLDAS_NOAH025_M.A200304.021.nc4",
-          "sha256_respuesta": "6213dd42212f9c4cb55c098efd6d9651349c3f505d540c54fcac2a5a3c3878d2"
+          "sha256_respuesta": "dea6b506400b44940df0224e45538ec27911a1eda74e6a8bcdf7f41f31405c94"
         },
         {
           "mes": "2003-05",
@@ -221,7 +221,7 @@
         {
           "mes": "2003-06",
           "granulo": "GLDAS_NOAH025_M.A200306.021.nc4",
-          "sha256_respuesta": "6213dd42212f9c4cb55c098efd6d9651349c3f505d540c54fcac2a5a3c3878d2"
+          "sha256_respuesta": "c3bbbef6939f55eaed0edab4a4dd1e007f152d995adfff380242c319f0d1b838"
         },
         {
           "mes": "2003-07",
@@ -1532,12 +1532,12 @@
         {
           "mes": "2001-01",
           "granulo": "GLDAS_NOAH025_M.A200101.021.nc4",
-          "sha256_respuesta": "955c87c2e4e0664c673c663ffc7e764d2138855fd687b96092ce4990a4c62633"
+          "sha256_respuesta": "703694c6b9f9d0fb6be38fb0ac8affdcbdc79cd20ed89710082f0cc29a8314a9"
         },
         {
           "mes": "2001-02",
           "granulo": "GLDAS_NOAH025_M.A200102.021.nc4",
-          "sha256_respuesta": "703694c6b9f9d0fb6be38fb0ac8affdcbdc79cd20ed89710082f0cc29a8314a9"
+          "sha256_respuesta": "879687a9f85f3923c9074d66ed0130906ca03baeb0027df93e7a8bed464cca21"
         },
         {
           "mes": "2001-03",
@@ -1547,7 +1547,7 @@
         {
           "mes": "2001-04",
           "granulo": "GLDAS_NOAH025_M.A200104.021.nc4",
-          "sha256_respuesta": "703694c6b9f9d0fb6be38fb0ac8affdcbdc79cd20ed89710082f0cc29a8314a9"
+          "sha256_respuesta": "7957b41f1efdbd6ccd59208c85d370cbb7ba465cec065f2d99ea1b7c1c032b5d"
         },
         {
           "mes": "2001-05",
@@ -1602,22 +1602,22 @@
         {
           "mes": "2002-03",
           "granulo": "GLDAS_NOAH025_M.A200203.021.nc4",
-          "sha256_respuesta": "fd5742bd363372fe4d02f85a84f8a0cab30881550cc9f5d3212b7695143f0e24"
+          "sha256_respuesta": "e60d07366b84a84c78c9f30c2346e0a60d2404708ee7ce9b3363f24278526315"
         },
         {
           "mes": "2002-04",
           "granulo": "GLDAS_NOAH025_M.A200204.021.nc4",
-          "sha256_respuesta": "fd5742bd363372fe4d02f85a84f8a0cab30881550cc9f5d3212b7695143f0e24"
+          "sha256_respuesta": "0344327e24353200377531b97d0ac6879553eb50008d3ad557613f60ad9c32a1"
         },
         {
           "mes": "2002-05",
           "granulo": "GLDAS_NOAH025_M.A200205.021.nc4",
-          "sha256_respuesta": "fd5742bd363372fe4d02f85a84f8a0cab30881550cc9f5d3212b7695143f0e24"
+          "sha256_respuesta": "ac4e74f3d9314c70e360704c8723ec719ba768f73a273a8e0024b93c6d4a29dc"
         },
         {
           "mes": "2002-06",
           "granulo": "GLDAS_NOAH025_M.A200206.021.nc4",
-          "sha256_respuesta": "fd5742bd363372fe4d02f85a84f8a0cab30881550cc9f5d3212b7695143f0e24"
+          "sha256_respuesta": "1affd6c200646c80494d959377327c1a906e3f6188d88a39db73c4d21a5b4dd1"
         },
         {
           "mes": "2002-07",

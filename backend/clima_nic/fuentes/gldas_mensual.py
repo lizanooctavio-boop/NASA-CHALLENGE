@@ -96,16 +96,29 @@ def leer_csv_dap(texto):
     return lat, lon, campos
 
 
-def descargar_mes(anio, mes, grupo, op, reintentos=3):
+def es_granulo(texto, nombre):
+    """True si la respuesta DAP CSV declara el granulo `nombre` en su línea «Dataset: …»."""
+    primera = texto.split("\n", 1)[0].strip()
+    return primera == f"Dataset: {nombre}"
+
+
+def descargar_mes(anio, mes, grupo, op, reintentos=6):
     """Descarga (o reutiliza de la caché) el recorte de un mes. Devuelve (ruta, sha256, url)."""
     ruta = CACHE_GLDAS / grupo / f"{anio:04d}{mes:02d}.csv"
     url = url_recorte(anio, mes, VENTANAS[grupo])
+    nombre = url_granulo(anio, mes)[1]
+    # El OPeNDAP en la nube a veces responde con otro granulo (p. ej., junio de 2001 al pedir enero): la primera
+    # línea «Dataset: …» tiene que nombrar el mes pedido, también en la caché.
+    if ruta.exists() and not es_granulo(ruta.read_text(encoding="utf-8"), nombre):
+        ruta.unlink()
     if not ruta.exists():
         ultimo = None
         for _ in range(reintentos):
             try:
                 with op.open(url, timeout=240) as r:
                     texto = r.read().decode("utf-8")
+                if not es_granulo(texto, nombre):
+                    raise ValueError(f"respuesta de otro granulo: {texto.splitlines()[0][:80]!r}")
                 leer_csv_dap(texto)
                 ruta.parent.mkdir(parents=True, exist_ok=True)
                 tmp = ruta.with_suffix(".parcial")
@@ -172,7 +185,7 @@ def construir(inicio=2001, fin=2024, hilos=6):
                      f"las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
                      f"Cobertura mínima de celdas con dato: {min(cobertura[region]):.3f} del área de la región.",
                      f"Consulta OPeNDAP en la nube de GES DISC, {consulta}.",
-                     "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+                     "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
                      "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET "
                      "después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento "
                      "y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."]

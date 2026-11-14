@@ -31,9 +31,9 @@
       2024
     ],
     "valores": [
-      0.312787,
-      0.26155,
-      0.284705,
+      0.276023,
+      0.281805,
+      0.272115,
       0.273495,
       0.277144,
       0.276419,
@@ -61,8 +61,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de NIC; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.966 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -98,9 +98,9 @@
       2024
     ],
     "valores": [
-      0.30959,
-      0.259501,
-      0.268486,
+      0.273245,
+      0.280403,
+      0.267404,
       0.269383,
       0.274458,
       0.274169,
@@ -128,8 +128,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de NIC; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.966 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -165,9 +165,9 @@
       2024
     ],
     "valores": [
-      1198.65778,
-      1051.08723,
-      1090.702235,
+      1095.862119,
+      1129.190506,
+      1125.367859,
       1152.077403,
       1119.482768,
       1110.413537,
@@ -195,8 +195,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de NIC; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.966 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -232,9 +232,9 @@
       2024
     ],
     "valores": [
-      32.441629,
-      21.133535,
-      38.790892,
+      24.731488,
+      31.243803,
+      30.656374,
       37.636056,
       53.635265,
       35.927934,
@@ -262,8 +262,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de NIC; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.966 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -299,9 +299,9 @@
       2024
     ],
     "valores": [
-      560.591943,
-      567.718155,
-      516.143412,
+      548.064021,
+      614.595492,
+      550.488428,
       493.916099,
       772.569531,
       343.222066,
@@ -329,8 +329,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de NIC; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.966 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -366,9 +366,9 @@
       2024
     ],
     "valores": [
-      0.328509,
-      0.264799,
-      0.299226,
+      0.283991,
+      0.288002,
+      0.278088,
       0.280705,
       0.282047,
       0.283328,
@@ -396,8 +396,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caja_sicc; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.718 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -433,9 +433,9 @@
       2024
     ],
     "valores": [
-      0.326805,
-      0.263391,
-      0.285545,
+      0.282943,
+      0.28693,
+      0.273767,
       0.277484,
       0.280247,
       0.282502,
@@ -463,8 +463,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caja_sicc; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.718 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -500,9 +500,9 @@
       2024
     ],
     "valores": [
-      1301.280653,
-      1117.430391,
-      1182.362098,
+      1189.117528,
+      1219.555313,
+      1201.639816,
       1241.73538,
       1164.09522,
       1195.190312,
@@ -530,8 +530,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caja_sicc; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.718 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -567,9 +567,9 @@
       2024
     ],
     "valores": [
-      41.019669,
-      28.524661,
-      52.584814,
+      29.994057,
+      40.207682,
+      42.45122,
       46.420953,
       65.116879,
       46.857982,
@@ -597,8 +597,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caja_sicc; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.718 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -634,9 +634,9 @@
       2024
     ],
     "valores": [
-      741.559927,
-      775.849558,
-      723.044876,
+      697.697619,
+      845.167657,
+      785.234729,
       735.705884,
       985.968931,
       448.34818,
@@ -664,8 +664,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caja_sicc; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.718 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -701,9 +701,9 @@
       2024
     ],
     "valores": [
-      0.325904,
-      0.280012,
-      0.293585,
+      0.296455,
+      0.299656,
+      0.283424,
       0.289952,
       0.289947,
       0.296269,
@@ -731,8 +731,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caribe; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.974 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -768,9 +768,9 @@
       2024
     ],
     "valores": [
-      0.323635,
-      0.278376,
-      0.280075,
+      0.295109,
+      0.298442,
+      0.280093,
       0.287158,
       0.287443,
       0.295471,
@@ -798,8 +798,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caribe; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.974 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -835,9 +835,9 @@
       2024
     ],
     "valores": [
-      1088.421232,
-      1091.216958,
-      1036.462293,
+      1110.746014,
+      1145.016947,
+      1096.043251,
       1145.184879,
       1173.648798,
       1126.789061,
@@ -865,8 +865,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caribe; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.974 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -902,9 +902,9 @@
       2024
     ],
     "valores": [
-      44.639734,
-      29.418747,
-      40.837124,
+      33.734031,
+      36.887913,
+      34.799338,
       48.111841,
       61.706171,
       49.557617,
@@ -932,8 +932,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caribe; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.974 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -969,9 +969,9 @@
       2024
     ],
     "valores": [
-      830.580613,
-      802.191692,
-      715.668189,
+      823.046046,
+      850.366392,
+      741.732352,
       737.21816,
       930.978382,
       543.92256,
@@ -999,8 +999,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caribe; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.974 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1036,9 +1036,9 @@
       2024
     ],
     "valores": [
-      0.298098,
-      0.244767,
-      0.27411,
+      0.254667,
+      0.265653,
+      0.259761,
       0.256367,
       0.262819,
       0.25615,
@@ -1066,8 +1066,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de central; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1103,9 +1103,9 @@
       2024
     ],
     "valores": [
-      0.292709,
-      0.239338,
-      0.251528,
+      0.248583,
+      0.261645,
+      0.251294,
       0.248374,
       0.257746,
       0.250203,
@@ -1133,8 +1133,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de central; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1170,9 +1170,9 @@
       2024
     ],
     "valores": [
-      1267.855952,
-      1001.143309,
-      1117.006369,
+      1074.105277,
+      1101.672878,
+      1139.171328,
       1142.684118,
       1046.136834,
       1084.864617,
@@ -1200,8 +1200,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de central; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1237,9 +1237,9 @@
       2024
     ],
     "valores": [
-      16.763553,
-      10.232344,
-      29.379768,
+      12.774969,
+      20.737945,
+      19.291174,
       22.587272,
       40.182386,
       17.668772,
@@ -1267,8 +1267,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de central; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1304,9 +1304,9 @@
       2024
     ],
     "valores": [
-      239.06268,
-      321.643336,
-      254.939192,
+      228.804562,
+      354.710099,
+      282.330732,
       197.374142,
       577.203771,
       94.321991,
@@ -1334,8 +1334,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de central; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1371,9 +1371,9 @@
       2024
     ],
     "valores": [
-      0.293341,
-      0.225446,
-      0.273005,
+      0.242309,
+      0.246729,
+      0.25465,
       0.24618,
       0.258134,
       0.242594,
@@ -1401,8 +1401,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de pacifico; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.879 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1438,9 +1438,9 @@
       2024
     ],
     "valores": [
-      0.291357,
-      0.229335,
-      0.260241,
+      0.24123,
+      0.250422,
+      0.25286,
       0.245513,
       0.260081,
       0.24284,
@@ -1468,8 +1468,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de pacifico; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.879 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1505,9 +1505,9 @@
       2024
     ],
     "valores": [
-      1483.876099,
-      1002.833026,
-      1248.426107,
+      1085.223845,
+      1127.718804,
+      1211.57927,
       1200.714791,
       1067.669209,
       1102.327642,
@@ -1535,8 +1535,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de pacifico; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.879 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1572,9 +1572,9 @@
       2024
     ],
     "valores": [
-      18.889195,
-      12.495048,
-      51.74172,
+      15.595214,
+      32.273236,
+      39.614359,
       29.554279,
       51.581644,
       22.448705,
@@ -1602,8 +1602,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de pacifico; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.879 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1639,9 +1639,9 @@
       2024
     ],
     "valores": [
-      203.408253,
-      183.078076,
-      305.142605,
+      165.827768,
+      255.77626,
+      388.193984,
       187.291595,
       578.07971,
       99.89748,
@@ -1669,8 +1669,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de pacifico; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.879 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1706,8 +1706,8 @@
       2024
     ],
     "valores": [
-      0.20364,
-      0.238367,
+      0.212067,
+      0.236159,
       0.238214,
       0.247758,
       0.246769,
@@ -1736,8 +1736,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de CAN_prairies; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1773,8 +1773,8 @@
       2024
     ],
     "valores": [
-      0.151868,
-      0.158659,
+      0.155576,
+      0.169501,
       0.190337,
       0.203154,
       0.217538,
@@ -1803,8 +1803,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de CAN_prairies; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1840,8 +1840,8 @@
       2024
     ],
     "valores": [
-      355.286422,
-      237.501567,
+      339.018032,
+      373.809798,
       421.455325,
       423.825138,
       504.258956,
@@ -1870,8 +1870,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de CAN_prairies; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1907,8 +1907,8 @@
       2024
     ],
     "valores": [
-      4.556907,
-      1.9774,
+      7.693226,
+      5.819667,
       14.635133,
       9.522515,
       13.932304,
@@ -1937,8 +1937,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de CAN_prairies; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   },
@@ -1974,8 +1974,8 @@
       2024
     ],
     "valores": [
-      1.407124,
-      1.14163,
+      1.299292,
+      1.245248,
       1.27425,
       1.58845,
       2.705298,
@@ -2004,8 +2004,8 @@
     "notas": [
       "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de CAN_prairies; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
       "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-13T08:42:31Z.",
-      "GLDAS-2.1 empieza en 2000: 2001 conserva ajuste de almacenamiento (residuo del balance alto ese año).",
+      "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
+      "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
       "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
     ]
   }
