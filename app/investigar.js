@@ -6,7 +6,7 @@ const $=id=>document.getElementById(id);
 const nodo=(t,txt,c)=>{const n=document.createElement(t);if(txt!==undefined)n.textContent=txt;if(c)n.className=c;return n};
 const num=(v,d=2)=>Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 const signo=(v,d=2)=>(v>0?'+':v<0?'−':'')+num(Math.abs(v),d);
-const DECIMALES={mm:0,'°C':2,NDVI:3,m:2,'mg/m³':2,days:1,'mm/day':2,'million km²':2,storms:1,months:1,Gt:0,cm:1,pH:3,'Ω':2,fraction:2,'°C-weeks':1};
+const DECIMALES={mm:0,'°C':2,NDVI:3,m:2,'mg/m³':2,days:1,'mm/day':2,'million km²':2,storms:1,months:1,Gt:0,cm:1,pH:3,'Ω':2,fraction:2,'°C-weeks':1,'km²':0};
 const dec=u=>DECIMALES[u]??2;
 
 const VEREDICTO={
