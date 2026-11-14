@@ -420,3 +420,5 @@ Climate Explorer pide verificar que el usuario es humano, y esa verificación no
 5. Ejecutar `python data/recursos/contraste/generar_contrastes.py resumen` y después `python -m clima_nic recursos` (desde `backend/`).
 
 Para Nicaragua completa se usa la máscara de país de Climate Explorer y el archivo se guarda como `chirps_nic.txt`.
+
+**Hecho el 13-11-2026.** El usuario superó la verificación humana en Climate Explorer y Claude, desde el mismo navegador, generó la serie del campo `chirps_20_25_mo` (CHIRPS v2.0, 0,25°) promediada sobre la caja SICC para 2001–2024 en mm/mes. Climate Explorer ajusta la caja a centros de celda: 10,75–12,50 °N y −86,50 a −83,50 °E. El texto «raw data» se guardó en `knmi/chirps_caja_sicc.txt`, con las filas sin modificar. Resultado del contraste `knmi_chirps_caja_sicc`: r = 0,78 con IMERG y CHIRPS +86 mm/año por encima. Las pendientes de Theil–Sen tienen signo distinto (+80 frente a −29 mm/década), pero ambas series dan **evidencia insuficiente**. Es coherente con el contraste CHIRPS frente a IMERG del piloto de SICC (+96,7 frente a −13,1 mm/década, ambos inconclusos).

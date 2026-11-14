@@ -1118,8 +1118,8 @@ def contrastes_giovanni_nube(filas_series):
 # Climate Explorer exige verificación humana: una persona descarga la serie «raw data» y la guarda como
 # knmi/<producto>_<region>.txt (región caja_sicc o nic). Aquí solo se lee y se compara con data/clima.json.
 KNMI_DIR = AQUI / "knmi"
-KNMI_PRODUCTOS = {"chirps": "CHIRPS v2.0 (UCSB Climate Hazards Center) vía KNMI Climate Explorer",
-                  "gpcc": "GPCC vía KNMI Climate Explorer", "cru": "CRU TS vía KNMI Climate Explorer"}
+KNMI_PRODUCTOS = {"chirps": "CHIRPS v2.0 (UCSB Climate Hazards Center) via KNMI Climate Explorer",
+                  "gpcc": "GPCC via KNMI Climate Explorer", "cru": "CRU TS via KNMI Climate Explorer"}
 KNMI_REGIONES = {"caja_sicc": "caja_sicc", "nic": "NIC"}
 
 

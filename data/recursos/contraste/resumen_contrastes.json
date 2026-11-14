@@ -1490,6 +1490,56 @@
    "estado": "ok",
    "frase_en": "NASA Giovanni's area average of GLDAS-2.1 0–10 cm soil moisture over the SICC box vs this app's area-weighted GLDAS series: r = 1.000, mean difference +0.001 m³/m³ (Giovanni averages every cell in the box; this app excludes model water cells).",
    "investigacion": "humedad_gldas_0_10_caja_sicc"
+  },
+  {
+   "id": "knmi_chirps_caja_sicc",
+   "papel": "contraste",
+   "region": "caja_sicc",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GPM IMERG Final V07B (data/clima.json)",
+    "pendiente": -28.7051,
+    "pendiente_mco": -13.132,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.785
+   },
+   "serie_externa": {
+    "fuente": "CHIRPS v2.0 (UCSB Climate Hazards Center) via KNMI Climate Explorer",
+    "pendiente": 79.7178,
+    "pendiente_mco": 107.822,
+    "unidad": "mm/década",
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_robusto": "evidencia_insuficiente",
+    "periodo": [
+     2001,
+     2024
+    ],
+    "anios": 24,
+    "mann_kendall_p": 0.2643,
+    "version": null,
+    "fecha_consulta": "2026-11-13",
+    "url": "https://climexp.knmi.nl/start.cgi"
+   },
+   "diferencia": {
+    "media": 85.8538,
+    "r": 0.7794,
+    "diferencia_pendiente": 108.4229,
+    "anios_comunes": 24,
+    "unidad_media": "mm"
+   },
+   "estado": "ok",
+   "frase_en": "CHIRPS v2.0 (UCSB Climate Hazards Center) via KNMI Climate Explorer over the SICC box, 2001–2024: r = 0.78 with IMERG, mean difference +86 mm/yr; Sen slopes +80 vs -29 mm/decade.",
+   "investigacion": "lluvia_caja_sicc"
   }
  ]
 }

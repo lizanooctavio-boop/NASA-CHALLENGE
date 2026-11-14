@@ -51,6 +51,18 @@
   "fecha": "2026-11-12",
   "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=NUM00078741%2CNU000069034%2CHO000078720%2CNU000055002%2CNU000055029%2CNU000055016&startDate=1940-01-01&endDate=2025-12-31&dataTypes=PRCP%2CTAVG%2CTMAX%2CTMIN&format=csv&units=metric&includeAttributes=false&includeStationName=false&includeStationLocation=1"
  },
+ "knmi_chirps_caja_sicc": {
+  "caja": [
+   -86.5,
+   10.7,
+   -83.6,
+   12.6
+  ],
+  "campo": "chirps_20_25_mo",
+  "celdas_efectivas": "lon -86.50..-83.50, lat 10.75..12.50",
+  "fecha": "2026-11-13",
+  "metodo": "descarga manual en KNMI Climate Explorer (verificación humana del usuario), raw data"
+ },
  "opendap_airs_tas_a_nic": {
   "fecha": "2026-11-13",
   "metodo": "opendap",
