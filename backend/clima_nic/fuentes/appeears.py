@@ -311,7 +311,9 @@ def mascara_calidad(producto, capas):
         # SMGP no expone bitfield QA en AppEEARS. Filtro físico conservador, no QA de recuperación L2/L3.
         t = capas["Geophysical_Data_soil_temp_layer1"]
         nieve = capas["Geophysical_Data_land_fraction_snow_covered"]
-        return np.isfinite(t) & (t > 273.15) & (t < 350) & np.isfinite(nieve) & (nieve == 0)
+        # En los GeoTIFF de Nicaragua, el fondo sin nieve incluye residuos positivos < 1e-7.
+        # Tolerar una parte por millón en una fracción adimensional, conservando el rechazo de nodata.
+        return np.isfinite(t) & (t > 273.15) & (t < 350) & (nieve >= 0) & (nieve <= 1e-6)
     raise ValueError(producto)
 
 
@@ -530,7 +532,7 @@ def agregar_registros(registros, frecuencia="mensual"):
         if "estable" in variable:
             notas.append("cohorte de clase IGBP constante en todos los años; subpíxeles 500 m homogéneos dentro de celda NDVI")
         if producto.startswith("SPL"):
-            notas.append("SMAP L4 asimilado: AppEEARS no expone QA bitfield; filtro sin nieve/suelo descongelado, no equivale a QA L2")
+            notas.append("SMAP L4 asimilado: AppEEARS no expone QA bitfield; filtro de fracción de nieve ≤1e-6 y suelo descongelado, no equivale a QA L2")
         out.append(SerieRegional(region, variable, unidad, frecuencia, tiempos, vals, "appeears/" + producto,
                                  producto.split(".")[-1], notas))
     return out

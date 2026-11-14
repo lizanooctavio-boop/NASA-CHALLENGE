@@ -102,8 +102,8 @@ def test_espera_error_timeout_y_vacio(monkeypatch):
     ('MOD11A2.061', {'QC_Day': np.array([0, 1, 1 << 6, 1 << 4, 1 << 2])}, [True, False, False, True, False]),
     ('MOD16A2GF.061', {'ET_QC_500m': np.array([0, 1, 4, 8, 32, 255])}, [True, False, False, False, False, False]),
     ('MCD12Q1.061', {'QC': np.array([0, 1, 0, 0]), 'LC_Type1': np.array([1, 1, 17, 255])}, [True, False, False, False]),
-    ('SPL4SMGP.008', {'Geophysical_Data_soil_temp_layer1': np.array([280, 270, 280, -9999]),
-                     'Geophysical_Data_land_fraction_snow_covered': np.array([0, 0, .1, 0])}, [True, False, False, False]),
+    ('SPL4SMGP.008', {'Geophysical_Data_soil_temp_layer1': np.array([280, 270, 280, 280, -9999]),
+                     'Geophysical_Data_land_fraction_snow_covered': np.array([5.5e-8, 0, .1, -9999, 0])}, [True, False, False, False, False]),
 ])
 def test_mascaras_calidad(producto, capas, esperado):
     assert mascara_calidad(producto, capas).tolist() == esperado
