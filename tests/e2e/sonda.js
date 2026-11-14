@@ -108,6 +108,8 @@
       salida.investigar.casos[caso.id] = {
         seleccion: window.SICC_investigar.estado().sel.investigacion,
         estado: document.querySelector('#inv-veredicto .estado').textContent,
+        detalle: document.querySelector('#inv-veredicto').textContent,
+        serieAria: document.querySelector('#inv-serie').getAttribute('aria-label'),
         contrastes: document.querySelectorAll('#inv-contrastes-lista .contraste').length,
         csvNombre: descargasNombres[0] || null,
         csvTexto: blobs.length ? await blobs[0].text() : null

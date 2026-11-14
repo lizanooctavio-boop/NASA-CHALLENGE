@@ -1,0 +1,77 @@
+[
+  {
+    "task_id": "eee9dded-3d20-44aa-909c-2ccd046aeaa3",
+    "region": "NIC",
+    "producto": "SPL4SMGP.008",
+    "desde": "2015-03-31",
+    "hasta": "2015-12-31",
+    "enviada_utc": "2026-11-13T08:47:42.635500+00:00",
+    "tiempos": {
+      "created": "2026-11-13T08:47:44.815073",
+      "updated": "2026-11-13T15:17:19.035340",
+      "completed": "2026-11-13T15:17:19.015123"
+    },
+    "archivos": 8837,
+    "sha256_lista": "f6abe0ab11bc2e5412127dc9c3450a2cc0752d93cc82e2df157b40d98f66a0de"
+  },
+  {
+    "task_id": "4a530afb-72e9-4a34-9c6c-c230eaf73650",
+    "region": "NIC",
+    "producto": "SPL4SMGP.008",
+    "desde": "2016-01-01",
+    "hasta": "2016-12-31",
+    "enviada_utc": "2026-11-13T08:47:43.297258+00:00",
+    "tiempos": {
+      "created": "2026-11-13T08:47:45.462705",
+      "updated": "2026-11-13T18:33:13.261481",
+      "completed": "2026-11-13T18:33:13.241857"
+    },
+    "archivos": 11717,
+    "sha256_lista": "4318c25250063a52f67f35beda27e3d97452d9f027f75afcf3528eeded9a3e90"
+  },
+  {
+    "task_id": "ee1dc4a9-fe40-4ebd-9384-a27c119d700a",
+    "region": "NIC",
+    "producto": "SPL4SMGP.008",
+    "desde": "2017-01-01",
+    "hasta": "2017-12-31",
+    "enviada_utc": "2026-11-13T08:47:43.935300+00:00",
+    "tiempos": {
+      "created": "2026-11-13T08:47:46.092748",
+      "updated": "2026-11-13T18:27:03.156261",
+      "completed": "2026-11-13T18:27:03.131521"
+    },
+    "archivos": 11685,
+    "sha256_lista": "db75dd5181dcae307b53a857122fd84256bf8f46242501c719d70a12cb1b6a2d"
+  },
+  {
+    "task_id": "4bee9bd1-4614-429d-ac1a-14afbef6665e",
+    "region": "NIC",
+    "producto": "SPL4SMGP.008",
+    "desde": "2018-01-01",
+    "hasta": "2018-12-31",
+    "enviada_utc": "2026-11-13T08:47:44.576841+00:00",
+    "tiempos": {
+      "created": "2026-11-13T08:47:46.742447",
+      "updated": "2026-11-14T02:08:17.521385",
+      "completed": "2026-11-14T02:08:17.500882"
+    },
+    "archivos": 11685,
+    "sha256_lista": "601e28a8ab30c6cb334714f5f72c290ca70f0526c835d2738eab2864e76ce6cc"
+  },
+  {
+    "task_id": "af3849f2-ec1d-4476-b712-4ddf3dc81358",
+    "region": "NIC",
+    "producto": "SPL4SMGP.008",
+    "desde": "2019-01-01",
+    "hasta": "2019-12-31",
+    "enviada_utc": "2026-11-13T08:47:45.318689+00:00",
+    "tiempos": {
+      "created": "2026-11-13T08:47:47.489741",
+      "updated": "2026-11-14T04:38:34.308626",
+      "completed": "2026-11-14T04:38:34.291657"
+    },
+    "archivos": 11685,
+    "sha256_lista": "291bd32714eca75cc822b7184db169df5c0db130d5be92012d5fa4f5c861e836"
+  }
+]

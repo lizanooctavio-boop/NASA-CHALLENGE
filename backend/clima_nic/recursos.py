@@ -234,18 +234,56 @@ def _base_nicaragua(fen, clima):
 
 
 def _tierra(carpeta, permitir_sintetico):
-    """Series anuales de AppEEARS y GLDAS (listas de SerieRegional.como_dict())."""
+    """Series regionales anuales y registro mensual de humedad superficial SMAP."""
+    carpeta = Path(carpeta)
     invs, entradas = [], []
-    for ruta in sorted(Path(carpeta).glob("series_*_anual.json")):
+    ruta_smap = carpeta / "series_appeears_nicaragua_mensual.json"
+    rutas = sorted(carpeta.glob("series_*_anual.json"))
+    hay_smap_mensual = ruta_smap.is_file()
+    if hay_smap_mensual:
+        rutas.append(ruta_smap)
+    for ruta in rutas:
         entradas.append(ruta)
         familia = "gldas" if "gldas" in ruta.name else "appeears"
         for s in _leer_json(ruta, permitir_sintetico):
             var = s["variable"]
+            smap_superficial = var == "humedad_smap_superficial" and familia == "appeears"
+            if ruta == ruta_smap and not smap_superficial:
+                continue
+            if hay_smap_mensual and ruta.name == "series_appeears_nicaragua_anual.json" and var.startswith("humedad_smap_"):
+                continue
             if var not in VARIABLES_TIERRA:
                 continue
             cat, titulo, definicion = VARIABLES_TIERRA[var]
             region = s["region"]
             if region not in LUGARES:
+                continue
+            if smap_superficial and ruta == ruta_smap:
+                por_mes = dict(zip(s["tiempos"], s["valores"], strict=True))
+                meses_validos = [m for m, v in sorted(por_mes.items()) if v is not None]
+                if not meses_validos:
+                    continue
+                periodo = [meses_validos[0], meses_validos[-1]]
+                anio, mes = map(int, min(por_mes).split("-"))
+                tiempos = []
+                ultimo_mes = max(por_mes)
+                while (t := f"{anio:04d}-{mes:02d}") <= ultimo_mes:
+                    tiempos.append(t)
+                    anio, mes = anio + (mes == 12), mes % 12 + 1
+                registro = _investigacion(
+                    f"{var}_{region}", cat, region, titulo,
+                    "Monthly water content in the top 5 cm of soil. SMAP Level 4 combines satellite measurements with a land model.",
+                    s["unidad"], tiempos, [por_mes.get(m) for m in tiempos],
+                    {"producto": nombre_en(s["fuente"]), "url": "https://doi.org/10.5067/T5RUATAQREF8",
+                     "version": s.get("version", "")},
+                    recursos=[RECURSO_TIERRA["appeears"]], papel="demostracion_registro_corto", frecuencia="mensual",
+                )
+                registro["periodo"] = periodo
+                registro["validacion"] = {
+                    "estado": "NO_VALIDADA",
+                    "detalle_en": "Local soil measurements are needed to validate these estimates.",
+                }
+                invs.append(registro)
                 continue
             notas = list(s.get("notas", []))
             # GLDAS de punto viene de la API de Giovanni (recursos #2 y #1); el regional, del archivo de GES DISC.
@@ -496,6 +534,9 @@ def _recursos(invs, contrastes, hay_csa):
         12: "Framing of the vegetation & ecosystems and water-bodies questions.",
         13: "Workflow to map surface water from radar images.",
     }
+    series_appeears = [i for i in invs if RECURSO_TIERRA["appeears"] in i["recursos"]]
+    if series_appeears and all(i["id"].startswith("humedad_smap_superficial_") for i in series_appeears):
+        usos[3] = "Regional soil moisture from NASA SMAP Level 4."
     return [{"id": n, "nombre": nombre, "url": url, "organizacion": org, "uso_en": usos[n],
              "estado": "en_uso" if n in usados else "sin_datos"} for n, nombre, url, org in RECURSOS]
 

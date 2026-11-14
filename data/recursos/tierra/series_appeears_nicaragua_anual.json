@@ -1,0 +1,50 @@
+[
+  {
+    "region": "NIC",
+    "variable": "humedad_smap_raiz",
+    "unidad": "m³/m³",
+    "frecuencia": "anual",
+    "tiempos": [
+      2016,
+      2017,
+      2018,
+      2019
+    ],
+    "valores": [
+      0.3448030953575087,
+      0.36446722415196137,
+      0.34946128204916743,
+      0.3189078895860656
+    ],
+    "fuente": "appeears/SPL4SMGP.008",
+    "version": "008",
+    "notas": [
+      "media por área de intersección EPSG:6933; QA estricto; área válida mínima 50%; cobertura temporal mensual 90% (ET: 100%)",
+      "SMAP L4 asimilado: AppEEARS no expone QA bitfield; filtro de fracción de nieve ≤1e-6 y suelo descongelado, no equivale a QA L2"
+    ]
+  },
+  {
+    "region": "NIC",
+    "variable": "humedad_smap_superficial",
+    "unidad": "m³/m³",
+    "frecuencia": "anual",
+    "tiempos": [
+      2016,
+      2017,
+      2018,
+      2019
+    ],
+    "valores": [
+      0.3218817232752023,
+      0.3476799773611656,
+      0.3287104303693951,
+      0.29533253739054066
+    ],
+    "fuente": "appeears/SPL4SMGP.008",
+    "version": "008",
+    "notas": [
+      "media por área de intersección EPSG:6933; QA estricto; área válida mínima 50%; cobertura temporal mensual 90% (ET: 100%)",
+      "SMAP L4 asimilado: AppEEARS no expone QA bitfield; filtro de fracción de nieve ≤1e-6 y suelo descongelado, no equivale a QA L2"
+    ]
+  }
+]

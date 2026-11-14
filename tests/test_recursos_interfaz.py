@@ -159,6 +159,28 @@ def test_categorias_y_recursos_sin_datos_quedan_marcados(datos_sinteticos):
     assert {i["lugar"] for i in d["investigaciones"]} <= lugares
 
 
+def test_carga_humedad_superficial_smap_mensual(datos_sinteticos):
+    tierra = datos_sinteticos / "recursos" / "tierra"
+    mensual = tierra / "series_appeears_nicaragua_mensual.json"
+    fila = {
+        "region": "NIC", "variable": "humedad_smap_superficial", "unidad": "m³/m³",
+        "frecuencia": "mensual", "tiempos": ["2015-03", "2015-04", "2015-06"],
+        "valores": [None, 0.2263, 0.3295], "fuente": "appeears/SPL4SMGP.008",
+        "version": "008", "sintetico": True,
+    }
+    mensual.write_text(json.dumps([fila]), encoding="utf-8")
+    d = rec.construir(datos_sinteticos, permitir_sintetico=True)
+    smap, = [i for i in d["investigaciones"] if i["id"] == "humedad_smap_superficial_NIC"]
+    assert smap["frecuencia"] == "mensual"
+    assert smap["tiempos"] == ["2015-03", "2015-04", "2015-05", "2015-06"]
+    assert smap["valores"] == [None, 0.2263, None, 0.3295]
+    assert smap["periodo"] == ["2015-04", "2015-06"]
+    assert smap["recursos"] == [3] and smap["unidad"] == "m³/m³"
+    assert smap["validacion"]["estado"] == "NO_VALIDADA"
+    assert "tendencia" not in smap
+    assert "recursos/tierra/series_appeears_nicaragua_mensual.json" in d["entradas"]
+
+
 def test_tendencia_compacta_series_cortas_y_con_huecos():
     assert rec.tendencia_compacta(range(2001, 2008), [1] * 7, "mm")["veredicto"] == "datos_insuficientes"
     anios = list(range(2001, 2025))

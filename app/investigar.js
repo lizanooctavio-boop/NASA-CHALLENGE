@@ -77,7 +77,8 @@ function resultado(){
   const forma=ok&&t.veredicto==='tendencia_detectada'?(t.sen.por_decada>=0?'aumento':'disminucion'):'insuficiente';
   c.className='veredicto '+forma;
   const ic=nodo('div',undefined,'icono');ic.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${ICONOS[forma]}</svg>`;
-  const periodo=x.tiempos.length>1?`${x.tiempos[0]}–${x.tiempos.at(-1)}`:String(x.tiempos[0]);
+  const [desde,hasta]=x.periodo||[x.tiempos[0],x.tiempos.at(-1)];
+  const periodo=desde===hasta?String(desde):`${desde}–${hasta}`;
   const [texto,ancla]=corto?['Record too short for a trend test','aprender-registro-corto']:VEREDICTO[t.veredicto]||[t.veredicto,'aprender-tendencia'];
   const cab=nodo('div');cab.append(nodo('p',texto,'estado'),nodo('p',`${x.titulo_en} · ${l.nombre_en} · ${periodo}`,'sub'));
   c.append(ic,cab);
@@ -90,10 +91,12 @@ function resultado(){
   }else if(corto){
     const vals=x.valores.filter(v=>v!==null);
     const escenas=x.frecuencia==='escena';
-    tar('Observations',`${x.valores.length} ${escenas?(x.valores.length===1?'scene':'scenes'):'months'}`,periodo.replace('–',' to '));
-    if(vals.length===1)tar('Value',`${num(vals[0],d)} ${u}`,String(x.tiempos[0]));
+    const unidad=escenas?'scene':'month';
+    tar('Observations',`${vals.length} ${unidad}${vals.length===1?'':'s'}`,periodo.replace('–',' to '));
+    if(vals.length===1)tar('Value',`${num(vals[0],d)} ${u}`,String(desde));
     else tar('Range',`${num(Math.min(...vals),d)}–${num(Math.max(...vals),d)} ${u}`,escenas?'lowest to highest scene':'lowest to highest monthly mean');
   }
+  if(x.validacion?.estado==='NO_VALIDADA')tar('Validation','Not validated',x.validacion.detalle_en);
   c.append(tj);
   const pie=nodo('p',undefined,'detalle');pie.append(nodo('span',x.definicion_en+' '));
   const a=nodo('a','What does this mean?');a.href='#'+ancla;a.onclick=ev=>{ev.preventDefault();aprender(ancla)};pie.append(a);
@@ -110,8 +113,9 @@ function serie(x,t,ok){
     const a0=res.length%2?res[(res.length-1)/2]:(res[res.length/2-1]+res[res.length/2])/2;
     ds.push({type:'line',label:'Theil–Sen trend',data:x.tiempos.map(a=>a0+b*a),borderColor:'#f6c76b',borderDash:[6,4],pointRadius:0,borderWidth:2});
   }
-  $('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${x.tiempos[0]} to ${x.tiempos.at(-1)}`);
-  crear('inv-serie',{data:{labels:x.tiempos,datasets:ds},options:{interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
+  const [desde,hasta]=x.periodo||[x.tiempos[0],x.tiempos.at(-1)];
+  $('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${desde} to ${hasta}`);
+  crear('inv-serie',{data:{labels:x.tiempos,datasets:ds},options:{locale:x.validacion?'en-US':undefined,interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
 }
 
 // ---------------------------------------------------------------- segundas opiniones

@@ -234,6 +234,11 @@ class RecorridoEnNavegador(unittest.TestCase):
                 self.assertEqual(ui["seleccion"], caso["id"])
                 esperado = textos[caso["tendencia"]["veredicto"]] if "tendencia" in caso else "Record too short for a trend test"
                 self.assertEqual(ui["estado"], esperado)
+                if caso.get("validacion", {}).get("estado") == "NO_VALIDADA":
+                    self.assertIn("Not validated", ui["detalle"])
+                    desde, hasta = caso["periodo"]
+                    self.assertIn(f"{desde}–{hasta}", ui["detalle"])
+                    self.assertIn(f"{desde} to {hasta}", ui["serieAria"])
                 self.assertEqual(ui["contrastes"], len(caso["contrastes"]))
                 self.assertEqual(ui["csvNombre"], f"{caso['id']}.csv")
                 filas = [l for l in ui["csvTexto"].lstrip("﻿").splitlines() if l and not l.startswith("#")][1:]
