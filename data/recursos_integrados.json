@@ -11478,8 +11478,8 @@
  ],
  "entradas": {
   "clima.json": "646469c3c09d534aef3fd2feaa3060283dc4017fdd7690466e5ffc66042e9bc5",
-  "fenomenos_nicaragua.json": "8f91fdaf6dd4d89b941473ecf2f8a7c4b6310418d06bded66abe90a469e024a5",
-  "recursos/tierra/series_gldas_anual.json": "710c048d3ea45c05f7295b976b8f00df7b930db5f0bd6e1fe721e97dc241d009",
+  "fenomenos_nicaragua.json": "202dcccf73b2dd5feac6ce1c6fe0185511f241b78a0a9b5f0c569108ae41d09f",
+  "recursos/tierra/series_gldas_anual.json": "4d4eecdea508721d238fdecbff9e8541eda0f0a264dba3887ee1c8f9ed1701f4",
   "recursos/tierra/series_gldas_punto_anual.json": "509fd7240dbc0cbe7a4c7001a74c2c7c94e346a22961323570ed5554340c8e87",
   "recursos/contraste/resumen_contrastes.json": "0cf453782f2249a5cffd0d5e4980dbe6cddb54f3d3320da91519eeb0de4a26c5",
   "recursos/contraste/series_anuales.csv": "41efe479a8db24396b33d0900ddb6da88e7ac39f340f8e2e5627e1775498f660",
