@@ -1,0 +1,589 @@
+{
+  "model": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "class_weight": "balanced_subsample",
+    "criterion": "gini",
+    "max_depth": 12,
+    "max_features": "sqrt",
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 30,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 80,
+    "n_jobs": 2,
+    "oob_score": false,
+    "random_state": 8687,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "features": [
+    "VV_db",
+    "VH_db",
+    "VV_minus_VH_db",
+    "VV_local_mean",
+    "VV_local_std",
+    "VH_local_mean",
+    "VH_local_std"
+  ],
+  "predictor_exclusions": "No coordinates, optical labels, lake outlines, SWOT or date index as predictors",
+  "split": "5 km training/test stripes, separated by unused stripes; same split on every date",
+  "temporal_evaluation": "leave one date out; no hyperparameter tuning on test scores",
+  "probability_note": "forest vote fraction; not a calibrated probability or confidence interval",
+  "reports": [
+    {
+      "date": "2024-03-04",
+      "spatial_test": {
+        "tp": 55688,
+        "fp": 15847,
+        "tn": 172471,
+        "fn": 502,
+        "precision": 0.7784720766058573,
+        "recall_water": 0.9910660259832711,
+        "recall_land": 0.9158497860002761,
+        "f1": 0.8719984341358387
+      },
+      "leave_one_date_out_test": {
+        "tp": 55915,
+        "fp": 108813,
+        "tn": 79505,
+        "fn": 275,
+        "precision": 0.3394383468505658,
+        "recall_water": 0.9951058907278876,
+        "recall_land": 0.42218481504688876,
+        "f1": 0.5062059225595017
+      },
+      "test_pixels": 244508,
+      "training_pixels_by_date": [
+        20000,
+        20000,
+        13153
+      ],
+      "temporal_training_dates": [
+        "2024-04-21",
+        "2024-07-14"
+      ]
+    },
+    {
+      "date": "2024-04-21",
+      "spatial_test": {
+        "tp": 3513,
+        "fp": 12971,
+        "tn": 93719,
+        "fn": 15450,
+        "precision": 0.21311574860470758,
+        "recall_water": 0.18525549754785636,
+        "recall_land": 0.8784234698659669,
+        "f1": 0.1982114142240528
+      },
+      "leave_one_date_out_test": {
+        "tp": 518,
+        "fp": 2701,
+        "tn": 103989,
+        "fn": 18445,
+        "precision": 0.16091954022988506,
+        "recall_water": 0.027316352897748246,
+        "recall_land": 0.97468366294873,
+        "f1": 0.0467045352087278
+      },
+      "test_pixels": 125653,
+      "training_pixels_by_date": [
+        20000,
+        20000,
+        13153
+      ],
+      "temporal_training_dates": [
+        "2024-03-04",
+        "2024-07-14"
+      ]
+    },
+    {
+      "date": "2024-07-14",
+      "spatial_test": {
+        "tp": 12255,
+        "fp": 1255,
+        "tn": 92122,
+        "fn": 2329,
+        "precision": 0.9071058475203553,
+        "recall_water": 0.8403044432254525,
+        "recall_land": 0.986559859494308,
+        "f1": 0.8724282765003204
+      },
+      "leave_one_date_out_test": {
+        "tp": 11972,
+        "fp": 146,
+        "tn": 93231,
+        "fn": 2612,
+        "precision": 0.9879518072289156,
+        "recall_water": 0.8208996160175535,
+        "recall_land": 0.9984364458057123,
+        "f1": 0.8967118567897536
+      },
+      "test_pixels": 107961,
+      "training_pixels_by_date": [
+        20000,
+        20000,
+        13153
+      ],
+      "temporal_training_dates": [
+        "2024-03-04",
+        "2024-04-21"
+      ]
+    }
+  ],
+  "vh_sources": [
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195521-IW1_20240304T234909Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195521-IW1_20240304T234909Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "a2ffe005244d833c404f746a498fcc3eb98fae800ecbe49041d3fb553e1c065b"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195522-IW1_20240304T234911Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195522-IW1_20240304T234911Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "07d490761adfc42232e21ffef62812db881403880714256dfd00601ddc4b4e8d"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195523-IW1_20240304T234914Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195523-IW1_20240304T234914Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "04b1505c5251e49c495e3a5c461cbc72741e472a081c901e3b1cd3314ade5900"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195523-IW2_20240304T234915Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195523-IW2_20240304T234915Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "5beac3e72257feabf6d585f3752bd627c39c94e6f967071164b67716a68d1cb0"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195524-IW1_20240304T234917Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195524-IW1_20240304T234917Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "6e989726d6779142c1d05f6161cdba84b25754f0a417e0e1c175d17ede8948b3"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195524-IW2_20240304T234918Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195524-IW2_20240304T234918Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "02917036fa593a3ee16757a63f6e2337bd2f1e38d74de82bdcab616b7e95c3d9"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195525-IW1_20240304T234920Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195525-IW1_20240304T234920Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "183861fcda76e3b23d7bb88764e8e8433c8a8ef9935b89c078e9c2d566edd528"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195525-IW2_20240304T234921Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195525-IW2_20240304T234921Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "56a10393ada24a8631e8c8251c3c6c18b482705b311caffd67a158b2cabdf517"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195526-IW1_20240304T234922Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195526-IW1_20240304T234922Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "051eb8be93961240725598343a8565d69f2a3d2a3d804cd46c0c7c75fa13f191"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195526-IW2_20240304T234923Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195526-IW2_20240304T234923Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "ee1c420db70c6e0d8ae95415b15352f0c31c42fa65d7977f84d576088e789267"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195527-IW1_20240304T234925Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195527-IW1_20240304T234925Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "3cef1516e668e3eb724a968a55a2661d3091a0726a6877d298ea55cbbb662f26"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195527-IW2_20240304T234926Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195527-IW2_20240304T234926Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "a008ad9fc59d56e917d3eb9cd31b17905abcbb80e0b3a88a1cf739e592fb0ff8"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195528-IW1_20240304T234928Z_20240305T192452Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195528-IW1_20240304T234928Z_20240305T192452Z_S1A_30_v1.0_VH.tif",
+      "sha256": "362d4d470008695dfe7cc135a519c1787fcc083203dd6155dd6725b4e6892741"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195528-IW2_20240304T234929Z_20240305T154513Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195528-IW2_20240304T234929Z_20240305T154513Z_S1A_30_v1.0_VH.tif",
+      "sha256": "3e6251acc03ea45e9db35597f496823f3131c09858fd31e1e491d39909e455c1"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195528-IW2_20240304T234929Z_20240409T082302Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195528-IW2_20240304T234929Z_20240409T082302Z_S1A_30_v1.0_VH.tif",
+      "sha256": "5d985956b1b5fe6a944478f070e6a359fa1ac08fc5652175a463b3579c2f8faa"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW1_20240304T234931Z_20240305T154513Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195529-IW1_20240304T234931Z_20240305T154513Z_S1A_30_v1.0_VH.tif",
+      "sha256": "e241ee2467864149ab0d6344221bfd8e5186d162f7b0662dd96666f83f54adac"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW1_20240304T234931Z_20240409T082302Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195529-IW1_20240304T234931Z_20240409T082302Z_S1A_30_v1.0_VH.tif",
+      "sha256": "d80af252ba7cdcd77b182312f7fb750ed4d11640209feca148bbcbfb052c82be"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW2_20240304T234932Z_20240305T154513Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195529-IW2_20240304T234932Z_20240305T154513Z_S1A_30_v1.0_VH.tif",
+      "sha256": "e52cbaa419203468e247a7d15e876027095a8c7c0f9e3e5ff8c2d779f2255dd6"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW2_20240304T234932Z_20240409T082302Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195529-IW2_20240304T234932Z_20240409T082302Z_S1A_30_v1.0_VH.tif",
+      "sha256": "b08254484095b0cfcb7c0758f095b5850cf9880bd391c3e1f7420d7835c9bf8b"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW1_20240304T234933Z_20240305T154513Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195530-IW1_20240304T234933Z_20240305T154513Z_S1A_30_v1.0_VH.tif",
+      "sha256": "9a182809d5d9a7256b85ea7156209a77ad3c0b79b9cb6339856ec1ca19dcad86"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW1_20240304T234933Z_20240409T082302Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195530-IW1_20240304T234933Z_20240409T082302Z_S1A_30_v1.0_VH.tif",
+      "sha256": "d88e9fa14e5c6ef0fd7b3aa5c21949c5f0af1843df9ba82d2e910ccbb9375b6a"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW2_20240304T234934Z_20240305T154513Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195530-IW2_20240304T234934Z_20240305T154513Z_S1A_30_v1.0_VH.tif",
+      "sha256": "23401b36eeb2da155f93b56d1ea8fe07763b9f2d0588594ff6921f0cd24635f6"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW2_20240304T234934Z_20240409T082302Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195530-IW2_20240304T234934Z_20240409T082302Z_S1A_30_v1.0_VH.tif",
+      "sha256": "d9ec0d7a2466882f9dbba629eba725ee8338abf10e518d4451d93e8740ea4e81"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195531-IW1_20240304T234936Z_20240305T154513Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195531-IW1_20240304T234936Z_20240305T154513Z_S1A_30_v1.0_VH.tif",
+      "sha256": "be60b86012fad8a63ae1207fd28e9bf249c649605898a99ee7f8e5397ff6d90e"
+    },
+    {
+      "date": "2024-03-04",
+      "product_id": "OPERA_L2_RTC-S1_T092-195531-IW1_20240304T234936Z_20240409T082302Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195531-IW1_20240304T234936Z_20240409T082302Z_S1A_30_v1.0_VH.tif",
+      "sha256": "309333622bfcdc72e0775d2b429a62b3c8716f36ce4503d7863e2e5a774a2e6b"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195521-IW1_20240421T234910Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195521-IW1_20240421T234910Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "555f98bcfa8a080ea85cf7d93722826a7e9487d1eab487c3dfbe090459001d54"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195522-IW1_20240421T234912Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195522-IW1_20240421T234912Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "7030b374ca8c1bd8f2ef5f07b837e1821c57dba51f7d67e6f1ad1a0ac4614e2f"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195523-IW1_20240421T234915Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195523-IW1_20240421T234915Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "7071379438da50df3838d6498106c712e21fb8d6e5d1e3c93c7387cd5fff320d"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195523-IW2_20240421T234916Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195523-IW2_20240421T234916Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "541f0a9fe96a6fac2edc9ca43ee89eb4b73f3d48a61505302c7774d48ba2dd38"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195524-IW1_20240421T234918Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195524-IW1_20240421T234918Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "76564dde52779b6caa23663fa8ae903e56acb4ade74ce94c76329e50424bafd7"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195524-IW2_20240421T234919Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195524-IW2_20240421T234919Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "51e92044d09e31c9d6c3b20706d151b214e8e91a775890451190d2dc083f7a96"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195525-IW1_20240421T234921Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195525-IW1_20240421T234921Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "8d6dcb328c699ce1dedad3147125c03f9ef8f765ac87aa050f82c7480ccb43fe"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195525-IW2_20240421T234922Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195525-IW2_20240421T234922Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "e6b1f8979f692f6af3e676f3a482066c3e398f392b1cfef1d958acddc7b3fc32"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195526-IW1_20240421T234923Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195526-IW1_20240421T234923Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "a3d3529d277112aba26002e5c92251a3535fc5c0e00e825a95e56b065de07738"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195526-IW2_20240421T234924Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195526-IW2_20240421T234924Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "ea0a4e38bcb8617ec501861cda9f5fa74a34febbb9d261360ba5a6b39a5d867d"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195527-IW1_20240421T234926Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195527-IW1_20240421T234926Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "1d55578829e4cbd6d74b04431d8314356e0bfc44929cef1adc694f84c411205f"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195527-IW2_20240421T234927Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195527-IW2_20240421T234927Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "077c147d30ced221a3c53db959d8acf19aca08b0e5337b3a75dfd3c5d3a90bbd"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195528-IW1_20240421T234929Z_20240424T182632Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195528-IW1_20240421T234929Z_20240424T182632Z_S1A_30_v1.0_VH.tif",
+      "sha256": "f242ff202cf8ca327ef43b113cffce019b8a5dacb4b370cb974f97f33e9b1599"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195528-IW2_20240421T234930Z_20240424T182612Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195528-IW2_20240421T234930Z_20240424T182612Z_S1A_30_v1.0_VH.tif",
+      "sha256": "a8c1a2792cf19c8622aa0b795a3943eec0eba2c441c17862ccb187ab330e4da5"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW1_20240421T234932Z_20240424T182612Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195529-IW1_20240421T234932Z_20240424T182612Z_S1A_30_v1.0_VH.tif",
+      "sha256": "2db907ddb1e38c234471d3bbe6978744ae0b351c095ad5e1062765eac69c8056"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW2_20240421T234933Z_20240424T182612Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195529-IW2_20240421T234933Z_20240424T182612Z_S1A_30_v1.0_VH.tif",
+      "sha256": "53e086e05ca47ee9ec0254aec2a9cb59e501ae88db118cc22db588848920b436"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW2_20240421T234935Z_20240424T182612Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195530-IW2_20240421T234935Z_20240424T182612Z_S1A_30_v1.0_VH.tif",
+      "sha256": "bf79068b038af4fc3d0dc12f069fd82e7b613d83f1c965b7a296657f96bc0597"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW1_20240421T234935Z_20240424T182612Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195530-IW1_20240421T234935Z_20240424T182612Z_S1A_30_v1.0_VH.tif",
+      "sha256": "9b0cc7e64c160e00a56772264f4c0e3cd3bbaf125a53d0e59a8dd564a474cb88"
+    },
+    {
+      "date": "2024-04-21",
+      "product_id": "OPERA_L2_RTC-S1_T092-195531-IW1_20240421T234937Z_20240424T182612Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195531-IW1_20240421T234937Z_20240424T182612Z_S1A_30_v1.0_VH.tif",
+      "sha256": "7c88e8763510871804bfd6992b02711b7d4eb210e48a9a0ba76fa713df29f629"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195521-IW1_20240714T234908Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195521-IW1_20240714T234908Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "068cf3c90b96603e8b065802176844aa802f93949c0b15299f9dc6c57ae4127f"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195522-IW1_20240714T234911Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195522-IW1_20240714T234911Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "2f2f135e49789100c80243bd924aba432b405ac0521c96e8c94fda9c0fd6577e"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195523-IW1_20240714T234913Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195523-IW1_20240714T234913Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "32f9e7269ecb7f7e62ff0721c5cfc5615c8825580d84e4e9102f9801eb67ee36"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195523-IW2_20240714T234914Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195523-IW2_20240714T234914Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "4309735a381abacc332292c3ffffdda791bbfe561d80396b7e6f4456e870f6e4"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195524-IW1_20240714T234916Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195524-IW1_20240714T234916Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "dca0c2367123f7bcaf2c3e6be708e47937c83520886df4ed31c4f2e34aa1e4e4"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195524-IW2_20240714T234917Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195524-IW2_20240714T234917Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "662f3d0db0ab15eb9360635084ff88e3665396527fc7a71f82442a5cb450c1ef"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195525-IW1_20240714T234919Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195525-IW1_20240714T234919Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "ed2cc19be685b5b44a7cbbd5e7cecbe9549c5aa4a4bef6eb19fd9ed05e657aa3"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195525-IW2_20240714T234920Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195525-IW2_20240714T234920Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "2e66d3cf871757863b058efdd3ea43f690fab7599ad3f895acd3be6d4e2c8c15"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195526-IW2_20240714T234922Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195526-IW2_20240714T234922Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "98a269c2b6abd70c8e87def6bf5d8a0557fafef5b4f46797df8d60c5286e904c"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195526-IW1_20240714T234922Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195526-IW1_20240714T234922Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "79fed40a78a7fe1eab7bda8ac790e4336fb4df8a8c335233a28f3edba665f9ed"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195527-IW1_20240714T234924Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195527-IW1_20240714T234924Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "be39b640c398cd5f530baf81bbc8b9d2af295c5d27730f56b981288a08d8d01b"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195527-IW2_20240714T234925Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195527-IW2_20240714T234925Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "2cf22d7426a5ef79d3ea8e3035b5647baa6756559c6c6b4cd5610c68738602e3"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195528-IW1_20240714T234927Z_20240715T084534Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195528-IW1_20240714T234927Z_20240715T084534Z_S1A_30_v1.0_VH.tif",
+      "sha256": "8c98de9a47cc968b26cdff8920b3d4f87461101329ef6f8f42d17b635d46092f"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195528-IW2_20240714T234928Z_20240715T094145Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195528-IW2_20240714T234928Z_20240715T094145Z_S1A_30_v1.0_VH.tif",
+      "sha256": "72f295a87deef3df3a1808ae1fd33c9217ba83209d967ab41af720ef0affaed5"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195528-IW2_20240714T234928Z_20260305T032104Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195528-IW2_20240714T234928Z_20260305T032104Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195528-IW2_20240714T234928Z_20260305T032104Z_S1A_30_v1.0_VH.tif",
+      "sha256": "c39f4f15290ba8b35f12a5c9f1aab714d0ada10adb4f97066d7d95efe2955dc1"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195528-IW2_20240714T234928Z_20260430T163702Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195528-IW2_20240714T234928Z_20260430T163702Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195528-IW2_20240714T234928Z_20260430T163702Z_S1A_30_v1.0_VH.tif",
+      "sha256": "18f4c88d97a977d1dd671a18037a5672baa77cfad46378fa937f6035a73c2263"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW1_20240714T234930Z_20240715T094145Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195529-IW1_20240714T234930Z_20240715T094145Z_S1A_30_v1.0_VH.tif",
+      "sha256": "61cfd3b71727ccedd8cd91404df0be49725ac77bdd64d147b50648dd97f69381"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW1_20240714T234930Z_20260305T032104Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195529-IW1_20240714T234930Z_20260305T032104Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195529-IW1_20240714T234930Z_20260305T032104Z_S1A_30_v1.0_VH.tif",
+      "sha256": "340a1e769151624180f778080c354061e7e126ac40a6bdecf449dcba098beada"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW1_20240714T234930Z_20260430T163702Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195529-IW1_20240714T234930Z_20260430T163702Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195529-IW1_20240714T234930Z_20260430T163702Z_S1A_30_v1.0_VH.tif",
+      "sha256": "3d63215df2f1f2d41ea75ad80b90faa311091f12a71359acf0f73a42cb7ed468"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW2_20240714T234931Z_20240715T094145Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195529-IW2_20240714T234931Z_20240715T094145Z_S1A_30_v1.0_VH.tif",
+      "sha256": "535ec91e78c58788db58f243f1a4a16d26efcdc63c058f1d57a84382aa617519"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW2_20240714T234931Z_20260305T032104Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195529-IW2_20240714T234931Z_20260305T032104Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195529-IW2_20240714T234931Z_20260305T032104Z_S1A_30_v1.0_VH.tif",
+      "sha256": "887badb98585195b5daac7777c57a33e6ed1ef103ac5a6b7cc60c31e8e856fae"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195529-IW2_20240714T234931Z_20260430T163702Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195529-IW2_20240714T234931Z_20260430T163702Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195529-IW2_20240714T234931Z_20260430T163702Z_S1A_30_v1.0_VH.tif",
+      "sha256": "57deb9e6d82d9a1b83c0c88d919e7fbb4dee9ffad21cc59f400519c7804cba19"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW1_20240714T234933Z_20240715T094145Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195530-IW1_20240714T234933Z_20240715T094145Z_S1A_30_v1.0_VH.tif",
+      "sha256": "ad804d9812cfe95dd29adae3b7bc50681a579b8160757d32b03076a540e893b0"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW1_20240714T234933Z_20260305T032104Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195530-IW1_20240714T234933Z_20260305T032104Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195530-IW1_20240714T234933Z_20260305T032104Z_S1A_30_v1.0_VH.tif",
+      "sha256": "4de860276c4cc11608fdf0a7c756da42adf490949306a86b7127af22012f109d"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW1_20240714T234933Z_20260430T163702Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195530-IW1_20240714T234933Z_20260430T163702Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195530-IW1_20240714T234933Z_20260430T163702Z_S1A_30_v1.0_VH.tif",
+      "sha256": "f2647ec9ee210b69baa08cf65721ae91aab5a0ce5966ba5b1e42dc48f7b094c5"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW2_20240714T234934Z_20240715T094145Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195530-IW2_20240714T234934Z_20240715T094145Z_S1A_30_v1.0_VH.tif",
+      "sha256": "abeb6cfcea71c3dc860192f5932d286c58e6c6c3ef99fd98d99b4e15000fbf69"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW2_20240714T234934Z_20260305T032104Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195530-IW2_20240714T234934Z_20260305T032104Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195530-IW2_20240714T234934Z_20260305T032104Z_S1A_30_v1.0_VH.tif",
+      "sha256": "1ddb89dc1863d737a72a72c2c839db189396435eedd652983560ec42d43eb419"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195530-IW2_20240714T234934Z_20260430T163702Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195530-IW2_20240714T234934Z_20260430T163702Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195530-IW2_20240714T234934Z_20260430T163702Z_S1A_30_v1.0_VH.tif",
+      "sha256": "c1db38ba9695b45b0a3380889a27404c0657b3285c927db6492105f6981a08ff"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195531-IW1_20240714T234935Z_20240715T094145Z_S1A_30_v1.0",
+      "url": "https://datapool.asf.alaska.edu/RTC/OPERA-S1/OPERA_L2_RTC-S1_T092-195531-IW1_20240714T234935Z_20240715T094145Z_S1A_30_v1.0_VH.tif",
+      "sha256": "33b9c9bed4644c6dc8a88be8becb7112facd57f5b60619a160bca25e0ec7ef81"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195531-IW1_20240714T234935Z_20260305T032104Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195531-IW1_20240714T234935Z_20260305T032104Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195531-IW1_20240714T234935Z_20260305T032104Z_S1A_30_v1.0_VH.tif",
+      "sha256": "d076901e23c15817630ae5717dc849bfeec0679ee0a5d37830ff0d76c7a51180"
+    },
+    {
+      "date": "2024-07-14",
+      "product_id": "OPERA_L2_RTC-S1_T092-195531-IW1_20240714T234935Z_20260430T163702Z_S1A_30_v1.0",
+      "url": "https://cumulus.asf.earthdatacloud.nasa.gov/OPERA/OPERA_L2_RTC-S1/OPERA_L2_RTC-S1_T092-195531-IW1_20240714T234935Z_20260430T163702Z_S1A_30_v1.0/OPERA_L2_RTC-S1_T092-195531-IW1_20240714T234935Z_20260430T163702Z_S1A_30_v1.0_VH.tif",
+      "sha256": "761bc0f76001dc4d6f4481ce8b7296423079075feca9819d594362f3b656eda1"
+    }
+  ]
+}

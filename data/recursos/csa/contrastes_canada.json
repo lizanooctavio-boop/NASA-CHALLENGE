@@ -1,0 +1,83 @@
+{
+  "esquema": "nasa-challenge/contrastes",
+  "version": "1.0.0",
+  "generado": "2026-11-13",
+  "contrastes": [
+    {
+      "id": "noaa_canada_lluvia",
+      "papel": "contraste",
+      "estado": "ok",
+      "region": "CAN_prairies",
+      "periodo": [
+        2001,
+        2024
+      ],
+      "serie_nuestra": {
+        "fuente": "NASA GPM IMERG Final V07B, Canadian Prairies",
+        "pendiente": -30.4488,
+        "unidad": "mm/década",
+        "veredicto": "evidencia_insuficiente"
+      },
+      "serie_externa": {
+        "fuente": "Prairies weather stations (NOAA GSOM from GHCN-Daily, 3 stations)",
+        "pendiente": -19.6833,
+        "veredicto": "evidencia_insuficiente",
+        "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=CAN04016322&startDate=1951-01-01&endDate=2024-12-31&dataTypes=PRCP%2CTAVG&units=metric&format=json&includeAttributes=true",
+        "urls": [
+          "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=CAN04016322&startDate=1951-01-01&endDate=2024-12-31&dataTypes=PRCP%2CTAVG&units=metric&format=json&includeAttributes=true",
+          "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=CAN04014040&startDate=1951-01-01&endDate=2024-12-31&dataTypes=PRCP%2CTAVG&units=metric&format=json&includeAttributes=true",
+          "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=CAN04013660&startDate=1951-01-01&endDate=2024-12-31&dataTypes=PRCP%2CTAVG&units=metric&format=json&includeAttributes=true"
+        ],
+        "estaciones": [
+          "CAN04016322",
+          "CAN04014040",
+          "CAN04013660"
+        ]
+      },
+      "diferencia": {
+        "media": 35.25081420892644,
+        "r": 0.830116506670334,
+        "anios_comunes": 20
+      },
+      "frase_en": "3 fixed Prairies stations, 20 complete common years (12 valid NOAA GSOM months/year): r=0.830, mean station-minus-NASA difference=+35.251 mm/year; Sen slopes NASA -30.4488 versus stations -19.6833 mm/decade; verdicts insufficient evidence of a trend / insufficient evidence of a trend."
+    },
+    {
+      "id": "noaa_canada_tavg",
+      "papel": "contraste",
+      "estado": "ok",
+      "region": "CAN_prairies",
+      "periodo": [
+        2001,
+        2024
+      ],
+      "serie_nuestra": {
+        "fuente": "NASA GISTEMP v4 250 km, Canadian Prairies; anomalies vs 1951–1980",
+        "pendiente": 0.1737,
+        "unidad": "°C/década",
+        "veredicto": "evidencia_insuficiente"
+      },
+      "serie_externa": {
+        "fuente": "Prairies weather stations (NOAA GSOM from GHCN-Daily, 3 stations)",
+        "pendiente": 0.2396,
+        "veredicto": "evidencia_insuficiente",
+        "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=CAN04016322&startDate=1951-01-01&endDate=2024-12-31&dataTypes=PRCP%2CTAVG&units=metric&format=json&includeAttributes=true",
+        "urls": [
+          "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=CAN04016322&startDate=1951-01-01&endDate=2024-12-31&dataTypes=PRCP%2CTAVG&units=metric&format=json&includeAttributes=true",
+          "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=CAN04014040&startDate=1951-01-01&endDate=2024-12-31&dataTypes=PRCP%2CTAVG&units=metric&format=json&includeAttributes=true",
+          "https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-month&stations=CAN04013660&startDate=1951-01-01&endDate=2024-12-31&dataTypes=PRCP%2CTAVG&units=metric&format=json&includeAttributes=true"
+        ],
+        "estaciones": [
+          "CAN04016322",
+          "CAN04014040",
+          "CAN04013660"
+        ]
+      },
+      "diferencia": {
+        "media": 0.381659987851535,
+        "r": 0.9607668589630343,
+        "anios_comunes": 20
+      },
+      "frase_en": "3 fixed Prairies stations, 20 complete common years (12 valid NOAA GSOM months/year): r=0.961, mean station-minus-NASA difference=+0.382 °C; Sen slopes NASA +0.1737 versus stations +0.2396 °C/decade; verdicts insufficient evidence of a trend / insufficient evidence of a trend."
+    }
+  ]
+}
