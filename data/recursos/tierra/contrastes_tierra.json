@@ -1,0 +1,316 @@
+{
+ "esquema": "nasa-challenge/contrastes",
+ "version": "1.0.0",
+ "contrastes": [
+  {
+   "id": "merra2_humedad_gldas_0_10_NIC",
+   "investigacion": "humedad_gldas_0_10_NIC",
+   "papel": "contraste",
+   "estado": "ok",
+   "region": "NIC",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GLDAS-2.1 Noah (GES DISC), regional mean",
+    "pendiente": null,
+    "pendiente_propia": -0.0071,
+    "unidad": "z/década",
+    "veredicto": "metodos_discrepan"
+   },
+   "serie_externa": {
+    "fuente": "MERRA-2 surface soil wetness (GWETTOP), regional mean",
+    "pendiente": null,
+    "pendiente_propia": 0.048,
+    "unidad_propia": "0–5 cm wetness index",
+    "veredicto": "tendencia_detectada"
+   },
+   "diferencia": {
+    "media": null,
+    "r": 0.0246,
+    "anios_comunes": 24
+   },
+   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over NIC, 2001–2024: r = 0.02 (annual values); Sen slopes -0.0071 m³/m³ vs +0.0480 0–5 cm wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ."
+  },
+  {
+   "id": "merra2_humedad_gldas_10_40_NIC",
+   "investigacion": "humedad_gldas_10_40_NIC",
+   "papel": "contraste",
+   "estado": "ok",
+   "region": "NIC",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GLDAS-2.1 Noah (GES DISC), regional mean",
+    "pendiente": null,
+    "pendiente_propia": -0.0048,
+    "unidad": "z/década",
+    "veredicto": "metodos_discrepan"
+   },
+   "serie_externa": {
+    "fuente": "MERRA-2 root-zone soil wetness (GWETROOT), regional mean",
+    "pendiente": null,
+    "pendiente_propia": 0.041,
+    "unidad_propia": "root-zone wetness index",
+    "veredicto": "tendencia_detectada"
+   },
+   "diferencia": {
+    "media": null,
+    "r": 0.1425,
+    "anios_comunes": 24
+   },
+   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over NIC, 2001–2024: r = 0.14 (annual values); Sen slopes -0.0048 m³/m³ vs +0.0410 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ."
+  },
+  {
+   "id": "merra2_humedad_gldas_0_10_caja_sicc",
+   "investigacion": "humedad_gldas_0_10_caja_sicc",
+   "papel": "contraste",
+   "estado": "ok",
+   "region": "caja_sicc",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GLDAS-2.1 Noah (GES DISC), regional mean",
+    "pendiente": null,
+    "pendiente_propia": -0.0061,
+    "unidad": "z/década",
+    "veredicto": "metodos_discrepan"
+   },
+   "serie_externa": {
+    "fuente": "MERRA-2 surface soil wetness (GWETTOP), regional mean",
+    "pendiente": null,
+    "pendiente_propia": 0.0453,
+    "unidad_propia": "0–5 cm wetness index",
+    "veredicto": "tendencia_detectada"
+   },
+   "diferencia": {
+    "media": null,
+    "r": 0.0351,
+    "anios_comunes": 24
+   },
+   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over caja_sicc, 2001–2024: r = 0.04 (annual values); Sen slopes -0.0061 m³/m³ vs +0.0453 0–5 cm wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ."
+  },
+  {
+   "id": "merra2_humedad_gldas_10_40_caja_sicc",
+   "investigacion": "humedad_gldas_10_40_caja_sicc",
+   "papel": "contraste",
+   "estado": "ok",
+   "region": "caja_sicc",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GLDAS-2.1 Noah (GES DISC), regional mean",
+    "pendiente": null,
+    "pendiente_propia": -0.0047,
+    "unidad": "z/década",
+    "veredicto": "metodos_discrepan"
+   },
+   "serie_externa": {
+    "fuente": "MERRA-2 root-zone soil wetness (GWETROOT), regional mean",
+    "pendiente": null,
+    "pendiente_propia": 0.0313,
+    "unidad_propia": "root-zone wetness index",
+    "veredicto": "tendencia_detectada"
+   },
+   "diferencia": {
+    "media": null,
+    "r": 0.1266,
+    "anios_comunes": 24
+   },
+   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over caja_sicc, 2001–2024: r = 0.13 (annual values); Sen slopes -0.0047 m³/m³ vs +0.0313 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ."
+  },
+  {
+   "id": "merra2_humedad_gldas_0_10_caribe",
+   "investigacion": "humedad_gldas_0_10_caribe",
+   "papel": "contraste",
+   "estado": "ok",
+   "region": "caribe",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GLDAS-2.1 Noah (GES DISC), regional mean",
+    "pendiente": null,
+    "pendiente_propia": -0.006,
+    "unidad": "z/década",
+    "veredicto": "metodos_discrepan"
+   },
+   "serie_externa": {
+    "fuente": "MERRA-2 surface soil wetness (GWETTOP), regional mean",
+    "pendiente": null,
+    "pendiente_propia": 0.0356,
+    "unidad_propia": "0–5 cm wetness index",
+    "veredicto": "tendencia_detectada"
+   },
+   "diferencia": {
+    "media": null,
+    "r": -0.034,
+    "anios_comunes": 24
+   },
+   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over caribe, 2001–2024: r = -0.03 (annual values); Sen slopes -0.0060 m³/m³ vs +0.0356 0–5 cm wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ."
+  },
+  {
+   "id": "merra2_humedad_gldas_10_40_caribe",
+   "investigacion": "humedad_gldas_10_40_caribe",
+   "papel": "contraste",
+   "estado": "ok",
+   "region": "caribe",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GLDAS-2.1 Noah (GES DISC), regional mean",
+    "pendiente": null,
+    "pendiente_propia": -0.005,
+    "unidad": "z/década",
+    "veredicto": "metodos_discrepan"
+   },
+   "serie_externa": {
+    "fuente": "MERRA-2 root-zone soil wetness (GWETROOT), regional mean",
+    "pendiente": null,
+    "pendiente_propia": 0.0361,
+    "unidad_propia": "root-zone wetness index",
+    "veredicto": "tendencia_detectada"
+   },
+   "diferencia": {
+    "media": null,
+    "r": 0.0371,
+    "anios_comunes": 24
+   },
+   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over caribe, 2001–2024: r = 0.04 (annual values); Sen slopes -0.0050 m³/m³ vs +0.0361 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ."
+  },
+  {
+   "id": "merra2_humedad_gldas_0_10_central",
+   "investigacion": "humedad_gldas_0_10_central",
+   "papel": "contraste",
+   "estado": "ok",
+   "region": "central",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GLDAS-2.1 Noah (GES DISC), regional mean",
+    "pendiente": null,
+    "pendiente_propia": -0.009,
+    "unidad": "z/década",
+    "veredicto": "tendencia_detectada"
+   },
+   "serie_externa": {
+    "fuente": "MERRA-2 surface soil wetness (GWETTOP), regional mean",
+    "pendiente": null,
+    "pendiente_propia": 0.0627,
+    "unidad_propia": "0–5 cm wetness index",
+    "veredicto": "tendencia_detectada"
+   },
+   "diferencia": {
+    "media": null,
+    "r": 0.0746,
+    "anios_comunes": 24
+   },
+   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over central, 2001–2024: r = 0.07 (annual values); Sen slopes -0.0090 m³/m³ vs +0.0627 0–5 cm wetness index per decade; verdicts 'trend detected' vs 'trend detected'. Shown as standardized anomalies because the units differ."
+  },
+  {
+   "id": "merra2_humedad_gldas_10_40_central",
+   "investigacion": "humedad_gldas_10_40_central",
+   "papel": "contraste",
+   "estado": "ok",
+   "region": "central",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GLDAS-2.1 Noah (GES DISC), regional mean",
+    "pendiente": null,
+    "pendiente_propia": -0.0082,
+    "unidad": "z/década",
+    "veredicto": "metodos_discrepan"
+   },
+   "serie_externa": {
+    "fuente": "MERRA-2 root-zone soil wetness (GWETROOT), regional mean",
+    "pendiente": null,
+    "pendiente_propia": 0.0506,
+    "unidad_propia": "root-zone wetness index",
+    "veredicto": "tendencia_detectada"
+   },
+   "diferencia": {
+    "media": null,
+    "r": 0.2202,
+    "anios_comunes": 24
+   },
+   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over central, 2001–2024: r = 0.22 (annual values); Sen slopes -0.0082 m³/m³ vs +0.0506 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ."
+  },
+  {
+   "id": "merra2_humedad_gldas_0_10_pacifico",
+   "investigacion": "humedad_gldas_0_10_pacifico",
+   "papel": "contraste",
+   "estado": "ok",
+   "region": "pacifico",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GLDAS-2.1 Noah (GES DISC), regional mean",
+    "pendiente": null,
+    "pendiente_propia": -0.0055,
+    "unidad": "z/década",
+    "veredicto": "evidencia_insuficiente"
+   },
+   "serie_externa": {
+    "fuente": "MERRA-2 surface soil wetness (GWETTOP), regional mean",
+    "pendiente": null,
+    "pendiente_propia": 0.0627,
+    "unidad_propia": "0–5 cm wetness index",
+    "veredicto": "tendencia_detectada"
+   },
+   "diferencia": {
+    "media": null,
+    "r": 0.2238,
+    "anios_comunes": 24
+   },
+   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over pacifico, 2001–2024: r = 0.22 (annual values); Sen slopes -0.0055 m³/m³ vs +0.0627 0–5 cm wetness index per decade; verdicts 'insufficient evidence' vs 'trend detected'. Shown as standardized anomalies because the units differ."
+  },
+  {
+   "id": "merra2_humedad_gldas_10_40_pacifico",
+   "investigacion": "humedad_gldas_10_40_pacifico",
+   "papel": "contraste",
+   "estado": "ok",
+   "region": "pacifico",
+   "periodo": [
+    2001,
+    2024
+   ],
+   "serie_nuestra": {
+    "fuente": "GLDAS-2.1 Noah (GES DISC), regional mean",
+    "pendiente": null,
+    "pendiente_propia": -0.0038,
+    "unidad": "z/década",
+    "veredicto": "evidencia_insuficiente"
+   },
+   "serie_externa": {
+    "fuente": "MERRA-2 root-zone soil wetness (GWETROOT), regional mean",
+    "pendiente": null,
+    "pendiente_propia": 0.0481,
+    "unidad_propia": "root-zone wetness index",
+    "veredicto": "tendencia_detectada"
+   },
+   "diferencia": {
+    "media": null,
+    "r": 0.3551,
+    "anios_comunes": 24
+   },
+   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over pacifico, 2001–2024: r = 0.36 (annual values); Sen slopes -0.0038 m³/m³ vs +0.0481 root-zone wetness index per decade; verdicts 'insufficient evidence' vs 'trend detected'. Shown as standardized anomalies because the units differ."
+  }
+ ]
+}

@@ -1,0 +1,1128 @@
+{
+  "fuente": "AppEEARS Explore Requests, DOM visible de las dos páginas",
+  "url": "https://appeears.earthdatacloud.nasa.gov/explore",
+  "observado_utc": "2026-11-13T06:30:48.277Z",
+  "total": 160,
+  "recibos": [
+    {
+      "enviada_local": "11-13-2026 12:28:42 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "0f7e8ed1-3001-4b27-8ced-5cf295043f14",
+      "task_name": "tierra-CAN_prairies-MOD13A3.061-2021",
+      "enviada_utc": "2026-11-13T06:28:42.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:28:38 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "afad57cd-5c2c-478e-a4f3-8ee40fac11ba",
+      "task_name": "tierra-CAN_prairies-MOD13A3.061-2016",
+      "enviada_utc": "2026-11-13T06:28:38.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:28:34 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "4b3f922d-dc0f-4083-83a4-34655ad9855d",
+      "task_name": "tierra-CAN_prairies-MOD13A3.061-2011",
+      "enviada_utc": "2026-11-13T06:28:34.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:28:30 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "abc3a129-caab-4ba9-bafb-9d31a1b01f9a",
+      "task_name": "tierra-CAN_prairies-MOD13A3.061-2006",
+      "enviada_utc": "2026-11-13T06:28:30.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:28:26 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "d94a6e2e-d14c-4423-91a4-2b8f1767b3d2",
+      "task_name": "tierra-CAN_prairies-MOD13A3.061-2001",
+      "enviada_utc": "2026-11-13T06:28:26.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:28:17 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "c9a19ccb-bd3d-48d6-b7e0-f60717f782bc",
+      "task_name": "tierra-CAN_prairies-MOD11A2.061-2021",
+      "enviada_utc": "2026-11-13T06:28:17.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:28:13 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "962989c6-0806-4e83-8d82-9b9db3c4be2e",
+      "task_name": "tierra-CAN_prairies-MOD11A2.061-2016",
+      "enviada_utc": "2026-11-13T06:28:13.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:28:09 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "9ebe7a18-573a-47ee-b14d-002d59e066dd",
+      "task_name": "tierra-CAN_prairies-MOD11A2.061-2011",
+      "enviada_utc": "2026-11-13T06:28:09.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:28:05 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "0cb670e6-180a-4eab-bb8e-54fe8da98ec2",
+      "task_name": "tierra-CAN_prairies-MOD11A2.061-2006",
+      "enviada_utc": "2026-11-13T06:28:05.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:28:01 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "d784ad58-778c-4291-b4e9-4dadfdbbf3a2",
+      "task_name": "tierra-CAN_prairies-MOD11A2.061-2001",
+      "enviada_utc": "2026-11-13T06:28:01.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:27:45 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "b3cc1530-4ac1-4fe0-9386-9d980128b631",
+      "task_name": "tierra-caja_sicc-MCD12Q1.061-2021",
+      "enviada_utc": "2026-11-13T06:27:45.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:27:40 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "c3446d37-763a-4ce3-946f-50ec2ec15f0c",
+      "task_name": "tierra-caja_sicc-MCD12Q1.061-2016",
+      "enviada_utc": "2026-11-13T06:27:40.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:27:32 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "5299f5db-8349-4642-a70f-32fb76958afa",
+      "task_name": "tierra-caja_sicc-MCD12Q1.061-2011",
+      "enviada_utc": "2026-11-13T06:27:32.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:27:29 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "714e8cc2-395d-4076-be82-80a7e0ffe97d",
+      "task_name": "tierra-caja_sicc-MCD12Q1.061-2006",
+      "enviada_utc": "2026-11-13T06:27:29.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:27:25 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "45a4d1fa-ccb0-40f4-8d60-89cc7bc5324d",
+      "task_name": "tierra-caja_sicc-MCD12Q1.061-2001",
+      "enviada_utc": "2026-11-13T06:27:25.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:27:21 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "bbc552bc-1007-469b-ae5c-259a04cbb6a7",
+      "task_name": "tierra-caribe-MCD12Q1.061-2021",
+      "enviada_utc": "2026-11-13T06:27:21.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:27:17 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "d60dc4bf-767b-4f8f-916c-5147c828c192",
+      "task_name": "tierra-caribe-MCD12Q1.061-2016",
+      "enviada_utc": "2026-11-13T06:27:17.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:27:08 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "7b0f9a62-a087-4ada-a42b-f4a74a7b5db8",
+      "task_name": "tierra-caribe-MCD12Q1.061-2011",
+      "enviada_utc": "2026-11-13T06:27:08.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:27:04 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "551a08d0-b0ea-428d-9a76-09e25c4ecaa5",
+      "task_name": "tierra-caribe-MCD12Q1.061-2006",
+      "enviada_utc": "2026-11-13T06:27:04.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:27:00 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "b9b80768-f6a0-4d05-8430-0596c4014577",
+      "task_name": "tierra-caribe-MCD12Q1.061-2001",
+      "enviada_utc": "2026-11-13T06:27:00.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:26:56 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "90880176-ccfe-4caf-ac02-2881ad6d1179",
+      "task_name": "tierra-central-MCD12Q1.061-2021",
+      "enviada_utc": "2026-11-13T06:26:56.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:26:52 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "dbed1346-ed29-46a0-9eaf-bf0dd51a878e",
+      "task_name": "tierra-central-MCD12Q1.061-2016",
+      "enviada_utc": "2026-11-13T06:26:52.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:26:11 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "152199d5-907b-449f-a309-936f4f7ab7d7",
+      "task_name": "tierra-central-MCD12Q1.061-2011",
+      "enviada_utc": "2026-11-13T06:26:11.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:26:07 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "50c70275-4296-4f00-8607-dc863c5e0d03",
+      "task_name": "tierra-central-MCD12Q1.061-2006",
+      "enviada_utc": "2026-11-13T06:26:07.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:26:03 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "148d37e0-e5b4-4cf3-b297-f6d24396302e",
+      "task_name": "tierra-central-MCD12Q1.061-2001",
+      "enviada_utc": "2026-11-13T06:26:03.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:25:59 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "e82aa99c-89d8-483a-bdfd-8d580ddf04c5",
+      "task_name": "tierra-pacifico-MCD12Q1.061-2021",
+      "enviada_utc": "2026-11-13T06:25:59.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:25:55 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "3f22fb9e-7f05-48b6-baa8-4daf5e5b8fde",
+      "task_name": "tierra-pacifico-MCD12Q1.061-2016",
+      "enviada_utc": "2026-11-13T06:25:55.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:25:45 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "63a568a7-2c54-42c4-a9a7-8795d415dc6f",
+      "task_name": "tierra-pacifico-MCD12Q1.061-2011",
+      "enviada_utc": "2026-11-13T06:25:45.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:25:41 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "555b8a95-a4e4-4a2e-8af7-db7ae7f6e8c2",
+      "task_name": "tierra-pacifico-MCD12Q1.061-2006",
+      "enviada_utc": "2026-11-13T06:25:41.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:25:37 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "06af151b-5e85-4d49-8ea6-820cbf3c884d",
+      "task_name": "tierra-pacifico-MCD12Q1.061-2001",
+      "enviada_utc": "2026-11-13T06:25:37.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:25:33 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "989c394f-6d4d-4b63-ae15-0b490053d83a",
+      "task_name": "tierra-NIC-MCD12Q1.061-2021",
+      "enviada_utc": "2026-11-13T06:25:33.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:25:29 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "172bc01b-fbe6-4ac9-9ea8-b0d4630d38d2",
+      "task_name": "tierra-NIC-MCD12Q1.061-2016",
+      "enviada_utc": "2026-11-13T06:25:29.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:24:30 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "8fd53b87-f210-4438-b8e0-ba2f0f458fc2",
+      "task_name": "tierra-NIC-MCD12Q1.061-2011",
+      "enviada_utc": "2026-11-13T06:24:30.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:24:26 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "d7316100-7c04-4f54-ab6d-478a93e860f9",
+      "task_name": "tierra-NIC-MCD12Q1.061-2006",
+      "enviada_utc": "2026-11-13T06:24:26.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:24:22 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "977f4f6f-8345-4daf-a51c-904b7170ede1",
+      "task_name": "tierra-NIC-MCD12Q1.061-2001",
+      "enviada_utc": "2026-11-13T06:24:22.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:24:18 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "096a33c3-37a1-4d68-ad65-a32f776b2d0a",
+      "task_name": "tierra-caja_sicc-MOD13A3.061-2021",
+      "enviada_utc": "2026-11-13T06:24:18.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:24:14 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "05b8a344-460b-4e68-8887-2c340feddac2",
+      "task_name": "tierra-caja_sicc-MOD13A3.061-2016",
+      "enviada_utc": "2026-11-13T06:24:14.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:24:04 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "8beabe2f-a353-4d5f-aa83-b06e7884761c",
+      "task_name": "tierra-caja_sicc-MOD13A3.061-2011",
+      "enviada_utc": "2026-11-13T06:24:04.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:24:00 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "cb22e26d-5e78-4990-9066-9143604b43f2",
+      "task_name": "tierra-caja_sicc-MOD13A3.061-2006",
+      "enviada_utc": "2026-11-13T06:24:00.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:23:56 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "9e2576bd-0046-4fa3-9f20-69f60ccfb5fa",
+      "task_name": "tierra-caja_sicc-MOD13A3.061-2001",
+      "enviada_utc": "2026-11-13T06:23:56.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:23:52 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "f3b2ab91-159d-4a84-94de-46cfd0b44f36",
+      "task_name": "tierra-caribe-MOD13A3.061-2021",
+      "enviada_utc": "2026-11-13T06:23:52.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:23:48 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "f54b0e4a-1780-4b14-950d-6c29a76a8dac",
+      "task_name": "tierra-caribe-MOD13A3.061-2016",
+      "enviada_utc": "2026-11-13T06:23:48.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:18:49 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "776210b6-54d7-4ed1-a65e-9678ca8a651e",
+      "task_name": "tierra-caribe-MOD13A3.061-2011",
+      "enviada_utc": "2026-11-13T06:18:49.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:18:45 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "cf69380b-5b41-4822-a05f-e3f3fd82488f",
+      "task_name": "tierra-caribe-MOD13A3.061-2006",
+      "enviada_utc": "2026-11-13T06:18:45.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:18:41 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "a0dc627b-ee3e-4c4a-9dcd-438c6f5e2cbd",
+      "task_name": "tierra-caribe-MOD13A3.061-2001",
+      "enviada_utc": "2026-11-13T06:18:41.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:18:34 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "add483f7-0fad-4589-8848-1d48ee98d5e4",
+      "task_name": "tierra-central-MOD13A3.061-2021",
+      "enviada_utc": "2026-11-13T06:18:34.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:18:30 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "3921b476-d032-4557-9cf7-171998d3e3e3",
+      "task_name": "tierra-central-MOD13A3.061-2016",
+      "enviada_utc": "2026-11-13T06:18:30.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:17:03 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "328595ef-ffa3-4d0d-b3af-07ab50e28ac2",
+      "task_name": "tierra-central-MOD13A3.061-2011",
+      "enviada_utc": "2026-11-13T06:17:03.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:16:56 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "25ab1506-9772-4a72-81f3-9ba2cb1c7240",
+      "task_name": "tierra-central-MOD13A3.061-2006",
+      "enviada_utc": "2026-11-13T06:16:56.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:16:50 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "3a268e2a-7477-4f59-a409-2efa6ee7643c",
+      "task_name": "tierra-central-MOD13A3.061-2001",
+      "enviada_utc": "2026-11-13T06:16:50.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:16:43 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "1ddcd8c6-6543-4d42-8034-08d5e5080fbb",
+      "task_name": "tierra-pacifico-MOD13A3.061-2021",
+      "enviada_utc": "2026-11-13T06:16:43.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:16:36 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "307c25e8-ebc6-4e1c-876c-3800002d59b8",
+      "task_name": "tierra-pacifico-MOD13A3.061-2016",
+      "enviada_utc": "2026-11-13T06:16:36.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:15:08 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "e030f9ba-acf4-4b6d-a273-fbf43d425643",
+      "task_name": "tierra-pacifico-MOD13A3.061-2011",
+      "enviada_utc": "2026-11-13T06:15:08.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:15:01 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "e76163c5-e1dd-49da-92f7-4848d116a326",
+      "task_name": "tierra-pacifico-MOD13A3.061-2006",
+      "enviada_utc": "2026-11-13T06:15:01.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:14:55 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "3167101b-4af5-43eb-96e6-3300135275e2",
+      "task_name": "tierra-pacifico-MOD13A3.061-2001",
+      "enviada_utc": "2026-11-13T06:14:55.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:14:49 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "c62ec75e-a6c7-47de-b565-5e524cd3d588",
+      "task_name": "tierra-NIC-MOD13A3.061-2021",
+      "enviada_utc": "2026-11-13T06:14:49.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:14:42 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "bc3fc193-83bb-4123-96f3-414018a408d6",
+      "task_name": "tierra-NIC-MOD13A3.061-2016",
+      "enviada_utc": "2026-11-13T06:14:42.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:14:06 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "a69a5253-4019-4b0b-8f49-95de491595ee",
+      "task_name": "tierra-NIC-MOD13A3.061-2011",
+      "enviada_utc": "2026-11-13T06:14:06.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:14:00 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "a8ec3320-67d2-4ad2-a78a-148450ee6b7e",
+      "task_name": "tierra-NIC-MOD13A3.061-2006",
+      "enviada_utc": "2026-11-13T06:14:00.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:13:56 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "2f9bbeef-9c38-4255-bf19-d36741d92729",
+      "task_name": "tierra-NIC-MOD13A3.061-2001",
+      "enviada_utc": "2026-11-13T06:13:56.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:13:41 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "0f5fd8f4-09c5-443c-98ad-763614ff6b79",
+      "task_name": "tierra-caja_sicc-MOD11A2.061-2021",
+      "enviada_utc": "2026-11-13T06:13:41.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:13:31 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "273a5965-0f6c-4a70-962b-9bb25644ee18",
+      "task_name": "tierra-caja_sicc-MOD11A2.061-2016",
+      "enviada_utc": "2026-11-13T06:13:31.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:13:25 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "01fb8c9c-4616-449a-84ac-69c321550933",
+      "task_name": "tierra-caja_sicc-MOD11A2.061-2011",
+      "enviada_utc": "2026-11-13T06:13:25.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:13:18 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "f27ecec6-fb7f-4aa9-a1f6-4118ee53ec12",
+      "task_name": "tierra-caja_sicc-MOD11A2.061-2006",
+      "enviada_utc": "2026-11-13T06:13:18.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:13:12 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "616b05ae-e3e6-4c3f-9158-b0cce757df37",
+      "task_name": "tierra-caja_sicc-MOD11A2.061-2001",
+      "enviada_utc": "2026-11-13T06:13:12.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:12:02 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "e31e1ba1-0b31-4297-a437-ade811f40238",
+      "task_name": "tierra-caribe-MOD11A2.061-2021",
+      "enviada_utc": "2026-11-13T06:12:02.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:11:55 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "aca715c6-b4c4-4ea6-8fc5-543790d13e00",
+      "task_name": "tierra-caribe-MOD11A2.061-2016",
+      "enviada_utc": "2026-11-13T06:11:55.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:11:48 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "3b68dc80-99f7-4127-8de8-6d8b7ab52375",
+      "task_name": "tierra-caribe-MOD11A2.061-2011",
+      "enviada_utc": "2026-11-13T06:11:48.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:11:42 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "9259b670-9d95-4bc1-ba81-938c698f39d0",
+      "task_name": "tierra-caribe-MOD11A2.061-2006",
+      "enviada_utc": "2026-11-13T06:11:42.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:11:35 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "e4657d21-64f0-41c6-bd1e-1ff5fdc20a9c",
+      "task_name": "tierra-caribe-MOD11A2.061-2001",
+      "enviada_utc": "2026-11-13T06:11:35.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:10:42 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "e1291296-ec32-4f14-ab06-730a4053b2f4",
+      "task_name": "tierra-central-MOD11A2.061-2021",
+      "enviada_utc": "2026-11-13T06:10:42.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:10:35 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "c76b39fa-ef42-45f6-9432-e15e20654f1a",
+      "task_name": "tierra-central-MOD11A2.061-2016",
+      "enviada_utc": "2026-11-13T06:10:35.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:10:28 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "95e8a598-f9fe-4cf2-90a1-53eb2cc97664",
+      "task_name": "tierra-central-MOD11A2.061-2011",
+      "enviada_utc": "2026-11-13T06:10:28.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:10:21 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "23aaff11-b2bd-4dd6-aacd-89de25d9fc7d",
+      "task_name": "tierra-central-MOD11A2.061-2006",
+      "enviada_utc": "2026-11-13T06:10:21.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:10:15 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "1cef6c17-0bf0-4fc1-ac87-f80765b05e23",
+      "task_name": "tierra-central-MOD11A2.061-2001",
+      "enviada_utc": "2026-11-13T06:10:15.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:09:58 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "6123d739-3a6a-472f-8c30-5cc2c3c68303",
+      "task_name": "tierra-pacifico-MOD11A2.061-2021",
+      "enviada_utc": "2026-11-13T06:09:58.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:09:53 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "bec7be06-797b-4dd5-a1a8-3bec86c1f88d",
+      "task_name": "tierra-pacifico-MOD11A2.061-2016",
+      "enviada_utc": "2026-11-13T06:09:53.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:09:49 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "9e3bda14-14af-4758-8ad5-da6a5c0c0dfe",
+      "task_name": "tierra-pacifico-MOD11A2.061-2011",
+      "enviada_utc": "2026-11-13T06:09:49.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:09:45 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "548ea1be-3b10-46f4-9b04-0b82924731bb",
+      "task_name": "tierra-pacifico-MOD11A2.061-2006",
+      "enviada_utc": "2026-11-13T06:09:45.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:09:42 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "85a1f6a8-f8c8-4801-b1c5-87aec8440047",
+      "task_name": "tierra-pacifico-MOD11A2.061-2001",
+      "enviada_utc": "2026-11-13T06:09:42.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:09:16 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "07089d9e-adb4-407a-bb10-a5d24db9d21f",
+      "task_name": "tierra-NIC-MOD11A2.061-2021",
+      "enviada_utc": "2026-11-13T06:09:16.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:09:12 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "5c595e5c-461d-49dd-a13a-7515c07254ca",
+      "task_name": "tierra-NIC-MOD11A2.061-2016",
+      "enviada_utc": "2026-11-13T06:09:12.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:09:08 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "ae7d1068-2533-4c44-a86b-5efa09cccf95",
+      "task_name": "tierra-NIC-MOD11A2.061-2011",
+      "enviada_utc": "2026-11-13T06:09:08.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:09:04 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "d5563aa3-104d-4699-8fa7-971fde4fedc5",
+      "task_name": "tierra-NIC-MOD11A2.061-2006",
+      "enviada_utc": "2026-11-13T06:09:04.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:09:00 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "24976d9c-72f6-41c9-9191-6227faf6e394",
+      "task_name": "tierra-NIC-MOD11A2.061-2001",
+      "enviada_utc": "2026-11-13T06:09:00.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:08:49 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "f74e09dc-04ee-48af-9ab0-3b686fd4513f",
+      "task_name": "tierra-caja_sicc-MOD16A2GF.061-2021",
+      "enviada_utc": "2026-11-13T06:08:49.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:08:45 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "6fd44763-9aeb-4a5b-81c9-ac55429b00bb",
+      "task_name": "tierra-caja_sicc-MOD16A2GF.061-2016",
+      "enviada_utc": "2026-11-13T06:08:45.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:08:41 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "734788d7-402b-4d7e-b9bb-0c13dd3979eb",
+      "task_name": "tierra-caja_sicc-MOD16A2GF.061-2011",
+      "enviada_utc": "2026-11-13T06:08:41.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:08:37 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "b18dbf39-2b54-45b6-8c60-4ca49fe88281",
+      "task_name": "tierra-caja_sicc-MOD16A2GF.061-2006",
+      "enviada_utc": "2026-11-13T06:08:37.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:08:34 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "57206189-8266-4405-8482-33b956a8c5f3",
+      "task_name": "tierra-caja_sicc-MOD16A2GF.061-2001",
+      "enviada_utc": "2026-11-13T06:08:34.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:08:03 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "391312a6-f396-4d5e-b794-1509f7e86fe3",
+      "task_name": "tierra-caribe-MOD16A2GF.061-2021",
+      "enviada_utc": "2026-11-13T06:08:03.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:59 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "41f21296-34c6-40db-84db-263c6aa097e5",
+      "task_name": "tierra-caribe-MOD16A2GF.061-2016",
+      "enviada_utc": "2026-11-13T06:07:59.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:56 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "979c6c69-23c3-46eb-94cf-c611714f5e11",
+      "task_name": "tierra-caribe-MOD16A2GF.061-2011",
+      "enviada_utc": "2026-11-13T06:07:56.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:52 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "47757139-3050-4c62-bad9-d58206e6e32a",
+      "task_name": "tierra-caribe-MOD16A2GF.061-2006",
+      "enviada_utc": "2026-11-13T06:07:52.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:48 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "814aaf8b-8186-4222-b5ed-26ea0ef7a9ba",
+      "task_name": "tierra-caribe-MOD16A2GF.061-2001",
+      "enviada_utc": "2026-11-13T06:07:48.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:37 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "d1539f51-364c-4f29-a388-19e6b98fba06",
+      "task_name": "tierra-central-MOD16A2GF.061-2021",
+      "enviada_utc": "2026-11-13T06:07:37.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:33 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "c9513f96-71e5-4470-ba7b-facee73a6ecf",
+      "task_name": "tierra-central-MOD16A2GF.061-2016",
+      "enviada_utc": "2026-11-13T06:07:33.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:29 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "b01f4855-5b91-46d4-a893-4210fc29abe1",
+      "task_name": "tierra-central-MOD16A2GF.061-2011",
+      "enviada_utc": "2026-11-13T06:07:29.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:25 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "cb61154f-fca5-4882-a2cd-27c1c669191a",
+      "task_name": "tierra-central-MOD16A2GF.061-2006",
+      "enviada_utc": "2026-11-13T06:07:25.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:21 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "9d7684a4-4a31-4152-a7d2-d7488fd543fe",
+      "task_name": "tierra-central-MOD16A2GF.061-2001",
+      "enviada_utc": "2026-11-13T06:07:21.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:08 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "7943269e-0767-40ac-932c-aec60b094b8e",
+      "task_name": "tierra-pacifico-MOD16A2GF.061-2021",
+      "enviada_utc": "2026-11-13T06:07:08.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:04 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "c277ec2f-17e2-47ea-924e-bbd7716cddad",
+      "task_name": "tierra-pacifico-MOD16A2GF.061-2016",
+      "enviada_utc": "2026-11-13T06:07:04.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:07:00 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "d520156c-d31c-475d-82dd-0f419f8c3a19",
+      "task_name": "tierra-pacifico-MOD16A2GF.061-2011",
+      "enviada_utc": "2026-11-13T06:07:00.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:06:57 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "063eddd7-838f-4a77-9593-2f679da19c69",
+      "task_name": "tierra-pacifico-MOD16A2GF.061-2006",
+      "enviada_utc": "2026-11-13T06:06:57.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:06:53 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "dd6ae126-4379-4bbb-b3cb-6ed21816c31b",
+      "task_name": "tierra-pacifico-MOD16A2GF.061-2001",
+      "enviada_utc": "2026-11-13T06:06:53.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:05:59 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "a581b519-4524-438c-ac83-70d64df29758",
+      "task_name": "tierra-NIC-MOD16A2GF.061-2021",
+      "enviada_utc": "2026-11-13T06:05:59.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:05:53 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "de0813fb-639c-4330-b792-122ea3b534ca",
+      "task_name": "tierra-NIC-MOD16A2GF.061-2016",
+      "enviada_utc": "2026-11-13T06:05:53.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:05:47 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "76a72052-1951-4316-b02e-3d4e31eda5a7",
+      "task_name": "tierra-NIC-MOD16A2GF.061-2011",
+      "enviada_utc": "2026-11-13T06:05:47.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:05:40 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "d00eeaae-0f85-41f2-a3a1-a0c906ffffdd",
+      "task_name": "tierra-NIC-MOD16A2GF.061-2006",
+      "enviada_utc": "2026-11-13T06:05:40.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:05:34 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "69c3a8fb-9ce3-4ca7-b122-eabacc658b39",
+      "task_name": "tierra-NIC-MOD16A2GF.061-2001",
+      "enviada_utc": "2026-11-13T06:05:34.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:05:20 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "bb825c38-6e8c-4878-a818-64b716d41ff1",
+      "task_name": "tierra-caja_sicc-SPL4SMGP.008-2024",
+      "enviada_utc": "2026-11-13T06:05:20.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:05:14 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "941ab595-8720-4acd-928a-3c503293f5ef",
+      "task_name": "tierra-caja_sicc-SPL4SMGP.008-2023",
+      "enviada_utc": "2026-11-13T06:05:14.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:05:07 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "555e4d2a-2013-4727-b39c-f13e0f01bbbf",
+      "task_name": "tierra-caja_sicc-SPL4SMGP.008-2022",
+      "enviada_utc": "2026-11-13T06:05:07.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:05:01 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "547691c6-d92f-4582-98ad-47bbd0d3fa21",
+      "task_name": "tierra-caja_sicc-SPL4SMGP.008-2021",
+      "enviada_utc": "2026-11-13T06:05:01.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:04:55 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "6d41d8c4-7b32-4a2c-a428-dd47c4ff8380",
+      "task_name": "tierra-caja_sicc-SPL4SMGP.008-2020",
+      "enviada_utc": "2026-11-13T06:04:55.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:04:22 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "221fe8b1-c6fc-45e5-99af-afab4d869840",
+      "task_name": "tierra-caja_sicc-SPL4SMGP.008-2019",
+      "enviada_utc": "2026-11-13T06:04:22.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:04:16 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "d63e5237-1b41-4739-a7f5-d5aa635e5ac4",
+      "task_name": "tierra-caja_sicc-SPL4SMGP.008-2018",
+      "enviada_utc": "2026-11-13T06:04:16.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:04:10 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "18408721-9e78-4647-acf5-e664315a9933",
+      "task_name": "tierra-caja_sicc-SPL4SMGP.008-2017",
+      "enviada_utc": "2026-11-13T06:04:10.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:04:03 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "7dfff877-f0f7-43bf-8022-063d4c2d2b44",
+      "task_name": "tierra-caja_sicc-SPL4SMGP.008-2016",
+      "enviada_utc": "2026-11-13T06:04:03.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:03:58 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "0aee2569-d0db-4807-9e51-d15c75029c02",
+      "task_name": "tierra-caja_sicc-SPL4SMGP.008-2015",
+      "enviada_utc": "2026-11-13T06:03:58.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:02:48 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "ef7f8fbf-c82d-4772-8749-49b4b9fa23e7",
+      "task_name": "tierra-caribe-SPL4SMGP.008-2024",
+      "enviada_utc": "2026-11-13T06:02:48.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:02:42 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "9d3e4178-5262-4963-9d97-2396e40de1d3",
+      "task_name": "tierra-caribe-SPL4SMGP.008-2023",
+      "enviada_utc": "2026-11-13T06:02:42.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:02:36 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "17b4657e-a88e-4965-9315-d1dd6f926158",
+      "task_name": "tierra-caribe-SPL4SMGP.008-2022",
+      "enviada_utc": "2026-11-13T06:02:36.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:02:30 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "69b67186-3f41-4009-bd1b-0a124d4e0602",
+      "task_name": "tierra-caribe-SPL4SMGP.008-2021",
+      "enviada_utc": "2026-11-13T06:02:30.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:02:23 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "41546c00-be28-470a-96df-1ba9376dd4fb",
+      "task_name": "tierra-caribe-SPL4SMGP.008-2020",
+      "enviada_utc": "2026-11-13T06:02:23.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:02:18 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "879c7af5-d7c9-4c5a-b12f-217008785596",
+      "task_name": "tierra-caribe-SPL4SMGP.008-2019",
+      "enviada_utc": "2026-11-13T06:02:18.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:02:12 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "2de6aa93-dcc8-4f48-be74-724f6c79bbac",
+      "task_name": "tierra-caribe-SPL4SMGP.008-2018",
+      "enviada_utc": "2026-11-13T06:02:12.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:02:06 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "537bbc41-25a3-4a9f-a026-218ceb0a8d0e",
+      "task_name": "tierra-caribe-SPL4SMGP.008-2017",
+      "enviada_utc": "2026-11-13T06:02:06.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:02:00 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "8615fe82-d520-422a-9097-4333a58f5d7f",
+      "task_name": "tierra-caribe-SPL4SMGP.008-2016",
+      "enviada_utc": "2026-11-13T06:02:00.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:01:54 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "1c5d64c9-28b5-4d59-982c-17088c520b42",
+      "task_name": "tierra-caribe-SPL4SMGP.008-2015",
+      "enviada_utc": "2026-11-13T06:01:54.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:01:26 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "5afc4677-4161-49ad-8b95-d30f15cb9fea",
+      "task_name": "tierra-central-SPL4SMGP.008-2024",
+      "enviada_utc": "2026-11-13T06:01:26.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:01:20 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "46e8f57e-11fb-4642-876c-c0d7e5e640ee",
+      "task_name": "tierra-central-SPL4SMGP.008-2023",
+      "enviada_utc": "2026-11-13T06:01:20.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:01:14 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "7053508f-a59d-410c-9462-9dbd08a6d12c",
+      "task_name": "tierra-central-SPL4SMGP.008-2022",
+      "enviada_utc": "2026-11-13T06:01:14.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:01:07 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "62d49897-a50b-46a5-8821-9e7f749720c0",
+      "task_name": "tierra-central-SPL4SMGP.008-2021",
+      "enviada_utc": "2026-11-13T06:01:07.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:01:01 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "d00c28bf-4626-4ab8-b05c-cef7ccbce9f5",
+      "task_name": "tierra-central-SPL4SMGP.008-2020",
+      "enviada_utc": "2026-11-13T06:01:01.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:00:55 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "0cbabac9-2576-42cb-8086-034d4687a985",
+      "task_name": "tierra-central-SPL4SMGP.008-2019",
+      "enviada_utc": "2026-11-13T06:00:55.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:00:49 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "00851423-f55b-45ed-a2bb-29d6c4ddf1d6",
+      "task_name": "tierra-central-SPL4SMGP.008-2018",
+      "enviada_utc": "2026-11-13T06:00:49.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:00:43 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "188221fb-b08b-4dd5-8175-c2a1a347f095",
+      "task_name": "tierra-central-SPL4SMGP.008-2017",
+      "enviada_utc": "2026-11-13T06:00:43.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:00:39 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "a8cd58b4-db0f-48c9-b1ac-6b6e86b6838d",
+      "task_name": "tierra-central-SPL4SMGP.008-2016",
+      "enviada_utc": "2026-11-13T06:00:39.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:00:35 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "2a339aef-c8bc-47cb-828b-d5ffa8f3ef1f",
+      "task_name": "tierra-central-SPL4SMGP.008-2015",
+      "enviada_utc": "2026-11-13T06:00:35.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:00:14 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "b9f83358-ff67-4516-8ee6-6daa130add5e",
+      "task_name": "tierra-pacifico-SPL4SMGP.008-2024",
+      "enviada_utc": "2026-11-13T06:00:14.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:00:10 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "457f5ce1-341a-425e-b2e2-738ae9f6f299",
+      "task_name": "tierra-pacifico-SPL4SMGP.008-2023",
+      "enviada_utc": "2026-11-13T06:00:10.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:00:07 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "faa3a112-bacd-4119-9868-f7df443686d7",
+      "task_name": "tierra-pacifico-SPL4SMGP.008-2022",
+      "enviada_utc": "2026-11-13T06:00:07.000Z"
+    },
+    {
+      "enviada_local": "11-13-2026 12:00:03 AM CST",
+      "estado_ui": "Pending",
+      "task_id": "4f05dbbe-20dd-4fa0-9251-51662843a5ff",
+      "task_name": "tierra-pacifico-SPL4SMGP.008-2021",
+      "enviada_utc": "2026-11-13T06:00:03.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:59:59 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "2ba5f252-bb2f-4051-b5ae-541564bfcbd9",
+      "task_name": "tierra-pacifico-SPL4SMGP.008-2020",
+      "enviada_utc": "2026-11-13T05:59:59.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:59:55 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "79ab4522-1cf1-4cce-8b34-0f62ae57fc96",
+      "task_name": "tierra-pacifico-SPL4SMGP.008-2019",
+      "enviada_utc": "2026-11-13T05:59:55.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:59:51 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "d46c81c2-d5fd-4714-992d-eda43fd6b2fc",
+      "task_name": "tierra-pacifico-SPL4SMGP.008-2018",
+      "enviada_utc": "2026-11-13T05:59:51.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:59:47 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "43b18c99-7712-4668-b79a-da9cc37bcc7f",
+      "task_name": "tierra-pacifico-SPL4SMGP.008-2017",
+      "enviada_utc": "2026-11-13T05:59:47.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:59:44 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "4eb920a7-5121-4192-a39d-fd317a58d7ba",
+      "task_name": "tierra-pacifico-SPL4SMGP.008-2016",
+      "enviada_utc": "2026-11-13T05:59:44.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:59:40 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "18abd4ab-cbbb-4ab6-b2d4-d54b14bc2bc6",
+      "task_name": "tierra-pacifico-SPL4SMGP.008-2015",
+      "enviada_utc": "2026-11-13T05:59:40.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:58:57 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "aeff5e17-2061-465e-b387-e73782f63f13",
+      "task_name": "tierra-NIC-SPL4SMGP.008-2024",
+      "enviada_utc": "2026-11-13T05:58:57.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:58:53 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "fe42f734-dfd9-4000-b42c-80ee18a5d3bf",
+      "task_name": "tierra-NIC-SPL4SMGP.008-2023",
+      "enviada_utc": "2026-11-13T05:58:53.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:58:49 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "32b43d51-d5fc-4fe8-b782-7bb8c5dc4eeb",
+      "task_name": "tierra-NIC-SPL4SMGP.008-2022",
+      "enviada_utc": "2026-11-13T05:58:49.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:58:45 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "24bad012-9494-48ac-965d-c2f800a372dd",
+      "task_name": "tierra-NIC-SPL4SMGP.008-2021",
+      "enviada_utc": "2026-11-13T05:58:45.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:58:30 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "50a6f5c3-1d5d-4beb-a69c-8bea5e382fd6",
+      "task_name": "tierra-NIC-SPL4SMGP.008-2020",
+      "enviada_utc": "2026-11-13T05:58:30.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:54:50 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "db8b3d78-f30a-4bd6-80c7-31924204e44c",
+      "task_name": "tierra-NIC-SPL4SMGP.008-2019",
+      "enviada_utc": "2026-11-13T05:54:50.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:52:30 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "8b96ce89-736c-457c-80b2-095ac9f50d27",
+      "task_name": "tierra-NIC-SPL4SMGP.008-2018",
+      "enviada_utc": "2026-11-13T05:52:30.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:52:28 PM CST",
+      "estado_ui": "Pending",
+      "task_id": "642dbf9f-0c51-44a0-8d45-7e459004e665",
+      "task_name": "tierra-NIC-SPL4SMGP.008-2017",
+      "enviada_utc": "2026-11-13T05:52:28.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:51:57 PM CST",
+      "estado_ui": "17%",
+      "task_id": "762b2850-bee1-4f93-a3fa-7c4b592e4281",
+      "task_name": "tierra-NIC-SPL4SMGP.008-2016",
+      "enviada_utc": "2026-11-13T05:51:57.000Z"
+    },
+    {
+      "enviada_local": "11-12-2026 11:50:34 PM CST",
+      "estado_ui": "28%",
+      "task_id": "5c1e5da0-a4a3-40d2-bda1-eee9dec63163",
+      "task_name": "tierra-NIC-SPL4SMGP.008-2015",
+      "enviada_utc": "2026-11-13T05:50:34.000Z"
+    }
+  ]
+}
