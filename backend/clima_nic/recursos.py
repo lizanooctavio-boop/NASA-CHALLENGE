@@ -458,6 +458,7 @@ def _demostraciones(invs):
 def _recursos(invs, contrastes, hay_csa):
     usados = {n for i in invs for n in i["recursos"]} | {n for c in contrastes for n in c.get("recursos", [])}
     usados.add(8)  # Statsig: base de la sección «Learn».
+    usados.add(7)  # Artículo de Medium: base de «Other trend tests» en «Learn» (leído el 13-11-2026).
     if hay_csa:
         usados.add(12)  # textos de las categorías de vegetación y agua.
     usos = {
@@ -467,7 +468,7 @@ def _recursos(invs, contrastes, hay_csa):
         4: "Weather-station records (GSOM, GHCN-Daily) to cross-check satellite and reanalysis data.",
         5: "Method for chlorophyll time series and significance tests in river-influenced coastal waters.",
         6: "Independent gridded datasets to cross-check rainfall trends.",
-        7: "Overview of trend tests.",
+        7: "Seasonal Mann–Kendall and unit-root tests, explained in the Learn section.",
         8: "Plain-language guide to p-values, confidence intervals and common misreadings (Learn section).",
         9: "Radar images of water extent.",
         10: "Boundary of the Canadian Prairies ecozone used as a contrast region.",

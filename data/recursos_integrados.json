@@ -11393,8 +11393,8 @@
    "nombre": "Statistical test methods to detect trends in time series data",
    "url": "https://medium.com/@snp.kriss/statistical-test-methods-to-detect-trends-in-time-series-data-b361a0ec530b",
    "organizacion": "Medium",
-   "uso_en": "Overview of trend tests.",
-   "estado": "sin_datos"
+   "uso_en": "Seasonal Mann–Kendall and unit-root tests, explained in the Learn section.",
+   "estado": "en_uso"
   },
   {
    "id": 8,

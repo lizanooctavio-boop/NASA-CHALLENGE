@@ -93,3 +93,9 @@ Cada vez que un agente actualice sus datos (por ejemplo, al desbloquear Earthdat
 - Copia combinada con los tres agentes: 165 correctas y 1 omitida, incluida la prueba E2E en Chrome sin interfaz.
 - La prueba E2E recorre las 20 investigaciones y compara cada veredicto, el número de contrastes y el CSV con el JSON. También comprueba las dos demostraciones, las fuentes en uso y los 9 apartados de *Learn*.
 - Revisión manual en Chrome: categorías, lugares, contrastes con gráfica, los dos recorridos guiados y *Sources*, sin errores en consola.
+
+## Recurso 7 (artículo de Medium), 13-11-2026
+
+Medium bloquea la lectura automática (HTTP 403), así que el artículo se leyó completo en el navegador del usuario: «Statistical test methods to detect trends in time series data», MCMC Addict, 19-07-2024. Trata la regresión de mínimos cuadrados con prueba t, Mann–Kendall (con `pymannkendall`), Mann–Kendall estacional y la prueba de raíz unitaria ADF, con series de metano simuladas. *Learn* incorpora la sección «Other trend tests» (`#aprender-otras-pruebas`) con lo que no estaba cubierto: por qué el ciclo estacional resta sensibilidad a Mann–Kendall en datos mensuales y por qué la ADF no decide si hay tendencia.
+
+Nota crítica: el artículo afirma que la ADF da «los mismos resultados» que mínimos cuadrados y Mann–Kendall, pero en sus propias salidas la ADF rechaza la raíz unitaria con 0,2 ppb/año (p = 0,024) y no con 0,3 ppb/año (p = 0,087). Es lo contrario de las otras pruebas, porque la ADF contrasta otra hipótesis. Por eso la aplicación no usa la ADF.
