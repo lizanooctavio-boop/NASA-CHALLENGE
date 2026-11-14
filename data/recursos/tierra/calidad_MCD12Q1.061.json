@@ -1,0 +1,110 @@
+[
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LC_Prop1",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LC_Prop1_Assessment",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LC_Prop2",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LC_Prop2_Assessment",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LC_Prop3",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LC_Prop3_Assessment",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LC_Type1",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LC_Type2",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LC_Type3",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LC_Type4",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LC_Type5",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  },
+  {
+    "ProductAndVersion": "MCD12Q1.061",
+    "Layer": "LW",
+    "QualityProductAndVersion": "MCD12Q1.061",
+    "QualityLayers": [
+      "QC"
+    ],
+    "VisibleToWorker": true
+  }
+]

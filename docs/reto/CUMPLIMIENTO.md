@@ -7,9 +7,11 @@ Requisitos tomados de [`REQUISITOS_NASA.md`](REQUISITOS_NASA.md) (consulta del 1
 | Pregunta | Módulo | Campo en `data/fenomenos_nicaragua.json` / API | Prueba |
 |---|---|---|---|
 | **Qué** cambia | `productos.VARIABLES` (40 variables con definición sencilla); `fuentes/*` (catálogo) | `regiones[*].variables[*].titulo`, `.definicion`; `GET /variables` | `test_producto_estructura_y_cuatro_preguntas` |
-| **Dónde** cambia | `regiones.py` (NIC, Pacífico, Central, Caribe, caja SICC); `productos.mapa_celdas` | `regiones[*]`; `mapas_tendencia[*].celdas`; `GET /mapa` | `test_regiones_particion_de_nic`, `test_recortar_malla_*` |
+| **Dónde** cambia | `regiones.py` (NIC, Pacífico, Central, Caribe, caja SICC) | `regiones[*]` | `test_regiones_particion_de_nic`, `test_recortar_malla_*` |
 | **Cuánto** cambia | `estadistica/tendencia_robusta.theil_sen` (Sen por década con IC 95 %), `tendencia.py` (MCO) | `variables[*].respuesta_reto.cuanto`; `GET /tendencia` → `cuanto` | `test_theil_sen_ic_contiene_pendiente_verdadera` |
-| **¿Es significativo?** | `tendencia_robusta.mann_kendall_modificado` (Hamed y Rao), intervalos de tres métodos y veredicto, `pettitt`, `regresion_controlada` (ENOS/TNA/AMO/PDO/CLLJ), `estadistica/fdr.py` en mapas | `variables[*].tendencia.veredicto`, `.mann_kendall_modificado`, `.controlada_por_indices`; `mapas_tendencia[*].significativo_fdr` | `test_mann_kendall_modificado_*`, `test_pettitt_*`, `test_regresion_controlada_*`, `test_benjamini_hochberg`, `test_analizar_veredictos_y_campos` |
+| **¿Es significativo?** | `tendencia_robusta.mann_kendall_modificado` (Hamed y Rao), intervalos de tres métodos y veredicto, `pettitt`, `regresion_controlada` (ENOS/TNA/AMO/PDO/CLLJ), `estadistica/fdr.py` (demostrado en `productos.mapa_celdas`) | `variables[*].tendencia.veredicto`, `.mann_kendall_modificado`, `.controlada_por_indices`; `mapas_tendencia[*].significativo_fdr` y `GET /mapa`, con `uso: "demostracion_metodo"` | `test_mann_kendall_modificado_*`, `test_pettitt_*`, `test_regresion_controlada_*`, `test_benjamini_hochberg`, `test_analizar_veredictos_y_campos` |
+
+Los mapas por celda (`mapas_tendencia`, `GET /mapa`) no responden a «dónde cambia»: salen del reanálisis MERRA-2, cuya lluvia y temperatura no son homogéneas en 1981–2024 (`docs/modelos/REVISION_MODELOS_NICARAGUA.md`, §4). Se conservan como demostración del control de falsos positivos con FDR.
 
 ## Objetivos y consideraciones
 
@@ -25,6 +27,21 @@ Requisitos tomados de [`REQUISITOS_NASA.md`](REQUISITOS_NASA.md) (consulta del 1
 | Quitar el ciclo estacional | Anomalías mensuales con base 1991–2020 (`fuentes/power.anomalia_mensual`); series anuales y por temporada | `test_spi_*`, `test_pdo_recupera_modo_principal` | Cumplido |
 | Tendencias no lineales / cambios abruptos | `tendencia_robusta.pettitt` y advertencia de inhomogeneidad | `test_pettitt_localiza_salto` | Cumplido (descriptivo) |
 | Tendencia no significativa también informa | Veredicto `evidencia_insuficiente` con texto «no demuestra que no haya cambio» | `test_analizar_veredictos_y_campos` | Cumplido |
+
+## Recursos de la pestaña Resources (13-11-2026)
+
+Integrados por `backend/clima_nic/recursos.py` en `data/recursos_integrados.json` y mostrados en las pestañas *Investigate*, *Learn* y *Sources*. Detalle en [`recursos/interfaz.md`](recursos/interfaz.md) y en los documentos de cada agente (`recursos/tierra.md`, `recursos/contraste.md`, `recursos/csa.md`).
+
+| Requisito | Dónde | Prueba | Estado |
+|---|---|---|---|
+| Preguntas guiadas qué/dónde en la interfaz | `app/investigar.js` (categorías y lugares con datos) | `test_pestana_investigate_veredictos_contrastes_csv_y_fuentes` (E2E) | Cumplido |
+| Definición sencilla de cada variable | `definicion_en` de cada investigación | ídem | Cumplido |
+| Ejemplos de demostración que el usuario puede seguir | `demostraciones` (lluvia de Nicaragua; Nicaragua frente a las Praderas de Canadá) | `test_demostraciones_usan_investigaciones_existentes` | Cumplido |
+| Una variable cambia distinto según la región | Recorrido Nicaragua (+0,40 °C/década, detectada) frente a Praderas (+0,18, sin evidencia), 2001–2024 | ídem | Cumplido |
+| Segunda opinión con otras fuentes y métodos | `contrastes` (CRU, GPCC, estaciones NOAA, SWOT, método NTRS) | `test_integra_las_salidas_de_los_tres_agentes` | Cumplido con los PR #7 y #9 fusionados |
+| Explicación de la significancia para el público | Sección *Learn* (Statsig y artículo NTRS) | E2E (9 apartados) | Cumplido |
+| Registros cortos sin tendencia | `papel: demostracion_registro_corto` (SWOT) | `test_integra_las_salidas_de_los_tres_agentes` | Cumplido |
+| Recursos citados con licencia | Pestaña *Sources* (solo recursos con datos) | E2E | Cumplido para 6 de 13; el resto, bloqueado por credenciales o, en el caso de Medium, sin leer |
 
 ## Ampliaciones propias (fuera del enunciado)
 

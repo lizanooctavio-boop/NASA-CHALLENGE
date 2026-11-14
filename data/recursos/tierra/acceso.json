@@ -1,0 +1,87 @@
+{
+  "fecha_local_verificacion": "2026-11-12",
+  "zona_horaria": "America/Managua",
+  "appeears": {
+    "catalogo": "https://appeears.earthdatacloud.nasa.gov/api/product/{producto}",
+    "productos_consultados": [
+      "MOD13A3.061",
+      "MOD11A2.061",
+      "MOD16A2GF.061",
+      "MCD12Q1.061",
+      "SPL4SMGP.008"
+    ],
+    "catalogos_http": 200,
+    "smap_quality_endpoint_http": 404,
+    "autenticacion_local": "Sesión web operativa; sin credenciales persistentes configuradas para el CLI",
+    "tareas_enviadas": 150,
+    "tiempo_cola_segundos": null,
+    "tiempo_procesamiento_segundos": null,
+    "total_incluyendo_canada": 160,
+    "estado_en_observacion": {
+      "pendientes": 158,
+      "procesando": 2,
+      "completadas": 0,
+      "porcentajes_observados": [
+        17,
+        28
+      ]
+    },
+    "recibos": "tareas_navegador.json",
+    "cache_cotejada": "160/160 payloads locales e IDs coinciden con el plan y los recibos UI; verificación solo lectura",
+    "primer_envio_utc": "2026-11-13T05:50:34.000Z",
+    "tiempo_transcurrido_primero_segundos": 2414,
+    "nota_tiempos": "Tiempo desde el envío hasta observación al 28%; no duración final de procesamiento ni ETA"
+  },
+  "gldas": {
+    "endpoint_historico": "https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/access/timeseries.cgi",
+    "sondeo": {
+      "variable": "SoilMoi0_10cm_inst",
+      "inicio": "2024-01-01T00",
+      "fin": "2024-01-02T00",
+      "lat": 12.45,
+      "lon": -86.85
+    },
+    "resultado_historico": "redirección a HTML de aviso de retirada del servicio; HTTP final 200 no es dato",
+    "destino_redireccion": "https://disc.gsfc.nasa.gov/information/alerts?title=The%20Hydrology%20Data%20Rods%20service%20will%20be%20discontinued%20no%20earlier%20than%20October%2031,%202025%20and%20transitioned%20to%20a%20new%20data%20access%20method",
+    "sustituto": "https://api.giovanni.earthdata.nasa.gov/timeseries",
+    "catalogo": "https://api.giovanni.earthdata.nasa.gov/configured-variables",
+    "catalogo_http": 200,
+    "prefijo_verificado": "GLDAS_NOAH025_3H_2_1_",
+    "variables_verificadas": [
+      "SoilMoi0_10cm_inst",
+      "SoilMoi10_40cm_inst",
+      "Evap_tavg",
+      "Qs_acc",
+      "Qsb_acc"
+    ],
+    "sondeo_sustituto_http": 403,
+    "mensaje": "Bad or missing token",
+    "serie_descargada": false,
+    "sondeos_con_token": {
+      "SoilMoi0_10cm_inst_3H_http": 500,
+      "Evap_tavg_3H_http": 500,
+      "SoilMoi0_10cm_inst_mensual_http": 500,
+      "cuerpo_series": {
+        "message": null
+      },
+      "quota_http": 401,
+      "mensaje_quota": "Invalid bearer token",
+      "token_creado_en_URS": true,
+      "token_completo_sin_elipsis": true,
+      "token_aceptado_por_Giovanni": false,
+      "credencial_guardada_en_repositorio": false
+    },
+    "visor_autenticado": "sesión iniciada; petición de León falla: Failed to fetch subset job link contents; reproducido tras renovar sesión",
+    "advertencia_grafico": "El gráfico viejo seguía en 36.61,-80.24; no se exportó como serie de León"
+  },
+  "canada": {
+    "archivo_esperado": "data/regiones_canada.geojson",
+    "presente_en_base": false,
+    "copia_geometria_agente3": "data/recursos/tierra/regiones_canada_agente3.geojson",
+    "pr_origen": 7,
+    "tareas_planificadas": 10,
+    "tareas_enviadas": 10,
+    "estado": "Diez tareas NDVI/LST aceptadas vía navegador; bundles pendientes"
+  },
+  "actualizacion_navegador_utc": "2026-11-13T06:30:48.277Z"
+}

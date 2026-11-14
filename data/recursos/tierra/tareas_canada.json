@@ -1,0 +1,82 @@
+[
+  {
+    "task_id": "acdeef44-a864-4e12-b772-283c67c8afc2",
+    "region": "CAN_prairies",
+    "producto": "MOD11A2.061",
+    "desde": "2001-01-01",
+    "hasta": "2005-12-31",
+    "enviada_utc": "2026-11-13T08:49:24.450181+00:00"
+  },
+  {
+    "task_id": "ef0d9ca2-ebd9-4e01-a8d0-9d7b94f38b87",
+    "region": "CAN_prairies",
+    "producto": "MOD11A2.061",
+    "desde": "2006-01-01",
+    "hasta": "2010-12-31",
+    "enviada_utc": "2026-11-13T08:49:25.085757+00:00"
+  },
+  {
+    "task_id": "a95c988b-1030-44ae-a2c2-0860b3eed42f",
+    "region": "CAN_prairies",
+    "producto": "MOD11A2.061",
+    "desde": "2011-01-01",
+    "hasta": "2015-12-31",
+    "enviada_utc": "2026-11-13T08:49:25.691728+00:00"
+  },
+  {
+    "task_id": "d958be83-e113-4142-be8a-764eb9b4a7ee",
+    "region": "CAN_prairies",
+    "producto": "MOD11A2.061",
+    "desde": "2016-01-01",
+    "hasta": "2020-12-31",
+    "enviada_utc": "2026-11-13T08:49:26.269624+00:00"
+  },
+  {
+    "task_id": "090fb633-4fc6-4e44-a824-515cc4310146",
+    "region": "CAN_prairies",
+    "producto": "MOD11A2.061",
+    "desde": "2021-01-01",
+    "hasta": "2024-12-31",
+    "enviada_utc": "2026-11-13T08:49:26.895047+00:00"
+  },
+  {
+    "task_id": "3019b91d-ef2a-4bba-939d-49e5cd75ef71",
+    "region": "CAN_prairies",
+    "producto": "MOD13A3.061",
+    "desde": "2001-01-01",
+    "hasta": "2005-12-31",
+    "enviada_utc": "2026-11-13T08:49:27.861254+00:00"
+  },
+  {
+    "task_id": "1c00b2b8-5f2d-4397-93f7-8950d11aa636",
+    "region": "CAN_prairies",
+    "producto": "MOD13A3.061",
+    "desde": "2006-01-01",
+    "hasta": "2010-12-31",
+    "enviada_utc": "2026-11-13T08:49:28.752733+00:00"
+  },
+  {
+    "task_id": "78b4ba9c-ea64-49b9-ab40-e7f7283979bd",
+    "region": "CAN_prairies",
+    "producto": "MOD13A3.061",
+    "desde": "2011-01-01",
+    "hasta": "2015-12-31",
+    "enviada_utc": "2026-11-13T08:49:29.356726+00:00"
+  },
+  {
+    "task_id": "15686cb7-b018-4c2a-bcf5-df3a1ff03169",
+    "region": "CAN_prairies",
+    "producto": "MOD13A3.061",
+    "desde": "2016-01-01",
+    "hasta": "2020-12-31",
+    "enviada_utc": "2026-11-13T08:49:30.073755+00:00"
+  },
+  {
+    "task_id": "1e96ee41-0b02-4ddd-8da9-92f1cc25a49b",
+    "region": "CAN_prairies",
+    "producto": "MOD13A3.061",
+    "desde": "2021-01-01",
+    "hasta": "2024-12-31",
+    "enviada_utc": "2026-11-13T08:49:31.010636+00:00"
+  }
+]

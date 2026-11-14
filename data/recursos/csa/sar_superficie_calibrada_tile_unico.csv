@@ -1,0 +1,10 @@
+date,domain,threshold_db,area_candidate_km2,area_common_radar_km2,area_common_clear_reference_km2,area_optical_water_common_clear_km2,area_radar_water_common_clear_km2,quality_gate_passed,papel
+2024-03-04,cocibolca_observado,-10.600000000000001,2490.67,2602.37,0.02,0.02,0.02,True,demostracion_registro_corto
+2024-03-04,los_guatuzos_ventana,-10.600000000000001,212.01,840.87,0.0,0.0,0.0,True,demostracion_registro_corto
+2024-03-04,san_juan_ventana,-10.600000000000001,33.37,968.86,0.0,0.0,0.0,True,demostracion_registro_corto
+2024-04-21,cocibolca_observado,-14.099999999999998,2491.66,2602.37,0.02,0.02,0.02,False,demostracion_registro_corto
+2024-04-21,los_guatuzos_ventana,-14.099999999999998,173.79,840.87,0.0,0.0,0.0,False,demostracion_registro_corto
+2024-04-21,san_juan_ventana,-14.099999999999998,0.5,968.86,0.0,0.0,0.0,False,demostracion_registro_corto
+2024-07-14,cocibolca_observado,-7.299999999999997,2534.19,2602.37,0.02,0.02,0.02,False,demostracion_registro_corto
+2024-07-14,los_guatuzos_ventana,-7.299999999999997,489.04,840.87,0.0,0.0,0.0,False,demostracion_registro_corto
+2024-07-14,san_juan_ventana,-7.299999999999997,330.17,968.86,0.0,0.0,0.0,False,demostracion_registro_corto

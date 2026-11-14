@@ -1,0 +1,25 @@
+{
+  "fecha_utc": "2026-11-13T08:48:50.452811+00:00",
+  "fecha_mx": "2026-11-13T02:48:50.452811-06:00",
+  "pytest": {
+    "aprobadas": 123,
+    "omitidas": 0,
+    "subpruebas_aprobadas": 57,
+    "avisos": 1,
+    "aviso": "Obsolescencia Starlette TestClient/httpx de una dependencia; no fallo de prueba."
+  },
+  "verificar_clima": {
+    "aprobadas": 88,
+    "total": 88,
+    "referencia_encargo": 80,
+    "explicacion": "La versión existente en la base ya realiza 88 comprobaciones; no se editó."
+  },
+  "ambito": "Solo archivos CSA autorizados",
+  "credenciales_versionadas": false,
+  "fusion": false,
+  "dependencias_prueba": {
+    "pytest": "9.2.0",
+    "fastapi": "0.162.5",
+    "httpx": "0.28.1"
+  }
+}

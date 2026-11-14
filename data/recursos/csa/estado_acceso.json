@@ -1,0 +1,15 @@
+{
+  "fecha": "2026-11-13",
+  "earthdata_login": "authenticated",
+  "gesdisc": {
+    "http": 206,
+    "reason": "Authorized; 288 original monthly HDF5 downloaded"
+  },
+  "asf": {
+    "http": 206,
+    "reason": "Authorized; 75 OPERA VV bursts downloaded"
+  },
+  "imerg_descargado": true,
+  "sar_procesado": true,
+  "sar_clasificador_validado": false
+}

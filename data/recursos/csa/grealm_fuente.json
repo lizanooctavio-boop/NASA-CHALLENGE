@@ -1,0 +1,7 @@
+{
+  "url": "https://earth.gsfc.nasa.gov/gwm/zip/lake.10.tar.gz",
+  "http": 200,
+  "sha256_tar": "92275ec39a579357a008b825c42c187fa40f45f36827e98c7a5a853ea408a37e",
+  "target": "000351",
+  "lago": "Cocibolca"
+}

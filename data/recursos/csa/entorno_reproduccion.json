@@ -1,0 +1,12 @@
+{
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "rasterio": "1.5.2",
+  "shapely": "2.2.0",
+  "pyproj": "3.8.0",
+  "h5py": "3.16.0",
+  "requests": "2.34.2",
+  "earthaccess": "0.19.0",
+  "asf-search": "14.1.0",
+  "scikit-learn": "1.9.1"
+}

@@ -1,1 +1,12 @@
 /public/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.h5
+*.hdf5
+*.HDF5
+*.nc
+*.nc4
+.env
+.env.*
+.netrc

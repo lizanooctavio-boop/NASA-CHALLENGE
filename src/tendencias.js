@@ -132,9 +132,9 @@
     var filas = estado.datos.regiones.map(function (r) {
       var a = r.analisis, t = function (x, k) { return x ? n(x[k]) : ''; };
       return [r.id, '"' + r.nombre + '"', a.n_validos, t(a.mco, 'pendiente'), t(a.mco, 'ic_inf'), t(a.mco, 'ic_sup'), a.mco && isFinite(a.mco.p) ? n(a.mco.p, 4) : '',
-        t(a.sen, 'pendiente'), t(a.sen, 'ic_inf'), t(a.sen, 'ic_sup'), t(a.hac, 'ic_inf'), t(a.hac, 'ic_sup'), G.ESTADOS[a.veredicto.estado].etiqueta].join(',');
+        t(a.sen, 'pendiente'), t(a.sen, 'ic_inf'), t(a.sen, 'ic_sup'), a.sen && isFinite(a.sen.p) ? n(a.sen.p, 4) : '', t(a.hac, 'ic_inf'), t(a.hac, 'ic_sup'), G.ESTADOS[a.veredicto.estado].etiqueta].join(',');
     });
-    descargar('rainfall_trends_by_area.csv', cabecera() + 'area_id,area,years,ls_slope_mm_decade,ls_ci_low,ls_ci_high,ls_p,theil_sen_slope,theil_sen_ci_low,theil_sen_ci_high,hac_ci_low,hac_ci_high,verdict\n' + filas.join('\n') + '\n', 'text/csv;charset=utf-8');
+    descargar('rainfall_trends_by_area.csv', cabecera() + 'area_id,area,years,ls_slope_mm_decade,ls_ci_low,ls_ci_high,ls_p,theil_sen_slope,theil_sen_ci_low,theil_sen_ci_high,mann_kendall_p,hac_ci_low,hac_ci_high,verdict\n' + filas.join('\n') + '\n', 'text/csv;charset=utf-8');
   }
   function jsonEvidencia() {
     var d = estado.datos;

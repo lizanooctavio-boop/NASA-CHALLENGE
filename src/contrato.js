@@ -47,7 +47,7 @@
         tendencias: sen ? {
           mco: { pendiente: t.mm_por_decada, ic_inf: t.ic_mm_por_decada[0], ic_sup: t.ic_mm_por_decada[1], p: t.p_valor },
           hac: t.controles.hac ? { pendiente: t.mm_por_decada, ic_inf: t.controles.hac.ic_mm_por_decada[0], ic_sup: t.controles.hac.ic_mm_por_decada[1] } : null,
-          sen: { pendiente: sen.mm_por_decada, ic_inf: sen.ic_mm_por_decada[0], ic_sup: sen.ic_mm_por_decada[1] }
+          sen: { pendiente: sen.mm_por_decada, ic_inf: sen.ic_mm_por_decada[0], ic_sup: sen.ic_mm_por_decada[1], p: t.controles && t.controles.mann_kendall ? t.controles.mann_kendall.p_valor : null }
         } : null
       };
     });
