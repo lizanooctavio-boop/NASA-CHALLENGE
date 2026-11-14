@@ -76,6 +76,18 @@ VARIABLES = {
 PRECIP = {k for k, v in VARIABLES.items() if v[1] in ("lluvia", "extremos_lluvia", "sequia", "canicula", "humedad",
                                                       "humedad_suelo", "vegetacion")} | {"balance_hidrico"}
 CELDAS_MAPA = {"prcptot": "mm", "rx1day": "mm", "r95p": "mm", "tmax_media": "°C", "tmin_media": "°C", "tx90p": "% de días"}
+# Las celdas salen del reanálisis MERRA-2 (vía NASA POWER), no de IMERG ni de GISTEMP. Su lluvia tiene un salto
+# hacia 1998–2005 y su Tmax tendencias opuestas a la observación (docs/modelos/REVISION_MODELOS_NICARAGUA.md §4),
+# así que los mapas demuestran el control de falsos positivos con FDR y no se presentan como tendencias.
+PROCEDENCIA_MAPAS = {
+    "fuente": "NASA POWER: celdas diarias de MERRA-2 (0,5° × 0,625°), 1981–2024",
+    "uso": "demostracion_metodo",
+    "advertencias": [
+        "Demostración del método FDR, no un resultado: las pendientes por celda heredan los saltos del reanálisis MERRA-2.",
+        "La lluvia de MERRA-2 tiene un salto hacia 1998–2005 y contradice a IMERG, que no detecta tendencia; en Tmax y TX90p las pendientes son negativas, en contra de GISTEMP y de Aguilar et al. (2005).",
+        "No mostrar estas celdas como dónde cambia el clima. Para lluvia usar IMERG (data/clima.json); para temperatura, GISTEMP.",
+    ],
+}
 
 
 # ---------------------------------------------------------------- lectura
@@ -283,7 +295,7 @@ def mapa_celdas(ruta=FENOMENOS / "indices_anuales_celdas.csv", q=0.10):
         for c, s in zip(celdas, sig):
             c["significativo_fdr"] = s
             c["significativo_sin_fdr"] = c["p_mmk"] < q  # mismo nivel nominal, sin corrección
-        mapas[var] = {"unidad_pendiente": f"{unidad}/década", "q_fdr": q, "umbral_p": umbral, "celdas": celdas,
+        mapas[var] = {**PROCEDENCIA_MAPAS, "unidad_pendiente": f"{unidad}/década", "q_fdr": q, "umbral_p": umbral, "celdas": celdas,
                       "n_significativas_fdr": int(sum(sig)), "n_significativas_sin_fdr": int(sum(c["significativo_sin_fdr"] for c in celdas))}
     return mapas
 
