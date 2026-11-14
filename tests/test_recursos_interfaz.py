@@ -293,3 +293,33 @@ def test_hiato_ciclones_desde_1851_y_lluvia_total_con_estudios():
     assert dict(zip(historico["tiempos"], historico["valores"]))[2020] == dict(zip(reciente["tiempos"], reciente["valores"]))[2020]
     for region in ("NIC", "pacifico", "central", "caribe"):
         assert rec.ESTUDIOS["lluvia_total_estaciones"] in ids[f"chirps_prcptot_{region}"]["notas"]
+
+
+def test_canicula_arrecifes_grace_y_glaciares():
+    d = json.loads((RAIZ / "data" / "recursos_integrados.json").read_text(encoding="utf-8"))
+    ids = {i["id"]: i for i in d["investigaciones"]}
+    for region in ("NIC", "pacifico", "central"):
+        x = ids[f"canicula_duracion_{region}"]
+        assert x["tiempos"][0] == 1981 and rec.ESTUDIOS["canicula"] in x["notas"]
+        assert all(0 <= v <= 1 for v in ids[f"canicula_intensidad_{region}"]["valores"])
+    olas = ids["arrecifes_olas_calor"]
+    assert olas["tiempos"][0] == 1985 and all(0 <= v <= 366 for v in olas["valores"])
+    assert ids["arrecifes_alerta"]["unidad"] == "days" and rec.ESTUDIOS["olas_calor"] in olas["notas"]
+    for lugar in ("groenlandia", "antartico"):
+        masa = ids[f"grace_masa_{lugar}"]
+        assert 2017 not in masa["tiempos"] and 2018 not in masa["tiempos"]  # hueco entre misiones
+        assert sum(masa["valores"]) < 0
+    assert ids["grace_agua_NIC"]["unidad"] == "cm"
+    globales = ids["glaciares_global"]
+    assert globales["tiempos"] == list(range(2000, 2024)) and all(v < 0 for v in globales["valores"])
+    lugares = {l["id"] for l in d["lugares"]}
+    assert {i["lugar"] for i in d["investigaciones"]} <= lugares
+    for zona in ("mar_caribe_nic", "mar_caribe"):
+        ph = ids[f"acidez_ph_{zona}"]
+        assert ph["tiempos"][0] == 1983 and 7.9 < min(ph["valores"]) and max(ph["valores"]) < 8.2
+        assert ph["tendencia"]["sen"]["por_decada"] < 0 and rec.ESTUDIOS["acidificacion"] in ph["notas"]
+    fuego = {z: ids[f"incendios_area_{z}"] for z in ("NIC", "centroamerica", "global")}
+    assert all(x["tiempos"] == list(range(2001, 2021)) and x["categoria"] == "vegetacion" for x in fuego.values())
+    assert all(n <= c <= g for n, c, g in zip(*(x["valores"] for x in fuego.values())))
+    # La cita dice que el área quemada mundial disminuye: comprobarlo.
+    assert fuego["global"]["tendencia"]["sen"]["por_decada"] < 0 and rec.ESTUDIOS["incendios"] in fuego["global"]["notas"]

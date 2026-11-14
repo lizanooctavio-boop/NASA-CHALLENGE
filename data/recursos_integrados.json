@@ -52,9 +52,9 @@
   },
   {
    "id": "polos",
-   "nombre_en": "Ice & poles",
-   "pregunta_en": "Is polar sea ice shrinking?",
-   "descripcion_en": "Satellites have mapped sea ice at both poles every day since 1978. Arctic ice is smallest in September and largest in March; around Antarctica it is the other way round.",
+   "nombre_en": "Ice",
+   "pregunta_en": "Is Earth's ice shrinking?",
+   "descripcion_en": "Sea ice is mapped by satellites every day since 1978: Arctic ice is smallest in September and largest in March, and around Antarctica it is the other way round. Mountain glaciers and the Greenland and Antarctic ice sheets are weighed by gravity satellites and surveys.",
    "con_datos": true
   }
  ],
@@ -238,6 +238,136 @@
     -81.0
    ],
    "zoom": 6
+  },
+  {
+   "id": "arrecifes_nic",
+   "nombre_en": "Caribbean reefs off Nicaragua",
+   "pais": "NOAA Coral Reef Watch station",
+   "centro": [
+    14.13,
+    -81.75
+   ],
+   "zoom": 7
+  },
+  {
+   "id": "mar_caribe",
+   "nombre_en": "Caribbean Sea",
+   "pais": "10–22°N, 60–88°W",
+   "centro": [
+    16.0,
+    -74.0
+   ],
+   "zoom": 4
+  },
+  {
+   "id": "groenlandia",
+   "nombre_en": "Greenland ice sheet",
+   "pais": "Greenland",
+   "centro": [
+    72.0,
+    -40.0
+   ],
+   "zoom": 3
+  },
+  {
+   "id": "centroamerica",
+   "nombre_en": "Central America",
+   "pais": "7–18.5°N, 77–92.5°W",
+   "centro": [
+    13.0,
+    -85.0
+   ],
+   "zoom": 5
+  },
+  {
+   "id": "planeta",
+   "nombre_en": "Whole planet",
+   "pais": "Global total",
+   "centro": [
+    15.0,
+    -60.0
+   ],
+   "zoom": 2
+  },
+  {
+   "id": "glaciares_global",
+   "nombre_en": "All glaciers on Earth",
+   "pais": "Global",
+   "centro": [
+    15.0,
+    -60.0
+   ],
+   "zoom": 2
+  },
+  {
+   "id": "glaciares_alaska",
+   "nombre_en": "Alaska glaciers",
+   "pais": "USA",
+   "centro": [
+    61.0,
+    -147.0
+   ],
+   "zoom": 4
+  },
+  {
+   "id": "glaciares_oeste_canada_eeuu",
+   "nombre_en": "Western Canada and US glaciers",
+   "pais": "Canada and USA",
+   "centro": [
+    50.0,
+    -120.0
+   ],
+   "zoom": 4
+  },
+  {
+   "id": "glaciares_artico_canada_norte",
+   "nombre_en": "Northern Arctic Canada glaciers",
+   "pais": "Canada",
+   "centro": [
+    79.0,
+    -80.0
+   ],
+   "zoom": 3
+  },
+  {
+   "id": "glaciares_artico_canada_sur",
+   "nombre_en": "Southern Arctic Canada glaciers",
+   "pais": "Canada",
+   "centro": [
+    68.0,
+    -68.0
+   ],
+   "zoom": 3
+  },
+  {
+   "id": "glaciares_groenlandia_periferia",
+   "nombre_en": "Greenland peripheral glaciers",
+   "pais": "Greenland",
+   "centro": [
+    72.0,
+    -40.0
+   ],
+   "zoom": 3
+  },
+  {
+   "id": "glaciares_latitudes_bajas",
+   "nombre_en": "Tropical glaciers (Andes and Mexico)",
+   "pais": "Low latitudes",
+   "centro": [
+    -12.0,
+    -75.0
+   ],
+   "zoom": 4
+  },
+  {
+   "id": "glaciares_andes_sur",
+   "nombre_en": "Southern Andes and Patagonia glaciers",
+   "pais": "Chile and Argentina",
+   "centro": [
+    -45.0,
+    -72.0
+   ],
+   "zoom": 4
   },
   {
    "id": "san_juan",
@@ -16205,6 +16335,3673 @@
     "mann_kendall_p": 0.0035,
     "media": 0.614
    }
+  },
+  {
+   "id": "canicula_duracion_NIC",
+   "categoria": "lluvia",
+   "lugar": "NIC",
+   "titulo_en": "Midsummer drought (canícula) length",
+   "definicion_en": "Days of the summer dip in rain between the two rainy-season peaks (0 when there was no clear dip).",
+   "unidad": "days",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    19.0,
+    49.0,
+    32.0,
+    18.0,
+    0.0,
+    21.0,
+    0.0,
+    0.0,
+    0.0,
+    23.0,
+    0.0,
+    13.0,
+    15.0,
+    4.0,
+    7.0,
+    7.0,
+    18.0,
+    68.0,
+    0.0,
+    25.0,
+    27.0,
+    23.0,
+    10.0,
+    21.0,
+    24.0,
+    17.0,
+    22.0,
+    54.0,
+    0.0,
+    0.0,
+    66.0,
+    34.0,
+    0.0,
+    27.0,
+    22.0,
+    35.0,
+    0.0,
+    42.0,
+    36.0,
+    90.0,
+    12.0,
+    7.0,
+    80.0,
+    0.0,
+    103.0
+   ],
+   "fuente": {
+    "producto": "CHIRPS v2.0 daily, 0.25° (UCSB Climate Hazards Center)",
+    "url": "https://www.chc.ucsb.edu/data/chirps"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Midsummer drought found in 34 of 45 years with an objective method (two rainfall peaks and the dip between them, CHIRPS daily rain averaged over the region).",
+    "Published check: the midsummer drought has grown longer across Central America since 1981, without a general rise in strength (Anderson et al. 2019, doi:10.1088/1748-9326/ab5023); how it is defined can change the sign of a trend (Maurer et al. 2022, doi:10.5194/hess-26-1425-2022).",
+    "El Niño and La Niña (NOAA ONI, June–September) explain 0% of the year-to-year swings. With their effect removed: +4.67 days/decade, methods disagree.",
+    "Since 2001 only: +6.18 days/decade, methods disagree. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+   ],
+   "tendencia": {
+    "veredicto": "metodos_discrepan",
+    "veredicto_contrato": "metodos_discrepan",
+    "anios": 45,
+    "periodo": [
+     1981,
+     2025
+    ],
+    "unidad_pendiente": "days/decade",
+    "sen": {
+     "por_decada": 4.4591,
+     "ic": [
+      -0.0,
+      10.0
+     ]
+    },
+    "mco": {
+     "por_decada": 6.798,
+     "ic": [
+      1.269,
+      12.328
+     ],
+     "p_valor": 0.0172
+    },
+    "hac_ic": [
+     1.035,
+     12.562
+    ],
+    "mann_kendall_p": 0.0508,
+    "media": 23.8
+   }
+  },
+  {
+   "id": "canicula_intensidad_NIC",
+   "categoria": "lluvia",
+   "lugar": "NIC",
+   "titulo_en": "Midsummer drought (canícula) strength",
+   "definicion_en": "How much the rain drops in the dip compared with the two peaks (0 = no drop, 1 = no rain).",
+   "unidad": "fraction",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1986,
+    1990,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2011,
+    2012,
+    2014,
+    2015,
+    2016,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2025
+   ],
+   "valores": [
+    0.2516,
+    0.3914,
+    0.33,
+    0.1812,
+    0.1832,
+    0.3252,
+    0.1538,
+    0.3296,
+    0.2343,
+    0.2087,
+    0.1571,
+    0.1798,
+    0.5725,
+    0.2679,
+    0.2505,
+    0.3686,
+    0.2198,
+    0.4756,
+    0.2415,
+    0.3108,
+    0.2509,
+    0.5981,
+    0.4738,
+    0.3884,
+    0.4078,
+    0.4024,
+    0.4707,
+    0.4183,
+    0.382,
+    0.5822,
+    0.1801,
+    0.1943,
+    0.6049,
+    0.5227
+   ],
+   "fuente": {
+    "producto": "CHIRPS v2.0 daily, 0.25° (UCSB Climate Hazards Center)",
+    "url": "https://www.chc.ucsb.edu/data/chirps"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Midsummer drought found in 34 of 45 years with an objective method (two rainfall peaks and the dip between them, CHIRPS daily rain averaged over the region).",
+    "Published check: the midsummer drought has grown longer across Central America since 1981, without a general rise in strength (Anderson et al. 2019, doi:10.1088/1748-9326/ab5023); how it is defined can change the sign of a trend (Maurer et al. 2022, doi:10.5194/hess-26-1425-2022).",
+    "El Niño and La Niña (NOAA ONI, June–September) explain 0% of the year-to-year swings. With their effect removed: +0.056 fraction/decade, trend detected.",
+    "Since 2001 only: +0.0767 fraction/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 34,
+    "periodo": [
+     1981,
+     2025
+    ],
+    "unidad_pendiente": "fraction/decade",
+    "sen": {
+     "por_decada": 0.0574,
+     "ic": [
+      0.0144,
+      0.0928
+     ]
+    },
+    "mco": {
+     "por_decada": 0.05,
+     "ic": [
+      0.016,
+      0.083
+     ],
+     "p_valor": 0.0055
+    },
+    "hac_ic": [
+     0.02,
+     0.079
+    ],
+    "mann_kendall_p": 0.0083,
+    "media": 0.339
+   }
+  },
+  {
+   "id": "canicula_lluvia_fija_NIC",
+   "categoria": "lluvia",
+   "lugar": "NIC",
+   "titulo_en": "Rain from 15 July to 15 August",
+   "definicion_en": "Rain in the fixed window when the midsummer drought usually happens.",
+   "unidad": "mm",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    335.88,
+    369.5,
+    353.87,
+    361.45,
+    339.3,
+    417.16,
+    521.22,
+    475.19,
+    369.07,
+    313.29,
+    357.36,
+    429.24,
+    448.51,
+    323.02,
+    318.72,
+    387.02,
+    341.54,
+    288.85,
+    387.53,
+    301.34,
+    305.58,
+    270.93,
+    366.77,
+    198.04,
+    382.94,
+    305.83,
+    289.37,
+    340.46,
+    319.62,
+    422.04,
+    344.24,
+    263.65,
+    384.91,
+    224.63,
+    231.38,
+    281.5,
+    421.27,
+    276.46,
+    250.19,
+    329.95,
+    285.85,
+    338.75,
+    318.31,
+    409.61,
+    271.7
+   ],
+   "fuente": {
+    "producto": "CHIRPS v2.0 daily, 0.25° (UCSB Climate Hazards Center)",
+    "url": "https://www.chc.ucsb.edu/data/chirps"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Midsummer drought found in 34 of 45 years with an objective method (two rainfall peaks and the dip between them, CHIRPS daily rain averaged over the region).",
+    "Published check: the midsummer drought has grown longer across Central America since 1981, without a general rise in strength (Anderson et al. 2019, doi:10.1088/1748-9326/ab5023); how it is defined can change the sign of a trend (Maurer et al. 2022, doi:10.5194/hess-26-1425-2022).",
+    "El Niño and La Niña (NOAA ONI, June–September) explain 2% of the year-to-year swings. With their effect removed: −19.9 mm/decade, trend detected.",
+    "Since 2001 only: +2.96 mm/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 45,
+    "periodo": [
+     1981,
+     2025
+    ],
+    "unidad_pendiente": "mm/decade",
+    "sen": {
+     "por_decada": -20.5062,
+     "ic": [
+      -33.7121,
+      -6.4649
+     ]
+    },
+    "mco": {
+     "por_decada": -20.831,
+     "ic": [
+      -35.733,
+      -5.93
+     ],
+     "p_valor": 0.0073
+    },
+    "hac_ic": [
+     -35.49,
+     -6.173
+    ],
+    "mann_kendall_p": 0.0063,
+    "media": 339.401
+   }
+  },
+  {
+   "id": "canicula_duracion_pacifico",
+   "categoria": "lluvia",
+   "lugar": "pacifico",
+   "titulo_en": "Midsummer drought (canícula) length",
+   "definicion_en": "Days of the summer dip in rain between the two rainy-season peaks (0 when there was no clear dip).",
+   "unidad": "days",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    44.0,
+    93.0,
+    58.0,
+    71.0,
+    118.0,
+    85.0,
+    16.0,
+    38.0,
+    43.0,
+    69.0,
+    65.0,
+    66.0,
+    62.0,
+    97.0,
+    33.0,
+    34.0,
+    82.0,
+    60.0,
+    55.0,
+    92.0,
+    70.0,
+    83.0,
+    68.0,
+    90.0,
+    87.0,
+    68.0,
+    64.0,
+    87.0,
+    73.0,
+    62.0,
+    48.0,
+    46.0,
+    68.0,
+    100.0,
+    74.0,
+    76.0,
+    75.0,
+    101.0,
+    101.0,
+    84.0,
+    36.0,
+    55.0,
+    82.0,
+    64.0,
+    68.0
+   ],
+   "fuente": {
+    "producto": "CHIRPS v2.0 daily, 0.25° (UCSB Climate Hazards Center)",
+    "url": "https://www.chc.ucsb.edu/data/chirps"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Midsummer drought found in 45 of 45 years with an objective method (two rainfall peaks and the dip between them, CHIRPS daily rain averaged over the region).",
+    "Published check: the midsummer drought has grown longer across Central America since 1981, without a general rise in strength (Anderson et al. 2019, doi:10.1088/1748-9326/ab5023); how it is defined can change the sign of a trend (Maurer et al. 2022, doi:10.5194/hess-26-1425-2022).",
+    "El Niño and La Niña (NOAA ONI, June–September) explain 5% of the year-to-year swings. With their effect removed: +3 days/decade, not enough evidence of a trend.",
+    "Since 2001 only: −1.79 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 45,
+    "periodo": [
+     1981,
+     2025
+    ],
+    "unidad_pendiente": "days/decade",
+    "sen": {
+     "por_decada": 2.6876,
+     "ic": [
+      -2.5,
+      8.1481
+     ]
+    },
+    "mco": {
+     "por_decada": 2.544,
+     "ic": [
+      -3.369,
+      8.457
+     ],
+     "p_valor": 0.3868
+    },
+    "hac_ic": [
+     -2.743,
+     7.831
+    ],
+    "mann_kendall_p": 0.2772,
+    "media": 69.133
+   }
+  },
+  {
+   "id": "canicula_intensidad_pacifico",
+   "categoria": "lluvia",
+   "lugar": "pacifico",
+   "titulo_en": "Midsummer drought (canícula) strength",
+   "definicion_en": "How much the rain drops in the dip compared with the two peaks (0 = no drop, 1 = no rain).",
+   "unidad": "fraction",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    0.7515,
+    0.9254,
+    0.6725,
+    0.6256,
+    0.6197,
+    0.8432,
+    0.5585,
+    0.5707,
+    0.6396,
+    0.7372,
+    0.8214,
+    0.6692,
+    0.8763,
+    0.8322,
+    0.6532,
+    0.5572,
+    0.8146,
+    0.8237,
+    0.7453,
+    0.8372,
+    0.781,
+    0.8457,
+    0.8003,
+    0.6036,
+    0.7639,
+    0.6508,
+    0.7938,
+    0.7009,
+    0.7976,
+    0.4346,
+    0.6073,
+    0.862,
+    0.7171,
+    0.9447,
+    0.8773,
+    0.8319,
+    0.6861,
+    0.9179,
+    0.8564,
+    0.7584,
+    0.6373,
+    0.6998,
+    0.7576,
+    0.6823,
+    0.8909
+   ],
+   "fuente": {
+    "producto": "CHIRPS v2.0 daily, 0.25° (UCSB Climate Hazards Center)",
+    "url": "https://www.chc.ucsb.edu/data/chirps"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Midsummer drought found in 45 of 45 years with an objective method (two rainfall peaks and the dip between them, CHIRPS daily rain averaged over the region).",
+    "Published check: the midsummer drought has grown longer across Central America since 1981, without a general rise in strength (Anderson et al. 2019, doi:10.1088/1748-9326/ab5023); how it is defined can change the sign of a trend (Maurer et al. 2022, doi:10.5194/hess-26-1425-2022).",
+    "El Niño and La Niña (NOAA ONI, June–September) explain 16% of the year-to-year swings. With their effect removed: +0.0163 fraction/decade, not enough evidence of a trend.",
+    "Since 2001 only: +0.0197 fraction/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 45,
+    "periodo": [
+     1981,
+     2025
+    ],
+    "unidad_pendiente": "fraction/decade",
+    "sen": {
+     "por_decada": 0.018,
+     "ic": [
+      -0.0142,
+      0.0425
+     ]
+    },
+    "mco": {
+     "por_decada": 0.015,
+     "ic": [
+      -0.014,
+      0.044
+     ],
+     "p_valor": 0.2922
+    },
+    "hac_ic": [
+     -0.01,
+     0.04
+    ],
+    "mann_kendall_p": 0.2524,
+    "media": 0.744
+   }
+  },
+  {
+   "id": "canicula_lluvia_fija_pacifico",
+   "categoria": "lluvia",
+   "lugar": "pacifico",
+   "titulo_en": "Rain from 15 July to 15 August",
+   "definicion_en": "Rain in the fixed window when the midsummer drought usually happens.",
+   "unidad": "mm",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    121.1,
+    76.21,
+    133.94,
+    186.25,
+    162.95,
+    97.05,
+    231.82,
+    263.8,
+    190.86,
+    96.07,
+    60.2,
+    126.93,
+    137.33,
+    105.63,
+    325.68,
+    216.47,
+    102.15,
+    115.27,
+    124.96,
+    129.95,
+    106.76,
+    75.32,
+    86.97,
+    123.59,
+    126.51,
+    99.17,
+    205.09,
+    169.28,
+    100.96,
+    316.55,
+    220.5,
+    132.26,
+    93.52,
+    64.74,
+    70.28,
+    103.29,
+    172.93,
+    75.25,
+    77.34,
+    130.03,
+    179.92,
+    146.38,
+    88.86,
+    222.21,
+    47.42
+   ],
+   "fuente": {
+    "producto": "CHIRPS v2.0 daily, 0.25° (UCSB Climate Hazards Center)",
+    "url": "https://www.chc.ucsb.edu/data/chirps"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Midsummer drought found in 45 of 45 years with an objective method (two rainfall peaks and the dip between them, CHIRPS daily rain averaged over the region).",
+    "Published check: the midsummer drought has grown longer across Central America since 1981, without a general rise in strength (Anderson et al. 2019, doi:10.1088/1748-9326/ab5023); how it is defined can change the sign of a trend (Maurer et al. 2022, doi:10.5194/hess-26-1425-2022).",
+    "El Niño and La Niña (NOAA ONI, June–September) explain 25% of the year-to-year swings. With their effect removed: −5.77 mm/decade, not enough evidence of a trend.",
+    "Since 2001 only: +1.25 mm/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 45,
+    "periodo": [
+     1981,
+     2025
+    ],
+    "unidad_pendiente": "mm/decade",
+    "sen": {
+     "por_decada": -6.4311,
+     "ic": [
+      -18.8261,
+      6.4476
+     ]
+    },
+    "mco": {
+     "por_decada": -6.757,
+     "ic": [
+      -25.467,
+      11.952
+     ],
+     "p_valor": 0.4659
+    },
+    "hac_ic": [
+     -20.092,
+     6.578
+    ],
+    "mann_kendall_p": 0.3859,
+    "media": 138.661
+   }
+  },
+  {
+   "id": "canicula_duracion_central",
+   "categoria": "lluvia",
+   "lugar": "central",
+   "titulo_en": "Midsummer drought (canícula) length",
+   "definicion_en": "Days of the summer dip in rain between the two rainy-season peaks (0 when there was no clear dip).",
+   "unidad": "days",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    44.0,
+    51.0,
+    20.0,
+    17.0,
+    43.0,
+    18.0,
+    0.0,
+    9.0,
+    31.0,
+    30.0,
+    38.0,
+    36.0,
+    23.0,
+    87.0,
+    46.0,
+    8.0,
+    30.0,
+    117.0,
+    53.0,
+    19.0,
+    24.0,
+    99.0,
+    13.0,
+    66.0,
+    13.0,
+    16.0,
+    28.0,
+    62.0,
+    7.0,
+    0.0,
+    31.0,
+    53.0,
+    33.0,
+    49.0,
+    32.0,
+    38.0,
+    46.0,
+    82.0,
+    94.0,
+    100.0,
+    19.0,
+    55.0,
+    78.0,
+    47.0,
+    85.0
+   ],
+   "fuente": {
+    "producto": "CHIRPS v2.0 daily, 0.25° (UCSB Climate Hazards Center)",
+    "url": "https://www.chc.ucsb.edu/data/chirps"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Midsummer drought found in 43 of 45 years with an objective method (two rainfall peaks and the dip between them, CHIRPS daily rain averaged over the region).",
+    "Published check: the midsummer drought has grown longer across Central America since 1981, without a general rise in strength (Anderson et al. 2019, doi:10.1088/1748-9326/ab5023); how it is defined can change the sign of a trend (Maurer et al. 2022, doi:10.5194/hess-26-1425-2022).",
+    "El Niño and La Niña (NOAA ONI, June–September) explain 0% of the year-to-year swings. With their effect removed: +7.31 days/decade, trend detected.",
+    "Since 2001 only: +19.6 days/decade, trend detected. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 45,
+    "periodo": [
+     1981,
+     2025
+    ],
+    "unidad_pendiente": "days/decade",
+    "sen": {
+     "por_decada": 7.3864,
+     "ic": [
+      0.8333,
+      14.1176
+     ]
+    },
+    "mco": {
+     "por_decada": 7.493,
+     "ic": [
+      0.79,
+      14.195
+     ],
+     "p_valor": 0.0294
+    },
+    "hac_ic": [
+     2.036,
+     12.95
+    ],
+    "mann_kendall_p": 0.0226,
+    "media": 42.0
+   }
+  },
+  {
+   "id": "canicula_intensidad_central",
+   "categoria": "lluvia",
+   "lugar": "central",
+   "titulo_en": "Midsummer drought (canícula) strength",
+   "definicion_en": "How much the rain drops in the dip compared with the two peaks (0 = no drop, 1 = no rain).",
+   "unidad": "fraction",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    0.4592,
+    0.6051,
+    0.3708,
+    0.3362,
+    0.3664,
+    0.2602,
+    0.2831,
+    0.3569,
+    0.3922,
+    0.4968,
+    0.3387,
+    0.4526,
+    0.3577,
+    0.3837,
+    0.3082,
+    0.5956,
+    0.5518,
+    0.29,
+    0.4004,
+    0.3772,
+    0.4809,
+    0.2748,
+    0.4168,
+    0.1805,
+    0.2866,
+    0.227,
+    0.6024,
+    0.1846,
+    0.3407,
+    0.5108,
+    0.4335,
+    0.5706,
+    0.6312,
+    0.4664,
+    0.5303,
+    0.541,
+    0.4402,
+    0.5636,
+    0.3575,
+    0.3758,
+    0.6153,
+    0.4889,
+    0.5362
+   ],
+   "fuente": {
+    "producto": "CHIRPS v2.0 daily, 0.25° (UCSB Climate Hazards Center)",
+    "url": "https://www.chc.ucsb.edu/data/chirps"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Midsummer drought found in 43 of 45 years with an objective method (two rainfall peaks and the dip between them, CHIRPS daily rain averaged over the region).",
+    "Published check: the midsummer drought has grown longer across Central America since 1981, without a general rise in strength (Anderson et al. 2019, doi:10.1088/1748-9326/ab5023); how it is defined can change the sign of a trend (Maurer et al. 2022, doi:10.5194/hess-26-1425-2022).",
+    "El Niño and La Niña (NOAA ONI, June–September) explain 20% of the year-to-year swings. With their effect removed: +0.0298 fraction/decade, trend detected.",
+    "Since 2001 only: +0.0941 fraction/decade, trend detected. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+   ],
+   "tendencia": {
+    "veredicto": "metodos_discrepan",
+    "veredicto_contrato": "metodos_discrepan",
+    "anios": 43,
+    "periodo": [
+     1981,
+     2025
+    ],
+    "unidad_pendiente": "fraction/decade",
+    "sen": {
+     "por_decada": 0.0306,
+     "ic": [
+      -0.0007,
+      0.0562
+     ]
+    },
+    "mco": {
+     "por_decada": 0.027,
+     "ic": [
+      -0.0,
+      0.055
+     ],
+     "p_valor": 0.0517
+    },
+    "hac_ic": [
+     0.0,
+     0.055
+    ],
+    "mann_kendall_p": 0.0541,
+    "media": 0.419
+   }
+  },
+  {
+   "id": "canicula_lluvia_fija_central",
+   "categoria": "lluvia",
+   "lugar": "central",
+   "titulo_en": "Rain from 15 July to 15 August",
+   "definicion_en": "Rain in the fixed window when the midsummer drought usually happens.",
+   "unidad": "mm",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    202.79,
+    253.12,
+    258.61,
+    264.59,
+    213.77,
+    259.48,
+    361.52,
+    358.38,
+    250.83,
+    193.39,
+    239.03,
+    251.36,
+    315.16,
+    213.19,
+    216.44,
+    280.23,
+    258.77,
+    193.04,
+    252.85,
+    236.1,
+    238.72,
+    179.02,
+    270.94,
+    167.71,
+    283.39,
+    199.43,
+    243.13,
+    235.03,
+    209.21,
+    317.88,
+    255.82,
+    170.74,
+    236.81,
+    137.52,
+    150.28,
+    170.62,
+    251.03,
+    177.18,
+    166.41,
+    224.26,
+    171.87,
+    228.39,
+    201.59,
+    258.75,
+    164.33
+   ],
+   "fuente": {
+    "producto": "CHIRPS v2.0 daily, 0.25° (UCSB Climate Hazards Center)",
+    "url": "https://www.chc.ucsb.edu/data/chirps"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Midsummer drought found in 43 of 45 years with an objective method (two rainfall peaks and the dip between them, CHIRPS daily rain averaged over the region).",
+    "Published check: the midsummer drought has grown longer across Central America since 1981, without a general rise in strength (Anderson et al. 2019, doi:10.1088/1748-9326/ab5023); how it is defined can change the sign of a trend (Maurer et al. 2022, doi:10.5194/hess-26-1425-2022).",
+    "El Niño and La Niña (NOAA ONI, June–September) explain 3% of the year-to-year swings. With their effect removed: −14.1 mm/decade, trend detected.",
+    "Since 2001 only: −13.5 mm/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 45,
+    "periodo": [
+     1981,
+     2025
+    ],
+    "unidad_pendiente": "mm/decade",
+    "sen": {
+     "por_decada": -15.0043,
+     "ic": [
+      -26.6636,
+      -5.3036
+     ]
+    },
+    "mco": {
+     "por_decada": -17.265,
+     "ic": [
+      -27.886,
+      -6.644
+     ],
+     "p_valor": 0.0021
+    },
+    "hac_ic": [
+     -27.602,
+     -6.929
+    ],
+    "mann_kendall_p": 0.0028,
+    "media": 230.727
+   }
+  },
+  {
+   "id": "arrecifes_olas_calor",
+   "categoria": "costa",
+   "lugar": "arrecifes_nic",
+   "titulo_en": "Days in a marine heatwave",
+   "definicion_en": "Days of the year inside a marine heatwave: at least 5 days in a row warmer than 9 in 10 days of 1991–2020 for that time of year.",
+   "unidad": "days",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    0.0,
+    0.0,
+    5.0,
+    0.0,
+    6.0,
+    10.0,
+    0.0,
+    0.0,
+    6.0,
+    0.0,
+    30.0,
+    0.0,
+    0.0,
+    12.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    45.0,
+    26.0,
+    73.0,
+    23.0,
+    18.0,
+    0.0,
+    0.0,
+    105.0,
+    16.0,
+    11.0,
+    0.0,
+    0.0,
+    26.0,
+    94.0,
+    40.0,
+    0.0,
+    54.0,
+    136.0,
+    11.0,
+    27.0,
+    191.0,
+    354.0,
+    169.0
+   ],
+   "fuente": {
+    "producto": "NOAA Coral Reef Watch v3.1 daily 5 km Regional Virtual Station «Nicaragua»",
+    "url": "https://coralreefwatch.noaa.gov/product/vs/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Latest day, 2026-11-12: 11.7 °C-weeks of heat stress, alert level 2 of 2 for coral bleaching.",
+    "2026 so far: 59 days in a marine heatwave.",
+    "The threshold is fixed to 1991–2020, so it includes the long-term warming of the sea: more heatwave days mean both a warmer background and more extreme spells.",
+    "Method: marine heatwave definition of Hobday et al. 2016 (doi:10.1016/j.pocean.2015.12.014); coral heat stress and alerts as computed by NOAA Coral Reef Watch."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 41,
+    "periodo": [
+     1985,
+     2025
+    ],
+    "unidad_pendiente": "days/decade",
+    "sen": {
+     "por_decada": 10.5256,
+     "ic": [
+      2.4,
+      21.6
+     ]
+    },
+    "mco": {
+     "por_decada": 32.401,
+     "ic": [
+      6.599,
+      58.203
+     ],
+     "p_valor": 0.0171
+    },
+    "hac_ic": [
+     6.293,
+     58.508
+    ],
+    "mann_kendall_p": 0.0001,
+    "media": 36.293
+   }
+  },
+  {
+   "id": "arrecifes_dhw",
+   "categoria": "costa",
+   "lugar": "arrecifes_nic",
+   "titulo_en": "Peak coral heat stress",
+   "definicion_en": "Highest Degree Heating Weeks of the year: heat above the usual warmest month, accumulated over 12 weeks. Above 4 °C-weeks bleaching is likely; above 8, widespread bleaching and death.",
+   "unidad": "°C-weeks",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    0.7,
+    0.0,
+    0.46,
+    0.89,
+    0.46,
+    3.18,
+    2.89,
+    0.29,
+    2.05,
+    0.94,
+    12.51,
+    1.14,
+    1.62,
+    9.73,
+    4.54,
+    1.51,
+    1.01,
+    1.8,
+    9.55,
+    11.42,
+    11.48,
+    7.59,
+    5.16,
+    10.0,
+    2.23,
+    10.68,
+    14.87,
+    3.29,
+    5.89,
+    1.09,
+    8.8,
+    7.59,
+    14.4,
+    3.02,
+    13.56,
+    17.34,
+    9.54,
+    13.15,
+    25.59,
+    22.15,
+    19.29
+   ],
+   "fuente": {
+    "producto": "NOAA Coral Reef Watch v3.1 daily 5 km Regional Virtual Station «Nicaragua»",
+    "url": "https://coralreefwatch.noaa.gov/product/vs/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Latest day, 2026-11-12: 11.7 °C-weeks of heat stress, alert level 2 of 2 for coral bleaching.",
+    "Method: marine heatwave definition of Hobday et al. 2016 (doi:10.1016/j.pocean.2015.12.014); coral heat stress and alerts as computed by NOAA Coral Reef Watch."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 41,
+    "periodo": [
+     1985,
+     2025
+    ],
+    "unidad_pendiente": "°C-weeks/decade",
+    "sen": {
+     "por_decada": 3.7455,
+     "ic": [
+      2.26,
+      5.0765
+     ]
+    },
+    "mco": {
+     "por_decada": 3.996,
+     "ic": [
+      2.541,
+      5.45
+     ],
+     "p_valor": 0.0
+    },
+    "hac_ic": [
+     2.471,
+     5.521
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 7.156
+   }
+  },
+  {
+   "id": "arrecifes_alerta",
+   "categoria": "costa",
+   "lugar": "arrecifes_nic",
+   "titulo_en": "Days on coral bleaching alert",
+   "definicion_en": "Days of the year at NOAA bleaching Alert Level 1 or 2.",
+   "unidad": "days",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    64.0,
+    0.0,
+    0.0,
+    39.0,
+    16.0,
+    0.0,
+    0.0,
+    0.0,
+    60.0,
+    42.0,
+    120.0,
+    35.0,
+    12.0,
+    47.0,
+    0.0,
+    125.0,
+    64.0,
+    0.0,
+    26.0,
+    0.0,
+    37.0,
+    62.0,
+    62.0,
+    0.0,
+    51.0,
+    114.0,
+    38.0,
+    61.0,
+    155.0,
+    205.0,
+    81.0
+   ],
+   "fuente": {
+    "producto": "NOAA Coral Reef Watch v3.1 daily 5 km Regional Virtual Station «Nicaragua»",
+    "url": "https://coralreefwatch.noaa.gov/product/vs/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Latest day, 2026-11-12: 11.7 °C-weeks of heat stress, alert level 2 of 2 for coral bleaching.",
+    "Method: marine heatwave definition of Hobday et al. 2016 (doi:10.1016/j.pocean.2015.12.014); coral heat stress and alerts as computed by NOAA Coral Reef Watch."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 41,
+    "periodo": [
+     1985,
+     2025
+    ],
+    "unidad_pendiente": "days/decade",
+    "sen": {
+     "por_decada": 18.0182,
+     "ic": [
+      6.0,
+      25.8333
+     ]
+    },
+    "mco": {
+     "por_decada": 25.115,
+     "ic": [
+      12.738,
+      37.492
+     ],
+     "p_valor": 0.0003
+    },
+    "hac_ic": [
+     12.623,
+     37.607
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 36.976
+   }
+  },
+  {
+   "id": "grace_masa_groenlandia",
+   "categoria": "polos",
+   "lugar": "groenlandia",
+   "titulo_en": "Greenland ice-sheet mass change per year",
+   "definicion_en": "Change in the mass of the ice sheet from one year to the next, weighed by the GRACE and GRACE-FO gravity satellites. Below zero means ice lost.",
+   "unidad": "Gt",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    -257.2027,
+    -231.9892,
+    -236.695,
+    -310.8908,
+    -318.4308,
+    -265.0733,
+    -389.7317,
+    -545.6783,
+    -416.836,
+    -335.3318,
+    -179.0522,
+    -205.7756,
+    -204.27,
+    -449.6167,
+    -182.7967,
+    -190.2767,
+    -187.56,
+    -144.8333,
+    -151.1325
+   ],
+   "fuente": {
+    "producto": "GRACE/GRACE-FO mascons, CSR RL06.03 (University of Texas at Austin)",
+    "url": "https://www2.csr.utexas.edu/grace/RL06_mascons.html"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Average -274 Gt per year over 2004–2025 (1 Gt = 1 billion tonnes; 360 Gt raise the sea by about 1 mm).",
+    "The trend asks whether the yearly loss is growing, not whether ice is being lost. Years 2017–2018 are missing: the gap between the two missions.",
+    "Published check: Greenland and Antarctica lost ice in 1992–2020, with Greenland losing more (IMBIE, Otosaka et al. 2023, doi:10.5194/essd-15-1597-2023)."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 19,
+    "periodo": [
+     2004,
+     2025
+    ],
+    "unidad_pendiente": "Gt/decade",
+    "sen": {
+     "por_decada": 50.5096,
+     "ic": [
+      -5.3492,
+      108.4984
+     ]
+    },
+    "mco": {
+     "por_decada": 61.171,
+     "ic": [
+      -100.344,
+      222.686
+     ],
+     "p_valor": 0.3825
+    },
+    "hac_ic": [
+     -16.183,
+     138.525
+    ],
+    "mann_kendall_p": 0.0501,
+    "media": -273.851
+   }
+  },
+  {
+   "id": "grace_masa_antartico",
+   "categoria": "polos",
+   "lugar": "antartico",
+   "titulo_en": "Antarctica ice-sheet mass change per year",
+   "definicion_en": "Change in the mass of the ice sheet from one year to the next, weighed by the GRACE and GRACE-FO gravity satellites. Below zero means ice lost.",
+   "unidad": "Gt",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    -143.9474,
+    23.7933,
+    49.2958,
+    -195.6225,
+    -259.5725,
+    -24.8258,
+    -287.865,
+    -139.225,
+    -87.769,
+    -270.2021,
+    -208.1233,
+    -311.4989,
+    -22.2422,
+    -240.7025,
+    -90.35,
+    213.315,
+    39.0542,
+    -191.8983,
+    63.6008
+   ],
+   "fuente": {
+    "producto": "GRACE/GRACE-FO mascons, CSR RL06.03 (University of Texas at Austin)",
+    "url": "https://www2.csr.utexas.edu/grace/RL06_mascons.html"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Average -110 Gt per year over 2004–2025 (1 Gt = 1 billion tonnes; 360 Gt raise the sea by about 1 mm).",
+    "The trend asks whether the yearly loss is growing, not whether ice is being lost. Years 2017–2018 are missing: the gap between the two missions.",
+    "Published check: Greenland and Antarctica lost ice in 1992–2020, with Greenland losing more (IMBIE, Otosaka et al. 2023, doi:10.5194/essd-15-1597-2023)."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 19,
+    "periodo": [
+     2004,
+     2025
+    ],
+    "unidad_pendiente": "Gt/decade",
+    "sen": {
+     "por_decada": 42.1423,
+     "ic": [
+      -112.7528,
+      146.6729
+     ]
+    },
+    "mco": {
+     "por_decada": 49.861,
+     "ic": [
+      -63.517,
+      163.238
+     ],
+     "p_valor": 0.3635
+    },
+    "hac_ic": [
+     -50.534,
+     150.256
+    ],
+    "mann_kendall_p": 0.5289,
+    "media": -109.726
+   }
+  },
+  {
+   "id": "grace_agua_NIC",
+   "categoria": "agua",
+   "lugar": "NIC",
+   "titulo_en": "Total water stored on land (GRACE)",
+   "definicion_en": "All water held in soil, rivers, lakes and aquifers over Nicaragua, compared with its 2004–2009 average and weighed by gravity satellites.",
+   "unidad": "cm",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    -1.1676,
+    -0.8059,
+    -1.2232,
+    0.1815,
+    -1.0806,
+    1.9511,
+    0.9768,
+    3.2059,
+    3.3632,
+    5.3035,
+    0.194,
+    -0.4309,
+    -2.0402,
+    -2.5953,
+    -2.7992,
+    -2.0716,
+    1.0753,
+    1.6856,
+    0.0398,
+    -0.2308,
+    4.667
+   ],
+   "fuente": {
+    "producto": "GRACE/GRACE-FO mascons, CSR RL06.03 (University of Texas at Austin)",
+    "url": "https://www2.csr.utexas.edu/grace/RL06_mascons.html"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "2026 so far (9 months): −3.2 cm; the wettest months are still missing.",
+    "Gravity satellites see blocks of about 300 km, so this is a national total, not a map of wells."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 21,
+    "periodo": [
+     2003,
+     2025
+    ],
+    "unidad_pendiente": "cm/decade",
+    "sen": {
+     "por_decada": 0.473,
+     "ic": [
+      -1.1995,
+      2.1243
+     ]
+    },
+    "mco": {
+     "por_decada": 0.276,
+     "ic": [
+      -2.704,
+      3.256
+     ],
+     "p_valor": 0.8318
+    },
+    "hac_ic": [
+     -1.131,
+     1.683
+    ],
+    "mann_kendall_p": 0.654,
+    "media": 0.39
+   }
+  },
+  {
+   "id": "glaciares_global",
+   "categoria": "polos",
+   "lugar": "glaciares_global",
+   "titulo_en": "Glacier mass change per year",
+   "definicion_en": "How much ice the glaciers of the region gained or lost each year. Below zero means ice lost.",
+   "unidad": "Gt",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "valores": [
+    -78.044,
+    -215.169,
+    -128.466,
+    -192.672,
+    -229.237,
+    -315.037,
+    -279.89,
+    -323.166,
+    -178.632,
+    -231.238,
+    -231.197,
+    -365.947,
+    -188.021,
+    -304.738,
+    -149.889,
+    -284.974,
+    -340.608,
+    -217.687,
+    -243.813,
+    -412.965,
+    -405.039,
+    -217.716,
+    -460.299,
+    -548.025
+   ],
+   "fuente": {
+    "producto": "GlaMBIE 1.0.0 glacier mass balance (World Glacier Monitoring Service)",
+    "url": "https://doi.org/10.5904/wgms-glambie-2024-07"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2000–2023: −6542 Gt; 24 of 24 years were losses.",
+    "The trend asks whether the yearly loss is growing.",
+    "Published check: glaciers worldwide lost mass every year in 2000–2023 and the loss sped up in the second half (GlaMBIE Team 2025, Nature, doi:10.1038/s41586-024-08545-z)."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 24,
+    "periodo": [
+     2000,
+     2023
+    ],
+    "unidad_pendiente": "Gt/decade",
+    "sen": {
+     "por_decada": -101.1485,
+     "ic": [
+      -167.3524,
+      -35.4971
+     ]
+    },
+    "mco": {
+     "por_decada": -99.767,
+     "ic": [
+      -152.62,
+      -46.914
+     ],
+     "p_valor": 0.0007
+    },
+    "hac_ic": [
+     -151.27,
+     -48.263
+    ],
+    "mann_kendall_p": 0.0023,
+    "media": -272.603
+   }
+  },
+  {
+   "id": "glaciares_alaska",
+   "categoria": "polos",
+   "lugar": "glaciares_alaska",
+   "titulo_en": "Glacier mass change per year",
+   "definicion_en": "How much ice the glaciers of the region gained or lost each year. Below zero means ice lost.",
+   "unidad": "Gt",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "valores": [
+    45.884,
+    -27.104,
+    -49.091,
+    -60.383,
+    -139.612,
+    -75.936,
+    -33.625,
+    -49.65,
+    36.923,
+    -91.882,
+    -73.869,
+    -45.503,
+    55.425,
+    -119.817,
+    -96.901,
+    -73.324,
+    -92.277,
+    -83.069,
+    -108.993,
+    -144.967,
+    -49.209,
+    -31.227,
+    -64.914,
+    -100.74
+   ],
+   "fuente": {
+    "producto": "GlaMBIE 1.0.0 glacier mass balance (World Glacier Monitoring Service)",
+    "url": "https://doi.org/10.5904/wgms-glambie-2024-07"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2000–2023: −1474 Gt; 21 of 24 years were losses.",
+    "The trend asks whether the yearly loss is growing.",
+    "Published check: glaciers worldwide lost mass every year in 2000–2023 and the loss sped up in the second half (GlaMBIE Team 2025, Nature, doi:10.1038/s41586-024-08545-z)."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 24,
+    "periodo": [
+     2000,
+     2023
+    ],
+    "unidad_pendiente": "Gt/decade",
+    "sen": {
+     "por_decada": -24.5643,
+     "ic": [
+      -53.9482,
+      3.9867
+     ]
+    },
+    "mco": {
+     "por_decada": -25.688,
+     "ic": [
+      -58.133,
+      6.757
+     ],
+     "p_valor": 0.1142
+    },
+    "hac_ic": [
+     -57.129,
+     5.752
+    ],
+    "mann_kendall_p": 0.0782,
+    "media": -61.411
+   }
+  },
+  {
+   "id": "glaciares_western_canada_us",
+   "categoria": "polos",
+   "lugar": "glaciares_oeste_canada_eeuu",
+   "titulo_en": "Glacier mass change per year",
+   "definicion_en": "How much ice the glaciers of the region gained or lost each year. Below zero means ice lost.",
+   "unidad": "Gt",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "valores": [
+    6.972,
+    -1.661,
+    2.077,
+    -17.056,
+    -16.807,
+    -21.029,
+    -8.342,
+    1.781,
+    3.387,
+    -12.904,
+    6.207,
+    12.221,
+    1.077,
+    -16.241,
+    -18.671,
+    -28.95,
+    -8.865,
+    -4.837,
+    -8.838,
+    -12.641,
+    -11.421,
+    -21.531,
+    -12.492,
+    -33.282
+   ],
+   "fuente": {
+    "producto": "GlaMBIE 1.0.0 glacier mass balance (World Glacier Monitoring Service)",
+    "url": "https://doi.org/10.5904/wgms-glambie-2024-07"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2000–2023: −222 Gt; 17 of 24 years were losses.",
+    "The trend asks whether the yearly loss is growing.",
+    "Published check: glaciers worldwide lost mass every year in 2000–2023 and the loss sped up in the second half (GlaMBIE Team 2025, Nature, doi:10.1038/s41586-024-08545-z)."
+   ],
+   "tendencia": {
+    "veredicto": "metodos_discrepan",
+    "veredicto_contrato": "metodos_discrepan",
+    "anios": 24,
+    "periodo": [
+     2000,
+     2023
+    ],
+    "unidad_pendiente": "Gt/decade",
+    "sen": {
+     "por_decada": -7.8684,
+     "ic": [
+      -14.6706,
+      0.263
+     ]
+    },
+    "mco": {
+     "por_decada": -7.287,
+     "ic": [
+      -17.897,
+      3.322
+     ],
+     "p_valor": 0.1562
+    },
+    "hac_ic": [
+     -13.851,
+     -0.723
+    ],
+    "mann_kendall_p": 0.0561,
+    "media": -9.244
+   }
+  },
+  {
+   "id": "glaciares_arctic_canada_north",
+   "categoria": "polos",
+   "lugar": "glaciares_artico_canada_norte",
+   "titulo_en": "Glacier mass change per year",
+   "definicion_en": "How much ice the glaciers of the region gained or lost each year. Below zero means ice lost.",
+   "unidad": "Gt",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "valores": [
+    -48.492,
+    -27.439,
+    2.273,
+    -10.868,
+    9.33,
+    -27.635,
+    -14.49,
+    -59.606,
+    -59.054,
+    -44.751,
+    -30.431,
+    -83.304,
+    -72.922,
+    7.951,
+    -18.52,
+    -52.646,
+    -24.188,
+    6.945,
+    14.804,
+    -58.892,
+    -54.566,
+    -2.239,
+    -37.476,
+    -44.019
+   ],
+   "fuente": {
+    "producto": "GlaMBIE 1.0.0 glacier mass balance (World Glacier Monitoring Service)",
+    "url": "https://doi.org/10.5904/wgms-glambie-2024-07"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2000–2023: −730 Gt; 19 of 24 years were losses.",
+    "The trend asks whether the yearly loss is growing.",
+    "Published check: glaciers worldwide lost mass every year in 2000–2023 and the loss sped up in the second half (GlaMBIE Team 2025, Nature, doi:10.1038/s41586-024-08545-z)."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 24,
+    "periodo": [
+     2000,
+     2023
+    ],
+    "unidad_pendiente": "Gt/decade",
+    "sen": {
+     "por_decada": -2.6422,
+     "ic": [
+      -22.3264,
+      18.819
+     ]
+    },
+    "mco": {
+     "por_decada": -2.4,
+     "ic": [
+      -24.949,
+      20.149
+     ],
+     "p_valor": 0.8229
+    },
+    "hac_ic": [
+     -17.052,
+     12.252
+    ],
+    "mann_kendall_p": 0.8233,
+    "media": -30.426
+   }
+  },
+  {
+   "id": "glaciares_arctic_canada_south",
+   "categoria": "polos",
+   "lugar": "glaciares_artico_canada_sur",
+   "titulo_en": "Glacier mass change per year",
+   "definicion_en": "How much ice the glaciers of the region gained or lost each year. Below zero means ice lost.",
+   "unidad": "Gt",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "valores": [
+    -31.829,
+    -22.04,
+    -5.597,
+    -8.486,
+    -1.467,
+    -24.225,
+    -17.098,
+    -33.154,
+    -37.163,
+    -36.848,
+    -29.97,
+    -41.752,
+    -38.565,
+    -9.379,
+    -14.425,
+    -27.711,
+    -29.159,
+    -6.698,
+    -1.163,
+    -50.547,
+    -35.238,
+    1.561,
+    -26.803,
+    -24.486
+   ],
+   "fuente": {
+    "producto": "GlaMBIE 1.0.0 glacier mass balance (World Glacier Monitoring Service)",
+    "url": "https://doi.org/10.5904/wgms-glambie-2024-07"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2000–2023: −552 Gt; 23 of 24 years were losses.",
+    "The trend asks whether the yearly loss is growing.",
+    "Published check: glaciers worldwide lost mass every year in 2000–2023 and the loss sped up in the second half (GlaMBIE Team 2025, Nature, doi:10.1038/s41586-024-08545-z)."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 24,
+    "periodo": [
+     2000,
+     2023
+    ],
+    "unidad_pendiente": "Gt/decade",
+    "sen": {
+     "por_decada": -1.0024,
+     "ic": [
+      -12.1673,
+      9.4545
+     ]
+    },
+    "mco": {
+     "por_decada": -1.273,
+     "ic": [
+      -12.463,
+      9.918
+     ],
+     "p_valor": 0.8119
+    },
+    "hac_ic": [
+     -9.348,
+     6.803
+    ],
+    "mann_kendall_p": 0.9013,
+    "media": -23.01
+   }
+  },
+  {
+   "id": "glaciares_greenland_periphery",
+   "categoria": "polos",
+   "lugar": "glaciares_groenlandia_periferia",
+   "titulo_en": "Glacier mass change per year",
+   "definicion_en": "How much ice the glaciers of the region gained or lost each year. Below zero means ice lost.",
+   "unidad": "Gt",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "valores": [
+    -41.291,
+    -30.259,
+    -4.633,
+    21.194,
+    -21.618,
+    -73.562,
+    -11.901,
+    -54.519,
+    -31.57,
+    -44.341,
+    -63.504,
+    -73.619,
+    -45.048,
+    -37.845,
+    2.582,
+    -9.433,
+    -53.454,
+    7.71,
+    12.002,
+    -73.002,
+    -39.042,
+    -52.793,
+    -46.258,
+    -86.273
+   ],
+   "fuente": {
+    "producto": "GlaMBIE 1.0.0 glacier mass balance (World Glacier Monitoring Service)",
+    "url": "https://doi.org/10.5904/wgms-glambie-2024-07"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2000–2023: −850 Gt; 20 of 24 years were losses.",
+    "The trend asks whether the yearly loss is growing.",
+    "Published check: glaciers worldwide lost mass every year in 2000–2023 and the loss sped up in the second half (GlaMBIE Team 2025, Nature, doi:10.1038/s41586-024-08545-z)."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 24,
+    "periodo": [
+     2000,
+     2023
+    ],
+    "unidad_pendiente": "Gt/decade",
+    "sen": {
+     "por_decada": -10.0614,
+     "ic": [
+      -29.95,
+      12.1512
+     ]
+    },
+    "mco": {
+     "por_decada": -9.772,
+     "ic": [
+      -31.109,
+      11.564
+     ],
+     "p_valor": 0.3465
+    },
+    "hac_ic": [
+     -26.84,
+     7.295
+    ],
+    "mann_kendall_p": 0.2862,
+    "media": -35.437
+   }
+  },
+  {
+   "id": "glaciares_low_latitudes",
+   "categoria": "polos",
+   "lugar": "glaciares_latitudes_bajas",
+   "titulo_en": "Glacier mass change per year",
+   "definicion_en": "How much ice the glaciers of the region gained or lost each year. Below zero means ice lost.",
+   "unidad": "Gt",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "valores": [
+    0.371,
+    -0.307,
+    -1.286,
+    -1.582,
+    -2.462,
+    -2.77,
+    -0.647,
+    0.294,
+    1.074,
+    -1.841,
+    -1.841,
+    -0.124,
+    -0.018,
+    -0.552,
+    -0.24,
+    -1.69,
+    -2.369,
+    -0.646,
+    -0.101,
+    -0.901,
+    -0.563,
+    0.095,
+    0.006,
+    -2.302
+   ],
+   "fuente": {
+    "producto": "GlaMBIE 1.0.0 glacier mass balance (World Glacier Monitoring Service)",
+    "url": "https://doi.org/10.5904/wgms-glambie-2024-07"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2000–2023: −20 Gt; 19 of 24 years were losses.",
+    "The trend asks whether the yearly loss is growing.",
+    "Published check: glaciers worldwide lost mass every year in 2000–2023 and the loss sped up in the second half (GlaMBIE Team 2025, Nature, doi:10.1038/s41586-024-08545-z)."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 24,
+    "periodo": [
+     2000,
+     2023
+    ],
+    "unidad_pendiente": "Gt/decade",
+    "sen": {
+     "por_decada": 0.0558,
+     "ic": [
+      -0.6592,
+      0.8088
+     ]
+    },
+    "mco": {
+     "por_decada": 0.067,
+     "ic": [
+      -0.859,
+      0.993
+     ],
+     "p_valor": 0.8771
+    },
+    "hac_ic": [
+     -0.639,
+     0.773
+    ],
+    "mann_kendall_p": 0.8427,
+    "media": -0.85
+   }
+  },
+  {
+   "id": "glaciares_southern_andes",
+   "categoria": "polos",
+   "lugar": "glaciares_andes_sur",
+   "titulo_en": "Glacier mass change per year",
+   "definicion_en": "How much ice the glaciers of the region gained or lost each year. Below zero means ice lost.",
+   "unidad": "Gt",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "valores": [
+    1.662,
+    -13.891,
+    -4.277,
+    -27.168,
+    2.95,
+    -49.949,
+    -25.498,
+    -34.048,
+    -24.532,
+    6.375,
+    -48.572,
+    -60.087,
+    -26.839,
+    7.61,
+    4.986,
+    -37.607,
+    -67.136,
+    -22.636,
+    -40.538,
+    -28.156,
+    -27.999,
+    -24.094,
+    -41.304,
+    -50.038
+   ],
+   "fuente": {
+    "producto": "GlaMBIE 1.0.0 glacier mass balance (World Glacier Monitoring Service)",
+    "url": "https://doi.org/10.5904/wgms-glambie-2024-07"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2000–2023: −631 Gt; 19 of 24 years were losses.",
+    "The trend asks whether the yearly loss is growing.",
+    "Published check: glaciers worldwide lost mass every year in 2000–2023 and the loss sped up in the second half (GlaMBIE Team 2025, Nature, doi:10.1038/s41586-024-08545-z)."
+   ],
+   "tendencia": {
+    "veredicto": "metodos_discrepan",
+    "veredicto_contrato": "metodos_discrepan",
+    "anios": 24,
+    "periodo": [
+     2000,
+     2023
+    ],
+    "unidad_pendiente": "Gt/decade",
+    "sen": {
+     "por_decada": -12.399,
+     "ic": [
+      -25.3908,
+      2.036
+     ]
+    },
+    "mco": {
+     "por_decada": -11.577,
+     "ic": [
+      -24.391,
+      1.238
+     ],
+     "p_valor": 0.0742
+    },
+    "hac_ic": [
+     -19.323,
+     -3.831
+    ],
+    "mann_kendall_p": 0.087,
+    "media": -26.283
+   }
+  },
+  {
+   "id": "acidez_ph_mar_caribe_nic",
+   "categoria": "costa",
+   "lugar": "mar_caribe_nic",
+   "titulo_en": "Sea surface pH",
+   "definicion_en": "Acidity of the sea surface: lower pH means more acidic water. 0.1 lower is about 26% more acid.",
+   "unidad": "pH",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    8.0953,
+    8.0955,
+    8.095,
+    8.094,
+    8.0918,
+    8.0877,
+    8.0881,
+    8.0859,
+    8.0855,
+    8.0847,
+    8.0832,
+    8.0825,
+    8.078,
+    8.0796,
+    8.0791,
+    8.0746,
+    8.0745,
+    8.0747,
+    8.0733,
+    8.0714,
+    8.0684,
+    8.0677,
+    8.0655,
+    8.0652,
+    8.0636,
+    8.0617,
+    8.0626,
+    8.0582,
+    8.0583,
+    8.0576,
+    8.0539,
+    8.0534,
+    8.0506,
+    8.0466,
+    8.0446,
+    8.046,
+    8.0419,
+    8.0385,
+    8.0393,
+    8.037,
+    8.0328,
+    8.0278
+   ],
+   "fuente": {
+    "producto": "OceanSODA-ETHZ v2025 surface ocean carbonate system (NOAA NCEI)",
+    "url": "https://www.ncei.noaa.gov/data/oceans/ncei/ocads/data/0220059/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Published check: the surface ocean has become more acidic everywhere since the 1980s as it absorbs carbon dioxide (Ma et al. 2023, doi:10.1029/2023GB007765). Data: OceanSODA-ETHZ (Gregor and Gruber 2021, doi:10.5194/essd-13-777-2021)."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 42,
+    "periodo": [
+     1983,
+     2024
+    ],
+    "unidad_pendiente": "pH/decade",
+    "sen": {
+     "por_decada": -0.015,
+     "ic": [
+      -0.0158,
+      -0.0144
+     ]
+    },
+    "mco": {
+     "por_decada": -0.015,
+     "ic": [
+      -0.017,
+      -0.014
+     ],
+     "p_valor": 0.0
+    },
+    "hac_ic": [
+     -0.016,
+     -0.014
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 8.067
+   }
+  },
+  {
+   "id": "acidez_aragonito_mar_caribe_nic",
+   "categoria": "costa",
+   "lugar": "mar_caribe_nic",
+   "titulo_en": "Aragonite saturation",
+   "definicion_en": "How easily corals and shellfish can build their skeletons from the water. Below about 3 reefs struggle to grow.",
+   "unidad": "Ω",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    4.2291,
+    4.1171,
+    4.1176,
+    4.107,
+    4.1724,
+    4.128,
+    4.0641,
+    4.0932,
+    4.0396,
+    4.0832,
+    4.1054,
+    4.0819,
+    4.1445,
+    4.0774,
+    4.0767,
+    4.1184,
+    4.0274,
+    3.989,
+    3.991,
+    4.0181,
+    4.0284,
+    4.0081,
+    4.034,
+    4.0068,
+    4.0006,
+    3.9457,
+    3.9728,
+    3.9703,
+    3.9356,
+    3.9141,
+    3.9197,
+    3.9025,
+    3.8874,
+    3.9219,
+    3.907,
+    3.844,
+    3.8718,
+    3.895,
+    3.8504,
+    3.839,
+    3.8512,
+    3.8866
+   ],
+   "fuente": {
+    "producto": "OceanSODA-ETHZ v2025 surface ocean carbonate system (NOAA NCEI)",
+    "url": "https://www.ncei.noaa.gov/data/oceans/ncei/ocads/data/0220059/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Published check: the surface ocean has become more acidic everywhere since the 1980s as it absorbs carbon dioxide (Ma et al. 2023, doi:10.1029/2023GB007765). Data: OceanSODA-ETHZ (Gregor and Gruber 2021, doi:10.5194/essd-13-777-2021)."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 42,
+    "periodo": [
+     1983,
+     2024
+    ],
+    "unidad_pendiente": "Ω/decade",
+    "sen": {
+     "por_decada": -0.0773,
+     "ic": [
+      -0.0871,
+      -0.0687
+     ]
+    },
+    "mco": {
+     "por_decada": -0.078,
+     "ic": [
+      -0.088,
+      -0.068
+     ],
+     "p_valor": 0.0
+    },
+    "hac_ic": [
+     -0.086,
+     -0.07
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 4.004
+   }
+  },
+  {
+   "id": "acidez_ph_mar_caribe",
+   "categoria": "costa",
+   "lugar": "mar_caribe",
+   "titulo_en": "Sea surface pH",
+   "definicion_en": "Acidity of the sea surface: lower pH means more acidic water. 0.1 lower is about 26% more acid.",
+   "unidad": "pH",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    8.0967,
+    8.096,
+    8.0944,
+    8.0936,
+    8.0912,
+    8.0886,
+    8.0874,
+    8.0862,
+    8.0854,
+    8.085,
+    8.084,
+    8.0825,
+    8.0798,
+    8.0799,
+    8.0783,
+    8.0754,
+    8.0743,
+    8.0746,
+    8.0726,
+    8.071,
+    8.0685,
+    8.0686,
+    8.0657,
+    8.0648,
+    8.0635,
+    8.0627,
+    8.0616,
+    8.0581,
+    8.057,
+    8.0564,
+    8.0541,
+    8.0526,
+    8.0503,
+    8.0473,
+    8.046,
+    8.0448,
+    8.041,
+    8.0386,
+    8.038,
+    8.0358,
+    8.032,
+    8.0279
+   ],
+   "fuente": {
+    "producto": "OceanSODA-ETHZ v2025 surface ocean carbonate system (NOAA NCEI)",
+    "url": "https://www.ncei.noaa.gov/data/oceans/ncei/ocads/data/0220059/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Published check: the surface ocean has become more acidic everywhere since the 1980s as it absorbs carbon dioxide (Ma et al. 2023, doi:10.1029/2023GB007765). Data: OceanSODA-ETHZ (Gregor and Gruber 2021, doi:10.5194/essd-13-777-2021)."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 42,
+    "periodo": [
+     1983,
+     2024
+    ],
+    "unidad_pendiente": "pH/decade",
+    "sen": {
+     "por_decada": -0.0151,
+     "ic": [
+      -0.0159,
+      -0.0145
+     ]
+    },
+    "mco": {
+     "por_decada": -0.016,
+     "ic": [
+      -0.018,
+      -0.014
+     ],
+     "p_valor": 0.0
+    },
+    "hac_ic": [
+     -0.017,
+     -0.015
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 8.067
+   }
+  },
+  {
+   "id": "acidez_aragonito_mar_caribe",
+   "categoria": "costa",
+   "lugar": "mar_caribe",
+   "titulo_en": "Aragonite saturation",
+   "definicion_en": "How easily corals and shellfish can build their skeletons from the water. Below about 3 reefs struggle to grow.",
+   "unidad": "Ω",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    4.1169,
+    4.04,
+    4.0203,
+    4.0267,
+    4.0719,
+    4.0446,
+    3.9817,
+    3.999,
+    3.974,
+    4.0281,
+    4.0211,
+    4.0003,
+    4.0543,
+    3.9977,
+    3.9989,
+    4.0273,
+    3.9663,
+    3.9421,
+    3.9482,
+    3.9591,
+    3.9718,
+    3.9596,
+    3.9668,
+    3.9307,
+    3.9383,
+    3.8957,
+    3.8959,
+    3.9143,
+    3.8823,
+    3.8622,
+    3.8735,
+    3.8507,
+    3.8516,
+    3.8839,
+    3.8503,
+    3.7967,
+    3.8209,
+    3.8364,
+    3.7875,
+    3.7551,
+    3.8036,
+    3.8401
+   ],
+   "fuente": {
+    "producto": "OceanSODA-ETHZ v2025 surface ocean carbonate system (NOAA NCEI)",
+    "url": "https://www.ncei.noaa.gov/data/oceans/ncei/ocads/data/0220059/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Published check: the surface ocean has become more acidic everywhere since the 1980s as it absorbs carbon dioxide (Ma et al. 2023, doi:10.1029/2023GB007765). Data: OceanSODA-ETHZ (Gregor and Gruber 2021, doi:10.5194/essd-13-777-2021)."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 42,
+    "periodo": [
+     1983,
+     2024
+    ],
+    "unidad_pendiente": "Ω/decade",
+    "sen": {
+     "por_decada": -0.0685,
+     "ic": [
+      -0.0768,
+      -0.0592
+     ]
+    },
+    "mco": {
+     "por_decada": -0.068,
+     "ic": [
+      -0.078,
+      -0.057
+     ],
+     "p_valor": 0.0
+    },
+    "hac_ic": [
+     -0.076,
+     -0.059
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 3.938
+   }
+  },
+  {
+   "id": "incendios_area_NIC",
+   "categoria": "vegetacion",
+   "lugar": "NIC",
+   "titulo_en": "Burned area per year",
+   "definicion_en": "Land burned by fires during the year, mapped from satellites (MODIS) at about 25 km. Includes wildfires, farm burning and fires used to clear forest.",
+   "unidad": "km²",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020
+   ],
+   "valores": [
+    7211.2,
+    4695.8,
+    9672.4,
+    5377.1,
+    10117.1,
+    5773.0,
+    4744.8,
+    6418.2,
+    6416.5,
+    6958.7,
+    5246.3,
+    3932.7,
+    9067.0,
+    8199.9,
+    5399.5,
+    7228.8,
+    4001.3,
+    5832.1,
+    7125.0,
+    8953.5
+   ],
+   "fuente": {
+    "producto": "GFED5 burned area, MODIS era (Global Fire Emissions Database)",
+    "url": "https://doi.org/10.5281/zenodo.7668424"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Most burned: 2005, 10,117 km².",
+    "One very dry or very wet year moves the total a lot, so 20 years is short for a fire trend.",
+    "Published check: the land burned worldwide each year shrank since the early 2000s, mostly in savannas and grasslands turned to farms and pasture (Andela et al. 2017, Science, doi:10.1126/science.aal4108). Data: GFED5 burned area (Chen et al. 2023, doi:10.5194/essd-15-5227-2023)."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 20,
+    "periodo": [
+     2001,
+     2020
+    ],
+    "unidad_pendiente": "km²/decade",
+    "sen": {
+     "por_decada": 117.6,
+     "ic": [
+      -1610.6364,
+      2078.8
+     ]
+    },
+    "mco": {
+     "por_decada": -59.825,
+     "ic": [
+      -1598.225,
+      1478.575
+     ],
+     "p_valor": 0.9358
+    },
+    "hac_ic": [
+     -1362.954,
+     1243.305
+    ],
+    "mann_kendall_p": 0.8203,
+    "media": 6618.545
+   }
+  },
+  {
+   "id": "incendios_area_centroamerica",
+   "categoria": "vegetacion",
+   "lugar": "centroamerica",
+   "titulo_en": "Burned area per year",
+   "definicion_en": "Land burned by fires during the year, mapped from satellites (MODIS) at about 25 km. Includes wildfires, farm burning and fires used to clear forest.",
+   "unidad": "km²",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020
+   ],
+   "valores": [
+    50835.7,
+    46635.3,
+    67585.9,
+    34580.0,
+    59038.8,
+    38519.2,
+    44035.7,
+    44208.8,
+    46359.5,
+    37232.6,
+    48738.7,
+    31336.1,
+    55514.3,
+    41260.8,
+    42043.2,
+    46009.6,
+    38826.2,
+    38441.8,
+    51393.3,
+    49219.3
+   ],
+   "fuente": {
+    "producto": "GFED5 burned area, MODIS era (Global Fire Emissions Database)",
+    "url": "https://doi.org/10.5281/zenodo.7668424"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Most burned: 2003, 67,586 km².",
+    "One very dry or very wet year moves the total a lot, so 20 years is short for a fire trend.",
+    "Published check: the land burned worldwide each year shrank since the early 2000s, mostly in savannas and grasslands turned to farms and pasture (Andela et al. 2017, Science, doi:10.1126/science.aal4108). Data: GFED5 burned area (Chen et al. 2023, doi:10.5194/essd-15-5227-2023)."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 20,
+    "periodo": [
+     2001,
+     2020
+    ],
+    "unidad_pendiente": "km²/decade",
+    "sen": {
+     "por_decada": -3216.95,
+     "ic": [
+      -9416.625,
+      5033.8
+     ]
+    },
+    "mco": {
+     "por_decada": -3307.162,
+     "ic": [
+      -10371.36,
+      3757.035
+     ],
+     "p_valor": 0.3384
+    },
+    "hac_ic": [
+     -8932.411,
+     2318.086
+    ],
+    "mann_kendall_p": 0.5813,
+    "media": 45590.74
+   }
+  },
+  {
+   "id": "incendios_area_global",
+   "categoria": "vegetacion",
+   "lugar": "planeta",
+   "titulo_en": "Burned area per year",
+   "definicion_en": "Land burned by fires during the year, mapped from satellites (MODIS) at about 25 km. Includes wildfires, farm burning and fires used to clear forest.",
+   "unidad": "km²",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020
+   ],
+   "valores": [
+    9161310.4,
+    8521379.8,
+    8157350.2,
+    8534077.0,
+    8258140.6,
+    7691428.2,
+    8242436.0,
+    8208652.8,
+    7600318.7,
+    7575892.8,
+    7970510.2,
+    7898589.0,
+    6976609.9,
+    7243504.2,
+    7444495.6,
+    7384958.6,
+    7335328.7,
+    6848813.9,
+    6813516.5,
+    7226134.4
+   ],
+   "fuente": {
+    "producto": "GFED5 burned area, MODIS era (Global Fire Emissions Database)",
+    "url": "https://doi.org/10.5281/zenodo.7668424"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Most burned: 2001, 9,161,310 km².",
+    "One very dry or very wet year moves the total a lot, so 20 years is short for a fire trend.",
+    "Published check: the land burned worldwide each year shrank since the early 2000s, mostly in savannas and grasslands turned to farms and pasture (Andela et al. 2017, Science, doi:10.1126/science.aal4108). Data: GFED5 burned area (Chen et al. 2023, doi:10.5194/essd-15-5227-2023)."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 20,
+    "periodo": [
+     2001,
+     2020
+    ],
+    "unidad_pendiente": "km²/decade",
+    "sen": {
+     "por_decada": -853530.0889,
+     "ic": [
+      -1180740.3,
+      -675316.6923
+     ]
+    },
+    "mco": {
+     "por_decada": -937627.795,
+     "ic": [
+      -1178656.495,
+      -696599.095
+     ],
+     "p_valor": 0.0
+    },
+    "hac_ic": [
+     -1123529.289,
+     -751726.301
+    ],
+    "mann_kendall_p": 0.0,
+    "media": 7754672.375
+   }
   }
  ],
  "contrastes": [
@@ -19830,7 +23627,7 @@
   "recursos/csa/contrastes_canada_series.csv": "677dce021000ca5e0f2a952a48d30647e9cf944c1f4bb1e21d5497b5f18e74a7",
   "recursos/tierra/contrastes_tierra.json": "ca64937fb948a5b9454974c279e681d9c766ebb50d0db3c9038f5b87c1bfda67",
   "recursos/tierra/contrastes_tierra_series.csv": "72867f9c235f275fe7ac7ff9221b46ab55e90be2a9b1575e63db65271400a25c",
-  "recursos/hallazgos/fuentes.json": "72d387d9373ff2cefcc67b105891b269901d91de3659a244fcdba705a99b4b61",
+  "recursos/hallazgos/fuentes.json": "f7ac5c29e52b97f71b507920aa81db02c0e4f594803346725713b56798abb162",
   "recursos/hallazgos/oni_noaa_cpc.csv": "fd389ba93ba58325d6f599b5b4eb34d1dce5d6d94713f66c104b88b751cac922",
   "recursos/hallazgos/chirps_indices_regiones.csv": "37aad3d76e2f5de995b66004ad7b8b93ece96a1f4dff778e31d2d62517f7cc8c",
   "recursos/hallazgos/chirps_acumulado_parcial.csv": "3d5514151dd7aec731f3e2c682686a9af928d73b451131a398b2b148d976a7a1",
@@ -19838,6 +23635,12 @@
   "recursos/hallazgos/gistemp_bandas.csv": "d1a96ca7d1f2a2967351cdafc76af05ffeb135242898f1681e5cd6cc1dd896c7",
   "recursos/hallazgos/ersst_caribe_nicaragua.csv": "ed226867b83ef1daa25140617af6e6c62df22f283a96f53c6ccf2eaff9d49c4c",
   "recursos/hallazgos/psmsl_nivel_mar_anual.csv": "65fdb5f443e2f15e4b93dbb25bd7cd197db52e904b6eff987574ac29b8abb668",
-  "recursos/hallazgos/ibtracs_cerca_nicaragua.csv": "24226edd8f9a285fb4179c859f41be9720b62e2c028d3840060a98f6e09b6117"
+  "recursos/hallazgos/ibtracs_cerca_nicaragua.csv": "24226edd8f9a285fb4179c859f41be9720b62e2c028d3840060a98f6e09b6117",
+  "recursos/hallazgos/chirps_canicula_regiones.csv": "d296d1c58732b38f64b274a5fbafa2cc2f4a2d5ce3fd879ced2e582dc499c67c",
+  "recursos/hallazgos/crw_caribe_nicaragua_anual.csv": "65ff4c34977d73d561f468b1afc9592ef0f4d3e6d29f292389f9309ed0fc6437",
+  "recursos/hallazgos/grace_csr_mensual.csv": "01adbe1bbc7fe9b5b0acb78c092da5bde0dd6a3e1695579e63f96911b0906878",
+  "recursos/hallazgos/glambie_america_anual.csv": "0c36b2823fdc94b9cf4558a10af65ded402ed3719d7011a0699c9496641e5cb2",
+  "recursos/hallazgos/oceansoda_caribe_mensual.csv": "36b9d347f31c31fdf85ccd55c4a479a576092f62a4ad1deebd0ff2655af9302d",
+  "recursos/hallazgos/gfed5_area_quemada_mensual.csv": "4a4812a807d9bcd2989c67a8f24c9ca4336c96ad2e3aed6376f7eae966a37236"
  }
 }

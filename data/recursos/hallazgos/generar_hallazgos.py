@@ -92,10 +92,13 @@ def main():
     doy = (fechas - fechas.astype("datetime64[Y]")).astype(int)
     doy_fin = int((ultimo - ultimo.astype("datetime64[Y]")).astype(int))
     with open(AQUI / "chirps_indices_regiones.csv", "w", newline="", encoding="utf-8") as f, \
-         open(AQUI / "chirps_acumulado_parcial.csv", "w", newline="", encoding="utf-8") as g:
-        w, wg = csv.writer(f, lineterminator="\n"), csv.writer(g, lineterminator="\n")
+         open(AQUI / "chirps_acumulado_parcial.csv", "w", newline="", encoding="utf-8") as g, \
+         open(AQUI / "chirps_canicula_regiones.csv", "w", newline="", encoding="utf-8") as h:
+        w, wg, wc = (csv.writer(x, lineterminator="\n") for x in (f, g, h))
         w.writerow(["region", "anio", "indice", "valor"])
         wg.writerow(["region", "anio", "desde", "hasta", "mm"])
+        wc.writerow(["region", "anio", "detectada", "inicio_doy", "fin_doy", "duracion_dias", "intensidad",
+                     "lluvia_15jul_15ago_mm", "racha_seca_15jul_15ago_dias"])
         for r, cs in celdas.items():
             anios = sorted(set.intersection(*(set(idx) for _, idx in cs)))
             for a in anios:
@@ -104,6 +107,13 @@ def main():
             media = np.nanmean(np.stack([s for s, _ in cs], 1), 1)
             for a in range(1981, args.fin + 1):
                 wg.writerow([r, a, "01-01", str(ultimo)[5:], round(float(media[(anio == a) & (doy <= doy_fin)].sum()), 2)])
+            # Canícula sobre la lluvia diaria media de la región: la forma estacional es regional, no de una celda.
+            completos = anio < ultimo.astype("datetime64[Y]").astype(int) + 1970
+            for a, c in sorted(ind.canicula(fechas[completos], media[completos], BASE).items()):
+                o, v = c["objetiva"], c["ventana_fija"]
+                wc.writerow([r, a, int(o["detectada"]), o.get("inicio_doy", ""), o.get("fin_doy", ""),
+                             o.get("duracion_dias", 0) if o["detectada"] else 0,
+                             o.get("intensidad", ""), round(v["lluvia_mm"], 2), v["racha_seca_max_dias"]])
 
     oni = bajar(ONI, args.cache / "oni.ascii.txt", refrescar=True)
     with open(AQUI / "oni_noaa_cpc.csv", "w", newline="", encoding="utf-8") as f:

@@ -46,9 +46,10 @@ CATEGORIAS = [
     {"id": "ciclones", "nombre_en": "Hurricanes", "pregunta_en": "Do tropical storms and hurricanes come near Nicaragua more often?",
      "descripcion_en": "Storm tracks from NOAA IBTrACS since 1981, counting every storm whose centre passed within about "
                        "150 km of a box around Nicaragua, from the Caribbean or the Pacific."},
-    {"id": "polos", "nombre_en": "Ice & poles", "pregunta_en": "Is polar sea ice shrinking?",
-     "descripcion_en": "Satellites have mapped sea ice at both poles every day since 1978. Arctic ice is smallest in "
-                       "September and largest in March; around Antarctica it is the other way round."},
+    {"id": "polos", "nombre_en": "Ice", "pregunta_en": "Is Earth's ice shrinking?",
+     "descripcion_en": "Sea ice is mapped by satellites every day since 1978: Arctic ice is smallest in September and "
+                       "largest in March, and around Antarctica it is the other way round. Mountain glaciers and the "
+                       "Greenland and Antarctic ice sheets are weighed by gravity satellites and surveys."},
 ]
 
 # id: (nombre en inglés, país, [lat, lon], zoom)
@@ -74,6 +75,20 @@ LUGARES = {
     "global": ("Whole planet", "Global mean", [15.0, -60.0], 2),
     # Océano y costa (data/recursos/hallazgos/generar_oceano.py).
     "mar_caribe_nic": ("Caribbean Sea off Nicaragua", "12–14°N, 80–82°W", [13.0, -81.0], 6),
+    "arrecifes_nic": ("Caribbean reefs off Nicaragua", "NOAA Coral Reef Watch station", [14.13, -81.75], 7),
+    "mar_caribe": ("Caribbean Sea", "10–22°N, 60–88°W", [16.0, -74.0], 4),
+    "groenlandia": ("Greenland ice sheet", "Greenland", [72.0, -40.0], 3),
+    "centroamerica": ("Central America", "7–18.5°N, 77–92.5°W", [13.0, -85.0], 5),
+    "planeta": ("Whole planet", "Global total", [15.0, -60.0], 2),
+    # Regiones de glaciares de GlaMBIE (RGI) en América y el total mundial.
+    "glaciares_global": ("All glaciers on Earth", "Global", [15.0, -60.0], 2),
+    "glaciares_alaska": ("Alaska glaciers", "USA", [61.0, -147.0], 4),
+    "glaciares_oeste_canada_eeuu": ("Western Canada and US glaciers", "Canada and USA", [50.0, -120.0], 4),
+    "glaciares_artico_canada_norte": ("Northern Arctic Canada glaciers", "Canada", [79.0, -80.0], 3),
+    "glaciares_artico_canada_sur": ("Southern Arctic Canada glaciers", "Canada", [68.0, -68.0], 3),
+    "glaciares_groenlandia_periferia": ("Greenland peripheral glaciers", "Greenland", [72.0, -40.0], 3),
+    "glaciares_latitudes_bajas": ("Tropical glaciers (Andes and Mexico)", "Low latitudes", [-12.0, -75.0], 4),
+    "glaciares_andes_sur": ("Southern Andes and Patagonia glaciers", "Chile and Argentina", [-45.0, -72.0], 4),
     "san_juan": ("San Juan tide gauge", "Puerto Rico", [18.46, -66.12], 10),
     "magueyes": ("Magueyes Island tide gauge", "Puerto Rico", [17.97, -67.05], 10),
     "charlotte_amalie": ("Charlotte Amalie tide gauge", "US Virgin Islands", [18.34, -64.92], 10),
@@ -536,6 +551,22 @@ MESES_EN = ["January", "February", "March", "April", "May", "June", "July", "Aug
             "November", "December"]
 # Estudios revisados por pares que contrastan series de la app (DOI comprobados en Crossref el 14-11-2026).
 ESTUDIOS = {
+    "canicula": "Published check: the midsummer drought has grown longer across Central America since 1981, without a "
+                "general rise in strength (Anderson et al. 2019, doi:10.1088/1748-9326/ab5023); how it is defined can "
+                "change the sign of a trend (Maurer et al. 2022, doi:10.5194/hess-26-1425-2022).",
+    "olas_calor": "Method: marine heatwave definition of Hobday et al. 2016 (doi:10.1016/j.pocean.2015.12.014); coral heat "
+                  "stress and alerts as computed by NOAA Coral Reef Watch.",
+    "mantos": "Published check: Greenland and Antarctica lost ice in 1992–2020, with Greenland losing more "
+              "(IMBIE, Otosaka et al. 2023, doi:10.5194/essd-15-1597-2023).",
+    "glaciares": "Published check: glaciers worldwide lost mass every year in 2000–2023 and the loss sped up in the second "
+                 "half (GlaMBIE Team 2025, Nature, doi:10.1038/s41586-024-08545-z).",
+    "acidificacion": "Published check: the surface ocean has become more acidic everywhere since the 1980s as it absorbs "
+                     "carbon dioxide (Ma et al. 2023, doi:10.1029/2023GB007765). Data: OceanSODA-ETHZ (Gregor and "
+                     "Gruber 2021, doi:10.5194/essd-13-777-2021).",
+    "incendios": "Published check: the land burned worldwide each year shrank since the early 2000s, mostly in "
+                 "savannas and grasslands turned to farms and pasture (Andela et al. 2017, Science, "
+                 "doi:10.1126/science.aal4108). Data: GFED5 burned area (Chen et al. 2023, "
+                 "doi:10.5194/essd-15-5227-2023).",
     "estaciones_mallas": "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and "
                          "Nicaragua while CRU does not, and a single rain gauge can steer the gridded result "
                          "(González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720).",
@@ -810,6 +841,173 @@ def _hallazgos(carpeta, permitir_sintetico):
                                    [sum(1 for f in historicas if int(f["temporada"]) == a) for a in largo], ibtracs,
                                    notas=["Compare with the record since 1981: an older record can suggest a rise "
                                           "that partly comes from better detection.", ESTUDIOS["subregistro_ciclones"]]))
+    n_inv, n_ent = _mundo(carpeta, fuentes, chirps, notas_lluvia)
+    return invs + n_inv, entradas + n_ent
+
+
+def _serie(filas, clave, valor):
+    """{clave: [(anio, valor), …]} ordenado, a partir de filas CSV."""
+    out = {}
+    for f in filas:
+        out.setdefault(f[clave], []).append((int(f["anio"]), float(f[valor])))
+    return {k: sorted(v) for k, v in out.items()}
+
+
+def _anuales_mensuales(filas, columna, minimo=12):
+    """Media anual de una columna mensual («mes» = AAAA-MM) solo con años que tienen al menos `minimo` meses."""
+    por = {}
+    for f in filas:
+        if f[columna] not in ("", "nan"):
+            por.setdefault(int(f["mes"][:4]), []).append(float(f[columna]))
+    return {a: sum(v) / len(v) for a, v in sorted(por.items()) if len(v) >= minimo}
+
+
+def _mundo(carpeta, fuentes, chirps, notas_lluvia):
+    """Canícula, olas de calor marinas, GRACE, glaciares y acidificación (generar_hallazgos/oceano/mundo.py)."""
+    invs, entradas = [], []
+    ruta = carpeta / "chirps_canicula_regiones.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        filas = _leer_csv(ruta)
+        for region in ("NIC", "pacifico", "central"):
+            propias = sorted((f for f in filas if f["region"] == region), key=lambda f: int(f["anio"]))
+            if not propias:
+                continue
+            detectadas = sum(int(f["detectada"]) for f in propias)
+            comun = [f"Midsummer drought found in {detectadas} of {len(propias)} years with an objective method "
+                     f"(two rainfall peaks and the dip between them, CHIRPS daily rain averaged over the region).",
+                     ESTUDIOS["canicula"]]
+            for id_, titulo, definicion, unidad, valor, solo_detectadas in (
+                    ("duracion", "Midsummer drought (canícula) length",
+                     "Days of the summer dip in rain between the two rainy-season peaks (0 when there was no clear dip).",
+                     "days", "duracion_dias", False),
+                    ("intensidad", "Midsummer drought (canícula) strength",
+                     "How much the rain drops in the dip compared with the two peaks (0 = no drop, 1 = no rain).",
+                     "fraction", "intensidad", True),
+                    ("lluvia_fija", "Rain from 15 July to 15 August",
+                     "Rain in the fixed window when the midsummer drought usually happens.", "mm", "lluvia_15jul_15ago_mm",
+                     False)):
+                usadas = [f for f in propias if f[valor] != "" and (int(f["detectada"]) or not solo_detectadas)]
+                anios, valores = [int(f["anio"]) for f in usadas], [float(f[valor]) for f in usadas]
+                invs.append(_investigacion(f"canicula_{id_}_{region}", "lluvia", region, titulo, definicion, unidad,
+                                           anios, valores, chirps, notas=comun + notas_lluvia(anios, valores, unidad)))
+
+    ruta = carpeta / "crw_caribe_nicaragua_anual.csv"
+    if ruta.is_file() and "crw" in fuentes:
+        entradas.append(ruta)
+        crw, estado = {"producto": fuentes["crw"]["producto"], "url": fuentes["crw"]["url"]}, fuentes["crw"]
+        filas = sorted(_leer_csv(ruta), key=lambda f: int(f["anio"]))
+        anios = [int(f["anio"]) for f in filas]
+        ahora = (f"Latest day, {estado['ultimo_dia']}: {estado['dhw_ultimo']:.1f} °C-weeks of heat stress, alert level "
+                 f"{max(0, estado['alerta_ultima'] - 2)} of 2 for coral bleaching.")
+        for id_, titulo, definicion, unidad, valor in (
+                ("olas_calor", "Days in a marine heatwave",
+                 "Days of the year inside a marine heatwave: at least 5 days in a row warmer than 9 in 10 days of "
+                 "1991–2020 for that time of year.", "days", "dias_ola_calor_marina"),
+                ("dhw", "Peak coral heat stress",
+                 "Highest Degree Heating Weeks of the year: heat above the usual warmest month, accumulated over 12 "
+                 "weeks. Above 4 °C-weeks bleaching is likely; above 8, widespread bleaching and death.", "°C-weeks",
+                 "dhw_max_c_semanas"),
+                ("alerta", "Days on coral bleaching alert",
+                 "Days of the year at NOAA bleaching Alert Level 1 or 2.", "days", "dias_alerta_1_o_mas")):
+            valores = [float(f[valor]) for f in filas]
+            notas = [ahora] if id_ != "olas_calor" else [
+                ahora, f"{estado['ultimo_dia'][:4]} so far: {estado['dias_ola_calor_anio_en_curso']} days in a marine "
+                       "heatwave.", "The threshold is fixed to 1991–2020, so it includes the long-term warming of the "
+                       "sea: more heatwave days mean both a warmer background and more extreme spells."]
+            invs.append(_investigacion(f"arrecifes_{id_}", "costa", "arrecifes_nic", titulo, definicion, unidad, anios,
+                                       valores, crw, notas=notas + [ESTUDIOS["olas_calor"]]))
+
+    ruta = carpeta / "grace_csr_mensual.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        grace = {"producto": "GRACE/GRACE-FO mascons, CSR RL06.03 (University of Texas at Austin)",
+                 "url": "https://www2.csr.utexas.edu/grace/RL06_mascons.html"}
+        filas = _leer_csv(ruta)
+        ultimo = max(int(f["mes"][:4]) for f in filas)
+        for lugar, columna, nombre in (("groenlandia", "groenlandia_gt", "Greenland"), ("antartico", "antartida_gt", "Antarctica")):
+            medias = _anuales_mensuales(filas, columna, minimo=9)
+            anios = [a for a in medias if a - 1 in medias and a < ultimo]
+            cambios = [medias[a] - medias[a - 1] for a in anios]
+            invs.append(_investigacion(f"grace_masa_{lugar}", "polos", lugar, f"{nombre} ice-sheet mass change per year",
+                                       "Change in the mass of the ice sheet from one year to the next, weighed by the "
+                                       "GRACE and GRACE-FO gravity satellites. Below zero means ice lost.", "Gt", anios,
+                                       cambios, grace,
+                                       notas=[f"Average {sum(cambios) / len(cambios):+.0f} Gt per year over "
+                                              f"{anios[0]}–{anios[-1]} (1 Gt = 1 billion tonnes; 360 Gt raise the sea by "
+                                              "about 1 mm).", "The trend asks whether the yearly loss is growing, not "
+                                              "whether ice is being lost. Years 2017–2018 are missing: the gap between "
+                                              "the two missions.", ESTUDIOS["mantos"]]))
+        medias = _anuales_mensuales(filas, "nicaragua_agua_cm", minimo=9)
+        anios = [a for a in medias if a < ultimo]
+        parcial = [float(f["nicaragua_agua_cm"]) for f in filas if f["mes"].startswith(str(ultimo))]
+        invs.append(_investigacion("grace_agua_NIC", "agua", "NIC", "Total water stored on land (GRACE)",
+                                   "All water held in soil, rivers, lakes and aquifers over Nicaragua, compared with its "
+                                   "2004–2009 average and weighed by gravity satellites.", "cm", anios,
+                                   [medias[a] for a in anios], grace,
+                                   notas=[f"{ultimo} so far ({len(parcial)} months): {_menos(format(sum(parcial) / len(parcial), '+.1f'))} cm; "
+                                          "the wettest months are still missing.", "Gravity satellites see blocks of about "
+                                          "300 km, so this is a national total, not a map of wells."]))
+
+    ruta = carpeta / "glambie_america_anual.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        glambie = {"producto": "GlaMBIE 1.0.0 glacier mass balance (World Glacier Monitoring Service)",
+                   "url": "https://doi.org/10.5904/wgms-glambie-2024-07"}
+        for region, puntos in _serie(_leer_csv(ruta), "region", "cambio_masa_gt").items():
+            lugar = "glaciares_" + {"global": "global", "alaska": "alaska", "western_canada_us": "oeste_canada_eeuu",
+                                    "arctic_canada_north": "artico_canada_norte", "arctic_canada_south": "artico_canada_sur",
+                                    "greenland_periphery": "groenlandia_periferia", "low_latitudes": "latitudes_bajas",
+                                    "southern_andes": "andes_sur"}[region]
+            anios, valores = [a for a, _ in puntos], [v for _, v in puntos]
+            invs.append(_investigacion(f"glaciares_{region}", "polos", lugar, "Glacier mass change per year",
+                                       "How much ice the glaciers of the region gained or lost each year. Below zero "
+                                       "means ice lost.", "Gt", anios, valores, glambie,
+                                       notas=[f"Total {anios[0]}–{anios[-1]}: {_menos(format(sum(valores), '+.0f'))} Gt; "
+                                              f"{sum(1 for v in valores if v < 0)} of {len(valores)} years were losses.",
+                                              "The trend asks whether the yearly loss is growing.", ESTUDIOS["glaciares"]]))
+
+    ruta = carpeta / "oceansoda_caribe_mensual.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        soda = {"producto": "OceanSODA-ETHZ v2025 surface ocean carbonate system (NOAA NCEI)",
+                "url": "https://www.ncei.noaa.gov/data/oceans/ncei/ocads/data/0220059/"}
+        filas = _leer_csv(ruta)
+        for zona in ("mar_caribe_nic", "mar_caribe"):
+            propias = [f for f in filas if f["zona"] == zona]
+            for columna, id_, titulo, definicion, unidad in (
+                    ("ph_total", "ph", "Sea surface pH",
+                     "Acidity of the sea surface: lower pH means more acidic water. 0.1 lower is about 26% more acid.",
+                     "pH"),
+                    ("omega_aragonito", "aragonito", "Aragonite saturation",
+                     "How easily corals and shellfish can build their skeletons from the water. Below about 3 reefs "
+                     "struggle to grow.", "Ω")):
+                medias = _anuales_mensuales(propias, columna)
+                anios = list(medias)
+                invs.append(_investigacion(f"acidez_{id_}_{zona}", "costa", zona, titulo, definicion, unidad, anios,
+                                           [medias[a] for a in anios], soda, notas=[ESTUDIOS["acidificacion"]]))
+
+    ruta = carpeta / "gfed5_area_quemada_mensual.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        gfed = {"producto": "GFED5 burned area, MODIS era (Global Fire Emissions Database)",
+                "url": "https://doi.org/10.5281/zenodo.7668424"}
+        filas = _leer_csv(ruta)
+        for zona, lugar in (("NIC", "NIC"), ("centroamerica", "centroamerica"), ("global", "planeta")):
+            por = {}
+            for f in filas:
+                if f["zona"] == zona:
+                    por.setdefault(int(f["mes"][:4]), []).append(float(f["area_quemada_km2"]))
+            anios = [a for a, v in sorted(por.items()) if len(v) == 12]
+            valores = [round(sum(por[a]), 1) for a in anios]
+            pico = max(zip(valores, anios))
+            invs.append(_investigacion(f"incendios_area_{zona}", "vegetacion", lugar, "Burned area per year",
+                                       "Land burned by fires during the year, mapped from satellites (MODIS) at about "
+                                       "25 km. Includes wildfires, farm burning and fires used to clear forest.",
+                                       "km²", anios, valores, gfed,
+                                       notas=[f"Most burned: {pico[1]}, {pico[0]:,.0f} km².",
+                                              "One very dry or very wet year moves the total a lot, so 20 years is "
+                                              "short for a fire trend.", ESTUDIOS["incendios"]]))
     return invs, entradas
 
 
