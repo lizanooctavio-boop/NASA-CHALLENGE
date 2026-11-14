@@ -3,9 +3,12 @@
 // así el globo se aplana con América al centro y encaja píxel a píxel con el mapa 2D.
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js';
 
+import { crearTeselas } from './teselas-globo.js';
+import { zoomDistance, dragDegrees } from './teselas-geometria.mjs';
+
 const RAD = Math.PI / 180;
 const LON_CENTRO = -80;            // costura de la malla en 100° E: América queda al centro del plano
-const DIST_REPOSO = 4.9, DIST_MIN = 1.28, DIST_MAX = 34, DIST_INTRO = 30, DIST_PLANO = 3.1;
+const DIST_REPOSO = 4.9, DIST_INTRO = 30, DIST_PLANO = 3.1;
 const FOV = 38;
 const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -167,6 +170,7 @@ const materialTierra = new THREE.ShaderMaterial({
 const tierra = new THREE.Mesh(mallaTierra(), materialTierra);
 tierra.frustumCulled = false;
 escena.add(tierra);
+const teselas = crearTeselas({ escena, renderer, material: materialTierra, uniformes });
 
 const atmosfera = new THREE.Mesh(new THREE.SphereGeometry(1.075, 96, 64), new THREE.ShaderMaterial({
   side: THREE.BackSide, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false,
@@ -254,6 +258,8 @@ tamano();
 
 function encuadrar() {
   camara.position.set(0, 0, estado.dist);
+  camara.near = Math.max(0.000005, Math.min(0.02, (estado.dist - 1) / 10));
+  camara.updateProjectionMatrix();
   camara.lookAt(0, 0, 0);
   const w = innerWidth, h = innerHeight;
   if (Math.abs(estado.desp) > 0.5) camara.setViewOffset(w, h, -estado.desp, 0, w, h);
@@ -263,7 +269,7 @@ function encuadrar() {
   const pxPorRad = 256 * 2 ** estado.zoom / (2 * Math.PI);
   uniformes.uK.value = pxPorRad * 2 * estado.dist * Math.tan(FOV * RAD / 2) / h;
   uniformes.uMorph.value = estado.morph;
-  atmosfera.material.uniforms.uOpacidad.value = Math.max(0, 1 - estado.morph * 3);
+  atmosfera.material.uniforms.uOpacidad.value = Math.max(0, 1 - estado.morph * 3) * THREE.MathUtils.smoothstep(estado.dist, 1.02, 1.4);
   atmosfera.visible = estado.morph < 0.34;
   luna.visible = estado.morph < 0.05;
   sol.visible = estado.morph < 0.6;
@@ -271,6 +277,7 @@ function encuadrar() {
 }
 function dibujar() {
   encuadrar();
+  teselas.update(camara, rotacion, estado, performance.now());
   renderer.render(escena, camara);
 }
 
@@ -286,7 +293,7 @@ function bucle(ahora) {
       estado.lat = Math.max(-80, Math.min(80, estado.lat + estado.velLat));
       estado.velLon *= 0.93;
       estado.velLat *= 0.93;
-    } else if (!reducido && !estado.intro && ahora - estado.ultimoGesto > 7000) {
+    } else if (!reducido && !estado.intro && estado.dist > 2.5 && ahora - estado.ultimoGesto > 7000) {
       estado.lon += dt * 1.1;
     }
     estado.desp += (estado.despObjetivo - estado.desp) * Math.min(1, dt * 5);
@@ -299,7 +306,7 @@ function bucle(ahora) {
 function arrancar() {
   if (!cuadro && !estado.pausado) { anterior = performance.now(); cuadro = requestAnimationFrame(bucle); }
 }
-document.addEventListener('visibilitychange', arrancar);
+document.addEventListener('visibilitychange', () => { if (document.hidden) teselas.pause(); else arrancar(); });
 
 // ---------------------------------------------------------------- animaciones
 const suave = t => t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
@@ -380,7 +387,7 @@ function aGlobo({ lon, lat, zoom }) {
 // ---------------------------------------------------------------- interacción
 const punteros = new Map();
 let gesto = null, alElegir = null;
-function gradosPorPixel() { return (estado.dist - 0.75) * 0.075; }
+function gradosPorPixel() { return dragDegrees(estado.dist, innerHeight); }
 canvas.addEventListener('pointerdown', e => {
   if (estado.animando || estado.morph > 0) return;
   canvas.setPointerCapture(e.pointerId);
@@ -419,7 +426,7 @@ function soltar(e) {
 canvas.addEventListener('pointerup', soltar);
 canvas.addEventListener('pointercancel', soltar);
 function acercar(factor) {
-  estado.dist = Math.max(DIST_MIN, Math.min(DIST_MAX, estado.dist * factor));
+  estado.dist = zoomDistance(estado.dist, factor);
   estado.ultimoGesto = performance.now();
 }
 canvas.addEventListener('wheel', e => {
@@ -429,7 +436,8 @@ canvas.addEventListener('wheel', e => {
 }, { passive: false });
 canvas.addEventListener('keydown', e => {
   const m = { ArrowLeft: [-8, 0], ArrowRight: [8, 0], ArrowUp: [0, 6], ArrowDown: [0, -6] }[e.key];
-  if (m) { e.preventDefault(); estado.lon += m[0]; estado.lat = Math.max(-80, Math.min(80, estado.lat + m[1])); }
+  if (estado.animando || estado.morph > 0) return;
+  if (m) { e.preventDefault(); const k = Math.min(1, gradosPorPixel() * 12); estado.lon += m[0] * k; estado.lat = Math.max(-80, Math.min(80, estado.lat + m[1] * k)); }
   else if (e.key === '+' || e.key === '=') acercar(0.85);
   else if (e.key === '-') acercar(1.18);
   else return;
@@ -481,7 +489,8 @@ window.Espacio = {
   alElegir(f) { alElegir = f; },
   aMapa,
   aGlobo,
-  pausar(v) { estado.pausado = v; if (!v) arrancar(); },
+  pausar(v) { estado.pausado = v; if (v) teselas.pause(); else arrancar(); },
+  detalle: () => teselas.stats(),
   centro() { return { lon: ((estado.lon + 540) % 360) - 180, lat: estado.lat, dist: estado.dist }; },
   estado: () => ({ ...estado })
 };

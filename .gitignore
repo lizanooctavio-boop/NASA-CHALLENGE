@@ -1,4 +1,5 @@
 /public/
+/reports/globo-detalle/
 __pycache__/
 *.py[cod]
 .pytest_cache/
