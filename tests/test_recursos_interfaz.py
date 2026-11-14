@@ -137,7 +137,7 @@ def test_integra_las_salidas_de_los_tres_agentes(datos_sinteticos):
     # agente 1: GLDAS regional sin recurso del reto; el de punto acredita Hydrology Time Series y Giovanni
     assert ids["et_gldas_NIC"]["recursos"] == [] and "sample point" not in ids["et_gldas_NIC"]["titulo_en"]
     assert ids["et_gldas_NIC"]["fuente"]["producto"].startswith("NASA GLDAS-2.1")
-    assert ids["et_gldas_pacifico"]["recursos"] == [1, 2] and ids["et_gldas_pacifico"]["titulo_en"].endswith("at a sample point")
+    assert ids["et_gldas_punto_pacifico"]["recursos"] == [1, 2] and ids["et_gldas_punto_pacifico"]["titulo_en"].endswith("at a sample point")
     assert "merra2_et_gldas_NIC" in ids["et_gldas_NIC"]["contrastes"]
     merra = next(c for c in d["contrastes"] if c["id"] == "merra2_et_gldas_NIC")
     assert merra["unidad"] == "z" and merra["r"] == 0.1 and merra["externa"]["por_decada"] is None

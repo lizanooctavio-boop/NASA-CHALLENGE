@@ -134,7 +134,8 @@ def nombre_en(texto):
     reglas = [("CRU TS", "CRU TS 4.10 (University of East Anglia)"), ("GPCC", "GPCC gauge analysis (via NOAA PSL)"),
               ("GPM IMERG", "NASA GPM IMERG Final V07B"), ("NASA POWER", "NASA POWER (MERRA-2), nearest grid cell"),
               ("MODIS-Aqua L3m CHL", "NASA MODIS-Aqua chlorophyll-a (OBPG, 4 km)"),
-              ("GLDAS_NOAH025_M", "NASA GLDAS-2.1 Noah land model (GES DISC), regional mean")]
+              ("GLDAS_NOAH025_M", "NASA GLDAS-2.1 Noah land model (GES DISC), regional mean"),
+              ("GLDAS_NOAH025_3H", "NASA GLDAS-2.1 Noah land model, sample point (Giovanni time series)")]
     if t.startswith("appeears/"):
         return f"NASA {t.split('/', 1)[1]} via AppEEARS"
     return next((n for clave, n in reglas if clave in t), t)
@@ -252,7 +253,7 @@ def _tierra(carpeta, permitir_sintetico):
             if punto:
                 titulo += " at a sample point"
             recursos = [RECURSO_TIERRA[familia], 1] if punto else [] if familia == "gldas" else [RECURSO_TIERRA[familia]]
-            invs.append(_investigacion(f"{var}_{region}", cat, region, titulo, definicion, s["unidad"].replace("adimensional", "NDVI"),
+            invs.append(_investigacion(f"{var}_punto_{region}" if punto else f"{var}_{region}", cat, region, titulo, definicion, s["unidad"].replace("adimensional", "NDVI"),
                                        s["tiempos"], s["valores"], {"producto": nombre_en(s["fuente"]), "version": s.get("version", "")},
                                        recursos=recursos, notas=notas))
     return invs, entradas

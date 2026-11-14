@@ -167,7 +167,15 @@ Con la serie corregida, la humedad de Central deja de ser «tendencia detectada�
 
 **Conclusión.** En Nicaragua, la tendencia de humedad del suelo depende del modelo y no se presenta como hallazgo climático. Dos modelos de NASA con forzamientos distintos discrepan incluso en el signo. La referencia observacional disponible es SMAP L4 desde 2015, pedida por AppEEARS; el mismo script añadirá ese contraste cuando existan sus series. En la interfaz, el contraste aparece en *Cross-checks* junto a cada serie de humedad de GLDAS. No hay MERRA-2 para las Praderas de Canadá en el proyecto, así que la caída de humedad allí sigue sin contraste.
 
-**Recursos del reto.** Estas series proceden del archivo OPeNDAP de GES DISC. Giovanni (recurso 1) se usa para verificarlas: su promedio por área de GLDAS-2.1 en la caja SICC coincide con nuestra serie (contraste `giovanni_gldas_sm0_10_caja_sicc`). La herramienta Hydrology Time Series (recurso 2) se trata aparte.
+**Recursos del reto.** Estas series proceden del archivo OPeNDAP de GES DISC. Giovanni (recurso 1) se usa para verificarlas: su promedio por área de GLDAS-2.1 en la caja SICC coincide con nuestra serie (contraste `giovanni_gldas_sm0_10_caja_sicc`). La herramienta Hydrology Time Series (recurso 2) aporta las series de punto descritas a continuación.
+
+## GLDAS por punto: Hydrology Time Series (recurso 2) vía Giovanni
+
+El servicio histórico de *data rods* (`hydro1.gesdisc.eosdis.nasa.gov/daac-bin/access/timeseries.cgi`) está retirado: devuelve una página de aviso. La [guía de migración de GES DISC](https://github.com/nasa/gesdisc-tutorials/blob/main/user-guidance/GES_DISC_Migration_to_Earthdata_Website_and_Earthdata_Cloud.md) remite a su sustituto, el servicio «Giovanni in the Cloud: Time Series» (`https://api.giovanni.earthdata.nasa.gov/timeseries`). Su uso está descrito en el cuaderno oficial `How_to_Access_GiC_Time_Series_Service.ipynb` (`nasa/gesdisc-tutorials`). El servicio da series de 3 h en un punto y exige un token Earthdata, además de haber aceptado el EULA de NASA GESDISC DATA ARCHIVE.
+
+Manuel Paniagua descargó con `clima_nic.fuentes.gldas_datarods` las cinco variables en tres sitios: Siuna (Caribe), Estelí (corredor seco, Central) y León (llanura del Pacífico). Son 360 bloques anuales de 2001–2024, sin errores (`estado_descarga_gldas.json`; URL y SHA-256 de cada bloque en `procedencia_gldas.json`). Las salidas son `series_gldas_punto_mensual.json` y `series_gldas_punto_anual.json`, con nombre propio para no confundirse con las medias regionales. En la interfaz aparecen como «… at a sample point», con identificador `<variable>_punto_<región>`, y cuentan como uso de los recursos 2 y 1.
+
+**Reproducibilidad (13-11).** Se pidieron de nuevo cuatro bloques al azar con un token nuevo y se agregaron con el mismo adaptador. Los 12 meses de cada bloque coinciden exactamente con las series guardadas. El SHA-256 del archivo completo no coincide porque la cabecera incluye `Request_time`, que cambia en cada petición.
 
 ## Formato y contraste para el agente 4
 

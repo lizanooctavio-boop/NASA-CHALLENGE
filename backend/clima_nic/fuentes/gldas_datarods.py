@@ -83,6 +83,8 @@ def leer_csv(texto):
 
 class GldasDatarods(Adaptador):
     id = "gldas_datarods"
+    # Hydrology Time Series (data rods) se retiró; la serie sale de su sustituto oficial, el servicio de series de Giovanni.
+    fuente = "Giovanni in the Cloud: Time Series (GLDAS_NOAH025_3H 2.1)"
     nombre = "GLDAS-2.1 Noah, punto (Giovanni; sustituye Hydrology Data Rods)"
     producto = "GLDAS_NOAH025_3H"
     version = "2.1"
@@ -208,7 +210,7 @@ class GldasDatarods(Adaptador):
                      f"coordenadas devueltas por Giovanni: {t['meta'].get('lat', '?')}, {t['meta'].get('lon', '?')}",
                      "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
                      "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"]
-            out.append(SerieRegional(region, nombre, unidad, frecuencia, tiempos, vals, self.id, self.version, notas))
+            out.append(SerieRegional(region, nombre, unidad, frecuencia, tiempos, vals, self.fuente, self.version, notas))
         return out
 
 
@@ -221,7 +223,8 @@ def main():
     tareas = a.descargar(args.inicio, args.fin)
     recortado = a.recortar(tareas)
     for frecuencia in ("mensual", "anual"):
-        guardar_json(SALIDA / f"series_gldas_{frecuencia}.json", [s.como_dict() for s in a.agregar(recortado, frecuencia)])
+        # Nombre propio: series_gldas_{frecuencia}.json son las medias regionales de gldas_mensual.
+        guardar_json(SALIDA / f"series_gldas_punto_{frecuencia}.json", [s.como_dict() for s in a.agregar(recortado, frecuencia)])
     from ..rutas import sha256
     guardar_json(SALIDA / "procedencia_gldas.json", [{k: v for k, v in t.items() if k != "archivo"}
                                                   | {"sha256": sha256(t["archivo"])} for t in tareas])
