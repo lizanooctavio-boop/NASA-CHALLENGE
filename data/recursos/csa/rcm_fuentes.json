@@ -1,0 +1,38 @@
+{
+ "eodms_order_id": 3787605,
+ "productos": {
+  "5616847": "2023-08-22",
+  "5600935": "2023-08-16"
+ },
+ "coleccion": "EODMS RCM Image Products (Public Good)",
+ "licencia": "Open Government Licence – Canada / EULA RCM",
+ "zips_sha256": {
+  "RCM1_OK2677342_PK2695245_1_SC30MD_20230816_112921_HH_HV_GRD.zip": "cd44d8f389861ed4d77e1c32447707501971d769437b5e2283993c2925347631"
+ },
+ "imagenes": [
+  {
+   "producto": "RCM1_OK2677342_PK2695245_1_SC30MD_20230816_112921_HH_HV_GRD",
+   "polarizacion": "HH",
+   "fecha_utc": "2023-08-16T11:29:21",
+   "imagen": "2695245_1_HH.tif",
+   "sha256_imagen": "58e0e4d3af02582ea350cc34294dd8cd9ee9da09638a22ee3b2a0b14d2181c80",
+   "lut": "lutSigma_HH.xml"
+  },
+  {
+   "producto": "RCM1_OK2677342_PK2695245_1_SC30MD_20230816_112921_HH_HV_GRD",
+   "polarizacion": "HV",
+   "fecha_utc": "2023-08-16T11:29:21",
+   "imagen": "2695245_1_HV.tif",
+   "sha256_imagen": "02babf7fa35d06308f4d0575d02f1fa21c760b2352e1700210e04b333233949b",
+   "lut": "lutSigma_HV.xml"
+  }
+ ],
+ "umbrales_db": [
+  -19.0,
+  -17.0,
+  -15.0
+ ],
+ "resolucion_m": 100,
+ "dominio": "cocibolca_naturalearth.geojson (Natural Earth 10 m, dominio público)",
+ "area_lago_km2": 7821.56
+}

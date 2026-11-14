@@ -77,7 +77,7 @@ function resultado(){
   const forma=ok&&t.veredicto==='tendencia_detectada'?(t.sen.por_decada>=0?'aumento':'disminucion'):'insuficiente';
   c.className='veredicto '+forma;
   const ic=nodo('div',undefined,'icono');ic.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${ICONOS[forma]}</svg>`;
-  const periodo=`${x.tiempos[0]}–${x.tiempos.at(-1)}`;
+  const periodo=x.tiempos.length>1?`${x.tiempos[0]}–${x.tiempos.at(-1)}`:String(x.tiempos[0]);
   const [texto,ancla]=corto?['Record too short for a trend test','aprender-registro-corto']:VEREDICTO[t.veredicto]||[t.veredicto,'aprender-tendencia'];
   const cab=nodo('div');cab.append(nodo('p',texto,'estado'),nodo('p',`${x.titulo_en} · ${l.nombre_en} · ${periodo}`,'sub'));
   c.append(ic,cab);
@@ -90,8 +90,9 @@ function resultado(){
   }else if(corto){
     const vals=x.valores.filter(v=>v!==null);
     const escenas=x.frecuencia==='escena';
-    tar('Observations',`${x.valores.length} ${escenas?'scenes':'months'}`,`${x.tiempos[0]} to ${x.tiempos.at(-1)}`);
-    tar('Range',`${num(Math.min(...vals),d)}–${num(Math.max(...vals),d)} ${u}`,escenas?'lowest to highest scene':'lowest to highest monthly mean');
+    tar('Observations',`${x.valores.length} ${escenas?(x.valores.length===1?'scene':'scenes'):'months'}`,periodo.replace('–',' to '));
+    if(vals.length===1)tar('Value',`${num(vals[0],d)} ${u}`,String(x.tiempos[0]));
+    else tar('Range',`${num(Math.min(...vals),d)}–${num(Math.max(...vals),d)} ${u}`,escenas?'lowest to highest scene':'lowest to highest monthly mean');
   }
   c.append(tj);
   const pie=nodo('p',undefined,'detalle');pie.append(nodo('span',x.definicion_en+' '));

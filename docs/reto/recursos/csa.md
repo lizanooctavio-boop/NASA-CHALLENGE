@@ -231,3 +231,11 @@ El verificador de esta base ejecuta **88/88 comprobaciones correctas**, frente a
 ## Integración en la interfaz (13-11-2026)
 
 El integrador (`clima_nic.recursos`) publica `dswx_s1_serie_corta.csv` como la investigación `radar_agua_cocibolca` («Lake water area from radar»), con papel `demostracion_registro_corto` y frecuencia `escena`. Son tres escenas y nunca se calcula tendencia. Con ello cuenta como uso del recurso 13 (Tutorial SAR de la CSA), cuyo flujo adapta `scripts/sar/agua_superficial.ipynb`. La interfaz muestra «3 scenes» y el rango de superficie. La cobertura común (33 % del lago) y la falta de validación local quedan en `notas` y en este documento, no en pantalla. El recurso 9 (RCM) sigue pendiente del pedido EODMS 3787605.
+
+## RCM (recurso 9) procesado, 13-11-2026
+
+El pedido EODMS 3787605 estaba listo desde el 13-11 a las 09:18 UTC. El usuario inició sesión y descargó la escena **RCM1** (16-08-2023, 11:29 UTC, ScanSAR 30 m GRD, HH+HV, 156 MB). El ZIP queda fuera del repositorio, en `Desktop\rcm_crudo`; su SHA-256 está en `rcm_fuentes.json`. La escena **RCM2** (22-08-2023) todavía no se ha descargado.
+
+`python scripts/sar/rcm_procesar.py --entrada ../rcm_crudo` funcionó con la escena real sin cambios en el código. La escena observa 2945 km² del lago (38 % del polígono de Natural Earth). En HH, la superficie candidata de agua es de 2875, 2877 y 2879 km² con umbrales de −19, −17 y −15 dB (97,6–97,8 % de lo observado); en HV, de 2883 a 2907 km². La poca sensibilidad al umbral indica un contraste agua–tierra nítido. No hay observaciones SWOT a ±2 días, así que `rcm_vs_swot.csv` queda sin pares. El estado sigue siendo `NO_VALIDADA`: una fecha y ninguna referencia local independiente.
+
+El integrador publica `radar_rcm_cocibolca` («Lake water area from RCM radar»), con HH a −17 dB, como registro corto atribuido a los recursos 9 y 13. Con una sola escena, la interfaz muestra la fecha y «Value» en lugar de un rango.
