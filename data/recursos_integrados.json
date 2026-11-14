@@ -8310,7 +8310,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 11% of the year-to-year swings. With their effect removed: −26.6 mm/decade, not enough evidence of a trend.",
-    "Since 2001 only: +68.9 mm/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: +68.9 mm/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -8455,7 +8456,9 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 12% of the year-to-year swings. With their effect removed: −2.64 days/decade, trend detected.",
-    "Since 2001 only: −0.183 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: −0.183 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: a study of 2001–2016 found no trend in days above 10 or 20 mm over Nicaragua, matching the result since 2001 here (Journal of Applied Meteorology and Climatology 2024, doi:10.1175/JAMC-D-22-0112.1).",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
@@ -8600,7 +8603,9 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 4% of the year-to-year swings. With their effect removed: −1.34 days/decade, trend detected.",
-    "Since 2001 only: +0.0402 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: +0.0402 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: a study of 2001–2016 found no trend in days above 10 or 20 mm over Nicaragua, matching the result since 2001 here (Journal of Applied Meteorology and Climatology 2024, doi:10.1175/JAMC-D-22-0112.1).",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
@@ -8745,7 +8750,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 2% of the year-to-year swings. With their effect removed: −0.206 mm/day/decade, methods disagree.",
-    "Since 2001 only: +0.0444 mm/day/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: +0.0444 mm/day/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -8890,7 +8896,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 1% of the year-to-year swings. With their effect removed: +3.41 mm/decade, not enough evidence of a trend.",
-    "Since 2001 only: +12.8 mm/decade, methods disagree. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: +12.8 mm/decade, methods disagree. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -9035,7 +9042,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 6% of the year-to-year swings. With their effect removed: +0.396 days/decade, not enough evidence of a trend.",
-    "Since 2001 only: +0.43 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: +0.43 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -9325,7 +9333,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 44% of the year-to-year swings. With their effect removed: −0.0808 days/decade, not enough evidence of a trend.",
-    "Since 2001 only: +2.8 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: +2.8 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: a study of 2001–2016 found no trend in days above 10 or 20 mm over Nicaragua, matching the result since 2001 here (Journal of Applied Meteorology and Climatology 2024, doi:10.1175/JAMC-D-22-0112.1)."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -9470,7 +9479,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 32% of the year-to-year swings. With their effect removed: +0.329 days/decade, not enough evidence of a trend.",
-    "Since 2001 only: +2.33 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: +2.33 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: a study of 2001–2016 found no trend in days above 10 or 20 mm over Nicaragua, matching the result since 2001 here (Journal of Applied Meteorology and Climatology 2024, doi:10.1175/JAMC-D-22-0112.1)."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -10195,7 +10205,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 18% of the year-to-year swings. With their effect removed: −2.25 days/decade, trend detected.",
-    "Since 2001 only: −1.02 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: −1.02 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: a study of 2001–2016 found no trend in days above 10 or 20 mm over Nicaragua, matching the result since 2001 here (Journal of Applied Meteorology and Climatology 2024, doi:10.1175/JAMC-D-22-0112.1)."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -10340,7 +10351,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 4% of the year-to-year swings. With their effect removed: −1.21 days/decade, trend detected.",
-    "Since 2001 only: −0.687 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: −0.687 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: a study of 2001–2016 found no trend in days above 10 or 20 mm over Nicaragua, matching the result since 2001 here (Journal of Applied Meteorology and Climatology 2024, doi:10.1175/JAMC-D-22-0112.1)."
    ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
@@ -10920,7 +10932,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 1% of the year-to-year swings. With their effect removed: −43.5 mm/decade, not enough evidence of a trend.",
-    "Since 2001 only: +23.3 mm/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: +23.3 mm/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -11065,7 +11078,9 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 2% of the year-to-year swings. With their effect removed: −3.82 days/decade, trend detected.",
-    "Since 2001 only: −2.1 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: −2.1 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: a study of 2001–2016 found no trend in days above 10 or 20 mm over Nicaragua, matching the result since 2001 here (Journal of Applied Meteorology and Climatology 2024, doi:10.1175/JAMC-D-22-0112.1).",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
@@ -11210,7 +11225,9 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 0% of the year-to-year swings. With their effect removed: −1.86 days/decade, trend detected.",
-    "Since 2001 only: −0.507 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: −0.507 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: a study of 2001–2016 found no trend in days above 10 or 20 mm over Nicaragua, matching the result since 2001 here (Journal of Applied Meteorology and Climatology 2024, doi:10.1175/JAMC-D-22-0112.1).",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
@@ -11355,7 +11372,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 0% of the year-to-year swings. With their effect removed: −0.245 mm/day/decade, methods disagree.",
-    "Since 2001 only: −0.0762 mm/day/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: −0.0762 mm/day/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -11500,7 +11518,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 0% of the year-to-year swings. With their effect removed: +8.88 mm/decade, trend detected.",
-    "Since 2001 only: +18.2 mm/decade, methods disagree. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: +18.2 mm/decade, methods disagree. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
@@ -11645,7 +11664,8 @@
    "contrastes": [],
    "notas": [
     "El Niño and La Niña (NOAA ONI, June–September) explain 3% of the year-to-year swings. With their effect removed: −0.31 days/decade, not enough evidence of a trend.",
-    "Since 2001 only: −0.37 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed."
+    "Since 2001 only: −0.37 days/decade, not enough evidence of a trend. CHIRPS blends rain-gauge reports whose number changed over time, so a trend seen only in the full record should be confirmed.",
+    "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and Nicaragua while CRU does not, and a single rain gauge can steer the gridded result (González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720)."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -15506,6 +15526,7 @@
    "contrastes": [],
    "notas": [
     "Only a few storms come this close each year, so a trend would need a much longer record to stand out.",
+    "Published check: the cluster of storms near the Caribbean coasts of Nicaragua and Costa Rica in 2016–2022 was rare, but no human influence was detected at 95% confidence (Hidalgo et al. 2025, Natural Hazards, doi:10.1007/s11069-025-07427-5).",
     "The 2026 season was still running when the tracks were downloaded (2026-11-14)."
    ],
    "tendencia": {
@@ -15654,6 +15675,7 @@
    "notas": [
     "Hurricanes: Joan/Miriam 1988, Cesar 1996, Mitch 1998, Iris 2001, Beta 2005, Felix 2007, Ida 2009, Paula 2010, Richard 2010, Otto 2016, Eta 2020, Iota 2020, Julia 2022.",
     "Only a few storms come this close each year, so a trend would need a much longer record to stand out.",
+    "Published check: the cluster of storms near the Caribbean coasts of Nicaragua and Costa Rica in 2016–2022 was rare, but no human influence was detected at 95% confidence (Hidalgo et al. 2025, Natural Hazards, doi:10.1007/s11069-025-07427-5).",
     "The 2026 season was still running when the tracks were downloaded (2026-11-14)."
    ],
    "tendencia": {

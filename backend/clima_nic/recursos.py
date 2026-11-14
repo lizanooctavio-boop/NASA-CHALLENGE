@@ -534,6 +534,18 @@ VEREDICTO_EN = {"tendencia_detectada": "trend detected", "evidencia_insuficiente
                 "metodos_discrepan": "methods disagree", "datos_insuficientes": "not enough data"}
 MESES_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
             "November", "December"]
+# Estudios revisados por pares que contrastan series de la app (DOI comprobados en Crossref el 14-11-2026).
+ESTUDIOS = {
+    "estaciones_mallas": "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and "
+                         "Nicaragua while CRU does not, and a single rain gauge can steer the gridded result "
+                         "(González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720).",
+    "dias_fuertes_2001_2016": "Published check: a study of 2001–2016 found no trend in days above 10 or 20 mm over "
+                              "Nicaragua, matching the result since 2001 here (Journal of Applied Meteorology and "
+                              "Climatology 2024, doi:10.1175/JAMC-D-22-0112.1).",
+    "racha_ciclones": "Published check: the cluster of storms near the Caribbean coasts of Nicaragua and Costa Rica "
+                      "in 2016–2022 was rare, but no human influence was detected at 95% confidence "
+                      "(Hidalgo et al. 2025, Natural Hazards, doi:10.1007/s11069-025-07427-5).",
+}
 BANDAS_GISTEMP = {"global": "Glob", "artico": "64N-90N", "boreal": "44N-64N", "templado_norte": "24N-44N",
                   "tropico_norte": "EQU-24N", "tropico_sur": "24S-EQU", "antartico": "90S-64S"}
 
@@ -606,8 +618,13 @@ def _hallazgos(carpeta, permitir_sintetico):
                 if not puntos:
                     continue
                 anios, valores = [a for a, _ in puntos], [v for _, v in puntos]
+                notas = notas_lluvia(anios, valores, unidad)
+                if indice in ("r10mm", "r20mm"):
+                    notas.append(ESTUDIOS["dias_fuertes_2001_2016"])
+                if region in ("NIC", "caribe"):
+                    notas.append(ESTUDIOS["estaciones_mallas"])
                 invs.append(_investigacion(f"chirps_{indice}_{region}", "lluvia", region, titulo, definicion, unidad,
-                                           anios, valores, chirps, notas=notas_lluvia(anios, valores, unidad)))
+                                           anios, valores, chirps, notas=notas))
     ruta = carpeta / "chirps_acumulado_parcial.csv"
     if ruta.is_file():
         entradas.append(ruta)
@@ -754,6 +771,7 @@ def _hallazgos(carpeta, permitir_sintetico):
                 notas.append("Hurricanes: " + ", ".join(f"{f['nombre'].title().replace(':', '/')} {f['temporada']}" for f in fuertes) + ".")
             notas.append("Only a few storms come this close each year, so a trend would need a much longer record "
                          "to stand out.")
+            notas.append(ESTUDIOS["racha_ciclones"])
             if str(ultimo) == fuentes["ibtracs"]["generado_utc"][:4]:
                 notas.append(f"The {ultimo} season was still running when the tracks were downloaded "
                              f"({fuentes['ibtracs']['generado_utc'][:10]}).")

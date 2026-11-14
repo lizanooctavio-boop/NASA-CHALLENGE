@@ -265,3 +265,17 @@ def test_hielo_antartico_por_periodos_mar_caribe_mareografos_y_ciclones():
     assert huracanes["valores"][huracanes["tiempos"].index(2020)] == 2  # Eta e Iota
     assert all(t <= h for t, h in zip(huracanes["valores"], ids["ciclones_tormentas_NIC"]["valores"]))
     assert "−0 " not in json.dumps(d, ensure_ascii=False)
+
+
+def test_estudios_publicados_acompanan_las_series_que_contrastan():
+    d = json.loads((RAIZ / "data" / "recursos_integrados.json").read_text(encoding="utf-8"))
+    ids = {i["id"]: i for i in d["investigaciones"]}
+    for region in ("NIC", "pacifico", "central", "caribe"):
+        for indice in ("r10mm", "r20mm"):
+            x = ids[f"chirps_{indice}_{region}"]
+            assert rec.ESTUDIOS["dias_fuertes_2001_2016"] in x["notas"]
+            # La cita dice que coincide con el resultado desde 2001: comprobarlo.
+            assert any(n.startswith("Since 2001 only") and "not enough evidence" in n for n in x["notas"])
+    assert rec.ESTUDIOS["estaciones_mallas"] in ids["chirps_prcptot_caribe"]["notas"]
+    assert rec.ESTUDIOS["racha_ciclones"] in ids["ciclones_huracanes_NIC"]["notas"]
+    assert all("doi:10." in t for t in rec.ESTUDIOS.values())
