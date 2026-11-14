@@ -1,0 +1,33 @@
+{
+ "generado_utc": "2026-11-14T16:09:04+00:00",
+ "chirps": {
+  "producto": "CHIRPS v2.0 daily 0.25° (UCSB Climate Hazards Center)",
+  "acceso": "IRI Data Library",
+  "url": "https://www.chc.ucsb.edu/data/chirps",
+  "primer_dia": "1981-01-01",
+  "ultimo_dia": "2026-09-30",
+  "base_percentiles": [
+   1991,
+   2020
+  ],
+  "celdas_por_region": {
+   "NIC": 160,
+   "pacifico": 23,
+   "central": 51,
+   "caribe": 86,
+   "caja_sicc": 77
+  }
+ },
+ "oni": {
+  "producto": "NOAA CPC Oceanic Niño Index (ERSSTv5)",
+  "url": "https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt"
+ },
+ "nsidc": {
+  "producto": "NSIDC Sea Ice Index, Version 4 (G02135)",
+  "url": "https://nsidc.org/data/g02135"
+ },
+ "gistemp": {
+  "producto": "NASA GISS GISTEMP v4, zonal annual means",
+  "url": "https://data.giss.nasa.gov/gistemp/tabledata_v4/ZonAnn.Ts+dSST.csv"
+ }
+}

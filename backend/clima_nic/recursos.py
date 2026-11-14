@@ -43,6 +43,9 @@ CATEGORIAS = [
      "recurso": 12},
     {"id": "aire", "nombre_en": "Air quality", "pregunta_en": "Is the air over the city changing?"},
     {"id": "costa", "nombre_en": "Coast & ocean", "pregunta_en": "Are coastal waters changing?"},
+    {"id": "polos", "nombre_en": "Ice & poles", "pregunta_en": "Is polar sea ice shrinking?",
+     "descripcion_en": "Satellites have mapped sea ice at both poles every day since 1978. Arctic ice is smallest in "
+                       "September and largest in March; around Antarctica it is the other way round."},
 ]
 
 # id: (nombre en inglés, país, [lat, lon], zoom)
@@ -58,6 +61,14 @@ LUGARES = {
     "xolotlan": ("Lake Managua (Xolotlán)", "Nicaragua", [12.33, -86.33], 9),
     "managua": ("Managua", "Nicaragua", [12.13, -86.25], 10),
     "CAN_prairies": ("Canadian Prairies", "Canada", [51.6, -105.6], 5),
+    # Bandas de latitud de GISTEMP y océanos polares de NSIDC (data/recursos/hallazgos/).
+    "artico": ("Arctic", "64–90°N", [78.0, -40.0], 2),
+    "antartico": ("Antarctic", "64–90°S", [-75.0, -60.0], 2),
+    "boreal": ("Canada and Alaska latitudes", "44–64°N", [55.0, -100.0], 3),
+    "templado_norte": ("US and Mexico latitudes", "24–44°N", [34.0, -95.0], 3),
+    "tropico_norte": ("Central America and Caribbean latitudes", "0–24°N", [12.0, -80.0], 3),
+    "tropico_sur": ("Amazon and Andes latitudes", "0–24°S", [-12.0, -60.0], 3),
+    "global": ("Whole planet", "Global mean", [15.0, -60.0], 2),
 }
 NOMBRES_PAIS = {"NIC": "Nicaragua", "HND": "Honduras", "CRI": "Costa Rica"}
 
@@ -135,10 +146,17 @@ def nombre_en(texto):
               ("GPM IMERG", "NASA GPM IMERG Final V07B"), ("NASA POWER", "NASA POWER (MERRA-2), nearest grid cell"),
               ("MODIS-Aqua L3m CHL", "NASA MODIS-Aqua chlorophyll-a (OBPG, 4 km)"),
               ("GLDAS_NOAH025_M", "NASA GLDAS-2.1 Noah land model (GES DISC), regional mean"),
-              ("GLDAS_NOAH025_3H", "NASA GLDAS-2.1 Noah land model, sample point (Giovanni time series)")]
+              ("GLDAS_NOAH025_3H", "NASA GLDAS-2.1 Noah land model, sample point (Giovanni time series)"),
+              ("GES DISC OPeNDAP", "NASA GPM IMERG monthly, area average from GES DISC OPeNDAP"),
+              ("Giovanni, Area-Averaged", "NASA Giovanni area-averaged time series (GPM IMERG monthly)")]
     if t.startswith("appeears/"):
         return f"NASA {t.split('/', 1)[1]} via AppEEARS"
     return next((n for clave, n in reglas if clave in t), t)
+
+
+def frase_en(contraste):
+    """Frase del agente sin rutas internas del repositorio."""
+    return contraste.get("frase_en", "").replace("data/clima.json", "the app's IMERG series")
 
 
 def _leer_json(ruta, permitir_sintetico):
@@ -337,7 +355,7 @@ def _contraste(carpeta, permitir_sintetico, nombre_json="resumen_contrastes.json
                                  recursos=recursos)
             ext = c["serie_externa"]
             inv["contrastes"].append(cid + "_metodo")
-            contrastes.append({"id": cid + "_metodo", "investigacion": cid, "tipo": "metodo", "frase_en": c.get("frase_en", ""),
+            contrastes.append({"id": cid + "_metodo", "investigacion": cid, "tipo": "metodo", "frase_en": frase_en(c),
                                "externa": {"nombre_en": "Method of Acker et al. (NASA NTRS 20090042747)" if cid.startswith("clorofila_") else nombre_en(ext["fuente"]),
                                            "por_decada": _r(ext.get("pendiente")), "p_valor": _r(ext.get("p_valor_F")),
                                            "significativa": (ext.get("p_valor_F") or 1) < 0.05},
@@ -352,7 +370,7 @@ def _contraste(carpeta, permitir_sintetico, nombre_json="resumen_contrastes.json
             sn = sorted(series.get((cid, "nuestra"), []))
             se = sorted(series.get((cid, "externa"), []))
             contrastes.append({
-                "id": cid, "investigacion": destino, "tipo": "fuente", "frase_en": c.get("frase_en", ""),
+                "id": cid, "investigacion": destino, "tipo": "fuente", "frase_en": frase_en(c),
                 "periodo": c.get("periodo"),
                 "nuestra": {"nombre_en": nombre_en(nuestra["fuente"]), "por_decada": _r(nuestra.get("pendiente")), "veredicto": nuestra.get("veredicto_robusto") or nuestra.get("veredicto"),
                             "anios": [a for a, _ in sn], "valores": [v for _, v in sn]},
@@ -490,6 +508,157 @@ def _csa(carpeta, permitir_sintetico):
     return invs, contrastes, entradas
 
 
+# Índices de CHIRPS publicados (data/recursos/hallazgos/generar_hallazgos.py): título, definición y unidad.
+INDICES_CHIRPS = {
+    "prcptot": ("Annual rainfall since 1981 (CHIRPS)",
+                "All the rain that fell in a year, from satellite estimates blended with rain gauges.", "mm"),
+    "r10mm": ("Days with heavy rain (≥ 10 mm)", "How many days a year brought at least 10 mm of rain.", "days"),
+    "r20mm": ("Days with very heavy rain (≥ 20 mm)", "How many days a year brought at least 20 mm of rain.", "days"),
+    "sdii": ("Rain per wet day", "Average rain on days with at least 1 mm: how hard it rains when it rains.", "mm/day"),
+    "rx5day": ("Wettest 5 days of the year", "The most rain that fell in any 5 consecutive days of the year.", "mm"),
+    "cdd": ("Longest dry spell", "The longest run of days in the year with less than 1 mm of rain.", "days"),
+}
+VEREDICTO_EN = {"tendencia_detectada": "trend detected", "evidencia_insuficiente": "not enough evidence of a trend",
+                "metodos_discrepan": "methods disagree", "datos_insuficientes": "not enough data"}
+MESES_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+            "November", "December"]
+BANDAS_GISTEMP = {"global": "Glob", "artico": "64N-90N", "boreal": "44N-64N", "templado_norte": "24N-44N",
+                  "tropico_norte": "EQU-24N", "tropico_sur": "24S-EQU", "antartico": "90S-64S"}
+
+
+def _ordinal(n):
+    return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+
+
+def _menos(texto):
+    """Signo menos tipográfico, como en las tarjetas de la interfaz."""
+    return texto.replace("-", "−")
+
+
+def _frase_tendencia(t, unidad):
+    if t["veredicto"] == "datos_insuficientes":
+        return VEREDICTO_EN[t["veredicto"]]
+    return f"{_menos(format(t['sen']['por_decada'], '+.3g'))} {unidad}/decade, {VEREDICTO_EN[t['veredicto']]}"
+
+
+def _hallazgos(carpeta, permitir_sintetico):
+    """Frecuencia e intensidad de la lluvia con CHIRPS (con y sin ENSO), hielo marino NSIDC y GISTEMP por latitud."""
+    carpeta = Path(carpeta)
+    ruta_fuentes = carpeta / "fuentes.json"
+    if not ruta_fuentes.is_file():
+        return [], []
+    fuentes = _leer_json(ruta_fuentes, permitir_sintetico)
+    invs, entradas = [], [ruta_fuentes]
+    chirps = {"producto": "CHIRPS v2.0 daily, 0.25° (UCSB Climate Hazards Center)", "url": fuentes["chirps"]["url"]}
+    oni = {}
+    ruta = carpeta / "oni_noaa_cpc.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        por_anio = {}
+        for f in _leer_csv(ruta):
+            if f["temporada"] in ("MJJ", "JJA", "JAS", "ASO"):  # temporadas centradas de junio a septiembre
+                por_anio.setdefault(int(f["anio"]), []).append(float(f["oni"]))
+        oni = {a: sum(v) / len(v) for a, v in por_anio.items() if len(v) == 4}
+
+    def notas_lluvia(anios, valores, unidad):
+        notas = []
+        pares = [(a, v) for a, v in zip(anios, valores) if a in oni]
+        if len(pares) >= MIN_ANIOS_TENDENCIA:
+            a, y = zip(*pares)
+            x = [oni[k] for k in a]
+            mx, my = sum(x) / len(x), sum(y) / len(y)
+            sxx = sum((u - mx) ** 2 for u in x)
+            b = sum((u - mx) * (v - my) for u, v in zip(x, y)) / sxx
+            r2 = b * b * sxx / sum((v - my) ** 2 for v in y)
+            sin_enso = [v - b * (u - mx) for u, v in zip(x, y)]
+            t = tendencia_compacta(a, sin_enso, unidad)
+            notas.append(f"El Niño and La Niña (NOAA ONI, June–September) explain {r2:.0%} of the year-to-year swings. "
+                         f"With their effect removed: {_frase_tendencia(t, unidad)}.")
+        desde_2001 = [(a, v) for a, v in zip(anios, valores) if a >= 2001]
+        t = tendencia_compacta(*zip(*desde_2001), unidad)
+        notas.append(f"Since 2001 only: {_frase_tendencia(t, unidad)}. CHIRPS blends rain-gauge reports whose number "
+                     f"changed over time, so a trend seen only in the full record should be confirmed.")
+        return notas
+
+    ruta = carpeta / "chirps_indices_regiones.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        series = {}
+        for f in _leer_csv(ruta):
+            series.setdefault((f["region"], f["indice"]), []).append((int(f["anio"]), float(f["valor"])))
+        for region in ("NIC", "pacifico", "central", "caribe"):
+            for indice, (titulo, definicion, unidad) in INDICES_CHIRPS.items():
+                puntos = sorted(series.get((region, indice), []))
+                if not puntos:
+                    continue
+                anios, valores = [a for a, _ in puntos], [v for _, v in puntos]
+                invs.append(_investigacion(f"chirps_{indice}_{region}", "lluvia", region, titulo, definicion, unidad,
+                                           anios, valores, chirps, notas=notas_lluvia(anios, valores, unidad)))
+    ruta = carpeta / "chirps_acumulado_parcial.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        por_region = {}
+        for f in _leer_csv(ruta):
+            por_region.setdefault(f["region"], []).append(f)
+        for region in ("NIC", "pacifico", "central", "caribe"):
+            filas = sorted(por_region.get(region, []), key=lambda f: int(f["anio"]))
+            if not filas:
+                continue
+            anios, valores = [int(f["anio"]) for f in filas], [float(f["mm"]) for f in filas]
+            hasta = filas[-1]["hasta"]
+            mes = MESES_EN[int(hasta[:2]) - 1]
+            normal = [v for a, v in zip(anios, valores) if 1991 <= a <= 2020]
+            normal = sum(normal) / len(normal)
+            ultimo = anios[-1]
+            puesto = sorted(valores).index(valores[-1]) + 1
+            notas = [f"{ultimo}: {valores[-1]:.0f} mm from 1 January to {int(hasta[3:])} {mes}, "
+                     f"{_menos(format(valores[-1] / normal - 1, '+.0%'))} compared with 1991–2020 and the "
+                     f"{'driest' if puesto == 1 else _ordinal(puesto) + ' driest'} of {len(anios)} years."]
+            invs.append(_investigacion(f"chirps_parcial_{region}", "lluvia", region, f"Rainfall January–{mes}, {anios[0]}–{ultimo}",
+                                       f"Rain from 1 January to {int(hasta[3:])} {mes} of each year, so the current year "
+                                       f"can be compared with every past year.", "mm", anios, valores, chirps,
+                                       notas=notas + notas_lluvia(anios, valores, "mm")))
+
+    ruta = carpeta / "nsidc_extension_marzo_septiembre.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        nsidc = {"producto": "NSIDC Sea Ice Index, Version 4 (G02135)", "url": fuentes["nsidc"]["url"]}
+        hielo = {}
+        for f in _leer_csv(ruta):
+            hielo.setdefault((f["hemisferio"], int(f["mes"])), []).append((int(f["anio"]), float(f["extension_mkm2"])))
+        etiquetas = {("N", 9): ("artico", "September sea ice (yearly minimum)"), ("N", 3): ("artico", "March sea ice (yearly maximum)"),
+                     ("S", 9): ("antartico", "September sea ice (yearly maximum)"), ("S", 3): ("antartico", "March sea ice (yearly minimum)")}
+        for clave in (("N", 9), ("N", 3), ("S", 9), ("S", 3)):
+            puntos = sorted(hielo.get(clave, []))
+            if not puntos:
+                continue
+            lugar, titulo = etiquetas[clave]
+            anios, valores = [a for a, _ in puntos], [v for _, v in puntos]
+            puesto = sorted(valores).index(valores[-1]) + 1
+            notas = [f"{anios[-1]}: {valores[-1]:.2f} million km², the {'lowest' if puesto == 1 else _ordinal(puesto) + ' lowest'} "
+                     f"of {len(anios)} years."]
+            if lugar == "antartico":
+                t = tendencia_compacta([a for a in anios if a >= 2016], [v for a, v in puntos if a >= 2016], "million km²")
+                notas.append(f"Antarctic sea ice grew slowly until 2015 and has been low since 2016. "
+                             f"Since 2016 only: {_frase_tendencia(t, 'million km²')}; the record is still short.")
+            invs.append(_investigacion(f"hielo_{MESES_EN[clave[1] - 1].lower()}_{lugar}", "polos", lugar, titulo,
+                                       "Ocean area where at least 15% of the surface is covered by ice, monthly mean.",
+                                       "million km²", anios, valores, nsidc, notas=notas))
+
+    ruta = carpeta / "gistemp_bandas.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        gistemp = {"producto": "NASA GISS GISTEMP v4, latitude-band means", "url": "https://data.giss.nasa.gov/gistemp/"}
+        filas = [f for f in _leer_csv(ruta) if int(f["anio"]) >= 1981]
+        for lugar, col in BANDAS_GISTEMP.items():
+            anios, valores = [int(f["anio"]) for f in filas], [float(f[col]) for f in filas]
+            invs.append(_investigacion(f"temperatura_banda_{lugar}", "temperatura", lugar,
+                                       "Air temperature anomaly" + ("" if lugar == "global" else " (latitude band)"),
+                                       "How much warmer or cooler the air near the surface was than the 1951–1980 average, "
+                                       "over land and ocean at every longitude in this band.", "°C", anios, valores, gistemp))
+    return invs, entradas
+
+
 def _demostraciones(invs):
     ids = {i["id"]: i for i in invs}
     demos = []
@@ -500,6 +669,26 @@ def _demostraciones(invs):
             pasos.append({"investigacion": "lluvia_NIC", "ver": "contrastes", "texto_en": "A second opinion: gauge-based datasets reach the same verdict."})
         pasos.append({"investigacion": "lluvia_NIC", "ver": "aprender", "texto_en": "Not significant does not mean no change. A longer record could make the same change detectable."})
         demos.append({"id": "lluvia_nicaragua", "titulo_en": "Has Nicaragua's rainfall changed?", "pasos": pasos})
+    if all(k in ids for k in ("chirps_prcptot_NIC", "chirps_r10mm_NIC", "chirps_rx5day_caribe", "chirps_parcial_pacifico")):
+        total, fuertes, caribe, parcial = (ids[k] for k in ("chirps_prcptot_NIC", "chirps_r10mm_NIC", "chirps_rx5day_caribe",
+                                                            "chirps_parcial_pacifico"))
+        pico = max(zip(caribe["valores"], caribe["tiempos"]))[1]
+
+        def reciente(x, unidad):
+            pares = [(a, v) for a, v in zip(x["tiempos"], x["valores"]) if a >= 2001]
+            return f" Since 2001 only: {_frase_tendencia(tendencia_compacta(*zip(*pares), unidad), unidad)}."
+        demos.append({"id": "frecuencia_lluvia", "titulo_en": "Same total, different rain?", "pasos": [
+            {"investigacion": total["id"], "texto_en": f"A longer record: rain gauges and satellites since {total['tiempos'][0]}. "
+                                                       f"Total yearly rain over Nicaragua: {VEREDICTO_EN[total['tendencia']['veredicto']]}."},
+            {"investigacion": total["id"], "ver": "veredicto", "texto_en": "Year-to-year swings are large, and El Niño explains part of them. The notes show the result with El Niño removed."},
+            {"investigacion": fuertes["id"], "texto_en": f"How often it rains hard is another question. Days with at least 10 mm: "
+                                                         f"{_frase_tendencia(fuertes['tendencia'], 'days')}." + reciente(fuertes, "days")},
+            {"investigacion": caribe["id"], "texto_en": f"On the Caribbean coast, the wettest 5-day spell of each year: "
+                                                        f"{_frase_tendencia(caribe['tendencia'], 'mm')}." + reciente(caribe, "mm") +
+                                                        f" The largest was in {pico}."},
+            {"investigacion": parcial["id"], "texto_en": parcial["notas"][0] + " That is an El Niño year."},
+            {"investigacion": parcial["id"], "ver": "aprender", "ancla": "aprender-variabilidad",
+             "texto_en": "Why a record-dry year does not make a trend on its own."}]})
     if "temperatura_NIC" in ids and "temperatura_CAN_prairies" in ids:
         a, b = ids["temperatura_NIC"], ids["temperatura_CAN_prairies"]
         ventana = [max(min(a["tiempos"]), min(b["tiempos"])), min(max(a["tiempos"]), max(b["tiempos"]))]
@@ -555,9 +744,10 @@ def construir(datos=DATOS, permitir_sintetico=False):
                                         "contrastes_canada.json", "contrastes_canada_series.csv")
     h_inv, h_con, h_ent, _ = _contraste(datos / "recursos" / "tierra", permitir_sintetico,
                                         "contrastes_tierra.json", "contrastes_tierra_series.csv")
-    invs += t_inv + c_inv + s_inv + k_inv + h_inv
+    n_inv, n_ent = _hallazgos(datos / "recursos" / "hallazgos", permitir_sintetico)
+    invs += t_inv + c_inv + s_inv + k_inv + h_inv + n_inv
     contrastes = c_con + s_con + k_con + h_con
-    entradas += t_ent + c_ent + s_ent + k_ent + h_ent
+    entradas += t_ent + c_ent + s_ent + k_ent + h_ent + n_ent
     por_id = {i["id"]: i for i in invs}
     for c in contrastes:
         inv = por_id.get(c["investigacion"])

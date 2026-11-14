@@ -6,7 +6,7 @@ const $=id=>document.getElementById(id);
 const nodo=(t,txt,c)=>{const n=document.createElement(t);if(txt!==undefined)n.textContent=txt;if(c)n.className=c;return n};
 const num=(v,d=2)=>Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 const signo=(v,d=2)=>(v>0?'+':v<0?'−':'')+num(Math.abs(v),d);
-const DECIMALES={mm:0,'°C':2,NDVI:3,m:2,'mg/m³':2};
+const DECIMALES={mm:0,'°C':2,NDVI:3,m:2,'mg/m³':2,days:1,'mm/day':2,'million km²':2};
 const dec=u=>DECIMALES[u]??2;
 
 const VEREDICTO={
@@ -100,7 +100,9 @@ function resultado(){
   c.append(tj);
   const pie=nodo('p',undefined,'detalle');pie.append(nodo('span',x.definicion_en+' '));
   const a=nodo('a','What does this mean?');a.href='#'+ancla;a.onclick=ev=>{ev.preventDefault();aprender(ancla)};pie.append(a);
-  c.append(pie,nodo('p',x.fuente.producto,'detalle fuente'));
+  c.append(pie);
+  (x.notas||[]).forEach(n=>c.append(nodo('p',n,'detalle nota')));
+  c.append(nodo('p',x.fuente.producto,'detalle fuente'));
   serie(x,t,ok);
 }
 function serie(x,t,ok){
@@ -177,7 +179,7 @@ function pasoDemo(){
   if(paso<dm.pasos.length-1)boton('Next',()=>{demo.paso++;pasoDemo()});else boton('Finish',()=>{demo=null;pasoDemo()});
   panel.append(ctl);
   const destino={veredicto:'inv-veredicto',contrastes:'inv-contrastes'}[p.ver];
-  if(p.ver==='aprender'){const b=nodo('button','Open the explanation');b.type='button';b.onclick=()=>aprender('aprender-no-significativo');ctl.append(b)}
+  if(p.ver==='aprender'){const b=nodo('button','Open the explanation');b.type='button';b.onclick=()=>aprender(p.ancla||'aprender-no-significativo');ctl.append(b)}
   (destino?$(destino):panel).scrollIntoView({block:'nearest',behavior:'smooth'});
 }
 

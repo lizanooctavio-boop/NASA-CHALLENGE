@@ -217,3 +217,31 @@ def test_el_json_versionado_no_tiene_datos_sinteticos():
 @pytest.mark.skipif(NODE is None, reason="requiere node")
 def test_javascript_de_la_pestana_es_valido():
     subprocess.run([NODE, "--check", str(RAIZ / "app" / "investigar.js")], check=True)
+
+
+def test_hallazgos_de_lluvia_hielo_y_latitudes_en_el_json_versionado():
+    d = json.loads((RAIZ / "data" / "recursos_integrados.json").read_text(encoding="utf-8"))
+    ids = {i["id"]: i for i in d["investigaciones"]}
+    assert next(c for c in d["categorias"] if c["id"] == "polos")["con_datos"]
+    for region in ("NIC", "pacifico", "central", "caribe"):
+        for indice in (*rec.INDICES_CHIRPS, "parcial"):
+            x = ids[f"chirps_{indice}_{region}"]
+            assert x["tiempos"][0] == 1981 and x["categoria"] == "lluvia"
+            assert any("El Niño and La Niña" in n for n in x["notas"])
+            assert any(n.startswith("Since 2001 only") for n in x["notas"])
+    artico = ids["hielo_september_artico"]["tendencia"]
+    assert artico["veredicto"] == "tendencia_detectada" and artico["sen"]["por_decada"] < 0
+    lugares = {l["id"] for l in d["lugares"]}
+    assert {f"temperatura_banda_{l}" for l in rec.BANDAS_GISTEMP} <= set(ids)
+    assert set(rec.BANDAS_GISTEMP) <= lugares
+    demo = next(x for x in d["demostraciones"] if x["id"] == "frecuencia_lluvia")
+    anclas = [p["ancla"] for p in demo["pasos"] if p.get("ancla")]
+    html = (RAIZ / "index.html").read_text(encoding="utf-8")
+    assert anclas and all(f'id="{a}"' in html for a in anclas)
+
+
+def test_textos_de_contraste_sin_rutas_internas_ni_espanol():
+    d = json.loads((RAIZ / "data" / "recursos_integrados.json").read_text(encoding="utf-8"))
+    for c in d["contrastes"]:
+        textos = [c.get("frase_en", ""), c["externa"]["nombre_en"], (c.get("nuestra") or {}).get("nombre_en", "")]
+        assert not any("data/" in t or "consulta" in t for t in textos), c["id"]
