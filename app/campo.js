@@ -230,6 +230,8 @@ async function cargar(){
   try{
     const r=await window.FuentesMeteo.fetch('/api/campo_nicaragua'),d=await json(r);
     if(!r.ok)throw Error(d.error||'Regional grid unavailable');
+    // Una instantánea vieja no cubre la hora actual: mejor la malla mundial vigente que una hora pasada.
+    if(!d.horas_utc?.length||soporte.utc(d.horas_utc.at(-1))<Date.now())throw Error('Regional grid expired');
     const iso=G?.horas_utc[hora],seguirAhora=!G||hora===G.indice_actual;
     G=d;
     for(const k in cacheViento)delete cacheViento[k];
