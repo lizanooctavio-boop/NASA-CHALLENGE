@@ -49,14 +49,15 @@
     const panel = [...document.querySelectorAll('.vista')].find(v => !v.hidden);
     const aside = document.querySelector('aside').getBoundingClientRect();
     const izquierda = panel && !panel.classList.contains('minimizada') ? panel.getBoundingClientRect().right : aside.right;
-    const derecha = $('barra-capas').getBoundingClientRect().left;
+    const capas = $('barra-capas'), derecha = capas.getClientRects().length ? capas.getBoundingClientRect().left : ancho;
     window.Espacio.desplazar(Math.max(0, ((izquierda + derecha) / 2 - ancho / 2) * 0.85));
   }
 
   function iniciar() {
-    window.Espacio.alElegir((lat, lon) => window.elegirPunto?.(lat, lon) ?? (function () {
+    window.Espacio.alElegir((lat, lon) => {
+      if (window.elegirPunto) return window.elegirPunto(lat, lon);
       $('lat').value = lat.toFixed(3); $('lon').value = lon.toFixed(3); $('consulta-punto').requestSubmit();
-    })());
+    });
     desplazar();
     sincronizar();
   }

@@ -42,7 +42,7 @@
       var serie = d.anios_validos.map(function (anio, i) { return { anio: anio, valor: d.serie_anual_mm[i] }; });
       return {
         id: IDS[d.id], nombre: d.nombre, rol: d.tipo === 'caja' ? 'original' : d.rol,
-        bbox: d.bbox, poligonos: g && (g.type === 'Polygon' ? [g.coordinates] : g.coordinates),
+        bbox: d.bbox, area_km2: d.area_km2, poligonos: g && (g.type === 'Polygon' ? [g.coordinates] : g.coordinates),
         serie: serie, veredicto_fuente: t.veredicto, interpretacion: t.interpretacion,
         tendencias: sen ? {
           mco: { pendiente: t.mm_por_decada, ic_inf: t.ic_mm_por_decada[0], ic_sup: t.ic_mm_por_decada[1], p: t.p_valor },
@@ -113,7 +113,7 @@
         analisis = { mco: null, sen: null, n_validos: calculado.n_validos, veredicto: { estado: 'faltan' } };
       }
       return {
-        id: id, nombre: r.nombre || NOMBRES[id], rol: r.rol || 'contexto', bbox: r.bbox, contorno: r.contorno, poligonos: r.poligonos, interpretacion: r.interpretacion,
+        id: id, nombre: r.nombre || NOMBRES[id], rol: r.rol || 'contexto', bbox: r.bbox, area_km2: r.area_km2, contorno: r.contorno, poligonos: r.poligonos, interpretacion: r.interpretacion,
         serie: serie, anios_sin_dato: faltan, analisis: analisis, origen_tendencias: origen
       };
     });
