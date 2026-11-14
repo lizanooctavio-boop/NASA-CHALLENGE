@@ -408,3 +408,15 @@ El servicio solo promedia sobre cajas: al pedir el polígono de Nicaragua respon
 | `giovanni_gldas_sm0_10_caja_sicc` | `GLDAS_NOAH025_M_2_1_SoilMoi0_10cm_inst` (kg m⁻² / 100 = m³/m³) | r = 1,000 tras corregir los meses repetidos de la serie OPeNDAP (ver `tierra.md`). Antes de la corrección daba r = 0,714. |
 
 Este contraste detectó que el OPeNDAP en la nube había servido otro granulo para 14 meses de 2001–2003. Así, el recurso 1 cumple dos papeles: confirma con la herramienta oficial de NASA las cifras que muestra la aplicación y sirvió de control de calidad.
+
+## KNMI Climate Explorer (recurso 6): paso manual
+
+Climate Explorer pide verificar que el usuario es humano, y esa verificación no se automatiza. La ingesta ya está preparada: `clima_nic.fuentes.knmi` lee el texto «raw data» y el paso `resumen` lo compara con IMERG como contraste `knmi_<producto>_<región>`, que el integrador cuenta como recurso 6.
+
+1. Abrir <https://climexp.knmi.nl/start.cgi>, entrar o registrarse con un correo y superar la verificación.
+2. *Select a field* → *Monthly observations* → precipitación → **CHIRPS v2.0** (vale también GPCC o CRU TS).
+3. *Make a time series*: latitud de 10.7 a 12.6 y longitud de −86.5 a −83.6 (caja SICC), promedio del área («average»).
+4. En la serie resultante, abrir *raw data* y guardar el texto tal cual como `data/recursos/contraste/knmi/chirps_caja_sicc.txt`. La cabecera debe conservar la unidad entre corchetes, por ejemplo `[mm/day]`.
+5. Ejecutar `python data/recursos/contraste/generar_contrastes.py resumen` y después `python -m clima_nic recursos` (desde `backend/`).
+
+Para Nicaragua completa se usa la máscara de país de Climate Explorer y el archivo se guarda como `chirps_nic.txt`.

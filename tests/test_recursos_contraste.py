@@ -457,3 +457,20 @@ def test_sesion_urs_http_solo_envia_basic_a_urs(monkeypatch, tmp_path):
         ("urs.earthdata.nasa.gov", True),
         ("opendap.earthdata.nasa.gov", False),
     ]
+
+
+def test_lee_serie_knmi_tabla_mensual_en_mm_por_dia():
+    from clima_nic.fuentes import knmi
+    texto = ("# CHIRPS v2.0 averaged over 10.7:12.6N, -86.5:-83.6E\n# prcp [mm/day] precipitation\n"
+             "2001 " + " ".join(["1.0"] * 12) + "\n2002 " + " ".join(["2.0"] * 11) + " -999.9\n")
+    s = knmi.leer_serie(texto)
+    assert s["unidad"] == "mm/day"
+    assert s["mensual"][(2001, 2)] == pytest.approx(28.0)
+    # 2002 tiene un mes faltante: no entra en la serie anual.
+    assert knmi.anual(s["mensual"]) == {2001: pytest.approx(365.0)}
+
+
+def test_serie_knmi_sin_unidad_conocida_se_rechaza():
+    from clima_nic.fuentes import knmi
+    with pytest.raises(ValueError):
+        knmi.leer_serie("# prcp [kg/m2/s]\n2001 " + " ".join(["1"] * 12) + "\n")

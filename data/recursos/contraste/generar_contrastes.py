@@ -31,6 +31,7 @@ RAIZ = AQUI.parents[2]
 sys.path.insert(0, str(RAIZ / "backend"))
 
 from clima_nic.fuentes import giovanni as gv  # noqa: E402
+from clima_nic.fuentes import knmi  # noqa: E402
 from clima_nic.fuentes import noaa_cdo as nc  # noqa: E402
 from clima_nic.rutas import CACHE, DATOS, FENOMENOS  # noqa: E402
 
@@ -1113,6 +1114,43 @@ def contrastes_giovanni_nube(filas_series):
     return out
 
 
+# ---------------------------------------------------------------- KNMI Climate Explorer (recurso 6)
+# Climate Explorer exige verificación humana: una persona descarga la serie «raw data» y la guarda como
+# knmi/<producto>_<region>.txt (región caja_sicc o nic). Aquí solo se lee y se compara con data/clima.json.
+KNMI_DIR = AQUI / "knmi"
+KNMI_PRODUCTOS = {"chirps": "CHIRPS v2.0 (UCSB Climate Hazards Center) vía KNMI Climate Explorer",
+                  "gpcc": "GPCC vía KNMI Climate Explorer", "cru": "CRU TS vía KNMI Climate Explorer"}
+KNMI_REGIONES = {"caja_sicc": "caja_sicc", "nic": "NIC"}
+
+
+def contrastes_knmi(filas_series):
+    out = []
+    if not KNMI_DIR.is_dir():
+        return out
+    dom = {d["id"]: d for d in _clima()["dominios"]}
+    for ruta in sorted(KNMI_DIR.glob("*.txt")):
+        producto, _, reg = ruta.stem.partition("_")
+        if producto not in KNMI_PRODUCTOS or reg not in KNMI_REGIONES:
+            continue
+        region = KNMI_REGIONES[reg]
+        serie = knmi.leer_serie(ruta.read_text(encoding="utf-8", errors="replace"))
+        imerg = dict(zip(dom[region]["anios_validos"], dom[region]["serie_anual_mm"]))
+        cons = fecha_consulta(f"knmi_{ruta.stem}") or {}
+        meta = {"fuente": KNMI_PRODUCTOS[producto], "version": None, "fecha_consulta": cons.get("fecha"),
+                "url": "https://climexp.knmi.nl/start.cgi"}
+        c = _contraste(f"knmi_{ruta.stem}", "contraste", region, (P0, P1), imerg, knmi.anual(serie["mensual"]), "mm",
+                       "GPM IMERG Final V07B (data/clima.json)", meta["fuente"], "", filas_series, meta,
+                       investigacion=f"lluvia_{region}")
+        dif, sn, se = c["diferencia"], c["serie_nuestra"], c["serie_externa"]
+        if dif.get("r") is None:
+            continue
+        c["frase_en"] = (f"{KNMI_PRODUCTOS[producto]} over {'the SICC box' if region == 'caja_sicc' else 'Nicaragua'}, "
+                         f"2001–2024: r = {dif['r']:.2f} with IMERG, mean difference {dif['media']:+.0f} mm/yr; Sen slopes "
+                         f"{se['pendiente']:+.0f} vs {sn['pendiente']:+.0f} mm/decade.")
+        out.append(c)
+    return out
+
+
 def _meta_opendap(clave, producto_ver, url_def):
     cons = fecha_consulta(f"opendap_{clave}") or {}
     fecha = cons.get("fecha")
@@ -1415,7 +1453,7 @@ def contrastes_bloqueados():
 def paso_resumen():
     filas_series = []
     contrastes = contrastes_lluvia(filas_series) + contrastes_estaciones(filas_series) + \
-        contrastes_clorofila(filas_series) + contrastes_giovanni(filas_series) +         contrastes_giovanni_nube(filas_series) + contrastes_bloqueados()
+        contrastes_clorofila(filas_series) + contrastes_giovanni(filas_series) +         contrastes_giovanni_nube(filas_series) + contrastes_knmi(filas_series) + contrastes_bloqueados()
     escribir_csv(AQUI / "series_anuales.csv", ["contraste", "serie", "anio", "valor"], filas_series)
     bloq = json.loads(BLOQUEOS.read_text(encoding="utf-8")) if BLOQUEOS.exists() else {}
     doc = {"esquema": "nasa-challenge/contrastes", "version": "1.0.0", "generado": HOY,
