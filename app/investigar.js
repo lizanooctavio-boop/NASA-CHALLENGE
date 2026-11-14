@@ -89,8 +89,9 @@ function resultado(){
     tar('Least squares',`${signo(t.mco.por_decada,d)} ${u}`,`95% CI ${signo(t.mco.ic[0],d)} to ${signo(t.mco.ic[1],d)}`);
   }else if(corto){
     const vals=x.valores.filter(v=>v!==null);
-    tar('Observations',`${x.valores.length} months`,`${x.tiempos[0]} to ${x.tiempos.at(-1)}`);
-    tar('Range',`${num(Math.min(...vals),d)}–${num(Math.max(...vals),d)} ${u}`,'lowest to highest monthly mean');
+    const escenas=x.frecuencia==='escena';
+    tar('Observations',`${x.valores.length} ${escenas?'scenes':'months'}`,`${x.tiempos[0]} to ${x.tiempos.at(-1)}`);
+    tar('Range',`${num(Math.min(...vals),d)}–${num(Math.max(...vals),d)} ${u}`,escenas?'lowest to highest scene':'lowest to highest monthly mean');
   }
   c.append(tj);
   const pie=nodo('p',undefined,'detalle');pie.append(nodo('span',x.definicion_en+' '));
@@ -191,7 +192,7 @@ function fuentes(){
 // ---------------------------------------------------------------- mapa y descarga
 $('inv-mapa').onclick=()=>{const l=lugar(inv(sel.investigacion).lugar);window.SICC_vista.irA(l.centro[0],l.centro[1],l.zoom)};
 function bajar(nombre,texto){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([texto],{type:'text/csv;charset=utf-8'}));a.download=nombre;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),30000)}
-$('inv-csv').onclick=async()=>{await cargar();const x=inv(sel.investigacion),col=x.frecuencia==='mensual'?'month':'year';
+$('inv-csv').onclick=async()=>{await cargar();const x=inv(sel.investigacion),col=x.frecuencia==='mensual'?'month':x.frecuencia==='escena'?'date':'year';
   bajar(`${x.id}.csv`,'﻿'+[`# Source: ${x.fuente.producto}`,`# Place: ${lugar(x.lugar).nombre_en}`,`${col},value_${x.unidad.replace(/[^\w°³]+/g,'_')}`,...x.tiempos.map((a,i)=>`${a},${x.valores[i]??''}`)].join('\r\n')+'\r\n')};
 
 document.addEventListener('sicc:pestana',e=>{

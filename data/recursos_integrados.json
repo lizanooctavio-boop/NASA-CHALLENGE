@@ -7843,6 +7843,37 @@
    ],
    "contrastes": [],
    "notas": []
+  },
+  {
+   "id": "radar_agua_cocibolca",
+   "categoria": "agua",
+   "lugar": "cocibolca",
+   "titulo_en": "Lake water area from radar",
+   "definicion_en": "Area of the lake classified as open water in radar images, inside the part of the lake observed on every date.",
+   "unidad": "km²",
+   "papel": "demostracion_registro_corto",
+   "frecuencia": "escena",
+   "tiempos": [
+    "2024-09-24",
+    "2024-12-17",
+    "2026-01-17"
+   ],
+   "valores": [
+    2486.81,
+    2488.28,
+    2489.03
+   ],
+   "fuente": {
+    "producto": "NASA OPERA DSWx-S1 (Sentinel-1 radar) via PO.DAAC",
+    "url": "https://podaac.jpl.nasa.gov/dataset/OPERA_L3_DSWX-S1_V1"
+   },
+   "recursos": [
+    13
+   ],
+   "contrastes": [],
+   "notas": [
+    "Common observed area 2585 km² (33% of the lake); not validated against local data."
+   ]
   }
  ],
  "contrastes": [
@@ -11279,7 +11310,7 @@
    "url": "https://github.com/asc-csa/Synthetic_Aperture_Radar_Tutorial",
    "organizacion": "CSA",
    "uso_en": "Workflow to map surface water from radar images.",
-   "estado": "sin_datos"
+   "estado": "en_uso"
   }
  ],
  "entradas": {
@@ -11295,6 +11326,7 @@
   "recursos/csa/cocibolca_grealm.csv": "50ae75a29a55b5293fb7ee2524f51d422f6266f6f6b84bae0628c9b2f506142e",
   "recursos/csa/comparacion_cocibolca_grealm_swot.csv": "8c05c145bac4e8d1073fad3cc2843d427b95a234b54bb8294a7604c9827b47f7",
   "recursos/csa/swot_mensual.csv": "2508ce4a06c61a55dfc9aaf2fbced35ca6102a5d004a11b46b51c9eee932f237",
+  "recursos/csa/dswx_s1_serie_corta.csv": "fdf11b4a86b8c96965b99e52f1f9bdb6302165647dfcb19248547fae8b96e923",
   "regiones_canada.geojson": "05e0f0dc1cf0a7c7476436028b5443812d44b9087fb5c0812e9ab588bbf4b402",
   "recursos/csa/contrastes_canada.json": "af2581d06b9ca41dfb01d60d00c1efe170355722726663888f8ad22264d2b2cd",
   "recursos/csa/contrastes_canada_series.csv": "677dce021000ca5e0f2a952a48d30647e9cf944c1f4bb1e21d5497b5f18e74a7",

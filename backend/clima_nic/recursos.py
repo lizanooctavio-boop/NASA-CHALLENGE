@@ -409,6 +409,23 @@ def _csa(carpeta, permitir_sintetico):
                                        {"producto": "NASA/CNES SWOT L2 HR LakeSP via PO.DAAC Hydrocron",
                                         "url": "https://podaac.jpl.nasa.gov/SWOT"},
                                        recursos=[11], papel="demostracion_registro_corto", frecuencia="mensual"))
+    # Agua del lago a partir de radar (OPERA DSWx-S1): flujo del tutorial SAR de la CSA (scripts/sar/agua_superficial.ipynb),
+    # tres escenas en un dominio común; registro corto y sin validación local, así que nunca lleva tendencia.
+    ruta = carpeta / "dswx_s1_serie_corta.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        filas = sorted(_leer_csv(ruta), key=lambda f: f["fecha"])
+        if filas:
+            cob = float(filas[0]["cobertura_fraccion_lago"])
+            invs.append(_investigacion("radar_agua_cocibolca", "agua", "cocibolca", "Lake water area from radar",
+                                       "Area of the lake classified as open water in radar images, inside the part of the "
+                                       "lake observed on every date.", "km²", [f["fecha"] for f in filas],
+                                       [float(f["superficie_clasificada_agua_km2"]) for f in filas],
+                                       {"producto": "NASA OPERA DSWx-S1 (Sentinel-1 radar) via PO.DAAC",
+                                        "url": "https://podaac.jpl.nasa.gov/dataset/OPERA_L3_DSWX-S1_V1"},
+                                       recursos=[13], papel="demostracion_registro_corto", frecuencia="escena",
+                                       notas=[f"Common observed area {float(filas[0]['area_valida_comun_km2']):.0f} km² "
+                                              f"({cob:.0%} of the lake); not validated against local data."]))
     region_canada = carpeta.parents[1] / "regiones_canada.geojson"
     if region_canada.is_file():
         entradas.append(region_canada)
