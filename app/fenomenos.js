@@ -15,16 +15,37 @@ const CAPAS={
   aod:{capa:'MODIS_Combined_Value_Added_AOD',z:4,op:.7,zoom:6}
 };
 const estado={},vivo={},turno={};
+const GIBS='https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/';
+// GOES-East publica una imagen cada 10 min con ~30–40 min de retraso; las horas aún no publicadas dan 404.
+// Se busca la más reciente desde el navegador, sin depender de la hora fijada al compilar.
+async function ultimaGoes(capa){
+  const paso=600000,ahora=Math.floor(Date.now()/paso)*paso;
+  for(let i=1;i<=12;i++){
+    const hora=new Date(ahora-i*paso).toISOString().slice(0,19)+'Z';
+    try{const r=await fetch(`${GIBS}${capa}/default/${hora}/GoogleMapsCompatible_Level7/0/0/0.png`);
+      if(r.ok)return{capa,hora_utc:hora,matriz:'GoogleMapsCompatible_Level7',formato:'png'}}catch(e){return null}
+  }
+  return null;
+}
 async function capaGibs(k){
   const c=CAPAS[k],chk=$('chk-'+k),mio=turno[k]=(turno[k]||0)+1;
-  if(vivo[k]){mapa.removeLayer(vivo[k]);vivo[k]=null}
-  if(!chk.checked){estado[k]=null;return}
+  if(!chk.checked){if(vivo[k]){mapa.removeLayer(vivo[k]);vivo[k]=null}estado[k]=null;horaSat();return}
   try{
-    const r=await window.FuentesMeteo.fetch('/api/gibs_hora?capa='+encodeURIComponent(c.capa));const d=await json(r);if(!r.ok)throw Error(d.error||'unavailable');
+    let d=k==='sat'?await ultimaGoes(c.capa):null;
+    if(!d){const r=await window.FuentesMeteo.fetch('/api/gibs_hora?capa='+encodeURIComponent(c.capa));d=await json(r);if(!r.ok)throw Error(d.error||'unavailable')}
     if(!chk.checked||turno[k]!==mio)return;
-    vivo[k]=L.tileLayer(`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${d.capa}/default/${d.hora_utc}/${d.matriz}/{z}/{y}/{x}.${d.formato}`,{maxNativeZoom:c.zoom,maxZoom:18,bounds:c.limites,opacity:c.op,zIndex:c.z,attribution:'NASA GIBS'}).addTo(mapa);
+    if(vivo[k]&&estado[k]===d.hora_utc)return;
+    // La imagen nueva se superpone y la anterior se retira al cargar: sin parpadeo al renovar.
+    const viejo=vivo[k];
+    vivo[k]=L.tileLayer(`${GIBS}${d.capa}/default/${d.hora_utc}/${d.matriz}/{z}/{y}/{x}.${d.formato}`,{maxNativeZoom:c.zoom,maxZoom:18,bounds:c.limites,opacity:c.op,zIndex:c.z,attribution:'NASA GIBS'}).addTo(mapa);
+    if(viejo)vivo[k].once('load',()=>mapa.removeLayer(viejo));
     estado[k]=d.hora_utc;
-  }catch(e){if(turno[k]===mio)estado[k]='unavailable'}
+  }catch(e){if(turno[k]===mio){if(vivo[k]){mapa.removeLayer(vivo[k]);vivo[k]=null}estado[k]='unavailable'}}
+  if(k==='sat')horaSat();
+}
+function horaSat(){
+  const h=estado.sat,span=$('hora-sat');if(!span)return;
+  span.textContent=!h?'':h==='unavailable'?'Unavailable':`${h.slice(11,16)} UTC (${Math.max(0,Math.round((Date.now()-Date.parse(h))/60000))} min ago)`;
 }
 async function radar(){
   const mio=turno.radar=(turno.radar||0)+1;
@@ -36,7 +57,9 @@ async function radar(){
 }
 for(const k in CAPAS)$('chk-'+k).onchange=()=>capaGibs(k);
 $('chk-radar').onchange=radar;
-setInterval(()=>{if(document.hidden)return;if($('chk-sat').checked)capaGibs('sat');if($('chk-radar').checked)radar();if($('chk-imerg').checked)capaGibs('imerg')},10*60000);
+setInterval(()=>{if(document.hidden)return;if($('chk-radar').checked)radar();if($('chk-imerg').checked)capaGibs('imerg')},10*60000);
+// GOES: buscar imagen nueva cada 2 min (sale cada 10) y refrescar el «hace N min».
+setInterval(()=>{if(!document.hidden&&$('chk-sat').checked)capaGibs('sat')},2*60000);
 // Los botones «Show» llevan al mapa 2D, activan la capa y encuadran la región.
 document.querySelectorAll('[data-activar]').forEach(b=>b.onclick=async()=>{
   const c=$(b.dataset.activar);if(!c.checked){c.checked=true;c.dispatchEvent(new Event('change'))}
