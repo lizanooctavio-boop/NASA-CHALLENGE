@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lluvia y escala del mapa</title>
+  <meta name="description" content="Demo de Earth System Trend Detective: ¿cambia la conclusión sobre la lluvia cuando ampliamos el mapa? Precipitación anual NASA GPM IMERG, 2001–2024.">
+  <link rel="stylesheet" href="src/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#principal">Saltar al contenido</a>
+
+  <div class="contenedor">
+    <header class="cabecera">
+      <p class="antetitulo">Earth System Trend Detective · Prototipo SOF Clima</p>
+      <h1>¿Cambia la conclusión sobre la lluvia cuando ampliamos el mapa?</h1>
+      <p class="entradilla" id="entradilla">Tendencia de la precipitación anual entre 2001 y 2024 en la caja original de SICC, Nicaragua y dos países vecinos. Elige una región: el mapa, la serie anual y el resultado cambian juntos.</p>
+      <div id="avisos" aria-live="polite"></div>
+    </header>
+
+    <main id="principal" tabindex="-1">
+      <div class="selector">
+        <span class="etiqueta" id="etq-region">Región analizada</span>
+        <div class="botones-region" role="radiogroup" aria-labelledby="etq-region" id="botones-region"></div>
+      </div>
+
+      <div class="rejilla">
+        <section class="tarjeta" aria-labelledby="t-mapa">
+          <h2 id="t-mapa">Mapa</h2>
+          <p class="sub" id="sub-mapa">Color: resultado de cada dominio. Pulsa un país o la caja para seleccionarlo.</p>
+          <div class="grafica mapa" id="mapa"></div>
+          <div class="escala-div" id="escala-mapa" aria-hidden="true"></div>
+          <p class="descripcion-mapa" id="nota-mapa">Contornos simplificados, solo para orientarse. La línea discontinua es la caja original de SICC.</p>
+        </section>
+
+        <div class="columna">
+          <section class="tarjeta" aria-labelledby="t-resultado" aria-live="polite" id="tarjeta-resultado">
+            <h2 id="t-resultado" class="solo-lector">Resultado</h2>
+            <div id="veredicto"></div>
+            <div class="respuesta" id="respuesta"></div>
+          </section>
+
+          <section class="tarjeta" aria-labelledby="t-serie">
+            <h2 id="t-serie">Serie anual</h2>
+            <p class="sub" id="sub-serie"></p>
+            <ul class="leyenda" id="leyenda-serie"></ul>
+            <div class="grafica" id="serie"></div>
+            <details class="tabla">
+              <summary>Ver los datos en tabla</summary>
+              <div class="tabla-scroll" id="tabla-serie"></div>
+            </details>
+          </section>
+        </div>
+
+        <section class="tarjeta ancho" aria-labelledby="t-comp">
+          <h2 id="t-comp">Pendientes e intervalos de los tres métodos, en una escala común</h2>
+          <p class="sub" id="sub-comp"></p>
+          <ul class="leyenda" id="leyenda-comp"></ul>
+          <div class="grafica" id="comparacion"></div>
+          <details class="tabla">
+            <summary>Ver las pendientes en tabla</summary>
+            <div class="tabla-scroll" id="tabla-comp"></div>
+          </details>
+        </section>
+
+        <div class="dos ancho">
+          <section class="tarjeta explicacion" aria-labelledby="t-expl">
+            <h2 id="t-expl">Cómo leer el resultado</h2>
+            <p>Cada dominio tiene tres intervalos del 95 % para la pendiente, en mm/década. <strong>Mínimos cuadrados</strong> es el principal y ajusta sus grados de libertad por la autocorrelación entre años. <strong>HAC de Newey–West</strong> es otra forma de tener en cuenta esa autocorrelación. <strong>Theil–Sen</strong> usa la mediana de las pendientes entre pares de años, así que un año extremo pesa menos. El resultado viene calculado en el archivo de datos; la página no lo recalcula.</p>
+            <dl>
+              <dt><span class="est-detectada" aria-hidden="true">●</span> Tendencia detectada</dt>
+              <dd>Los tres intervalos excluyen el cero con el mismo signo y el valor p principal es menor que 0,05.</dd>
+              <dt><span class="est-insuficiente" aria-hidden="true">●</span> Evidencia insuficiente</dt>
+              <dd>Los tres intervalos incluyen el cero. Con esta ventana y estos métodos no se detecta una tendencia. No significa «no hay cambio».</dd>
+              <dt><span class="est-discrepan" aria-hidden="true">●</span> Los métodos discrepan</dt>
+              <dd>Cualquier otro caso: unos intervalos excluyen el cero y otros no. El resultado depende del método y no se presenta como tendencia confirmada.</dd>
+              <dt><span class="est-faltan" aria-hidden="true">●</span> Datos faltantes</dt>
+              <dd>El dominio no tiene los 24 años completos o no está en el archivo. Se muestra el mensaje y no se dibuja tendencia.</dd>
+            </dl>
+            <h3 style="margin-top:14px">Límites de los datos</h3>
+            <ul class="limites-datos" id="limites-datos"></ul>
+          </section>
+
+          <section class="tarjeta" aria-labelledby="t-desc">
+            <h2 id="t-desc">Descargar la evidencia</h2>
+            <p class="sub">Los archivos llevan la fuente, el periodo y, si corresponde, la marca de datos de ejemplo.</p>
+            <div class="descargas" id="descargas"></div>
+            <p class="estado-descarga" id="estado-descarga" role="status"></p>
+          </section>
+        </div>
+
+        <section class="tarjeta ancho" aria-labelledby="t-oni">
+          <details class="secundario" id="bloque-oni">
+            <summary><h2 id="t-oni">Contexto: El Niño y La Niña (índice ONI)</h2></summary>
+            <div class="contenido" id="oni"></div>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p id="pie-fuente"></p>
+      <p>Prototipo independiente para NASA Space Apps. Visibilidad, licencia y publicación pendientes de decisión del responsable del repositorio.</p>
+    </footer>
+  </div>
+
+  <div class="tooltip" id="tooltip" role="presentation" hidden></div>
+
+  <script src="src/contrato.js"></script>
+  <script src="src/datos/contornos.js"></script>
+  <script src="src/datos/ejemplo.js"></script>
+  <script src="src/graficas.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
