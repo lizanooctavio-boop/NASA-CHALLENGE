@@ -4,7 +4,8 @@ Fuentes públicas sin cuenta:
 - GlaMBIE 1.0.0 (WGMS): balance de masa glaciar anual por región, año civil, 2000–2023.
 - GRACE/GRACE-FO, mascones CSR RL06.03 (UT Austin) con su máscara de tierra: masa de Groenlandia (tierra al norte de
   59° N entre 75° y 10° O) y de la Antártida (tierra al sur de 60° S), y agua total almacenada sobre Nicaragua.
-- GFED5 (Chen et al. 2023, Zenodo 7668424): área quemada mensual 0,25°, 2001–2020.
+- GFED5 (Chen et al. 2023, Zenodo 7668424): área quemada mensual 0,25°, 2001–2020, en Nicaragua (celdas con el centro
+  dentro del país), en la caja 7–18,5° N, 77–92,5° O (Centroamérica) y en el planeta.
 - OceanSODA-ETHZ v2025 (NCEI 0220059): pH y saturación de aragonito superficiales, 1°, mensual, 1982–2024; se leen por
   rangos de bytes solo las celdas del Caribe.
 
@@ -33,7 +34,7 @@ CSR = "https://download.csr.utexas.edu/outgoing/grace/RL0603_mascons/"
 CSR_MASCONES, CSR_TIERRA = "CSR_GRACE_GRACE-FO_RL0603_Mascons_all-corrections.nc", "CSR_GRACE_GRACE-FO_RL06_Mascons_v02_LandMask.nc"
 GFED5 = "https://zenodo.org/records/7668424/files/BA.zip?download=1"
 OCEANSODA = "https://www.ncei.noaa.gov/data/oceans/ncei/ocads/data/0220059/OceanSODA_ETHZ-v2025.OCADS.01-1982-2024.nc"
-CAJAS_OCEANO = {"mar_caribe_nic": ((10, 16), (-84, -78)), "caribe": ((10, 22), (-88, -60))}
+CAJAS_OCEANO = {"mar_caribe_nic": ((12, 14), (-82, -80)), "mar_caribe": ((10, 22), (-88, -60))}  # = REGIONES_MAR
 RADIO = 6371e3
 
 
@@ -109,7 +110,29 @@ def acidificacion(cache):
     escribir("oceansoda_caribe_mensual.csv", ["zona", "mes", "ph_total", "omega_aragonito"], filas)
 
 
-PASOS = {"glaciares": glaciares, "grace": grace, "acidificacion": acidificacion}
+def incendios(cache):
+    import io
+    geo = json.loads((RAIZ / "data/regiones_nicaragua.geojson").read_text(encoding="utf-8"))
+    nic = next(shape(x["geometry"]) for x in geo["features"] if x["properties"]["id"] == "NIC")
+    filas = []
+    with zipfile.ZipFile(bajar(GFED5, cache / "gfed5_ba.zip")) as z:
+        # 1997–2000 vienen a 1° y solo con «Total»: se usa la era MODIS, 2001–2020, a 0,25°.
+        for nombre in sorted(n for n in z.namelist() if n.startswith("BA") and "2001" <= n[2:6] <= "2020"):
+            with h5py.File(io.BytesIO(z.read(nombre))) as h:
+                total = np.nan_to_num(h["Total"][0])  # km² quemados en la celda
+                if not filas:
+                    LON, LAT = np.meshgrid(h["lon"][:], h["lat"][:])
+                    caja = (LAT > 10) & (LAT < 15.5) & (LON > -88) & (LON < -82.5)
+                    celdas_nic = np.zeros(total.shape, bool)  # centro de celda dentro de Nicaragua
+                    celdas_nic[caja] = [nic.contains(shapely.Point(float(x), float(y))) for x, y in zip(LON[caja], LAT[caja])]
+                    centro = (LAT > 7) & (LAT < 18.5) & (LON > -92.5) & (LON < -77)
+                mes = f"{nombre[2:6]}-{nombre[6:8]}"
+                filas += [[zona, mes, round(float(total[sel].sum()), 2)]
+                          for zona, sel in (("NIC", celdas_nic), ("centroamerica", centro), ("global", slice(None)))]
+    escribir("gfed5_area_quemada_mensual.csv", ["zona", "mes", "area_quemada_km2"], filas)
+
+
+PASOS = {"glaciares": glaciares, "grace": grace, "acidificacion": acidificacion, "incendios": incendios}
 
 
 def main():

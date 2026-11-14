@@ -78,6 +78,8 @@ LUGARES = {
     "arrecifes_nic": ("Caribbean reefs off Nicaragua", "NOAA Coral Reef Watch station", [14.13, -81.75], 7),
     "mar_caribe": ("Caribbean Sea", "10–22°N, 60–88°W", [16.0, -74.0], 4),
     "groenlandia": ("Greenland ice sheet", "Greenland", [72.0, -40.0], 3),
+    "centroamerica": ("Central America", "7–18.5°N, 77–92.5°W", [13.0, -85.0], 5),
+    "planeta": ("Whole planet", "Global total", [15.0, -60.0], 2),
     # Regiones de glaciares de GlaMBIE (RGI) en América y el total mundial.
     "glaciares_global": ("All glaciers on Earth", "Global", [15.0, -60.0], 2),
     "glaciares_alaska": ("Alaska glaciers", "USA", [61.0, -147.0], 4),
@@ -561,6 +563,10 @@ ESTUDIOS = {
     "acidificacion": "Published check: the surface ocean has become more acidic everywhere since the 1980s as it absorbs "
                      "carbon dioxide (Ma et al. 2023, doi:10.1029/2023GB007765). Data: OceanSODA-ETHZ (Gregor and "
                      "Gruber 2021, doi:10.5194/essd-13-777-2021).",
+    "incendios": "Published check: the land burned worldwide each year shrank since the early 2000s, mostly in "
+                 "savannas and grasslands turned to farms and pasture (Andela et al. 2017, Science, "
+                 "doi:10.1126/science.aal4108). Data: GFED5 burned area (Chen et al. 2023, "
+                 "doi:10.5194/essd-15-5227-2023).",
     "estaciones_mallas": "Published check: in 1980–2020, CHIRPS and GPCC show significant drying in eastern Honduras and "
                          "Nicaragua while CRU does not, and a single rain gauge can steer the gridded result "
                          "(González-Méndez et al. 2025, Earth and Space Science, doi:10.1029/2025EA004720).",
@@ -980,6 +986,28 @@ def _mundo(carpeta, fuentes, chirps, notas_lluvia):
                 anios = list(medias)
                 invs.append(_investigacion(f"acidez_{id_}_{zona}", "costa", zona, titulo, definicion, unidad, anios,
                                            [medias[a] for a in anios], soda, notas=[ESTUDIOS["acidificacion"]]))
+
+    ruta = carpeta / "gfed5_area_quemada_mensual.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        gfed = {"producto": "GFED5 burned area, MODIS era (Global Fire Emissions Database)",
+                "url": "https://doi.org/10.5281/zenodo.7668424"}
+        filas = _leer_csv(ruta)
+        for zona, lugar in (("NIC", "NIC"), ("centroamerica", "centroamerica"), ("global", "planeta")):
+            por = {}
+            for f in filas:
+                if f["zona"] == zona:
+                    por.setdefault(int(f["mes"][:4]), []).append(float(f["area_quemada_km2"]))
+            anios = [a for a, v in sorted(por.items()) if len(v) == 12]
+            valores = [round(sum(por[a]), 1) for a in anios]
+            pico = max(zip(valores, anios))
+            invs.append(_investigacion(f"incendios_area_{zona}", "vegetacion", lugar, "Burned area per year",
+                                       "Land burned by fires during the year, mapped from satellites (MODIS) at about "
+                                       "25 km. Includes wildfires, farm burning and fires used to clear forest.",
+                                       "km²", anios, valores, gfed,
+                                       notas=[f"Most burned: {pico[1]}, {pico[0]:,.0f} km².",
+                                              "One very dry or very wet year moves the total a lot, so 20 years is "
+                                              "short for a fire trend.", ESTUDIOS["incendios"]]))
     return invs, entradas
 
 

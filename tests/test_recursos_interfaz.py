@@ -314,3 +314,12 @@ def test_canicula_arrecifes_grace_y_glaciares():
     assert globales["tiempos"] == list(range(2000, 2024)) and all(v < 0 for v in globales["valores"])
     lugares = {l["id"] for l in d["lugares"]}
     assert {i["lugar"] for i in d["investigaciones"]} <= lugares
+    for zona in ("mar_caribe_nic", "mar_caribe"):
+        ph = ids[f"acidez_ph_{zona}"]
+        assert ph["tiempos"][0] == 1983 and 7.9 < min(ph["valores"]) and max(ph["valores"]) < 8.2
+        assert ph["tendencia"]["sen"]["por_decada"] < 0 and rec.ESTUDIOS["acidificacion"] in ph["notas"]
+    fuego = {z: ids[f"incendios_area_{z}"] for z in ("NIC", "centroamerica", "global")}
+    assert all(x["tiempos"] == list(range(2001, 2021)) and x["categoria"] == "vegetacion" for x in fuego.values())
+    assert all(n <= c <= g for n, c, g in zip(*(x["valores"] for x in fuego.values())))
+    # La cita dice que el área quemada mundial disminuye: comprobarlo.
+    assert fuego["global"]["tendencia"]["sen"]["por_decada"] < 0 and rec.ESTUDIOS["incendios"] in fuego["global"]["notas"]

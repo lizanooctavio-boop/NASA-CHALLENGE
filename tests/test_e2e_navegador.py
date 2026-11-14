@@ -104,8 +104,9 @@ class RecorridoEnNavegador(unittest.TestCase):
                  url],
                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
             )
-            if not cls.httpd.evento_e2e.wait(timeout=25):
-                raise AssertionError("la sonda no produjo salida en 25s; ¿falló la demo al cargar?")
+            # La sonda recorre cada investigación (gráfica y CSV): el tiempo crece con el número de series.
+            if not cls.httpd.evento_e2e.wait(timeout=90):
+                raise AssertionError("la sonda no produjo salida en 90s; ¿falló la demo al cargar?")
             raw = cls.httpd.resultado_e2e
             if raw.startswith("ERROR "):
                 raise AssertionError(f"Error en sonda JS: {raw}")
