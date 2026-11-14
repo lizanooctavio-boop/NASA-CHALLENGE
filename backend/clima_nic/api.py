@@ -12,7 +12,7 @@ Rutas (todas GET, JSON):
     /pronostico?region=&anio=                  lluvia jun–nov esperada con intervalo y terciles
     /escenarios?region=&variable=              rango CMIP6 por escenario
     /consulta?region=&variable=&desde=&hasta=&anio=   todo junto
-    /mapa?variable=prcptot                     pendientes por celda con FDR
+    /mapa?variable=prcptot                     celdas MERRA-2 con FDR: demostración del método, no tendencias
 """
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -76,6 +76,7 @@ def consulta(region: str, variable: str, desde: int | None = None, hasta: int | 
 
 @app.get("/mapa")
 def mapa(variable: str = "prcptot"):
+    # La respuesta lleva fuente, uso («demostracion_metodo») y advertencias: no son tendencias por celda.
     m = _seguro(c.cargar)["mapas_tendencia"]
     if variable not in m:
         raise HTTPException(status_code=400, detail=f"Opciones: {list(m)}")

@@ -48,7 +48,7 @@ python -m clima_nic actualizar --descargar --tierra <admin1>                    
 
 La interfaz es estática y lee `data/clima.json` (contrato 1.0.0, que no cambia). Hay dos vías, ambas opcionales:
 
-1. **Archivo estático:** leer `data/fenomenos_nicaragua.json` igual que `clima.json` (ver la sección 9 de `data/contrato.md`). Para el panel «qué/dónde/cuánto/significativo» basta `regiones[i].variables[v].respuesta_reto`; para la serie, `anios` y `valores`; para el mapa, `mapas_tendencia[var].celdas` (lat, lon, `sen_por_decada`, `significativo_fdr`).
+1. **Archivo estático:** leer `data/fenomenos_nicaragua.json` igual que `clima.json` (ver la sección 9 de `data/contrato.md`). Para el panel «qué/dónde/cuánto/significativo» basta `regiones[i].variables[v].respuesta_reto`; para la serie, `anios` y `valores`; `mapas_tendencia[var].celdas` (lat, lon, `sen_por_decada`, `significativo_fdr`) son celdas de MERRA-2 vía NASA POWER y llevan `uso: "demostracion_metodo"` y `advertencias`: sirven para mostrar cómo actúa el FDR, no como mapa de dónde cambia el clima (ver `docs/modelos/REVISION_MODELOS_NICARAGUA.md`, §4).
 2. **API:** con `python -m clima_nic api`, `fetch("http://127.0.0.1:8000/consulta?region=pacifico&variable=lluvia_jun_nov&anio=2023")` devuelve tendencia, pronóstico estacional y escenarios en un solo JSON. CORS está abierto solo para GET.
 
 Reglas para mostrar: unidad e intervalo siempre junto a la pendiente; usar `veredicto` (no reinterpretar el signo); mostrar `advertencias` cuando existan; presentar `pronostico_estacional` como valor esperado con intervalo y terciles, y `escenarios` como rango con la leyenda «no es un pronóstico».

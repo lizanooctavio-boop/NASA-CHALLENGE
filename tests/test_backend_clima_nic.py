@@ -268,6 +268,8 @@ def test_producto_estructura_y_cuatro_preguntas():
     assert d["indices_climaticos"]["validacion_nino34_vs_oni_noaa"]["r"] > 0.95
     for m in d["mapas_tendencia"].values():
         assert m["n_significativas_fdr"] <= m["n_significativas_sin_fdr"]
+        # Celdas de MERRA-2: se publican como demostración del FDR, con su fuente y advertencias.
+        assert m["uso"] == "demostracion_metodo" and "MERRA-2" in m["fuente"] and m["advertencias"]
     assert "C:\\" not in texto and "/Users/" not in texto
 
 

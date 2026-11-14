@@ -7,9 +7,11 @@ Requisitos tomados de [`REQUISITOS_NASA.md`](REQUISITOS_NASA.md) (consulta del 1
 | Pregunta | Módulo | Campo en `data/fenomenos_nicaragua.json` / API | Prueba |
 |---|---|---|---|
 | **Qué** cambia | `productos.VARIABLES` (40 variables con definición sencilla); `fuentes/*` (catálogo) | `regiones[*].variables[*].titulo`, `.definicion`; `GET /variables` | `test_producto_estructura_y_cuatro_preguntas` |
-| **Dónde** cambia | `regiones.py` (NIC, Pacífico, Central, Caribe, caja SICC); `productos.mapa_celdas` | `regiones[*]`; `mapas_tendencia[*].celdas`; `GET /mapa` | `test_regiones_particion_de_nic`, `test_recortar_malla_*` |
+| **Dónde** cambia | `regiones.py` (NIC, Pacífico, Central, Caribe, caja SICC) | `regiones[*]` | `test_regiones_particion_de_nic`, `test_recortar_malla_*` |
 | **Cuánto** cambia | `estadistica/tendencia_robusta.theil_sen` (Sen por década con IC 95 %), `tendencia.py` (MCO) | `variables[*].respuesta_reto.cuanto`; `GET /tendencia` → `cuanto` | `test_theil_sen_ic_contiene_pendiente_verdadera` |
-| **¿Es significativo?** | `tendencia_robusta.mann_kendall_modificado` (Hamed y Rao), intervalos de tres métodos y veredicto, `pettitt`, `regresion_controlada` (ENOS/TNA/AMO/PDO/CLLJ), `estadistica/fdr.py` en mapas | `variables[*].tendencia.veredicto`, `.mann_kendall_modificado`, `.controlada_por_indices`; `mapas_tendencia[*].significativo_fdr` | `test_mann_kendall_modificado_*`, `test_pettitt_*`, `test_regresion_controlada_*`, `test_benjamini_hochberg`, `test_analizar_veredictos_y_campos` |
+| **¿Es significativo?** | `tendencia_robusta.mann_kendall_modificado` (Hamed y Rao), intervalos de tres métodos y veredicto, `pettitt`, `regresion_controlada` (ENOS/TNA/AMO/PDO/CLLJ), `estadistica/fdr.py` (demostrado en `productos.mapa_celdas`) | `variables[*].tendencia.veredicto`, `.mann_kendall_modificado`, `.controlada_por_indices`; `mapas_tendencia[*].significativo_fdr` y `GET /mapa`, con `uso: "demostracion_metodo"` | `test_mann_kendall_modificado_*`, `test_pettitt_*`, `test_regresion_controlada_*`, `test_benjamini_hochberg`, `test_analizar_veredictos_y_campos` |
+
+Los mapas por celda (`mapas_tendencia`, `GET /mapa`) no responden a «dónde cambia»: salen del reanálisis MERRA-2, cuya lluvia y temperatura no son homogéneas en 1981–2024 (`docs/modelos/REVISION_MODELOS_NICARAGUA.md`, §4). Se conservan como demostración del control de falsos positivos con FDR.
 
 ## Objetivos y consideraciones
 
