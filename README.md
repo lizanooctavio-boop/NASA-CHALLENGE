@@ -1,6 +1,8 @@
 # NASA-CHALLENGE
 Prototipo climático para NASA Space Apps 2026 (Earth System Trend Detective). Interfaz en inglés.
 
+Para abrir esta versión local en Windows, ejecutar **INICIAR-APP.cmd**. Compila la interfaz, inicia un servidor local y abre `http://127.0.0.1:8996/`. Requiere Node.js e internet para los mapas. No abrir `index.html` directamente: los navegadores bloquean sus módulos y lecturas de datos bajo `file://`. El lanzador puede volver a ejecutarse; reutiliza el servidor de esta carpeta. Esta vista local no incluye las mallas meteorológicas que se generan durante el despliegue.
+
 La portada es una escena 3D (Three.js): la Tierra con NASA Blue Marble y luces nocturnas VIIRS, la Luna (LRO), el Sol y estrellas. Sobre ella están los paneles de cristal: tiempo con pronóstico puntual mundial, tendencia de lluvia anual GPM IMERG 2001–2024 en Nicaragua y su contexto, El Niño y ciclones, escenarios CMIP6 y descargas. El botón **Map** aplana el globo en proyección Mercator con América al centro y lo funde con el mapa Leaflet (mosaico Blue Marble de GIBS y capas meteorológicas). `visor/` redirige a `/#map`.
 
 Estructura: `index.html`, `app/` (armazón, escena 3D, capas y fenómenos), `src/` (fuentes, paletas, estadística y tendencia), `assets/` (texturas NASA y Natural Earth), `data/` (resultados IMERG con su contrato).
