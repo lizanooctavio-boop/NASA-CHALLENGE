@@ -46,6 +46,7 @@ function pintar(){
   botones($('ind-regiones'),REGIONES,sel.region,id=>{sel.region=id;if(!region(id).variables[sel.variable])sel.variable=disponibles(id)[0].id;pintar()});
   botones($('ind-variables'),disponibles(sel.region).map(v=>[v.id,v.nombre]),sel.variable,id=>{sel.variable=id;pintar()});
   resultado();contraste();mapaRegiones();
+  if(window.SICC_vista?.modo()==='mapa'&&!$('indicadores').hidden)encuadrar();
 }
 
 // ---------------------------------------------------------------- resultado y serie
@@ -132,7 +133,33 @@ function mapaRegiones(){
       style:f=>{const on=sel.region==='NIC'||f.properties.id===sel.region;return{color:on?'#6fd8ff':'rgba(235,242,250,.45)',weight:on?2:1,fillColor:'#6fd8ff',fillOpacity:on?.18:0}}}).addTo(mapa)};
   if(geo)dibujar();else fetch('data/regiones_nicaragua.geojson').then(r=>r.json()).then(g=>{geo=g;if(!$('indicadores').hidden)dibujar()}).catch(()=>{});
 }
-$('ind-ver-mapa').onclick=()=>window.SICC_vista.irA(12.8,-85.2,7);
+// Encuadra la región elegida en el hueco que dejan libre el panel, la cabecera y los controles.
+function encuadrar(){
+  if(typeof mapa==='undefined'||!mapa||!geo)return;
+  const f=geo.features.find(x=>x.properties.id===sel.region);if(!f)return;
+  const [o,s,e,n]=f.properties.bbox,m=mapa.getContainer().getBoundingClientRect(),visible=el=>el&&!el.hidden&&el.getClientRects().length?el.getBoundingClientRect():null;
+  const panel=document.body.classList.contains('solo-mapa')?null:visible($('indicadores')),cab=visible(document.querySelector('header')),capas=visible($('barra-capas'));
+  const ancho=m.width,alto=m.height;let izq=16,arr=(cab?cab.bottom-m.top:0)+16,der=16,aba=16;
+  // Panel a la izquierda (escritorio) o apilado arriba/abajo (pantallas compactas): se evita el lado que deja más mapa.
+  if(panel){const libreDer=m.right-panel.right,libreAba=m.bottom-panel.bottom;
+    if(libreDer>ancho*.35)izq=Math.max(izq,panel.right-m.left+16);else if(libreAba>alto*.3)arr=Math.max(arr,panel.bottom-m.top+16)}
+  if(capas&&capas.left-m.left>izq+200)der=Math.max(der,m.right-capas.left+16);
+  // Leyenda y línea de tiempo (abajo a la derecha): se reserva el margen inferior o el derecho, el que deje la caja más amplia.
+  const pila=['leyenda-campo','linea-tiempo'].map(id=>visible($(id))).filter(Boolean);
+  if(pila.length&&!matchMedia('(max-width:700px)').matches){
+    const sup=Math.min(...pila.map(r=>r.top)),izqPila=Math.min(...pila.map(r=>r.left));
+    const porAbajo=Math.min(ancho-izq-der,alto-arr-Math.max(aba,m.bottom-sup+16)),porDerecha=Math.min(ancho-izq-Math.max(der,m.right-izqPila+16),alto-arr-aba);
+    if(porAbajo>=porDerecha)aba=Math.max(aba,m.bottom-sup+16);else der=Math.max(der,m.right-izqPila+16);
+  }
+  if(ancho-izq-der<160||alto-arr-aba<120){izq=der=arr=aba=16}
+  mapa.fitBounds([[s,o],[n,e]],{paddingTopLeft:[izq,arr],paddingBottomRight:[der,aba],maxZoom:8,animate:false});
+}
+async function verMapa(){
+  if(!geo)geo=await fetch('data/regiones_nicaragua.geojson').then(r=>r.json());
+  await window.SICC_vista.cambiar('mapa');mapaRegiones();encuadrar();
+}
+$('ind-ver-mapa').onclick=()=>verMapa().catch(()=>{});
+document.addEventListener('sicc:vista',e=>{if(e.detail==='mapa'&&!$('indicadores').hidden)setTimeout(encuadrar,0)});
 
 // ---------------------------------------------------------------- descargas
 function bajar(nombre,texto,tipo){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([texto],{type:tipo}));a.download=nombre;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),30000)}
