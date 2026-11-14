@@ -1,0 +1,28 @@
+# Vuelve a compilar la demo en Render para que el globo traiga la corrida ECMWF más reciente.
+# La compilación (scripts/preparar_meteo.mjs) copia el pronóstico de SICC-952, que se renueva cada 3 h
+# y cubre 48 h desde la corrida; recompilar cada 6 h mantiene siempre la hora actual dentro del horizonte.
+# Requiere el secreto RENDER_DEPLOY_HOOK (Render → servicio de la demo → Settings → Deploy Hook).
+name: Actualizar pronóstico del globo
+on:
+  schedule:
+    - cron: "47 */6 * * *"
+  workflow_dispatch:
+concurrency:
+  group: actualizar-pronostico
+  cancel-in-progress: false
+jobs:
+  recompilar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Corrida disponible en SICC-952
+        run: |
+          curl -fsS --retry 3 --retry-delay 20 -m 90 https://sicc952.onrender.com/api/global_meta \
+            | python3 -c "import json,sys;d=json.load(sys.stdin);print('Corrida', d['corrida_utc'], '· fin', d['horas_utc'][-1])"
+      - name: Disparar compilación en Render
+        env:
+          HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "::error::Falta el secreto RENDER_DEPLOY_HOOK"; exit 1; fi
+          curl -fsS --retry 3 --retry-delay 20 -m 60 -X POST "$HOOK" > /dev/null
+          echo "Compilación solicitada a Render"
