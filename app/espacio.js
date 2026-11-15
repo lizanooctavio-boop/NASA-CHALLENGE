@@ -304,17 +304,29 @@ document.addEventListener('visibilitychange', arrancar);
 // ---------------------------------------------------------------- animaciones
 const suave = t => t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
 const salida = t => 1 - (1 - t) ** 3;
+let animId = 0, animRaf = 0, animFin = null;
 function animar(ms, paso) {
+  if (animRaf) { cancelAnimationFrame(animRaf); animRaf = 0; }
+  if (animFin) { const previa = animFin; animFin = null; previa(false); }
+  const id = ++animId;
   estado.animando = true;
   return new Promise(ok => {
     const t0 = performance.now();
+    animFin = completada => {
+      if (animId !== id) return;
+      animRaf = 0;
+      animFin = null;
+      estado.animando = false;
+      ok(completada);
+    };
     function f(ahora) {
+      if (animId !== id) return;
       const t = Math.min(1, (ahora - t0) / (reducido ? Math.min(ms, 300) : ms));
       paso(t);
-      if (t < 1) requestAnimationFrame(f);
-      else { estado.animando = false; ok(); }
+      if (t < 1) animRaf = requestAnimationFrame(f);
+      else animFin?.(true);
     }
-    requestAnimationFrame(f);
+    animRaf = requestAnimationFrame(f);
   });
 }
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -327,11 +339,16 @@ function intro() {
     estado.dist = Math.exp(lerp(Math.log(DIST_INTRO), Math.log(DIST_REPOSO), e));
     estado.lon = lerp(l0, l1, e);
     estado.desp = lerp(0, estado.despObjetivo, e);
-  }).then(() => { estado.intro = false; estado.ultimoGesto = performance.now(); });
+  }).then(completada => {
+    estado.intro = false;
+    if (completada) estado.ultimoGesto = performance.now();
+  });
 }
 
 // Lleva el globo al plano Mercator con el mismo centro y zoom que tendrá Leaflet.
 function aMapa({ lon, lat, zoom }) {
+  estado.intro = false;
+  estado.pausado = false;
   estado.velLon = estado.velLat = 0;
   const l0 = estado.lon, la0 = estado.lat, d0 = estado.dist, s0 = estado.desp;
   const lonVista = ((lon - LON_CENTRO + 540) % 360) - 180 + LON_CENTRO;

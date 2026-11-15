@@ -137,28 +137,44 @@ if(typeof ResizeObserver==='function'){const ro=new ResizeObserver(medirColumnaM
 addEventListener('resize',medirColumnaMapa);medirColumnaMapa();
 
 // ---------------------------------------------------------------- globo 3D ⇄ mapa 2D
-let modo='globo',cambiando=false;
+let modo='globo',cambiando=false,vistaPendiente=null,transicionActual=null;
 const esperar=ms=>new Promise(r=>setTimeout(r,ms));
 function marcarVista(){$('vista-globo').setAttribute('aria-pressed',String(modo==='globo'));$('vista-mapa').setAttribute('aria-pressed',String(modo==='mapa'))}
 async function cambiarVista(nuevo){
-  if(nuevo===modo||cambiando||!mapa)return;
-  if(!window.Espacio){modo=nuevo;document.body.classList.toggle('modo-mapa',nuevo==='mapa');document.body.classList.toggle('modo-globo',nuevo==='globo');marcarVista();return}
+  if(!mapa)return;
+  if(cambiando){vistaPendiente=nuevo;return transicionActual}
+  if(nuevo===modo)return;
+  if(!window.Espacio){
+    modo=nuevo;document.body.classList.toggle('modo-mapa',nuevo==='mapa');document.body.classList.toggle('modo-globo',nuevo==='globo');
+    marcarVista();document.dispatchEvent(new CustomEvent('sicc:vista',{detail:nuevo}));
+    if(nuevo==='mapa'&&baseFallo&&!avisoBase){avisoBase=true;error('Base satellite imagery could not be loaded. Vector borders and labels remain active.')}
+    return;
+  }
   cambiando=true;document.body.classList.add('en-transicion');modo=nuevo;marcarVista();
-  try{
-    if(nuevo==='mapa'){
-      mapa.invalidateSize({animate:false});mapa.setView(CENTRO_AMERICA,zoomAjuste(),{animate:false});
-      const c=mapa.getCenter();
-      await window.Espacio.aMapa({lon:c.lng,lat:c.lat,zoom:mapa.getZoom()});
-      document.body.classList.replace('modo-globo','modo-mapa');
-      document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'mapa'}));
-      await esperar(520);window.Espacio.pausar(true);
-    }else{
-      const c=mapa.getCenter(),vuelta=window.Espacio.aGlobo({lon:L.Util.wrapNum(c.lng,[-180,180]),lat:c.lat,zoom:mapa.getZoom()});
-      document.body.classList.replace('modo-mapa','modo-globo');
-      document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'globo'}));
-      await esperar(420);await vuelta.animar();
+  transicionActual=(async()=>{
+    try{
+      if(nuevo==='mapa'){
+        mapa.invalidateSize({animate:false});mapa.setView(CENTRO_AMERICA,zoomAjuste(),{animate:false});
+        const c=mapa.getCenter();
+        await window.Espacio.aMapa({lon:c.lng,lat:c.lat,zoom:mapa.getZoom()});
+        document.body.classList.toggle('modo-mapa',true);document.body.classList.toggle('modo-globo',false);
+        document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'mapa'}));
+        if(baseFallo&&!avisoBase){avisoBase=true;error('Base satellite imagery could not be loaded. Vector borders and labels remain active.')}
+        await esperar(520);
+        if(!vistaPendiente||vistaPendiente==='mapa')window.Espacio.pausar(true);
+      }else{
+        const c=mapa.getCenter(),vuelta=window.Espacio.aGlobo({lon:L.Util.wrapNum(c.lng,[-180,180]),lat:c.lat,zoom:mapa.getZoom()});
+        document.body.classList.toggle('modo-globo',true);document.body.classList.toggle('modo-mapa',false);
+        document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'globo'}));
+        await esperar(420);await vuelta.animar();
+      }
+    }finally{
+      cambiando=false;document.body.classList.remove('en-transicion');
     }
-  }finally{cambiando=false;document.body.classList.remove('en-transicion')}
+    const sig=vistaPendiente;vistaPendiente=null;
+    if(sig&&sig!==modo)return cambiarVista(sig);
+  })();
+  return transicionActual;
 }
 $('vista-globo').onclick=()=>cambiarVista('globo');
 $('vista-mapa').onclick=()=>cambiarVista('mapa');
@@ -170,8 +186,10 @@ function marcar(lat,lon,nombre){
   if(nombre)marcaLugar.bindTooltip(nombre,{permanent:true,direction:'top',offset:[0,-8],className:'marca-lugar'}).openTooltip();
 }
 window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{await cambiarVista('mapa');mapa.setView([lat,lon],z)},marcar,soloMapa};
-const salidaHash=()=>{if(location.hash==='#map')cambiarVista('mapa')};
-document.addEventListener('espacio:listo',()=>setTimeout(salidaHash,3700));
+const salidaHash=()=>{if(location.hash==='#map'){if(modo==='mapa'&&window.Espacio)window.Espacio.pausar(true);else cambiarVista('mapa')}};
+document.addEventListener('espacio:listo',salidaHash);
+setTimeout(()=>{if(location.hash==='#map'&&modo!=='mapa'&&!window.Espacio)salidaHash()},1200);
+addEventListener('hashchange',()=>{cambiarVista(location.hash==='#map'?'mapa':'globo')});
 
 // ---------------------------------------------------------------- base vectorial: fronteras y nombres (Natural Earth)
 function baseVectorial(){
