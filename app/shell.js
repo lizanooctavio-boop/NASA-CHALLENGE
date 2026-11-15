@@ -95,7 +95,9 @@ document.querySelectorAll('.vista').forEach(v=>{const titulo=document.querySelec
   const boton=(clase,etiqueta,accion)=>{const b=nodo('button','','punto '+clase);b.type='button';b.title=etiqueta;b.setAttribute('aria-label',etiqueta);b.onclick=accion;pts.append(b)};
   boton('rojo','Hide panel',()=>soloMapa(true));boton('ambar','Minimize',()=>{v.classList.toggle('minimizada');document.dispatchEvent(new CustomEvent('sicc:paneles'))});boton('verde','Wide',()=>{v.classList.toggle('ancha');document.dispatchEvent(new CustomEvent('sicc:paneles'))});
   barra.append(pts,nodo('span',titulo,'ventana-titulo'));barra.ondblclick=()=>v.classList.toggle('minimizada');v.append(barra,cuerpo);v.classList.add('ventana')});
+let vistaPendiente=null;
 iniciarMapa();
+if(vistaPendiente){const v=vistaPendiente;vistaPendiente=null;cambiarVista(v)}
 
 const pref={leer:(k,s=localStorage)=>{try{return s.getItem(k)}catch(e){return null}},guardar:(k,v,s=localStorage)=>{try{s.setItem(k,v)}catch(e){}}};
 // Menú plegable: en escritorio se reduce a una barra de iconos.
@@ -128,7 +130,8 @@ let modo='globo',cambiando=false;
 const esperar=ms=>new Promise(r=>setTimeout(r,ms));
 function marcarVista(){$('vista-globo').setAttribute('aria-pressed',String(modo==='globo'));$('vista-mapa').setAttribute('aria-pressed',String(modo==='mapa'))}
 async function cambiarVista(nuevo){
-  if(nuevo===modo||cambiando||!mapa)return;
+  if(!mapa){vistaPendiente=nuevo;return}
+  if(nuevo===modo||cambiando)return;
   if(!window.Espacio){modo=nuevo;document.body.classList.toggle('modo-mapa',nuevo==='mapa');document.body.classList.toggle('modo-globo',nuevo==='globo');marcarVista();return}
   cambiando=true;document.body.classList.add('en-transicion');modo=nuevo;marcarVista();
   try{
@@ -169,6 +172,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 else setTimeout(aplicarHash,0);
 const salidaHash=()=>{if(location.hash==='#map'||location.hash==='#mapa')cambiarVista('mapa')};
 document.addEventListener('espacio:listo',salidaHash);
+document.addEventListener('espacio:fallo',()=>{cambiarVista('mapa');error(Error('3D globe requires WebGL; switched to the 2D map.'))});
 document.addEventListener('click',async ev=>{
   const a=ev.target.closest?.('a[href^="/clima-base/"][download]');
   if(!a)return;
