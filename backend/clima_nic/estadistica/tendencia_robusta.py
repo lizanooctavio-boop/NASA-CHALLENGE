@@ -92,7 +92,7 @@ def _hac(X, e, rezago):
         w = 1 - k / (rezago + 1)
         g = u[k:].T @ u[:-k]
         s += w * (g + g.T)
-    xtx_inv = np.linalg.inv(X.T @ X)
+    xtx_inv = np.linalg.pinv(X.T @ X)
     return xtx_inv @ s @ xtx_inv * n / (n - X.shape[1])
 
 
@@ -109,6 +109,8 @@ def regresion_controlada(anios, y, covariables, nivel=NIVEL):
     rezago = min(n - 2, int(math.floor(4 * (n / 100) ** (2 / 9))))
     cov = _hac(X, e, rezago)
     gl = n - X.shape[1]
+    if gl <= 0:
+        raise ValueError("La regresión controlada requiere más observaciones que parámetros.")
     q = stats.t.ppf(0.5 + nivel / 2, gl)
     se = np.sqrt(np.maximum(np.diag(cov), 0))
     sst = float(((y - y.mean()) ** 2).sum())
