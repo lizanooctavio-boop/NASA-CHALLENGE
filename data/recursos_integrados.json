@@ -16179,8 +16179,7 @@
     2022,
     2023,
     2024,
-    2025,
-    2026
+    2025
    ],
    "valores": [
     0.0,
@@ -16227,8 +16226,7 @@
     3.0,
     0.0,
     1.0,
-    0.0,
-    1.0
+    0.0
    ],
    "fuente": {
     "producto": "NOAA IBTrACS v04r01 storm tracks",
@@ -16239,38 +16237,38 @@
    "notas": [
     "Only a few storms come this close each year, so a trend would need a much longer record to stand out. Because most years record 0 or 1 event, the median pairwise slope (Theil–Sen) can stay at 0.00.",
     "Published check: the cluster of storms near the Caribbean coasts of Nicaragua and Costa Rica in 2016–2022 was rare, but no human influence was detected at 95% confidence (Hidalgo et al. 2025, Natural Hazards, doi:10.1007/s11069-025-07427-5).",
-    "The 2026 season was still running when the tracks were downloaded (2026-11-14)."
+    "The 2026 season was still running when the tracks were downloaded (2026-11-14), so it is left out of the trend test; so far it counts 1."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
-    "anios": 46,
+    "anios": 45,
     "periodo": [
      1981,
-     2026
+     2025
     ],
     "unidad_pendiente": "storms/decade",
     "sen": {
      "por_decada": -0.0,
      "ic": [
       -0.0,
-      0.2381
+      0.2439
      ]
     },
     "mco": {
-     "por_decada": 0.172,
+     "por_decada": 0.181,
      "ic": [
-      -0.057,
-      0.401
+      -0.059,
+      0.42
      ],
-     "p_valor": 0.1371
+     "p_valor": 0.1356
     },
     "hac_ic": [
-     -0.021,
-     0.365
+     -0.02,
+     0.381
     ],
-    "mann_kendall_p": 0.1421,
-    "media": 0.891
+    "mann_kendall_p": 0.157,
+    "media": 0.889
    }
   },
   {
@@ -16327,8 +16325,7 @@
     2022,
     2023,
     2024,
-    2025,
-    2026
+    2025
    ],
    "valores": [
     0.0,
@@ -16375,7 +16372,6 @@
     1.0,
     0.0,
     0.0,
-    0.0,
     0.0
    ],
    "fuente": {
@@ -16388,15 +16384,15 @@
     "Hurricanes: Joan/Miriam 1988, Cesar 1996, Mitch 1998, Iris 2001, Beta 2005, Felix 2007, Ida 2009, Paula 2010, Richard 2010, Otto 2016, Eta 2020, Iota 2020, Julia 2022.",
     "Only a few storms come this close each year, so a trend would need a much longer record to stand out. Because most years record 0 or 1 event, the median pairwise slope (Theil–Sen) can stay at 0.00.",
     "Published check: the cluster of storms near the Caribbean coasts of Nicaragua and Costa Rica in 2016–2022 was rare, but no human influence was detected at 95% confidence (Hidalgo et al. 2025, Natural Hazards, doi:10.1007/s11069-025-07427-5).",
-    "The 2026 season was still running when the tracks were downloaded (2026-11-14)."
+    "The 2026 season was still running when the tracks were downloaded (2026-11-14), so it is left out of the trend test; so far it counts 0."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
-    "anios": 46,
+    "anios": 45,
     "periodo": [
      1981,
-     2026
+     2025
     ],
     "unidad_pendiente": "storms/decade",
     "sen": {
@@ -16407,19 +16403,19 @@
      ]
     },
     "mco": {
-     "por_decada": 0.07,
+     "por_decada": 0.083,
      "ic": [
-      -0.052,
-      0.191
+      -0.043,
+      0.209
      ],
-     "p_valor": 0.2533
+     "p_valor": 0.1907
     },
     "hac_ic": [
-     -0.032,
-     0.171
+     -0.015,
+     0.181
     ],
-    "mann_kendall_p": 0.3181,
-    "media": 0.283
+    "mann_kendall_p": 0.2428,
+    "media": 0.289
    }
   },
   {
@@ -16606,8 +16602,7 @@
     2022,
     2023,
     2024,
-    2025,
-    2026
+    2025
    ],
    "valores": [
     0.0,
@@ -16784,8 +16779,7 @@
     3.0,
     0.0,
     1.0,
-    0.0,
-    1.0
+    0.0
    ],
    "fuente": {
     "producto": "NOAA IBTrACS v04r01 storm tracks",
@@ -16797,15 +16791,15 @@
     "Compare with the record since 1981: an older record can suggest a rise that partly comes from better detection.",
     "Many years record 0 storms, so the median pairwise slope (Theil–Sen) stays at 0.00 even when least-squares and Mann–Kendall detect a long-term rise.",
     "Published check: after correcting for storms missed before satellites, Atlantic major hurricanes show no robust long-term rise since the late 1800s (Vecchi et al. 2021, Nature Communications, doi:10.1038/s41467-021-24268-5).",
-    "The 2026 season was still running when the tracks were downloaded (2026-11-14)."
+    "The 2026 season was still running when the tracks were downloaded (2026-11-14), so it is left out of the trend test; so far it counts 1."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
     "veredicto_contrato": "metodos_discrepan",
-    "anios": 176,
+    "anios": 175,
     "periodo": [
      1851,
-     2026
+     2025
     ],
     "unidad_pendiente": "storms/decade",
     "sen": {
@@ -16816,10 +16810,10 @@
      ]
     },
     "mco": {
-     "por_decada": 0.048,
+     "por_decada": 0.049,
      "ic": [
       0.024,
-      0.072
+      0.073
      ],
      "p_valor": 0.0001
     },
@@ -16827,8 +16821,8 @@
      0.03,
      0.067
     ],
-    "mann_kendall_p": 0.0035,
-    "media": 0.614
+    "mann_kendall_p": 0.0042,
+    "media": 0.611
    }
   },
   {
@@ -18562,8 +18556,6 @@
     2012,
     2013,
     2014,
-    2015,
-    2016,
     2020,
     2021,
     2022,
@@ -18579,12 +18571,10 @@
     -318.4308,
     -265.0733,
     -389.7317,
-    -545.6783,
-    -416.836,
+    -513.0467,
+    -449.4677,
     -335.3318,
     -179.0522,
-    -205.7756,
-    -204.27,
     -449.6167,
     -182.7967,
     -190.2767,
@@ -18599,40 +18589,40 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Average −274 Gt per year over 2004–2025 (1 Gt = 1 billion tonnes; 360 Gt raise the sea by about 1 mm).",
+    "Average −282 Gt per year over 2004–2025 (1 Gt = 1 billion tonnes; 360 Gt raise the sea by about 1 mm).",
     "The trend asks whether the yearly loss is growing, not whether ice is being lost. Years 2017–2018 are missing: the gap between the two missions.",
     "Published check: Greenland and Antarctica lost ice in 1992–2020, with Greenland losing more (IMBIE, Otosaka et al. 2023, doi:10.5194/essd-15-1597-2023)."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
-    "anios": 19,
+    "anios": 17,
     "periodo": [
      2004,
      2025
     ],
     "unidad_pendiente": "Gt/decade",
     "sen": {
-     "por_decada": 50.5096,
+     "por_decada": 48.1905,
      "ic": [
-      -5.3492,
-      108.4984
+      -59.885,
+      126.5444
      ]
     },
     "mco": {
-     "por_decada": 61.171,
+     "por_decada": 58.342,
      "ic": [
-      -100.344,
-      222.686
+      -111.974,
+      228.657
      ],
-     "p_valor": 0.3825
+     "p_valor": 0.4168
     },
     "hac_ic": [
-     -16.183,
-     138.525
+     -24.942,
+     141.626
     ],
-    "mann_kendall_p": 0.0501,
-    "media": -273.851
+    "mann_kendall_p": 0.2322,
+    "media": -281.949
    }
   },
   {
@@ -18656,8 +18646,6 @@
     2012,
     2013,
     2014,
-    2015,
-    2016,
     2020,
     2021,
     2022,
@@ -18673,12 +18661,10 @@
     -259.5725,
     -24.8258,
     -287.865,
-    -139.225,
-    -87.769,
+    -155.3494,
+    -71.6446,
     -270.2021,
     -208.1233,
-    -311.4989,
-    -22.2422,
     -240.7025,
     -90.35,
     213.315,
@@ -18693,40 +18679,40 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Average −110 Gt per year over 2004–2025 (1 Gt = 1 billion tonnes; 360 Gt raise the sea by about 1 mm).",
+    "Average −103 Gt per year over 2004–2025 (1 Gt = 1 billion tonnes; 360 Gt raise the sea by about 1 mm).",
     "The trend asks whether the yearly loss is growing, not whether ice is being lost. Years 2017–2018 are missing: the gap between the two missions.",
     "Published check: Greenland and Antarctica lost ice in 1992–2020, with Greenland losing more (IMBIE, Otosaka et al. 2023, doi:10.5194/essd-15-1597-2023)."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
-    "anios": 19,
+    "anios": 17,
     "periodo": [
      2004,
      2025
     ],
     "unidad_pendiente": "Gt/decade",
     "sen": {
-     "por_decada": 42.1423,
+     "por_decada": 36.8351,
      "ic": [
-      -112.7528,
-      146.6729
+      -113.5219,
+      156.3931
      ]
     },
     "mco": {
-     "por_decada": 49.861,
+     "por_decada": 51.048,
      "ic": [
-      -63.517,
-      163.238
+      -60.54,
+      162.637
      ],
-     "p_valor": 0.3635
+     "p_valor": 0.3427
     },
     "hac_ic": [
-     -50.534,
-     150.256
+     -45.545,
+     147.642
     ],
-    "mann_kendall_p": 0.5289,
-    "media": -109.726
+    "mann_kendall_p": 0.5923,
+    "media": -103.003
    }
   },
   {
@@ -18751,7 +18737,6 @@
     2012,
     2013,
     2014,
-    2015,
     2016,
     2019,
     2020,
@@ -18770,11 +18755,10 @@
     1.9511,
     0.9768,
     3.2059,
-    3.3632,
+    2.3356,
     5.3035,
     0.194,
     -0.4309,
-    -2.0402,
     -2.5953,
     -2.7992,
     -2.0716,
@@ -18797,33 +18781,33 @@
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
-    "anios": 21,
+    "anios": 20,
     "periodo": [
      2003,
      2025
     ],
     "unidad_pendiente": "cm/decade",
     "sen": {
-     "por_decada": 0.473,
+     "por_decada": 0.5705,
      "ic": [
-      -1.1995,
-      2.1243
+      -1.0197,
+      2.3608
      ]
     },
     "mco": {
-     "por_decada": 0.276,
+     "por_decada": 0.339,
      "ic": [
-      -2.704,
-      3.256
+      -1.906,
+      2.583
      ],
-     "p_valor": 0.8318
+     "p_valor": 0.7422
     },
     "hac_ic": [
-     -1.131,
-     1.683
+     -1.035,
+     1.712
     ],
-    "mann_kendall_p": 0.654,
-    "media": 0.39
+    "mann_kendall_p": 0.4555,
+    "media": 0.461
    }
   },
   {
@@ -26882,7 +26866,6 @@
     2012,
     2013,
     2014,
-    2015,
     2016,
     2019,
     2020,
@@ -26901,11 +26884,10 @@
     -6.1713,
     -8.6921,
     -6.771,
-    -8.1558,
+    -7.6181,
     -8.87,
     -6.8417,
     -9.5029,
-    -9.9312,
     -8.1903,
     -3.4647,
     -2.3656,
@@ -26929,33 +26911,33 @@
    "tendencia": {
     "veredicto": "metodos_discrepan",
     "veredicto_contrato": "metodos_discrepan",
-    "anios": 21,
+    "anios": 20,
     "periodo": [
      2003,
      2025
     ],
     "unidad_pendiente": "cm/decade",
     "sen": {
-     "por_decada": -8.6831,
+     "por_decada": -9.3609,
      "ic": [
-      -11.7086,
-      -5.3575
+      -12.1361,
+      -5.4134
      ]
     },
     "mco": {
-     "por_decada": -8.641,
+     "por_decada": -8.626,
      "ic": [
-      -18.565,
-      1.282
+      -21.041,
+      3.79
      ],
-     "p_valor": 0.0707
+     "p_valor": 0.1087
     },
     "hac_ic": [
-     -12.169,
-     -5.113
+     -12.156,
+     -5.095
     ],
-    "mann_kendall_p": 0.002,
-    "media": -6.69
+    "mann_kendall_p": 0.0026,
+    "media": -6.501
    }
   },
   {

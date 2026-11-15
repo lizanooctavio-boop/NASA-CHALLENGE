@@ -1,4 +1,5 @@
 import { mkdir, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 
 const origen = 'https://sicc952.onrender.com';
 const salida = 'public/clima-base';
@@ -40,7 +41,12 @@ let meta;
 try {
   meta = await json('global_meta');
 } catch (e) {
-  // Sin fuente no se tumba el despliegue: public/clima-base conserva la instantánea anterior.
+  // Con instantánea previa en public/clima-base se publica igual; sin ella (clon limpio) la compilación falla
+  // para que Render mantenga el despliegue anterior en vez de publicar una demo sin pronóstico ni capas.
+  if (!existsSync(`${salida}/global_meta.json`)) {
+    console.error('Pronóstico no disponible y sin instantánea anterior; se detiene la compilación:', e.message);
+    process.exit(1);
+  }
   console.warn('Pronóstico no disponible; se conserva la instantánea anterior:', e.message);
   process.exit(0);
 }
