@@ -20234,6 +20234,678 @@
    }
   },
   {
+   "id": "bosque_perdida_NIC",
+   "categoria": "vegetacion",
+   "lugar": "NIC",
+   "titulo_en": "Tree cover lost per year",
+   "definicion_en": "Area of forest (at least 30% tree cover in 2000) where Landsat saw the trees removed or killed that year.",
+   "unidad": "km²",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    444.39,
+    549.77,
+    473.68,
+    212.51,
+    964.82,
+    395.34,
+    895.94,
+    544.77,
+    840.38,
+    2148.65,
+    440.93,
+    338.45,
+    445.39,
+    765.31,
+    360.34,
+    1435.46,
+    2139.63,
+    721.54,
+    785.23,
+    1124.86,
+    928.96,
+    495.58,
+    1188.5,
+    1590.45
+   ],
+   "fuente": {
+    "producto": "Hansen Global Forest Change v1.12, Landsat 30 m (University of Maryland)",
+    "url": "https://glad.earthengine.app/view/global-forest-change"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2001–2024: 20,231 km², 26% of the 78,049 km² of forest in 2000.",
+    "Most lost: 2010, 2,149 km².",
+    "Tree cover loss is not only deforestation: hurricanes (Felix 2007, Otto 2016, Eta and Iota 2020) and fires also kill trees.",
+    "The mapping method was updated during the record, so compare early and recent years with care.",
+    "Data and method: Landsat-based maps of tree cover loss at 30 m (Hansen et al. 2013, Science, doi:10.1126/science.1244693; Global Forest Change v1.12)."
+   ],
+   "tendencia": {
+    "veredicto": "metodos_discrepan",
+    "veredicto_contrato": "metodos_discrepan",
+    "anios": 24,
+    "periodo": [
+     2001,
+     2024
+    ],
+    "unidad_pendiente": "km²/decade",
+    "sen": {
+     "por_decada": 255.7758,
+     "ic": [
+      11.5263,
+      570.2188
+     ]
+    },
+    "mco": {
+     "por_decada": 298.161,
+     "ic": [
+      -8.098,
+      604.42
+     ],
+     "p_valor": 0.0558
+    },
+    "hac_ic": [
+     114.308,
+     482.014
+    ],
+    "mann_kendall_p": 0.0691,
+    "media": 842.953
+   }
+  },
+  {
+   "id": "bosque_perdida_pacifico",
+   "categoria": "vegetacion",
+   "lugar": "pacifico",
+   "titulo_en": "Tree cover lost per year",
+   "definicion_en": "Area of forest (at least 30% tree cover in 2000) where Landsat saw the trees removed or killed that year.",
+   "unidad": "km²",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    44.41,
+    19.4,
+    37.18,
+    37.33,
+    28.12,
+    37.42,
+    47.17,
+    26.64,
+    36.29,
+    50.77,
+    8.09,
+    40.39,
+    21.46,
+    20.92,
+    7.96,
+    26.25,
+    25.71,
+    8.62,
+    7.25,
+    16.2,
+    6.6,
+    9.52,
+    8.76,
+    9.02
+   ],
+   "fuente": {
+    "producto": "Hansen Global Forest Change v1.12, Landsat 30 m (University of Maryland)",
+    "url": "https://glad.earthengine.app/view/global-forest-change"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2001–2024: 581 km², 7% of the 7,824 km² of forest in 2000.",
+    "Most lost: 2010, 51 km².",
+    "Tree cover loss is not only deforestation: hurricanes (Felix 2007, Otto 2016, Eta and Iota 2020) and fires also kill trees.",
+    "The mapping method was updated during the record, so compare early and recent years with care.",
+    "Data and method: Landsat-based maps of tree cover loss at 30 m (Hansen et al. 2013, Science, doi:10.1126/science.1244693; Global Forest Change v1.12)."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 24,
+    "periodo": [
+     2001,
+     2024
+    ],
+    "unidad_pendiente": "km²/decade",
+    "sen": {
+     "por_decada": -14.23,
+     "ic": [
+      -20.625,
+      -7.5143
+     ]
+    },
+    "mco": {
+     "por_decada": -14.581,
+     "ic": [
+      -20.836,
+      -8.326
+     ],
+     "p_valor": 0.0001
+    },
+    "hac_ic": [
+     -18.931,
+     -10.231
+    ],
+    "mann_kendall_p": 0.001,
+    "media": 24.228
+   }
+  },
+  {
+   "id": "bosque_perdida_central",
+   "categoria": "vegetacion",
+   "lugar": "central",
+   "titulo_en": "Tree cover lost per year",
+   "definicion_en": "Area of forest (at least 30% tree cover in 2000) where Landsat saw the trees removed or killed that year.",
+   "unidad": "km²",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    147.69,
+    103.05,
+    100.6,
+    34.66,
+    178.18,
+    77.14,
+    130.51,
+    88.85,
+    138.18,
+    362.06,
+    111.86,
+    65.71,
+    53.28,
+    84.69,
+    29.95,
+    235.59,
+    148.81,
+    130.92,
+    136.78,
+    166.64,
+    119.99,
+    116.56,
+    219.38,
+    563.1
+   ],
+   "fuente": {
+    "producto": "Hansen Global Forest Change v1.12, Landsat 30 m (University of Maryland)",
+    "url": "https://glad.earthengine.app/view/global-forest-change"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2001–2024: 3,544 km², 16% of the 22,108 km² of forest in 2000.",
+    "Most lost: 2024, 563 km².",
+    "Tree cover loss is not only deforestation: hurricanes (Felix 2007, Otto 2016, Eta and Iota 2020) and fires also kill trees.",
+    "The mapping method was updated during the record, so compare early and recent years with care.",
+    "Data and method: Landsat-based maps of tree cover loss at 30 m (Hansen et al. 2013, Science, doi:10.1126/science.1244693; Global Forest Change v1.12)."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 24,
+    "periodo": [
+     2001,
+     2024
+    ],
+    "unidad_pendiente": "km²/decade",
+    "sen": {
+     "por_decada": 29.5367,
+     "ic": [
+      -14.8238,
+      70.3111
+     ]
+    },
+    "mco": {
+     "por_decada": 60.109,
+     "ic": [
+      -12.691,
+      132.908
+     ],
+     "p_valor": 0.1
+    },
+    "hac_ic": [
+     -20.32,
+     140.537
+    ],
+    "mann_kendall_p": 0.1725,
+    "media": 147.674
+   }
+  },
+  {
+   "id": "bosque_perdida_caribe",
+   "categoria": "vegetacion",
+   "lugar": "caribe",
+   "titulo_en": "Tree cover lost per year",
+   "definicion_en": "Area of forest (at least 30% tree cover in 2000) where Landsat saw the trees removed or killed that year.",
+   "unidad": "km²",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "valores": [
+    252.28,
+    427.32,
+    335.91,
+    140.52,
+    758.53,
+    280.79,
+    718.26,
+    429.28,
+    665.91,
+    1735.82,
+    320.99,
+    232.35,
+    370.64,
+    659.7,
+    322.43,
+    1173.62,
+    1965.11,
+    582.01,
+    641.2,
+    942.02,
+    802.37,
+    369.5,
+    960.36,
+    1018.32
+   ],
+   "fuente": {
+    "producto": "Hansen Global Forest Change v1.12, Landsat 30 m (University of Maryland)",
+    "url": "https://glad.earthengine.app/view/global-forest-change"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Total 2001–2024: 16,105 km², 33% of the 48,118 km² of forest in 2000.",
+    "Most lost: 2017, 1,965 km².",
+    "Tree cover loss is not only deforestation: hurricanes (Felix 2007, Otto 2016, Eta and Iota 2020) and fires also kill trees.",
+    "The mapping method was updated during the record, so compare early and recent years with care.",
+    "Data and method: Landsat-based maps of tree cover loss at 30 m (Hansen et al. 2013, Science, doi:10.1126/science.1244693; Global Forest Change v1.12)."
+   ],
+   "tendencia": {
+    "veredicto": "metodos_discrepan",
+    "veredicto_contrato": "metodos_discrepan",
+    "anios": 24,
+    "periodo": [
+     2001,
+     2024
+    ],
+    "unidad_pendiente": "km²/decade",
+    "sen": {
+     "por_decada": 253.3429,
+     "ic": [
+      50.1071,
+      470.5333
+     ]
+    },
+    "mco": {
+     "por_decada": 252.632,
+     "ic": [
+      -11.303,
+      516.566
+     ],
+     "p_valor": 0.0597
+    },
+    "hac_ic": [
+     96.914,
+     408.35
+    ],
+    "mann_kendall_p": 0.0185,
+    "media": 671.052
+   }
+  },
+  {
+   "id": "lago_superficie_cocibolca",
+   "categoria": "agua",
+   "lugar": "cocibolca",
+   "titulo_en": "Lake water area (Landsat)",
+   "definicion_en": "Area of Lake Nicaragua covered by water each year, mapped from every Landsat image of that year.",
+   "unidad": "km²",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1984,
+    1985,
+    1986,
+    1987,
+    1989,
+    1990,
+    1991,
+    1992,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+   ],
+   "valores": [
+    7918.97,
+    7898.48,
+    7887.23,
+    7888.36,
+    7738.86,
+    7913.09,
+    7896.68,
+    7846.82,
+    7922.26,
+    7896.48,
+    7924.41,
+    7906.79,
+    7900.2,
+    7905.69,
+    7906.56,
+    7893.75,
+    7900.7,
+    7907.13,
+    7910.42,
+    7892.9,
+    7897.7,
+    7912.52,
+    7909.45,
+    7922.81,
+    7920.17,
+    7911.96,
+    7897.77,
+    7883.84,
+    7860.84,
+    7875.07,
+    7885.3,
+    7894.89,
+    7894.19,
+    7894.47
+   ],
+   "fuente": {
+    "producto": "JRC Global Surface Water yearly classification, Landsat 30 m (European Commission)",
+    "url": "https://global-surface-water.appspot.com/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Largest: 1998, 7,924 km². Smallest: 1989, 7,739 km².",
+    "Years left out because clouds or gaps hid most of the lake: 1988, 1993, 1994, 1995.",
+    "Data and method: every Landsat scene since 1984 classified into water and land at 30 m (Pekel et al. 2016, Nature, doi:10.1038/nature20584; JRC Global Surface Water)."
+   ],
+   "tendencia": {
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 34,
+    "periodo": [
+     1984,
+     2021
+    ],
+    "unidad_pendiente": "km²/decade",
+    "sen": {
+     "por_decada": -1.4,
+     "ic": [
+      -6.8944,
+      4.4476
+     ]
+    },
+    "mco": {
+     "por_decada": 4.047,
+     "ic": [
+      -6.8,
+      14.893
+     ],
+     "p_valor": 0.4517
+    },
+    "hac_ic": [
+     -9.168,
+     17.262
+    ],
+    "mann_kendall_p": 0.5532,
+    "media": 7894.611
+   }
+  },
+  {
+   "id": "lago_superficie_xolotlan",
+   "categoria": "agua",
+   "lugar": "xolotlan",
+   "titulo_en": "Lake water area (Landsat)",
+   "definicion_en": "Area of Lake Managua covered by water each year, mapped from every Landsat image of that year.",
+   "unidad": "km²",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1985,
+    1986,
+    1987,
+    1989,
+    1990,
+    1991,
+    1993,
+    1994,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+   ],
+   "valores": [
+    950.21,
+    954.89,
+    942.02,
+    952.6,
+    952.09,
+    931.23,
+    902.17,
+    899.57,
+    915.54,
+    952.63,
+    962.27,
+    998.39,
+    999.81,
+    994.77,
+    977.05,
+    967.55,
+    956.47,
+    944.22,
+    947.26,
+    952.94,
+    972.47,
+    980.12,
+    997.29,
+    1000.44,
+    1000.84,
+    996.01,
+    992.02,
+    981.21,
+    953.51,
+    955.35,
+    958.03,
+    957.88,
+    958.26,
+    952.83
+   ],
+   "fuente": {
+    "producto": "JRC Global Surface Water yearly classification, Landsat 30 m (European Commission)",
+    "url": "https://global-surface-water.appspot.com/"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Largest: 2012, 1,001 km². Smallest: 1994, 900 km².",
+    "Years left out because clouds or gaps hid most of the lake: 1984, 1988, 1992, 1995.",
+    "Data and method: every Landsat scene since 1984 classified into water and land at 30 m (Pekel et al. 2016, Nature, doi:10.1038/nature20584; JRC Global Surface Water)."
+   ],
+   "tendencia": {
+    "veredicto": "metodos_discrepan",
+    "veredicto_contrato": "metodos_discrepan",
+    "anios": 34,
+    "periodo": [
+     1985,
+     2021
+    ],
+    "unidad_pendiente": "km²/decade",
+    "sen": {
+     "por_decada": 7.3545,
+     "ic": [
+      0.5727,
+      17.6731
+     ]
+    },
+    "mco": {
+     "por_decada": 9.984,
+     "ic": [
+      -25.917,
+      45.886
+     ],
+     "p_valor": 0.4658
+    },
+    "hac_ic": [
+     -1.335,
+     21.303
+    ],
+    "mann_kendall_p": 0.0489,
+    "media": 962.057
+   }
+  },
+  {
    "id": "cuenca_colorado_caudal",
    "categoria": "agua",
    "lugar": "colorado_lees_ferry",
@@ -28583,6 +29255,8 @@
   "recursos/hallazgos/glambie_america_anual.csv": "0c36b2823fdc94b9cf4558a10af65ded402ed3719d7011a0699c9496641e5cb2",
   "recursos/hallazgos/oceansoda_caribe_mensual.csv": "36b9d347f31c31fdf85ccd55c4a479a576092f62a4ad1deebd0ff2655af9302d",
   "recursos/hallazgos/gfed5_area_quemada_mensual.csv": "4a4812a807d9bcd2989c67a8f24c9ca4336c96ad2e3aed6376f7eae966a37236",
+  "recursos/hallazgos/hansen_perdida_bosque_anual.csv": "8a92e2ba3a9c8f1f9974b9d07f66206f02cc9054236d6d2765da3740dc10a9b8",
+  "recursos/hallazgos/gsw_lagos_nicaragua_anual.csv": "b066853fea1176a9da6e4d275795c9bb735b5fa931988a434e1bb805c21a40f2",
   "recursos/hallazgos/colorado_lees_ferry_anual.csv": "3bfe81a0522c938cef16354781a6f6b0c83c5d8259841fb951fb2c39bb8ae1e6",
   "recursos/hallazgos/gtnp_permafrost_anual.csv": "f278a3b005ea347c70a70939e1b2bea4edf9697c7cd8318ba0b02b15ea156537",
   "recursos/hallazgos/nsidc_hielo_lagos_anual.csv": "bc4d9536c9736d9f9fadb897ae1e4a4d4ff71b37a499fbb0126a2f83cd389bf3",
