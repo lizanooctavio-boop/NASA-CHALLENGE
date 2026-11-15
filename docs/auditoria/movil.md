@@ -1,6 +1,6 @@
 # Auditoría de diseño adaptable, móvil/tablet y rendimiento (`Agente C`)
 
-**Alcance auditado:** compilación estática de `public/` (incluyendo `public/clima-base/`) servida por HTTP local en `http://127.0.0.1` en la rama `codex/audit-movil` (`C:\Users\DELL\NASA-CHALLENGE-audit-C`), **antes de aplicar correcciones de código**.
+**Alcance auditado:** compilación estática de `public/` (incluyendo `public/clima-base/`) servida por HTTP local en `http://127.0.0.1` en la rama `codex/audit-movil`, **antes de aplicar correcciones de código**.
 
 ---
 

@@ -1,4 +1,6 @@
-# Earth System Trend Detective
+# Gnomon
+
+*Reading Earth's long-term trends from open satellite and climate records.*
 
 **2026 NASA International Space Apps Challenge — "Be an Earth System Trend Detective!"**
 
@@ -13,7 +15,9 @@
 
 ## 1. What It Does
 
-**Earth System Trend Detective** is an interactive climate-diagnostics platform that answers the four questions of the challenge—**what** is changing, **where** it is changing, **how much** it is changing, and **whether** those changes are statistically **significant**—across **202 observed Earth-system time series**, **74 locations** worldwide, **8 thematic categories**, **33 independent cross-checks**, and all **13 official challenge resources**.
+> The name comes from the Greek *gnṓmōn*, "one who discerns": the rod of a sundial, which reveals something invisible from a shadow. Around 240 BC Eratosthenes compared the shadows of a gnomon in two cities and measured the size of the Earth. Gnomon follows the same idea: open data plus careful reasoning to tell real long-term change from noise.
+
+**Gnomon** is an interactive climate-diagnostics platform that answers the four questions of the challenge—**what** is changing, **where** it is changing, **how much** it is changing, and **whether** those changes are statistically **significant**—across **217 observed Earth-system time series**, **89 locations** worldwide, **8 thematic categories**, **33 independent cross-checks**, and all **13 official challenge resources**.
 
 Every series with at least 10 annual observations is tested simultaneously by **four statistical estimators**:
 1. **Theil–Sen non-parametric slope** with 95% confidence interval (`scipy.stats.theilslopes`), resistant to extreme outlier years.
@@ -25,11 +29,11 @@ Every series with at least 10 annual observations is tested simultaneously by **
 
 | Verdict / Guardrail on Screen | Series Count | Statistical Criterion |
 | :--- | :---: | :--- |
-| **`Trend detected`** (`tendencia_detectada`) | **66** | All 95% confidence intervals (Theil–Sen, AR(1)-OLS, and Newey–West HAC) exclude zero with the same sign **and** Hamed–Rao modified Mann–Kendall $p < 0.05$. |
-| **`Not enough evidence of a trend`** (`evidencia_insuficiente`) | **83** | Confidence intervals include zero and modified Mann–Kendall $p \ge 0.05$ over the observed window. *(Explicitly explained in the UI as a signal-to-noise or record-length limit, **never** "no change".)* |
+| **`Trend detected`** (`tendencia_detectada`) | **79** | All 95% confidence intervals (Theil–Sen, AR(1)-OLS, and Newey–West HAC) exclude zero with the same sign **and** Hamed–Rao modified Mann–Kendall $p < 0.05$. |
+| **`Not enough evidence of a trend`** (`evidencia_insuficiente`) | **85** | Confidence intervals include zero and modified Mann–Kendall $p \ge 0.05$ over the observed window. *(Explicitly explained in the UI as a signal-to-noise or record-length limit, **never** "no change".)* |
 | **`Methods disagree`** (`metodos_discrepan`) | **48** | Parametric (OLS / HAC) and non-parametric (Theil–Sen / Mann–Kendall) tests reach different conclusions at the 5% threshold, alerting users to outliers, step changes, or borderline autocorrelation. |
 | **`Record too short for a trend test`** (`demostracion_registro_corto`) | **5** | Series with `< 10` years of observations (e.g., `SWOT` satellite lake altimetry since 2023 and `OPERA DSWx-S1` radar water scenes) are plotted descriptively without a trend test. |
-| **Total Investigations** | **202** | Across **74** locations, **8** categories, **33** cross-checks, **3** guided tours, and **13/13** active challenge resources. |
+| **Total Investigations** | **217** | Across **89** locations, **8** categories, **33** cross-checks, **3** guided tours, and **13/13** active challenge resources. |
 
 ---
 
@@ -38,21 +42,20 @@ Every series with at least 10 annual observations is tested simultaneously by **
 | View / Tab | URL Hash | What Judges See |
 | :--- | :---: | :--- |
 | **3D Globe & 2D Map** | `#globe` / `#map` | Interactive `Three.js` 3D Earth (`assets/texturas/tierra-dia.jpg`, `assets/texturas/tierra-noche.jpg`, `assets/texturas/luna.jpg` from NASA GIBS & LRO) that unfolds into a 2D `Leaflet` map with NASA GIBS satellite layers, radar overlays, and regional polygons. |
-| **`Investigate`** | `#investigar` | Topic → Place → Variable selector (`202` series), Verdict Card (*How much per decade*, *How sure*, *Least squares*), interactive `Chart.js` plot with Theil–Sen trend line, Crossref-verified *Published check* notes, **33 Cross-checks**, **3 Guided tours**, and 1-click **CSV / JSON export**. |
+| **`Investigate`** | `#investigar` | Topic → Place → Variable selector (`217` series), Verdict Card (*How much per decade*, *How sure*, *Least squares*), interactive `Chart.js` plot with Theil–Sen trend line, Crossref-verified *Published check* notes, **33 Cross-checks**, **3 Guided tours**, and 1-click **CSV / JSON export**. |
 | **`Learn`** | `#aprender` | Visual, plain-English guides explaining why *"Not enough evidence"* $\neq$ *"no change"*, why monthly data are autocorrelated, how Theil–Sen resists outliers, how Pettitt (1979) detects reanalysis step jumps, and how Benjamini–Hochberg FDR (`q = 0.10`) controls false positives across maps. |
 | **`Sources`** | `#fuentes` | Live usage status of all **13 official challenge resources** (`13/13` active) plus direct links to every primary dataset. |
 | **`Rainfall trend`** | `#tendencias` | Interactive map and series comparison across Nicaragua (`119,900 km²`), Southwest SICC study box (`66,500 km²`), Honduras, and Costa Rica using NASA GPM IMERG V07B (`2001–2024`). |
 | **`Climate indicators`** | `#indicadores` | Multi-variable regional diagnostics for Nicaragua (`Pacific lowlands`, `Central highlands`, `Caribbean coast`), contrasting NASA GISTEMP v4 (`+0.294 °C/decade`, $p < 0.001$) and IMERG against MERRA-2/POWER step inhomogeneities (`docs/reto/recursos/evidencia_tierra/`). |
 | **`El Niño & cyclones`** | `#fenomenos` | NOAA CPC Oceanic Niño Index (`ONI`) coupling with rainy-season precipitation and historical tropical cyclone tracks (NOAA IBTrACS v04r01). |
 | **`Climate scenarios`** | `#proyecciones` | 6-model NASA NEX-GDDP-CMIP6 (`v2.0`) projections for `2041–2060` vs. `1995–2014` under SSP2-4.5 and SSP5-8.5. |
+| **`Watersheds`** | `#hidrologia` | Nicaragua's INETER/SINAPRED Pfafstetter basins and HydroBASINS for the world, with source attribution and original downloads. |
+| **`Data downloads`** | `#exportar` | CSV / JSON exports of every series with its source, period and verdict. |
+| **`Help`** | Left menu | 100 searchable questions and answers (English / Spanish) and an 11-step guided tour of the app. |
 
 ---
 
 ## 3. How to Run Locally & Verify
-
-### GIS workspace
-
-The application uses horizontal section tabs, a grouped command ribbon, docked results and layer panes, and a map-view status bar, inspired by the [ArcGIS Pro interface structure](https://pro.arcgis.com/en/pro-app/3.5/get-started/user-interface.htm). It retains the Earth Trend Detective identity and needs no ArcGIS Pro installation for these controls. **Dark theme / Light theme** switches the controls and charts and saves the preference locally. **Hide panels** clears the results pane; **Reset panes** restores panel visibility, height and width. On mobile, section tabs scroll horizontally and results use the full screen width. The presentation is isolated in `app/workbench.css` and `app/workbench.js`; scientific data and statistical calculations are unchanged.
 
 ### Prerequisites
 - **Node.js** ($\ge 18$)
@@ -154,8 +157,8 @@ See [sources, reproducible downloads, API refresh configuration and limitations]
 
 ## 5. Repository Structure
 
-- `index.html`, `app/`, `src/`, `estilos.css`: Frontend web application (`Three.js` 3D globe, `Leaflet` 2D map, `Chart.js` time-series diagnostics, `Investigate`, `Learn`, and `Sources` tabs).
-- `backend/clima_nic/`: Python statistical engine (`estadistica/tendencia_robusta.py`, `estadistica/fdr.py`, `estadistica/indicadores.py`), dataset integrators (`recursos.py`, `recursos_americas.py`, `recursos_europa_africa.py`), and FastAPI service (`api.py`).
+- `index.html`, `app/`, `src/`, `assets/`: Frontend web application (`Three.js` 3D globe, `Leaflet` 2D map, `Chart.js` time-series diagnostics, `Investigate`, `Watersheds`, `Learn`, `Help`, and `Sources` tabs).
+- `backend/clima_nic/`: Python statistical engine (`estadistica/tendencia_robusta.py`, `estadistica/fdr.py`, `estadistica/indicadores.py`), dataset integrators (`recursos.py`, `recursos_americas.py`, `recursos_europa_africa.py`, `recursos_asia_oceania.py`), and FastAPI service (`api.py`).
 - `data/`: Versioned JSON and compact CSV time series (`recursos_integrados.json`, `clima.json`, `fenomenos_nicaragua.json`, and `data/recursos/`), verified by SHA-256 hashes.
 - `scripts/`: Build scripts (`preparar_render.mjs`, `preparar_meteo.mjs`), core trend contract (`scripts/datos/tendencia.py`), and SAR water-extent calibration (`scripts/sar/`).
 - `tests/`: Automated test suite (unit, statistical, provenance and browser tests).
@@ -167,10 +170,10 @@ See [sources, reproducible downloads, API refresh configuration and limitations]
 
 - **Team (Managua, Nicaragua — NASA Space Apps Challenge 2026):**
   - **Octavio Lizano** (`lizanooctavio-boop`) — Architecture, statistical engine, global/Nicaragua integration, and 3D/2D interface.
-  - **Benjamin** (`benjaminhr8687`) — Americas & Caribbean observational series, SAR water-extent workflows, and submission package.
-  - **Astral** (`AstralPiolinXD`) — Europe, Africa & Middle East observational series, audit verification, and data quality control.
+  - **Benjamin** (`benjaminhr8687`) — Americas & Caribbean observational series, SAR water-extent workflows, place search and coordinate systems, and submission package.
+  - **Astral** (`AstralPiolinXD`) — Europe, Africa & Middle East observational series, in-app help and guided tour, audit verification, and data quality control.
   - **Manuel Paniagua** (`Manuel Paniagua`) — Land-surface hydrology (`GLDAS-2.1`, `AppEEARS`, `SMAP`) and regional diagnostics.
-  - **Javi** (`JAVITHEARKHI`) — Historical event context and verification support.
-- **Prior Work Disclosure:** The 3D/2D meteorological base viewer and southwest Nicaragua bounding box (`caja_sicc`) adapt foundational components from the team's prior project `SICC-952` (documented in `data/contrato.md` Section 5). All statistical trend engines, multi-method verdicts, 202 regional/global climate investigations, 33 cross-checks, and educational modules were built specifically for `Earth System Trend Detective`.
+  - **Javi** (`JAVITHEARKHI`) — Asia, Oceania & ocean observational series, Watersheds map, geographic grid, and historical event context.
+- **Prior Work Disclosure:** The 3D/2D meteorological base viewer and southwest Nicaragua bounding box (`caja_sicc`) adapt foundational components from the team's prior project `SICC-952` (documented in `data/contrato.md` Section 5). All statistical trend engines, multi-method verdicts, 217 regional/global climate investigations, 33 cross-checks, and educational modules were built specifically for `Gnomon`.
 - **AI / Super Intelligence (SI) Disclosure:** Developed with assistance from **Claude Code (Opus)**, **OpenAI Codex**, and **Google Gemini (Antigravity)** under human scientific direction and verified by the full automated test suite, independent series recalculations, and Crossref API DOI checks. Full details in [`docs/entrega/AI_USE.md`](docs/entrega/AI_USE.md).
-- **License:** Original source code is released under an OSI-compliant open-source license (**Apache License 2.0** per NASA Space Apps Challenge Terms and Conditions); adapted CSA SAR tutorial scripts in `scripts/sar/` retain their original **MIT License** (`scripts/sar/LICENSE-CSA.txt`), and third-party datasets follow their respective open data licenses listed in Section 4.2.
+- **License:** Original source code is released under the **Apache License 2.0** ([`LICENSE`](LICENSE), copyright notice in [`NOTICE`](NOTICE)); adapted CSA SAR tutorial scripts in `scripts/sar/` retain their original **MIT License** (`scripts/sar/LICENSE-CSA.txt`), and third-party datasets follow their respective open data licenses listed in Section 4.2.

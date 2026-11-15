@@ -1,6 +1,6 @@
 # Artificial Intelligence (AI) & Super Intelligence (SI) Disclosure
 
-**Project:** Earth System Trend Detective  
+**Project:** Gnomon  
 **Challenge:** Be an Earth System Trend Detective! (NASA Space Apps Challenge 2026)  
 **Compliance:** Prepared in accordance with the official *NASA Space Apps Challenge Project Submission Guide* and *Judging & Awards Guide* rules on Artificial Intelligence (AI) / Super Intelligence (SI).
 

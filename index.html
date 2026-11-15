@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Earth Trend Detective</title>
+<title>Gnomon · Earth trend explorer</title>
 <meta name="description" content="Explore Earth's weather from space and test whether annual rainfall in Nicaragua has changed, with NASA GPM IMERG data.">
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
 <link rel="stylesheet" href="app/estilos.css">
 <link rel="stylesheet" href="app/reticula.css">
 <link rel="stylesheet" href="app/buscador.css">
-<link rel="stylesheet" href="app/workbench.css">
-<script>try{document.documentElement.dataset.theme=localStorage.getItem('etd-theme')==='dark'?'dark':'light'}catch(e){}</script>
+<link rel="stylesheet" href="app/ayuda.css">
+<link rel="stylesheet" href="app/inicio.css">
 </head>
 <body class="modo-globo cargando">
 <a href="#contenido-principal" class="saltar-contenido">Skip to main content</a>
@@ -24,10 +24,10 @@
 
 <aside aria-label="Navigation and tools">
   <div class="cabeza-menu">
-    <div class="marca"><span class="marca-punto" aria-hidden="true"></span>Trend<b>Detective</b></div>
+    <div class="marca"><span class="marca-punto" aria-hidden="true"></span><b>Gnomon</b></div>
     <button id="plegar-menu" type="button" aria-expanded="true" aria-controls="menu-principal" aria-label="Collapse menu" title="Collapse menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
   </div>
-  <p class="sub">NASA SPACE APPS · EARTH SYSTEM EXPLORER</p>
+  <p class="sub">Live weather globe &amp; NASA long-term climate trend detective. Start in <strong>Investigate</strong> for trends.</p>
   <nav id="menu-principal" aria-label="Sections">
     <button class="activo" data-tab="meteorologia" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 1 1 .8-7.9A5.5 5.5 0 0 1 18.4 12 3 3 0 0 1 18 18z"/></svg><span class="txt">Weather</span></button>
     <button data-tab="investigar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/></svg><span class="txt">Investigate</span></button>
@@ -40,23 +40,21 @@
     <button data-tab="aprender"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4zM7 9v5c0 1.7 2.2 3 5 3s5-1.3 5-3V9"/></svg><span class="txt">Learn</span></button>
     <button data-tab="fuentes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5zM9 10h7M9 14h7"/></svg><span class="txt">Sources</span></button>
   </nav>
-  <div class="pie">NASA Space Apps 2026<br>Earth System Trend Detective</div>
+  <div class="pie">Space Apps 2026<br>Earth System Trend Detective challenge</div>
 </aside>
 
 <main id="contenido-principal" tabindex="-1">
 <header>
-  <div class="ribbon-context"><p class="etiqueta">ACTIVE WORKSPACE</p><h1 id="titulo">Weather</h1><span class="ribbon-caption">Explore · compare · investigate</span></div>
+  <div><p class="etiqueta">NASA SPACE APPS</p><h1 id="titulo">Weather</h1></div>
   <div class="acciones">
-    <div class="ribbon-group"><div class="interruptor" role="group" aria-label="View">
+    <div class="interruptor" role="group" aria-label="View">
       <button type="button" id="vista-globo" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Globe</button>
       <button type="button" id="vista-mapa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"/></svg>Map</button>
-    </div><span class="ribbon-caption">View</span></div>
+    </div>
     <div class="indicador-envoltura"><button id="indicador-datos" type="button" class="indicador" data-nivel="pendiente" aria-expanded="false" aria-controls="indicador-detalle" title="Live weather globe model (ECMWF IFS). Historical trend datasets are cited inside each panel and in Sources."><i aria-hidden="true"></i><span id="indicador-texto">Loading data…</span></button><div id="indicador-detalle" class="ventana" role="region" aria-label="Data status" hidden></div></div>
-    <div class="ribbon-group"><div class="ribbon-tools"><button id="solomapa" type="button" aria-pressed="false">Hide panels</button><button id="restaurar-paneles" type="button" title="Restore the panel width, height and visibility" disabled>Reset panes</button></div><span class="ribbon-caption">Workspace</span></div>
-    <div class="ribbon-group"><button id="tema-interfaz" type="button" aria-pressed="false" disabled>Dark theme</button><span class="ribbon-caption">Appearance</span></div>
+    <button id="solomapa" type="button" aria-pressed="false">Hide panels</button>
   </div>
 </header>
-<div class="workspace-tab"><span class="workspace-tab-icon" aria-hidden="true">◎</span><span id="workspace-view">Global scene · 3D</span><span class="workspace-tab-hint">EARTH TREND DETECTIVE</span></div>
 <div id="error" role="alert" hidden><span id="error-texto"></span><button id="error-cerrar" type="button" aria-label="Close">×</button></div>
 
 <section id="meteorologia" class="vista">
@@ -256,16 +254,14 @@
 </div>
 
 <div class="tooltip" id="tooltip" role="presentation" hidden></div>
-<footer class="workbench-status"><span><i aria-hidden="true"></i>Earth Trend Detective</span><span id="workspace-section">Weather</span><span class="status-reference">NASA &amp; NOAA · Sources and methods inside each panel</span></footer>
 
-<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha384-9nhczxUqK87bcKHh20fSQcTGD4qq5GhayNYSYWqwBkINBhOfQLg/P5HG5lF1urn4" crossorigin="anonymous"></script>
 <script defer src="src/fuentes-meteo.js"></script>
 <script defer src="src/meteo-paletas.js"></script>
 <script defer src="src/globo-meteo.js"></script>
 <script defer src="app/config.js"></script>
 <script defer src="app/shell.js"></script>
-<script defer src="app/workbench.js"></script>
 <script defer src="app/soporte-meteo.js"></script>
 <script defer src="app/campo.js"></script>
 <script defer src="app/graficas-meteo.js"></script>
@@ -279,10 +275,12 @@
 <script defer src="src/hidrologia-datos.js"></script>
 <script defer src="app/hidrologia.js"></script>
 <script defer src="app/globo.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.2/proj4.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.2/proj4.js" integrity="sha384-ya9rOV6flD2e7foN1ut7/l/2s6X6qzHni8jM2di15mILoBTx+nT9/u/FGLOcNFQG" crossorigin="anonymous"></script>
 <script defer src="app/buscador.js"></script>
 <script defer src="app/coordenadas.js"></script>
 <script type="module" src="app/espacio.js"></script>
 <script defer src="app/reticula.js" onerror="const aviso=document.createElement('p');aviso.setAttribute('role','status');aviso.textContent='Map grid controls could not load. Reload to retry.';document.getElementById('barra-capas')?.append(aviso)"></script>
+<script defer src="app/ayuda.js"></script>
+<script defer src="app/inicio.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # Investigación de casos globales: Europa, África y Oriente Medio
 
-Síntesis científica y guía de ingestión de datos para **Earth System Trend Detective** (NASA Space Apps Challenge 2026), diseñada bajo el criterio estadístico del proyecto (`tendencia detectada`, `evidencia insuficiente` o `los métodos no coinciden`, evaluados conjuntamente mediante regresión lineal/HAC, Theil-Sen y Mann-Kendall modificado a un nivel base $\alpha = 0,05$). No duplica las series globales ya integradas en la aplicación (bandas latitudinales de GISTEMP, total mundial de GFED5 ni total mundial de GlaMBIE), sino que aporta desgloses regionales y casos hidroclimáticos, marinos, de vegetación, de aerosoles y de almacenamiento de agua propios de Europa, África y Oriente Medio.
+Síntesis científica y guía de ingestión de datos para **Gnomon** (NASA Space Apps Challenge 2026), diseñada bajo el criterio estadístico del proyecto (`tendencia detectada`, `evidencia insuficiente` o `los métodos no coinciden`, evaluados conjuntamente mediante regresión lineal/HAC, Theil-Sen y Mann-Kendall modificado a un nivel base $\alpha = 0,05$). No duplica las series globales ya integradas en la aplicación (bandas latitudinales de GISTEMP, total mundial de GFED5 ni total mundial de GlaMBIE), sino que aporta desgloses regionales y casos hidroclimáticos, marinos, de vegetación, de aerosoles y de almacenamiento de agua propios de Europa, África y Oriente Medio.
 
 ---
 

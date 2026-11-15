@@ -5,11 +5,16 @@
   const cache = new Map();
   let turno = 0;
 
-  function campoGlobal(variable, paso) {
-    const clave = variable + '|' + paso;
+  let corridaCache = null;
+
+  // La clave incluye la corrida: al publicarse una nueva no se reutilizan texturas ni viento de la anterior.
+  function campoGlobal(variable, paso, corrida) {
+    if (corrida !== corridaCache) { cache.clear(); corridaCache = corrida; }
+    const clave = corrida + '|' + variable + '|' + paso;
     if (!cache.has(clave)) {
       const promesa = window.FuentesMeteo.fetch('/api/global?var=' + variable + '&paso=' + paso)
         .then(r => { if (!r.ok) throw Error('HTTP ' + r.status); return r.json(); })
+        .then(d => { if (d.corrida_utc !== corrida) throw Error('Stale run'); return d; })
         .catch(e => { cache.delete(clave); throw e; });
       if (cache.size >= 16) cache.delete(cache.keys().next().value);
       cache.set(clave, promesa);
@@ -28,10 +33,10 @@
     try {
       const archivo = variable === 'viento_ms' ? 'viento' : variable;
       const [campo, viento] = await Promise.allSettled([
-        variable === 'ninguna' ? Promise.resolve(null) : campoGlobal(archivo, paso),
-        campoGlobal('viento', paso)
+        variable === 'ninguna' ? Promise.resolve(null) : campoGlobal(archivo, paso, meta.corrida_utc),
+        campoGlobal('viento', paso, meta.corrida_utc)
       ]);
-      if (mio !== turno) return;
+      if (mio !== turno || C.meta?.()?.corrida_utc !== meta.corrida_utc) return;
       const datos = campo.status === 'fulfilled' ? campo.value : null;
       E.meteo(datos ? window.GloboMeteo.textura(meta, datos, variable) : null, opacidad);
       const w = viento.status === 'fulfilled' ? viento.value : null;
@@ -47,7 +52,8 @@
     const ancho = innerWidth;
     if (ancho < 1000 || document.body.classList.contains('solo-mapa')) return window.Espacio.desplazar(0);
     const panel = [...document.querySelectorAll('.vista')].find(v => !v.hidden);
-    const izquierda = panel && !panel.classList.contains('minimizada') ? panel.getBoundingClientRect().right : 0;
+    const aside = document.querySelector('aside').getBoundingClientRect();
+    const izquierda = panel && !panel.classList.contains('minimizada') ? panel.getBoundingClientRect().right : aside.right;
     const derecha = $('barra-capas').getBoundingClientRect().left;
     window.Espacio.desplazar(Math.max(0, ((izquierda + derecha) / 2 - ancho / 2) * 0.85));
   }

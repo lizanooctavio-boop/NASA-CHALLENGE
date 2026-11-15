@@ -294,3 +294,35 @@ def test_consulta_y_api():
     assert cli.get("/tendencia", params={"region": "central", "variable": "t2m_media"}).status_code == 200
     assert cli.get("/tendencia", params={"region": "x", "variable": "t2m_media"}).status_code == 400
     assert cli.get("/mapa", params={"variable": "prcptot"}).json()["celdas"]
+
+
+@requiere_producto
+def test_pronostico_imerg_subregion_y_habilidad():
+    from clima_nic import consulta
+    sub = consulta.pronostico_estacional("pacifico", 2024, "lluvia_jun_nov_imerg")
+    assert sub["disponible"] is False
+    imerg = consulta.pronostico_estacional("NIC", 2024, "lluvia_jun_nov_imerg")
+    merra = consulta.pronostico_estacional("NIC", 2024, "lluvia_jun_nov")
+    assert imerg["habilidad_publicada"]["msess"] != merra["habilidad_publicada"]["msess"]
+    principales = {(e["region"], e["modelo"]): e for e in consulta.cargar()["modelo_estacional"]["principales"]}
+    assert imerg["habilidad_publicada"]["msess"] == principales[("NIC (IMERG)", "nino34_tna_mam")]["bloque_1"]["msess"]
+    assert merra["habilidad_publicada"]["msess"] == principales[("NIC", "nino34_tna_mam_sin_tendencia")]["bloque_1"]["msess"]
+    fastapi = pytest.importorskip("fastapi")  # noqa: F841
+    pytest.importorskip("httpx")
+    from fastapi.testclient import TestClient
+    from clima_nic.api import app
+    cli = TestClient(app)
+    r = cli.get("/pronostico", params={"region": "pacifico", "anio": 2024, "variable": "lluvia_jun_nov_imerg"})
+    assert r.status_code == 200 and r.json()["disponible"] is False
+
+
+def test_estadistica_casos_borde():
+    from clima_nic.estadistica import indicadores as ind, tendencia_robusta as tr
+    res = tr.regresion_controlada(range(2000, 2012), np.arange(12.0), {"const": np.ones(12)})
+    assert res["por_decada"] == pytest.approx(10.0)
+    with pytest.raises(ValueError):
+        tr.regresion_controlada(range(2000, 2003), [1.0, 2.0, 3.0], {"a": [1.0, 0.0, 1.0], "b": [0.0, 1.0, 0.0]})
+    s = ind.spei(np.ones(240), np.tile(np.arange(1, 13), 20), 3)
+    assert np.isnan(s).all()
+    fechas = np.arange("2000-01-01", "2001-01-01", dtype="datetime64[D]")
+    assert math.isnan(ind.percentil_humedo(fechas, np.zeros(len(fechas)), [2000]))

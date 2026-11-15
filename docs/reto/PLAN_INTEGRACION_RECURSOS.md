@@ -1,4 +1,4 @@
-# Plan de integración de los recursos del reto — Earth System Trend Detective
+# Plan de integración de los recursos del reto — Gnomon
 
 Fecha: 12-11-2026 · Repositorio: `NASA-CHALLENGE`, rama base `codex/verificacion-entrega` (488e19f) · Estado: **propuesta, nada ejecutado**.
 

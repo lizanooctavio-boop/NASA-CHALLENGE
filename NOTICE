@@ -1,0 +1,15 @@
+Gnomon
+Copyright 2026 Octavio Lizano, Benjamin, Astral, Manuel Paniagua and Javi
+(2026 NASA International Space Apps Challenge team, Managua, Nicaragua)
+
+This product's original source code is licensed under the Apache License,
+Version 2.0 (see LICENSE).
+
+Third-party components keep their own licenses:
+- scripts/sar/: adapted from the Canadian Space Agency Synthetic Aperture
+  Radar tutorial, MIT License (scripts/sar/LICENSE-CSA.txt).
+- Datasets in data/ and the map imagery used by the application are not
+  relicensed under Apache 2.0. Each keeps the license or terms of use of its
+  provider (NASA, NOAA, ECMWF, CRU, GPCC, WGMS, GTN-P, GFED, HydroSHEDS,
+  INETER/SINAPRED, Esri and others), listed with attribution in README.md,
+  section 4.

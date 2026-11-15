@@ -189,3 +189,10 @@ assert.equal(h.buscar([{properties:{codigo_completo:'9519581'}}],'9519581').leng
 const csv=h.filasCSV([{properties:{codigo_completo:'0012',malicioso:'=1+1',valor:-2,falta:null}}]);
 assert.ok(csv.includes('"0012"'));assert.ok(csv.includes('"\'=1+1"'));assert.ok(csv.includes('"-2"'));
 '''], cwd=RAIZ, check=True)
+
+
+def test_pasarela_rechaza_json_no_objeto(monkeypatch):
+    h._CACHE.clear()
+    monkeypatch.setattr(requests, 'get', lambda *a, **k: Respuesta([]))
+    r = TestClient(app).get('/hidrologia/observaciones/nivel_rio')
+    assert r.status_code == 502

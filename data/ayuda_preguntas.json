@@ -1,0 +1,902 @@
+[
+ {
+  "id": "primeros_pasos-01",
+  "tema": "primeros_pasos",
+  "pregunta_en": "What is Gnomon?",
+  "respuesta_en": "Gnomon is an app to explore Earth's weather and long climate records. In Investigate it answers four questions about a series: what changed, where, by how much and how sure we can be.",
+  "pregunta_es": "¿Qué es Gnomon?",
+  "respuesta_es": "Gnomon es una app para explorar el tiempo y los registros climáticos largos de la Tierra. En Investigate responde cuatro preguntas sobre una serie: qué cambió, dónde, cuánto y con qué seguridad.",
+  "enlace": "investigar"
+ },
+ {
+  "id": "primeros_pasos-02",
+  "tema": "primeros_pasos",
+  "pregunta_en": "Where should I start?",
+  "respuesta_en": "Open Investigate in the left menu, choose a topic such as Rain and then a place. The verdict card and the chart below it give the answer. The Guided examples at the bottom of Investigate walk you through three short stories.",
+  "pregunta_es": "¿Por dónde empiezo?",
+  "respuesta_es": "Abre Investigate en el menú de la izquierda, elige un tema como Rain y después un lugar. La tarjeta del veredicto y la gráfica de debajo dan la respuesta. Los Guided examples, al final de Investigate, te llevan por tres historias cortas.",
+  "enlace": "investigar"
+ },
+ {
+  "id": "primeros_pasos-03",
+  "tema": "primeros_pasos",
+  "pregunta_en": "What is the difference between Weather and Investigate?",
+  "respuesta_en": "Weather shows a 48-hour forecast: what the air will do in the next two days. Investigate looks at records that span many years to test whether something has changed over decades.",
+  "pregunta_es": "¿Qué diferencia hay entre Weather e Investigate?",
+  "respuesta_es": "Weather muestra un pronóstico de 48 horas: lo que hará la atmósfera en los próximos dos días. Investigate mira registros de muchos años para comprobar si algo ha cambiado en décadas.",
+  "enlace": "meteorologia"
+ },
+ {
+  "id": "primeros_pasos-04",
+  "tema": "primeros_pasos",
+  "pregunta_en": "How do I move between sections?",
+  "respuesta_en": "Use the buttons in the left menu. On a phone the menu is a strip at the top that you can scroll sideways to see every section.",
+  "pregunta_es": "¿Cómo paso de una sección a otra?",
+  "respuesta_es": "Con los botones del menú de la izquierda. En el móvil el menú es una franja arriba que se desplaza hacia los lados para ver todas las secciones.",
+  "enlace": "menu-principal"
+ },
+ {
+  "id": "primeros_pasos-05",
+  "tema": "primeros_pasos",
+  "pregunta_en": "Can I make the menu smaller?",
+  "respuesta_en": "Yes, on wider screens. The arrow button next to the app name folds the menu into a column of icons; point at an icon or move to it with the keyboard to see its name. The app remembers your choice in this browser.",
+  "pregunta_es": "¿Puedo hacer el menú más pequeño?",
+  "respuesta_es": "Sí, en pantallas anchas. El botón de flecha junto al nombre de la app pliega el menú en una columna de iconos; al pasar el ratón o llegar con el teclado a un icono se ve su nombre. La app recuerda tu elección en este navegador.",
+  "enlace": "plegar-menu"
+ },
+ {
+  "id": "primeros_pasos-06",
+  "tema": "primeros_pasos",
+  "pregunta_en": "How do I see the whole globe or map without panels?",
+  "respuesta_en": "Press Hide panels at the top right. The button changes to Show panels so you can bring them back. The red dot on a panel's title bar also hides the panels.",
+  "pregunta_es": "¿Cómo veo el globo o el mapa entero sin paneles?",
+  "respuesta_es": "Pulsa Hide panels arriba a la derecha. El botón pasa a decir Show panels para volver a mostrarlos. El punto rojo de la barra de título de un panel también oculta los paneles.",
+  "enlace": "solomapa"
+ },
+ {
+  "id": "primeros_pasos-07",
+  "tema": "primeros_pasos",
+  "pregunta_en": "What do the three coloured dots on each panel do?",
+  "respuesta_en": "Red hides the panels, amber minimises the panel to its title bar, and green makes it wider. Double-clicking the title bar also minimises it.",
+  "pregunta_es": "¿Qué hacen los tres puntos de colores de cada panel?",
+  "respuesta_es": "El rojo oculta los paneles, el ámbar minimiza el panel a su barra de título y el verde lo ensancha. Un doble clic en la barra de título también lo minimiza.",
+  "enlace": "investigar"
+ },
+ {
+  "id": "primeros_pasos-08",
+  "tema": "primeros_pasos",
+  "pregunta_en": "Is there a guided tour?",
+  "respuesta_en": "Yes. Terra, your trend detective, gives a one-minute tour that points at the real parts of the app. Start it any time with the Guided tour button at the top, or with Start the tour in Help.",
+  "pregunta_es": "¿Hay un recorrido guiado?",
+  "respuesta_es": "Sí. Terra, tu detective de tendencias, hace un recorrido de un minuto que señala las partes reales de la app. Se abre cuando quieras con el botón Guided tour de arriba, o con Start the tour en Help.",
+  "enlace": "ayuda-tour"
+ },
+ {
+  "id": "primeros_pasos-09",
+  "tema": "primeros_pasos",
+  "pregunta_en": "Can I read this help in Spanish?",
+  "respuesta_en": "Yes. The app itself is in English, but the language button at the top of Help switches these questions and answers between English and Spanish. The search understands both languages.",
+  "pregunta_es": "¿Puedo leer esta ayuda en español?",
+  "respuesta_es": "Sí. La app está en inglés, pero el botón de idioma arriba de Help cambia estas preguntas y respuestas entre inglés y español. El buscador entiende los dos idiomas.",
+  "enlace": "ayuda-idioma"
+ },
+ {
+  "id": "primeros_pasos-10",
+  "tema": "primeros_pasos",
+  "pregunta_en": "Do I need an account or a password?",
+  "respuesta_en": "No. The app opens in the browser without signing in.",
+  "pregunta_es": "¿Necesito una cuenta o una contraseña?",
+  "respuesta_es": "No. La app se abre en el navegador sin iniciar sesión.",
+  "enlace": "meteorologia"
+ },
+ {
+  "id": "globo_mapa-01",
+  "tema": "globo_mapa",
+  "pregunta_en": "How do I use the 3D globe?",
+  "respuesta_en": "Drag to rotate it, scroll to zoom and click a point to get a forecast for that place.",
+  "pregunta_es": "¿Cómo uso el globo 3D?",
+  "respuesta_es": "Arrastra para girarlo, usa la rueda para acercarte y haz clic en un punto para obtener el pronóstico de ese lugar.",
+  "enlace": "vista-globo"
+ },
+ {
+  "id": "globo_mapa-02",
+  "tema": "globo_mapa",
+  "pregunta_en": "How do I switch between the globe and the flat map?",
+  "respuesta_en": "Use the Globe and Map buttons at the top. The globe unfolds into the 2D map and folds back again.",
+  "pregunta_es": "¿Cómo cambio entre el globo y el mapa plano?",
+  "respuesta_es": "Con los botones Globe y Map de arriba. El globo se despliega en el mapa 2D y vuelve a plegarse.",
+  "enlace": "vista-mapa"
+ },
+ {
+  "id": "globo_mapa-03",
+  "tema": "globo_mapa",
+  "pregunta_en": "How do I zoom the flat map?",
+  "respuesta_en": "Use the + and − buttons at the bottom right, the mouse wheel, or pinch on a touch screen.",
+  "pregunta_es": "¿Cómo acerco o alejo el mapa plano?",
+  "respuesta_es": "Con los botones + y − abajo a la derecha, con la rueda del ratón o pellizcando en una pantalla táctil.",
+  "enlace": "vista-mapa"
+ },
+ {
+  "id": "globo_mapa-04",
+  "tema": "globo_mapa",
+  "pregunta_en": "What imagery does the map use?",
+  "respuesta_en": "The base is NASA Blue Marble from GIBS, the same picture as the globe. When you zoom in further, a high-resolution satellite photo from Esri (a fixed mosaic, not live) and place names appear on top.",
+  "pregunta_es": "¿Qué imágenes usa el mapa?",
+  "respuesta_es": "La base es NASA Blue Marble de GIBS, la misma imagen que el globo. Al acercarte más aparece encima una foto satelital de alta resolución de Esri (un mosaico fijo, no en vivo) y los nombres de lugares.",
+  "enlace": "vista-mapa"
+ },
+ {
+  "id": "globo_mapa-05",
+  "tema": "globo_mapa",
+  "pregunta_en": "What are the thin lines and names on the map?",
+  "respuesta_en": "Country borders and country names, plus a few major cities. From zoom level 6 the detailed Esri labels take over.",
+  "pregunta_es": "¿Qué son las líneas finas y los nombres del mapa?",
+  "respuesta_es": "Las fronteras y los nombres de los países, más algunas ciudades grandes. A partir del nivel de zoom 6 los sustituyen las etiquetas detalladas de Esri.",
+  "enlace": "vista-mapa"
+ },
+ {
+  "id": "globo_mapa-06",
+  "tema": "globo_mapa",
+  "pregunta_en": "Why are some layers missing on the globe?",
+  "respuesta_en": "GOES satellite, Radar, IMERG rain, Sea temp. anomaly, Dust & smoke and Cyclones are map layers. Their checkboxes appear in the Layers window when you switch to Map.",
+  "pregunta_es": "¿Por qué faltan algunas capas en el globo?",
+  "respuesta_es": "GOES satellite, Radar, IMERG rain, Sea temp. anomaly, Dust & smoke y Cyclones son capas del mapa. Sus casillas aparecen en la ventana Layers al cambiar a Map.",
+  "enlace": "barra-capas"
+ },
+ {
+  "id": "globo_mapa-07",
+  "tema": "globo_mapa",
+  "pregunta_en": "What is the circle with a name that appears on the map?",
+  "respuesta_en": "It marks the place you chose in Investigate after pressing Show on the map. Only one place is marked at a time.",
+  "pregunta_es": "¿Qué es el círculo con un nombre que aparece en el mapa?",
+  "respuesta_es": "Marca el lugar que elegiste en Investigate al pulsar Show on the map. Solo se marca un lugar a la vez.",
+  "enlace": "inv-mapa"
+ },
+ {
+  "id": "globo_mapa-08",
+  "tema": "globo_mapa",
+  "pregunta_en": "Can I make the coloured weather layer more transparent?",
+  "respuesta_en": "Yes. Use the Layer opacity slider at the top of the Weather panel.",
+  "pregunta_es": "¿Puedo hacer más transparente la capa de colores del tiempo?",
+  "respuesta_es": "Sí. Usa el control Layer opacity en la parte superior del panel Weather.",
+  "enlace": "opacidad-temp"
+ },
+ {
+  "id": "globo_mapa-09",
+  "tema": "globo_mapa",
+  "pregunta_en": "What happens if the satellite base picture does not load?",
+  "respuesta_en": "The app shows a message and keeps the country borders and labels so you can still find your way.",
+  "pregunta_es": "¿Qué pasa si no carga la imagen satelital de fondo?",
+  "respuesta_es": "La app muestra un aviso y mantiene las fronteras y las etiquetas para que puedas seguir orientándote.",
+  "enlace": "vista-mapa"
+ },
+ {
+  "id": "globo_mapa-10",
+  "tema": "globo_mapa",
+  "pregunta_en": "Can a link open the app directly on the flat map?",
+  "respuesta_en": "Yes. Add #map to the end of the app's address and it opens in the Map view.",
+  "pregunta_es": "¿Puede un enlace abrir la app directamente en el mapa plano?",
+  "respuesta_es": "Sí. Añade #map al final de la dirección de la app y se abrirá en la vista Map.",
+  "enlace": "vista-mapa"
+ },
+ {
+  "id": "investigar-01",
+  "tema": "investigar",
+  "pregunta_en": "How does Investigate work?",
+  "respuesta_en": "Step 1: choose what to investigate (a topic). Step 2: choose where (a place). If a place has several variables, a third row of buttons lets you pick one. The verdict card, the chart and any cross-checks update straight away.",
+  "pregunta_es": "¿Cómo funciona Investigate?",
+  "respuesta_es": "Paso 1: elige qué investigar (un tema). Paso 2: elige dónde (un lugar). Si un lugar tiene varias variables, una tercera fila de botones te deja escoger una. La tarjeta del veredicto, la gráfica y los contrastes se actualizan al momento.",
+  "enlace": "investigar"
+ },
+ {
+  "id": "investigar-02",
+  "tema": "investigar",
+  "pregunta_en": "Which topics can I investigate?",
+  "respuesta_en": "Rain, Temperature, Vegetation & ecosystems, Water bodies, Air quality, Coast & ocean, Hurricanes and Ice.",
+  "pregunta_es": "¿Qué temas puedo investigar?",
+  "respuesta_es": "Rain, Temperature, Vegetation & ecosystems, Water bodies, Air quality, Coast & ocean, Hurricanes e Ice.",
+  "enlace": "inv-categorias"
+ },
+ {
+  "id": "investigar-03",
+  "tema": "investigar",
+  "pregunta_en": "Where do I find sea warming or forest loss?",
+  "respuesta_en": "Sea warming, for example in the Mediterranean Sea, is under Coast & ocean. Forest loss and burned area are under Vegetation & ecosystems.",
+  "pregunta_es": "¿Dónde encuentro el calentamiento del mar o la pérdida de bosque?",
+  "respuesta_es": "El calentamiento del mar, por ejemplo en el Mediterráneo, está en Coast & ocean. La pérdida de bosque y el área quemada están en Vegetation & ecosystems.",
+  "enlace": "inv-categorias"
+ },
+ {
+  "id": "investigar-04",
+  "tema": "investigar",
+  "pregunta_en": "What are the Guided examples?",
+  "respuesta_en": "Short step-by-step stories at the bottom of Investigate: Has Nicaragua's rainfall changed?, Same total, different rain? and Tropics vs. prairies: is warming the same everywhere?. Move with Previous and Next, and press Escape to close one.",
+  "pregunta_es": "¿Qué son los Guided examples?",
+  "respuesta_es": "Historias cortas paso a paso al final de Investigate: Has Nicaragua's rainfall changed?, Same total, different rain? y Tropics vs. prairies: is warming the same everywhere?. Avanza con Previous y Next y pulsa Escape para cerrar una.",
+  "enlace": "inv-demos"
+ },
+ {
+  "id": "investigar-05",
+  "tema": "investigar",
+  "pregunta_en": "What are Cross-checks?",
+  "respuesta_en": "The same question answered with another dataset or another method. Each one shows both slopes and verdicts and, when possible, how closely the two series agree (r) and their mean difference. Not every series has one.",
+  "pregunta_es": "¿Qué son los Cross-checks?",
+  "respuesta_es": "La misma pregunta respondida con otro conjunto de datos u otro método. Cada uno muestra las dos pendientes y sus veredictos y, cuando se puede, cuánto se parecen las dos series (r) y su diferencia media. No todas las series tienen uno.",
+  "enlace": "inv-contrastes"
+ },
+ {
+  "id": "investigar-06",
+  "tema": "investigar",
+  "pregunta_en": "What does Show on the map do?",
+  "respuesta_en": "It switches to the flat map, zooms to the place you are investigating and marks it with a labelled circle. On a phone it also hides the panels so you can see the place.",
+  "pregunta_es": "¿Qué hace Show on the map?",
+  "respuesta_es": "Cambia al mapa plano, se acerca al lugar que investigas y lo marca con un círculo con su nombre. En el móvil además oculta los paneles para que veas el lugar.",
+  "enlace": "inv-mapa"
+ },
+ {
+  "id": "investigar-07",
+  "tema": "investigar",
+  "pregunta_en": "What is the Rainfall trend tab?",
+  "respuesta_en": "A comparison of annual rainfall from NASA GPM IMERG, 2001–2024, for Nicaragua, a study box in southwest Nicaragua, Honduras and Costa Rica. It shows the least-squares slope first, next to Theil–Sen, and a chart comparing the trend of each area.",
+  "pregunta_es": "¿Qué es la pestaña Rainfall trend?",
+  "respuesta_es": "Una comparación de la lluvia anual de NASA GPM IMERG, 2001–2024, para Nicaragua, una caja de estudio en el suroeste de Nicaragua, Honduras y Costa Rica. Muestra primero la pendiente de mínimos cuadrados, junto a Theil–Sen, y una gráfica que compara la tendencia de cada zona.",
+  "enlace": "tendencias"
+ },
+ {
+  "id": "investigar-08",
+  "tema": "investigar",
+  "pregunta_en": "What is the Climate indicators tab?",
+  "respuesta_en": "A focused view of Nicaragua by region (whole country, Pacific, Central and Caribbean) for temperature, annual rainfall and the rainy season. It adds the trend with El Niño removed and a check of whether the rainy season can be anticipated.",
+  "pregunta_es": "¿Qué es la pestaña Climate indicators?",
+  "respuesta_es": "Una vista centrada en Nicaragua por regiones (todo el país, Pacífico, Centro y Caribe) para temperatura, lluvia anual y temporada de lluvias. Añade la tendencia sin El Niño y una prueba de si la temporada de lluvias se puede anticipar.",
+  "enlace": "indicadores"
+ },
+ {
+  "id": "investigar-09",
+  "tema": "investigar",
+  "pregunta_en": "What does \"Without El Niño\" mean in Climate indicators?",
+  "respuesta_en": "It is the trend after removing the part of the year-to-year swings that follows the Niño 3.4 index. Comparing it with the normal trend shows how much El Niño and La Niña affect the result.",
+  "pregunta_es": "¿Qué significa «Without El Niño» en Climate indicators?",
+  "respuesta_es": "Es la tendencia después de quitar la parte de las oscilaciones de un año a otro que sigue al índice Niño 3.4. Compararla con la tendencia normal muestra cuánto influyen El Niño y La Niña en el resultado.",
+  "enlace": "indicadores"
+ },
+ {
+  "id": "investigar-10",
+  "tema": "investigar",
+  "pregunta_en": "Can the rainy season be anticipated?",
+  "respuesta_en": "Climate indicators tests whether June–November rainfall could have been predicted from March–May sea temperatures, leaving each year out of the fit. It reports the skill against climatology and the share of terciles predicted right, compared with 33% by chance.",
+  "pregunta_es": "¿Se puede anticipar la temporada de lluvias?",
+  "respuesta_es": "Climate indicators comprueba si la lluvia de junio a noviembre se habría podido predecir con las temperaturas del mar de marzo a mayo, dejando fuera del ajuste cada año. Da la habilidad frente a la climatología y el porcentaje de terciles acertados, frente al 33% por azar.",
+  "enlace": "indicadores"
+ },
+ {
+  "id": "veredictos-01",
+  "tema": "veredictos",
+  "pregunta_en": "What does \"Trend detected\" mean?",
+  "respuesta_en": "All three confidence intervals exclude zero with the same sign and both tests agree. In plain words, every method points the same way and rules out \"no change\" at 95% confidence.",
+  "pregunta_es": "¿Qué significa «Trend detected»?",
+  "respuesta_es": "Los tres intervalos de confianza excluyen el cero con el mismo signo y las dos pruebas coinciden. Dicho de otro modo, todos los métodos apuntan en la misma dirección y descartan «sin cambio» con un 95% de confianza.",
+  "enlace": "aprender-metodos"
+ },
+ {
+  "id": "veredictos-02",
+  "tema": "veredictos",
+  "pregunta_en": "What does \"Not enough evidence of a trend\" mean?",
+  "respuesta_en": "All three intervals include zero, so the record cannot tell a trend apart from natural year-to-year swings. It does NOT mean \"no change\": a short record or large swings can hide a real shift.",
+  "pregunta_es": "¿Qué significa «Not enough evidence of a trend»?",
+  "respuesta_es": "Los tres intervalos incluyen el cero, así que el registro no distingue una tendencia de las oscilaciones naturales de un año a otro. NO significa «sin cambio»: un registro corto o unas oscilaciones grandes pueden ocultar un cambio real.",
+  "enlace": "aprender-no-significativo"
+ },
+ {
+  "id": "veredictos-03",
+  "tema": "veredictos",
+  "pregunta_en": "What does \"Methods disagree\" mean?",
+  "respuesta_en": "At least one test or interval rules out zero while another still includes zero or gives p ≥ 0.05. The answer depends on the method, so the app does not present it as a confirmed trend.",
+  "pregunta_es": "¿Qué significa «Methods disagree»?",
+  "respuesta_es": "Al menos una prueba o un intervalo descarta el cero mientras otro todavía lo incluye o da p ≥ 0,05. La respuesta depende del método, así que la app no la presenta como una tendencia confirmada.",
+  "enlace": "aprender-metodos"
+ },
+ {
+  "id": "veredictos-04",
+  "tema": "veredictos",
+  "pregunta_en": "What does \"Record too short for a trend test\" mean?",
+  "respuesta_en": "There are too few years to test a long-term trend, as with SWOT lake levels, radar water scenes and SMAP soil moisture. The card shows the number of observations and their range instead of a slope.",
+  "pregunta_es": "¿Qué significa «Record too short for a trend test»?",
+  "respuesta_es": "Hay muy pocos años para probar una tendencia de largo plazo, como con el nivel de los lagos de SWOT, las escenas de agua por radar o la humedad del suelo de SMAP. La tarjeta muestra el número de observaciones y su rango en lugar de una pendiente.",
+  "enlace": "aprender-registro-corto"
+ },
+ {
+  "id": "veredictos-05",
+  "tema": "veredictos",
+  "pregunta_en": "Is \"Insufficient evidence\" different from \"Not enough evidence of a trend\"?",
+  "respuesta_en": "No. The Rainfall trend tab uses the shorter label \"Insufficient evidence\", and it means the same.",
+  "pregunta_es": "¿«Insufficient evidence» es distinto de «Not enough evidence of a trend»?",
+  "respuesta_es": "No. La pestaña Rainfall trend usa la etiqueta corta «Insufficient evidence» y significa lo mismo.",
+  "enlace": "tendencias"
+ },
+ {
+  "id": "veredictos-06",
+  "tema": "veredictos",
+  "pregunta_en": "What does \"How much per decade\" show?",
+  "respuesta_en": "The Theil–Sen slope: how much the value changes every ten years, in the units of the data, with its 95% confidence interval underneath.",
+  "pregunta_es": "¿Qué muestra «How much per decade»?",
+  "respuesta_es": "La pendiente de Theil–Sen: cuánto cambia el valor cada diez años, en las unidades de los datos, con su intervalo de confianza del 95% debajo.",
+  "enlace": "aprender-tendencia"
+ },
+ {
+  "id": "veredictos-07",
+  "tema": "veredictos",
+  "pregunta_en": "What does \"How sure\" show?",
+  "respuesta_en": "The p-value of the Mann–Kendall test, corrected for autocorrelation. Below 0.05 means a pattern this strong would rarely appear by chance if there were no trend. It is not the probability that the trend is real.",
+  "pregunta_es": "¿Qué muestra «How sure»?",
+  "respuesta_es": "El valor p de la prueba de Mann–Kendall, corregida por autocorrelación. Por debajo de 0,05 significa que un patrón así de fuerte rara vez saldría por azar si no hubiera tendencia. No es la probabilidad de que la tendencia sea real.",
+  "enlace": "aprender-pvalor"
+ },
+ {
+  "id": "veredictos-08",
+  "tema": "veredictos",
+  "pregunta_en": "What does the \"Least squares\" card show?",
+  "respuesta_en": "The slope of a straight line fitted through the years, per decade, with a 95% confidence interval corrected for autocorrelation. Compare it with the Theil–Sen slope: if they differ a lot, unusual years are pulling the line.",
+  "pregunta_es": "¿Qué muestra la tarjeta «Least squares»?",
+  "respuesta_es": "La pendiente de una recta ajustada a los años, por década, con un intervalo de confianza del 95% corregido por autocorrelación. Compárala con la de Theil–Sen: si difieren mucho, algunos años raros están tirando de la recta.",
+  "enlace": "aprender-metodos"
+ },
+ {
+  "id": "veredictos-09",
+  "tema": "veredictos",
+  "pregunta_en": "Does \"Trend detected\" tell me why something changed?",
+  "respuesta_en": "No. Detection is not attribution. A detected trend shows a consistent change in the observed series, not its cause, which could be climate, natural cycles, water management, land use or changes in how it was measured.",
+  "pregunta_es": "¿«Trend detected» me dice por qué cambió algo?",
+  "respuesta_es": "No. Detectar no es atribuir. Una tendencia detectada muestra un cambio constante en la serie observada, no su causa, que puede ser el clima, ciclos naturales, la gestión del agua, el uso del suelo o cambios en la forma de medir.",
+  "enlace": "aprender-metodos"
+ },
+ {
+  "id": "veredictos-10",
+  "tema": "veredictos",
+  "pregunta_en": "What does the \"What does this mean?\" link do?",
+  "respuesta_en": "It opens the explanation in Learn that matches the verdict you are reading.",
+  "pregunta_es": "¿Qué hace el enlace «What does this mean?»?",
+  "respuesta_es": "Abre la explicación de Learn que corresponde al veredicto que estás leyendo.",
+  "enlace": "aprender"
+ },
+ {
+  "id": "metodos-01",
+  "tema": "metodos",
+  "pregunta_en": "What is the Theil–Sen slope?",
+  "respuesta_en": "A non-parametric way to measure a trend: it takes the median of the slopes between every pair of years. Because it uses the median, one or two unusual years barely move it.",
+  "pregunta_es": "¿Qué es la pendiente de Theil–Sen?",
+  "respuesta_es": "Una forma no paramétrica de medir una tendencia: toma la mediana de las pendientes entre cada par de años. Como usa la mediana, uno o dos años raros apenas la mueven.",
+  "enlace": "aprender-metodos"
+ },
+ {
+  "id": "metodos-02",
+  "tema": "metodos",
+  "pregunta_en": "What is the Mann–Kendall test?",
+  "respuesta_en": "A test that checks whether values tend to rise or fall over time without assuming a straight line. Here it is corrected for autocorrelation and gives the p-value shown as \"How sure\".",
+  "pregunta_es": "¿Qué es la prueba de Mann–Kendall?",
+  "respuesta_es": "Una prueba que comprueba si los valores tienden a subir o bajar con el tiempo sin suponer una línea recta. Aquí está corregida por autocorrelación y da el valor p que aparece en «How sure».",
+  "enlace": "aprender-metodos"
+ },
+ {
+  "id": "metodos-03",
+  "tema": "metodos",
+  "pregunta_en": "What is Newey–West (HAC)?",
+  "respuesta_en": "The same least-squares line, but with error bars that allow for autocorrelation and changing variability. It is one of the three intervals behind every verdict.",
+  "pregunta_es": "¿Qué es Newey–West (HAC)?",
+  "respuesta_es": "La misma recta de mínimos cuadrados, pero con márgenes de error que tienen en cuenta la autocorrelación y la variabilidad cambiante. Es uno de los tres intervalos detrás de cada veredicto.",
+  "enlace": "aprender-metodos"
+ },
+ {
+  "id": "metodos-04",
+  "tema": "metodos",
+  "pregunta_en": "Why use several methods instead of one?",
+  "respuesta_en": "Each method can be fooled in a different way, for example by extreme years or by values that depend on the year before. A verdict is only \"Trend detected\" when they all agree, which makes it harder to be misled.",
+  "pregunta_es": "¿Por qué usar varios métodos en lugar de uno?",
+  "respuesta_es": "Cada método puede engañarse de una forma distinta, por ejemplo por años extremos o por valores que dependen del año anterior. Un veredicto solo es «Trend detected» cuando todos coinciden, y así es más difícil equivocarse.",
+  "enlace": "aprender-metodos"
+ },
+ {
+  "id": "metodos-05",
+  "tema": "metodos",
+  "pregunta_en": "What is a 95% confidence interval?",
+  "respuesta_en": "The range of slopes consistent with the data. A narrow interval means a precise estimate and a wide one means a lot of uncertainty. If it includes zero, the data cannot rule out \"no change\".",
+  "pregunta_es": "¿Qué es un intervalo de confianza del 95%?",
+  "respuesta_es": "El rango de pendientes compatibles con los datos. Un intervalo estrecho indica una estimación precisa y uno ancho, mucha incertidumbre. Si incluye el cero, los datos no pueden descartar «sin cambio».",
+  "enlace": "aprender-ic"
+ },
+ {
+  "id": "metodos-06",
+  "tema": "metodos",
+  "pregunta_en": "What is a p-value?",
+  "respuesta_en": "If there were no trend at all, how often random year-to-year variation would produce a pattern at least this strong. It does not prove a cause and says nothing about whether the change is big enough to matter, so read it next to the slope.",
+  "pregunta_es": "¿Qué es un valor p?",
+  "respuesta_es": "Si no hubiera ninguna tendencia, con qué frecuencia la variación aleatoria de un año a otro produciría un patrón al menos así de fuerte. No demuestra una causa ni dice si el cambio es lo bastante grande como para importar, así que léelo junto a la pendiente.",
+  "enlace": "aprender-pvalor"
+ },
+ {
+  "id": "metodos-07",
+  "tema": "metodos",
+  "pregunta_en": "Why are monthly values not treated as independent?",
+  "respuesta_en": "A wet month is often followed by another wet one, and every year repeats the seasons, so treating months as separate samples makes a test overconfident. Learn shows an example: chlorophyll in the Gulf of Fonseca goes from p = 0.0007 with raw months to p = 0.08 after the corrections.",
+  "pregunta_es": "¿Por qué los valores mensuales no se tratan como independientes?",
+  "respuesta_es": "Un mes lluvioso suele ir seguido de otro, y cada año repite las estaciones, así que tratar los meses como muestras separadas da una confianza excesiva. Learn muestra un ejemplo: la clorofila del golfo de Fonseca pasa de p = 0,0007 con los meses brutos a p = 0,08 tras las correcciones.",
+  "enlace": "aprender-autocorrelacion"
+ },
+ {
+  "id": "metodos-08",
+  "tema": "metodos",
+  "pregunta_en": "If I look at many series, will some trends be false alarms?",
+  "respuesta_en": "Yes, each test has about a 5% chance of a false alarm. Maps of many grid cells use the false discovery rate correction, and a single significant result should always be read next to its cross-checks.",
+  "pregunta_es": "Si miro muchas series, ¿alguna tendencia será una falsa alarma?",
+  "respuesta_es": "Sí, cada prueba tiene alrededor de un 5% de probabilidad de falsa alarma. Los mapas de muchas celdas usan la corrección de la tasa de falsos descubrimientos, y un único resultado significativo siempre debe leerse junto a sus contrastes.",
+  "enlace": "aprender-comparaciones"
+ },
+ {
+  "id": "metodos-09",
+  "tema": "metodos",
+  "pregunta_en": "Why not use the seasonal Mann–Kendall or unit-root tests?",
+  "respuesta_en": "The app reaches the goal of the seasonal Mann–Kendall test by testing annual and season totals instead of raw months. Unit-root tests such as augmented Dickey–Fuller ask whether a series wanders like a random walk, not whether it rises or falls, so they are not used to decide a trend.",
+  "pregunta_es": "¿Por qué no se usan la prueba de Mann–Kendall estacional o las de raíz unitaria?",
+  "respuesta_es": "La app logra el objetivo de la Mann–Kendall estacional probando totales anuales y de temporada en lugar de meses brutos. Las pruebas de raíz unitaria, como la de Dickey–Fuller aumentada, preguntan si una serie deambula como un paseo aleatorio, no si sube o baja, así que no se usan para decidir una tendencia.",
+  "enlace": "aprender-otras-pruebas"
+ },
+ {
+  "id": "metodos-10",
+  "tema": "metodos",
+  "pregunta_en": "Why are rainfall trends not taken from MERRA-2?",
+  "respuesta_en": "MERRA-2 is a reanalysis and suggests Nicaragua's rainfall doubled since the 1980s, while satellites and rain gauges show nothing of the kind: the observations fed into the model changed, not the climate. Main rainfall verdicts use observation-based products such as IMERG, CHIRPS and CRU.",
+  "pregunta_es": "¿Por qué las tendencias de lluvia no salen de MERRA-2?",
+  "respuesta_es": "MERRA-2 es un reanálisis y sugiere que la lluvia de Nicaragua se duplicó desde los años ochenta, mientras que los satélites y los pluviómetros no muestran nada parecido: cambiaron las observaciones que alimentan el modelo, no el clima. Los veredictos principales de lluvia usan productos basados en observaciones como IMERG, CHIRPS y CRU.",
+  "enlace": "aprender-variabilidad"
+ },
+ {
+  "id": "cuencas-01",
+  "tema": "cuencas",
+  "pregunta_en": "How does the watershed analysis work?",
+  "respuesta_en": "Open Watersheds, choose a dataset and region and a level of detail, then press Show watersheds. The map draws the boundaries; click one, or search for it, to see its complete source code. Boundaries are reference maps: on their own they do not establish a climate trend.",
+  "pregunta_es": "¿Cómo funciona el análisis de cuencas?",
+  "respuesta_es": "Abre Watersheds, elige un conjunto de datos y región y un nivel de detalle, y pulsa Show watersheds. El mapa dibuja los límites; haz clic en uno, o búscalo, para ver su código de origen completo. Los límites son mapas de referencia: por sí solos no establecen una tendencia climática.",
+  "enlace": "hidrologia"
+ },
+ {
+  "id": "cuencas-02",
+  "tema": "cuencas",
+  "pregunta_en": "Which watershed datasets are available?",
+  "respuesta_en": "Nicaragua's national watersheds from INETER/SINAPRED (2021, level 7) and HydroBASINS from HydroSHEDS for the whole world at level 4 or for each world region at level 4 or 6.",
+  "pregunta_es": "¿Qué conjuntos de cuencas hay?",
+  "respuesta_es": "Las cuencas nacionales de Nicaragua de INETER/SINAPRED (2021, nivel 7) y HydroBASINS de HydroSHEDS para todo el mundo en nivel 4 o para cada región del mundo en nivel 4 o 6.",
+  "enlace": "hid-region"
+ },
+ {
+  "id": "cuencas-03",
+  "tema": "cuencas",
+  "pregunta_en": "How do I find a watershed by its code or name?",
+  "respuesta_en": "Type in the Find a code or basin name box. Matching watersheds appear as buttons; pressing one shows its details and zooms the map to it.",
+  "pregunta_es": "¿Cómo encuentro una cuenca por su código o su nombre?",
+  "respuesta_es": "Escribe en el cuadro Find a code or basin name. Las cuencas que coinciden aparecen como botones; al pulsar uno se ven sus detalles y el mapa se acerca a ella.",
+  "enlace": "hid-buscar"
+ },
+ {
+  "id": "cuencas-04",
+  "tema": "cuencas",
+  "pregunta_en": "Can I see the codes written on the map?",
+  "respuesta_en": "Yes. Tick Label visible watershed codes and up to 150 codes inside the visible part of the map are labelled.",
+  "pregunta_es": "¿Puedo ver los códigos escritos en el mapa?",
+  "respuesta_es": "Sí. Marca Label visible watershed codes y se rotulan hasta 150 códigos dentro de la parte visible del mapa.",
+  "enlace": "hid-etiquetas"
+ },
+ {
+  "id": "cuencas-05",
+  "tema": "cuencas",
+  "pregunta_en": "Why does Nicaragua's level 7 include shorter codes?",
+  "respuesta_en": "The national source is titled \"Level 7\" but includes 3-, 6- and 7-digit codes. The app keeps them all exactly as published, and where a code and its published components disagree it shows both without correcting either.",
+  "pregunta_es": "¿Por qué el nivel 7 de Nicaragua incluye códigos más cortos?",
+  "respuesta_es": "La fuente nacional se titula «Level 7» pero incluye códigos de 3, 6 y 7 dígitos. La app los conserva todos tal como se publicaron y, cuando un código y sus componentes publicados no coinciden, muestra ambos sin corregir ninguno.",
+  "enlace": "hidrologia"
+ },
+ {
+  "id": "cuencas-06",
+  "tema": "cuencas",
+  "pregunta_en": "Are Nicaragua's codes the same as HydroBASINS codes?",
+  "respuesta_en": "No. They belong to separate systems and the app does not assume any equivalence between them.",
+  "pregunta_es": "¿Los códigos de Nicaragua son los mismos que los de HydroBASINS?",
+  "respuesta_es": "No. Pertenecen a sistemas distintos y la app no supone ninguna equivalencia entre ellos.",
+  "enlace": "hidrologia"
+ },
+ {
+  "id": "cuencas-07",
+  "tema": "cuencas",
+  "pregunta_en": "What are the INETER station readings?",
+  "respuesta_en": "Station points for river level, 24-hour rainfall, air temperature or wind from INETER. Dates are checked station by station: readings from the last 48 hours are coloured differently from older ones, and a recent retrieval can still contain old observations.",
+  "pregunta_es": "¿Qué son las lecturas de estaciones de INETER?",
+  "respuesta_es": "Puntos de estaciones de INETER para nivel del río, lluvia de 24 horas, temperatura del aire o viento. Las fechas se revisan estación por estación: las lecturas de las últimas 48 horas tienen otro color que las más antiguas, y una descarga reciente puede contener observaciones viejas.",
+  "enlace": "hid-estacion"
+ },
+ {
+  "id": "cuencas-08",
+  "tema": "cuencas",
+  "pregunta_en": "What does Refresh from INETER do?",
+  "respuesta_en": "It asks for new station readings. When no live connection to INETER is configured, as in this public version, the app keeps the dated snapshot and says so in the status line. Ticking Refresh every 5 minutes repeats this while the panel is open.",
+  "pregunta_es": "¿Qué hace Refresh from INETER?",
+  "respuesta_es": "Pide nuevas lecturas de las estaciones. Cuando no hay una conexión en vivo con INETER configurada, como en esta versión pública, la app conserva la instantánea fechada y lo indica en la línea de estado. Si marcas Refresh every 5 minutes lo repite mientras el panel esté abierto.",
+  "enlace": "hid-actualizar"
+ },
+ {
+  "id": "cuencas-09",
+  "tema": "cuencas",
+  "pregunta_en": "What are the national climate and hazard maps?",
+  "respuesta_en": "Reference layers from INETER, such as climate regions, the annual precipitation map or drought hazard, plus more SINAPRED hazard maps under More hazard maps. They describe mapped conditions, not current events or detected trends.",
+  "pregunta_es": "¿Qué son los mapas nacionales de clima y amenazas?",
+  "respuesta_es": "Capas de referencia de INETER, como las regiones climáticas, el mapa de precipitación anual o la amenaza de sequía, más otros mapas de amenazas de SINAPRED en More hazard maps. Describen condiciones cartografiadas, no sucesos actuales ni tendencias detectadas.",
+  "enlace": "hid-referencia"
+ },
+ {
+  "id": "cuencas-10",
+  "tema": "cuencas",
+  "pregunta_en": "Can I combine watersheds with NASA observations?",
+  "respuesta_en": "Yes. The buttons under Global observations already on the map turn on NASA GPM rainfall, sea temperature anomaly or dust and smoke over the watershed boundaries.",
+  "pregunta_es": "¿Puedo combinar las cuencas con observaciones de la NASA?",
+  "respuesta_es": "Sí. Los botones de Global observations already on the map activan la lluvia NASA GPM, la anomalía de temperatura del mar o el polvo y humo sobre los límites de las cuencas.",
+  "enlace": "hidrologia"
+ },
+ {
+  "id": "tiempo-01",
+  "tema": "tiempo",
+  "pregunta_en": "How do I get a forecast for a place?",
+  "respuesta_en": "Click anywhere on the globe or the map, or type a latitude and longitude in Weather and press Get forecast. You get a forecast for the next 48 hours.",
+  "pregunta_es": "¿Cómo obtengo el pronóstico de un lugar?",
+  "respuesta_es": "Haz clic en cualquier punto del globo o del mapa, o escribe una latitud y una longitud en Weather y pulsa Get forecast. Obtienes el pronóstico de las próximas 48 horas.",
+  "enlace": "consulta-punto"
+ },
+ {
+  "id": "tiempo-02",
+  "tema": "tiempo",
+  "pregunta_en": "Where does the point forecast come from?",
+  "respuesta_en": "From the ECMWF IFS weather model at 0.25°, requested live through Open-Meteo when you ask for a place.",
+  "pregunta_es": "¿De dónde sale el pronóstico de un punto?",
+  "respuesta_es": "Del modelo meteorológico ECMWF IFS a 0,25°, pedido en vivo a través de Open-Meteo cuando consultas un lugar.",
+  "enlace": "meteorologia"
+ },
+ {
+  "id": "tiempo-03",
+  "tema": "tiempo",
+  "pregunta_en": "What does the point forecast show?",
+  "respuesta_en": "The coordinates and time in UTC, current temperature, precipitation and wind with its direction, and an hourly chart for the next two days.",
+  "pregunta_es": "¿Qué muestra el pronóstico de un punto?",
+  "respuesta_es": "Las coordenadas y la hora en UTC, la temperatura, la precipitación y el viento actuales con su dirección, y una gráfica por horas de los próximos dos días.",
+  "enlace": "meteo"
+ },
+ {
+  "id": "tiempo-04",
+  "tema": "tiempo",
+  "pregunta_en": "How do I use the forecast timeline?",
+  "respuesta_en": "The bar at the bottom moves the weather layer through the forecast hours. Press ▶ to play it, drag the slider to choose an hour, or press Now to go back to the current time.",
+  "pregunta_es": "¿Cómo uso la línea de tiempo del pronóstico?",
+  "respuesta_es": "La barra de abajo mueve la capa del tiempo por las horas del pronóstico. Pulsa ▶ para reproducirla, arrastra el control para elegir una hora o pulsa Now para volver a la hora actual.",
+  "enlace": "linea-tiempo"
+ },
+ {
+  "id": "tiempo-05",
+  "tema": "tiempo",
+  "pregunta_en": "What is the status button at the top?",
+  "respuesta_en": "It shows which weather model the coloured layers come from and when it was run, for example \"ECMWF IFS\" with a date in UTC. Press it to see the model, the run, the hour shown and the imagery used.",
+  "pregunta_es": "¿Qué es el botón de estado de arriba?",
+  "respuesta_es": "Muestra de qué modelo meteorológico salen las capas de colores y cuándo se ejecutó, por ejemplo «ECMWF IFS» con una fecha en UTC. Púlsalo para ver el modelo, la ejecución, la hora mostrada y las imágenes usadas.",
+  "enlace": "indicador-datos"
+ },
+ {
+  "id": "tiempo-06",
+  "tema": "tiempo",
+  "pregunta_en": "Is a forecast the same as a climate trend?",
+  "respuesta_en": "No. A forecast covers the next 48 hours of weather. A trend describes how a record has changed over many years, which is what Investigate tests.",
+  "pregunta_es": "¿Un pronóstico es lo mismo que una tendencia climática?",
+  "respuesta_es": "No. Un pronóstico cubre las próximas 48 horas de tiempo. Una tendencia describe cómo ha cambiado un registro a lo largo de muchos años, que es lo que comprueba Investigate.",
+  "enlace": "investigar"
+ },
+ {
+  "id": "tiempo-07",
+  "tema": "tiempo",
+  "pregunta_en": "What does the El Niño & cyclones tab show?",
+  "respuesta_en": "The current El Niño phase with the Oceanic Niño Index (ONI) and NOAA thresholds, the ONI since 1950, weekly anomalies by Niño region and the list of active tropical cyclones, with buttons to show them on the map.",
+  "pregunta_es": "¿Qué muestra la pestaña El Niño & cyclones?",
+  "respuesta_es": "La fase actual de El Niño con el Índice Oceánico de El Niño (ONI) y los umbrales de NOAA, el ONI desde 1950, las anomalías semanales por región Niño y la lista de ciclones tropicales activos, con botones para verlos en el mapa.",
+  "enlace": "fenomenos"
+ },
+ {
+  "id": "tiempo-08",
+  "tema": "tiempo",
+  "pregunta_en": "What does the Climate scenarios tab show?",
+  "respuesta_en": "Projections from NASA NEX-GDDP-CMIP6 (6 models) for Nicaragua and its regions: the 2041–2060 average compared with 1995–2014 under SSP2-4.5 and SSP5-8.5, as a median and model range. Below, CMIP6 charts for Central America from 2026 to 2100 with a scenario and season selector.",
+  "pregunta_es": "¿Qué muestra la pestaña Climate scenarios?",
+  "respuesta_es": "Proyecciones de NASA NEX-GDDP-CMIP6 (6 modelos) para Nicaragua y sus regiones: la media de 2041–2060 frente a 1995–2014 con SSP2-4.5 y SSP5-8.5, como mediana y rango de modelos. Debajo, gráficas CMIP6 para Centroamérica de 2026 a 2100 con selector de escenario y temporada.",
+  "enlace": "escenarios"
+ },
+ {
+  "id": "tiempo-09",
+  "tema": "tiempo",
+  "pregunta_en": "Are climate scenarios predictions?",
+  "respuesta_en": "No. They are projections of what models simulate under each emissions scenario (SSP). The table gives the median and the range across models, not a forecast for a particular year.",
+  "pregunta_es": "¿Los escenarios climáticos son predicciones?",
+  "respuesta_es": "No. Son proyecciones de lo que simulan los modelos con cada escenario de emisiones (SSP). La tabla da la mediana y el rango entre modelos, no un pronóstico para un año concreto.",
+  "enlace": "escenarios"
+ },
+ {
+  "id": "tiempo-10",
+  "tema": "tiempo",
+  "pregunta_en": "What if the forecast does not load?",
+  "respuesta_en": "The app shows a clear message, for example that the live forecast service could not be reached or timed out. Check your connection and try again.",
+  "pregunta_es": "¿Y si el pronóstico no carga?",
+  "respuesta_es": "La app muestra un aviso claro, por ejemplo que no se pudo conectar con el servicio de pronóstico en vivo o que se agotó el tiempo. Revisa la conexión y vuelve a intentarlo.",
+  "enlace": "meteorologia"
+ },
+ {
+  "id": "capas-01",
+  "tema": "capas",
+  "pregunta_en": "Which weather layers can I show?",
+  "respuesta_en": "In the Layers window: Temperature, Rain, Wind, Gusts, Clouds, Humidity and Pressure, or None to show only the Earth.",
+  "pregunta_es": "¿Qué capas del tiempo puedo mostrar?",
+  "respuesta_es": "En la ventana Layers: Temperature, Rain, Wind, Gusts, Clouds, Humidity y Pressure, o None para ver solo la Tierra.",
+  "enlace": "barra-capas"
+ },
+ {
+  "id": "capas-02",
+  "tema": "capas",
+  "pregunta_en": "What are the moving wind particles?",
+  "respuesta_en": "Animated streaks that follow the forecast wind. Untick Wind particles in the Layers window to turn them off.",
+  "pregunta_es": "¿Qué son las partículas de viento en movimiento?",
+  "respuesta_es": "Trazos animados que siguen el viento del pronóstico. Desmarca Wind particles en la ventana Layers para quitarlos.",
+  "enlace": "chk-particulas"
+ },
+ {
+  "id": "capas-03",
+  "tema": "capas",
+  "pregunta_en": "What does the colour legend show?",
+  "respuesta_en": "The colour scale of the weather layer you selected. It appears in its own small window and hides when you choose None.",
+  "pregunta_es": "¿Qué muestra la leyenda de colores?",
+  "respuesta_es": "La escala de colores de la capa del tiempo que elegiste. Aparece en su propia ventana pequeña y se oculta al elegir None.",
+  "enlace": "barra-capas"
+ },
+ {
+  "id": "capas-04",
+  "tema": "capas",
+  "pregunta_en": "What is the GOES satellite layer?",
+  "respuesta_en": "GOES-East GeoColor imagery from NASA GIBS, the view of a weather satellite over the Americas. Next to the checkbox the app shows the image time in UTC and how many minutes ago it was taken.",
+  "pregunta_es": "¿Qué es la capa GOES satellite?",
+  "respuesta_es": "Imágenes GOES-East GeoColor de NASA GIBS, la vista de un satélite meteorológico sobre las Américas. Junto a la casilla la app muestra la hora de la imagen en UTC y hace cuántos minutos se tomó.",
+  "enlace": "chk-sat"
+ },
+ {
+  "id": "capas-05",
+  "tema": "capas",
+  "pregunta_en": "What is the IMERG rain layer?",
+  "respuesta_en": "NASA GPM IMERG rainfall rate, updated every 30 minutes, shown on the map from NASA GIBS.",
+  "pregunta_es": "¿Qué es la capa IMERG rain?",
+  "respuesta_es": "La intensidad de lluvia NASA GPM IMERG, actualizada cada 30 minutos, mostrada en el mapa desde NASA GIBS.",
+  "enlace": "chk-imerg"
+ },
+ {
+  "id": "capas-06",
+  "tema": "capas",
+  "pregunta_en": "What is the Sea temp. anomaly layer?",
+  "respuesta_en": "How much warmer or cooler the sea surface is than usual, from NASA GIBS. The El Niño & cyclones tab has a button that shows it over the tropical Pacific.",
+  "pregunta_es": "¿Qué es la capa Sea temp. anomaly?",
+  "respuesta_es": "Cuánto más cálida o fría está la superficie del mar de lo habitual, desde NASA GIBS. La pestaña El Niño & cyclones tiene un botón que la muestra sobre el Pacífico tropical.",
+  "enlace": "chk-sst"
+ },
+ {
+  "id": "capas-07",
+  "tema": "capas",
+  "pregunta_en": "What is the Dust & smoke layer?",
+  "respuesta_en": "MODIS aerosol optical depth: how much dust and smoke there is in the air, from NASA GIBS.",
+  "pregunta_es": "¿Qué es la capa Dust & smoke?",
+  "respuesta_es": "La profundidad óptica de aerosoles de MODIS: cuánto polvo y humo hay en el aire, desde NASA GIBS.",
+  "enlace": "chk-aod"
+ },
+ {
+  "id": "capas-08",
+  "tema": "capas",
+  "pregunta_en": "What is the Radar layer?",
+  "respuesta_en": "Recent precipitation radar from RainViewer. If it cannot be reached, the app says that live radar is unavailable.",
+  "pregunta_es": "¿Qué es la capa Radar?",
+  "respuesta_es": "Radar de precipitación reciente de RainViewer. Si no se puede conectar, la app avisa de que el radar en vivo no está disponible.",
+  "enlace": "chk-radar"
+ },
+ {
+  "id": "capas-09",
+  "tema": "capas",
+  "pregunta_en": "What is the Cyclones layer?",
+  "respuesta_en": "Active tropical cyclones from the El Niño & cyclones tab, drawn on the map. The Cyclones on the map button in that tab turns it on and moves the map to the tropical Atlantic.",
+  "pregunta_es": "¿Qué es la capa Cyclones?",
+  "respuesta_es": "Los ciclones tropicales activos de la pestaña El Niño & cyclones, dibujados en el mapa. El botón Cyclones on the map de esa pestaña la activa y lleva el mapa al Atlántico tropical.",
+  "enlace": "chk-tormentas"
+ },
+ {
+  "id": "capas-10",
+  "tema": "capas",
+  "pregunta_en": "Where else can I turn layers on?",
+  "respuesta_en": "In El Niño & cyclones, under More layers, each layer has a Show button. In Watersheds, the Global observations buttons do the same over the watershed boundaries.",
+  "pregunta_es": "¿Dónde más puedo activar capas?",
+  "respuesta_es": "En El Niño & cyclones, en More layers, cada capa tiene un botón Show. En Watersheds, los botones de Global observations hacen lo mismo sobre los límites de las cuencas.",
+  "enlace": "fenomenos"
+ },
+ {
+  "id": "descargas-01",
+  "tema": "descargas",
+  "pregunta_en": "How do I download the series I am investigating?",
+  "respuesta_en": "Press Series (CSV) under the chart in Investigate. The file starts with the source and the place, followed by one row per year, month or scene with its value.",
+  "pregunta_es": "¿Cómo descargo la serie que estoy investigando?",
+  "respuesta_es": "Pulsa Series (CSV) debajo de la gráfica de Investigate. El archivo empieza con la fuente y el lugar, y sigue con una fila por año, mes o escena con su valor.",
+  "enlace": "inv-csv"
+ },
+ {
+  "id": "descargas-02",
+  "tema": "descargas",
+  "pregunta_en": "What is in the Data downloads tab?",
+  "respuesta_en": "Annual rainfall series, trends by area, the full evidence (JSON), climate indicators (JSON), the point forecast, the Oceanic Niño Index, active cyclones and climate projections.",
+  "pregunta_es": "¿Qué hay en la pestaña Data downloads?",
+  "respuesta_es": "La serie de lluvia anual, las tendencias por zona, la evidencia completa (JSON), los indicadores climáticos (JSON), el pronóstico de un punto, el Índice Oceánico de El Niño, los ciclones activos y las proyecciones climáticas.",
+  "enlace": "exportar"
+ },
+ {
+  "id": "descargas-03",
+  "tema": "descargas",
+  "pregunta_en": "Why is the Point forecast download greyed out?",
+  "respuesta_en": "It only becomes active after you request a forecast for a place in Weather.",
+  "pregunta_es": "¿Por qué está desactivada la descarga Point forecast?",
+  "respuesta_es": "Solo se activa después de pedir el pronóstico de un lugar en Weather.",
+  "enlace": "exportar"
+ },
+ {
+  "id": "descargas-04",
+  "tema": "descargas",
+  "pregunta_en": "What is in the Full evidence (JSON) file?",
+  "respuesta_en": "The rainfall data together with the method and the decision rule used for the Rainfall trend verdicts, so anyone can check the result.",
+  "pregunta_es": "¿Qué contiene el archivo Full evidence (JSON)?",
+  "respuesta_es": "Los datos de lluvia junto con el método y la regla de decisión usados en los veredictos de Rainfall trend, para que cualquiera pueda comprobar el resultado.",
+  "enlace": "exportar"
+ },
+ {
+  "id": "descargas-05",
+  "tema": "descargas",
+  "pregunta_en": "Can I download the Rainfall trend results?",
+  "respuesta_en": "Yes. Under Download the evidence there are the annual series of the selected area (CSV), the slopes and intervals of every area (CSV) and the full evidence (JSON).",
+  "pregunta_es": "¿Puedo descargar los resultados de Rainfall trend?",
+  "respuesta_es": "Sí. En Download the evidence están la serie anual de la zona elegida (CSV), las pendientes e intervalos de todas las zonas (CSV) y la evidencia completa (JSON).",
+  "enlace": "tendencias"
+ },
+ {
+  "id": "descargas-06",
+  "tema": "descargas",
+  "pregunta_en": "How do I download watershed boundaries and codes?",
+  "respuesta_en": "After loading watersheds, press Map vectors (GeoJSON) for the shapes or Codes (CSV) for the code table. The Original source link leads to the provider's original files.",
+  "pregunta_es": "¿Cómo descargo los límites y los códigos de las cuencas?",
+  "respuesta_es": "Después de cargar las cuencas, pulsa Map vectors (GeoJSON) para las formas o Codes (CSV) para la tabla de códigos. El enlace de la fuente original lleva a los archivos originales del proveedor.",
+  "enlace": "hid-geojson"
+ },
+ {
+  "id": "descargas-07",
+  "tema": "descargas",
+  "pregunta_en": "Can I download the station readings?",
+  "respuesta_en": "Yes. Once stations are shown, Station attributes (CSV) saves the attributes of every station. Missing values stay missing.",
+  "pregunta_es": "¿Puedo descargar las lecturas de las estaciones?",
+  "respuesta_es": "Sí. Cuando se muestran las estaciones, Station attributes (CSV) guarda los atributos de cada estación. Los valores que faltan siguen faltando.",
+  "enlace": "hid-estaciones-csv"
+ },
+ {
+  "id": "descargas-08",
+  "tema": "descargas",
+  "pregunta_en": "Can I download the Climate indicators series?",
+  "respuesta_en": "Yes. Press Series (CSV) under the chart in Climate indicators. The Data downloads tab also has all indicators in one JSON file.",
+  "pregunta_es": "¿Puedo descargar las series de Climate indicators?",
+  "respuesta_es": "Sí. Pulsa Series (CSV) debajo de la gráfica de Climate indicators. La pestaña Data downloads también tiene todos los indicadores en un archivo JSON.",
+  "enlace": "ind-csv"
+ },
+ {
+  "id": "descargas-09",
+  "tema": "descargas",
+  "pregunta_en": "What if a download file is not available?",
+  "respuesta_en": "For the ONI, cyclone and projection files the app shows a clear message instead of opening an error page.",
+  "pregunta_es": "¿Y si un archivo de descarga no está disponible?",
+  "respuesta_es": "Para los archivos de ONI, ciclones y proyecciones la app muestra un aviso claro en lugar de abrir una página de error.",
+  "enlace": "exportar"
+ },
+ {
+  "id": "descargas-10",
+  "tema": "descargas",
+  "pregunta_en": "Can I open the CSV files in a spreadsheet?",
+  "respuesta_en": "Yes. They are plain text with values separated by commas (UTF-8), a format that spreadsheet programs can open.",
+  "pregunta_es": "¿Puedo abrir los archivos CSV en una hoja de cálculo?",
+  "respuesta_es": "Sí. Son texto plano con los valores separados por comas (UTF-8), un formato que las hojas de cálculo pueden abrir.",
+  "enlace": "exportar"
+ },
+ {
+  "id": "fuentes_limites-01",
+  "tema": "fuentes_limites",
+  "pregunta_en": "Where does the data come from?",
+  "respuesta_en": "Sources lists the NASA Space Apps challenge resources used and every dataset in the app, with the topic that uses it, including cross-checks.",
+  "pregunta_es": "¿De dónde salen los datos?",
+  "respuesta_es": "Sources enumera los recursos del reto NASA Space Apps que se usan y cada conjunto de datos de la app, con el tema que lo usa, incluidos los contrastes.",
+  "enlace": "fuentes"
+ },
+ {
+  "id": "fuentes_limites-02",
+  "tema": "fuentes_limites",
+  "pregunta_en": "Which dataset is behind the verdict I am reading?",
+  "respuesta_en": "The last line of the verdict card in Investigate, \"Trend data source\", names it. The same name appears in Sources.",
+  "pregunta_es": "¿Qué conjunto de datos hay detrás del veredicto que leo?",
+  "respuesta_es": "La última línea de la tarjeta del veredicto en Investigate, «Trend data source», lo nombra. El mismo nombre aparece en Sources.",
+  "enlace": "inv-veredicto"
+ },
+ {
+  "id": "fuentes_limites-03",
+  "tema": "fuentes_limites",
+  "pregunta_en": "Do the live weather and the trends use the same data?",
+  "respuesta_en": "No. The 48-hour weather globe uses the ECMWF IFS model. The long-term trends come from separate climate records such as NASA GPM IMERG or NASA GISS GISTEMP.",
+  "pregunta_es": "¿El tiempo en vivo y las tendencias usan los mismos datos?",
+  "respuesta_es": "No. El globo del tiempo a 48 horas usa el modelo ECMWF IFS. Las tendencias de largo plazo salen de registros climáticos distintos, como NASA GPM IMERG o NASA GISS GISTEMP.",
+  "enlace": "fuentes"
+ },
+ {
+  "id": "fuentes_limites-04",
+  "tema": "fuentes_limites",
+  "pregunta_en": "Why do some new satellites not get a trend?",
+  "respuesta_en": "Their records are too short. SWOT has measured lake levels only since 2023, and the monthly SMAP soil moisture record covers 2015–2019. They show seasons well and confirm older records, but cannot support a trend test.",
+  "pregunta_es": "¿Por qué algunos satélites nuevos no tienen tendencia?",
+  "respuesta_es": "Sus registros son demasiado cortos. SWOT mide el nivel de los lagos solo desde 2023 y el registro mensual de humedad del suelo de SMAP cubre 2015–2019. Muestran bien las estaciones y confirman registros más antiguos, pero no permiten una prueba de tendencia.",
+  "enlace": "aprender-registro-corto"
+ },
+ {
+  "id": "fuentes_limites-05",
+  "tema": "fuentes_limites",
+  "pregunta_en": "Can one extreme year create a trend?",
+  "respuesta_en": "No. One extreme year is not a trend. Years like 2020, with hurricanes Eta and Iota, or the very dry El Niño year 2026, are much larger than a slow change and can hide it.",
+  "pregunta_es": "¿Un año extremo puede crear una tendencia?",
+  "respuesta_es": "No. Un año extremo no es una tendencia. Años como 2020, con los huracanes Eta e Iota, o el año muy seco de El Niño 2026, son mucho mayores que un cambio lento y pueden ocultarlo.",
+  "enlace": "aprender-variabilidad"
+ },
+ {
+  "id": "fuentes_limites-06",
+  "tema": "fuentes_limites",
+  "pregunta_en": "Why can two datasets disagree?",
+  "respuesta_en": "Every dataset has its own errors: a satellite can confuse sediment with algae, a station can move, a reanalysis can jump when new observations are added. When sources agree the conclusion is stronger; when they disagree, that is a clue worth investigating.",
+  "pregunta_es": "¿Por qué pueden discrepar dos conjuntos de datos?",
+  "respuesta_es": "Cada conjunto tiene sus propios errores: un satélite puede confundir sedimento con algas, una estación puede cambiar de sitio, un reanálisis puede saltar al añadir observaciones nuevas. Cuando las fuentes coinciden la conclusión es más sólida; cuando discrepan, es una pista que vale la pena investigar.",
+  "enlace": "aprender-contraste"
+ },
+ {
+  "id": "fuentes_limites-07",
+  "tema": "fuentes_limites",
+  "pregunta_en": "Is this app a warning service?",
+  "respuesta_en": "No. Station readings and hazard maps are not flood alerts or current warnings. Follow the official notices of INETER and SINAPRED.",
+  "pregunta_es": "¿Esta app es un servicio de alertas?",
+  "respuesta_es": "No. Las lecturas de estaciones y los mapas de amenazas no son alertas de inundación ni avisos actuales. Sigue los avisos oficiales de INETER y SINAPRED.",
+  "enlace": "hidrologia"
+ },
+ {
+  "id": "fuentes_limites-08",
+  "tema": "fuentes_limites",
+  "pregunta_en": "What are the \"Published check\" notes?",
+  "respuesta_en": "Some verdict cards include notes that compare the result with published studies, each with its reference and DOI.",
+  "pregunta_es": "¿Qué son las notas «Published check»?",
+  "respuesta_es": "Algunas tarjetas de veredicto incluyen notas que comparan el resultado con estudios publicados, cada uno con su referencia y su DOI.",
+  "enlace": "inv-veredicto"
+ },
+ {
+  "id": "fuentes_limites-09",
+  "tema": "fuentes_limites",
+  "pregunta_en": "What happens if a data file fails to load?",
+  "respuesta_en": "The app shows a message instead of breaking. In Investigate the verdict card says the investigations are unavailable and offers a Retry button.",
+  "pregunta_es": "¿Qué pasa si no carga un archivo de datos?",
+  "respuesta_es": "La app muestra un aviso en lugar de romperse. En Investigate la tarjeta del veredicto indica que las investigaciones no están disponibles y ofrece un botón Retry.",
+  "enlace": "investigar"
+ },
+ {
+  "id": "fuentes_limites-10",
+  "tema": "fuentes_limites",
+  "pregunta_en": "Is this an official NASA product?",
+  "respuesta_en": "No. Gnomon is a team project built for the NASA Space Apps Challenge 2026 challenge \"Be an Earth System Trend Detective!\". It uses public data from NASA, NOAA, CSA and other providers, credited by name in Sources.",
+  "pregunta_es": "¿Es un producto oficial de la NASA?",
+  "respuesta_es": "No. Gnomon es un proyecto de equipo hecho para el reto «Be an Earth System Trend Detective!» del NASA Space Apps Challenge 2026. Usa datos públicos de NASA, NOAA, CSA y otros proveedores, citados por su nombre en Sources.",
+  "enlace": "fuentes"
+ }
+]
