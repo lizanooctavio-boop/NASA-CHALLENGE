@@ -6,7 +6,7 @@ const rutas = ['index.html', 'app', 'src', 'assets', 'visor'];
 for (const ruta of [...rutas, 'data']) rmSync('public/' + ruta, { recursive: true, force: true });
 mkdirSync('public/data/fuentes', { recursive: true });
 for (const ruta of rutas) cpSync(ruta, 'public/' + ruta, { recursive: true });
-for (const archivo of ['clima.json', 'dominios.geojson']) cpSync('data/' + archivo, 'public/data/' + archivo);
+for (const archivo of ['clima.json', 'dominios.geojson', 'lugares_mundo.json']) cpSync('data/' + archivo, 'public/data/' + archivo);
 cpSync('data/fuentes/oni_2001_2024.csv', 'public/data/fuentes/oni_2001_2024.csv');
 
 // Indicadores de clima_nic: solo lo que muestra la portada (las series, tendencias, contrastes,

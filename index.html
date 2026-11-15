@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="app/estilos.css">
+<link rel="stylesheet" href="app/reticula.css">
+<link rel="stylesheet" href="app/buscador.css">
 <link rel="stylesheet" href="app/ayuda.css">
 </head>
 <body class="modo-globo cargando">
@@ -271,7 +273,11 @@
 <script defer src="src/hidrologia-datos.js"></script>
 <script defer src="app/hidrologia.js"></script>
 <script defer src="app/globo.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.2/proj4.js"></script>
+<script defer src="app/buscador.js"></script>
+<script defer src="app/coordenadas.js"></script>
 <script type="module" src="app/espacio.js"></script>
+<script defer src="app/reticula.js" onerror="const aviso=document.createElement('p');aviso.setAttribute('role','status');aviso.textContent='Map grid controls could not load. Reload to retry.';document.getElementById('barra-capas')?.append(aviso)"></script>
 <script defer src="app/ayuda.js"></script>
 </body>
 </html>

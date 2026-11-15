@@ -111,7 +111,7 @@ function mallaTierra() {
 }
 
 const uniformes = {
-  uDia: { value: vacia }, uNoche: { value: vacia }, uMeteo: { value: vacia }, uViento: { value: vacia },
+  uDia: { value: vacia }, uNoche: { value: vacia }, uMeteo: { value: vacia }, uViento: { value: vacia }, uReticula: { value: vacia },
   uMeteoOp: { value: 0 }, uVientoOn: { value: 0 }, uMorph: { value: 0 }, uK: { value: 1 },
   uLonVista: { value: LON_CENTRO * RAD }, uMercVista: { value: 0 }, uRot: { value: new THREE.Matrix3() },
   uLuz: { value: LUZ }, uCamPos: { value: new THREE.Vector3() }, uListo: { value: 0 }
@@ -135,7 +135,7 @@ const materialTierra = new THREE.ShaderMaterial({
     }`,
   fragmentShader: /* glsl */`
     precision highp float;
-    uniform sampler2D uDia, uNoche, uMeteo, uViento;
+    uniform sampler2D uDia, uNoche, uMeteo, uViento, uReticula;
     uniform float uMeteoOp, uVientoOn, uMorph, uListo;
     uniform vec3 uLuz, uCamPos;
     in vec2 vLonLat; in vec3 vNormal; in vec3 vPos;
@@ -162,6 +162,9 @@ const materialTierra = new THREE.ShaderMaterial({
       col = mix(col, vec3(1.0), w * uVientoOn * mix(0.55, 0.95, diurno));
       float f = pow(1.0 - max(dot(n, v), 0.0), 2.6) * (1.0 - uMorph);
       col += vec3(0.32, 0.58, 1.0) * f * (0.12 + 0.9 * smoothstep(-0.25, 0.6, d));
+      // La retícula es independiente del tiempo y desaparece al pasar al mapa Leaflet.
+      vec4 rejilla = textureGrad(uReticula, uv, dx, dy);
+      col = mix(col, rejilla.rgb, rejilla.a * (1.0 - smoothstep(0.0, 0.05, uMorph)));
       colorSalida = linearToOutputTexel(vec4(col * uListo, 1.0));
     }`
 });
@@ -507,8 +510,21 @@ if (mapaLuna) { luna.material.map = mapaLuna; luna.material.color.set(0xffffff);
 uniformes.uListo.value = 1;
 canvas.classList.add('listo');
 
-let texMeteo = null;
+let texMeteo = null, texReticula = null;
 window.Espacio = {
+  reticula(lienzo) {
+    texReticula?.dispose();
+    texReticula = lienzo ? new THREE.CanvasTexture(lienzo) : null;
+    if (texReticula) texReticula.colorSpace = THREE.SRGBColorSpace;
+    uniformes.uReticula.value = texReticula || vacia;
+    if (estado.pausado) dibujar();
+  },
+  norteArriba() {
+    if (estado.animando) return false;
+    // La cámara no tiene roll: se conserva el punto central, se frena la inercia y se reafirma el eje norte.
+    estado.velLon = estado.velLat = 0; estado.ultimoGesto = performance.now();
+    camara.up.set(0, 1, 0); dibujar(); return true;
+  },
   meteo(lienzo, opacidad) {
     texMeteo?.dispose();
     texMeteo = null;

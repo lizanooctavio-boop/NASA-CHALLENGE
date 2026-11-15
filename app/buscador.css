@@ -1,0 +1,48 @@
+/* Estilos del buscador de lugares y panel de coordenadas (sin modificar estilos.css). */
+
+.buscador-envoltura{position:relative;flex:1 1 240px;max-width:340px;min-width:180px}
+.buscador-caja{display:flex;align-items:center;gap:6px;background:rgba(14,22,36,.85);border:1px solid var(--borde,rgba(255,255,255,.16));border-radius:10px;padding:0 10px;min-height:40px}
+.buscador-caja:focus-within{border-color:var(--cian,#6fd8ff);box-shadow:0 0 0 2px rgba(111,216,255,.22)}
+.buscador-icono{width:16px;height:16px;flex:none;color:var(--tenue,#94a7bd);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.buscador-entrada{width:100%;min-width:0;border:0;background:transparent;color:var(--texto,#e6eef8);font:inherit;font-size:13.5px;padding:8px 0;outline:none}
+.buscador-entrada::placeholder{color:var(--tenue,#94a7bd)}
+.buscador-limpiar{border:0;background:transparent;color:var(--tenue,#94a7bd);cursor:pointer;font-size:16px;line-height:1;padding:4px 6px;border-radius:6px;min-width:28px;min-height:28px}
+.buscador-limpiar:hover,.buscador-limpiar:focus-visible{color:#fff;background:rgba(255,255,255,.1);outline:2px solid var(--cian,#6fd8ff)}
+
+.buscador-lista{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:30;margin:0;padding:6px;list-style:none;background:rgba(10,16,28,.97);border:1px solid var(--borde,rgba(255,255,255,.18));border-radius:12px;box-shadow:0 14px 36px rgba(0,0,0,.55);max-height:320px;overflow-y:auto}
+.buscador-lista[hidden]{display:none}
+.buscador-cabecera{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 10px;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--cian,#6fd8ff);border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:4px}
+.buscador-volver{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--texto,#e6eef8);font-size:11.5px;padding:4px 8px;border-radius:6px;cursor:pointer;min-height:28px}
+.buscador-volver:focus-visible{outline:2px solid var(--cian,#6fd8ff)}
+.buscador-opcion{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 10px;border-radius:8px;cursor:pointer;font-size:13px;color:var(--texto,#e6eef8);min-height:44px}
+.buscador-opcion:hover,.buscador-opcion.activo{background:rgba(111,216,255,.18);color:#fff}
+.buscador-opcion.activo{outline:2px solid var(--cian,#6fd8ff);outline-offset:-2px}
+.buscador-opcion-sub{font-size:11.5px;color:var(--tenue,#94a7bd);white-space:nowrap}
+.buscador-vacio{padding:10px 12px;font-size:12.5px;color:var(--tenue,#94a7bd)}
+
+/* Panel plegable de coordenadas y sistemas de referencia */
+.coords-panel{position:fixed;left:calc(var(--izq,260px) + 14px);bottom:14px;z-index:7;background:rgba(10,16,28,.9);backdrop-filter:blur(10px);border:1px solid var(--borde,rgba(255,255,255,.16));border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,.45);color:var(--texto,#e6eef8);max-width:min(360px,calc(100vw - var(--izq,260px) - var(--col,340px) - 42px));font-size:12.5px}
+.coords-cabecera{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 10px}
+.coords-toggle{display:inline-flex;align-items:center;gap:6px;border:0;background:transparent;color:var(--texto,#e6eef8);font:inherit;font-weight:600;font-size:12.5px;cursor:pointer;padding:4px 6px;border-radius:7px;min-height:34px}
+.coords-toggle:focus-visible{outline:2px solid var(--cian,#6fd8ff)}
+.coords-resumen{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11.5px;color:var(--cian,#6fd8ff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px}
+.coords-cuerpo{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(255,255,255,.1);padding-top:8px}
+.coords-cuerpo[hidden]{display:none}
+.coords-fila{display:flex;align-items:center;gap:6px}
+.coords-select{flex:1 1 auto;min-width:0;background:rgba(16,25,42,.95);color:var(--texto,#e6eef8);border:1px solid var(--borde,rgba(255,255,255,.18));border-radius:8px;padding:6px 8px;font:inherit;font-size:12px;min-height:36px}
+.coords-select:focus-visible{outline:2px solid var(--cian,#6fd8ff)}
+.coords-copiar{flex:none;border:1px solid var(--borde,rgba(255,255,255,.2));background:rgba(111,216,255,.14);color:#fff;border-radius:8px;padding:6px 10px;font:inherit;font-size:12px;font-weight:600;cursor:pointer;min-height:36px}
+.coords-copiar:hover{background:rgba(111,216,255,.25)}
+.coords-copiar:focus-visible{outline:2px solid var(--cian,#6fd8ff)}
+.coords-valor{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12.5px;color:#fff;background:rgba(0,0,0,.28);border-radius:8px;padding:7px 9px;word-break:break-word;user-select:all}
+.coords-nota{margin:0;font-size:11px;color:var(--tenue,#94a7bd)}
+
+@media(max-width:1024px),(pointer:coarse){
+  .buscador-caja{min-height:44px}
+  .coords-toggle,.coords-select,.coords-copiar{min-height:44px}
+}
+@media(max-width:700px),(max-height:500px) and (max-width:1000px){
+  .buscador-envoltura{flex:1 1 100%;max-width:none;order:3}
+  .coords-panel{left:10px;right:auto;bottom:calc(var(--alto-controles-mapa,0px) + 10px);max-width:calc(100vw - 20px);z-index:8}
+  body:not(.solo-mapa) .coords-panel{position:static;margin:0 0 8px;max-width:none}
+}
