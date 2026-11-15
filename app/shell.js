@@ -169,6 +169,18 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 else setTimeout(aplicarHash,0);
 const salidaHash=()=>{if(location.hash==='#map'||location.hash==='#mapa')cambiarVista('mapa')};
 document.addEventListener('espacio:listo',salidaHash);
+document.addEventListener('click',async ev=>{
+  const a=ev.target.closest?.('a[href^="/clima-base/"][download]');
+  if(!a)return;
+  ev.preventDefault();
+  try{
+    const r=await fetch(a.getAttribute('href'));
+    if(!r.ok)throw Error('This data file is not available in this build (HTTP '+r.status+').');
+    const b=await r.blob(),u=URL.createObjectURL(b),tmp=document.createElement('a');
+    tmp.href=u;tmp.download=a.getAttribute('download')||'';tmp.click();
+    setTimeout(()=>URL.revokeObjectURL(u),30000);
+  }catch(err){error(err)}
+});
 
 // ---------------------------------------------------------------- base vectorial: fronteras y nombres (Natural Earth)
 function baseVectorial(){

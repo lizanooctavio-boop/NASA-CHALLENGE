@@ -223,7 +223,7 @@ $('inv-mapa').onclick=async()=>{try{await cargar();const x=inv(sel.investigacion
   if(matchMedia('(max-width:700px),(max-height:500px) and (max-width:1000px)').matches)window.SICC_vista.soloMapa?.(true)}catch(err){typeof error==='function'&&error(err)}};
 function bajar(nombre,texto){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([texto],{type:'text/csv;charset=utf-8'}));a.download=nombre;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),30000)}
 $('inv-csv').onclick=async()=>{try{await cargar();const x=inv(sel.investigacion);if(!x)return;const col=x.frecuencia==='mensual'?'month':x.frecuencia==='escena'?'date':'year';
-  bajar(`${x.id}.csv`,'\ufeff'+[`# Source: ${x.fuente.producto}`,`# Place: ${lugar(x.lugar).nombre_en}`,`${col},value_${x.unidad.replace(/[^\w°³]+/g,'_')}`,...x.tiempos.map((a,i)=>`${a},${x.valores[i]??''}`)].join('\r\n')+'\r\n')}catch(err){typeof error==='function'&&error(err)}};
+  bajar(`${x.id}.csv`,'\ufeff'+[`# Source: ${x.fuente.producto}`,`# Place: ${lugar(x.lugar).nombre_en}`,`${col},value_${x.unidad.replace(/[^\w°²³Ω]+/g,'_').replace(/^_+|_+$/g,'')}`,...x.tiempos.map((a,i)=>`${a},${x.valores[i]??''}`)].join('\r\n')+'\r\n')}catch(err){typeof error==='function'&&error(err)}};
 
 document.addEventListener('sicc:pestana',e=>{
   if(['investigar','aprender','fuentes'].includes(e.detail))cargar().then(()=>setTimeout(()=>Object.values(graficas).forEach(g=>g.resize()),30)).catch(err=>typeof error==='function'&&error(err));
