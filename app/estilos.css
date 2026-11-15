@@ -155,6 +155,18 @@ a{color:var(--cian)}
   body.menu-plegado #plegar-menu svg{transform:rotate(180deg)}
 }
 @media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:10px;padding:14px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:12px;gap:4px}nav button{font-size:12px;padding:10px;flex:none;white-space:nowrap}nav.mas-derecha{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}nav.mas-izquierda.mas-derecha{-webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent);mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent)}nav.mas-izquierda:not(.mas-derecha){-webkit-mask-image:linear-gradient(to right,transparent,#000 12%);mask-image:linear-gradient(to right,transparent,#000 12%)}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:10px}.etiqueta{letter-spacing:1.2px}h1{font-size:19px}.acciones{width:100%;justify-content:space-between}.estado{white-space:normal}.ventana,.ventana.ancha,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}#indicador-detalle{right:auto;left:0}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
+/* Movil apaisado (poca altura vertical): compactar menu y cabecera en una fila para liberar el lienzo. */
+@media(max-height:500px) and (max-width:1000px){
+  aside{display:flex;flex-direction:row;align-items:center;gap:10px;margin:6px 8px 4px;padding:5px 10px}
+  .cabeza-menu{flex:none;margin:0}.marca{font-size:15px}
+  nav{margin-top:0;flex:1;min-width:0}
+  main{padding:0 8px 8px;gap:6px}
+  header{padding:6px 12px;gap:6px 10px;min-height:48px;flex-wrap:nowrap}
+  header .etiqueta{display:none}
+  h1{font-size:15px;white-space:nowrap}
+  .acciones{width:auto;flex:1;min-width:0;justify-content:flex-end;gap:6px;flex-wrap:nowrap}
+  .estado{white-space:nowrap;font-size:11px;padding:4px 8px}
+}
 
 
 /* Barra de capas estilo Meteored (derecha) */
@@ -231,13 +243,16 @@ code{font-size:12px;background:rgba(255,255,255,.08);padding:1px 5px;border-radi
   body.solo-mapa #aviso-publico{position:fixed;top:calc(18px + var(--alto-cabecera,58px));left:6px;right:6px;max-width:none;max-height:22dvh;overflow:auto;padding:7px 10px;font-size:11px}
 }
 @media(max-height:500px) and (min-width:560px) and (max-width:1000px){
-  #controles-mapa{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:'leyenda estado' 'leyenda tiempo' 'capas capas';max-height:calc(100dvh - 80px)}
-  #controles-mapa #leyenda-campo{grid-area:leyenda;max-height:48dvh}
-  #controles-mapa #estado-meteo-mapa{grid-area:estado}
-  #controles-mapa #linea-tiempo{grid-area:tiempo}
-  #controles-mapa .capas-mapa{grid-area:capas}
-  body.solo-mapa header{right:calc(50% + 3px)}
-  body.solo-mapa #aviso-publico{top:10px;left:calc(50% + 3px);max-height:none}
+  #controles-mapa{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:'leyenda estado' 'leyenda tiempo' 'capas capas';gap:4px;max-height:calc(100dvh - 64px)}
+  #controles-mapa #leyenda-campo{grid-area:leyenda;max-height:28dvh}
+  #controles-mapa #estado-meteo-mapa{grid-area:estado;max-height:18dvh;overflow:auto}
+  #controles-mapa #linea-tiempo{grid-area:tiempo;padding:4px 8px;gap:4px 6px}
+  #controles-mapa .capas-mapa{grid-area:capas;height:calc(56px + env(safe-area-inset-bottom,0px))}
+  .capas-mapa .ventana-cuerpo{padding:4px 6px}
+  body.solo-mapa header{top:6px;left:6px;right:calc(50% + 3px);min-height:48px;padding:4px 8px}
+  body.solo-mapa .estado{display:none}
+  body.solo-mapa .acciones{justify-content:space-between;flex:1;min-width:0}
+  body.solo-mapa #aviso-publico{top:6px;left:calc(50% + 3px);right:6px;max-height:56px;overflow:auto;padding:5px 9px;font-size:11px;line-height:1.25}
 }
 @media(max-width:480px){
   body.solo-mapa .estado{display:none}
@@ -248,7 +263,7 @@ code{font-size:12px;background:rgba(255,255,255,.08);padding:1px 5px;border-radi
   body.solo-mapa #solomapa{flex:none}
   body.solo-mapa #indicador-texto{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 }
-@media(pointer:coarse) and (max-width:700px){.leaflet-control-zoom{display:flex}.leaflet-touch .leaflet-bar .leaflet-control-zoom-in{border-bottom:0;border-right:1px solid var(--borde)}}
+@media(pointer:coarse) and (max-width:700px),(pointer:coarse) and (max-height:500px) and (max-width:1000px){.leaflet-control-zoom{display:flex}.leaflet-touch .leaflet-bar .leaflet-control-zoom-in{border-bottom:0;border-right:1px solid var(--borde)}}
 body.aviso-encima main{z-index:7}
 @media(pointer:coarse){
   body{--alto-zoom:98px}
