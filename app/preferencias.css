@@ -68,11 +68,11 @@
 [data-theme="light"] :is(h1, h2, .ventana-titulo, .marca b, .sub strong, .ayuda-inicio strong, .tarjeta strong, .pendiente-principal strong),
 [data-theme="light"] #investigar :is(.pregunta, .veredicto .estado, .veredicto-ayuda, .veredicto .nota-clave),
 [data-theme="light"] .demo-panel .demo-texto { color: var(--texto); }
-[data-theme="light"] :is(article, .tarjeta, .ayuda-inicio, button, .boton, input:not([type="range"]), select, .coords-valor) {
+[data-theme="light"] :is(article, .tarjeta, .ayuda-inicio, button:not(.ventana-botones button, .inicio-principal), .boton, input:not([type="range"]), select, .coords-valor) {
   background-color: #e8eff7;
   color: var(--texto);
 }
-[data-theme="light"] :is(button, .boton):hover { background-color: #d8e6f4; border-color: var(--cian); }
+[data-theme="light"] :is(button:not(.ventana-botones button, .inicio-principal), .boton):hover { background-color: #d8e6f4; border-color: var(--cian); }
 [data-theme="light"] :is(nav button.activo, nav button[data-tab="investigar"]:not(.activo), .interruptor button[aria-pressed="true"], .capas-mapa [data-var][aria-pressed="true"], .botones-region button[aria-checked="true"]) {
   background: #cde6f2;
   border-color: var(--cian);
@@ -95,3 +95,17 @@
 [data-theme="light"] .grafica .cero { stroke: var(--texto); }
 [data-theme="light"] :is(#indicadores, #investigar) .veredicto.aumento { color: var(--est-aumento); }
 [data-theme="light"] :is(#indicadores, #investigar) .veredicto.disminucion { color: var(--est-disminucion); }
+[data-theme="light"] .ayuda-inicio p { color: var(--tenue); }
+[data-theme="light"] .inicio-atajos .inicio-principal { background: var(--cian); border-color: var(--cian); color: #fff; }
+#estilo-texto { min-height: 44px; min-width: 220px; max-width: 100%; }
+
+/* Con «Settings» el menú tiene 12 secciones: en pantallas de escritorio bajas se compacta
+   para que quepa entero sin barra de desplazamiento (el objetivo sigue ≥ 36 px). */
+@media (pointer: fine) and (min-width: 701px) and (max-height: 960px) {
+  nav { gap: 3px; }
+  nav button { padding-top: 8px; padding-bottom: 8px; }
+  nav button[data-tab="aprender"] { margin-top: 4px; }
+  html[lang="es"] nav { gap: 2px; }
+  html[lang="es"] nav button { font-size: 13px; }
+  html[lang="es"] nav button .txt { white-space: nowrap; }
+}

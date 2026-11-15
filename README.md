@@ -52,6 +52,7 @@ Every series with at least 10 annual observations is tested simultaneously by **
 | **`Watersheds`** | `#hidrologia` | Nicaragua's INETER/SINAPRED Pfafstetter basins and HydroBASINS for the world, with source attribution and original downloads. |
 | **`Data downloads`** | `#exportar` | CSV / JSON exports of every series with its source, period and verdict. |
 | **`Help`** | Left menu | 100 searchable questions and answers (English / Spanish) and an 11-step guided tour of the app. |
+| **`Settings`** | `#configuracion` | Interface language (English / Español), dark or light theme, and optional text styles over the original glass panels; choices are saved in the browser. |
 
 ---
 
