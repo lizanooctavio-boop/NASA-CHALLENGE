@@ -94,8 +94,6 @@ ESTACIONES_SNOTEL = (
 )
 
 LAGOS_GREALM_10D = (
-    ("poopo", "000051", "Bolivia"),
-    ("mar_chiquita", "000344", "Argentina"),
     ("colhue_huapi", "000439", "Argentina"),
     ("argentino", "000753", "Argentina"),
     ("junin", "000032", "Peru"),
@@ -509,9 +507,9 @@ def generar_snotel(cache: Path) -> dict:
 def generar_lagos_grealm(cache: Path) -> dict:
     """Extrae series anuales de nivel de agua (m EGM2008) de lagos sudamericanos en NASA GSFC G-REALM."""
     filas = []
-    for url_tar, nombre_tar, objetivos in (
-        (URL_GREALM_10D, "lake.10.tar.gz", LAGOS_GREALM_10D),
-        (URL_GREALM_30D, "lake.30.tar.gz", LAGOS_GREALM_30D),
+    for url_tar, nombre_tar, objetivos, min_obs in (
+        (URL_GREALM_10D, "lake.10.tar.gz", LAGOS_GREALM_10D, 12),
+        (URL_GREALM_30D, "lake.30.tar.gz", LAGOS_GREALM_30D, 8),
     ):
         ruta_tar = _descargar(url_tar, cache / nombre_tar, timeout=300)
         with tarfile.open(ruta_tar, "r:gz") as tf:
@@ -536,13 +534,12 @@ def generar_lagos_grealm(cache: Path) -> dict:
                                 fechas.append(f"{p[2][:4]}-{p[2][4:6]}-{p[2][6:]}")
                                 alturas.append(alt)
                 por_anio = {}
-                max_anio = 2026 if lago_id == "titicaca" else 2025
                 for f, h in zip(fechas, alturas):
                     anio = int(f[:4])
-                    if anio <= max_anio:
+                    if anio <= 2025:
                         por_anio.setdefault(anio, []).append(h)
                 for anio, vals in sorted(por_anio.items()):
-                    if len(vals) >= 4:
+                    if len(vals) >= min_obs:
                         filas.append({
                             "lago": lago_id,
                             "id_grealm": codigo,
@@ -560,7 +557,7 @@ def generar_lagos_grealm(cache: Path) -> dict:
     return {
         "producto": "NASA GSFC Global Water Monitor (G-REALM) satellite radar altimetry lake levels",
         "url": "https://earth.gsfc.nasa.gov/gwm/lake/Index",
-        "periodo": "1992-2025",
+        "periodo": "1993-2025",
     }
 
 
@@ -595,7 +592,11 @@ def main():
             else:
                 fuentes[clave_fuente] = info
 
-    ruta_fuentes.write_text(json.dumps(fuentes, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    ruta_fuentes.write_text(
+        json.dumps(fuentes, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
 
 
 if __name__ == "__main__":

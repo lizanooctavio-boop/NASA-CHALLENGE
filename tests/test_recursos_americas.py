@@ -66,11 +66,9 @@ def test_lugares_y_estudios_americas_cumplen_formato():
         ("oeste_eeuu_nieve_swe_abril_bateman_nm", 1981, 2025, "mm", "tendencia_detectada", -1, "snotel_swe"),
         ("oeste_eeuu_nieve_swe_abril_niwot_co", 1981, 2025, "mm", "evidencia_insuficiente", 0, "snotel_swe"),
         # 8. Lagos del Altiplano y Sudamérica (NASA GSFC G-REALM)
-        ("altiplano_lagos_poopo", 1993, 2025, "m", "metodos_discrepan", 0, "lagos_altiplano"),
-        ("altiplano_lagos_titicaca", 2016, 2026, "m", "metodos_discrepan", -1, "lagos_altiplano"),
-        ("altiplano_lagos_mar_chiquita", 1992, 2025, "m", "metodos_discrepan", -1, "lagos_altiplano"),
-        ("altiplano_lagos_colhue_huapi", 1992, 2025, "m", "tendencia_detectada", -1, "lagos_altiplano"),
-        ("altiplano_lagos_argentino", 1992, 2025, "m", "metodos_discrepan", 1, "lagos_altiplano"),
+        ("altiplano_lagos_titicaca", 2016, 2025, "m", "metodos_discrepan", -1, "lagos_altiplano"),
+        ("altiplano_lagos_colhue_huapi", 1993, 2025, "m", "tendencia_detectada", -1, "lagos_altiplano"),
+        ("altiplano_lagos_argentino", 1993, 2025, "m", "evidencia_insuficiente", 0, "lagos_altiplano"),
         ("altiplano_lagos_junin", 2009, 2025, "m", "metodos_discrepan", -1, "lagos_altiplano"),
     ],
 )
@@ -112,3 +110,6 @@ def test_todas_las_citas_estudios_presentes_en_json_versionado():
     todas_las_notas = "\n".join(n for id_s in ids_esperados for n in por_id[id_s]["notas"])
     for clave, cita in ra.ESTUDIOS.items():
         assert cita in todas_las_notas, f"La cita {clave} no aparece en recursos_integrados.json"
+    ep = por_id["huracanes_rapida_intensificacion_ep_pasos"]
+    assert f"{ep['tendencia']['sen']['por_decada']} {ep['unidad']}" == "0 steps"
+    assert "-0.0" not in json.dumps(ep)

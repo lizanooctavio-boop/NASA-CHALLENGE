@@ -610,32 +610,12 @@
    "zoom": 7
   },
   {
-   "id": "lago_poopo",
-   "nombre_en": "Lake Poopó (Altiplano)",
-   "pais": "Bolivia",
-   "centro": [
-    -18.8,
-    -67.1
-   ],
-   "zoom": 7
-  },
-  {
    "id": "lago_titicaca",
    "nombre_en": "Lake Titicaca (Altiplano)",
    "pais": "Peru and Bolivia",
    "centro": [
     -15.8,
     -69.4
-   ],
-   "zoom": 7
-  },
-  {
-   "id": "lago_mar_chiquita",
-   "nombre_en": "Mar Chiquita (endorheic lake)",
-   "pais": "Argentina",
-   "centro": [
-    -30.7,
-    -62.6
    ],
    "zoom": 7
   },
@@ -20822,7 +20802,7 @@
      0.735,
      0.896
     ],
-    "mann_kendall_p": 0.0,
+    "mann_kendall_p": 0,
     "media": -7.22
    }
   },
@@ -20939,13 +20919,13 @@
       0.554,
       0.786
      ],
-     "p_valor": 0.0
+     "p_valor": 0
     },
     "hac_ic": [
      0.575,
      0.765
     ],
-    "mann_kendall_p": 0.0,
+    "mann_kendall_p": 0,
     "media": -8.945
    }
   },
@@ -21066,7 +21046,7 @@
      0.371,
      0.585
     ],
-    "mann_kendall_p": 0.0,
+    "mann_kendall_p": 0,
     "media": -6.21
    }
   },
@@ -21181,7 +21161,7 @@
      0.303,
      0.404
     ],
-    "mann_kendall_p": 0.0,
+    "mann_kendall_p": 0,
     "media": -2.091
    }
   },
@@ -21601,13 +21581,13 @@
       -4.542,
       -2.571
      ],
-     "p_valor": 0.0
+     "p_valor": 0
     },
     "hac_ic": [
      -4.574,
      -2.539
     ],
-    "mann_kendall_p": 0.0,
+    "mann_kendall_p": 0,
     "media": 101.516
    }
   },
@@ -21952,13 +21932,13 @@
       -2.368,
       -1.396
      ],
-     "p_valor": 0.0
+     "p_valor": 0
     },
     "hac_ic": [
      -2.41,
      -1.354
     ],
-    "mann_kendall_p": 0.0,
+    "mann_kendall_p": 0,
     "media": 107.088
    }
   },
@@ -22285,13 +22265,13 @@
       -2.382,
       -1.288
      ],
-     "p_valor": 0.0
+     "p_valor": 0
     },
     "hac_ic": [
      -2.381,
      -1.29
     ],
-    "mann_kendall_p": 0.0,
+    "mann_kendall_p": 0,
     "media": 106.568
    }
   },
@@ -23531,7 +23511,7 @@
     "sen": {
      "por_decada": 2.1053,
      "ic": [
-      -0.0,
+      0,
       4.4444
      ]
     },
@@ -23819,7 +23799,7 @@
     ],
     "unidad_pendiente": "steps/decade",
     "sen": {
-     "por_decada": -0.0,
+     "por_decada": 0,
      "ic": [
       -4.2308,
       4.0
@@ -24075,7 +24055,7 @@
     495.3,
     124.5,
     330.2,
-    0.0,
+    0,
     243.8,
     363.2,
     238.8,
@@ -24198,7 +24178,7 @@
     741.7,
     254.0,
     332.7,
-    0.0,
+    0,
     665.5,
     388.6,
     594.4,
@@ -24569,116 +24549,6 @@
    }
   },
   {
-   "id": "altiplano_lagos_poopo",
-   "categoria": "agua",
-   "lugar": "lago_poopo",
-   "titulo_en": "Lake Poopó water level",
-   "definicion_en": "Annual satellite radar altimetry surface elevation (EGM2008) of shallow endorheic Lake Poopó on the Bolivian Altiplano.",
-   "unidad": "m",
-   "papel": "tendencia",
-   "frecuencia": "anual",
-   "tiempos": [
-    1993,
-    1994,
-    1995,
-    1996,
-    1997,
-    1998,
-    1999,
-    2000,
-    2001,
-    2002,
-    2009,
-    2010,
-    2011,
-    2012,
-    2013,
-    2014,
-    2015,
-    2016,
-    2017,
-    2018,
-    2019,
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025
-   ],
-   "valores": [
-    3687.26,
-    3687.27,
-    3687.23,
-    3687.22,
-    3687.31,
-    3687.3,
-    3687.3,
-    3687.27,
-    3687.71,
-    3687.58,
-    3687.72,
-    3687.74,
-    3687.68,
-    3687.75,
-    3687.71,
-    3687.75,
-    3687.72,
-    3687.69,
-    3687.7,
-    3687.73,
-    3687.67,
-    3687.67,
-    3687.72,
-    3687.72,
-    3687.71,
-    3687.73,
-    3687.69
-   ],
-   "fuente": {
-    "producto": "NASA GSFC Global Water Monitor (G-REALM) satellite radar altimetry lake levels",
-    "url": "https://earth.gsfc.nasa.gov/gwm/lake/Index"
-   },
-   "recursos": [],
-   "contrastes": [],
-   "notas": [
-    "Level range over 1993–2025: 3687.22 to 3687.75 m above sea level (span of 0.53 m).",
-    "Shallow saline basin (~3 m deep) that dried out completely in late 2015; radar altimetry reflects dry salt flats during desiccation spells and has a mission gap in 2002–2008.",
-    "Published check: Shallow Lake Poopó dried out completely in late 2015 under combined warming-driven evaporation, El Niño anomalies, and upstream diversions from regulated Lake Titicaca (Satgé et al. 2017, doi:10.3390/rs9030218; Torres-Batlló et al. 2019, doi:10.3390/rs12010073)."
-   ],
-   "tendencia": {
-    "veredicto": "metodos_discrepan",
-    "veredicto_contrato": "tendencia_detectada",
-    "anios": 27,
-    "periodo": [
-     1993,
-     2025
-    ],
-    "unidad_pendiente": "m/decade",
-    "sen": {
-     "por_decada": 0.1333,
-     "ic": [
-      0.0333,
-      0.1826
-     ]
-    },
-    "mco": {
-     "por_decada": 0.165,
-     "ic": [
-      0.065,
-      0.265
-     ],
-     "p_valor": 0.0064
-    },
-    "hac_ic": [
-     0.113,
-     0.218
-    ],
-    "mann_kendall_p": 0.0825,
-    "media": 3687.576
-   }
-  },
-  {
    "id": "altiplano_lagos_titicaca",
    "categoria": "agua",
    "lugar": "lago_titicaca",
@@ -24697,8 +24567,7 @@
     2022,
     2023,
     2024,
-    2025,
-    2026
+    2025
    ],
    "valores": [
     3810.98,
@@ -24710,8 +24579,7 @@
     3810.99,
     3810.28,
     3810.12,
-    3810.66,
-    3810.59
+    3810.66
    ],
    "fuente": {
     "producto": "NASA GSFC Global Water Monitor (G-REALM) satellite radar altimetry lake levels",
@@ -24720,164 +24588,40 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Level range over 2016–2026: 3810.12 to 3810.99 m above sea level (span of 0.87 m).",
+    "Level range over 2016–2025: 3810.12 to 3810.99 m above sea level (span of 0.87 m).",
     "Regulated outflow at the Desaguadero River gates and multi-year El Niño/La Niña cycles dominate short-term level swings.",
-    "Published check: Shallow Lake Poopó dried out completely in late 2015 under combined warming-driven evaporation, El Niño anomalies, and upstream diversions from regulated Lake Titicaca (Satgé et al. 2017, doi:10.3390/rs9030218; Torres-Batlló et al. 2019, doi:10.3390/rs12010073)."
+    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
     "veredicto_contrato": "metodos_discrepan",
-    "anios": 11,
+    "anios": 10,
     "periodo": [
      2016,
-     2026
-    ],
-    "unidad_pendiente": "m/decade",
-    "sen": {
-     "por_decada": -0.3556,
-     "ic": [
-      -1.02,
-      0.05
-     ]
-    },
-    "mco": {
-     "por_decada": -0.429,
-     "ic": [
-      -0.935,
-      0.077
-     ],
-     "p_valor": 0.0871
-    },
-    "hac_ic": [
-     -0.774,
-     -0.084
-    ],
-    "mann_kendall_p": 0.0868,
-    "media": 3810.665
-   }
-  },
-  {
-   "id": "altiplano_lagos_mar_chiquita",
-   "categoria": "agua",
-   "lugar": "lago_mar_chiquita",
-   "titulo_en": "Mar Chiquita lake water level",
-   "definicion_en": "Annual satellite radar altimetry surface elevation (EGM2008) of endorheic Mar Chiquita lake in central Argentina.",
-   "unidad": "m",
-   "papel": "tendencia",
-   "frecuencia": "anual",
-   "tiempos": [
-    1992,
-    1993,
-    1994,
-    1995,
-    1996,
-    1997,
-    1998,
-    1999,
-    2000,
-    2001,
-    2002,
-    2003,
-    2004,
-    2005,
-    2006,
-    2007,
-    2008,
-    2009,
-    2010,
-    2011,
-    2012,
-    2013,
-    2014,
-    2015,
-    2016,
-    2017,
-    2018,
-    2019,
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025
-   ],
-   "valores": [
-    70.66,
-    71.32,
-    71.2,
-    70.61,
-    70.19,
-    69.99,
-    70.19,
-    70.52,
-    71.06,
-    71.66,
-    71.87,
-    72.31,
-    71.78,
-    71.28,
-    70.68,
-    70.81,
-    70.33,
-    69.66,
-    69.44,
-    69.36,
-    69.21,
-    69.0,
-    69.32,
-    69.49,
-    69.97,
-    70.29,
-    69.69,
-    69.75,
-    69.66,
-    69.36,
-    69.18,
-    69.03,
-    69.13,
-    69.18
-   ],
-   "fuente": {
-    "producto": "NASA GSFC Global Water Monitor (G-REALM) satellite radar altimetry lake levels",
-    "url": "https://earth.gsfc.nasa.gov/gwm/lake/Index"
-   },
-   "recursos": [],
-   "contrastes": [],
-   "notas": [
-    "Level range over 1992–2025: 69.00 to 72.31 m above sea level (span of 3.31 m).",
-    "Closed saline lake whose level dropped by more than 4 m after its early-2000s highstand.",
-    "Published check: Shallow Lake Poopó dried out completely in late 2015 under combined warming-driven evaporation, El Niño anomalies, and upstream diversions from regulated Lake Titicaca (Satgé et al. 2017, doi:10.3390/rs9030218; Torres-Batlló et al. 2019, doi:10.3390/rs12010073)."
-   ],
-   "tendencia": {
-    "veredicto": "metodos_discrepan",
-    "veredicto_contrato": "metodos_discrepan",
-    "anios": 34,
-    "periodo": [
-     1992,
      2025
     ],
     "unidad_pendiente": "m/decade",
     "sen": {
-     "por_decada": -0.6385,
+     "por_decada": -0.425,
      "ic": [
-      -0.9125,
-      -0.38
+      -1.1167,
+      0.1
      ]
     },
     "mco": {
-     "por_decada": -0.649,
+     "por_decada": -0.522,
      "ic": [
-      -5.912,
-      4.614
+      -1.135,
+      0.09
      ],
-     "p_valor": 0.4568
+     "p_valor": 0.0849
     },
     "hac_ic": [
-     -0.936,
-     -0.362
+     -0.924,
+     -0.121
     ],
-    "mann_kendall_p": 0.0,
-    "media": 70.211
+    "mann_kendall_p": 0.1524,
+    "media": 3810.672
    }
   },
   {
@@ -24890,7 +24634,6 @@
    "papel": "tendencia",
    "frecuencia": "anual",
    "tiempos": [
-    1992,
     1993,
     1994,
     1995,
@@ -24900,9 +24643,6 @@
     1999,
     2000,
     2001,
-    2002,
-    2007,
-    2008,
     2009,
     2010,
     2011,
@@ -24922,7 +24662,6 @@
     2025
    ],
    "valores": [
-    254.71,
     254.51,
     254.77,
     254.89,
@@ -24932,9 +24671,6 @@
     254.62,
     253.82,
     254.1,
-    254.49,
-    255.29,
-    254.49,
     253.8,
     253.17,
     252.86,
@@ -24960,40 +24696,40 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Level range over 1992–2025: 250.98 to 255.29 m above sea level (span of 4.31 m).",
+    "Level range over 1993–2025: 250.98 to 255.01 m above sea level (span of 4.03 m).",
     "Shallow Patagonian lake affected by Senguer River diversions and wind evaporation.",
-    "Published check: Shallow Lake Poopó dried out completely in late 2015 under combined warming-driven evaporation, El Niño anomalies, and upstream diversions from regulated Lake Titicaca (Satgé et al. 2017, doi:10.3390/rs9030218; Torres-Batlló et al. 2019, doi:10.3390/rs12010073)."
+    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
    ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
     "veredicto_contrato": "tendencia_detectada",
-    "anios": 30,
+    "anios": 26,
     "periodo": [
-     1992,
+     1993,
      2025
     ],
     "unidad_pendiente": "m/decade",
     "sen": {
-     "por_decada": -1.35,
+     "por_decada": -1.36,
      "ic": [
-      -1.5462,
-      -1.1611
+      -1.5304,
+      -1.1742
      ]
     },
     "mco": {
-     "por_decada": -1.391,
+     "por_decada": -1.39,
      "ic": [
-      -2.128,
-      -0.654
+      -1.792,
+      -0.987
      ],
-     "p_valor": 0.0056
+     "p_valor": 0.0002
     },
     "hac_ic": [
-     -1.618,
-     -1.164
+     -1.577,
+     -1.202
     ],
     "mann_kendall_p": 0.0001,
-    "media": 253.023
+    "media": 252.758
    }
   },
   {
@@ -25006,7 +24742,6 @@
    "papel": "tendencia",
    "frecuencia": "anual",
    "tiempos": [
-    1992,
     1993,
     1994,
     1995,
@@ -25042,7 +24777,6 @@
     2025
    ],
    "valores": [
-    178.14,
     178.86,
     178.73,
     178.62,
@@ -25084,40 +24818,40 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Level range over 1992–2025: 178.14 to 179.24 m above sea level (span of 1.10 m).",
+    "Level range over 1993–2025: 178.55 to 179.24 m above sea level (span of 0.69 m).",
     "Fed by meltwater from the Southern Patagonian Ice Field (including Perito Moreno and Upsala glaciers).",
-    "Published check: Shallow Lake Poopó dried out completely in late 2015 under combined warming-driven evaporation, El Niño anomalies, and upstream diversions from regulated Lake Titicaca (Satgé et al. 2017, doi:10.3390/rs9030218; Torres-Batlló et al. 2019, doi:10.3390/rs12010073)."
+    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
    ],
    "tendencia": {
-    "veredicto": "metodos_discrepan",
-    "veredicto_contrato": "metodos_discrepan",
-    "anios": 34,
+    "veredicto": "evidencia_insuficiente",
+    "veredicto_contrato": "evidencia_insuficiente",
+    "anios": 33,
     "periodo": [
-     1992,
+     1993,
      2025
     ],
     "unidad_pendiente": "m/decade",
     "sen": {
-     "por_decada": 0.05,
+     "por_decada": 0.0368,
      "ic": [
-      -0.0045,
-      0.1167
+      -0.0207,
+      0.0933
      ]
     },
     "mco": {
-     "por_decada": 0.069,
+     "por_decada": 0.037,
      "ic": [
-      0.001,
-      0.137
+      -0.023,
+      0.096
      ],
-     "p_valor": 0.0461
+     "p_valor": 0.2192
     },
     "hac_ic": [
-     0.001,
-     0.136
+     -0.008,
+     0.082
     ],
-    "mann_kendall_p": 0.0877,
-    "media": 178.822
+    "mann_kendall_p": 0.203,
+    "media": 178.842
    }
   },
   {
@@ -25176,7 +24910,7 @@
    "notas": [
     "Level range over 2009–2025: 4081.91 to 4083.73 m above sea level (span of 1.82 m).",
     "High-Andean regulated reservoir lake at ~4,080 m elevation.",
-    "Published check: Shallow Lake Poopó dried out completely in late 2015 under combined warming-driven evaporation, El Niño anomalies, and upstream diversions from regulated Lake Titicaca (Satgé et al. 2017, doi:10.3390/rs9030218; Torres-Batlló et al. 2019, doi:10.3390/rs12010073)."
+    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -28834,7 +28568,7 @@
   "recursos/csa/contrastes_canada_series.csv": "677dce021000ca5e0f2a952a48d30647e9cf944c1f4bb1e21d5497b5f18e74a7",
   "recursos/tierra/contrastes_tierra.json": "ca64937fb948a5b9454974c279e681d9c766ebb50d0db3c9038f5b87c1bfda67",
   "recursos/tierra/contrastes_tierra_series.csv": "72867f9c235f275fe7ac7ff9221b46ab55e90be2a9b1575e63db65271400a25c",
-  "recursos/hallazgos/fuentes.json": "b50837678c2021e97c5d0897fc11f571def503688cf80f624e3b1e67219007cc",
+  "recursos/hallazgos/fuentes.json": "8b79d6d701f09bce3da1396ef02ff1732900147a8290e8f0e40930a8966ecbb4",
   "recursos/hallazgos/oni_noaa_cpc.csv": "fd389ba93ba58325d6f599b5b4eb34d1dce5d6d94713f66c104b88b751cac922",
   "recursos/hallazgos/chirps_indices_regiones.csv": "37aad3d76e2f5de995b66004ad7b8b93ece96a1f4dff778e31d2d62517f7cc8c",
   "recursos/hallazgos/chirps_acumulado_parcial.csv": "3d5514151dd7aec731f3e2c682686a9af928d73b451131a398b2b148d976a7a1",
@@ -28855,6 +28589,6 @@
   "recursos/hallazgos/americas_lluvia_anual.csv": "2ea095a0cce6dc0f029b52ce0304425bde6a6322d229c0c62f8f6bc106d8371b",
   "recursos/hallazgos/ibtracs_ri_anual.csv": "44eeece9dbe48890d94ce2d039fb2aff1c5e25f2cc3a7af315b40ae730c9bb34",
   "recursos/hallazgos/snotel_swe_abril_anual.csv": "d5e1b428a8b087da7551cc9a4cb620f11788c1161e9877037d64ef645542e3ff",
-  "recursos/hallazgos/grealm_lagos_sudamerica_anual.csv": "4c1060bb0d6e241860963002a4af738ab14b81e61e51d6d04b88ed78fd0c758a"
+  "recursos/hallazgos/grealm_lagos_sudamerica_anual.csv": "293a4874cc80c2e2fa64aafb701154de7312b2dd4cbd11b0ea1f8655a96709db"
  }
 }

@@ -28,9 +28,7 @@ LUGARES = {
     "snotel_arbuckle_mtn": ("Arbuckle Mountain SNOTEL (Blue Mountains)", "Oregon, USA", [45.19, -119.25], 7),
     "snotel_bateman": ("Bateman SNOTEL (Southern Rockies)", "New Mexico, USA", [36.52, -106.32], 7),
     "snotel_niwot": ("Niwot Ridge SNOTEL (Front Range)", "Colorado, USA", [40.04, -105.54], 7),
-    "lago_poopo": ("Lake Poopó (Altiplano)", "Bolivia", [-18.8, -67.1], 7),
     "lago_titicaca": ("Lake Titicaca (Altiplano)", "Peru and Bolivia", [-15.8, -69.4], 7),
-    "lago_mar_chiquita": ("Mar Chiquita (endorheic lake)", "Argentina", [-30.7, -62.6], 7),
     "lago_colhue_huapi": ("Lake Colhué Huapi (Patagonia)", "Argentina", [-45.5, -68.8], 7),
     "lago_argentino": ("Lago Argentino (Southern Patagonian Ice Field)", "Argentina", [-50.2, -72.8], 7),
     "lago_junin": ("Lake Junín (Central Andes)", "Peru", [-11.0, -76.1], 8),
@@ -77,11 +75,21 @@ ESTUDIOS = {
         "(Mote et al. 2018, doi:10.1038/s41612-018-0012-1)."
     ),
     "lagos_altiplano": (
-        "Published check: Shallow Lake Poopó dried out completely in late 2015 under combined warming-driven evaporation, "
-        "El Niño anomalies, and upstream diversions from regulated Lake Titicaca "
-        "(Satgé et al. 2017, doi:10.3390/rs9030218; Torres-Batlló et al. 2019, doi:10.3390/rs12010073)."
+        "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca "
+        "and South American basins driven by Altiplano rainfall variability and rising evaporative demand "
+        "(Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
     ),
 }
+
+
+def _limpiar_cero_negativo(obj):
+    if isinstance(obj, float) and obj == 0.0:
+        return 0
+    if isinstance(obj, list):
+        return [_limpiar_cero_negativo(x) for x in obj]
+    if isinstance(obj, dict):
+        return {k: _limpiar_cero_negativo(v) for k, v in obj.items()}
+    return obj
 
 
 def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
@@ -504,7 +512,7 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
                 ],
             ))
 
-    # 8. Lagos del Altiplano (Titicaca, Poopó) y Sudamérica en NASA GSFC G-REALM
+    # 8. Lagos del Altiplano (Titicaca, Junín) y Sudamérica en NASA GSFC G-REALM
     ruta = carpeta / "grealm_lagos_sudamerica_anual.csv"
     if ruta.is_file():
         entradas.append(ruta)
@@ -515,25 +523,11 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
         filas = _rec._leer_csv(ruta)
         meta_grealm = (
             (
-                "poopo",
-                "lago_poopo",
-                "Lake Poopó water level",
-                "Annual satellite radar altimetry surface elevation (EGM2008) of shallow endorheic Lake Poopó on the Bolivian Altiplano.",
-                "Shallow saline basin (~3 m deep) that dried out completely in late 2015; radar altimetry reflects dry salt flats during desiccation spells and has a mission gap in 2002–2008.",
-            ),
-            (
                 "titicaca",
                 "lago_titicaca",
                 "Lake Titicaca water level",
                 "Annual satellite radar altimetry water surface elevation (EGM2008) of Lake Titicaca in the Andean Altiplano.",
                 "Regulated outflow at the Desaguadero River gates and multi-year El Niño/La Niña cycles dominate short-term level swings.",
-            ),
-            (
-                "mar_chiquita",
-                "lago_mar_chiquita",
-                "Mar Chiquita lake water level",
-                "Annual satellite radar altimetry surface elevation (EGM2008) of endorheic Mar Chiquita lake in central Argentina.",
-                "Closed saline lake whose level dropped by more than 4 m after its early-2000s highstand.",
             ),
             (
                 "colhue_huapi",
@@ -582,4 +576,4 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
                 ],
             ))
 
-    return invs, entradas
+    return [_limpiar_cero_negativo(i) for i in invs], entradas
