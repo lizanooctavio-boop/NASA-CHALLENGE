@@ -57,7 +57,7 @@ def tendencia(region, variable, desde=None, hasta=None):
         raise ConsultaInvalida(f"Variable desconocida en {region}: {variable}")
     v = r["variables"][variable]
     anios, valores = v["anios"], v["valores"]
-    if desde or hasta:
+    if desde is not None or hasta is not None:
         pares = [(a, x) for a, x in zip(anios, valores) if (desde is None or a >= desde) and (hasta is None or a <= hasta)]
         if len(pares) < 10:
             raise ConsultaInvalida("Se necesitan al menos 10 años para estimar una tendencia.")
@@ -88,18 +88,21 @@ def pronostico_estacional(region, anio, variable="lluvia_jun_nov"):
         return {"disponible": False, "motivo": f"Sin modelo estacional para {variable} (solo {list(VARIABLES_ESTACIONALES)})."}
     d = cargar()
     r = _region(region)
+    if variable not in r["variables"]:
+        return {"disponible": False, "motivo": f"Sin datos de {variable} para la región {region}."}
     v = r["variables"][variable]
     idx = d["indices_climaticos"]["mensual"]
     mensual = {k: {(a, m): x for a, m, x in zip(idx["anios"], idx["meses"], idx[k]) if x is not None}
                for k in ("nino34", "tna")}
     inicio, _ = VARIABLES_ESTACIONALES[variable]
     preds = {k: me.serie_predictor(mensual[k], list(v["anios"]) + [anio], inicio, 0) for k in mensual}
-    entrenamiento = [a for a in v["anios"] if a != anio and all(a in p for p in preds.values())]
+    valores_por_anio = {a: val for a, val in zip(v["anios"], v["valores"]) if val is not None}
+    entrenamiento = [a for a in v["anios"] if a != anio and a in valores_por_anio and all(a in p for p in preds.values())]
     if not all(anio in p for p in preds.values()):
         return {"disponible": False, "anio": anio,
                 "motivo": (f"Aún no hay Niño 3.4 y TNA de marzo–mayo de {anio} en los datos. Ejecute "
                            "`python -m clima_nic actualizar --descargar` cuando estén publicados.")}
-    y = np.array([v["valores"][v["anios"].index(a)] for a in entrenamiento])
+    y = np.array([valores_por_anio[a] for a in entrenamiento], float)
     X = np.array([[preds["nino34"][a], preds["tna"][a]] for a in entrenamiento])
     x_nuevo = np.array([preds["nino34"][anio], preds["tna"][anio]])
     sin_tendencia = not variable.endswith("_imerg")
@@ -118,8 +121,9 @@ def pronostico_estacional(region, anio, variable="lluvia_jun_nov"):
     else:
         p = me.pronostico(y, X, x_nuevo)
     observado = v["valores"][v["anios"].index(anio)] if anio in v["anios"] else None
+    clave_region = f"{region} (IMERG)" if variable.endswith("_imerg") else region
     principal = next((e for e in d["modelo_estacional"]["principales"]
-                      if e["region"] == region and e["modelo"] == "nino34_tna_mam"), None)
+                      if e["region"] == clave_region and e["modelo"] == "nino34_tna_mam"), None)
     return {"disponible": True, "tipo": "pronostico_estacional", "anio": anio, "region": region, "variable": variable,
             "unidad": v["unidad"], "predictores": {"nino34_mam": preds["nino34"][anio], "tna_mam": preds["tna"][anio]},
             **p, "observado": observado,
