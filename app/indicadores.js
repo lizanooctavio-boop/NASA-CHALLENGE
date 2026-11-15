@@ -124,12 +124,17 @@ function estacional(){
 // ---------------------------------------------------------------- escenarios NEX-GDDP-CMIP6
 function escenarios(){
   const r=$('esc-region').value||'NIC',E=D.escenarios_cmip6[r];if(!E)return;
+  const nombreR=REGIONES.find(x=>x[0]===r)?.[1]||r;
   const t=$('esc-tabla');t.replaceChildren();
-  const cab=nodo('tr');['Variable','Recent (1995–2014)','SSP2-4.5','SSP5-8.5','Models drier / wetter'].forEach(h=>cab.append(nodo('th',h)));t.append(cab);
-  ESCENARIOS.forEach(([k,n,u])=>{const e=E[k];if(!e)return;const fila=nodo('tr');fila.append(nodo('td',n));
+  const cap=nodo('caption',`Projected climate changes by 2050 for ${nombreR}`);
+  const thead=nodo('thead'),tbody=nodo('tbody');
+  const cab=nodo('tr');['Variable','Recent (1995–2014)','SSP2-4.5','SSP5-8.5','Models drier / wetter'].forEach(h=>{const th=nodo('th',h);th.setAttribute('scope','col');cab.append(th)});thead.append(cab);
+  ESCENARIOS.forEach(([k,n,u])=>{const e=E[k];if(!e)return;const fila=nodo('tr');
+    const th=nodo('th',n);th.setAttribute('scope','row');fila.append(th);
     fila.append(nodo('td',e.unidad==='mm'?`${num(e.observado_historico,0)} mm`:`${num(e.observado_historico,1)} °C`));
     ['ssp245','ssp585'].forEach(s=>{const c=e.escenarios[s].cambio,dd=u==='%'?0:1;const td=nodo('td');td.append(nodo('strong',`${signo(c.mediana,dd)} ${u}`),nodo('span',` ${signo(c.minimo,dd)} to ${signo(c.maximo,dd)}`,'tenue'));fila.append(td)});
-    const c=e.escenarios.ssp585.cambio;fila.append(nodo('td',u==='%'?`${c.modelos_disminucion} / ${c.modelos_aumento} of ${c.n_modelos}`:`${c.n_modelos} of ${c.n_modelos} warmer`));t.append(fila)});
+    const c=e.escenarios.ssp585.cambio;fila.append(nodo('td',u==='%'?`${c.modelos_disminucion} / ${c.modelos_aumento} of ${c.n_modelos}`:`${c.n_modelos} of ${c.n_modelos} warmer`));tbody.append(fila)});
+  t.append(cap,thead,tbody);
   const e0=Object.values(E)[0];
   $('esc-sub').textContent=`NASA NEX-GDDP-CMIP6 · ${e0.escenarios.ssp245.cambio.n_modelos} models · ${e0.periodo_futuro[0]}–${e0.periodo_futuro[1]} average vs. ${e0.periodo_historico[0]}–${e0.periodo_historico[1]} · median and model range`;
 }

@@ -48,7 +48,7 @@
 <div id="error" role="alert" hidden><span id="error-texto"></span><button id="error-cerrar" type="button" aria-label="Close">×</button></div>
 
 <section id="meteorologia" class="vista">
-  <label class="rango" for="opacidad-temp">Layer opacity<input id="opacidad-temp" type="range" min="15" max="95" value="60"></label>
+  <label class="rango" for="opacidad-temp">Layer opacity<input id="opacidad-temp" type="range" min="15" max="95" value="60" aria-valuetext="60%"></label>
   <article>
     <h2 id="meteograma-titulo">Point forecast</h2>
     <form id="consulta-punto" class="controles"><label>Latitude<input id="lat" type="number" step="any" min="-90" max="90" required></label><label>Longitude<input id="lon" type="number" step="any" min="-180" max="180" required></label><button id="consultar" type="submit">Get forecast</button></form>
@@ -126,9 +126,9 @@
 <section id="escenarios" class="vista" hidden>
   <article><h2>Nicaragua by 2050</h2><p class="sub-art" id="esc-sub">NASA NEX-GDDP-CMIP6</p>
     <div class="controles"><label>Region<select id="esc-region"></select></label></div>
-    <div class="tabla"><table id="esc-tabla"></table></div></article>
+    <div class="tabla" aria-live="polite"><table id="esc-tabla"></table></div></article>
   <div class="controles"><label>Scenario<select id="ssp"><option value="ssp126">SSP1-2.6</option><option value="ssp245" selected>SSP2-4.5</option><option value="ssp370">SSP3-7.0</option><option value="ssp585">SSP5-8.5</option></select></label><label>Season<select id="ventana-cmip"></select></label></div>
-  <article><h2>Projected change by period</h2><p class="sub-art">CMIP6 · Central America (SCA) · vs. 1981–1995</p><div id="cambios" class="tarjetas"></div></article>
+  <article><h2>Projected change by period</h2><p class="sub-art">CMIP6 · Central America (SCA) · vs. 1981–1995</p><div id="cambios" class="tarjetas" aria-live="polite"></div></article>
   <article><h2>Warming 2026–2100</h2><div class="graf"><canvas id="graf-dT" role="img" aria-label="Projected warming 2026 to 2100 across SSP scenarios"></canvas></div></article>
   <article><h2>Precipitation change 2026–2100</h2><div class="graf"><canvas id="graf-dP" role="img" aria-label="Projected precipitation change 2026 to 2100 across SSP scenarios"></canvas></div></article>
   <div class="controles"><a class="boton" href="/clima-base/proyecciones.csv" download>Projections (CSV)</a></div>
