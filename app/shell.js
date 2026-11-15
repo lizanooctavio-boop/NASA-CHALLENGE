@@ -228,3 +228,16 @@ function baseVectorial(){
     mapa.on('zoomend',ver);ver();
   }).catch(()=>{vectorialCargado=false});
 }
+// Descargas de /clima-base/: si el archivo no existe en esta compilación, aviso claro en lugar de una página 404.
+document.addEventListener('click',async ev=>{
+  const a=ev.target.closest?.('a[href^="/clima-base/"][download]');
+  if(!a)return;
+  ev.preventDefault();
+  try{
+    const r=await fetch(a.getAttribute('href'));
+    if(!r.ok)throw Error('This data file is not available in this build (HTTP '+r.status+').');
+    const b=await r.blob(),u=URL.createObjectURL(b),tmp=document.createElement('a');
+    tmp.href=u;tmp.download=a.getAttribute('download')||'';tmp.click();
+    setTimeout(()=>URL.revokeObjectURL(u),30000);
+  }catch(err){error(err)}
+});
