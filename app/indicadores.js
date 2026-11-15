@@ -79,7 +79,7 @@ function resultado(){
   const rTxt=validos.length?`, values ${num(Math.min(...validos),v.dec)} to ${num(Math.max(...validos),v.dec)} ${u}`:'';
   $('ind-serie')?.setAttribute('aria-label',`${v.titulo} in ${nombreRegion}, ${anios[0]} to ${anios.at(-1)}${rTxt}, Theil–Sen trend ${signo(sen.por_decada,v.dec+1)} ${u} per decade`);
   crear('ind-serie',{data:{labels:anios,datasets:[
-    {type:v.unidad==='mm'?'bar':'line',label:`${v.nombre} (${u})`,data:vals,borderColor:'#6fd8ff',backgroundColor:v.unidad==='mm'?'rgba(79,143,232,.7)':'rgba(111,216,255,.15)',pointRadius:v.unidad==='mm'?0:2,borderWidth:v.unidad==='mm'?0:2},
+    {type:v.unidad==='mm'?'bar':'line',label:`${v.nombre} (${u})`,data:vals,borderColor:'#6fd8ff',backgroundColor:v.unidad==='mm'?'rgba(106,168,255,.82)':'rgba(111,216,255,.15)',pointRadius:v.unidad==='mm'?0:2,borderWidth:v.unidad==='mm'?0:2},
     {type:'line',label:'Theil–Sen trend',data:recta,borderColor:'#f6c76b',borderDash:[6,4],pointRadius:0,borderWidth:2}]},
     options:{interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
 }

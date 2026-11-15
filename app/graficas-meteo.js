@@ -2,12 +2,12 @@
 (function(){
 const $=id=>document.getElementById(id);
 if(!window.Chart){window.SICC_graf={estado:()=>({chart:false})};return}
-Chart.defaults.color='#a9b8c9';Chart.defaults.borderColor='rgba(255,255,255,.09)';Chart.defaults.font.family='system-ui,"Segoe UI",sans-serif';Chart.defaults.font.size=11;
+Chart.defaults.color='#c0cfe0';Chart.defaults.borderColor='rgba(205,220,238,.36)';Chart.defaults.font.family='system-ui,"Segoe UI",sans-serif';Chart.defaults.font.size=11;
 const mqReducido=matchMedia('(prefers-reduced-motion:reduce)');
 const fijarAnim=r=>{Chart.defaults.animation.duration=r?0:300};
 Chart.defaults.plugins.legend.labels.boxWidth=12;Chart.defaults.maintainAspectRatio=false;fijarAnim(mqReducido.matches);
 mqReducido.addEventListener?.('change',e=>fijarAnim(e.matches));
-const C={cian:'#6fd8ff',ambar:'#f6c76b',rojo:'#ff7b6b',verde:'#6fe0a0',violeta:'#b493ff',gris:'#9db0c6',azul:'#4f8fe8'};
+const C={cian:'#6fd8ff',ambar:'#f6c76b',rojo:'#ff7b6b',verde:'#6fe0a0',violeta:'#b493ff',gris:'#b6c8de',azul:'#6aa8ff'};
 const SSP={ssp126:C.verde,ssp245:C.cian,ssp370:C.ambar,ssp585:C.rojo};
 const NOMBRE_SSP={ssp126:'SSP1-2.6',ssp245:'SSP2-4.5',ssp370:'SSP3-7.0',ssp585:'SSP5-8.5'};
 const graficas={};
@@ -43,7 +43,7 @@ function escenarios(){
 // ---------------------------------------------------------------- ENOS
 document.addEventListener('sicc:enos',e=>{const d=e.detail;
   const f=d.oni_local.filter(x=>x.oni!==null);
-  crear('graf-oni',{type:'bar',data:{labels:f.map(x=>`${x.anio}-${String(x.mes).padStart(2,'0')}`),datasets:[{label:'ONI (°C)',data:f.map(x=>x.oni),backgroundColor:f.map(x=>x.oni>=.5?'rgba(255,123,107,.85)':x.oni<=-.5?'rgba(79,143,232,.85)':'rgba(157,176,198,.45)'),borderWidth:0,barPercentage:1,categoryPercentage:1}]},
+  crear('graf-oni',{type:'bar',data:{labels:f.map(x=>`${x.anio}-${String(x.mes).padStart(2,'0')}`),datasets:[{label:'ONI (°C)',data:f.map(x=>x.oni),backgroundColor:f.map(x=>x.oni>=.5?'rgba(255,123,107,.9)':x.oni<=-.5?'rgba(106,168,255,.9)':'rgba(182,200,222,.68)'),borderWidth:0,barPercentage:1,categoryPercentage:1}]},
     options:{plugins:{legend:{display:false},subtitle:{display:true,text:'Red: El Niño (≥ +0.5) · Blue: La Niña (≤ −0.5)'}},scales:{x:{ticks:{maxTicksLimit:16,autoSkip:true}},y:eje('°C')}}});
   if(f.length){
     const rOni=extremos(f.map(x=>x.oni)),ult=f.at(-1),fase=ult.oni>=.5?'El Niño':ult.oni<=-.5?'La Niña':'Neutral';
@@ -69,7 +69,7 @@ document.addEventListener('sicc:pronostico',e=>{
   $('graf-meteograma')?.setAttribute('aria-label',`Hourly forecast at ${Math.abs(p.lat).toFixed(2)}° ${p.lat>=0?'N':'S'}, ${Math.abs(p.lon).toFixed(2)}° ${p.lon>=0?'E':'W'}${rT?`, temperature ${rT[0].toFixed(1)} to ${rT[1].toFixed(1)} °C`:''}${rP?`, peak rainfall ${rP[1].toFixed(1)} mm/h`:''}${rG?`, peak wind gusts ${rG[1].toFixed(1)} m/s`:''}`);
   crear('graf-meteograma',{data:{labels:etiquetas,datasets:[
     {type:'line',label:'Temperature (°C)',data:h.temperature_2m,borderColor:C.ambar,pointRadius:0,tension:.3,yAxisID:'y'},
-    {type:'bar',label:'Rain (mm/h)',data:h.precipitation,backgroundColor:'rgba(79,143,232,.75)',yAxisID:'y1'},
+    {type:'bar',label:'Rain (mm/h)',data:h.precipitation,backgroundColor:'rgba(106,168,255,.82)',yAxisID:'y1'},
     {type:'line',label:'Gusts (m/s)',data:h.wind_gusts_10m,borderColor:C.violeta,borderDash:[3,3],pointRadius:0,yAxisID:'y2'}]},
     options:{interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:9}},y:eje('°C'),y1:eje('mm/h',{position:'right',grid:{drawOnChartArea:false},min:0}),y2:{display:false,min:0}}}});
 });

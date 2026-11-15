@@ -122,7 +122,7 @@ function serie(x,t,ok){
   const u=x.unidad,barras=['mm','storms','months','Gt'].includes(u)&&!x.id.startsWith('nivel_mar_');
   const eje=conHuecos(x);
   $('inv-serie-titulo').textContent=`${x.titulo_en} · ${lugar(x.lugar).nombre_en}`;
-  const ds=[{type:barras?'bar':'line',label:`${x.titulo_en} (${u})`,data:eje.valores,borderColor:'#6fd8ff',backgroundColor:barras?'rgba(79,143,232,.7)':'rgba(111,216,255,.15)',pointRadius:barras?0:2,borderWidth:barras?0:2,spanGaps:false}];
+  const ds=[{type:barras?'bar':'line',label:`${x.titulo_en} (${u})`,data:eje.valores,borderColor:'#6fd8ff',backgroundColor:barras?'rgba(106,168,255,.82)':'rgba(111,216,255,.15)',pointRadius:barras?0:2,borderWidth:barras?0:2,spanGaps:false}];
   if(ok){
     // Ordenada de Sen: mediana de y − b·x, la misma que usa scipy.stats.theilslopes.
     const b=t.sen.por_decada/10,res=x.tiempos.map((a,i)=>x.valores[i]===null?null:x.valores[i]-b*a).filter(v=>v!==null).sort((p,q)=>p-q);
