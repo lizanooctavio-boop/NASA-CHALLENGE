@@ -14,6 +14,11 @@ const VEREDICTO={
   evidencia_insuficiente:['Not enough evidence of a trend','aprender-no-significativo'],
   metodos_discrepan:['Methods disagree','aprender-metodos'],
   datos_insuficientes:['Not enough data for a trend test','aprender-registro-corto']};
+const VEREDICTO_AYUDA={
+  tendencia_detectada:'All statistical methods agree on the direction and rule out zero change at 95% confidence.',
+  evidencia_insuficiente:'Does NOT mean “no change”: natural year-to-year swings or a short record may be hiding a real shift.',
+  metodos_discrepan:'At least one method rules out zero while another still crosses zero or gives p ≥ 0.05, so it is not confirmed as a trend.',
+  datos_insuficientes:'Too few years to test a long-term trend reliably; this series shows short-term or seasonal values instead.'};
 const ICONOS={aumento:'<path d="M4 15l6-6 4 4 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   disminucion:'<path d="M4 7l6 6 4-4 6 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   insuficiente:'<path d="M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>'};
@@ -80,7 +85,9 @@ function resultado(){
   const [desde,hasta]=x.periodo||[x.tiempos[0],x.tiempos.at(-1)];
   const periodo=desde===hasta?String(desde):`${desde}–${hasta}`;
   const [texto,ancla]=corto?['Record too short for a trend test','aprender-registro-corto']:VEREDICTO[t.veredicto]||[t.veredicto,'aprender-tendencia'];
+  const ayuda=corto?VEREDICTO_AYUDA.datos_insuficientes:VEREDICTO_AYUDA[t?.veredicto];
   const cab=nodo('div');cab.append(nodo('p',texto,'estado'),nodo('p',`${x.titulo_en} · ${l.nombre_en} · ${periodo}`,'sub'));
+  if(ayuda)cab.append(nodo('p',ayuda,'veredicto-ayuda'));
   c.append(ic,cab);
   const tj=nodo('div',undefined,'tarjetas');tj.style.gridColumn='1/-1';
   const tar=(a,b,dd)=>{const e=nodo('div',undefined,'tarjeta');e.append(nodo('small',a),nodo('strong',b));if(dd)e.append(nodo('p',dd));tj.append(e)};
