@@ -265,14 +265,20 @@ function orientar() {
   rotacion.makeRotationY(-estado.lon * RAD).premultiply(new THREE.Matrix4().makeRotationX(estado.lat * RAD));
   uniformes.uRot.value.setFromMatrix4(rotacion);
 }
+// Tamaño real del lienzo: en móvil el CSS lo acorta para dejar sitio a los controles, y usar el de la
+// ventana estiraba la imagen y aplastaba la esfera.
+const anchoLienzo = () => canvas.clientWidth || innerWidth;
+const altoLienzo = () => canvas.clientHeight || innerHeight;
 function tamano() {
-  const w = innerWidth, h = innerHeight;
+  const w = anchoLienzo(), h = altoLienzo();
   if (w <= 0 || h <= 0) return;
   renderer.setSize(w, h, false);
   camara.aspect = w / h;
   camara.updateProjectionMatrix();
 }
 addEventListener('resize', () => { tamano(); dibujar(); });
+// También cuando cambia sin redimensionar la ventana (ocultar paneles, barra del navegador móvil).
+if (typeof ResizeObserver === 'function') new ResizeObserver(() => { tamano(); dibujar(); }).observe(canvas);
 tamano();
 
 function encuadrar() {
@@ -280,7 +286,7 @@ function encuadrar() {
   camara.near = Math.max(0.000005, Math.min(0.02, (estado.dist - 1) / 10));
   camara.updateProjectionMatrix();
   camara.lookAt(0, 0, 0);
-  const w = innerWidth, h = innerHeight;
+  const w = anchoLienzo(), h = altoLienzo();
   if (w <= 0 || h <= 0) return;
   if (Math.abs(estado.desp) > 0.5) camara.setViewOffset(w, h, -estado.desp, 0, w, h);
   else camara.clearViewOffset();
@@ -296,7 +302,7 @@ function encuadrar() {
   orientar();
 }
 function dibujar() {
-  if (innerWidth <= 0 || innerHeight <= 0) return;
+  if (anchoLienzo() <= 0 || altoLienzo() <= 0) return;
   encuadrar();
   teselas.update(camara, rotacion, estado, performance.now());
   renderer.render(escena, camara);
@@ -448,7 +454,7 @@ function aGlobo({ lon, lat, zoom }) {
 // ---------------------------------------------------------------- interacción
 const punteros = new Map();
 let gesto = null, alElegir = null;
-function gradosPorPixel() { return dragDegrees(estado.dist, innerHeight); }
+function gradosPorPixel() { return dragDegrees(estado.dist, altoLienzo()); }
 canvas.addEventListener('pointerdown', e => {
   if (estado.animando || estado.morph > 0) return;
   canvas.setPointerCapture(e.pointerId);
@@ -515,7 +521,8 @@ canvas.addEventListener('keydown', e => {
 const rayo = new THREE.Raycaster(), esfera = new THREE.Sphere(new THREE.Vector3(), 1), impacto = new THREE.Vector3();
 function elegir(e) {
   if (!alElegir) return;
-  rayo.setFromCamera(new THREE.Vector2(e.clientX / innerWidth * 2 - 1, -e.clientY / innerHeight * 2 + 1), camara);
+  const caja = canvas.getBoundingClientRect();
+  rayo.setFromCamera(new THREE.Vector2((e.clientX - caja.left) / caja.width * 2 - 1, -(e.clientY - caja.top) / caja.height * 2 + 1), camara);
   if (!rayo.ray.intersectSphere(esfera, impacto)) return;
   const local = impacto.clone().applyMatrix4(rotacion.clone().invert());
   const lat = Math.asin(Math.max(-1, Math.min(1, local.y))) / RAD, lon = Math.atan2(local.x, local.z) / RAD;
