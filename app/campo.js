@@ -11,7 +11,8 @@ if(!soporte){sinCampo('Weather support module unavailable.');return}
 if(typeof mapa==='undefined'||!mapa){sinCampo('Map library unavailable.');return}
 
 const { escalas: ESCALAS, color } = window.PaletasMeteo;
-const reducido=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const mqReducido=matchMedia('(prefers-reduced-motion:reduce)');
+let reducido=mqReducido.matches;
 const DPR=Math.min(2,window.devicePixelRatio||1);
 const REFRESCO_MIN=60;
 let G=null,variable='temperatura_c',hora=0,raf=0,opacidad=.7,conParticulas=true,reproducir=null;
@@ -129,6 +130,7 @@ function reiniciar(conservar){
 mapa.on('movestart zoomstart',()=>{cancelAnimationFrame(raf);raf=0;cP.style.visibility='hidden'});
 mapa.on('moveend zoomend resize',()=>{cP.style.visibility='';reiniciar()});
 document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(raf);raf=0;if(!document.hidden&&!reducido&&FV&&!enGlobo())raf=requestAnimationFrame(frame)});
+mqReducido.addEventListener?.('change',e=>{reducido=e.matches;if(FV&&!enGlobo())reiniciar(true)});
 document.addEventListener('sicc:vista',()=>reiniciar());
 
 // Leyenda

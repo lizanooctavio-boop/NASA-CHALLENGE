@@ -208,7 +208,7 @@ function pasoDemo(focoDestino){
   panel.append(ctl);
   const destino={veredicto:'inv-veredicto',contrastes:'inv-contrastes'}[p.ver];
   if(p.ver==='aprender'){const b=nodo('button','Open the explanation');b.type='button';b.onclick=()=>aprender(p.ancla||'aprender-no-significativo');ctl.append(b)}
-  (destino?$(destino):panel).scrollIntoView({block:'nearest',behavior:'smooth'});
+  (destino?$(destino):panel).scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
   if(focoDestino==='inicio')panel.focus({preventScroll:true});
   else if(focoDestino){
     const elegido=ctl.querySelector(`[data-accion="${focoDestino}"]:not(:disabled)`)||ctl.querySelector('button:not(:disabled)');

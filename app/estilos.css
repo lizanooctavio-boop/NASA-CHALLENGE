@@ -263,7 +263,7 @@ body.aviso-encima main{z-index:7}
   #linea-tiempo button{min-height:44px;min-width:44px}
   .leyenda-alternar{min-height:44px}
 }
-@media(prefers-reduced-motion:reduce){*{transition:none!important}.ciclon,.indicador i{animation:none!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
 .etq-pais{color:#dfe8f2;font-size:10.5px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;white-space:nowrap;transform:translate(-50%,-50%);text-shadow:0 0 3px #000,0 0 6px #000,0 0 10px #000;pointer-events:none}
 .etq-ciudad{color:#f2f6fa;font-size:11.5px;white-space:nowrap;text-shadow:0 0 3px #000,0 0 6px #000;transform:translate(-3px,-50%);pointer-events:none}.etq-ciudad i{display:inline-block;width:5px;height:5px;border-radius:50%;background:#fff;margin-right:5px;vertical-align:middle;box-shadow:0 0 3px #000}

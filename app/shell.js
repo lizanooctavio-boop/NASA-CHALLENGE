@@ -130,12 +130,14 @@ async function cambiarVista(nuevo){
       await window.Espacio.aMapa({lon:c.lng,lat:c.lat,zoom:mapa.getZoom()});
       document.body.classList.replace('modo-globo','modo-mapa');
       document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'mapa'}));
-      await esperar(520);window.Espacio.pausar(true);
+      if(!matchMedia('(prefers-reduced-motion:reduce)').matches)await esperar(520);
+      window.Espacio.pausar(true);
     }else{
       const c=mapa.getCenter(),vuelta=window.Espacio.aGlobo({lon:L.Util.wrapNum(c.lng,[-180,180]),lat:c.lat,zoom:mapa.getZoom()});
       document.body.classList.replace('modo-mapa','modo-globo');
       document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'globo'}));
-      await esperar(420);await vuelta.animar();
+      if(!matchMedia('(prefers-reduced-motion:reduce)').matches)await esperar(420);
+      await vuelta.animar();
     }
   }finally{cambiando=false;document.body.classList.remove('en-transicion')}
 }

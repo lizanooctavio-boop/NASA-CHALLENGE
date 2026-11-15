@@ -3,7 +3,10 @@
 const $=id=>document.getElementById(id);
 if(!window.Chart){window.SICC_graf={estado:()=>({chart:false})};return}
 Chart.defaults.color='#a9b8c9';Chart.defaults.borderColor='rgba(255,255,255,.09)';Chart.defaults.font.family='system-ui,"Segoe UI",sans-serif';Chart.defaults.font.size=11;
-Chart.defaults.plugins.legend.labels.boxWidth=12;Chart.defaults.maintainAspectRatio=false;Chart.defaults.animation.duration=300;
+const mqReducido=matchMedia('(prefers-reduced-motion:reduce)');
+const fijarAnim=r=>{Chart.defaults.animation.duration=r?0:300};
+Chart.defaults.plugins.legend.labels.boxWidth=12;Chart.defaults.maintainAspectRatio=false;fijarAnim(mqReducido.matches);
+mqReducido.addEventListener?.('change',e=>fijarAnim(e.matches));
 const C={cian:'#6fd8ff',ambar:'#f6c76b',rojo:'#ff7b6b',verde:'#6fe0a0',violeta:'#b493ff',gris:'#9db0c6',azul:'#4f8fe8'};
 const SSP={ssp126:C.verde,ssp245:C.cian,ssp370:C.ambar,ssp585:C.rojo};
 const NOMBRE_SSP={ssp126:'SSP1-2.6',ssp245:'SSP2-4.5',ssp370:'SSP3-7.0',ssp585:'SSP5-8.5'};
