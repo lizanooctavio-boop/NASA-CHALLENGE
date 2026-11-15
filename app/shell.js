@@ -11,7 +11,16 @@ function nodo(tag,texto,clase){const n=document.createElement(tag);if(texto!==un
 function tarjeta(contenedor,titulo,valor,detalle){const d=nodo('div',undefined,'tarjeta');d.append(nodo('small',titulo),nodo('strong',valor));if(detalle)d.append(nodo('p',detalle));contenedor.append(d)}
 const decimal=(v,n=2)=>Number(v).toLocaleString('en-US',{maximumFractionDigits:n,minimumFractionDigits:n});
 async function api(url){const r=await window.FuentesMeteo.fetch(url);const d=await leerJSON(r);if(!r.ok)throw Error(d.error||'Data unavailable');return d}
-function tab(id){document.querySelectorAll('.vista').forEach(v=>v.hidden=v.id!==id);document.querySelectorAll('nav button').forEach(b=>{b.classList.toggle('activo',b.dataset.tab===id);if(b.dataset.tab===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});$('titulo').textContent=document.querySelector(`[data-tab="${id}"]`).textContent;soloMapa(false);document.dispatchEvent(new CustomEvent('sicc:pestana',{detail:id}))}
+function tab(id,sinHistorial){
+  if(!document.getElementById(id))return;
+  document.querySelectorAll('.vista').forEach(v=>v.hidden=v.id!==id);
+  document.querySelectorAll('nav button').forEach(b=>{b.classList.toggle('activo',b.dataset.tab===id);if(b.dataset.tab===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+  const btn=document.querySelector(`[data-tab="${id}"]`);
+  if(btn)$('titulo').textContent=btn.textContent;
+  soloMapa(false);
+  if(!sinHistorial&&location.hash!=='#'+id){try{history.pushState({tab:id},'','#'+id)}catch(_){location.hash=id}}
+  document.dispatchEvent(new CustomEvent('sicc:pestana',{detail:id}));
+}
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 
 // ---------------------------------------------------------------- mapa 2D
@@ -141,8 +150,18 @@ function marcar(lat,lon,nombre){
   if(nombre)marcaLugar.bindTooltip(nombre,{permanent:true,direction:'top',offset:[0,-8],className:'marca-lugar'}).openTooltip();
 }
 window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{await cambiarVista('mapa');mapa.setView([lat,lon],z)},marcar,soloMapa};
-const salidaHash=()=>{if(location.hash==='#map')cambiarVista('mapa')};
-document.addEventListener('espacio:listo',()=>setTimeout(salidaHash,3700));
+const aplicarHash=()=>{
+  const h=location.hash.replace(/^#/,'');
+  if(!h)return;
+  if(h==='map'||h==='mapa'){cambiarVista('mapa');return}
+  if(document.querySelector(`.vista#${CSS.escape(h)}`))tab(h,true);
+};
+window.addEventListener('hashchange',aplicarHash);
+window.addEventListener('popstate',aplicarHash);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',aplicarHash);
+else setTimeout(aplicarHash,0);
+const salidaHash=()=>{if(location.hash==='#map'||location.hash==='#mapa')cambiarVista('mapa')};
+document.addEventListener('espacio:listo',salidaHash);
 
 // ---------------------------------------------------------------- base vectorial: fronteras y nombres (Natural Earth)
 function baseVectorial(){
