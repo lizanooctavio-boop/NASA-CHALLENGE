@@ -321,5 +321,15 @@ def test_canicula_arrecifes_grace_y_glaciares():
     fuego = {z: ids[f"incendios_area_{z}"] for z in ("NIC", "centroamerica", "global")}
     assert all(x["tiempos"] == list(range(2001, 2021)) and x["categoria"] == "vegetacion" for x in fuego.values())
     assert all(n <= c <= g for n, c, g in zip(*(x["valores"] for x in fuego.values())))
+    # Landsat: pérdida de bosque (Hansen) y superficie de lagos (JRC), sin años mal observados.
+    bosque = {r: ids[f"bosque_perdida_{r}"] for r in ("NIC", "pacifico", "central", "caribe")}
+    assert all(x["tiempos"] == list(range(2001, 2025)) and x["categoria"] == "vegetacion" for x in bosque.values())
+    assert all(sum(x["valores"][k] for r, x in bosque.items() if r != "NIC") <= bosque["NIC"]["valores"][k] + 1
+               for k in range(24))
+    for lago in ("cocibolca", "xolotlan"):
+        x = ids[f"lago_superficie_{lago}"]
+        assert x["categoria"] == "agua" and x["tiempos"][-1] == 2021 and len(x["tiempos"]) >= 30
+        # Sin extrapolaciones absurdas de años casi sin observar (el Xolotlán varía de verdad ~11%).
+        assert max(x["valores"]) < 1.2 * min(x["valores"]) and rec.ESTUDIOS["lagos_landsat"] in x["notas"]
     # La cita dice que el área quemada mundial disminuye: comprobarlo.
     assert fuego["global"]["tendencia"]["sen"]["por_decada"] < 0 and rec.ESTUDIOS["incendios"] in fuego["global"]["notas"]

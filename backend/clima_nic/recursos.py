@@ -563,6 +563,10 @@ ESTUDIOS = {
     "acidificacion": "Published check: the surface ocean has become more acidic everywhere since the 1980s as it absorbs "
                      "carbon dioxide (Ma et al. 2023, doi:10.1029/2023GB007765). Data: OceanSODA-ETHZ (Gregor and "
                      "Gruber 2021, doi:10.5194/essd-13-777-2021).",
+    "bosque": "Data and method: Landsat-based maps of tree cover loss at 30 m (Hansen et al. 2013, Science, "
+              "doi:10.1126/science.1244693; Global Forest Change v1.12).",
+    "lagos_landsat": "Data and method: every Landsat scene since 1984 classified into water and land at 30 m "
+                     "(Pekel et al. 2016, Nature, doi:10.1038/nature20584; JRC Global Surface Water).",
     "incendios": "Published check: the land burned worldwide each year shrank since the early 2000s, mostly in "
                  "savannas and grasslands turned to farms and pasture (Andela et al. 2017, Science, "
                  "doi:10.1126/science.aal4108). Data: GFED5 burned area (Chen et al. 2023, "
@@ -1010,6 +1014,49 @@ def _mundo(carpeta, fuentes, chirps, notas_lluvia):
                                        notas=[f"Most burned: {pico[1]}, {pico[0]:,.0f} km².",
                                               "One very dry or very wet year moves the total a lot, so 20 years is "
                                               "short for a fire trend.", ESTUDIOS["incendios"]]))
+
+    ruta = carpeta / "hansen_perdida_bosque_anual.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        hansen = {"producto": "Hansen Global Forest Change v1.12, Landsat 30 m (University of Maryland)",
+                  "url": "https://glad.earthengine.app/view/global-forest-change"}
+        for region, puntos in _serie(_leer_csv(ruta), "region", "perdida_km2").items():
+            anios, valores = [a for a, _ in puntos], [v for _, v in puntos]
+            base = float(next(f["bosque_2000_km2"] for f in _leer_csv(ruta) if f["region"] == region))
+            pico = max(zip(valores, anios))
+            invs.append(_investigacion(f"bosque_perdida_{region}", "vegetacion", region, "Tree cover lost per year",
+                                       "Area of forest (at least 30% tree cover in 2000) where Landsat saw the trees "
+                                       "removed or killed that year.", "km²", anios, valores, hansen,
+                                       notas=[f"Total {anios[0]}–{anios[-1]}: {sum(valores):,.0f} km², "
+                                              f"{100 * sum(valores) / base:.0f}% of the {base:,.0f} km² of forest in 2000.",
+                                              f"Most lost: {pico[1]}, {pico[0]:,.0f} km².",
+                                              "Tree cover loss is not only deforestation: hurricanes (Felix 2007, "
+                                              "Otto 2016, Eta and Iota 2020) and fires also kill trees.",
+                                              "The mapping method was updated during the record, so compare early and "
+                                              "recent years with care.", ESTUDIOS["bosque"]]))
+
+    ruta = carpeta / "gsw_lagos_nicaragua_anual.csv"
+    if ruta.is_file():
+        entradas.append(ruta)
+        gsw = {"producto": "JRC Global Surface Water yearly classification, Landsat 30 m (European Commission)",
+               "url": "https://global-surface-water.appspot.com/"}
+        nombres = {"cocibolca": "Lake Nicaragua", "xolotlan": "Lake Managua"}
+        for lago in ("cocibolca", "xolotlan"):
+            # Solo años con al menos 80% del lago visto sin nubes ni huecos de Landsat 7.
+            filas = [f for f in _leer_csv(ruta) if f["lago"] == lago and f["agua_km2"] not in ("", "nan")
+                     and float(f["fraccion_observada"]) >= 0.8]
+            anios, valores = [int(f["anio"]) for f in filas], [float(f["agua_km2"]) for f in filas]
+            fuera = sorted({int(f["anio"]) for f in _leer_csv(ruta) if f["lago"] == lago} - set(anios))
+            alto, bajo = max(zip(valores, anios)), min(zip(valores, anios))
+            invs.append(_investigacion(f"lago_superficie_{lago}", "agua", lago, "Lake water area (Landsat)",
+                                       f"Area of {nombres[lago]} covered by water each year, mapped from every Landsat "
+                                       "image of that year.", "km²", anios, valores, gsw,
+                                       notas=[f"Largest: {alto[1]}, {alto[0]:,.0f} km². Smallest: {bajo[1]}, "
+                                              f"{bajo[0]:,.0f} km².",
+                                              f"Years left out because clouds or gaps hid most of the lake: "
+                                              f"{', '.join(map(str, fuera))}." if fuera else
+                                              "Every year had a clear view of the lake.",
+                                              ESTUDIOS["lagos_landsat"]]))
     return invs, entradas
 
 
