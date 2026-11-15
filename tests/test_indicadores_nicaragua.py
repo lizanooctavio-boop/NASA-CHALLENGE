@@ -333,3 +333,15 @@ def test_msess_loo_cerrado_igual_al_bucle():
     x = rng.normal(size=(30, 2))
     y = 3 * x[:, 0] + rng.normal(size=30)
     assert me.msess_loo(y, x) == pytest.approx(me.validacion_cruzada(y, x, 1)["msess"], abs=1e-10)
+
+
+def test_anios_incompletos_o_con_fechas_repetidas_se_descartan():
+    f = np.arange("2004-01-01", "2005-01-01", dtype="datetime64[D]")
+    sin_dia = f[f != np.datetime64("2004-07-01")]  # bisiesto con 365 días: incompleto
+    assert ind.indices_lluvia(sin_dia, np.full(len(sin_dia), 2.0), [2004])[0] == {}
+    repetida = np.concatenate([sin_dia[:182], sin_dia[181:182], sin_dia[182:]])  # 366 registros, uno repetido
+    assert ind.indices_lluvia(repetida, np.full(len(repetida), 2.0), [2004])[0] == {}
+    t = np.full(len(sin_dia), 30.0)
+    assert ind.indices_calor(sin_dia, t, t - 8, t - 4, [2004]) == {}
+    completo = ind.indices_lluvia(f, np.full(len(f), 2.0), [2004])[0]
+    assert completo[2004]["prcptot"] == pytest.approx(732) and completo[2004]["cwd"] == 366

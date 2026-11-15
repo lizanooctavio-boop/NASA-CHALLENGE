@@ -73,6 +73,10 @@ def escenarios(cmip6, observado, region, variable, temporada="anual", hist=HIST,
             cf, _ = climatologia(fut, futuro, meses, variable)
             if not (np.isfinite(ch) and np.isfinite(cf)):
                 continue
+            if variable == "pr" and ch <= 0:
+                # Sin lluvia histórica en el modelo el cambio relativo no está definido: se excluye, sin inventar un %.
+                out.setdefault("modelos_excluidos", {})[mo] = "lluvia histórica del modelo nula; cambio relativo indefinido"
+                continue
             if variable == "pr":
                 d = (cf / ch - 1) * 100
                 proyectados.append(obs * (1 + d / 100))
@@ -81,7 +85,10 @@ def escenarios(cmip6, observado, region, variable, temporada="anual", hist=HIST,
                 proyectados.append(obs + d)
             deltas.append(d)
             if esc == "ssp245":
-                out["sesgo_modelos_historico"][mo] = (ch / obs - 1) * 100 if variable == "pr" else ch - obs
+                if variable == "pr":
+                    out["sesgo_modelos_historico"][mo] = None if obs == 0 else (ch / obs - 1) * 100
+                else:
+                    out["sesgo_modelos_historico"][mo] = ch - obs
         out["escenarios"][esc] = {"cambio": resumen_conjunto(deltas),
                                   "unidad_cambio": "%" if variable == "pr" else "°C",
                                   "valor_proyectado": resumen_conjunto(proyectados)}

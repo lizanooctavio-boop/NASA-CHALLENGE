@@ -160,16 +160,20 @@ def a_mensual(fechas, valores, como="suma"):
 
 
 def a_anual(tiempos_mensuales, valores, como="suma", meses=range(1, 13)):
-    """Serie mensual ("AAAA-MM") → anual con los meses indicados completos."""
-    por = {}
+    """Serie mensual ("AAAA-MM") → anual con los meses indicados completos.
+
+    Un año con un mes repetido se descarta: un duplicado no puede sustituir a un mes ausente."""
+    por, duplicados = {}, set()
     for t, v in zip(tiempos_mensuales, valores):
         a, m = int(t[:4]), int(t[5:7])
         if m in meses:
-            por.setdefault(a, []).append(v)
+            if m in por.setdefault(a, {}):
+                duplicados.add(a)
+            por[a][m] = v
     anios, vals = [], []
     for a in sorted(por):
-        x = np.array(por[a], float)
-        if len(x) == len(list(meses)) and np.all(np.isfinite(x)):
+        x = np.array(list(por[a].values()), float)
+        if a not in duplicados and set(por[a]) == set(meses) and np.all(np.isfinite(x)):
             anios.append(a)
             vals.append(float(x.sum() if como == "suma" else x.mean()))
     return anios, vals

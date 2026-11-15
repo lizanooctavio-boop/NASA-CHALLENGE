@@ -18,6 +18,7 @@ Convenciones: lluvia en mm/día, temperatura en °C, fechas como numpy datetime6
 tiene ≥ 1 mm. Los índices ETCCDI se calculan por año calendario; las rachas (CDD, CWD) se cortan en
 el 31 de diciembre (simplificación declarada: la estación seca de Nicaragua cruza el cambio de año).
 """
+import calendar
 import math
 
 import numpy as np
@@ -226,16 +227,22 @@ def percentil_humedo(fechas, pr, anios_base, q=95):
     return float(np.percentile(pr[sel], q))
 
 
+def anio_completo(anio, doy):
+    """True si los días del año `anio` (doy) son exactamente 1..365/366, sin huecos, repetidos ni desorden."""
+    n = 366 if calendar.isleap(int(anio)) else 365
+    return len(doy) == n and bool(np.all(np.asarray(doy) == np.arange(1, n + 1)))
+
+
 def indices_lluvia(fechas, pr, anios_base):
     """Índices anuales de lluvia. Devuelve {anio: {indice: valor}} solo para años completos (sin NaN)."""
-    anio, mes, _ = descomponer(fechas)
+    anio, mes, doy = descomponer(fechas)
     pr = np.asarray(pr, float)
     p95 = percentil_humedo(fechas, pr, anios_base, 95)
     out = {}
     for a in np.unique(anio):
         sel = anio == a
         x = pr[sel]
-        if len(x) < 365 or not np.all(np.isfinite(x)):
+        if not anio_completo(a, doy[sel]) or not np.all(np.isfinite(x)):
             continue
         humedo = x >= UMBRAL_HUMEDO
         x5 = np.convolve(x, np.ones(5), "valid")
@@ -284,7 +291,7 @@ def indices_calor(fechas, tmax, tmin, tmed, anios_base):
     out = {}
     for a in np.unique(anio):
         sel = anio == a
-        if sel.sum() < 365 or not (np.all(np.isfinite(tx[sel])) and np.all(np.isfinite(tn[sel]))):
+        if not anio_completo(a, doy[sel]) or not (np.all(np.isfinite(tx[sel])) and np.all(np.isfinite(tn[sel]))):
             continue
         d = doy[sel]
         out[int(a)] = {

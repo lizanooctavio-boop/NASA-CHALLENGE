@@ -96,6 +96,8 @@ def test_a_mensual_y_anual():
     assert t[0] == "2001-01" and v[0] == 31 and len(t) == 24
     anios, vals = base.a_anual(t, v)
     assert anios == [2001, 2002] and vals == [365, 365]
+    # Dos eneros y sin diciembre: el duplicado no completa el año.
+    assert base.a_anual(["2001-01"] + [f"2001-{m:02}" for m in range(1, 12)], [1] * 12) == ([], [])
 
 
 # ---------------------------------------------------------------- POWER
@@ -220,6 +222,17 @@ def test_escenarios_delta():
     t = proyecciones.escenarios(cm, obs_t, "r", "tas")
     assert t["escenarios"]["ssp585"]["valor_proyectado"]["maximo"] == pytest.approx(29.0)
     assert "no es un pronóstico" in t["advertencia"]
+
+
+def test_escenarios_lluvia_historica_nula():
+    hist = {(a, m): 0.0 for a in range(1995, 2015) for m in range(1, 13)}
+    fut = {(a, m): 1.0 for a in range(2041, 2061) for m in range(1, 13)}
+    cm = {("Z", "historical", "pr", "r"): hist, ("Z", "ssp245", "pr", "r"): fut, ("Z", "ssp585", "pr", "r"): fut,
+          ("P", "historical", "pr", "r"): {k: 1.0 for k in hist}, ("P", "ssp245", "pr", "r"): fut,
+          ("P", "ssp585", "pr", "r"): fut}
+    e = proyecciones.escenarios(cm, hist, "r", "pr")
+    assert "Z" in e["modelos_excluidos"] and e["escenarios"]["ssp245"]["cambio"]["n_modelos"] == 1
+    assert e["sesgo_modelos_historico"]["P"] is None  # referencia observada nula: sesgo relativo indefinido
 
 
 # ---------------------------------------------------------------- regiones (archivo versionado)
