@@ -18,7 +18,7 @@
     <div class="marca"><span class="marca-punto" aria-hidden="true"></span>Trend<b>Detective</b></div>
     <button id="plegar-menu" type="button" aria-expanded="true" aria-controls="menu-principal" aria-label="Collapse menu" title="Collapse menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
   </div>
-  <p class="sub">Earth system explorer</p>
+  <p class="sub">Live weather globe &amp; NASA long-term climate trend detective. Start in <strong>Investigate</strong> for trends.</p>
   <nav id="menu-principal" aria-label="Sections">
     <button class="activo" data-tab="meteorologia" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 1 1 .8-7.9A5.5 5.5 0 0 1 18.4 12 3 3 0 0 1 18 18z"/></svg><span class="txt">Weather</span></button>
     <button data-tab="investigar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/></svg><span class="txt">Investigate</span></button>
@@ -48,11 +48,15 @@
 <div id="error" role="alert" hidden><span id="error-texto"></span><button id="error-cerrar" type="button" aria-label="Close">×</button></div>
 
 <section id="meteorologia" class="vista">
+  <div class="intro ayuda-inicio">
+    <h2>Live weather vs. long-term climate trends</h2>
+    <p>This globe shows a <strong>48-hour weather forecast</strong>. To test whether rainfall, temperature, forests, lakes, oceans, or ice have changed over decades with NASA &amp; NOAA records, open <strong>Investigate</strong> in the left menu.</p>
+  </div>
   <label class="rango" for="opacidad-temp">Layer opacity<input id="opacidad-temp" type="range" min="15" max="95" value="60"></label>
   <article>
     <h2 id="meteograma-titulo">Point forecast</h2>
     <form id="consulta-punto" class="controles"><label>Latitude<input id="lat" type="number" step="any" min="-90" max="90" required></label><label>Longitude<input id="lon" type="number" step="any" min="-180" max="180" required></label><button id="consultar" type="submit">Get forecast</button></form>
-    <div id="meteo" role="status"><p class="pista">Click anywhere on the globe or the map.</p></div>
+    <div id="meteo" role="status"><p class="pista">Click anywhere on the globe or the map, or enter coordinates above, for a 48-hour forecast.</p></div>
     <div class="graf alta" hidden><canvas id="graf-meteograma" aria-label="Hourly forecast at the selected point"></canvas></div>
     <div class="controles"><button id="exp-punto" type="button" disabled>Download forecast (CSV)</button></div>
   </article>

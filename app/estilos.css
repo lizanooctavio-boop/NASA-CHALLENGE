@@ -23,8 +23,9 @@ body{--izq:256px;--col:min(400px,calc(100vw - 28px))}
 aside{position:fixed;inset:14px auto 14px 14px;width:calc(var(--izq) - 28px);z-index:5;background:var(--vidrio);border:1px solid var(--borde);border-radius:12px;backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);padding:22px 16px;display:flex;flex-direction:column;box-shadow:0 18px 50px rgba(0,0,0,.45)}
 .marca{font-size:30px;letter-spacing:-2px;font-weight:800}
 .marca span{color:var(--cian);margin-left:6px}
-.sub{color:var(--tenue);line-height:1.6;font-size:13px}
-nav{margin-top:22px;display:grid;gap:6px}
+.sub{color:var(--tenue);line-height:1.5;font-size:12.5px}
+.sub strong{color:#fff}
+nav{margin-top:18px;display:grid;gap:5px}
 button,select,input,summary{font:inherit}
 button{cursor:pointer;border:1px solid var(--borde);padding:9px 15px;border-radius:8px;background:rgba(255,255,255,.08);color:var(--texto);font-weight:600;transition:background .15s,border-color .15s}
 button:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3)}
@@ -39,6 +40,12 @@ nav button svg{opacity:.85}
 #plegar-menu{width:34px;height:34px;padding:0;display:grid;place-items:center;flex:none}
 #plegar-menu svg{transition:transform .2s}
 nav button.activo{background:rgba(111,216,255,.16);border-color:rgba(111,216,255,.35);color:#fff}
+nav button[data-tab="investigar"]:not(.activo){border-color:rgba(111,216,255,.28);background:rgba(111,216,255,.06);color:#eef6ff}
+nav button[data-tab="aprender"]{margin-top:6px}
+.ayuda-inicio{padding:12px 14px;border:1px solid rgba(111,216,255,.28);background:rgba(111,216,255,.07);border-radius:10px;margin-bottom:14px}
+.ayuda-inicio h2{font-size:15px;margin:0 0 4px;color:#fff}
+.ayuda-inicio p{margin:0;font-size:12.5px;line-height:1.5;color:#d4e2f0}
+.ayuda-inicio strong{color:#fff}
 .pie{margin-top:auto;color:var(--tenue);font-size:12px;line-height:1.9}
 .insignia{display:inline-block;margin-top:12px;background:rgba(246,199,107,.12);border:1px solid rgba(246,199,107,.4);color:var(--ambar);border-radius:5px;padding:3px 9px}
 /* El margen derecho deja libre la barra de capas; los paneles se estrechan para no tapar la columna inferior. */
