@@ -385,6 +385,7 @@ body.en-transicion .interruptor button{cursor:progress}
 #investigar .veredicto .veredicto-ayuda{margin:4px 0 0;font-size:12px;line-height:1.4;color:#d6e2ef}
 #investigar .veredicto .tarjeta strong{font-size:20px}#investigar .veredicto .detalle{font-size:12.5px}#investigar .veredicto .fuente{font-size:11.5px;color:var(--tenue);margin-top:2px}
 #investigar .veredicto .nota{margin-top:6px;padding-left:10px;border-left:2px solid var(--linea,rgba(255,255,255,.18))}
+#investigar .veredicto .nota-clave{margin-top:8px;padding:8px 11px;border:1px solid rgba(111,216,255,.38);border-left:3px solid var(--cian);border-radius:8px;background:rgba(111,216,255,.1);color:#fff;font-size:13px;font-weight:600}
 #investigar .veredicto a,#fuentes a{color:var(--cian)}
 .contraste{border-top:1px solid var(--borde);padding-top:12px;margin-top:12px}.contraste:first-child{border-top:0;margin-top:0;padding-top:0}
 .contraste h3{font-size:14px;margin:0 0 4px}.contraste .tarjeta strong{font-size:19px}.contraste .frase{font-size:12.5px;color:var(--texto-2);margin:6px 0 0}

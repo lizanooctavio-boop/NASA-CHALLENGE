@@ -21,6 +21,7 @@ const VEREDICTO_AYUDA={
   datos_insuficientes:'Too few years to test a long-term trend reliably; this series shows short-term or seasonal values instead.'};
 const TEMA_PISTA={
   Temperature:'Land and air temperature records. Looking for sea or ocean warming (such as the Mediterranean Sea or Caribbean Sea)? Select “Coast & ocean” above.',
+  'Vegetation & ecosystems':'Covers vegetation greenness (NDVI), annual burned area, and forest / tree cover loss (pick a place such as Nicaragua, then select “Tree cover lost per year” below).',
   'Coast & ocean':'Includes coastal stations (tide gauges, reefs, river mouths) and regional seas or oceans (including the Mediterranean Sea, Caribbean Sea, and global sea level).'};
 const ICONOS={aumento:'<path d="M4 15l6-6 4 4 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   disminucion:'<path d="M4 7l6 6 4-4 6 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
@@ -95,8 +96,9 @@ function resultado(){
   c.append(ic,cab);
   const tj=nodo('div',undefined,'tarjetas');tj.style.gridColumn='1/-1';
   const tar=(a,b,dd)=>{const e=nodo('div',undefined,'tarjeta');e.append(nodo('small',a),nodo('strong',b));if(dd)e.append(nodo('p',dd));tj.append(e)};
+  const esTasaAnual=x.titulo_en==='Tree cover lost per year'||x.titulo_en==='Burned area per year';
   if(ok){
-    tar('How much per decade',`${signo(t.sen.por_decada,d)} ${u}`,`95% CI ${signo(t.sen.ic[0],d)} to ${signo(t.sen.ic[1],d)} · Theil–Sen`);
+    tar(esTasaAnual?'Annual loss rate change / decade':'How much per decade',`${signo(t.sen.por_decada,d)} ${u}`,`95% CI ${signo(t.sen.ic[0],d)} to ${signo(t.sen.ic[1],d)} · Theil–Sen${esTasaAnual?' (change in yearly loss)':''}`);
     tar('How sure',t.mann_kendall_p<0.001?'p < 0.001':`p = ${num(t.mann_kendall_p,3)}`,'Mann–Kendall, corrected for autocorrelation');
     tar('Least squares',`${signo(t.mco.por_decada,d)} ${u}`,`95% CI ${signo(t.mco.ic[0],d)} to ${signo(t.mco.ic[1],d)}`);
   }else if(corto){
@@ -109,10 +111,12 @@ function resultado(){
   }
   if(x.validacion?.estado==='NO_VALIDADA')tar('Validation','Not validated',x.validacion.detalle_en);
   c.append(tj);
+  const notas=x.notas||[];
+  notas.filter(n=>/^Total\b/i.test(n)).forEach(n=>c.append(nodo('p',n,'detalle nota nota-clave')));
   const pie=nodo('p',undefined,'detalle');pie.append(nodo('span',x.definicion_en+' '));
   const a=nodo('a','What does this mean?');a.href='#'+ancla;a.onclick=ev=>{ev.preventDefault();aprender(ancla)};pie.append(a);
   c.append(pie);
-  (x.notas||[]).forEach(n=>c.append(nodo('p',n,'detalle nota')));
+  notas.filter(n=>!/^Total\b/i.test(n)).forEach(n=>c.append(nodo('p',n,'detalle nota')));
   c.append(nodo('p',x.fuente.producto,'detalle fuente'));
   serie(x,t,ok);
 }
