@@ -111,7 +111,7 @@
 <section id="hidrologia" class="vista" hidden>
   <article><h2>Follow water across borders</h2><p>Explore watershed boundaries and their complete source codes. Boundaries are reference maps; station readings carry their own dates. Neither alone establishes a climate trend.</p></article>
   <article><h2>Watersheds</h2>
-    <div class="controles"><label>Dataset and region<select id="hid-region"><option value="nic">Nicaragua · INETER/SINAPRED 2021</option><option value="world">World · HydroBASINS</option></select></label>
+    <div class="controles"><label>Dataset and region<select id="hid-region"><option value="nic">Nicaragua · INETER/SINAPRED 2021</option><option value="world">World · HydroBASINS (level 4)</option></select></label>
       <label>Detail<select id="hid-nivel"><option value="4">Level 4</option><option value="6">Level 6</option><option value="7" selected>Level 7 · Nicaragua</option></select></label></div>
     <div class="controles"><button type="button" id="hid-ver">Show watersheds</button><button type="button" id="hid-ocultar">Hide watersheds</button></div>
     <p id="hid-estado" role="status" aria-live="polite">Choose a region to load its original watershed codes.</p>
@@ -120,6 +120,7 @@
     <ul id="hid-resultados" class="lista hid-resultados" aria-label="Matching watersheds"></ul>
     <div id="hid-detalle" aria-live="polite"></div>
     <div class="controles"><button type="button" id="hid-geojson" disabled>Map vectors (GeoJSON)</button><button type="button" id="hid-csv" disabled>Codes (CSV)</button></div>
+    <p class="hid-atribucion">Sources: watershed boundaries and station readings from INETER (Nicaraguan Institute of Territorial Studies) through its public IDE-RH map services, hazard maps from SINAPRED, and HydroBASINS from HydroSHEDS (Lehner and Grill 2013). Public data shown with attribution and unchanged codes; rights remain with each provider.</p>
     <p><a id="hid-original" href="https://www.arcgis.com/home/item.html?id=a367394491e5470c89ab165525c4c246" target="_blank" rel="noopener">Original source and download</a></p>
     <p class="sub-art">The national source is titled “Level 7” but includes 3-, 6- and 7-digit codes, all retained as published. Nicaragua's national codes and HydroBASINS codes belong to separate systems. No equivalence is assumed. Display boundaries are simplified; use originals for spatial analysis. HydroBASINS excludes Antarctica.</p>
   </article>
@@ -137,7 +138,7 @@
     <p id="hid-referencia-estado" role="status" aria-live="polite">Historical hazard maps describe mapped conditions, not current events or detected trends.</p>
     <p><a id="hid-referencia-fuente" target="_blank" rel="noopener">Source service and original vectors</a></p>
     <p><a id="hid-referencia-leyenda" target="_blank" rel="noopener">Provider legend</a></p>
-    <details><summary>More INETER data sources</summary><p>Official WFS catalogue, including hydrology, meteorology and natural hazards. Period, units and quality must be checked before a layer can enter a trend test.</p><label>Find a source<input id="hid-catalogo-buscar" type="search" placeholder="Rain, river, drought…"></label><ul id="hid-catalogo" class="lista hid-resultados"></ul></details>
+    <details><summary>More hazard maps (SINAPRED)</summary><p>Nicaragua's national hazard maps from SINAPRED. INETER publishes many more layers in its <a href="https://mapserveride.ineter.gob.ni/geoserver/ows?service=WFS&amp;request=GetCapabilities" target="_blank" rel="noopener">official map catalogue</a>; period, units and quality must be checked before any layer can enter a trend test.</p><label>Find a map<input id="hid-catalogo-buscar" type="search" placeholder="Flood, drought, hurricane…"></label><ul id="hid-catalogo" class="lista hid-resultados"></ul></details>
   </article>
   <article><h2>Global observations already on the map</h2><p>Combine watershed boundaries with NASA rainfall, sea temperature and aerosol observations. The satellite layer shows its own date.</p><div class="controles">
     <button type="button" data-hid-capa="chk-imerg">NASA GPM rainfall</button><button type="button" data-hid-capa="chk-sst">Sea temperature anomaly</button><button type="button" data-hid-capa="chk-aod">Dust and smoke</button></div>

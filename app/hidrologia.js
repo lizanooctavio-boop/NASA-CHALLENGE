@@ -52,11 +52,13 @@
   }
   function pintarCuencas(){cuencas?.remove();
     cuencas=L.geoJSON(fc,{renderer:L.canvas({padding:.3}),bubblingMouseEvents:false,
+      attribution:$('hid-region').value==='nic'?'Watersheds: INETER / IDE-RH Nicaragua (public service)':'Watersheds: HydroBASINS © HydroSHEDS (Lehner & Grill 2013)',
       style:f=>{const n=[...H.codigo(f.properties)].reduce((a,c)=>a+c.charCodeAt(0),0);return {color:`hsl(${170+n%100},75%,68%)`,weight:1.1,fillOpacity:.07};},
       onEachFeature:(f,l)=>{l.bindTooltip(el('span',H.codigo(f.properties)+(f.properties.cuencas?' · '+f.properties.cuencas:'')),{sticky:true});l.on('click',()=>detalle(f,l));}
     });if(visible)cuencas.addTo(mapa);buscar();rotular();
   }
-  async function cargarCuencas(){const turno=++secuencia,r=$('hid-region').value,n=Number($('hid-nivel').value);texto('hid-estado','Loading watershed vectors…');
+  // «World» solo en nivel 4: las nueve regiones en nivel 6 son 16 397 polígonos y ~1,5 GB de memoria en el navegador.
+  async function cargarCuencas(){const turno=++secuencia,r=$('hid-region').value,n=r==='world'?4:Number($('hid-nivel').value);texto('hid-estado','Loading watershed vectors…');
     try{
       const archivos=r==='nic'?['nicaragua_pfafstetter.geojson.gz']:(r==='world'?Object.keys(regiones):[r]).map(c=>`hydrobasins_${c}_l${n}.geojson.gz`);
       const colecciones=await Promise.all(archivos.map(a=>datos('data/hidrologia/'+a)));
@@ -70,10 +72,10 @@
       $('hid-original').textContent=r==='nic'?'Original national vectors (ArcGIS REST)':r==='world'?'Original vectors · all regions and levels 1–12':'Download original level 12 vectors (SHP ZIP)';
     }catch(e){if(turno===secuencia)texto('hid-estado','Watersheds unavailable: '+e.message+'. Try loading again.');}
   }
-  function opciones(){const nic=$('hid-region').value==='nic';for(const o of $('hid-nivel').options)o.disabled=nic?o.value!=='7':o.value==='7';$('hid-nivel').value=nic?'7':'4';}
+  function opciones(){const r=$('hid-region').value,nic=r==='nic';for(const o of $('hid-nivel').options)o.disabled=nic?o.value!=='7':o.value==='7'||(r==='world'&&o.value==='6');$('hid-nivel').value=nic?'7':'4';}
   function fechaResumen(d){let viejas=0,sin=0;d.features.forEach(f=>{const a=H.antiguedad(f.properties);if(a==='Older than 48 hours')viejas++;if(a.includes('unknown'))sin++;});return `${d.features.length} stations · ${viejas} older than 48 hours · ${sin} without a verified UTC observation time.`;}
   function pintarEstaciones(){puntos?.remove();
-    puntos=L.geoJSON(estaciones,{bubblingMouseEvents:false,
+    puntos=L.geoJSON(estaciones,{bubblingMouseEvents:false,attribution:'Stations: INETER Nicaragua (public service)',
       pointToLayer:(f,ll)=>L.circleMarker(ll,{radius:6,color:'#142636',weight:1,fillOpacity:1,fillColor:H.antiguedad(f.properties)==='Within the last 48 hours'?'#8de1c4':'#b8a2a2'}),
       onEachFeature:(f,l)=>{const p=f.properties,div=atributos(p,p.nombreestacion||p.Estacion||p.nombrebd||'INETER station');div.prepend(el('p',H.antiguedad(p)),el('p',H.fecha(p)||'Observation time not supplied'));l.bindPopup(div);}
     });if(estacionesVisibles)puntos.addTo(mapa);$('hid-estaciones-csv').disabled=false;
@@ -118,12 +120,15 @@
     }catch(e){if(turno===secReferencia)texto('hid-referencia-estado','SINAPRED layer unavailable: '+e.message);}
   }
   let secReferencia=0;
+  // Solo las capas de amenazas de SINAPRED, con nombre en inglés y el original entre paréntesis. El catálogo WFS
+  // completo de INETER (más de 400 capas con nombres internos) se enlaza, no se lista.
+  const NOMBRES_SINAPRED={'Corredor seco':'Dry Corridor','Peligro de inundación':'Flood hazard','Amenaza sísmica':'Seismic hazard',
+    'Fallas sísmicas':'Seismic faults','Amenaza volcánica':'Volcanic hazard','Tsunami pacífico':'Pacific tsunami hazard',
+    'Ruta de huracanes':'Historical hurricane tracks','Inundación Caribe':'Caribbean flooding','Ríos y Lagunas':'Rivers and lagoons'};
   function filtrarCatalogo(){const c=$('hid-catalogo');c.replaceChildren();const q=$('hid-catalogo-buscar').value.toLocaleLowerCase();
-    // Se buscan también términos ingleses habituales sobre los nombres oficiales.
-    const traduccion={rain:'lluv',river:'rio',drought:'sequia',flood:'inund',temperature:'temperatura',wind:'viento',groundwater:'subterranea'};
-    const t=traduccion[q]||q,fs=(catalogo?.layers??[]).filter(x=>(x.id+' '+x.title_source).toLocaleLowerCase().includes(t));
-    fs.slice(0,50).forEach(x=>{const li=el('li'),a=el('a',x.title_source),b=el('button','Show map');a.href=x.wfs_url;a.target='_blank';a.rel='noopener';b.type='button';b.onclick=()=>{secReferencia++;mostrarReferencia([x.title_source,x.id,'Source service map: observation period, units and freshness require checks. No trend is inferred.']);};li.append(a,' ',b,el('small',x.id));c.append(li);});if(fs.length>50)c.append(el('li',fs.length+' sources; narrow the search.'));
-    for(const x of sinapred?.layers??[]){if(q&&!(x.title_source+' '+x.id).toLocaleLowerCase().includes(t))continue;const li=el('li'),a=el('a',x.title_source+' · SINAPRED'),b=el('button','Show map');a.href=x.url;a.target='_blank';a.rel='noopener';b.type='button';b.onclick=()=>mostrarSinapred(x);li.append(a,' ',b);c.append(li);}
+    for(const x of sinapred?.layers??[]){const nombre=NOMBRES_SINAPRED[x.title_source]||x.title_source;
+      if(q&&!(nombre+' '+x.title_source).toLocaleLowerCase().includes(q))continue;
+      const li=el('li'),a=el('a',`${nombre} (${x.title_source}) · SINAPRED`),b=el('button','Show map');a.href=x.url;a.target='_blank';a.rel='noopener';b.type='button';b.onclick=()=>mostrarSinapred(x);li.append(a,' ',b);c.append(li);}
   }
   async function iniciar(){if(activa)return;activa=true;
     try{[manifiesto,catalogo,sinapred]=await Promise.all([datos('data/hidrologia/procedencia.json'),datos('data/hidrologia/ineter_catalogo.json'),datos('data/hidrologia/sinapred_catalogo.json')]);filtrarCatalogo();await cargarCuencas();}

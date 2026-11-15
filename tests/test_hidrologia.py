@@ -24,7 +24,7 @@ spec.loader.exec_module(g)
 
 def leer(nombre):
     p = RAIZ / 'data/hidrologia' / nombre
-    return json.loads(gzip.decompress(p.read_bytes()) if p.suffix == '.gz' else p.read_text())
+    return json.loads(gzip.decompress(p.read_bytes()) if p.suffix == '.gz' else p.read_text(encoding='utf-8'))
 
 
 def test_nicaragua_no_inventa_la_edicion_2014_ni_corrige_codigos():
