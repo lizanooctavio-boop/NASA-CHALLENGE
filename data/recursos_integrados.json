@@ -1022,7 +1022,9 @@
     "gpcc_nic",
     "opendap_imerg_nic"
    ],
-   "notas": [],
+   "notas": [
+    "Area-averaged over the target polygon from 0.1° GPM IMERG Final V07B monthly grids."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -1128,7 +1130,9 @@
     "giovanni_imerg_caja_sicc",
     "knmi_chirps_caja_sicc"
    ],
-   "notas": [],
+   "notas": [
+    "Area-averaged over the target polygon from 0.1° GPM IMERG Final V07B monthly grids."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -1228,7 +1232,9 @@
    },
    "recursos": [],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Area-averaged across Nicaragua for June–November from 0.1° GPM IMERG Final V07B monthly grids."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -1330,7 +1336,9 @@
    "contrastes": [
     "noaa_tegucigalpa_lluvia_vs_imerg_hnd"
    ],
-   "notas": [],
+   "notas": [
+    "Area-averaged over the national boundary from 0.1° GPM IMERG Final V07B monthly grids."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -1430,7 +1438,9 @@
    },
    "recursos": [],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Area-averaged over the national boundary from 0.1° GPM IMERG Final V07B monthly grids."
+   ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
     "veredicto_contrato": "metodos_discrepan",
@@ -2095,7 +2105,9 @@
    },
    "recursos": [],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Annual mean across representative MODIS 250 m sample sites in the region (not a wall-to-wall regional average)."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -2197,7 +2209,9 @@
    },
    "recursos": [],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Annual mean across representative MODIS 250 m sample sites in the region (not a wall-to-wall regional average)."
+   ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
     "veredicto_contrato": "tendencia_detectada",
@@ -2299,7 +2313,9 @@
    },
    "recursos": [],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Annual mean across representative MODIS 250 m sample sites in the region (not a wall-to-wall regional average)."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -8168,7 +8184,9 @@
    "contrastes": [
     "noaa_canada_lluvia"
    ],
-   "notas": [],
+   "notas": [
+    "Area-averaged across the Canadian Prairies ecological boundary from 0.1° GPM IMERG Final V07B."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -8270,7 +8288,9 @@
     10
    ],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Area-averaged across the Canadian Prairies ecological boundary from 0.1° GPM IMERG Final V07B."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -8374,7 +8394,9 @@
    "contrastes": [
     "noaa_canada_tavg"
    ],
-   "notas": [],
+   "notas": [
+    "Area-averaged across the Canadian Prairies ecological boundary from NASA GISS GISTEMP v4 (250 km grid)."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
