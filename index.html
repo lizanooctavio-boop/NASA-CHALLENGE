@@ -41,7 +41,7 @@
       <button type="button" id="vista-globo" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Globe</button>
       <button type="button" id="vista-mapa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"/></svg>Map</button>
     </div>
-    <div class="indicador-envoltura"><button id="indicador-datos" type="button" class="indicador" data-nivel="pendiente" aria-expanded="false" aria-controls="indicador-detalle"><i aria-hidden="true"></i><span id="indicador-texto">Loading data…</span></button><div id="indicador-detalle" class="ventana" role="region" aria-label="Data status" hidden></div></div>
+    <div class="indicador-envoltura"><button id="indicador-datos" type="button" class="indicador" data-nivel="pendiente" aria-expanded="false" aria-controls="indicador-detalle" title="Live weather globe model (ECMWF IFS). Historical trend datasets are cited inside each panel and in Sources."><i aria-hidden="true"></i><span id="indicador-texto">Loading data…</span></button><div id="indicador-detalle" class="ventana" role="region" aria-label="Data status" hidden></div></div>
     <button id="solomapa" type="button" aria-pressed="false">Hide panels</button>
   </div>
 </header>
@@ -166,8 +166,8 @@
 </section>
 
 <section id="fuentes" class="vista" hidden>
-  <article><h2>NASA Space Apps challenge resources used</h2><ul class="lista fuentes-lista" id="fuentes-recursos"></ul></article>
-  <article><h2>Datasets in this app</h2><ul class="lista" id="fuentes-datos"></ul></article>
+  <article><h2>NASA Space Apps challenge resources used</h2><p class="pista">Portals, satellite missions, and statistical guides used in this app. Note: the live 48-hour weather globe uses <strong>ECMWF IFS</strong> separately from the long-term climate trend records below.</p><ul class="lista fuentes-lista" id="fuentes-recursos"></ul></article>
+  <article><h2>Datasets in this app</h2><p class="pista">Each Investigate card cites its primary dataset; the catalog below shows which topic uses each record (including cross-checks).</p><ul class="lista" id="fuentes-datos"></ul></article>
   <article><h2>Licences</h2><p>Canadian Prairies boundary: Agriculture and Agri-Food Canada, National Ecological Framework for Canada. Contains information licensed under the Open Government Licence &ndash; Canada.</p></article>
 </section>
 </main>

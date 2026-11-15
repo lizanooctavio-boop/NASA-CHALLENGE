@@ -117,7 +117,7 @@ function resultado(){
   const a=nodo('a','What does this mean?');a.href='#'+ancla;a.onclick=ev=>{ev.preventDefault();aprender(ancla)};pie.append(a);
   c.append(pie);
   notas.filter(n=>!/^Total\b/i.test(n)).forEach(n=>c.append(nodo('p',n,'detalle nota')));
-  c.append(nodo('p',x.fuente.producto,'detalle fuente'));
+  c.append(nodo('p',`Trend data source: ${x.fuente.producto} (listed in Sources)`,'detalle fuente'));
   serie(x,t,ok);
 }
 // Las series anuales con años sin dato se dibujan con hueco: el eje es de categorías y, sin rellenar, juntaría 2016 y 2019.
@@ -213,11 +213,16 @@ function fuentes(){
   const lista=$('fuentes-recursos');lista.replaceChildren();
   D.recursos.filter(r=>r.estado==='en_uso').forEach(r=>{const li=nodo('li');li.dataset.recurso=r.id;const a=nodo('a',r.nombre);a.href=r.url;a.target='_blank';a.rel='noopener';
     li.append(a,nodo('span',` · ${r.organizacion}`,'tenue'),nodo('p',r.uso_en));lista.append(li)});
-  const otros=new Map();
-  D.investigaciones.forEach(i=>otros.set(i.fuente.producto,i.fuente.url||''));
-  D.contrastes.forEach(c=>{if(c.tipo==='fuente')otros.set(c.externa.nombre_en,c.externa.url||'')});
+  const catNombre=new Map(D.categorias.map(c=>[c.id,c.nombre_en]));
+  const otros=new Map(),usos=new Map();
+  const sumarUso=(nombre,etq)=>{if(!usos.has(nombre))usos.set(nombre,new Set());if(etq)usos.get(nombre).add(etq)};
+  D.investigaciones.forEach(i=>{otros.set(i.fuente.producto,i.fuente.url||'');sumarUso(i.fuente.producto,catNombre.get(i.categoria)||i.categoria)});
+  D.contrastes.forEach(c=>{if(c.tipo==='fuente'){otros.set(c.externa.nombre_en,c.externa.url||'');
+    const rel=D.investigaciones.filter(i=>i.contrastes.includes(c.id)).map(i=>catNombre.get(i.categoria)||i.categoria);
+    sumarUso(c.externa.nombre_en,rel.length?[...new Set(rel)].join(', ')+' (cross-check)':'cross-check')}});
   const l2=$('fuentes-datos');l2.replaceChildren();
-  [...otros].sort((a,b)=>a[0].localeCompare(b[0])).forEach(([n,u])=>{const li=nodo('li');if(/^https?:/.test(u)&&!u.includes('{')){const a=nodo('a',n);a.href=u;a.target='_blank';a.rel='noopener';li.append(a)}else li.textContent=n;l2.append(li)});
+  [...otros].sort((a,b)=>a[0].localeCompare(b[0])).forEach(([n,u])=>{const li=nodo('li');if(/^https?:/.test(u)&&!u.includes('{')){const a=nodo('a',n);a.href=u;a.target='_blank';a.rel='noopener';li.append(a)}else li.append(nodo('span',n));
+    const uTxt=[...(usos.get(n)||[])].join(', ');if(uTxt)li.append(nodo('span',` · used in: ${uTxt}`,'tenue'));l2.append(li)});
 }
 
 // ---------------------------------------------------------------- mapa y descarga
