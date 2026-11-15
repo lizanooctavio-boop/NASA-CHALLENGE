@@ -861,7 +861,12 @@ def _hallazgos(carpeta, permitir_sintetico):
                                    f"Months each year warmer than 9 in 10 months of 1991–2020 for the time of year "
                                    f"(more than {p90:.2f} °C above normal). Daily data would be needed to count marine "
                                    f"heatwaves.", "months", anios, [calidos[a] for a in anios], ersst,
-                                   notas=[f"{max(anios, key=calidos.get)}: {max(calidos.values())} of 12 months."]))
+                                   notas=[
+                                       f"{max(anios, key=calidos.get)}: {max(calidos.values())} of 12 months.",
+                                       "Many years record 0 warm months; on zero-dominated integer counts, the median "
+                                       "pairwise slope (Theil–Sen) and its confidence interval can equal 0.00 even when "
+                                       "recent peaks push least-squares and Mann–Kendall positive.",
+                                   ]))
 
     ruta = carpeta / "psmsl_nivel_mar_anual.csv"
     if ruta.is_file():
@@ -905,7 +910,8 @@ def _hallazgos(carpeta, permitir_sintetico):
             if umbral == 64:
                 notas.append("Hurricanes: " + ", ".join(f"{f['nombre'].title().replace(':', '/')} {f['temporada']}" for f in fuertes) + ".")
             notas.append("Only a few storms come this close each year, so a trend would need a much longer record "
-                         "to stand out.")
+                         "to stand out. Because most years record 0 or 1 event, the median pairwise slope "
+                         "(Theil–Sen) can stay at 0.00.")
             notas.append(ESTUDIOS["racha_ciclones"])
             if str(ultimo) == fuentes["ibtracs"]["generado_utc"][:4]:
                 notas.append(f"The {ultimo} season was still running when the tracks were downloaded "
@@ -916,13 +922,21 @@ def _hallazgos(carpeta, permitir_sintetico):
         # Registro completo sin corregir: antes de los satélites se perdían tormentas en mar abierto.
         historicas = [f for f in _leer_csv(ruta) if int(f["temporada"]) >= 1851 and float(f["viento_max_kt"]) >= 34]
         largo = list(range(1851, ultimo + 1))
+        notas_1851 = [
+            "Compare with the record since 1981: an older record can suggest a rise that partly comes from better detection.",
+            "Many years record 0 storms, so the median pairwise slope (Theil–Sen) stays at 0.00 even when "
+            "least-squares and Mann–Kendall detect a long-term rise.",
+            ESTUDIOS["subregistro_ciclones"],
+        ]
+        if str(ultimo) == fuentes["ibtracs"]["generado_utc"][:4]:
+            notas_1851.append(f"The {ultimo} season was still running when the tracks were downloaded "
+                              f"({fuentes['ibtracs']['generado_utc'][:10]}).")
         invs.append(_investigacion("ciclones_tormentas_NIC_1851", "ciclones", "NIC",
                                    "Tropical storms and hurricanes nearby, raw record since 1851",
                                    "The same count as above, back to 1851, with no correction for storms missed before "
                                    "satellites and aircraft reconnaissance.", "storms", largo,
                                    [sum(1 for f in historicas if int(f["temporada"]) == a) for a in largo], ibtracs,
-                                   notas=["Compare with the record since 1981: an older record can suggest a rise "
-                                          "that partly comes from better detection.", ESTUDIOS["subregistro_ciclones"]]))
+                                   notas=notas_1851))
     from .recursos_americas import americas
     n_inv, n_ent = _mundo(carpeta, fuentes, chirps, notas_lluvia)
     from .recursos_europa_africa import europa_africa
