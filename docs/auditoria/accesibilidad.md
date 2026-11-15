@@ -70,4 +70,19 @@ En las tres vistas que emiten veredictos estadísticos (`Investigate`, `Rainfall
    - Menú lateral (`#menu-principal`): actualiza `aria-current="page"` en la pestaña activa y `#plegar-menu` actualiza `aria-expanded="true|false"` y su `aria-label` (`Collapse menu` / `Expand menu`).
    - Conmutador `Globe` / `Map` (`#vista-globo`, `#vista-mapa`), botón `#solomapa` y botones de capas meteorológicas (`#barra-capas [data-var]`): actualizan `aria-pressed="true|false"`.
    - Indicador de datos (`#indicador-datos`): actualiza `aria-expanded` y se cierra con `Escape` devolviendo el foco al botón.
-   - Se corregirán **B-01**, **B-02**, **B-03**, **B-04**, **B-05** y **B-06** en los commits siguientes.
+   - Se han corregido todos los problemas `bloqueante` (**B-01**, **B-02**) y `alta` (**B-03**, **B-04**, **B-05**, **B-06**) en commits individuales dentro de `index.html`, `app/*.js` y `app/estilos.css`.
+
+---
+
+## 5. Verificación posterior a las correcciones (antes vs. después)
+
+| ID | Aspecto verificado con Playwright | Estado antes | Estado después |
+|---|---|---|---|
+| **B-01** | Foco tras pulsar `Enter` en `Next` / `Previous` / `Finish` dentro de `#inv-demo-panel` (`Investigate`) | `document.activeElement` caía a `BODY` al reconstruirse el panel | El foco permanece en el botón `Next` / `Finish` (o `Previous`) del paso actual, y al pulsar `Finish` regresa al botón del ejemplo guiado en `#inv-demos` |
+| **B-02** | Selección con `Enter`/`Space` y `tabIndex` en `role="radiogroup"` (`#inv-categorias`, `#inv-lugares`, `#inv-variables`, `#ind-regiones`, `#ind-variables`) | Todos los radios tenían `tabIndex = 0`; al pulsar `Enter` el foco se perdía en `BODY` | Patrón *roving tabindex* (`tabIndex = 0` solo en el radio `[aria-checked="true"]`, `-1` en los demás) y preservación del foco en el radio activo tras re-renderizar |
+| **B-03** | Indicador `:focus-visible`, `role` y teclado en `<canvas id="espacio">` | `outlineStyle: "none"`, `role: null`, sin acción al pulsar `Enter`/`Space` | `outline: 2px solid rgb(111, 216, 255)` (`outlineOffset: -4px`), `role="img"`, y `Enter`/`Space` consultan el pronóstico del punto central del globo |
+| **B-04** | Atributos `role="img"` y `aria-label` en todos los `<canvas>` de gráficas (`#graf-meteograma`, `#inv-serie`, `#inv-c-*`, `#ind-serie`, `#ind-contraste-graf`, `#graf-oni`, `#graf-nino34`, `#graf-dT`, `#graf-dP`) | `role: null` en todos; `aria-label: null` en `#graf-oni`, `#graf-nino34`, `#graf-dT`, `#graf-dP` | Todos los `<canvas>` de gráficas exponen `role="img"` y un `aria-label` descriptivo actualizado dinámicamente con la variable, región y periodo |
+| **B-05** | Botones de control de ventana (`.punto.rojo`, `.punto.ambar`, `.punto.verde`) en `app/shell.js` | Ocultar panel (`.punto.rojo`) perdía el foco en `BODY`; `Minimize` y `Wide` carecían de `aria-pressed` | `.punto.rojo` traslada el foco a `#solomapa` (`Show panels`); `Minimize` y `Wide` exponen y actualizan `aria-pressed="true|false"` |
+| **B-06** | Emulación `page.emulate_media(reduced_motion="reduce")` en `app/espacio.js`, `app/campo.js`, `app/investigar.js` y `app/estilos.css` | El bucle `requestAnimationFrame` seguía ejecutando `moverLuna()` y `pasoViento()`, las transiciones 3D tardaban 300 ms y `scrollIntoView` usaba `behavior: 'smooth'` | Con `prefers-reduced-motion: reduce`, el bucle 3D detiene la deriva de la Luna y las partículas de viento y se pausa en reposo, las transiciones `animar()` son instantáneas y `scrollIntoView` usa `behavior: 'auto'` |
+| **Contraste** | Ratios de contraste de texto normal (`>= 4.5:1`), texto grande (`>= 3.0:1`) y elementos gráficos (`>= 3.0:1`) | `5.58:1` a `19.12:1` en todos los textos visibles; `7.85:1` a `15.10:1` en trazos de gráficas | Se mantienen todos los ratios entre `5.58:1` y `19.12:1` (`100%` de cumplimiento WCAG 2.2 AA), más el nuevo contorno `:focus-visible` en `#espacio` (`#6fd8ff` sobre `#01030a`, ratio **13.14 : 1**) |
+
