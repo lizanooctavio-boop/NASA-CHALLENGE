@@ -24,3 +24,11 @@
   .vista.ventana,.vista:not(.ventana){width:min(600px,calc(100vw - var(--izq) - 226px))}
   main{padding-bottom:calc(var(--alto-lt,64px) + var(--alto-ley,0px) + 52px)}
 }
+/* Móvil: «Hide panels» deja solo el globo o el mapa 2D. Se ocultan la leyenda, la línea de tiempo,
+   las capas, las coordenadas, los avisos y la cabecera; queda únicamente el botón para volver. */
+@media (max-width:700px),(max-height:500px) and (max-width:1000px){
+  body.solo-mapa :is(#controles-mapa,.coords-panel,#aviso-publico,.tour-invitacion){display:none}
+  body.solo-mapa header{left:auto;right:10px;min-height:0;padding:0;background:transparent;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+  body.solo-mapa header :is(.interruptor,.indicador-envoltura,.buscador-envoltura,#menu-tour,.estado){display:none}
+  body.solo-mapa header #solomapa{background:var(--vidrio);border-color:var(--borde);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 6px 18px rgba(0,0,0,.35)}
+}

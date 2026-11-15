@@ -60,3 +60,7 @@
 /* Panel de coordenadas opcional: oculto mientras «Coordinates» no esté marcado. */
 .coords-panel[hidden]{display:none!important}
 .coords-opcion{margin:0 0 6px}
+
+/* Una sola caja: el campo no lleva fondo, borde ni contorno propios en ningún tema (las reglas
+   generales de input y las del tema claro se los ponían y dibujaban una caja dentro de otra). */
+html .buscador-caja input.buscador-entrada:not([type="range"]){background:transparent;border:0;border-radius:0;box-shadow:none;outline:none;padding:8px 0;min-width:0;max-width:none}
