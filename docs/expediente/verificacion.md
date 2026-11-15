@@ -5,7 +5,8 @@
 | Conjunto | Resultado |
 |---|---|
 | `tests/test_expediente.py` (geometría, estado, análisis, ZIP, PDF, i18n, límites) | 21 pasan, 1 omitida (la de navegador, que se activa con `ETD_E2E=1`) |
-| Suite completa `pytest tests` | 314 pasan (293 que ya existían + 21 nuevas). `test_e2e_navegador.py` da 7 errores de preparación también en la base `fc7cfbd`, sin estos cambios: lanza Chrome sin acceso a los CDN y termina el proceso con `taskkill` (Windows). Este fallo no lo causan estos cambios. |
+| Suite completa `pytest tests` | 332 pasan con la perspectiva (314 del expediente + 18 nuevas). `test_e2e_navegador.py` da 7 errores de preparación también en la base `fc7cfbd`, sin estos cambios: lanza Chrome sin acceso a los CDN y termina el proceso con `taskkill` (Windows). Este fallo no lo causan estos cambios. |
+| `tests/test_perspectiva.py` (perspectiva de la próxima década: Mann-Kendall modificado y Benjamini-Hochberg frente a Python, reglas de clasificación y de destacadas, faltantes, límites físicos, identificador `P-`, ZIP, PDF y márgenes) | 18 pasan |
 | `tests/e2e/expediente_navegador.cjs` (Chromium, Playwright, datos reales de POWER desde fixture) | Todos los casos pasan (`fallo: null`). En la consola solo hay errores de teselas bloqueadas (Esri, GIBS), de `/clima-base/*` (ya existían) y los de POWER provocados a propósito en el caso de fallo de red. No hay errores de página. |
 
 Áreas geodésicas: diferencia relativa con pyproj ≤ 2·10⁻⁴; mediana frente a la superficie publicada por INETER < 0,5 %.
@@ -52,4 +53,5 @@ El informe presenta esta diferencia como una comparación entre fuentes. Las dos
 - **Autocorrelación.** No se corrige la autocorrelación de los residuos; solo se informa.
 - **Límites INETER.** El servicio WFS no publica una versión de los límites, así que se registra la marca de tiempo del WFS.
 - **Traducción.** Esta vista funciona en ES/EN. Traducir el resto de la app queda fuera de alcance.
+- **Perspectiva de la próxima década.** Método, reglas y ejemplo en `perspectiva.md`. Hoy CMIP6 se interpola entre 1995–2014 y 2041–2060 porque faltan los años 2015–2040 descargados. La imagen de portada (Esri World Imagery o, si falla, NASA Blue Marble de GIBS) se pide desde el navegador: en el contenedor de pruebas esos servicios están bloqueados, así que el ejemplo sale sin imagen y la prueba usa una imagen sintética.
 - **Extensiones para Nicaragua aún no hechas.** SPI, canícula, comparación con boletines INETER/CRRH, lagos, incendios, imagen para WhatsApp y modo sin conexión.

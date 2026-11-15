@@ -119,7 +119,9 @@
       calidad: { min_cobertura_espacial: 0.9, meses_completos: true, min_anios: 10, min_fraccion_referencia: 0.8 },
       estadistica: { metodos: ['sen_mann_kendall', 'mco'], nivel: 0.95 },
       vista: { centro: null, zoom: null, anio_visible: null, capa: 'anomalia_anual', estilo: 'divergente' },
-      panel: 'resultados'
+      panel: 'resultados',
+      // Perspectiva de la próxima década: fuera del núcleo de la consulta (no cambia C-/R-); tiene su propio P-.
+      perspectiva: { activa: true, modelo: 'auto', escenarios: ['ssp245', 'ssp585'], semilla: 20261115, n_sim: 2000 }
     };
   }
 
@@ -170,6 +172,16 @@
       estilo: v.estilo === 'secuencial' ? 'secuencial' : 'divergente'
     };
     s.panel = ['resultados', 'serie', 'calidad', 'mapa'].indexOf(c.panel) >= 0 ? c.panel : 'resultados';
+    var pp = c.perspectiva || {}, dp = d.perspectiva;
+    if (pp.modelo !== undefined && ['auto', 'climatologia', 'persistencia', 'tendencia_ar1', 'tendencia_amortiguada'].indexOf(pp.modelo) < 0) throw errorEstado('parametro_invalido', 'perspectiva.modelo');
+    var esc = Array.isArray(pp.escenarios) ? pp.escenarios.filter(function (x) { return x === 'ssp245' || x === 'ssp585'; }) : dp.escenarios;
+    s.perspectiva = {
+      activa: pp.activa === undefined ? dp.activa : pp.activa === true,
+      modelo: pp.modelo || dp.modelo,
+      escenarios: esc.length ? esc : dp.escenarios,
+      semilla: pp.semilla === undefined ? dp.semilla : entero(pp.semilla, 0, 4294967295, 'perspectiva.semilla'),
+      n_sim: pp.n_sim === undefined ? dp.n_sim : entero(pp.n_sim, 200, 20000, 'perspectiva.n_sim')
+    };
     s.area = validarArea(c.area);
     if (c.resultado_ref) s.resultado_ref = /^R-[0-9a-f]{16,64}$/.test(c.resultado_ref) ? c.resultado_ref : undefined;
     return s;

@@ -3,7 +3,7 @@
 // app/shell.js. El panel, el PDF, el ZIP y el enlace leen el mismo objeto de resultados (ETDAnalisis.analizar).
 (function () {
   'use strict';
-  const G = window.ETDGeo, E = window.ETDEstado, F = window.ETDFuentes, A = window.ETDAnalisis, I = window.ETDi18n, P = window.ETDPaquete, INF = window.ETDInforme;
+  const G = window.ETDGeo, E = window.ETDEstado, F = window.ETDFuentes, A = window.ETDAnalisis, I = window.ETDi18n, P = window.ETDPaquete, INF = window.ETDInforme, PP = window.ETDPerspectiva;
   const raiz = document.getElementById('exp-raiz');
   if (!raiz || !G || !E || !F || !A || !I) return;
   const CFG = window.SICC_CONFIG || {};
@@ -183,6 +183,118 @@
         region: usarNIC ? fen.regiones.find(x => x.id === 'NIC').nombre : r.nombre, periodo: (vv.tendencia.periodo || []).join('–'), valor: pend.por_decada, inf: pend.ic_por_decada[0], sup: pend.ic_por_decada[1], unidad: vv.tendencia.unidad || vv.unidad }];
     } catch (e) { return []; }
   }
+  // ------------------------------------------------------------------ perspectiva de la próxima década
+  // Insumos estáticos del repositorio (índices anuales por celda, GISTEMP regional, CMIP6 regional). Se descargan una vez.
+  let insumosPP = null;
+  async function insumosPerspectiva() {
+    if (insumosPP) return insumosPP;
+    const txt = u => fetch(u).then(r => { if (!r.ok) throw Error(u + ' (' + r.status + ')'); return r.text(); });
+    const json = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
+    const [idx, gis, cm, cmMeta, reg] = await Promise.all([
+      txt('data/fenomenos/indices_anuales_celdas.csv'), txt('data/fenomenos/gistemp_nicaragua.csv').catch(() => null),
+      txt('data/expediente/cmip6_regional_mensual.csv').catch(() => null), json('data/expediente/cmip6_regional.json'), json('data/regiones_nicaragua.geojson')]);
+    insumosPP = { indices: PP.leerIndicesCeldas(idx), gistemp: gis, cmip6: cm, cmip6Meta: cmMeta, regiones: reg };
+    return insumosPP;
+  }
+  function regionDe(reg, c) {
+    if (!reg) return null;
+    const fs = reg.features.filter(f => f.properties.id !== 'caja_sicc' && G.contiene(f.geometry, c.lon, c.lat));
+    return fs.find(f => f.properties.id !== 'NIC') || fs[0] || null;
+  }
+  async function calcularPerspectiva(res) {
+    const c = res.consulta, pc = c.perspectiva || {};
+    if (!PP || pc.activa === false) return null;
+    const ins = await insumosPerspectiva();
+    const anual = c.meses.length === 12, h0 = Number((res.generado_utc || new Date().toISOString()).slice(0, 4));
+    const ini = h0 + 1, fin = h0 + 10;
+    // 1) la variable de la consulta; 2) índices del área (sin duplicar la variable de la consulta); 3) GISTEMP de la región.
+    let indicadores = [PP.indicadorDeConsulta(res, c.idioma)];
+    const ar = PP.indicadoresDeArea(res.celdas, ins.indices, 0.9);
+    const duplicado = anual ? (c.variable === 'T2M' ? 't2m_media' : c.variable === 'PRECTOTCORR' ? 'prcptot' : null) : null;
+    indicadores = indicadores.concat(ar.indicadores.filter(x => x.id !== duplicado));
+    const excluidas = PP.EXCLUIDAS.slice();
+    if (!ar.indicadores.length) excluidas.unshift({ id: 'indices_area', nombre: 'Índices de extremos del área (ETCCDI)', nombre_en: 'Area extreme indices (ETCCDI)',
+      motivo: 'La malla de índices de la app cubre ' + (100 * ar.cobertura).toFixed(0) + ' % del área (mínimo 90 %): solo Nicaragua.',
+      motivo_en: 'The app\'s index grid covers ' + (100 * ar.cobertura).toFixed(0) + ' % of the area (minimum 90 %): Nicaragua only.' });
+    const rg = regionDe(ins.regiones, res.area.centro);
+    let cmip6 = null;
+    if (rg) {
+      if (ins.gistemp) { const gi = PP.indicadorGistemp(ins.gistemp, rg.properties.id, rg.properties.nombre); if (gi) indicadores.push(gi); }
+      if (ins.cmip6) {
+        const prep = x => { const tiene = Object.values(x.variables).some(V => Object.values(V.escenarios).some(E2 => Object.values(E2).some(m => m[ini] !== undefined))); return tiene ? x : PP.interpolarCmip6(x, ini, fin); };
+        const an = prep(PP.leerCmip6(ins.cmip6, rg.properties.id, null)), te = anual ? null : prep(PP.leerCmip6(ins.cmip6, rg.properties.id, c.meses));
+        cmip6 = { region: rg.properties.id, nombre: rg.properties.nombre, interpolado: !!(an.interpolado || (te && te.interpolado)), anual: an, temporada: te,
+          escenarios: pc.escenarios, archivo: 'data/expediente/cmip6_regional_mensual.csv', modelos: (ins.cmip6Meta && ins.cmip6Meta.modelos) || an.modelos };
+      }
+    }
+    const ext = res.area.extension || G.extension(res.area.geometria);
+    return PP.evaluar({ anio_generacion: h0, referencia: c.referencia, indicadores, cmip6, semilla: pc.semilla, n_sim: pc.n_sim, modelo: pc.modelo,
+      excluidas, mapas: PP.mapasCeldas(ins.indices, res.celdas, ext, c.referencia) });
+  }
+
+  // Imagen ilustrativa de la portada: Esri World Imagery y, si falla, NASA Blue Marble (GIBS). Sin imagen si ambas fallan.
+  const imagenes = {};
+  function aDataURL(blob) { return new Promise((ok, mal) => { const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = mal; r.readAsDataURL(blob); }); }
+  async function imagenPortada(res) {
+    if (imagenes[res.resultado_id] !== undefined) return imagenes[res.resultado_id];
+    const g = res.area.geometria, e = res.area.extension || G.extension(g);
+    if (e[0] > e[2]) return (imagenes[res.resultado_id] = null);
+    const k = Math.cos(((e[1] + e[3]) / 2) * Math.PI / 180), cx = (e[0] + e[2]) / 2, cy = (e[1] + e[3]) / 2;
+    let wk = Math.max((e[2] - e[0]) * k, 0.06) * 1.25, hk = Math.max(e[3] - e[1], 0.06) * 1.25;
+    const asp = 2.15; if (wk / hk < asp) wk = hk * asp; else hk = wk / asp;
+    const ext = [cx - wk / k / 2, cy - hk / 2, cx + wk / k / 2, cy + hk / 2].map(v => Number(v.toFixed(5)));
+    const W = 1600, H = Math.round(W * (ext[3] - ext[1]) / (ext[2] - ext[0])), hoy = new Date().toISOString().slice(0, 10), en = S.exp.idioma === 'en';
+    const intentos = [
+      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=' + ext.join(',') + '&bboxSR=4326&imageSR=4326&size=' + W + ',' + H + '&format=jpg&f=image',
+        fuente: 'Esri World Imagery (Esri, Maxar, Earthstar Geographics)', fecha: (en ? 'multi-date mosaic, accessed ' : 'mosaico de varias fechas, consultado ') + hoy },
+      { url: 'https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&LAYERS=BlueMarble_NextGeneration&STYLES=&SRS=EPSG:4326&BBOX=' + ext.join(',') + '&WIDTH=' + W + '&HEIGHT=' + H + '&FORMAT=image/jpeg',
+        fuente: 'NASA Blue Marble: Next Generation (GIBS)', fecha: (en ? '2004 composite, accessed ' : 'compuesto de 2004, consultado ') + hoy }];
+    const traer = window.ETD_FETCH_IMAGEN || window.fetch.bind(window);
+    for (const it of intentos) {
+      try {
+        const ctl = new AbortController(), tm = setTimeout(() => ctl.abort(), 15000);
+        const r = await traer(it.url, { signal: ctl.signal }); clearTimeout(tm);
+        const tipo = (r.headers.get('content-type') || '');
+        if (!r.ok || !/jpe?g/.test(tipo)) continue;
+        const b = await r.blob(); if (b.size < 2000) continue;
+        return (imagenes[res.resultado_id] = { datos: await aDataURL(b), formato: 'JPEG', ancho: asp, alto: 1, ext, fuente: it.fuente, fecha: it.fecha });
+      } catch (x) { /* siguiente fuente */ }
+    }
+    return (imagenes[res.resultado_id] = null);
+  }
+
+  function panelPerspectiva() {
+    const res = S.resultado, PV = res.perspectiva, en = S.consulta.idioma === 'en';
+    const art = h('article', { id: 'exp-perspectiva' });
+    if (!PV) {
+      art.append(h('h3', null, t('pp.config')));
+      art.append(h('p', { class: 'pista' }, res.perspectiva_error ? t('pp.error', { e: res.perspectiva_error }) : t('pp.inactiva')));
+      return art;
+    }
+    art.setAttribute('data-perspectiva', PV.perspectiva_id);
+    art.append(h('h3', null, t('pp.titulo', { ini: PV.horizonte.inicio, fin: PV.horizonte.fin })));
+    const cuenta = cl => PV.indicadores.filter(o => o.clasificacion.clase === cl).length;
+    art.append(h('p', { id: 'exp-pp-resumen' }, t('pp.resumen', { v: cuenta('validada'), e: cuenta('exploratorio'), n: cuenta('no_proyectable'), x: PV.excluidas.length })));
+    const ref = PV.referencia.inicio + '–' + PV.referencia.fin;
+    const tb = h('table', { class: 'exp-ficha exp-pp-tabla', id: 'exp-pp-tabla' }, h('caption', null, t('pp.tabla', { ref })));
+    tb.append(h('tr', null, ...['pp.col.indicador', 'pp.col.cambio', 'pp.col.intervalo', 'pp.col.habilidad', 'pp.col.clase'].map(k => h('th', { scope: 'col' }, t(k)))));
+    PV.indicadores.forEach(o => {
+      const p = o.proyeccion, u = en ? o.unidad_en || o.unidad : o.unidad, d = o.decimales === undefined ? 1 : o.decimales, cl = o.clasificacion.clase;
+      const cr = p && p.cambio_vs_referencia.prediccion, sel = o.seleccion && o.validacion && o.validacion.modelos[o.seleccion.modelo];
+      const signo = v => (v > 0 ? '+' : '') + num(v, d);
+      tb.append(h('tr', { 'data-indicador': o.id, 'data-clase': cl, class: PV.destacadas.includes(o.id) ? 'exp-pp-destacada' : null },
+        h('th', { scope: 'row' }, (PV.destacadas.includes(o.id) ? '★ ' : '') + (en ? o.nombre_en : o.nombre)),
+        h('td', null, cr ? signo(cr.p50) + ' ' + u : '—'),
+        h('td', null, cr ? t('pp.pi80', { a: signo(cr.p10), b: signo(cr.p90) }) : '—'),
+        h('td', null, sel ? t('p.modelo.' + o.seleccion.modelo) + ' · MSSS ' + num(sel.habilidad, 2) : '—'),
+        h('td', { title: t('p.motivo.' + o.clasificacion.motivo) }, t('p.clase.' + cl))));
+    });
+    art.append(tb);
+    if (PV.cmip6_fuente) art.append(h('p', { class: 'pista' }, t('pp.cmip', { region: PV.cmip6_fuente.nombre }) + (PV.cmip6_fuente.interpolado ? ' ' + t('pp.cmip_interp') : '')));
+    art.append(h('p', { class: 'pista' }, t('pp.nota')));
+    art.append(h('p', { class: 'pista exp-ids' }, t('pp.id') + ': ', h('code', { id: 'exp-perspectiva-id' }, PV.perspectiva_id)));
+    return art;
+  }
   async function analizar() {
     if (!S.area) return avisar({ codigo: 'sin_area' });
     let c;
@@ -199,6 +311,11 @@
       }
       const res = A.analizar({ consulta: c, area: Object.assign({}, S.area, { celdas: S.area.celdas, admin: S.area.admin }), variable: F.VARIABLES[c.variable], fuente: F.POWER, lecturas: lect });
       res.comparaciones = await cargarComparaciones(res);
+      if (PP && c.perspectiva && c.perspectiva.activa !== false) {
+        const p = $('#exp-progreso'); if (p) p.textContent = t('pp.calculando');
+        await new Promise(r => setTimeout(r, 0));
+        try { res.perspectiva = await calcularPerspectiva(res); } catch (x) { console.warn(x); res.perspectiva_error = String(x && x.message || x); }
+      }
       S.resultado = res; S.origenResultado = 'calculado'; S.consulta = JSON.parse(JSON.stringify(c));
       let msg = t('analizar.listo', { id: res.resultado_id });
       if (S.referenciaEnlace) msg += ' · ' + (S.referenciaEnlace === res.resultado_id ? t('restaurar.coincide', { id: res.resultado_id }) : t('restaurar.difiere', { nuevo: res.resultado_id, orig: S.referenciaEnlace }));
@@ -237,7 +354,8 @@
   async function generarPDF() {
     const L2 = await cargarLibs(), e = await enlaceActual();
     const res = S.resultado, ex = S.exp;
-    return INF.crear(res, { jsPDF: L2.jsPDF, qrcode: L2.qrcode, mundo: L2.mundo, enlace: e && !e.demasiado_largo ? e.url : null, idioma: ex.idioma, plantilla: ex.plantilla, secciones: ex.secciones, autor: ex.autor, organizacion: ex.organizacion, notas: ex.notas, comparaciones: res.comparaciones || [], generado_utc: new Date().toISOString() });
+    const imagen = res.perspectiva ? await imagenPortada(res) : null;
+    return INF.crear(res, { imagen, jsPDF: L2.jsPDF, qrcode: L2.qrcode, mundo: L2.mundo, enlace: e && !e.demasiado_largo ? e.url : null, idioma: ex.idioma, plantilla: ex.plantilla, secciones: ex.secciones, autor: ex.autor, organizacion: ex.organizacion, notas: ex.notas, comparaciones: res.comparaciones || [], generado_utc: new Date().toISOString() });
   }
   function descargar(nombre, datos, tipo) {
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([datos], { type: tipo })); a.download = nombre; document.body.append(a); a.click(); a.remove();
@@ -264,7 +382,7 @@
     try {
       const txt = await archivo.text(); let res;
       try { res = JSON.parse(txt); } catch (e) { throw Object.assign(Error('json'), { codigo: 'json' }); }
-      if (!A.verificar(res)) { S.mensaje = { tipo: 'error', texto: t('restaurar.alterado') }; return render(); }
+      if (!A.verificar(res) || (res.perspectiva && !(PP && PP.verificar(res.perspectiva)))) { S.mensaje = { tipo: 'error', texto: t('restaurar.alterado') }; return render(); }
       const c = E.validar(res.consulta);
       S.consulta = c; S.resultado = res; S.origenResultado = 'guardado';
       S.area = Object.assign({}, res.area, { celdas: res.celdas });
@@ -378,6 +496,19 @@
     a2.append(h('div', { class: 'controles' },
       campo(t('consulta.capa'), selector('exp-capa', ['anomalia_anual', 'tendencia_celda', 'peso_celda'].map(k => [k, t('capa.' + k)]), c.vista.capa, ev => { c.vista.capa = ev.target.value; if (S.resultado) S.resultado.consulta.vista.capa = c.vista.capa; dibujarCeldas(); })),
       campo(t('consulta.anio_visible'), entrada('exp-anio-visible', 'number', c.vista.anio_visible || c.periodo.fin, { min: 1981, max: anioMax, step: 1 }, ev => { c.vista.anio_visible = Number(ev.target.value); }))));
+    if (PP) {
+      const pc = c.perspectiva;
+      const fs = h('fieldset', { class: 'exp-secciones', id: 'exp-pp-config' }, h('legend', null, t('pp.config')),
+        h('label', { class: 'chk' }, h('input', { type: 'checkbox', id: 'exp-pp-activa', checked: pc.activa !== false, onchange: ev => { pc.activa = ev.target.checked; render(); } }), t('pp.activa')));
+      if (pc.activa !== false) {
+        fs.append(h('div', { class: 'controles' },
+          campo(t('pp.modelo'), selector('exp-pp-modelo', [['auto', t('pp.auto')]].concat(PP.MODELOS.map(m => [m.id || m, t('p.modelo.' + (m.id || m))])), pc.modelo, ev => { pc.modelo = ev.target.value; }))));
+        const esc = h('div', { class: 'exp-meses', role: 'group', 'aria-label': t('pp.escenarios') }, h('span', { class: 'pista' }, t('pp.escenarios') + ': '));
+        [['ssp245', 'SSP2-4.5'], ['ssp585', 'SSP5-8.5']].forEach(([k, nm]) => esc.append(h('label', { class: 'chk' }, h('input', { type: 'checkbox', 'data-escenario': k, checked: pc.escenarios.includes(k), onchange: ev => { pc.escenarios = ev.target.checked ? [...new Set(pc.escenarios.concat(k))] : pc.escenarios.filter(x => x !== k); } }), nm)));
+        fs.append(esc, h('p', { class: 'pista' }, t('pp.config_ayuda')));
+      }
+      a2.append(fs);
+    }
     a2.append(h('p', { class: 'pista' }, t('consulta.fecha_vs_periodo')), h('p', { class: 'pista' }, t('consulta.fuente_puntual')));
     raiz.append(a2);
 
@@ -389,6 +520,7 @@
 
     // 4. resultados
     if (S.resultado) raiz.append(panelResultados());
+    if (S.resultado && PP) raiz.append(panelPerspectiva());
     // 5. exportar
     if (S.resultado) raiz.append(panelExportar());
     else raiz.append(h('article', null, h('h3', null, t('paso.exportar')), h('p', { class: 'pista' }, t('exp.abrir_ayuda')), botonAbrir()));

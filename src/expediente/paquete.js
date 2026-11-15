@@ -90,6 +90,47 @@
     return csv(filas);
   }
 
+  // ---------------------------------------------------------------- perspectiva de la próxima década
+  function obsIndicadoresCSV(P) {
+    var filas = [['indicador', 'unidad', 'fuente', 'tipo_dato', 'escala', 'anio', 'valor']];
+    P.indicadores.forEach(function (o) { o.observaciones.forEach(function (x) { filas.push([o.id, o.unidad, o.fuente, o.tipo_dato, o.escala, x.anio, x.valor === null ? null : Number(x.valor.toFixed(6))]); }); });
+    return '# ' + P.perspectiva_id + ' · faltante=celda vacía\r\n' + csv(filas);
+  }
+  function proyeccionesCSV(P) {
+    var filas = [['indicador', 'unidad', 'modelo', 'clasificacion', 'anio', 'central', 'p025', 'p10', 'p50', 'p90', 'p975', 'tipo']];
+    P.indicadores.forEach(function (o) {
+      if (!o.proyeccion) return;
+      o.proyeccion.trayectoria.forEach(function (x) {
+        filas.push([o.id, o.unidad, o.proyeccion.modelo, o.clasificacion.clase, x.anio].concat(['central', 'p025', 'p10', 'p50', 'p90', 'p975'].map(function (k) { return Number(x[k].toFixed(4)); })).concat([x.anio >= P.horizonte.inicio ? 'estimacion_decada' : 'estimacion_puente']));
+      });
+    });
+    var res = [['indicador', 'cantidad', 'tipo_intervalo', 'p025', 'p10', 'p50', 'p90', 'p975']];
+    P.indicadores.forEach(function (o) {
+      if (!o.proyeccion) return;
+      var pr = o.proyeccion, add = function (cant, tipo, q) { res.push([o.id, cant, tipo, q.p025, q.p10, q.p50, q.p90, q.p975].map(function (v) { return typeof v === 'number' ? Number(v.toFixed(5)) : v; })); };
+      add('media_decada', 'prediccion', pr.media_decada);
+      add('cambio_vs_referencia', 'prediccion_realizacion', pr.cambio_vs_referencia.prediccion);
+      add('cambio_vs_referencia', 'confianza_respuesta_media', pr.cambio_vs_referencia.respuesta_media);
+      add('cambio_vs_ultima_decada', 'prediccion_realizacion', pr.cambio_vs_ultima_decada.prediccion);
+      add('cambio_vs_ultima_decada', 'confianza_respuesta_media', pr.cambio_vs_ultima_decada.respuesta_media);
+      add('pendiente_en_decada_por_decada', 'distribucion_simulada', pr.pendiente_en_decada);
+      if (o.cmip6) Object.keys(o.cmip6.escenarios).forEach(function (e) { var c = o.cmip6.escenarios[e]; res.push([o.id, 'cmip6_' + e + '_cambio_vs_1995_2014_' + c.unidad_cambio, 'dispersion_entre_modelos_n' + c.n_modelos, c.cambio_min, null, c.cambio_mediana, null, c.cambio_max].map(function (v) { return typeof v === 'number' ? Number(v.toFixed(5)) : v; })); });
+    });
+    return '# ' + P.perspectiva_id + ' · horizonte ' + P.horizonte.inicio + '-' + P.horizonte.fin + ' · semilla ' + P.semilla + ' · ' + P.n_simulaciones + ' simulaciones\r\n' + csv(filas) + '\r\n' + csv(res);
+  }
+  function validacionCSV(P) {
+    var filas = [['indicador', 'modelo', 'seleccionado', 'origenes', 'n_ventanas', 'decadas_independientes', 'anticipacion', 'mae_decada', 'rmse_decada', 'sesgo_decada', 'mae_anual', 'rmse_anual', 'habilidad_msss_vs_climatologia', 'cobertura80', 'cobertura95', 'anchura80', 'anchura95']];
+    P.indicadores.forEach(function (o) {
+      if (!o.validacion || !o.validacion.suficiente) return;
+      Object.keys(o.validacion.modelos).forEach(function (k) {
+        var m = o.validacion.modelos[k];
+        filas.push([o.id, k, o.seleccion.modelo === k, o.validacion.origenes.join('-'), m.n, o.validacion.decadas_independientes, o.validacion.desfase].concat(
+          ['mae_decada', 'rmse_decada', 'sesgo_decada', 'mae_anual', 'rmse_anual', 'habilidad', 'cobertura80', 'cobertura95', 'anchura80', 'anchura95'].map(function (q) { return m[q] === null || m[q] === undefined ? null : Number(m[q].toFixed(5)); })));
+      });
+    });
+    return csv(filas);
+  }
+
   function areaGeoJSON(res) {
     var a = res.area;
     return JSON.stringify({
@@ -116,8 +157,16 @@
     L.push((es ? 'Enlace a la consulta: ' : 'Query link: ') + (enlace || '-'));
     L.push('');
     L.push(es ? 'ARCHIVOS' : 'FILES');
-    ['informe.pdf', 'area_interes.geojson', 'consulta.json', 'resultados.json', 'serie_temporal.csv', 'serie_mensual.csv', 'celdas_mensual.csv', 'fuentes.csv', 'manifest.json', 'LEEME.txt']
+    ['informe.pdf', 'area_interes.geojson', 'consulta.json', 'resultados.json', 'serie_temporal.csv', 'serie_mensual.csv', 'celdas_mensual.csv', 'fuentes.csv']
+      .concat(res.perspectiva && res.perspectiva.indicadores ? ['perspectiva.json', 'observaciones_indicadores.csv', 'proyecciones.csv', 'validacion.csv'] : [])
+      .concat(['manifest.json', 'LEEME.txt'])
       .forEach(function (n) { L.push('  ' + n + ': ' + I18n.t('arch.' + n, idioma)); });
+    if (res.perspectiva && res.perspectiva.indicadores) {
+      L.push('');
+      L.push(es ? 'PERSPECTIVA DE LA PRÓXIMA DÉCADA' : 'NEXT-DECADE OUTLOOK');
+      L.push('  ' + res.perspectiva.perspectiva_id + ' · ' + res.perspectiva.horizonte.inicio + '–' + res.perspectiva.horizonte.fin + ' · ' + (es ? 'semilla ' : 'seed ') + res.perspectiva.semilla + ' · ' + res.perspectiva.n_simulaciones + (es ? ' simulaciones' : ' simulations'));
+      L.push(es ? '  Extrapolación estadística validada fuera de muestra y proyección CMIP6 por escenario. No es un pronóstico de años concretos.' : '  Out-of-sample validated statistical extrapolation and CMIP6 projection by scenario. Not a forecast of specific years.');
+    }
     L.push('');
     L.push(es ? 'CONVENCIONES' : 'CONVENTIONS');
     L.push(es ? '  Coordenadas EPSG:4326, orden longitud, latitud. Fechas ISO 8601. Decimales con punto.' : '  Coordinates EPSG:4326, longitude, latitude order. ISO 8601 dates. Dot decimals.');
@@ -152,11 +201,19 @@
     archivos.push({ nombre: 'serie_mensual.csv', datos: mensualCSV(res) });
     archivos.push({ nombre: 'celdas_mensual.csv', datos: celdasCSV(res) });
     archivos.push({ nombre: 'fuentes.csv', datos: fuentesCSV(res, idioma) });
+    if (res.perspectiva && res.perspectiva.indicadores) {
+      archivos.push({ nombre: 'perspectiva.json', datos: JSON.stringify(res.perspectiva) });
+      archivos.push({ nombre: 'observaciones_indicadores.csv', datos: obsIndicadoresCSV(res.perspectiva) });
+      archivos.push({ nombre: 'proyecciones.csv', datos: proyeccionesCSV(res.perspectiva) });
+      archivos.push({ nombre: 'validacion.csv', datos: validacionCSV(res.perspectiva) });
+    }
     archivos.push({ nombre: 'LEEME.txt', datos: leeme(res, enlace, idioma) });
     var manifiesto = {
       esquema: 'etd-manifiesto', version: 1, aplicacion: 'Earth System Trend Detective', version_codigo: res.version_codigo,
       generado_utc: opciones.generado_utc || new Date().toISOString(), resultado_id: res.resultado_id, consulta_id: res.consulta_id,
       enlace_consulta: enlace, fuente: { nombre: res.fuente.nombre, version_api: res.fuente.version_api, acceso_utc: res.fuente.acceso_utc },
+      perspectiva: res.perspectiva && res.perspectiva.indicadores ? { perspectiva_id: res.perspectiva.perspectiva_id, version: res.perspectiva.version, horizonte: res.perspectiva.horizonte, semilla: res.perspectiva.semilla, n_simulaciones: res.perspectiva.n_simulaciones, generador: 'mulberry32 + Box-Muller', cmip6: res.perspectiva.cmip6_fuente } : null,
+      software: { jspdf: '2.5.2', qrcode_generator: '1.4.4', geographiclib_geodesic: '2.1.1', estadistica: 'src/estadistica.js', perspectiva: res.perspectiva ? res.perspectiva.version : null },
       archivos: archivos.map(function (a) { var b = bytes(a.datos); return { nombre: a.nombre, bytes: b.length, sha256: Estado.sha256(b) }; })
     };
     archivos.push({ nombre: 'manifest.json', datos: JSON.stringify(manifiesto, null, 1) });

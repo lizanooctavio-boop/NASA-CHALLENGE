@@ -97,7 +97,9 @@ class Expediente(unittest.TestCase):
         self.assertTrue(e["compartible"])
         self.assertFalse(e["local"])
         self.assertTrue(e["url"].startswith("https://nasa-challenge-q6cx.onrender.com/#inv="))
-        self.assertNotRegex(e["url"].lower(), r"key|token|password|apikey")
+        # el estado comprimido es base64url: puede contener «key» por azar; se revisa el resto del enlace
+        import re
+        self.assertNotRegex(re.sub(r"#inv=[A-Za-z0-9_-]+", "#inv=", e["url"]).lower(), r"key|token|password|apikey")
         self.assertEqual(e["resultado_ref"], self.o["masaya"]["id"])
         self.assertTrue(e["mismo_id_sin_vista"])
         self.assertTrue(e["id_cambia_con_periodo"])

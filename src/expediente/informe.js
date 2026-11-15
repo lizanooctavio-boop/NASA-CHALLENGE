@@ -19,8 +19,8 @@
 
   var A4 = { w: 210, h: 297 }, M = { l: 18, r: 18, t: 20, b: 20 }, ANCHO = A4.w - M.l - M.r;
   var COL = { texto: [28, 33, 40], suave: [95, 105, 115], linea: [190, 196, 204], acento: [11, 61, 145], area: [200, 30, 45], fondo: [245, 247, 250], tierra: [236, 233, 224], agua: [214, 230, 242] };
-  var SECCIONES = ['B', 'C', 'D', 'E', 'F', 'G', 'H'];
-  var RESUMEN = ['B', 'C', 'F', 'G', 'H'];
+  var SECCIONES = ['B', 'C', 'D', 'E', 'F', 'G', 'P', 'H'];
+  var RESUMEN = ['B', 'C', 'F', 'G', 'P', 'H'];
 
   // Caracteres fuera de WinAnsi sustituidos por equivalentes legibles (las tildes y la ñ se conservan).
   var SUST = { '−': '-', '≈': '~', 'α': 'alfa', '≥': '>=', '≤': '<=', ' ': ' ', ' ': ' ', ' ': ' ', '→': '->', '✓': 'v' };
@@ -62,7 +62,13 @@
       fuente(tam, 'bold'); color(nivel === 1 ? COL.acento : COL.texto);
       doc.text(limpio(txt), M.l, y + tam * 0.36); y += tam * 0.5 + 2.5;
     }
-    function seccion(letra) { numSeccion++; titular(letra + '. ' + t('sec.' + letra), 1); doc.outline && doc.outline.add(null, letra + '. ' + limpio(t('sec.' + letra)), { pageNumber: doc.getNumberOfPages() }); }
+    var PV = res.perspectiva && res.perspectiva.indicadores ? res.perspectiva : null;
+    var varsSec = PV ? { ini: PV.horizonte.inicio, fin: PV.horizonte.fin } : {};
+    function seccion(letra) { numSeccion++; titular(letra + '. ' + t('sec.' + letra, varsSec), 1); doc.outline && doc.outline.add(null, letra + '. ' + limpio(t('sec.' + letra, varsSec)), { pageNumber: doc.getNumberOfPages() }); }
+    function banda(txt) {
+      asegurar(12); color([232, 240, 252], 'f'); doc.rect(M.l, y, ANCHO, 8, 'F'); color(COL.acento, 'f'); doc.rect(M.l, y, 1.6, 8, 'F');
+      fuente(9, 'bold'); color(COL.acento); doc.text(limpio(txt), M.l + 4, y + 5.4); y += 11;
+    }
     function pie(txt) { parrafo(txt, { tam: 7.8, color: COL.suave, despues: 3 }); }
 
     // Tabla con cabecera repetida y filas que nunca se parten entre páginas.
@@ -404,8 +410,27 @@
       y = 44;
       parrafo(titulo, { tam: 17, estilo: 'bold', despues: 2 });
       parrafo((res.area.nombre || t('area.' + res.area.tipo)) + ' · ' + tipoTxt() + (res.area.admin ? ' · ' + adminTxt() : ''), { tam: 10.5, color: COL.suave, despues: 1 });
-      parrafo((idioma === 'en' ? v.nombre_en : v.nombre) + ' · ' + res.consulta.periodo.inicio + '–' + res.consulta.periodo.fin + ' · ' + temporadaTxt(), { tam: 10.5, color: COL.suave, despues: 4 });
-      bloqueMapaDetalle(null, 92);
+      parrafo((idioma === 'en' ? v.nombre_en : v.nombre) + ' · ' + res.consulta.periodo.inicio + '–' + res.consulta.periodo.fin + ' · ' + temporadaTxt(), { tam: 10.5, color: COL.suave, despues: PV ? 1 : 4 });
+      if (PV) parrafo(t('p.portada', { ini: PV.horizonte.inicio, fin: PV.horizonte.fin }), { tam: 10.5, estilo: 'bold', color: COL.acento, despues: 3 });
+      var img = op.imagen;
+      if (img && img.datos) {
+        var ih = Math.min(84, ANCHO * img.alto / img.ancho);
+        try {
+          doc.addImage(img.datos, img.formato || 'JPEG', M.l, y, ANCHO, ih, undefined, 'FAST');
+          // contorno del área sobre la imagen (misma proyección equirectangular que la petición de la imagen)
+          if (img.ext) {
+            var Pi = { lat0: 0, p: function (lon, lat) { return [M.l + (lon - img.ext[0]) / (img.ext[2] - img.ext[0]) * ANCHO, y + (img.ext[3] - lat) / (img.ext[3] - img.ext[1]) * ih]; } };
+            doc.saveGraphicsState(); doc.rect(M.l, y, ANCHO, ih, null); doc.clip(); doc.discardPath();
+            color([255, 235, 59], 'd'); doc.setLineWidth(0.6);
+            Geo.poligonos(res.area.geometria).forEach(function (pol) { Geo.desenvolverPoligono(pol).forEach(function (a) { anillo(Pi, a, 'S'); }); });
+            if (res.area.geometria.type === 'Point') { var pp = Pi.p(res.area.geometria.coordinates[0], res.area.geometria.coordinates[1]); doc.circle(pp[0], pp[1], 1.4, 'S'); }
+            doc.restoreGraphicsState();
+          }
+          color(COL.texto, 'd'); doc.setLineWidth(0.2); doc.rect(M.l, y, ANCHO, ih, 'S');
+          y += ih + 1.5;
+          pie(t('p.imagen', { fuente: img.fuente, fecha: img.fecha || t('na') }));
+        } catch (e) { parrafo(t('p.imagen_error'), { tam: 7.5, color: COL.suave }); }
+      } else bloqueMapaDetalle(null, PV ? 80 : 92);
       var filas = [
         [t('inf.id'), idInforme], [t('inf.revision'), res.resultado_id + ' · ' + (op.generado_utc || res.generado_utc).slice(0, 10)],
         [t('inf.consulta'), res.consulta_id], [t('inf.version_app'), res.version_codigo + ' · NASA POWER API ' + (res.fuente.version_api || t('na'))]
@@ -436,7 +461,7 @@
 
     // ------------------------------------------------------------------ B. Resumen ejecutivo
     function secB() {
-      nuevaPagina(); seccion('B');
+      nuevaPagina(); if (PV) banda(t('p.bloque1')); seccion('B');
       var T = res.tendencia, R = res.resumen;
       parrafo(t('b.donde'), { estilo: 'bold', despues: 0.5 });
       parrafo((res.area.nombre || t('area.' + res.area.tipo)) + ' (' + tipoTxt() + (res.area.superficie_km2 !== null ? ', ' + n(res.area.superficie_km2, 1) + ' km²' : '') + (res.area.admin ? '; ' + adminTxt() : '') + ').');
@@ -609,22 +634,265 @@
     function secH() {
       nuevaPagina(); seccion('H');
       titular(t('h.referencias'), 2);
-      ['sen1968', 'mann1945', 'kendall1975', 'gelaro2017', 'karney2013', 'power'].concat(res.area.procedencia && res.area.procedencia.tipo === 'ineter' ? ['ineter'] : []).forEach(function (k) {
+      ['sen1968', 'mann1945', 'kendall1975', 'gelaro2017', 'karney2013', 'power'].concat(PV ? ['hamed1998', 'benjamini1995', 'tashman2000', 'gardner1985', 'zhang2011', 'lenssen2019'].concat(PV.cmip6_fuente ? ['thrasher2022'] : []) : []).concat(res.area.procedencia && res.area.procedencia.tipo === 'ineter' ? ['ineter'] : []).forEach(function (k) {
         var r = Fuentes.REFERENCIAS[k];
-        var txt = r.autores + (r.anio ? ' (' + r.anio + '). ' : '. ') + r.titulo + '. ' + (idioma === 'en' && r.revista_en ? r.revista_en : r.revista) + '.';
+        var txt = (idioma === 'en' && r.autores_en ? r.autores_en : r.autores) + (r.anio ? ' (' + r.anio + '). ' : '. ') + r.titulo + '. ' + (idioma === 'en' && r.revista_en ? r.revista_en : r.revista) + '.';
         parrafo(txt, { tam: 8.6, despues: 0.4 });
         if (r.doi) { fuente(8.2, 'normal'); color(COL.acento); asegurar(4); doc.textWithLink('https://doi.org/' + r.doi, M.l + 4, y + 2.8, { url: 'https://doi.org/' + r.doi }); y += 4; parrafo(t('h.doi_verificado', { fecha: r.verificado.slice(0, 10) }), { tam: 7, color: COL.suave, x: M.l + 4, despues: 1.5 }); }
         else y += 1.4;
       });
       titular(t('h.archivos'), 2);
-      tabla([idioma === 'en' ? 'File' : 'Archivo', idioma === 'en' ? 'Content' : 'Contenido'], ['informe.pdf', 'area_interes.geojson', 'consulta.json', 'resultados.json', 'serie_temporal.csv', 'serie_mensual.csv', 'celdas_mensual.csv', 'fuentes.csv', 'manifest.json', 'LEEME.txt'].map(function (a) { return [a, t('arch.' + a)]; }), [40, 130], { tam: 8 });
+      tabla([idioma === 'en' ? 'File' : 'Archivo', idioma === 'en' ? 'Content' : 'Contenido'], ['informe.pdf', 'area_interes.geojson', 'consulta.json', 'resultados.json', 'serie_temporal.csv', 'serie_mensual.csv', 'celdas_mensual.csv', 'fuentes.csv'].concat(PV ? ['perspectiva.json', 'observaciones_indicadores.csv', 'proyecciones.csv', 'validacion.csv'] : []).concat(['manifest.json', 'LEEME.txt']).map(function (a) { return [a, t('arch.' + a)]; }), [40, 130], { tam: 8 });
       if (plantilla === 'completo') {
         titular(idioma === 'en' ? 'Original data requests (NASA POWER)' : 'Peticiones originales de datos (NASA POWER)', 2);
         res.celdas.slice(0, 64).forEach(function (c) { parrafo(Fuentes.urlCelda(v.parametro, c.lon, c.lat, res.fuente.periodo_descargado.inicio, res.fuente.periodo_descargado.fin), { tam: 6.4, color: COL.suave, despues: 0.3 }); });
       }
     }
 
-    var mapa = { B: secB, C: secC, D: secD, E: secE, F: secF, G: secG, H: secH };
+    // ------------------------------------------------------------------ P. Perspectiva de la próxima década
+    function nomInd(o) { return idioma === 'en' ? o.nombre_en : o.nombre; }
+    function uInd(o) { return idioma === 'en' ? (o.unidad_en || o.unidad) : o.unidad; }
+    function clase(o) { return t('p.clase.' + o.clasificacion.clase); }
+    function rango(q, d, uu) { return n(q.p10, d) + ' … ' + n(q.p90, d) + (uu ? ' ' + uu : ''); }
+    function sgn(v, d) { return (v > 0 ? '+' : '') + n(v, d); }
+    function mesTxt(o) { var m = o.ultima_observacion; return m || t('na'); }
+    function miniMapa(rect, M2, valores, titulo, et) {
+      var P = proyector(M2.ventana, rect);
+      color(COL.agua, 'f'); doc.rect(rect.x, rect.y, rect.w, rect.h, 'F');
+      recortarA(rect); paises(P, rect, op.mundo, false);
+      var vals = valores.filter(function (x) { return x !== null; }), m = vals.length ? Math.max.apply(null, vals.map(Math.abs)) || 1 : 1;
+      var inv = /prcp|rx|r95|lluvia|rain/.test(et.id) && !/cdd/.test(et.id);
+      M2.celdas.forEach(function (c, i) {
+        var val = valores[i], b = [c.lon - M2.rejilla.dlon / 2, c.lat - M2.rejilla.dlat / 2, c.lon + M2.rejilla.dlon / 2, c.lat + M2.rejilla.dlat / 2];
+        var poly = [[b[0], b[1]], [b[2], b[1]], [b[2], b[3]], [b[0], b[3]], [b[0], b[1]]];
+        var col = val === null ? [205, 205, 205] : rampa(val, -m, m, true, inv);
+        color(col, 'f'); color([255, 255, 255], 'd'); doc.setLineWidth(0.08); anillo(P, poly, 'FD');
+      });
+      dibujarArea(P, 0.45);
+      doc.restoreGraphicsState();
+      color(COL.texto, 'd'); doc.setLineWidth(0.2); doc.rect(rect.x, rect.y, rect.w, rect.h, 'S');
+      // norte mínimo y escala
+      fuente(5.5, 'bold'); color(COL.texto); doc.text('N', rect.x + rect.w - 3, rect.y + 3.2, { align: 'center' });
+      color(COL.texto, 'f'); doc.triangle(rect.x + rect.w - 3, rect.y + 3.8, rect.x + rect.w - 4.2, rect.y + 7, rect.x + rect.w - 1.8, rect.y + 7, 'F');
+      var kmPorMm = Geo.distanciaKm(0, P.lat0, 1, P.lat0) / (P.k * P.s), km = [10, 20, 25, 50, 100, 200].filter(function (k) { return k / kmPorMm <= rect.w * 0.3; }).pop() || 10, mm = km / kmPorMm;
+      color([255, 255, 255], 'f'); doc.rect(rect.x + 1, rect.y + rect.h - 5, mm + 9, 4, 'F');
+      color(COL.texto, 'f'); doc.rect(rect.x + 2, rect.y + rect.h - 3.2, mm, 0.8, 'F');
+      fuente(5, 'normal'); color(COL.texto); doc.text(km + ' km', rect.x + 3 + mm, rect.y + rect.h - 2.4);
+      // título y barra de color
+      fuente(6.6, 'bold'); color(COL.texto);
+      doc.text(doc.splitTextToSize(limpio(titulo), rect.w).slice(0, 2), rect.x, rect.y - 3.6);
+      var yb = rect.y + rect.h + 1.6, nn = 20, w = rect.w / nn;
+      for (var i = 0; i < nn; i++) { color(rampa(-m + 2 * m * (i + 0.5) / nn, -m, m, true, inv), 'f'); doc.rect(rect.x + i * w, yb, w + 0.05, 2.2, 'F'); }
+      color(COL.texto, 'd'); doc.setLineWidth(0.1); doc.rect(rect.x, yb, rect.w, 2.2, 'S');
+      fuente(5.6, 'normal'); color(COL.texto);
+      doc.text(n(-m, m < 1 ? 2 : m < 10 ? 1 : 0), rect.x, yb + 4.6); doc.text(n(m, m < 1 ? 2 : m < 10 ? 1 : 0), rect.x + rect.w, yb + 4.6, { align: 'right' });
+      doc.text(limpio(et.u), rect.x + rect.w / 2, yb + 4.6, { align: 'center' });
+    }
+    function rejillaMinimapas(clave, titulo, unidadFn) {
+      var M2 = PV.mapas, ids = Object.keys(M2.indicadores).filter(function (id) { return PV.indicadores.some(function (o) { return o.id === id; }); });
+      if (!ids.length) return;
+      var cols = 3, gap = 6, w = (ANCHO - gap * (cols - 1)) / cols, h = w * 0.78, filaH = h + 16;
+      asegurar(filaH + 12); leyendaFigura(titulo);
+      y += 5;
+      ids.forEach(function (id, k) {
+        var c = k % cols;
+        if (c === 0 && k > 0) y += filaH;
+        if (c === 0 && asegurar(filaH)) y += 5;
+        var o = PV.indicadores.filter(function (x) { return x.id === id; })[0];
+        miniMapa({ x: M.l + c * (w + gap), y: y, w: w, h: h }, M2, M2.indicadores[id][clave], nomInd(o), { id: id, u: unidadFn(o) });
+      });
+      y += filaH + 1;
+    }
+    function grafIndicador(rect, o) {
+      var obs = o.observaciones.filter(function (x) { return x.valor !== null; }), pr = o.proyeccion, h = PV.horizonte;
+      var a0 = Math.max(1981, obs[0].anio), a1 = h.fin;
+      var ys = obs.map(function (x) { return x.valor; });
+      pr.trayectoria.forEach(function (x) { ys.push(x.p025, x.p975); });
+      var cm = o.cmip6 && o.cmip6.escenarios, escs = cm ? Object.keys(cm) : [];
+      escs.forEach(function (e) { if (cm[e].proyectado_min !== null) ys.push(cm[e].proyectado_min, cm[e].proyectado_max); });
+      var mn = Math.min.apply(null, ys), mx = Math.max.apply(null, ys), pad = (mx - mn) * 0.08 || 1;
+      var E = ejes(rect, a0 - 0.5, a1 + 0.5, mn - pad, mx + pad, uInd(o));
+      // referencia
+      color([238, 238, 238], 'f'); doc.rect(E.X(PV.referencia.inicio - 0.5), rect.y, E.X(PV.referencia.fin + 0.5) - E.X(PV.referencia.inicio - 0.5), rect.h, 'F');
+      // bandas 95 y 80 %
+      function bandaP(kInf, kSup, col) {
+        var tr = pr.trayectoria, pts = tr.map(function (x) { return [E.X(x.anio), E.Y(x[kSup])]; }).concat(tr.slice().reverse().map(function (x) { return [E.X(x.anio), E.Y(x[kInf])]; }));
+        var d = []; for (var i = 1; i < pts.length; i++) d.push([pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]]);
+        color(col, 'f'); doc.lines(d, pts[0][0], pts[0][1], [1, 1], 'F', true);
+      }
+      bandaP('p025', 'p975', [253, 224, 197]); bandaP('p10', 'p90', [250, 190, 140]);
+      // observaciones
+      color(COL.acento, 'd'); doc.setLineWidth(0.25);
+      for (var i = 1; i < o.observaciones.length; i++) { var p0 = o.observaciones[i - 1], p1 = o.observaciones[i]; if (p0.valor !== null && p1.valor !== null && p0.anio >= a0) doc.line(E.X(p0.anio), E.Y(p0.valor), E.X(p1.anio), E.Y(p1.valor)); }
+      color(COL.acento, 'f'); obs.forEach(function (x) { if (x.anio >= a0) doc.circle(E.X(x.anio), E.Y(x.valor), 0.45, 'F'); });
+      // trayectoria central (estimación, discontinua)
+      color([196, 90, 20], 'd'); doc.setLineWidth(0.45); doc.setLineDashPattern([1.2, 0.8], 0);
+      var last = obs[obs.length - 1], prev = [E.X(last.anio), E.Y(last.valor)];
+      pr.trayectoria.forEach(function (x) { var q = [E.X(x.anio), E.Y(x.p50)]; doc.line(prev[0], prev[1], q[0], q[1]); prev = q; });
+      doc.setLineDashPattern([], 0);
+      // corte
+      color([60, 60, 60], 'd'); doc.setLineWidth(0.25); doc.setLineDashPattern([0.6, 0.6], 0); doc.line(E.X(last.anio + 0.5), rect.y, E.X(last.anio + 0.5), rect.y + rect.h); doc.setLineDashPattern([], 0);
+      fuente(5.4, 'normal'); color(COL.suave); doc.text(limpio(t('p.g.corte')), E.X(last.anio + 0.5) - 0.8, rect.y + 2.4, { align: 'right' });
+      // CMIP6: rango entre modelos de la media de la década (barras), por escenario
+      var colE = { ssp245: [46, 125, 50], ssp585: [123, 31, 162] };
+      escs.forEach(function (e, k) {
+        var c = cm[e]; if (c.proyectado_min === null) return;
+        var x = E.X((h.inicio + h.fin) / 2) + (k - 0.5) * 3;
+        color(colE[e] || [0, 0, 0], 'd'); doc.setLineWidth(0.7); doc.line(x, E.Y(c.proyectado_min), x, E.Y(c.proyectado_max));
+        doc.setLineWidth(0.3); doc.line(x - 1.2, E.Y(c.proyectado_mediana), x + 1.2, E.Y(c.proyectado_mediana));
+      });
+      etiquetasAnios(rect, E.X, a0, a1);
+    }
+    function leyendaGraf(xx, yy, conCmip) {
+      fuente(5.8, 'normal');
+      var items = [[COL.acento, t('p.g.obs'), 'l'], [[196, 90, 20], t('p.g.central'), 'd'], [[250, 190, 140], t('p.g.b80'), 'f'], [[253, 224, 197], t('p.g.b95'), 'f'], [[220, 220, 220], t('p.g.ref', { ini: PV.referencia.inicio, fin: PV.referencia.fin }), 'f']];
+      if (conCmip) items.push([[46, 125, 50], 'CMIP6 SSP2-4.5', 'l'], [[123, 31, 162], 'CMIP6 SSP5-8.5', 'l']);
+      var x = xx;
+      items.forEach(function (it) {
+        var w = doc.getTextWidth(limpio(it[1])) + 8;
+        if (x + w > M.l + ANCHO) { x = xx; yy += 3.6; }
+        if (it[2] === 'f') { color(it[0], 'f'); doc.rect(x, yy - 1.8, 5, 2.2, 'F'); }
+        else { color(it[0], 'd'); doc.setLineWidth(0.5); if (it[2] === 'd') doc.setLineDashPattern([1, 0.6], 0); doc.line(x, yy - 0.7, x + 5, yy - 0.7); doc.setLineDashPattern([], 0); }
+        color(COL.texto); doc.text(limpio(it[1]), x + 6, yy); x += w;
+      });
+      return yy + 4;
+    }
+    function filaHorizonte() {
+      var h = PV.horizonte, inds = PV.indicadores.filter(function (o) { return o.validacion && o.validacion.suficiente; });
+      var o0 = inds[0] || PV.indicadores[0];
+      var ultObs = PV.indicadores.map(function (o) { return o.id + ': ' + mesTxt(o); });
+      return [
+        [t('p.h.generacion'), String((op.generado_utc || res.generado_utc).slice(0, 10))],
+        [t('p.h.ultima_obs'), ultObs.join(' · ')],
+        [t('p.h.ultimo_completo'), String(PV.ultimo_anio_completo) + (PV.ultimo_anio_completo < h.generacion - 1 ? ' · ' + t('p.h.desfase', { n: h.generacion - PV.ultimo_anio_completo }) : '')],
+        [t('p.h.entrenamiento'), o0 && o0.entrenamiento ? o0.entrenamiento.join('–') : t('na')],
+        [t('p.h.validacion'), o0 && o0.validacion && o0.validacion.origenes ? t('p.h.validacion_txt', { o0: o0.validacion.origenes[0], o1: o0.validacion.origenes[1], n: o0.validacion.n_origenes, ind: o0.validacion.decadas_independientes, a: o0.anticipacion_inicio, b: o0.anticipacion_inicio + 9 }) : t('na')],
+        [t('p.h.proyectado'), h.inicio + '–' + h.fin + ' · ' + t('p.h.anticipacion', { a: o0 ? o0.anticipacion_inicio : '–', b: o0 ? o0.anticipacion_inicio + 9 : '–' })]
+      ];
+    }
+    function secP() {
+      if (!PV) return;
+      nuevaPagina();
+      banda(t('p.bloque2'));
+      seccion('P');
+      var h = PV.horizonte, inds = PV.indicadores;
+      var dest = PV.destacadas.map(function (id) { return inds.filter(function (o) { return o.id === id; })[0]; });
+      var expl = inds.filter(function (o) { return o.clasificacion.clase === 'exploratorio'; }), nop = inds.filter(function (o) { return o.clasificacion.clase === 'no_proyectable'; });
+      // A. Resumen
+      titular('A. ' + t('p.a'), 2);
+      parrafo(t('p.a.modalidades', { cmip: PV.cmip6_fuente ? t('p.a.cmip_si', { region: PV.cmip6_fuente.nombre }) : t('p.a.cmip_no') }));
+      if (dest.length) {
+        parrafo(t('p.a.destacadas'), { estilo: 'bold', despues: 0.6 });
+        dest.forEach(function (o) {
+          var c = o.proyeccion.cambio_vs_referencia;
+          parrafo('• ' + nomInd(o) + ': ' + t('p.a.dest_txt', { c: sgn(c.prediccion.p50, o.decimales), u: uInd(o), i80: rango(c.prediccion, o.decimales), ic: o.proyeccion.respuesta_media_disponible === false ? t('p.sin_respuesta') : n(c.respuesta_media.p025, o.decimales) + ' … ' + n(c.respuesta_media.p975, o.decimales), hab: n(o.validacion.modelos[o.seleccion.modelo].habilidad, 2), ref: PV.referencia.inicio + '–' + PV.referencia.fin }), { tam: 9 });
+        });
+      } else parrafo(t('p.a.sin_destacadas'), { estilo: 'bold' });
+      parrafo(t('p.a.inciertos', { lista: expl.map(function (o) { return nomInd(o) + ' (' + t('p.motivo.' + o.clasificacion.motivo) + ')'; }).join('; ') || t('na') }), { tam: 9 });
+      parrafo(t('p.a.no_proy', { lista: nop.map(nomInd).concat(PV.excluidas.map(function (e) { return idioma === 'en' ? e.nombre_en : e.nombre; })).join('; ') }), { tam: 9 });
+      var cmT = inds.filter(function (o) { return o.cmip6 && o.cmip6.escenarios; })[0];
+      if (cmT) {
+        var e2 = cmT.cmip6.escenarios;
+        parrafo(t('p.a.cmip_txt', { ind: nomInd(cmT), region: cmT.cmip6.nombre_region, a: e2.ssp245 ? sgn(e2.ssp245.cambio_mediana, 2) : t('na'), a0: e2.ssp245 ? n(e2.ssp245.cambio_min, 2) : '', a1: e2.ssp245 ? n(e2.ssp245.cambio_max, 2) : '', b: e2.ssp585 ? sgn(e2.ssp585.cambio_mediana, 2) : t('na'), b0: e2.ssp585 ? n(e2.ssp585.cambio_min, 2) : '', b1: e2.ssp585 ? n(e2.ssp585.cambio_max, 2) : '', u: e2.ssp245 ? e2.ssp245.unidad_cambio : '', nm: e2.ssp245 ? e2.ssp245.n_modelos : '' }) + (PV.cmip6_fuente && PV.cmip6_fuente.interpolado ? ' ' + t('p.a.cmip_interp') : ''), { tam: 9 });
+      }
+      tabla([t('p.h.dato'), t('f.valor')], filaHorizonte(), [42, 128], { titulo: t('p.h.titulo'), tam: 7.6 });
+      titular(t('p.a.definiciones'), 2);
+      parrafo(t('p.a.definiciones_txt', { ini: h.inicio, fin: h.fin, ref: PV.referencia.inicio + '–' + PV.referencia.fin }), { tam: 8.6 });
+
+      // B. Mapa del área y cobertura
+      nuevaPagina();
+      titular('B. ' + t('p.b'), 2);
+      parrafo(t('p.b.txt'), { tam: 8.8 });
+      if (PV.mapas && op.mundo !== undefined) {
+        rejillaMinimapas('sen_decada', t('p.b.fig_sen', { ini: 1981, fin: PV.mapas.periodo_ultimo[1] }), function (o) { return uInd(o) + '/' + (idioma === 'en' ? 'decade' : 'década'); });
+        rejillaMinimapas('anomalia_ultima_decada', t('p.b.fig_anom', { a: PV.mapas.periodo_ultimo[0], b: PV.mapas.periodo_ultimo[1], ini: PV.referencia.inicio, fin: PV.referencia.fin }), function (o) { return uInd(o); });
+        pie(t('p.b.pie'));
+      } else parrafo(t('p.b.sin_mapas'), { tam: 8.6 });
+      var cob = inds.map(function (o) { return [nomInd(o), o.fuente, t('p.escala.' + (o.escala || 'area')), o.historico.n_validos + '/' + o.historico.n_esperados + ' · ' + n(o.historico.faltantes_pct, 1) + ' %', t('tipo.' + (o.tipo_dato === 'observacion' ? 'observacion' : 'reanalisis'))]; });
+      tabla([t('f.indicador'), t('p.c.fuente'), t('p.c.escala'), t('p.c.validos'), t('p.c.tipo')], cob, [44, 52, 26, 26, 22], { titulo: t('p.b.cobertura'), tam: 7 });
+
+      // C. Tabla de tendencias
+      nuevaPagina();
+      titular('C. ' + t('p.c'), 2);
+      var filas = inds.map(function (o) {
+        var hh = o.historico, pr = o.proyeccion, d = o.decimales, val = o.validacion, sm = val && val.modelos && o.seleccion ? val.modelos[o.seleccion.modelo] : null;
+        return [nomInd(o) + ' (' + uInd(o) + ')',
+          hh.periodo.join('–') + ' (n ' + hh.n_validos + ')',
+          hh.sen ? sgn(hh.sen.pendiente_decada, d + 1) + '/' + (idioma === 'en' ? 'dec.' : 'déc.') + ' [' + n(hh.sen.ic_inf_decada, d + 1) + ' … ' + n(hh.sen.ic_sup_decada, d + 1) + ']; p ' + pf(hh.mann_kendall.p_modificado) + '; q ' + pf(hh.q_bh) : t('na'),
+          pr ? sgn(pr.cambio_vs_referencia.prediccion.p50, d) : t('na'),
+          pr ? t('p.c.int', { i80: rango(pr.cambio_vs_referencia.prediccion, d), i95: n(pr.cambio_vs_referencia.prediccion.p025, d) + ' … ' + n(pr.cambio_vs_referencia.prediccion.p975, d) }) : '—',
+          sm ? t('p.c.hab', { m: t('p.modelo.' + o.seleccion.modelo), h: n(sm.habilidad, 2), c: n(100 * sm.cobertura80, 0) }) : t('na'),
+          clase(o)];
+      });
+      tabla([t('f.indicador'), t('p.c.periodo'), t('p.c.hist'), t('p.c.cambio', { ini: h.inicio, fin: h.fin }), t('p.c.intervalo'), t('p.c.habilidad'), t('p.c.clasif')], filas, [30, 18, 36, 16, 30, 24, 18], { titulo: t('p.c.titulo', { ini: h.inicio, fin: h.fin }), tam: 6.6 });
+      pie(t('p.c.notas', { ref: PV.referencia.inicio + '–' + PV.referencia.fin, n: PV.familia_hipotesis.pruebas, sim: PV.n_simulaciones, sem: PV.semilla }));
+      var fc = [];
+      inds.forEach(function (o) { if (!o.cmip6) return; Object.keys(o.cmip6.escenarios).forEach(function (e) { var c = o.cmip6.escenarios[e]; fc.push([nomInd(o), e.toUpperCase().replace('SSP', 'SSP').replace(/(\d)(\d)(\d)$/, '$1-$2.$3'), String(c.n_modelos), sgn(c.cambio_mediana, 2) + ' (' + n(c.cambio_min, 2) + ' … ' + n(c.cambio_max, 2) + ') ' + c.unidad_cambio, c.proyectado_mediana === null ? t('na') : n(c.proyectado_mediana, o.decimales) + ' (' + n(c.proyectado_min, o.decimales) + ' … ' + n(c.proyectado_max, o.decimales) + ')', c.cambio_vs_referencia_mediana === undefined ? t('na') : sgn(c.cambio_vs_referencia_mediana, o.decimales) + ' ' + uInd(o), c.modelos_aumento + ' / ' + c.modelos_disminucion]); }); });
+      if (fc.length) {
+        tabla([t('f.indicador'), t('p.c.escenario'), 'n', t('p.c.delta'), t('p.c.proyectado', { ini: h.inicio, fin: h.fin }), t('p.c.vs_ref', { ref: PV.referencia.inicio + '–' + PV.referencia.fin }), t('p.c.signo')], fc, [32, 18, 7, 38, 34, 24, 17], { titulo: t('p.c.cmip_titulo', { region: PV.cmip6_fuente ? PV.cmip6_fuente.nombre : '' }), tam: 6.8 });
+        pie(t('p.c.cmip_pie') + (PV.cmip6_fuente && PV.cmip6_fuente.interpolado ? ' ' + t('p.a.cmip_interp') : ''));
+      }
+      var fv = [];
+      inds.forEach(function (o) { if (!o.validacion || !o.validacion.suficiente) return; Object.keys(o.validacion.modelos).forEach(function (k) { var m = o.validacion.modelos[k]; fv.push([nomInd(o), t('p.modelo.' + k) + (o.seleccion.modelo === k ? ' *' : ''), n(m.mae_decada, o.decimales + 1), n(m.rmse_decada, o.decimales + 1), sgn(m.sesgo_decada, o.decimales + 1), n(m.habilidad, 2), n(100 * m.cobertura80, 0) + ' / ' + n(100 * m.cobertura95, 0) + ' %', n(m.anchura80, o.decimales)]); }); });
+      if (fv.length) {
+        var v0 = inds.filter(function (o) { return o.validacion && o.validacion.suficiente; })[0].validacion;
+        tabla([t('f.indicador'), t('p.v.modelo'), 'MAE', 'RMSE', t('p.v.sesgo'), t('p.v.msss'), t('p.v.cobertura'), t('p.v.anchura')], fv, [36, 30, 14, 14, 14, 14, 22, 16], { titulo: t('p.v.titulo', { o0: v0.origenes[0], o1: v0.origenes[1], n: v0.n_origenes, ind: v0.decadas_independientes }), tam: 6.4 });
+        pie(t('p.v.pie'));
+      }
+
+      // D. Ficha por indicador
+      nuevaPagina();
+      titular('D. ' + t('p.d'), 2);
+      inds.forEach(function (o) {
+        var hh = o.historico, pr = o.proyeccion, d = o.decimales, f = [];
+        f.push([t('p.d.mide'), idioma === 'en' ? o.que_mide_en : o.que_mide]);
+        f.push([t('p.d.fuente'), o.fuente + ' · ' + hh.periodo.join('–') + ' · ' + t('tipo.' + (o.tipo_dato === 'observacion' ? 'observacion' : 'reanalisis'))]);
+        f.push([t('p.d.hist'), hh.sen ? t('p.d.hist_txt', { s: sgn(hh.sen.pendiente_decada, d + 1), u: uInd(o), i0: n(hh.sen.ic_inf_decada, d + 1), i1: n(hh.sen.ic_sup_decada, d + 1), p: pf(hh.mann_kendall.p_modificado), p0: pf(hh.mann_kendall.p_sin_correccion), q: pf(hh.q_bh), c: sgn(hh.cambio_absoluto, d), sens: hh.sensibilidad.map(function (z) { return z.inicio + '–' + z.fin + ': ' + (z.pendiente_decada === null ? t('na') : sgn(z.pendiente_decada, d + 1)); }).join('; ') }) : t('na')]);
+        if (pr) {
+          var sm = o.validacion.modelos[o.seleccion.modelo];
+          f.push([t('p.d.modelo'), t('p.modelo.' + o.seleccion.modelo) + ' · ' + t('p.sel.' + o.seleccion.motivo)]);
+          f.push([t('p.d.validacion'), t('p.d.val_txt', { n: sm.n, ind: o.validacion.decadas_independientes, rmse: n(sm.rmse_decada, d + 1), rc: n(o.validacion.modelos.climatologia.rmse_decada, d + 1), h: n(sm.habilidad, 2), sesgo: sgn(sm.sesgo_decada, d + 1), c80: n(100 * sm.cobertura80, 0), c95: n(100 * sm.cobertura95, 0), u: uInd(o) })]);
+          var c = pr.cambio_vs_referencia, cu = pr.cambio_vs_ultima_decada;
+          f.push([t('p.d.cambio'), t('p.d.cambio_txt', { m: n(pr.media_decada.p50, d), u: uInd(o), cr: sgn(c.prediccion.p50, d), ref: PV.referencia.inicio + '–' + PV.referencia.fin, cu: sgn(cu.prediccion.p50, d), ult: cu.periodo.join('–'), pd: sgn(pr.pendiente_en_decada.p50, d + 1), pd0: n(pr.pendiente_en_decada.p10, d + 1), pd1: n(pr.pendiente_en_decada.p90, d + 1), est: c.estandarizado === null ? t('na') : sgn(c.estandarizado, 2), pct: c.porcentaje === null ? '' : ' (' + sgn(c.porcentaje, 1) + ' %)' })]);
+          f.push([t('p.d.incert'), t('p.d.incert_txt', { i80: rango(c.prediccion, d), i95: n(c.prediccion.p025, d) + ' … ' + n(c.prediccion.p975, d), ic: pr.respuesta_media_disponible === false ? t('p.sin_respuesta') : n(c.respuesta_media.p025, d) + ' … ' + n(c.respuesta_media.p975, d), icu: pr.respuesta_media_disponible === false ? t('p.sin_respuesta') : n(cu.respuesta_media.p025, d) + ' … ' + n(cu.respuesta_media.p975, d), u: uInd(o), pa: n(100 * pr.prob_aumento_vs_referencia, 0), det: n(100 * pr.deteccion_10_anios, 0), cal: o.clasificacion.calibrada ? t('p.d.calibrada') : t('p.d.no_calibrada') })]);
+          if (o.cmip6) f.push(['CMIP6', Object.keys(o.cmip6.escenarios).map(function (e) { var z = o.cmip6.escenarios[e]; return e + ': ' + sgn(z.cambio_mediana, 2) + ' ' + z.unidad_cambio + ' (' + n(z.cambio_min, 2) + ' … ' + n(z.cambio_max, 2) + '; ' + z.n_modelos + ' ' + (idioma === 'en' ? 'models' : 'modelos') + ')'; }).join(' · ') + ' · ' + t('p.d.cmip_base')]);
+          else if (o.contraste_fisico) f.push([t('p.d.fisico'), t('p.d.fisico_txt', { esc: Object.keys(o.contraste_fisico.escenarios).map(function (e) { var z = o.contraste_fisico.escenarios[e]; return e + ' ' + z.modelos_aumento + '/' + z.n_modelos; }).join(', ') })]);
+        }
+        f.push([t('p.d.interp'), t('p.interp.' + o.clasificacion.clase + (o.clasificacion.motivo === 'inhomogeneidad_lluvia_merra2' ? '_lluvia' : '') + (o.clasificacion.motivo === 'contradice_proyeccion_fisica' ? '_fisica' : ''))]);
+        f.push([t('p.d.factores'), t('p.d.factores_txt.' + (/lluvia|prcp|rx|r95|cdd|PREC/.test(o.id) ? 'lluvia' : 'temp'))]);
+        f.push([t('p.d.clasif'), clase(o) + ' · ' + t('p.motivo.' + o.clasificacion.motivo)]);
+        f.push([t('p.d.datos'), (o.enlace_datos || '') + ' · observaciones_indicadores.csv · proyecciones.csv · validacion.csv']);
+        tabla([nomInd(o), ''], f, [32, 138], { tam: 7.2 });
+      });
+
+      // E. Gráficos
+      nuevaPagina();
+      titular('E. ' + t('p.e'), 2);
+      parrafo(t('p.e.txt'), { tam: 8.6 });
+      var conP = inds.filter(function (o) { return o.proyeccion; });
+      var gw = (ANCHO - 22) / 2, gh = 44;
+      conP.forEach(function (o, k) {
+        var col = k % 2;
+        if (col === 0) { if (k > 0) y += gh + 16; asegurar(gh + 26); }
+        var x0 = M.l + 12 + col * (gw + 12);
+        fuente(7, 'bold'); color(COL.texto);
+        figura++;
+        doc.text(doc.splitTextToSize(limpio((idioma === 'en' ? 'Figure ' : 'Figura ') + figura + '. ' + nomInd(o) + ' · ' + clase(o)), gw + 8).slice(0, 2), x0 - 8, y + 2);
+        grafIndicador({ x: x0, y: y + 6, w: gw - 4, h: gh - 4 }, o);
+      });
+      if (conP.length) y += gh + 16;
+      y = leyendaGraf(M.l, y + 2, inds.some(function (o) { return o.cmip6; }));
+      pie(t('p.e.pie', { sim: PV.n_simulaciones, sem: PV.semilla }));
+
+      // F. Limitaciones
+      asegurar(40);
+      titular('F. ' + t('p.f'), 2);
+      ['variabilidad', 'modelo', 'observacion', 'externos', 'validacion', 'confianza'].forEach(function (k) { parrafo('• ' + t('p.f.' + k, { ind: inds[0] && inds[0].validacion ? inds[0].validacion.decadas_independientes : '–' }), { tam: 8.8 }); });
+      if (PV.cmip6_fuente && PV.cmip6_fuente.interpolado) parrafo('• ' + t('p.a.cmip_interp'), { tam: 8.8 });
+      parrafo(t('p.f.id', { id: PV.perspectiva_id, v: PV.version }), { tam: 7.5, color: COL.suave });
+    }
+
+    var mapa = { B: secB, C: secC, D: secD, E: secE, F: secF, G: secG, P: secP, H: secH };
     secciones.forEach(function (s) { mapa[s](); if (s === 'G') secN(); });
     if (secciones.indexOf('G') < 0) secN();
 

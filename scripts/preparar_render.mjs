@@ -25,6 +25,10 @@ writeFileSync('public/data/fenomenos_nicaragua.json', JSON.stringify(recorte));
 cpSync('data/regiones_nicaragua.geojson', 'public/data/regiones_nicaragua.geojson');
 // Expediente por área: límites municipales y departamentales de INETER simplificados (data/admin/).
 cpSync('data/admin', 'public/data/admin', { recursive: true });
+// Perspectiva de la próxima década: índices anuales por celda, GISTEMP regional y CMIP6 regional (data/expediente/).
+mkdirSync('public/data/fenomenos', { recursive: true });
+for (const archivo of ['indices_anuales_celdas.csv', 'gistemp_nicaragua.csv']) cpSync('data/fenomenos/' + archivo, 'public/data/fenomenos/' + archivo);
+cpSync('data/expediente', 'public/data/expediente', { recursive: true });
 // Pestaña Investigate: solo el JSON integrado (clima_nic.recursos); data/recursos/ y sus fixtures no se publican.
 cpSync('data/recursos_integrados.json', 'public/data/recursos_integrados.json');
 // Vectores web y lecturas fechadas. Los ZIP/SHP de la caché nunca se publican.

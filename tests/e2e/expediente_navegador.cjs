@@ -144,6 +144,9 @@ async function clicMapa(page, lat, lon) {
     await page.click('#exp-compartir');
     await page.waitForSelector('#exp-enlace');
     R.casos.departamento = await page.evaluate(() => { const r = window.ETDExpediente.estado.resultado; return { id: r.resultado_id, celdas: r.celdas.length, veredicto: document.getElementById('exp-veredicto').textContent, enlace: document.getElementById('exp-enlace').value, local: document.getElementById('exp-enlace-local')?.getAttribute('href'), sen: r.tendencia.sen, cobertura: r.cobertura }; });
+    R.casos.departamento.perspectiva = await page.evaluate(() => { const p = window.ETDExpediente.estado.resultado.perspectiva; return p && { id: p.perspectiva_id, horizonte: p.horizonte, destacadas: p.destacadas, filas: document.querySelectorAll('#exp-pp-tabla tr[data-indicador]').length, indicadores: p.indicadores.length, clases: p.indicadores.map(o => [o.id, o.clasificacion.clase]) }; });
+    if (!R.casos.departamento.perspectiva || R.casos.departamento.perspectiva.filas !== R.casos.departamento.perspectiva.indicadores) throw Error('perspectiva ausente en el panel');
+    await page.locator('#exp-perspectiva').screenshot({ path: path.join(SALIDA, 'perspectiva_panel.png') });
     R.casos.departamento.pdf = await descargarCon(page, '#exp-pdf', 'ejemplo_matagalpa_completo_es.pdf');
     R.casos.departamento.zip = await descargarCon(page, '#exp-zip', 'ejemplo_matagalpa_expediente.zip');
     await page.selectOption('#exp-inf-idioma', 'en');
