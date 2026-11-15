@@ -1,7 +1,7 @@
 {
  "esquema": "nasa-challenge/recursos",
  "version_esquema": "1.0.0",
- "generado": "2026-11-14",
+ "generado": "2026-11-15",
  "categorias": [
   {
    "id": "lluvia",
@@ -1022,7 +1022,9 @@
     "gpcc_nic",
     "opendap_imerg_nic"
    ],
-   "notas": [],
+   "notas": [
+    "Area-averaged over the target polygon from 0.1° GPM IMERG Final V07B monthly grids."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -1128,7 +1130,9 @@
     "giovanni_imerg_caja_sicc",
     "knmi_chirps_caja_sicc"
    ],
-   "notas": [],
+   "notas": [
+    "Area-averaged over the target polygon from 0.1° GPM IMERG Final V07B monthly grids."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -1228,7 +1232,9 @@
    },
    "recursos": [],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Area-averaged across Nicaragua for June–November from 0.1° GPM IMERG Final V07B monthly grids."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -1330,7 +1336,9 @@
    "contrastes": [
     "noaa_tegucigalpa_lluvia_vs_imerg_hnd"
    ],
-   "notas": [],
+   "notas": [
+    "Area-averaged over the national boundary from 0.1° GPM IMERG Final V07B monthly grids."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -1430,7 +1438,9 @@
    },
    "recursos": [],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Area-averaged over the national boundary from 0.1° GPM IMERG Final V07B monthly grids."
+   ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
     "veredicto_contrato": "metodos_discrepan",
@@ -2095,7 +2105,9 @@
    },
    "recursos": [],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Annual mean across representative MODIS 250 m sample sites in the region (not a wall-to-wall regional average)."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -2197,7 +2209,9 @@
    },
    "recursos": [],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Annual mean across representative MODIS 250 m sample sites in the region (not a wall-to-wall regional average)."
+   ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
     "veredicto_contrato": "tendencia_detectada",
@@ -2299,7 +2313,9 @@
    },
    "recursos": [],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Annual mean across representative MODIS 250 m sample sites in the region (not a wall-to-wall regional average)."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -7368,7 +7384,9 @@
    "contrastes": [
     "clorofila_golfo_fonseca_metodo"
    ],
-   "notas": [],
+   "notas": [
+    "In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias."
+   ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
     "veredicto_contrato": "metodos_discrepan",
@@ -7468,7 +7486,9 @@
    "contrastes": [
     "clorofila_pacifico_fonseca_metodo"
    ],
-   "notas": [],
+   "notas": [
+    "In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -7568,7 +7588,9 @@
    "contrastes": [
     "clorofila_rio_coco_metodo"
    ],
-   "notas": [],
+   "notas": [
+    "In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -7668,7 +7690,9 @@
    "contrastes": [
     "clorofila_rio_grande_matagalpa_metodo"
    ],
-   "notas": [],
+   "notas": [
+    "In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -7768,7 +7792,9 @@
    "contrastes": [
     "clorofila_rio_escondido_bluefields_metodo"
    ],
-   "notas": [],
+   "notas": [
+    "In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias."
+   ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
     "veredicto_contrato": "metodos_discrepan",
@@ -8158,7 +8184,9 @@
    "contrastes": [
     "noaa_canada_lluvia"
    ],
-   "notas": [],
+   "notas": [
+    "Area-averaged across the Canadian Prairies ecological boundary from 0.1° GPM IMERG Final V07B."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -8260,7 +8288,9 @@
     10
    ],
    "contrastes": [],
-   "notas": [],
+   "notas": [
+    "Area-averaged across the Canadian Prairies ecological boundary from 0.1° GPM IMERG Final V07B."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -8364,7 +8394,9 @@
    "contrastes": [
     "noaa_canada_tavg"
    ],
-   "notas": [],
+   "notas": [
+    "Area-averaged across the Canadian Prairies ecological boundary from NASA GISS GISTEMP v4 (250 km grid)."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -15027,7 +15059,8 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "2024: 12 of 12 months."
+    "2024: 12 of 12 months.",
+    "Many years record 0 warm months; on zero-dominated integer counts, the median pairwise slope (Theil–Sen) and its confidence interval can equal 0.00 even when recent peaks push least-squares and Mann–Kendall positive."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -16204,7 +16237,7 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Only a few storms come this close each year, so a trend would need a much longer record to stand out.",
+    "Only a few storms come this close each year, so a trend would need a much longer record to stand out. Because most years record 0 or 1 event, the median pairwise slope (Theil–Sen) can stay at 0.00.",
     "Published check: the cluster of storms near the Caribbean coasts of Nicaragua and Costa Rica in 2016–2022 was rare, but no human influence was detected at 95% confidence (Hidalgo et al. 2025, Natural Hazards, doi:10.1007/s11069-025-07427-5).",
     "The 2026 season was still running when the tracks were downloaded (2026-11-14)."
    ],
@@ -16353,7 +16386,7 @@
    "contrastes": [],
    "notas": [
     "Hurricanes: Joan/Miriam 1988, Cesar 1996, Mitch 1998, Iris 2001, Beta 2005, Felix 2007, Ida 2009, Paula 2010, Richard 2010, Otto 2016, Eta 2020, Iota 2020, Julia 2022.",
-    "Only a few storms come this close each year, so a trend would need a much longer record to stand out.",
+    "Only a few storms come this close each year, so a trend would need a much longer record to stand out. Because most years record 0 or 1 event, the median pairwise slope (Theil–Sen) can stay at 0.00.",
     "Published check: the cluster of storms near the Caribbean coasts of Nicaragua and Costa Rica in 2016–2022 was rare, but no human influence was detected at 95% confidence (Hidalgo et al. 2025, Natural Hazards, doi:10.1007/s11069-025-07427-5).",
     "The 2026 season was still running when the tracks were downloaded (2026-11-14)."
    ],
@@ -16762,7 +16795,9 @@
    "contrastes": [],
    "notas": [
     "Compare with the record since 1981: an older record can suggest a rise that partly comes from better detection.",
-    "Published check: after correcting for storms missed before satellites, Atlantic major hurricanes show no robust long-term rise since the late 1800s (Vecchi et al. 2021, Nature Communications, doi:10.1038/s41467-021-24268-5)."
+    "Many years record 0 storms, so the median pairwise slope (Theil–Sen) stays at 0.00 even when least-squares and Mann–Kendall detect a long-term rise.",
+    "Published check: after correcting for storms missed before satellites, Atlantic major hurricanes show no robust long-term rise since the late 1800s (Vecchi et al. 2021, Nature Communications, doi:10.1038/s41467-021-24268-5).",
+    "The 2026 season was still running when the tracks were downloaded (2026-11-14)."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -25492,7 +25527,8 @@
    "notas": [
     "Level range over 2016–2025: 3810.12 to 3810.99 m above sea level (span of 0.87 m).",
     "Regulated outflow at the Desaguadero River gates and multi-year El Niño/La Niña cycles dominate short-term level swings.",
-    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
+    "Published check: Multi-mission satellite radar altimetry tracks multi-year water level swings across South American lakes and reservoirs (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004); local climate drivers, glacier melt and water management vary by basin.",
+    "Published check (Altiplano): CHIRPS precipitation records over 1981–2018 document multi-year rainfall variability across the southern Andean Altiplano (Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -25600,7 +25636,7 @@
    "notas": [
     "Level range over 1993–2025: 250.98 to 255.01 m above sea level (span of 4.03 m).",
     "Shallow Patagonian lake affected by Senguer River diversions and wind evaporation.",
-    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
+    "Published check: Multi-mission satellite radar altimetry tracks multi-year water level swings across South American lakes and reservoirs (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004); local climate drivers, glacier melt and water management vary by basin."
    ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
@@ -25722,7 +25758,7 @@
    "notas": [
     "Level range over 1993–2025: 178.55 to 179.24 m above sea level (span of 0.69 m).",
     "Fed by meltwater from the Southern Patagonian Ice Field (including Perito Moreno and Upsala glaciers).",
-    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
+    "Published check: Multi-mission satellite radar altimetry tracks multi-year water level swings across South American lakes and reservoirs (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004); local climate drivers, glacier melt and water management vary by basin."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -25812,7 +25848,7 @@
    "notas": [
     "Level range over 2009–2025: 4081.91 to 4083.73 m above sea level (span of 1.82 m).",
     "High-Andean regulated reservoir lake at ~4,080 m elevation.",
-    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
+    "Published check: Multi-mission satellite radar altimetry tracks multi-year water level swings across South American lakes and reservoirs (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004); local climate drivers, glacier melt and water management vary by basin."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",

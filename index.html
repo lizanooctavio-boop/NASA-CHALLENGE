@@ -6,20 +6,24 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Earth Trend Detective</title>
 <meta name="description" content="Explore Earth's weather from space and test whether annual rainfall in Nicaragua has changed, with NASA GPM IMERG data.">
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="app/estilos.css">
 </head>
 <body class="modo-globo cargando">
-<canvas id="espacio" tabindex="0" aria-label="3D Earth. Drag to rotate, scroll to zoom, click to get a forecast."></canvas>
+<a href="#contenido-principal" class="saltar-contenido">Skip to main content</a>
+<canvas id="espacio" tabindex="0" role="img" aria-label="3D Earth. Drag or use arrow keys to rotate, scroll or press plus or minus to zoom, click or press Enter to get a forecast."></canvas>
 <div id="credito-globo" hidden>Imagery © <a href="https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9" target="_blank" rel="noopener">Esri, Maxar, Earthstar Geographics and contributors</a></div>
-<div id="mapa" aria-label="2D weather map"></div>
+<div id="mapa" aria-label="2D weather map" aria-hidden="true"></div>
+<div id="carga-globo" class="carga-globo" role="status" aria-live="polite"><span class="cargando-aro" aria-hidden="true"></span><span>Loading 3D Earth…</span></div>
 
-<aside>
+<aside aria-label="Navigation and tools">
   <div class="cabeza-menu">
     <div class="marca"><span class="marca-punto" aria-hidden="true"></span>Trend<b>Detective</b></div>
     <button id="plegar-menu" type="button" aria-expanded="true" aria-controls="menu-principal" aria-label="Collapse menu" title="Collapse menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
   </div>
-  <p class="sub">Earth system explorer</p>
+  <p class="sub">Live weather globe &amp; NASA long-term climate trend detective. Start in <strong>Investigate</strong> for trends.</p>
   <nav id="menu-principal" aria-label="Sections">
     <button class="activo" data-tab="meteorologia" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 1 1 .8-7.9A5.5 5.5 0 0 1 18.4 12 3 3 0 0 1 18 18z"/></svg><span class="txt">Weather</span></button>
     <button data-tab="investigar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/></svg><span class="txt">Investigate</span></button>
@@ -35,7 +39,7 @@
   <div class="pie">NASA Space Apps 2026<br>Earth System Trend Detective</div>
 </aside>
 
-<main>
+<main id="contenido-principal" tabindex="-1">
 <header>
   <div><p class="etiqueta">NASA SPACE APPS</p><h1 id="titulo">Weather</h1></div>
   <div class="acciones">
@@ -43,43 +47,47 @@
       <button type="button" id="vista-globo" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Globe</button>
       <button type="button" id="vista-mapa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"/></svg>Map</button>
     </div>
-    <div class="indicador-envoltura"><button id="indicador-datos" type="button" class="indicador" data-nivel="pendiente" aria-expanded="false" aria-controls="indicador-detalle"><i aria-hidden="true"></i><span id="indicador-texto">Loading data…</span></button><div id="indicador-detalle" class="ventana" role="region" aria-label="Data status" hidden></div></div>
+    <div class="indicador-envoltura"><button id="indicador-datos" type="button" class="indicador" data-nivel="pendiente" aria-expanded="false" aria-controls="indicador-detalle" title="Live weather globe model (ECMWF IFS). Historical trend datasets are cited inside each panel and in Sources."><i aria-hidden="true"></i><span id="indicador-texto">Loading data…</span></button><div id="indicador-detalle" class="ventana" role="region" aria-label="Data status" hidden></div></div>
     <button id="solomapa" type="button" aria-pressed="false">Hide panels</button>
   </div>
 </header>
 <div id="error" role="alert" hidden><span id="error-texto"></span><button id="error-cerrar" type="button" aria-label="Close">×</button></div>
 
 <section id="meteorologia" class="vista">
-  <label class="rango" for="opacidad-temp">Layer opacity<input id="opacidad-temp" type="range" min="15" max="95" value="60"></label>
+  <div class="intro ayuda-inicio">
+    <h2>Live weather vs. long-term climate trends</h2>
+    <p>This globe shows a <strong>48-hour weather forecast</strong>. To test whether rainfall, temperature, forests, lakes, oceans, or ice have changed over decades with NASA &amp; NOAA records, open <strong>Investigate</strong> in the left menu.</p>
+  </div>
+  <label class="rango" for="opacidad-temp">Layer opacity<input id="opacidad-temp" type="range" min="15" max="95" value="60" aria-valuetext="60%"></label>
   <article>
     <h2 id="meteograma-titulo">Point forecast</h2>
     <form id="consulta-punto" class="controles"><label>Latitude<input id="lat" type="number" step="any" min="-90" max="90" required></label><label>Longitude<input id="lon" type="number" step="any" min="-180" max="180" required></label><button id="consultar" type="submit">Get forecast</button></form>
-    <div id="meteo" role="status"><p class="pista">Click anywhere on the globe or the map.</p></div>
-    <div class="graf alta" hidden><canvas id="graf-meteograma" aria-label="Hourly forecast at the selected point"></canvas></div>
+    <div id="meteo" role="status"><p class="pista">Click anywhere on the globe or the map, or enter coordinates above, for a 48-hour forecast.</p></div>
+    <div class="graf alta" hidden><canvas id="graf-meteograma" role="img" aria-label="Hourly forecast at the selected point"></canvas></div>
     <div class="controles"><button id="exp-punto" type="button" disabled>Download forecast (CSV)</button></div>
   </article>
 </section>
 
 <section id="investigar" class="vista" hidden>
-  <div class="intro"><h2>Be an Earth system trend detective</h2><p>Choose what to investigate and where. Each answer tells what changed, where, by how much and how sure we can be.</p></div>
-  <h3 class="paso">What do you want to investigate?</h3>
+  <div class="intro"><h2>Be an Earth system trend detective</h2><p>Choose what to investigate and where. Each answer tells what changed, where, by how much and how sure we can be. Sea warming (e.g., Mediterranean Sea) is under <strong>Coast &amp; ocean</strong>; forest loss &amp; fires are under <strong>Vegetation &amp; ecosystems</strong>.</p></div>
+  <h3 class="paso">1. What do you want to investigate?</h3>
   <div class="botones-region" role="radiogroup" aria-label="Topic" id="inv-categorias"></div>
   <p class="pregunta" id="inv-pregunta"></p><p class="pista" id="inv-descripcion" hidden></p>
-  <h3 class="paso">Where?</h3>
+  <h3 class="paso">2. Where? <span class="paso-nota">(scroll list if many places)</span></h3>
   <div class="botones-region" role="radiogroup" aria-label="Place" id="inv-lugares"></div>
   <div class="botones-region botones-variable" role="radiogroup" aria-label="Variable" id="inv-variables" hidden></div>
   <article id="inv-demo-panel" class="demo-panel" aria-live="polite" hidden></article>
   <article aria-live="polite"><div id="inv-veredicto" class="veredicto"></div></article>
-  <article><h2 id="inv-serie-titulo">Series</h2><div class="graf"><canvas id="inv-serie"></canvas></div>
+  <article><h2 id="inv-serie-titulo">Series</h2><div class="graf"><canvas id="inv-serie" role="img" aria-label="Investigate time series"></canvas></div>
     <div class="controles"><button type="button" id="inv-csv">Series (CSV)</button><button type="button" id="inv-mapa">Show on the map</button></div></article>
   <article id="inv-contrastes" hidden><h2>Cross-checks</h2><p class="sub-art">The same question answered with another source or another method.</p><div id="inv-contrastes-lista"></div></article>
   <article><h2>Guided examples</h2><div id="inv-demos" class="demos"></div></article>
 </section>
 
 <section id="tendencias" class="vista" hidden>
-  <div class="intro"><h2>Has annual rainfall changed in Nicaragua?</h2><p id="tend-sub">NASA GPM IMERG Final V07B · 2001–2024</p></div>
+  <div class="intro"><h2>Has annual rainfall changed in Nicaragua?</h2><p id="tend-sub">NASA GPM IMERG Final V07B · 2001–2024</p><p class="pista">Nicaragua &amp; neighbors comparison. This view puts the least-squares slope first alongside Theil–Sen, whereas <strong>Investigate</strong> headlines the outlier-resistant Theil–Sen slope. “Insufficient evidence” here means the same as “Not enough evidence of a trend”.</p></div>
   <div class="botones-region" role="radiogroup" aria-label="Area" id="botones-region"></div>
-  <article id="tarjeta-resultado" aria-live="polite"><div id="veredicto"></div></article>
+  <article id="tarjeta-resultado" aria-live="polite"><div id="veredicto"></div><p class="pista nota-veredicto">“Insufficient evidence” does not mean “no change” — year-to-year variability can mask a real trend. Open <strong>Learn</strong> in the menu for how confidence intervals and methods work.</p></article>
   <article>
     <h2>Annual rainfall</h2>
     <ul class="leyenda" id="leyenda-serie"></ul>
@@ -98,14 +106,14 @@
 </section>
 
 <section id="indicadores" class="vista" hidden>
-  <div class="intro"><h2>Is Nicaragua's climate changing?</h2><p>Trends by region from NASA records that do not depend on a single model.</p></div>
+  <div class="intro"><h2>Is Nicaragua's climate changing?</h2><p>Trends by region from NASA records that do not depend on a single model.</p><p class="pista">Focused Nicaragua regional view with El Niño removed and seasonal outlook. Use <strong>Investigate</strong> for all global topics, ecosystems, seas, and cross-checks.</p></div>
   <div class="botones-region" role="radiogroup" aria-label="Region" id="ind-regiones"></div>
   <div class="botones-region botones-variable" role="radiogroup" aria-label="Indicator" id="ind-variables"></div>
-  <article aria-live="polite"><div id="ind-veredicto" class="veredicto"></div></article>
-  <article><h2 id="ind-serie-titulo">Series</h2><div class="graf"><canvas id="ind-serie" aria-label="Annual series with Theil–Sen trend"></canvas></div>
+  <article aria-live="polite"><div id="ind-veredicto" class="veredicto"></div><p class="pista nota-veredicto">“Not enough evidence of a trend” does not mean “no change” — natural year-to-year swings (such as El Niño) can hide a real long-term shift. See <strong>Learn</strong> for plain-language explanations.</p></article>
+  <article><h2 id="ind-serie-titulo">Series</h2><div class="graf"><canvas id="ind-serie" role="img" aria-label="Annual series with Theil–Sen trend"></canvas></div>
     <div class="controles"><button type="button" id="ind-csv">Series (CSV)</button><button type="button" id="ind-ver-mapa">Regions on the map</button></div></article>
   <article id="ind-contraste" hidden><h2>Second opinion: satellite and stations vs. reanalysis</h2><p class="sub-art" id="ind-contraste-sub"></p>
-    <div class="graf"><canvas id="ind-contraste-graf" aria-label="Comparison of two NASA products"></canvas></div><div id="ind-contraste-tarjetas" class="tarjetas"></div></article>
+    <div class="graf"><canvas id="ind-contraste-graf" role="img" aria-label="Comparison of two NASA products"></canvas></div><div id="ind-contraste-tarjetas" class="tarjetas"></div></article>
   <article><h2>Can the rainy season be anticipated?</h2><p class="sub-art" id="ind-estacional-sub"></p><div id="ind-estacional" class="tarjetas"></div></article>
 </section>
 
@@ -149,8 +157,8 @@
 
 <section id="fenomenos" class="vista" hidden>
   <div id="enos-tarjetas" class="tarjetas"></div>
-  <article><h2>Oceanic Niño Index, 1950–present</h2><div class="graf"><canvas id="graf-oni"></canvas></div></article>
-  <article><h2>Weekly anomalies by Niño region</h2><div class="graf"><canvas id="graf-nino34"></canvas></div>
+  <article><h2>Oceanic Niño Index, 1950–present</h2><div class="graf"><canvas id="graf-oni" role="img" aria-label="Oceanic Niño Index, 1950 to present"></canvas></div></article>
+  <article><h2>Weekly anomalies by Niño region</h2><div class="graf"><canvas id="graf-nino34" role="img" aria-label="Weekly anomalies by Niño region"></canvas></div>
     <div class="controles"><button type="button" data-activar="chk-sst" data-vista="2,-120,3">Sea temperature anomaly on the map</button><a class="boton" href="/clima-base/enos.csv" download>ONI (CSV)</a></div></article>
   <article><h2>Active tropical cyclones</h2><ul id="lista-tormentas" class="lista"></ul>
     <div class="controles"><button type="button" data-activar="chk-tormentas" data-vista="18,-75,3">Cyclones on the map</button><a class="boton" href="/clima-base/tormentas.csv" download>Active cyclones (CSV)</a></div></article>
@@ -166,11 +174,11 @@
 <section id="escenarios" class="vista" hidden>
   <article><h2>Nicaragua by 2050</h2><p class="sub-art" id="esc-sub">NASA NEX-GDDP-CMIP6</p>
     <div class="controles"><label>Region<select id="esc-region"></select></label></div>
-    <div class="tabla"><table id="esc-tabla"></table></div></article>
+    <div class="tabla" aria-live="polite"><table id="esc-tabla"></table></div></article>
   <div class="controles"><label>Scenario<select id="ssp"><option value="ssp126">SSP1-2.6</option><option value="ssp245" selected>SSP2-4.5</option><option value="ssp370">SSP3-7.0</option><option value="ssp585">SSP5-8.5</option></select></label><label>Season<select id="ventana-cmip"></select></label></div>
-  <article><h2>Projected change by period</h2><p class="sub-art">CMIP6 · Central America (SCA) · vs. 1981–1995</p><div id="cambios" class="tarjetas"></div></article>
-  <article><h2>Warming 2026–2100</h2><div class="graf"><canvas id="graf-dT"></canvas></div></article>
-  <article><h2>Precipitation change 2026–2100</h2><div class="graf"><canvas id="graf-dP"></canvas></div></article>
+  <article><h2>Projected change by period</h2><p class="sub-art">CMIP6 · Central America (SCA) · vs. 1981–1995</p><div id="cambios" class="tarjetas" aria-live="polite"></div></article>
+  <article><h2>Warming 2026–2100</h2><div class="graf"><canvas id="graf-dT" role="img" aria-label="Projected warming 2026 to 2100 across SSP scenarios"></canvas></div></article>
+  <article><h2>Precipitation change 2026–2100</h2><div class="graf"><canvas id="graf-dP" role="img" aria-label="Projected precipitation change 2026 to 2100 across SSP scenarios"></canvas></div></article>
   <div class="controles"><a class="boton" href="/clima-base/proyecciones.csv" download>Projections (CSV)</a></div>
 </section>
 
@@ -191,19 +199,19 @@
   <article id="aprender-tendencia"><h2>What is a trend?</h2><p>A trend is a change that keeps going in one direction over many years: rising or falling, wetter or drier, warmer or cooler. Single years jump up and down for many reasons, so a detective looks at the whole record and asks whether the long-term slope stands out from that year-to-year noise.</p><p>We report the slope as change per decade, in the same units as the data, so &ldquo;+0.30 &deg;C per decade&rdquo; means about three tenths of a degree warmer every ten years.</p></article>
   <article id="aprender-ic"><h2>Confidence interval</h2><p>The slope is an estimate. The 95% confidence interval is the range of slopes that are consistent with the data: if we could repeat the measurement many times, about 95 out of 100 intervals built this way would contain the true value. A narrow interval means a precise estimate; a wide one means a lot of uncertainty.</p><p>If the interval includes zero, the data cannot rule out &ldquo;no change&rdquo;.</p></article>
   <article id="aprender-pvalor"><h2>p-value</h2><p>The p-value answers one question: if there were no trend at all, how often would random year-to-year variation produce a pattern at least this strong? A small p-value (below 0.05 here) means that would rarely happen by chance.</p><p>It is <strong>not</strong> the probability that the trend is real, and a small p-value does not prove the cause of a change. It also says nothing about whether the change is large enough to matter: always read it next to the size of the slope.</p></article>
-  <article id="aprender-no-significativo"><h2>&ldquo;Not significant&rdquo; is not &ldquo;no change&rdquo;</h2><p>When the verdict is &ldquo;Not enough evidence of a trend&rdquo;, the record and the methods could not tell a trend apart from natural variability. The change may still be there. Missing a real change is called a Type II error, and it is common when the record is short or the year-to-year swings are large.</p><p>A longer record can make the same change detectable. That is why a trend that falls short of significance is still worth reporting.</p></article>
+  <article id="aprender-no-significativo"><h2>&ldquo;Not significant&rdquo; is not &ldquo;no change&rdquo;</h2><p>When the verdict is &ldquo;Not enough evidence of a trend&rdquo; (or &ldquo;Insufficient evidence&rdquo;), a change may still be happening &mdash; the available record simply cannot yet separate it from natural year-to-year swings. A short record or large year-to-year swings often hide real long-term shifts (statisticians call missing a real change a Type II error).</p><p>A longer record can make the same change detectable. That is why a trend that falls short of significance is still worth reporting.</p></article>
   <article id="aprender-autocorrelacion"><h2>Why months are not independent</h2><p>A wet month is often followed by another wet month, and every year repeats the same seasonal cycle. Tests that treat each month as an independent sample count the same information many times and become overconfident.</p><p>Example from this app: chlorophyll in the Gulf of Fonseca. A straight line through 264 raw monthly values gives p = 0.0007. After removing the seasonal cycle, averaging each year and correcting for autocorrelation, the Mann&ndash;Kendall test gives p = 0.08: the evidence is much weaker than it first looked.</p></article>
-  <article id="aprender-metodos"><h2>Three methods, one verdict</h2><p>Every series is tested three ways: a least-squares line with an interval corrected for autocorrelation, the same line with Newey&ndash;West (HAC) errors, and the Theil&ndash;Sen slope, which is robust to unusual years. The Mann&ndash;Kendall test, corrected for autocorrelation, checks whether values tend to rise or fall without assuming a straight line.</p><ul class="lista"><li><strong>Trend detected</strong>: all three intervals exclude zero with the same sign and both tests agree.</li><li><strong>Not enough evidence of a trend</strong>: all three intervals include zero.</li><li><strong>Methods disagree</strong>: anything in between. The result depends on the method, so it is not presented as a confirmed trend.</li></ul></article>
+  <article id="aprender-metodos"><h2>Three methods, one verdict</h2><p>Every series is tested three ways at the 95% confidence level (two-sided &alpha; = 0.05): a least-squares line with an interval corrected for autocorrelation, the same line with Newey&ndash;West (HAC) errors, and the non-parametric Theil&ndash;Sen slope, which is robust to unusual years. The Mann&ndash;Kendall test, corrected for autocorrelation, checks whether values tend to rise or fall without assuming a straight line.</p><ul class="lista"><li><strong>Trend detected</strong>: all three intervals exclude zero with the same sign and both tests agree.</li><li><strong>Not enough evidence of a trend</strong>: all three intervals include zero (which still does not rule out a real change hidden by variability).</li><li><strong>Methods disagree</strong>: at least one test or confidence interval rules out zero, while another still includes zero or gives p &ge; 0.05 (for example, when extreme years pull one estimator past the threshold but not another). Even when two slopes look similar and point in the same direction, the verdict depends on the method chosen, so it is not presented as a confirmed trend.</li></ul><p><strong>Detection is not attribution.</strong> A &ldquo;Trend detected&rdquo; verdict establishes only a consistent directional change in the observed series; it does not identify why the series changed (climate forcing, multi-decadal variability, water management, land-use change or observing-system shifts). Where published process or attribution studies exist, they are cited separately in the notes.</p></article>
   <article id="aprender-comparaciones"><h2>Many questions, more false alarms</h2><p>Each test has about a 5% chance of a false alarm. Test many variables and places and some will look significant just by luck. Maps of many grid cells use the false discovery rate correction to keep that in check, and a single significant result is always read next to its cross-checks.</p></article>
-  <article id="aprender-registro-corto"><h2>Short records</h2><p>Some satellites are new. SWOT has measured lake levels only since 2023, so its record shows the seasons clearly but is far too short for a trend test. We use it to confirm an older, longer record instead.</p><p>Monthly SMAP soil moisture shows how wet Nicaragua’s soils get through the year. Comparing it with GLDAS shows whether both datasets follow the same seasonal cycle. SMAP estimates the top 5 cm, while GLDAS averages the top 10 cm. Local measurements would be needed to validate either estimate.</p></article>
+  <article id="aprender-registro-corto"><h2>Short records</h2><p>Some satellites are new. SWOT has measured lake levels only since 2023, so its record shows the seasons clearly but is far too short for a trend test. We use it to confirm an older, longer record instead.</p><p>The 2015–2019 monthly SMAP record (57 observations) shows how wet Nicaragua’s soils get through the seasons, but 5 years is far too short for a multi-decade trend test. Investigate also includes longer GLDAS records (since 2001): SMAP estimates moisture in the top 5 cm of soil, whereas GLDAS averages the top 10 cm. Local soil measurements would be needed to validate either estimate.</p><p>Synthetic-aperture radar (SAR) snapshots from Sentinel-1 and the RADARSAT Constellation Mission (RCM) illustrate how open-water area is mapped through clouds on Lake Cocibolca. Because each pass covers only part of the lake and lacks local ground validation, these few scenes cannot support a trend test.</p></article>
   <article id="aprender-otras-pruebas"><h2>Other trend tests</h2><p><strong>Seasonal Mann&ndash;Kendall.</strong> In monthly data the seasonal cycle swamps a slow trend, so the ordinary Mann&ndash;Kendall test loses sensitivity. The seasonal version compares each month only with the same month in other years. This app reaches the same goal by testing annual totals and season totals instead of raw months.</p><p><strong>Unit-root tests (augmented Dickey&ndash;Fuller).</strong> They ask a different question: whether a series wanders like a random walk, not whether it rises or falls. A series with a clear trend can pass or fail them, so they are not used here to decide whether a trend exists.</p><p>Based on <a href="https://medium.com/@snp.kriss/statistical-test-methods-to-detect-trends-in-time-series-data-b361a0ec530b" target="_blank" rel="noopener">Statistical test methods to detect trends in time series data</a> (MCMC Addict, 2024).</p></article>
-  <article id="aprender-variabilidad"><h2>Record years, El Ni&ntilde;o and how it rains</h2><p>One extreme year is not a trend. In 2020 hurricanes Eta and Iota hit Nicaragua two weeks apart; in 2026, a strong El Ni&ntilde;o year, the Pacific lowlands had their driest January&ndash;September since 1981. Swings like these, driven largely by El Ni&ntilde;o and La Ni&ntilde;a, are much larger than a slow change in the yearly total, so they can hide it. Removing the part that follows the El Ni&ntilde;o index is one way to look underneath.</p><p>The total is also only one way to describe rain. The same yearly amount can fall on fewer, heavier days or on more, lighter ones, and dry spells can grow inside the rainy season. That is why this app also tests how many days bring heavy rain, how hard it rains on a wet day, the wettest five days and the longest dry spell.</p><p>Finally, the data source itself can change. A reanalysis such as MERRA-2 suggests Nicaragua&rsquo;s rainfall doubled since the 1980s, while satellites and rain gauges show nothing of the kind: the observations fed into the model changed, not the climate. Rain trends here come only from records built to stay consistent over time.</p></article>
+  <article id="aprender-variabilidad"><h2>Record years, El Ni&ntilde;o and how it rains</h2><p>One extreme year is not a trend. In 2020 hurricanes Eta and Iota hit Nicaragua two weeks apart; in 2026, a strong El Ni&ntilde;o year, the Pacific lowlands had their driest January&ndash;September since 1981. Swings like these, driven largely by El Ni&ntilde;o and La Ni&ntilde;a, are much larger than a slow change in the yearly total, so they can hide it. Removing the part that follows the El Ni&ntilde;o index is one way to look underneath.</p><p>The total is also only one way to describe rain. The same yearly amount can fall on fewer, heavier days or on more, lighter ones, and dry spells can grow inside the rainy season. That is why this app also tests how many days bring heavy rain, how hard it rains on a wet day, the wettest five days and the longest dry spell.</p><p>Finally, the data source itself can change. A reanalysis such as MERRA-2 suggests Nicaragua&rsquo;s rainfall doubled since the 1980s, while satellites and rain gauges show nothing of the kind: the observations fed into the model changed, not the climate. Main rainfall verdicts here therefore rely on observation-based products (such as IMERG, CHIRPS and CRU) rather than unconstrained reanalyses like MERRA-2; even so, blended gauge&ndash;satellite grids can shift as station counts change over time, so full-record rainfall trends should be checked against recent decades and independent sources.</p></article>
   <article id="aprender-contraste"><h2>Cross-checks</h2><p>Every dataset has its own errors. A satellite can confuse sediment with algae; a weather station can move; a reanalysis can jump when new observations are added. When a second source or a second method reaches the same verdict, the conclusion is more trustworthy. When they disagree, the disagreement itself is a clue worth investigating.</p></article>
 </section>
 
 <section id="fuentes" class="vista" hidden>
-  <article><h2>NASA Space Apps challenge resources used</h2><ul class="lista fuentes-lista" id="fuentes-recursos"></ul></article>
-  <article><h2>Datasets in this app</h2><ul class="lista" id="fuentes-datos"></ul></article>
+  <article><h2>NASA Space Apps challenge resources used</h2><p class="pista">Portals, satellite missions, and statistical guides used in this app. Note: the live 48-hour weather globe uses <strong>ECMWF IFS</strong> separately from the long-term climate trend records below.</p><ul class="lista fuentes-lista" id="fuentes-recursos"></ul></article>
+  <article><h2>Datasets in this app</h2><p class="pista">Each Investigate card cites its primary dataset; the catalog below shows which topic uses each record (including cross-checks).</p><ul class="lista" id="fuentes-datos"></ul></article>
   <article><h2>Licences</h2><p>Canadian Prairies boundary: Agriculture and Agri-Food Canada, National Ecological Framework for Canada. Contains information licensed under the Open Government Licence &ndash; Canada.</p></article>
 </section>
 </main>
@@ -243,26 +251,26 @@
 
 <div class="tooltip" id="tooltip" role="presentation" hidden></div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script src="src/fuentes-meteo.js"></script>
-<script src="src/meteo-paletas.js"></script>
-<script src="src/globo-meteo.js"></script>
-<script src="app/config.js"></script>
-<script src="app/shell.js"></script>
-<script src="app/soporte-meteo.js"></script>
-<script src="app/campo.js"></script>
-<script src="app/graficas-meteo.js"></script>
-<script src="app/fenomenos.js"></script>
-<script src="src/estadistica.js"></script>
-<script src="src/contrato.js"></script>
-<script src="src/graficas.js"></script>
-<script src="src/tendencias.js"></script>
-<script src="app/indicadores.js"></script>
-<script src="app/investigar.js"></script>
-<script src="src/hidrologia-datos.js"></script>
-<script src="app/hidrologia.js"></script>
-<script src="app/globo.js"></script>
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script defer src="src/fuentes-meteo.js"></script>
+<script defer src="src/meteo-paletas.js"></script>
+<script defer src="src/globo-meteo.js"></script>
+<script defer src="app/config.js"></script>
+<script defer src="app/shell.js"></script>
+<script defer src="app/soporte-meteo.js"></script>
+<script defer src="app/campo.js"></script>
+<script defer src="app/graficas-meteo.js"></script>
+<script defer src="app/fenomenos.js"></script>
+<script defer src="src/estadistica.js"></script>
+<script defer src="src/contrato.js"></script>
+<script defer src="src/graficas.js"></script>
+<script defer src="src/tendencias.js"></script>
+<script defer src="app/indicadores.js"></script>
+<script defer src="app/investigar.js"></script>
+<script defer src="src/hidrologia-datos.js"></script>
+<script defer src="app/hidrologia.js"></script>
+<script defer src="app/globo.js"></script>
 <script type="module" src="app/espacio.js"></script>
 </body>
 </html>
