@@ -55,7 +55,7 @@ function iniciarMapa(){
   mapa.createPane('etiquetas').style.zIndex=350;
   const esriEtq=L.tileLayer(ESRI+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{pane:'etiquetas',minZoom:6,maxNativeZoom:19,maxZoom:18,attribution:'Labels © Esri'}).addTo(mapa);
   vigilarBase(esriEtq,'Place labels',true);
-  mapa.on('click',e=>{if($('consultar').disabled)return;elegirPunto(e.latlng.lat,L.Util.wrapNum(e.latlng.lng,[-180,180]))});
+  mapa.on('click',e=>{if(window.ETDCapturaMapa?.(e))return;if($('consultar').disabled)return;elegirPunto(e.latlng.lat,L.Util.wrapNum(e.latlng.lng,[-180,180]))});
 }
 function elegirPunto(lat,lon){$('lat').value=lat.toFixed(3);$('lon').value=lon.toFixed(3);if(!$('meteorologia').hidden||true)$('consulta-punto').requestSubmit()}
 
@@ -203,7 +203,8 @@ const salidaHash=()=>{if(location.hash==='#map'){if(modo==='mapa'&&window.Espaci
 document.addEventListener('espacio:listo',()=>{document.body.classList.remove('cargando');salidaHash()});
 if(window.Espacio)document.body.classList.remove('cargando');
 setTimeout(()=>{if(location.hash==='#map'&&modo!=='mapa'&&!window.Espacio)salidaHash()},1200);
-addEventListener('hashchange',()=>{cambiarVista(location.hash==='#map'?'mapa':'globo')});
+// #inv=… es una investigación compartida (app/expediente.js): no cambia la vista por sí sola.
+addEventListener('hashchange',()=>{if(location.hash.startsWith('#inv='))return;cambiarVista(location.hash==='#map'?'mapa':'globo')});
 
 // ---------------------------------------------------------------- base vectorial: fronteras y nombres (Natural Earth)
 function baseVectorial(){
