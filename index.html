@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="app/buscador.css">
 <link rel="stylesheet" href="app/ayuda.css">
 <link rel="stylesheet" href="app/inicio.css">
+<script src="app/temas.js"></script>
+<link rel="stylesheet" href="app/temas.css">
 </head>
 <body class="modo-globo cargando">
 <a href="#contenido-principal" class="saltar-contenido">Skip to main content</a>
@@ -39,6 +41,7 @@
     <button data-tab="exportar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span class="txt">Data downloads</span></button>
     <button data-tab="aprender"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4zM7 9v5c0 1.7 2.2 3 5 3s5-1.3 5-3V9"/></svg><span class="txt">Learn</span></button>
     <button data-tab="fuentes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5zM9 10h7M9 14h7"/></svg><span class="txt">Sources</span></button>
+    <button type="button" data-tab="configuracion"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6l1 3 3 1 2 5-2 5-3 1-1 3H9l-1-3-3-1-2-5 2-5 3-1z"/><circle cx="12" cy="12" r="3"/></svg><span class="txt">Configuración</span></button>
   </nav>
   <div class="pie">Space Apps 2026<br>Earth System Trend Detective challenge</div>
 </aside>
@@ -217,6 +220,13 @@
   <article><h2>NASA Space Apps challenge resources used</h2><p class="pista">Portals, satellite missions, and statistical guides used in this app. Note: the live 48-hour weather globe uses <strong>ECMWF IFS</strong> separately from the long-term climate trend records below.</p><ul class="lista fuentes-lista" id="fuentes-recursos"></ul></article>
   <article><h2>Datasets in this app</h2><p class="pista">Each Investigate card cites its primary dataset; the catalog below shows which topic uses each record (including cross-checks).</p><ul class="lista" id="fuentes-datos"></ul></article>
   <article><h2>Licences</h2><p>Canadian Prairies boundary: Agriculture and Agri-Food Canada, National Ecological Framework for Canada. Contains information licensed under the Open Government Licence &ndash; Canada.</p></article>
+</section>
+<section id="configuracion" class="vista" hidden lang="es">
+  <article><h2>Apariencia</h2>
+    <p>Conserva el cristal original y personaliza el color de las letras y la tipografía.</p>
+    <div class="controles"><label for="style-select">Paleta de letras y tipografía<select id="style-select" aria-describedby="palette-status"></select></label></div>
+    <p id="palette-status" class="nota" role="status">La elección se recuerda en este navegador.</p>
+  </article>
 </section>
 </main>
 

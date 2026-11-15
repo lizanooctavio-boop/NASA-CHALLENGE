@@ -98,7 +98,9 @@ class RecorridoEnNavegador(unittest.TestCase):
         try:
             url = f"http://127.0.0.1:{puerto}/__e2e.html"
             proc = subprocess.Popen(
-                [NAVEGADOR, "--headless=new", "--disable-gpu", "--no-first-run",
+                # Este recorrido valida datos, gráficas y CSV. Sin GPU, evita que el globo
+                # consuma la CPU con WebGL por software; la demo conserva su mapa 2D de respaldo.
+                [NAVEGADOR, "--headless=new", "--disable-gpu", "--disable-software-rasterizer", "--no-first-run",
                  "--no-default-browser-check",
                  f"--user-data-dir={Path(cls.tmp) / 'perfil'}",
                  url],

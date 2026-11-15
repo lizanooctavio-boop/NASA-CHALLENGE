@@ -57,6 +57,10 @@ Every series with at least 10 annual observations is tested simultaneously by **
 
 ## 3. How to Run Locally & Verify
 
+### Visual style
+
+**Estilo visual**, next to **Guided tour**, opens **Configuración → Apariencia**. Eight pastel text palettes plus **Royal Dusk** and **Nordic Frost** change interface lettering and typography; the original glass panels, button shapes, layout, scientific symbols, weather colour scales and chart series retain their styling. The choice is stored locally in the browser; when storage is blocked, selection still works for the session. Fonts load from Google Fonts with local fallbacks. The layer is isolated in `app/temas.css` and `app/temas.js`.
+
 ### Prerequisites
 - **Node.js** ($\ge 18$)
 - **Python** ($\ge 3.11$) with `numpy`, `scipy`, `shapely`, `pyproj`, `h5py`, `rasterio`, `fastapi`, `uvicorn`, `httpx`, and `pytest` (`pip install -r backend/requirements.txt`).
