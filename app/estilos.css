@@ -377,3 +377,7 @@ body.en-transicion .interruptor button{cursor:progress}
   nav button,.interruptor button,#solomapa,#indicador-datos,.botones-region button,.botones-variable button,.controles button,.controles a.boton{min-height:44px}
   #plegar-menu{min-width:44px;min-height:44px}
 }
+/* C-02: reducir CLS en tablet estabilizando cabecera e indicador */
+header{min-height:62px}
+#indicador-datos{min-width:132px;justify-content:center}
+.capas-mapa,#linea-tiempo,#leyenda-campo{contain:layout style}
