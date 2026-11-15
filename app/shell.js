@@ -22,17 +22,36 @@ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>tab(b.dataset.t
 // ---------------------------------------------------------------- mapa 2D
 const CENTRO_AMERICA=[12,-80];
 const zoomAjuste=()=>Math.max(2,Math.ceil(Math.log2(Math.max(innerWidth,innerHeight)/256)));
+let esriEtiquetasOk=true,refrescarEtiquetas=null,baseFallo=false,avisoBase=false;
+function vigilarBase(capa,nombre,esEtiqueta){
+  let cargadas=0,errores=0;
+  capa.on('tileload',()=>{
+    cargadas++;
+    if(esEtiqueta&&!esriEtiquetasOk){esriEtiquetasOk=true;refrescarEtiquetas?.()}
+    if(!esEtiqueta){baseFallo=false}
+  });
+  capa.on('tileerror',()=>{
+    errores++;
+    if(cargadas===0&&errores>=2){
+      if(esEtiqueta&&esriEtiquetasOk){esriEtiquetasOk=false;refrescarEtiquetas?.()}
+      if(!esEtiqueta){baseFallo=true;if(modo==='mapa'&&!avisoBase){avisoBase=true;error(`${nombre} base imagery could not be loaded. Vector borders and labels remain active.`)}}
+    }
+  });
+}
 function iniciarMapa(){
   if(mapa||!window.L)return;
   mapa=L.map('mapa',{zoomControl:false,worldCopyJump:true,minZoom:2,maxZoom:18,zoomSnap:1}).setView(CENTRO_AMERICA,zoomAjuste());
   L.control.zoom({position:'bottomright'}).addTo(mapa);
   // Mismo mosaico Blue Marble que la textura del globo: el paso de 3D a 2D no cambia la imagen.
-  L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg',{maxNativeZoom:8,maxZoom:18,className:'base-nasa',attribution:'NASA Blue Marble · GIBS'}).addTo(mapa);
+  const nasaBase=L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg',{maxNativeZoom:8,maxZoom:18,className:'base-nasa',attribution:'NASA Blue Marble · GIBS'}).addTo(mapa);
+  vigilarBase(nasaBase,'NASA Blue Marble',false);
   // Al acercarse, foto satelital de alta resolución (mosaico fijo, no en vivo) y nombres de lugares encima.
   const ESRI='https://server.arcgisonline.com/ArcGIS/rest/services/';
-  L.tileLayer(ESRI+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{minZoom:6,maxNativeZoom:19,maxZoom:18,zIndex:1,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}).addTo(mapa);
+  const esriImg=L.tileLayer(ESRI+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{minZoom:6,maxNativeZoom:19,maxZoom:18,zIndex:1,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}).addTo(mapa);
+  vigilarBase(esriImg,'High-resolution satellite',false);
   mapa.createPane('etiquetas').style.zIndex=350;
-  L.tileLayer(ESRI+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{pane:'etiquetas',minZoom:6,maxNativeZoom:19,maxZoom:18,attribution:'Labels © Esri'}).addTo(mapa);
+  const esriEtq=L.tileLayer(ESRI+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{pane:'etiquetas',minZoom:6,maxNativeZoom:19,maxZoom:18,attribution:'Labels © Esri'}).addTo(mapa);
+  vigilarBase(esriEtq,'Place labels',true);
   mapa.on('click',e=>{if($('consultar').disabled)return;elegirPunto(e.latlng.lat,L.Util.wrapNum(e.latlng.lng,[-180,180]))});
   baseVectorial();
 }
@@ -167,12 +186,13 @@ function baseVectorial(){
     CIUDADES.forEach(([n,la,lo,z])=>etq.push([L.marker([la,lo],{pane:'referencia',interactive:false,keyboard:false,icon:L.divIcon({className:'etq-ciudad',html:'<i></i>'+n,iconSize:null})}),z]));
     const capa=L.layerGroup().addTo(mapa);
     const ver=()=>{
-      // Desde el zoom 6 rotulan las etiquetas de Esri, más detalladas.
-      const z=mapa.getZoom(),visibles=z>=6?[]:etq.filter(([,zmin])=>z>=zmin);
+      // Desde el zoom 6 rotulan las etiquetas de Esri, más detalladas, salvo si sus teselas fallan.
+      const z=mapa.getZoom(),visibles=(z>=6&&esriEtiquetasOk)?[]:etq.filter(([,zmin])=>z>=zmin);
       capa.clearLayers();visibles.forEach(([m])=>capa.addLayer(m));
       const ocupados=[];
       visibles.map(([m])=>m.getElement()).forEach(el=>{const r=el.getBoundingClientRect();const cruza=ocupados.some(o=>r.left<o.right+4&&r.right+4>o.left&&r.top<o.bottom+2&&r.bottom+2>o.top);el.style.visibility=cruza?'hidden':'';if(!cruza)ocupados.push(r)});
     };
+    refrescarEtiquetas=ver;
     mapa.on('zoomend',ver);ver();
   }).catch(()=>{});
 }
