@@ -842,6 +842,8 @@ def _hallazgos(carpeta, permitir_sintetico):
                                    notas=["Compare with the record since 1981: an older record can suggest a rise "
                                           "that partly comes from better detection.", ESTUDIOS["subregistro_ciclones"]]))
     n_inv, n_ent = _mundo(carpeta, fuentes, chirps, notas_lluvia)
+    from .recursos_asia_oceania import asia_oceania
+    a_inv, a_ent = asia_oceania(carpeta); invs += a_inv; entradas += a_ent
     return invs + n_inv, entradas + n_ent
 
 
