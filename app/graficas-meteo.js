@@ -32,7 +32,7 @@ function escenarios(){
 }
 
 // ---------------------------------------------------------------- ENOS
-document.addEventListener('sicc:enos',e=>{const d=e.detail;
+document.addEventListener('sicc:enos',e=>{const d=e.detail;if(!d?.oni_local)return;
   const f=d.oni_local.filter(x=>x.oni!==null);
   crear('graf-oni',{type:'bar',data:{labels:f.map(x=>`${x.anio}-${String(x.mes).padStart(2,'0')}`),datasets:[{label:'ONI (°C)',data:f.map(x=>x.oni),backgroundColor:f.map(x=>x.oni>=.5?'rgba(255,123,107,.85)':x.oni<=-.5?'rgba(79,143,232,.85)':'rgba(157,176,198,.45)'),borderWidth:0,barPercentage:1,categoryPercentage:1}]},
     options:{plugins:{legend:{display:false},subtitle:{display:true,text:'Red: El Niño (≥ +0.5) · Blue: La Niña (≤ −0.5)'}},scales:{x:{ticks:{maxTicksLimit:16,autoSkip:true}},y:eje('°C')}}});
@@ -54,7 +54,22 @@ document.addEventListener('sicc:pronostico',e=>{
     options:{interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:9}},y:eje('°C'),y1:eje('mm/h',{position:'right',grid:{drawOnChartArea:false},min:0}),y2:{display:false,min:0}}}});
 });
 
-window.FuentesMeteo.fetch('/api/series').then(r=>r.json().then(d=>{if(!r.ok)throw Error(d.error);S=d;const selector=$('ventana-cmip');[...new Set(S.proyecciones.map(f=>f.ventana))].forEach(v=>selector.add(new Option(v,v)));escenarios()})).catch(()=>{});
+function sinSeries(){
+  const selector=$('ventana-cmip');
+  if(selector&&!selector.options.length){selector.add(new Option('Unavailable',''));selector.disabled=true}
+  const cont=$('cambios');
+  if(cont){const p=document.createElement('p');p.className='pista';p.textContent='Detailed CMIP6 time-series projections are unavailable right now.';cont.replaceChildren(p)}
+}
+window.FuentesMeteo.fetch('/api/series')
+  .then(r=>typeof leerJSON==='function'?leerJSON(r).then(d=>({r,d})):r.json().then(d=>({r,d})))
+  .then(({r,d})=>{
+    if(!r.ok)throw Error(d?.error||'Unavailable');
+    if(!d?.proyecciones?.length)throw Error('No CMIP6 series');
+    S=d;const selector=$('ventana-cmip');
+    if(selector){selector.replaceChildren();selector.disabled=false;[...new Set(S.proyecciones.map(f=>f.ventana))].forEach(v=>selector.add(new Option(v,v)))}
+    escenarios();
+  })
+  .catch(sinSeries);
 ['ssp','ventana-cmip'].forEach(id=>$(id)?.addEventListener('change',()=>S&&escenarios()));
 // Chart.js no dibuja bien en lienzos ocultos: se redimensiona al cambiar de pestaña.
 document.addEventListener('sicc:pestana',()=>setTimeout(()=>Object.values(graficas).forEach(g=>g.resize()),30));
