@@ -447,16 +447,18 @@ def _contraste(carpeta, permitir_sintetico, nombre_json="resumen_contrastes.json
             unidad = (c["serie_nuestra"]["unidad"].split("/")[0].replace("mg m-3", "mg/m³")
                       .replace("1e15 molec cm-2", "10¹⁵ molecules/cm²"))
             recursos = [recurso] if recurso else []
+            notas_c = ()
             if cid.startswith("clorofila_"):
                 recursos.append(5)
                 titulo, definicion = ("Chlorophyll-a in coastal water",
                                       "A green pigment in microscopic algae; more chlorophyll usually means more algae.")
+                notas_c = ("In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias.",)
             else:
                 titulo, definicion = TEXTOS_CONTRASTE.get(cid, (c.get("titulo_en", cid), c.get("definicion_en", "")))
             url = next((u for p, u in URL_CONTRASTE.items() if cid.startswith(p)), "https://oceancolor.gsfc.nasa.gov/")
             inv = _investigacion(cid, cat, lugar, titulo, definicion, unidad, [a for a, _ in puntos], [v for _, v in puntos],
                                  {"producto": nombre_en(c["serie_nuestra"]["fuente"]), "url": url},
-                                 recursos=recursos)
+                                 recursos=recursos, notas=notas_c)
             ext = c["serie_externa"]
             inv["contrastes"].append(cid + "_metodo")
             contrastes.append({"id": cid + "_metodo", "investigacion": cid, "tipo": "metodo", "frase_en": frase_en(c),

@@ -1,7 +1,7 @@
 {
  "esquema": "nasa-challenge/recursos",
  "version_esquema": "1.0.0",
- "generado": "2026-11-14",
+ "generado": "2026-11-15",
  "categorias": [
   {
    "id": "lluvia",
@@ -7368,7 +7368,9 @@
    "contrastes": [
     "clorofila_golfo_fonseca_metodo"
    ],
-   "notas": [],
+   "notas": [
+    "In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias."
+   ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
     "veredicto_contrato": "metodos_discrepan",
@@ -7468,7 +7470,9 @@
    "contrastes": [
     "clorofila_pacifico_fonseca_metodo"
    ],
-   "notas": [],
+   "notas": [
+    "In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -7568,7 +7572,9 @@
    "contrastes": [
     "clorofila_rio_coco_metodo"
    ],
-   "notas": [],
+   "notas": [
+    "In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -7668,7 +7674,9 @@
    "contrastes": [
     "clorofila_rio_grande_matagalpa_metodo"
    ],
-   "notas": [],
+   "notas": [
+    "In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias."
+   ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
     "veredicto_contrato": "evidencia_insuficiente",
@@ -7768,7 +7776,9 @@
    "contrastes": [
     "clorofila_rio_escondido_bluefields_metodo"
    ],
-   "notas": [],
+   "notas": [
+    "In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias."
+   ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
     "veredicto_contrato": "metodos_discrepan",
