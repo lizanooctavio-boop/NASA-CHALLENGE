@@ -8,6 +8,10 @@ body{margin:0;color:var(--texto);background:#01030a;overflow:hidden}
 #espacio:focus-visible,#mapa:focus-visible{outline:3px solid var(--cian);outline-offset:-3px}
 #mapa:focus-visible::after{content:'';position:fixed;inset:0;border:3px solid var(--cian);pointer-events:none;z-index:999}
 #espacio.listo{opacity:1}
+.carga-globo{display:none}
+body.cargando:not(.modo-mapa) .carga-globo{display:inline-flex;align-items:center;gap:10px;position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:5;padding:9px 14px;border-radius:999px;background:rgba(14,20,32,.92);border:1px solid var(--borde);color:var(--texto);font-size:12.5px;backdrop-filter:blur(12px);pointer-events:none;white-space:nowrap;max-width:calc(100vw - 24px)}
+.cargando-aro{width:14px;height:14px;border-radius:50%;border:2px solid rgba(111,216,255,.28);border-top-color:var(--cian);animation:giro .9s linear infinite;flex:none}
+#inv-veredicto:empty::before,#veredicto:empty::before,#ind-veredicto:empty::before,#esc-tabla:empty::before{content:'Loading NASA datasets…';display:block;color:var(--tenue);font-size:13px;padding:6px 0}
 #espacio:active{cursor:grabbing}
 #mapa{position:fixed;inset:0;z-index:1;background:#01030a;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s linear .5s}
 body.modo-mapa #mapa{opacity:1;visibility:visible;transition:opacity .5s ease,visibility 0s}
@@ -88,11 +92,14 @@ li{color:#d4deea}
 .ventana{display:flex;flex-direction:column;background:var(--vidrio);border:1px solid var(--borde);border-radius:12px;backdrop-filter:blur(20px) saturate(1.35);-webkit-backdrop-filter:blur(20px) saturate(1.35);box-shadow:0 22px 60px rgba(0,0,0,.5);overflow:hidden;width:min(600px,100%);min-height:0;flex:0 1 auto;max-height:calc(100vh - 118px)}
 .vista[hidden]{display:none}
 .vista.ventana{width:min(600px,max(340px,calc(100vw - var(--izq) - var(--col) - 44px)))}
+/* Reservar el marco de .ventana antes de que shell.js envuelva la vista (evita CLS). */
+.vista:not(.ventana){display:flex;flex-direction:column;background:var(--vidrio);border:1px solid var(--borde);border-radius:12px;overflow:hidden;width:min(600px,max(340px,calc(100vw - var(--izq) - var(--col) - 44px)));min-height:0;flex:0 1 auto;max-height:calc(100vh - 118px);padding:0 22px 20px}
+.vista:not(.ventana)::before{content:'';display:block;height:46px;margin:0 -22px 20px;background:var(--vidrio-barra);border-bottom:1px solid var(--borde);flex:none}
 .ventana.ancha,.vista.ventana.ancha{width:min(1000px,100%)}
 .ventana.minimizada{flex:none}
 .ventana.minimizada .ventana-cuerpo{display:none}
 body.solo-mapa .vista{display:none}
-.ventana-barra{display:flex;align-items:center;gap:12px;padding:9px 12px;background:var(--vidrio-barra);border-bottom:1px solid var(--borde);user-select:none;flex:none}
+.ventana-barra{display:flex;align-items:center;gap:12px;padding:9px 12px;min-height:46px;background:var(--vidrio-barra);border-bottom:1px solid var(--borde);user-select:none;flex:none}
 .ventana-botones{display:flex;gap:12px}
 .punto{width:13px;height:13px;padding:0;border-radius:50%;border:0;display:inline-block;position:relative}
 .punto::before{content:'';position:absolute;inset:-6px}
@@ -101,7 +108,10 @@ body.solo-mapa .vista{display:none}
 .ventana-titulo{font-size:12px;letter-spacing:.6px;color:#dbe6f2;font-weight:600;flex:1;text-align:center;margin-right:50px}
 .ventana-cuerpo{padding:20px 22px;overflow:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.3) transparent}
 .vista article{padding:18px;border:1px solid var(--borde);background:rgba(255,255,255,.05);border-radius:10px;margin-bottom:16px}
-.vista article{margin-bottom:16px}.vista .ventana-cuerpo>article:last-child{margin-bottom:0}
+.vista article{margin-bottom:16px}.vista>article:last-child,.vista .ventana-cuerpo>article:last-child{margin-bottom:0}
+#inv-categorias:empty,#inv-lugares:empty{min-height:110px}
+#inv-veredicto:empty,#ind-veredicto:empty,#veredicto:empty{min-height:160px}
+#esc-tabla:empty{min-height:140px}
 .intro{margin-bottom:16px}
 .intro h2{font-size:20px;letter-spacing:-.3px}
 .tarjetas{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
@@ -167,7 +177,28 @@ a{color:var(--cian)}
   body.menu-plegado nav button:is(:hover,:focus-visible)::after{content:attr(data-nombre);position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;padding:6px 10px;border-radius:7px;background:rgba(14,20,32,.95);border:1px solid var(--borde);color:var(--texto);font-size:12.5px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.4);pointer-events:none;z-index:20}
   body.menu-plegado #plegar-menu svg{transform:rotate(180deg)}
 }
+/* Tabletas y portatiles medianos: ajustar --col y ancho maximo para no solapar con el panel Meteorologia. */
+@media(min-width:701px) and (min-height:501px) and (max-width:1060px){
+  body{--col:min(360px,36vw)}
+  .vista.ventana,.vista:not(.ventana){width:min(600px,max(220px,calc(100vw - var(--izq) - var(--col) - 44px)))}
+  #aviso-publico{max-width:min(600px,max(220px,calc(100vw - var(--izq) - var(--col) - 44px)))}
+}
+@media(min-width:701px) and (min-height:501px) and (max-width:960px){
+  body{--col:min(296px,38vw)}
+}
 @media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:6px 10px 4px;padding:10px 12px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:8px;gap:4px}nav button{font-size:11.5px;padding:7px 9px;flex:none;white-space:nowrap}nav.mas-derecha{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}nav.mas-izquierda.mas-derecha{-webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent);mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent)}nav.mas-izquierda:not(.mas-derecha){-webkit-mask-image:linear-gradient(to right,transparent,#000 12%);mask-image:linear-gradient(to right,transparent,#000 12%)}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:6px 8px;padding:8px 12px}.etiqueta{display:none;letter-spacing:1.2px}h1{font-size:17px}.acciones{width:100%;justify-content:space-between}.estado{white-space:normal}.ventana,.ventana.ancha,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}#indicador-detalle{right:auto;left:0}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
+/* Movil apaisado (poca altura vertical): compactar menu y cabecera en una fila para liberar el lienzo. */
+@media(max-height:500px) and (max-width:1000px){
+  aside{display:flex;flex-direction:row;align-items:center;gap:10px;margin:6px 8px 4px;padding:5px 10px}
+  .cabeza-menu{flex:none;margin:0}.marca{font-size:15px}
+  nav{margin-top:0;flex:1;min-width:0}
+  main{padding:0 8px 8px;gap:6px}
+  header{padding:6px 12px;gap:6px 10px;min-height:48px;flex-wrap:nowrap}
+  header .etiqueta{display:none}
+  h1{font-size:15px;white-space:nowrap}
+  .acciones{width:auto;flex:1;min-width:0;justify-content:flex-end;gap:6px;flex-wrap:nowrap}
+  .estado{white-space:nowrap;font-size:11px;padding:4px 8px}
+}
 
 
 /* Barra de capas estilo Meteored (derecha) */
@@ -237,31 +268,37 @@ code{font-size:12px;background:rgba(255,255,255,.08);padding:1px 5px;border-radi
   body.solo-mapa main{position:fixed;inset:0;margin:0;padding:0;min-height:0;height:100dvh;width:100%}
   body.solo-mapa header{position:fixed;top:10px;left:6px;right:6px;width:auto;height:auto;min-height:58px;padding:8px 10px}
   body.solo-mapa header>div:first-child{display:none}
-  body.solo-mapa .acciones{gap:8px}
-  body.solo-mapa #solomapa{font-size:12px;padding:8px 10px;min-height:40px}
+  body.solo-mapa .acciones{gap:6px;min-width:0}
+  body.solo-mapa .indicador-envoltura{min-width:0}
+  body.solo-mapa .indicador{font-size:11px;padding:6px 10px;min-height:44px;min-width:0;max-width:100%;overflow:hidden}
+  body.solo-mapa #indicador-texto{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.solo-mapa #solomapa{font-size:12px;padding:8px 10px;min-height:44px;flex:none}
   body.solo-mapa .estado{font-size:10px;padding:6px 8px}
-  body.solo-mapa .indicador{font-size:11px;padding:6px 10px;min-height:40px}
   body.solo-mapa #aviso-publico{position:fixed;top:calc(18px + var(--alto-cabecera,58px));left:6px;right:6px;max-width:none;max-height:22dvh;overflow:auto;padding:7px 10px;font-size:11px}
 }
 @media(max-height:500px) and (min-width:560px) and (max-width:1000px){
-  #controles-mapa{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:'leyenda estado' 'leyenda tiempo' 'capas capas';max-height:calc(100dvh - 80px)}
-  #controles-mapa #leyenda-campo{grid-area:leyenda;max-height:48dvh}
-  #controles-mapa #estado-meteo-mapa{grid-area:estado}
-  #controles-mapa #linea-tiempo{grid-area:tiempo}
-  #controles-mapa .capas-mapa{grid-area:capas}
-  body.solo-mapa header{right:calc(50% + 3px)}
-  body.solo-mapa #aviso-publico{top:10px;left:calc(50% + 3px);max-height:none}
+  #controles-mapa{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:'leyenda estado' 'leyenda tiempo' 'capas capas';gap:4px;max-height:calc(100dvh - 64px)}
+  #controles-mapa #leyenda-campo{grid-area:leyenda;max-height:28dvh}
+  #controles-mapa #estado-meteo-mapa{grid-area:estado;max-height:18dvh;overflow:auto}
+  #controles-mapa #linea-tiempo{grid-area:tiempo;padding:4px 8px;gap:4px 6px}
+  #controles-mapa .capas-mapa{grid-area:capas;height:calc(56px + env(safe-area-inset-bottom,0px))}
+  .capas-mapa .ventana-cuerpo{padding:4px 6px}
+  body.solo-mapa header{top:6px;left:6px;right:calc(50% + 3px);min-height:48px;padding:4px 8px}
+  body.solo-mapa:not(:has(#aviso-publico:not([hidden]))) header{right:auto;max-width:calc(100vw - 12px)}
+  body.solo-mapa .estado{display:none}
+  body.solo-mapa .acciones{justify-content:space-between;flex:1;min-width:0}
+  body.solo-mapa #aviso-publico{top:6px;left:calc(50% + 3px);right:6px;max-height:56px;overflow:auto;padding:5px 9px;font-size:11px;line-height:1.25}
 }
 @media(max-width:480px){
   body.solo-mapa .estado{display:none}
-  body.solo-mapa .acciones{flex-wrap:nowrap}
+  body.solo-mapa .acciones{flex-wrap:wrap;gap:6px}
   body.solo-mapa .indicador-envoltura,body.solo-mapa .indicador{min-width:0}
-  body.solo-mapa .indicador-envoltura{flex:1 1 auto;overflow:hidden}
-  body.solo-mapa .indicador{max-width:100%}
-  body.solo-mapa #solomapa{flex:none}
+  body.solo-mapa .indicador-envoltura{order:3;flex:1 1 100%;overflow:visible}
+  body.solo-mapa .indicador{width:100%;max-width:100%;overflow:hidden;padding:8px 10px;gap:6px;font-size:11px}
+  body.solo-mapa #solomapa{flex:none;padding:8px 10px}
   body.solo-mapa #indicador-texto{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 }
-@media(pointer:coarse) and (max-width:700px){.leaflet-control-zoom{display:flex}.leaflet-touch .leaflet-bar .leaflet-control-zoom-in{border-bottom:0;border-right:1px solid var(--borde)}}
+@media(pointer:coarse) and (max-width:700px),(pointer:coarse) and (max-height:500px) and (max-width:1000px){.leaflet-control-zoom{display:flex}.leaflet-touch .leaflet-bar .leaflet-control-zoom-in{border-bottom:0;border-right:1px solid var(--borde)}}
 body.aviso-encima main{z-index:7}
 @media(pointer:coarse){
   body{--alto-zoom:98px}
@@ -269,6 +306,17 @@ body.aviso-encima main{z-index:7}
   .ventana-botones{gap:31px}
   .punto::before{inset:-15.5px}
   .chk{min-height:44px}
+  button:not(.punto),a.boton,select,input:not([type="checkbox"]),summary{min-height:44px}
+  button:not(.punto),a.boton,#plegar-menu,#error-cerrar,#aviso-cerrar{min-width:44px}
+  #plegar-menu{width:44px;height:44px}
+  body.solo-mapa #solomapa,body.solo-mapa .indicador{min-height:44px}
+  .interruptor{gap:2px}
+  .interruptor button{padding:8px 12px}
+  .indicador,#solomapa{padding:8px 12px}
+  button.mini,.mini{padding:8px 12px}
+  .capas-mapa [data-var],.botones-variable button,.botones-region button,.descargas button,nav button{min-height:44px}
+  .vista a,.fuentes-lista a{min-width:44px;min-height:44px;display:inline-flex;align-items:center}
+  details.mundial summary,.fuente-detalle summary{display:flex;align-items:center}
   .leaflet-touch .leaflet-bar a,.leaflet-bar a{width:44px;height:44px;line-height:44px}
   #linea-tiempo button{min-height:44px;min-width:44px}
   .leyenda-alternar{min-height:44px}

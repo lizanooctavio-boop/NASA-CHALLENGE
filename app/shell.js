@@ -56,7 +56,6 @@ function iniciarMapa(){
   const esriEtq=L.tileLayer(ESRI+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{pane:'etiquetas',minZoom:6,maxNativeZoom:19,maxZoom:18,attribution:'Labels © Esri'}).addTo(mapa);
   vigilarBase(esriEtq,'Place labels',true);
   mapa.on('click',e=>{if($('consultar').disabled)return;elegirPunto(e.latlng.lat,L.Util.wrapNum(e.latlng.lng,[-180,180]))});
-  baseVectorial();
 }
 function elegirPunto(lat,lon){$('lat').value=lat.toFixed(3);$('lon').value=lon.toFixed(3);if(!$('meteorologia').hidden||true)$('consulta-punto').requestSubmit()}
 
@@ -140,7 +139,8 @@ if(typeof ResizeObserver==='function'){const ro=new ResizeObserver(medirColumnaM
 addEventListener('resize',medirColumnaMapa);medirColumnaMapa();
 
 // ---------------------------------------------------------------- globo 3D ⇄ mapa 2D
-let modo='globo',cambiando=false,vistaPendiente=null,transicionActual=null;
+let modo='globo',cambiando=false,vistaPendiente=null,transicionActual=null,vectorialCargado=false;
+function cargarBaseVectorial(){if(vectorialCargado||!mapa)return;vectorialCargado=true;baseVectorial()}
 const esperar=ms=>new Promise(r=>setTimeout(r,ms));
 function marcarVista(){
   $('vista-globo').setAttribute('aria-pressed',String(modo==='globo'));
@@ -155,6 +155,7 @@ async function cambiarVista(nuevo){
   if(!mapa)return;
   if(cambiando){vistaPendiente=nuevo;return transicionActual}
   if(nuevo===modo)return;
+  if(nuevo==='mapa')cargarBaseVectorial();
   if(!window.Espacio){
     modo=nuevo;document.body.classList.toggle('modo-mapa',nuevo==='mapa');document.body.classList.toggle('modo-globo',nuevo==='globo');
     marcarVista();document.dispatchEvent(new CustomEvent('sicc:vista',{detail:nuevo}));
@@ -199,7 +200,8 @@ function marcar(lat,lon,nombre){
 }
 window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{await cambiarVista('mapa');mapa.setView([lat,lon],z)},marcar,soloMapa};
 const salidaHash=()=>{if(location.hash==='#map'){if(modo==='mapa'&&window.Espacio)window.Espacio.pausar(true);else cambiarVista('mapa')}};
-document.addEventListener('espacio:listo',salidaHash);
+document.addEventListener('espacio:listo',()=>{document.body.classList.remove('cargando');salidaHash()});
+if(window.Espacio)document.body.classList.remove('cargando');
 setTimeout(()=>{if(location.hash==='#map'&&modo!=='mapa'&&!window.Espacio)salidaHash()},1200);
 addEventListener('hashchange',()=>{cambiarVista(location.hash==='#map'?'mapa':'globo')});
 
@@ -224,5 +226,5 @@ function baseVectorial(){
     };
     refrescarEtiquetas=ver;
     mapa.on('zoomend',ver);ver();
-  }).catch(()=>{});
+  }).catch(()=>{vectorialCargado=false});
 }
