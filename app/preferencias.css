@@ -1,0 +1,97 @@
+:root {
+  --preferencias-seleccion: #6fd8ff;
+  --preferencias-texto-activo: #071723;
+}
+
+#configuracion .ventana-cuerpo { padding: clamp(16px, 4vw, 24px); }
+.preferencias-intro h2 { margin: 0 0 4px; font-size: 1.2rem; }
+.preferencias p { margin: 0; color: var(--tenue); line-height: 1.5; }
+.preferencias-fila {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--borde);
+}
+.preferencias-fila h3 { font-size: 1rem; margin: 0 0 4px; }
+.preferencias-opciones { display: flex; flex-wrap: wrap; gap: 8px; }
+.preferencias-opciones button {
+  min-height: 44px;
+  min-width: 64px;
+  padding: 8px 12px;
+  touch-action: manipulation;
+}
+.preferencias-opciones button[aria-pressed="true"] {
+  background: var(--preferencias-seleccion);
+  border-color: var(--preferencias-seleccion);
+  color: var(--preferencias-texto-activo);
+}
+.preferencias-opciones button[aria-pressed="true"]:focus-visible { outline-offset: 3px; }
+@media (max-width: 1100px) {
+  .preferencias-fila { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 700px), (max-height: 500px) and (max-width: 1000px) {
+  #nav-configuracion { min-height: 44px; }
+  .preferencias-opciones button { flex: 1; }
+}
+
+/* Theme the interface independently of the map tiles and scientific color scales. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --vidrio: #f6f9fd;
+  --vidrio-barra: #e8eff7;
+  --borde: #8296ab;
+  --texto: #152a3e;
+  --tenue: #42596d;
+  --cian: #086188;
+  --ambar: #86500c;
+  --rojo: #9b362a;
+  --preferencias-seleccion: #086188;
+  --preferencias-texto-activo: #fff;
+}
+[data-theme="light"] .vista {
+  --superficie: #fff;
+  --superficie-2: #e8eff7;
+  --texto-2: #263f55;
+  --texto-3: #42596d;
+  --serie-mco: #075c94;
+  --serie-sen: #86500c;
+  --observado: #25354c;
+  --est-aumento: #176448;
+  --est-disminucion: #983b22;
+  --est-insuf: #475567;
+  --est-disc: #86500c;
+  --est-faltan: #475567;
+}
+[data-theme="light"] :is(h1, h2, .ventana-titulo, .marca b, .sub strong, .ayuda-inicio strong, .tarjeta strong, .pendiente-principal strong),
+[data-theme="light"] #investigar :is(.pregunta, .veredicto .estado, .veredicto-ayuda, .veredicto .nota-clave),
+[data-theme="light"] .demo-panel .demo-texto { color: var(--texto); }
+[data-theme="light"] :is(article, .tarjeta, .ayuda-inicio, button, .boton, input:not([type="range"]), select, .coords-valor) {
+  background-color: #e8eff7;
+  color: var(--texto);
+}
+[data-theme="light"] :is(button, .boton):hover { background-color: #d8e6f4; border-color: var(--cian); }
+[data-theme="light"] :is(nav button.activo, nav button[data-tab="investigar"]:not(.activo), .interruptor button[aria-pressed="true"], .capas-mapa [data-var][aria-pressed="true"], .botones-region button[aria-checked="true"]) {
+  background: #cde6f2;
+  border-color: var(--cian);
+  color: var(--texto);
+}
+[data-theme="light"] .preferencias-opciones button[aria-pressed="true"] {
+  background: var(--preferencias-seleccion);
+  color: var(--preferencias-texto-activo);
+}
+[data-theme="light"] .capas-mapa label { color: var(--texto); }
+[data-theme="light"] :is(#indicador-detalle, .tooltip, .buscador-lista, .buscador-caja, .coords-panel, .leaflet-popup-content-wrapper, .leaflet-popup-tip, .tour-tarjeta, .tour-invitacion, .reticula-ayuda, .carga-globo, #error) {
+  background: var(--vidrio);
+  color: var(--texto);
+  border-color: var(--borde);
+}
+[data-theme="light"] :is(.buscador-opcion.activo, .buscador-opcion:hover) { background: #cde6f2; color: var(--texto); }
+[data-theme="light"] .interruptor { background: #e8eff7; }
+[data-theme="light"] .buscador-entrada::placeholder { color: var(--tenue); }
+[data-theme="light"] :is(.nota-veredicto, .advertencia p, #investigar .paso-nota, .ayuda-respuesta) { color: var(--tenue); }
+[data-theme="light"] .grafica .cero { stroke: var(--texto); }
+[data-theme="light"] :is(#indicadores, #investigar) .veredicto.aumento { color: var(--est-aumento); }
+[data-theme="light"] :is(#indicadores, #investigar) .veredicto.disminucion { color: var(--est-disminucion); }

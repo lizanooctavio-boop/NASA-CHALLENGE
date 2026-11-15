@@ -5,7 +5,6 @@
 'use strict';
 const $=id=>document.getElementById(id);
 const nodo=(t,txt,c)=>{const n=document.createElement(t);if(txt!==undefined)n.textContent=txt;if(c)n.className=c;return n};
-const pref={leer:k=>{try{return localStorage.getItem(k)}catch(e){return null}},guardar:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
 const reducido=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 // Nombres de los temas en los dos idiomas, en el orden en que se muestran.
@@ -106,7 +105,11 @@ function irAPestana(id){
 // «Show me»: abre la pestaña o el elemento del enlace, lo desplaza a la vista y lo resalta.
 async function mostrar(enlace){
   if(enlace==='ayuda-tour')return iniciarTour();
-  if(enlace==='ayuda-idioma'){const b=$('ayuda-idioma');b?.focus();resaltar(b);return}
+  if(enlace==='ayuda-idioma'){
+    $('nav-configuracion').click();
+    document.querySelector('#language-switcher [aria-pressed="true"]')?.focus();
+    return;
+  }
   let el=$(enlace);
   const boton=document.querySelector(`nav button[data-tab="${enlace}"]`);
   if(boton&&el?.classList.contains('vista')){irAPestana(enlace);el=el.querySelector('.ventana-cuerpo h2, .ventana-cuerpo h3, .ventana-cuerpo')||el}
@@ -128,9 +131,9 @@ function resaltar(el){if(!el)return;el.classList.remove('ayuda-resaltado');void 
 function iniciarTour(){if(window.SICC_tutorial)window.SICC_tutorial.iniciar();else estado(TXT[idioma].sinTour)}
 
 // ---------------------------------------------------------------- interfaz
-let preguntas=null,carga=null,idioma=window.GnomonI18n?.language()||(pref.leer('etd-ayuda-idioma')==='es'?'es':'en'),ultima='';
+let preguntas=null,carga=null,idioma=window.GnomonI18n?.language()||'en',ultima='';
 const MAX=15;
-let seccion,cuerpo,entrada,lista,linea,botonIdioma,botonTour,titulo,intro,etiquetaBuscar;
+let seccion,cuerpo,entrada,lista,linea,botonTour,titulo,intro,etiquetaBuscar;
 function estado(t){if(linea)linea.textContent=t}
 
 function crearBotonMenu(){
@@ -165,13 +168,10 @@ function crearSeccion(){
   entrada.setAttribute('aria-controls','ayuda-lista');entrada.setAttribute('aria-describedby','ayuda-estado');
   etiquetaBuscar.append(etqTexto,entrada);
   const acciones=nodo('div',undefined,'ayuda-acciones');
-  botonIdioma=nodo('button',undefined,'mini');botonIdioma.type='button';botonIdioma.id='ayuda-idioma';
-  botonIdioma.setAttribute('data-i18n-ignore','');
-  botonIdioma.onclick=()=>{if(window.GnomonI18n){window.GnomonI18n.setLanguage(idioma==='en'?'es':'en');return}idioma=idioma==='en'?'es':'en';pref.guardar('etd-ayuda-idioma',idioma);textos();pintar(entrada.value)};
   botonTour=nodo('button',undefined,'ayuda-tour');botonTour.type='button';botonTour.id='ayuda-tour';
   botonTour.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>';botonTour.append(nodo('span'));
   botonTour.onclick=iniciarTour;
-  acciones.append(botonTour,botonIdioma);
+  acciones.append(botonTour);
   herramientas.append(etiquetaBuscar,acciones);
   linea=nodo('p',undefined,'ayuda-estado');linea.id='ayuda-estado';linea.setAttribute('role','status');linea.setAttribute('aria-live','polite');
   lista=nodo('div',undefined,'ayuda-lista');lista.id='ayuda-lista';lista.setAttribute('role','region');
@@ -197,8 +197,6 @@ function crearSeccion(){
 function textos(){
   const t=TXT[idioma];
   titulo.textContent=t.titulo;intro.textContent=t.intro;etiquetaBuscar.firstChild.textContent=t.buscar;entrada.placeholder=t.marcador;
-  botonIdioma.textContent=t.idioma;botonIdioma.setAttribute('aria-label',t.idiomaEtq);botonIdioma.lang=idioma==='en'?'es':'en';
-  botonIdioma.setAttribute('aria-pressed',String(idioma==='es'));
   botonTour.querySelector('span').textContent=t.tour;
   lista.setAttribute('aria-label',t.listaEtq);lista.lang=idioma;intro.lang=titulo.lang=idioma;
 }

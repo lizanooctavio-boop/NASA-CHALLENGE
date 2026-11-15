@@ -1,10 +1,10 @@
 # Validación local: idiomas, experiencia de usuario y endurecimiento
 
-Base revisada: `0c7184c` de `origin/codex/demo-render`. Rama local: `codex/frontend-ux-seguridad-local`. No se han creado commits, PR ni despliegues de esta implementación.
+La validación de Configuración usa `20bec48` de `origin/codex/demo-render` como base. La revisión estática de seguridad comenzó sobre `0c7184c`.
 
 ## Cómo probar
 
-La copia de trabajo se sirve en <http://127.0.0.1:8996/#investigar>. Desde su raíz, para reconstruir y arrancar de nuevo:
+La copia de trabajo se sirve en <http://127.0.0.1:8996/#configuracion>. Desde la raíz del repositorio:
 
 ```powershell
 node scripts/preparar_render.mjs
@@ -15,9 +15,11 @@ El servidor solo escucha en `127.0.0.1`. No ejecutes un segundo servidor si ya r
 
 ## Cambios implementados
 
-- Selector English/Español con botones nativos, estado `aria-pressed`, foco visible y preferencia local validada. Inglés inicial y respaldo cuando no hay traducción. Almacenamiento opcional y sin llamadas a servicios de traducción.
+- **Configuración** en el menú lateral agrupa idioma y tema. Desde Ayuda, el acceso a idioma abre Configuración y enfoca la opción activa.
+- Botones English/Español y Claro/Oscuro con estado `aria-pressed`, foco visible y preferencias locales validadas. La primera visita usa inglés y tema oscuro. Si el almacenamiento está bloqueado, ambas preferencias funcionan durante la sesión.
+- El tema claro se aplica a menús, paneles, formularios y etiquetas de gráficas. El mapa y las escalas cromáticas científicas conservan su representación. En pantallas pequeñas las opciones se distribuyen debajo de su etiqueta.
 - Actualización del idioma del documento, formatos regionales, ayuda y etiquetas de gráficas. Se conservan la investigación seleccionada, el mapa, la capa y la hora. Los CSV conservan los datos y su contrato original.
-- Catálogo local de 1358 mensajes: incluye los 664 campos `*_en` de los recursos integrados, 298 notas únicas, 33 contrastes, 83 títulos y 97 definiciones. También contiene las 100 preguntas y respuestas de ayuda, Terra y las secciones explicativas. Se conservan nombres originales de referencias, marcas, DOI, autores, cifras y unidades cuando corresponde.
+- El catálogo incluye los campos `*_en` de los recursos integrados, las preguntas frecuentes, el recorrido de Terra y la interfaz de Configuración. Se conservan las referencias originales y los valores científicos.
 - Enlaces directos a secciones y navegación atrás/adelante; rutas desconocidas no se interpretan como selectores arbitrarios.
 - Controles de idioma visibles en móvil y horizontal, botones táctiles de 44 px, menú lateral desplazable y ajustes para textos largos y movimiento reducido.
 - Getter de almacenamiento protegido dentro de `try/catch`, para evitar cortar el arranque cuando el navegador lo bloquea.
@@ -30,21 +32,20 @@ Se obtuvieron copias locales de `ui-ux-pro-max` y `security-audit` en el directo
 
 UI UX Pro Max orientó el uso de controles nativos con nombre y estado, foco no oculto, tamaños táctiles y reflujo del contenido. Se consultaron las guías concretas y se verificó su aplicación en navegador. Se conserva el sistema visual y el stack existentes: JavaScript, HTML/CSS, Leaflet, Chart.js y Three.js.
 
-La revisión de seguridad es **parcial y estática**. El informe y sus límites están en `../audit-ux-seguridad/REPORT.md` respecto a la raíz de esta copia. No se ejecutaron pruebas ofensivas ni payloads contra la demo o proveedores. No se pudo acreditar el aislamiento completo exigido por la skill; además, sus validadores oficiales rechazan esta plataforma por falta de las garantías Windows no-follow/nonblocking. No se modificaron esas protecciones para obtener un pase. Las pruebas funcionales de desarrollo que siguen no son validación dinámica de seguridad.
+La revisión de seguridad fue **parcial y estática**. La skill exige aislamiento de ejecución y validadores compatibles. En Windows, los validadores informaron que las garantías de apertura de archivos sin seguir enlaces y en modo no bloqueante no estaban disponibles. [Informe de seguridad](INFORME_SEGURIDAD_FRONTEND.md)
 
 ## Comprobaciones ejecutadas
 
 - `node --test tests/local-ux.test.cjs`: **8/8**, incluyendo ventana vigente, caché caducada, límite exacto de expiración, fechas inválidas y zona horaria.
 - `python -m pytest tests/test_ayuda.py tests/test_interfaz.py tests/test_lugares_coordenadas.py tests/test_recursos_interfaz.py -q`: **33 passed, 12 subtests passed** con el entorno Python existente.
-- `tests/validar-i18n-navegador.js` ejecutado en DevTools en la vista local: **15/15**, incluyendo ida/vuelta EN/ES, contenido dinámico, persistencia, preferencias no admitidas, selección y nodos del mapa conservados, ayuda sincronizada y CSV idéntico en ambos idiomas.
+- `tests/validar-i18n-navegador.js`, ejecutado desde Investigate en Chromium: **19/19**. Cubre Configuración, los dos temas y su persistencia, el idioma en ambos sentidos, el estado del mapa, la ayuda y la igualdad del CSV en ambos idiomas.
 - Arranque con getter de `localStorage` que lanza `SecurityError`: inglés inicial, cambio a español, navegación y carga de Investigate correctos; sin errores JS en esa comprobación.
 - Preferencia guardada no válida: regreso a inglés, sin bloquear el cambio posterior.
 - Teclado: Tab desde English y Enter sobre Español cambian el idioma y conservan el foco en el botón activo.
 - Recarga de `#investigar`, navegación a Aprender y vuelta mediante Atrás: sección y URL correctas.
-- Resoluciones 360×740, 390×844, 768×1024, 1366×768, 1920×1080 y 844×390: sin desbordamiento horizontal y selector visible en el inicio de página. El primer pase encontró un desajuste horizontal en paisaje; se corrigió y se repitió ese caso con resultado correcto. Se probaron español e inglés y movimiento reducido en las vistas capturadas.
+- Configuración se verificó a 360×740, 390×844, 768×1024, 1024×768, 1440×900 y 844×390, en español e inglés con los dos temas. Los cuatro controles midieron al menos 44 px de alto y quedaron dentro del ancho disponible.
 - Comprobación de sintaxis de los JavaScript modificados y reconstrucción estática correctas.
 
-Las capturas English/Español de escritorio y móvil, y los resultados JSON de las comprobaciones del selector se guardan fuera del repositorio, en `../qa-local/`.
 
 ## Mantener traducciones
 

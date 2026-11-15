@@ -9,9 +9,16 @@ async function validarI18nLocal() {
   const selection = JSON.stringify(window.SICC_investigar.estado().sel);
   const weather = JSON.stringify(window.SICC_campo.estado());
   const canvas = document.getElementById('espacio'), map = document.getElementById('mapa');
-  i18n.setLanguage('en'); await frame();
+  document.getElementById('nav-configuracion').click();
+  check('Settings opens from sidebar', !document.getElementById('configuracion').hidden && location.hash === '#configuracion');
+  check('Preferences are in Settings', [...document.querySelectorAll('[data-language],[data-theme-choice]')].every(button => button.closest('#configuracion')));
+  document.querySelector('[data-theme-choice="light"]').click(); await frame();
+  check('Light theme selected', document.documentElement.dataset.theme === 'light' && document.querySelector('[data-theme-choice="light"]').getAttribute('aria-pressed') === 'true');
+  document.querySelector('[data-theme-choice="dark"]').click(); await frame();
+  check('Dark theme selected and saved', document.documentElement.dataset.theme === 'dark' && localStorage.getItem('gnomon-theme') === 'dark');
+  document.querySelector('[data-language="en"]').click(); await frame();
   check('EN navigation', document.querySelector('nav [data-tab="investigar"]').textContent.trim() === 'Investigate');
-  i18n.setLanguage('es'); await frame();
+  document.querySelector('[data-language="es"]').click(); await frame();
   check('ES navigation', document.querySelector('nav [data-tab="investigar"]').textContent.trim() === 'Investigar');
   check('Document lang', document.documentElement.lang === 'es');
   check('Selection preserved', JSON.stringify(window.SICC_investigar.estado().sel) === selection);
@@ -36,6 +43,7 @@ async function validarI18nLocal() {
       });
     } finally { clearTimeout(timer); URL.createObjectURL = original; }
   }
+  document.querySelector('nav [data-tab="investigar"]').click(); await frame();
   const enCSV = await csv(); i18n.setLanguage('es'); await frame(); const esCSV = await csv();
   check('CSV scientific data unchanged', enCSV === esCSV && enCSV.includes('2001'));
   check('Spanish button pressed', document.querySelector('[data-language="es"]').getAttribute('aria-pressed') === 'true');

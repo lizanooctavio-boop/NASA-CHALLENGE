@@ -75,9 +75,9 @@
   "id": "primeros_pasos-09",
   "tema": "primeros_pasos",
   "pregunta_en": "Can I read this help in Spanish?",
-  "respuesta_en": "Yes. The app itself is in English, but the language button at the top of Help switches these questions and answers between English and Spanish. The search understands both languages.",
+  "respuesta_en": "Yes. Open Settings in the sidebar and choose Español. The interface and help will switch together. The search understands both languages.",
   "pregunta_es": "¿Puedo leer esta ayuda en español?",
-  "respuesta_es": "Sí. La app está en inglés, pero el botón de idioma arriba de Help cambia estas preguntas y respuestas entre inglés y español. El buscador entiende los dos idiomas.",
+  "respuesta_es": "Sí. Abre Configuración en el menú lateral y elige Español. El idioma cambia en la interfaz y en la ayuda. El buscador entiende ambos idiomas.",
   "enlace": "ayuda-idioma"
  },
  {
