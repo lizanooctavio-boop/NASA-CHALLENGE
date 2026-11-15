@@ -422,7 +422,7 @@
   {
    "id": "clorofila_golfo_fonseca",
    "nombre_en": "Gulf of Fonseca",
-   "pais": "Nicaragua",
+   "pais": "El Salvador, Honduras and Nicaragua",
    "centro": [
     13.2,
     -87.6
@@ -722,7 +722,7 @@
   {
    "id": "glaciares_europa_central",
    "nombre_en": "Central European glaciers",
-   "pais": "RGI region 11",
+   "pais": "Alps and Pyrenees (RGI region 11)",
    "centro": [
     46.5,
     10.0
@@ -772,7 +772,7 @@
   {
    "id": "caspio",
    "nombre_en": "Caspian Sea",
-   "pais": "G-REALM satellite track",
+   "pais": "Russia, Kazakhstan, Turkmenistan, Iran and Azerbaijan",
    "centro": [
     42,
     51
@@ -782,7 +782,7 @@
   {
    "id": "victoria",
    "nombre_en": "Lake Victoria",
-   "pais": "G-REALM satellite track",
+   "pais": "Uganda, Kenya and Tanzania",
    "centro": [
     -0.5,
     33.5
@@ -792,7 +792,7 @@
   {
    "id": "chad",
    "nombre_en": "Lake Chad",
-   "pais": "G-REALM satellite track",
+   "pais": "Chad, Cameroon, Niger and Nigeria",
    "centro": [
     13,
     14
@@ -2252,11 +2252,11 @@
     "merra2_humedad_gldas_0_10_NIC"
    ],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de NIC; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.966 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Nicaragua; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 97% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -2360,11 +2360,11 @@
     "merra2_humedad_gldas_10_40_NIC"
    ],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de NIC; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.966 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Nicaragua; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 97% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -2466,11 +2466,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de NIC; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.966 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Nicaragua; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 97% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -2572,11 +2572,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de NIC; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.966 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Nicaragua; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 97% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -2678,11 +2678,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de NIC; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.966 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Nicaragua; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 97% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -2787,11 +2787,11 @@
     "merra2_humedad_gldas_0_10_caja_sicc"
    ],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caja_sicc; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.718 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Study box (SW Nicaragua); cells the model treats as water are left out.",
+    "Grid cells with data cover at least 72% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -2895,11 +2895,11 @@
     "merra2_humedad_gldas_10_40_caja_sicc"
    ],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caja_sicc; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.718 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Study box (SW Nicaragua); cells the model treats as water are left out.",
+    "Grid cells with data cover at least 72% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -3001,11 +3001,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caja_sicc; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.718 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Study box (SW Nicaragua); cells the model treats as water are left out.",
+    "Grid cells with data cover at least 72% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -3107,11 +3107,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caja_sicc; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.718 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Study box (SW Nicaragua); cells the model treats as water are left out.",
+    "Grid cells with data cover at least 72% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -3213,11 +3213,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caja_sicc; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.718 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Study box (SW Nicaragua); cells the model treats as water are left out.",
+    "Grid cells with data cover at least 72% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -3321,11 +3321,11 @@
     "merra2_humedad_gldas_0_10_caribe"
    ],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caribe; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.974 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Caribbean coast; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 97% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -3429,11 +3429,11 @@
     "merra2_humedad_gldas_10_40_caribe"
    ],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caribe; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.974 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Caribbean coast; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 97% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -3535,11 +3535,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caribe; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.974 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Caribbean coast; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 97% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -3641,11 +3641,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caribe; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.974 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Caribbean coast; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 97% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -3747,11 +3747,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de caribe; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.974 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Caribbean coast; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 97% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -3855,11 +3855,11 @@
     "merra2_humedad_gldas_0_10_central"
    ],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de central; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Central highlands; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 99% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -3963,11 +3963,11 @@
     "merra2_humedad_gldas_10_40_central"
    ],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de central; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Central highlands; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 99% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -4069,11 +4069,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de central; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Central highlands; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 99% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -4175,11 +4175,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de central; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Central highlands; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 99% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -4281,11 +4281,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de central; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Central highlands; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 99% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -4389,11 +4389,11 @@
     "merra2_humedad_gldas_0_10_pacifico"
    ],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de pacifico; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.879 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Pacific lowlands; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 88% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -4497,11 +4497,11 @@
     "merra2_humedad_gldas_10_40_pacifico"
    ],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de pacifico; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.879 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Pacific lowlands; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 88% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -4603,11 +4603,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de pacifico; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.879 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Pacific lowlands; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 88% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -4709,11 +4709,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de pacifico; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.879 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Pacific lowlands; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 88% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -4815,11 +4815,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de pacifico; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.879 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Pacific lowlands; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 88% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -4921,11 +4921,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de CAN_prairies; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Canadian Prairies; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 99% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
@@ -5027,11 +5027,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de CAN_prairies; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Canadian Prairies; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 99% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -5133,11 +5133,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de CAN_prairies; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Canadian Prairies; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 99% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -5239,11 +5239,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de CAN_prairies; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Canadian Prairies; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 99% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -5345,11 +5345,11 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Media ponderada por área (EPSG:6933) de las celdas de 0,25° de GLDAS dentro de CAN_prairies; las celdas sin suelo del modelo (agua) se excluyen renormalizando los pesos.",
-    "Cobertura mínima de celdas con dato: 0.994 del área de la región.",
-    "Consulta OPeNDAP en la nube de GES DISC, 2026-11-14T03:58:41Z.",
-    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % de la lluvia.",
-    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia."
+    "Area-weighted average of the 0.25° GLDAS grid cells inside Canadian Prairies; cells the model treats as water are left out.",
+    "Grid cells with data cover at least 99% of the region's area.",
+    "Downloaded from NASA GES DISC (OPeNDAP) on 2026-11-14.",
+    "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages less than 2% of the rain, so the model's water budget adds up.",
+    "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 before reading a trend."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -5454,10 +5454,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO siuna_bosque (13.75, -84.8), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 13.875, -84.875",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a forest site near Siuna (13.75°N, 84.80°W), not a regional average.",
+    "Giovanni returned the cell centred at 13.875°N, 84.875°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -5562,10 +5562,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO siuna_bosque (13.75, -84.8), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 13.875, -84.875",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a forest site near Siuna (13.75°N, 84.80°W), not a regional average.",
+    "Giovanni returned the cell centred at 13.875°N, 84.875°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -5670,10 +5670,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO siuna_bosque (13.75, -84.8), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 13.875, -84.875",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a forest site near Siuna (13.75°N, 84.80°W), not a regional average.",
+    "Giovanni returned the cell centred at 13.875°N, 84.875°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -5778,10 +5778,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO siuna_bosque (13.75, -84.8), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 13.875, -84.875",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a forest site near Siuna (13.75°N, 84.80°W), not a regional average.",
+    "Giovanni returned the cell centred at 13.875°N, 84.875°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -5886,10 +5886,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO siuna_bosque (13.75, -84.8), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 13.875, -84.875",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a forest site near Siuna (13.75°N, 84.80°W), not a regional average.",
+    "Giovanni returned the cell centred at 13.875°N, 84.875°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -5994,10 +5994,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO esteli_corredor_seco (13.1, -86.35), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 13.125, -86.375",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a Dry Corridor site near Estelí (13.10°N, 86.35°W), not a regional average.",
+    "Giovanni returned the cell centred at 13.125°N, 86.375°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -6102,10 +6102,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO esteli_corredor_seco (13.1, -86.35), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 13.125, -86.375",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a Dry Corridor site near Estelí (13.10°N, 86.35°W), not a regional average.",
+    "Giovanni returned the cell centred at 13.125°N, 86.375°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -6210,10 +6210,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO esteli_corredor_seco (13.1, -86.35), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 13.125, -86.375",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a Dry Corridor site near Estelí (13.10°N, 86.35°W), not a regional average.",
+    "Giovanni returned the cell centred at 13.125°N, 86.375°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -6318,10 +6318,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO esteli_corredor_seco (13.1, -86.35), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 13.125, -86.375",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a Dry Corridor site near Estelí (13.10°N, 86.35°W), not a regional average.",
+    "Giovanni returned the cell centred at 13.125°N, 86.375°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -6426,10 +6426,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO esteli_corredor_seco (13.1, -86.35), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 13.125, -86.375",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a Dry Corridor site near Estelí (13.10°N, 86.35°W), not a regional average.",
+    "Giovanni returned the cell centred at 13.125°N, 86.375°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -6534,10 +6534,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO leon_llanura (12.45, -86.85), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 12.375, -86.875",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a plains site near León (12.45°N, 86.85°W), not a regional average.",
+    "Giovanni returned the cell centred at 12.375°N, 86.875°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -6642,10 +6642,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO leon_llanura (12.45, -86.85), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 12.375, -86.875",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a plains site near León (12.45°N, 86.85°W), not a regional average.",
+    "Giovanni returned the cell centred at 12.375°N, 86.875°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -6750,10 +6750,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO leon_llanura (12.45, -86.85), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 12.375, -86.875",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a plains site near León (12.45°N, 86.85°W), not a regional average.",
+    "Giovanni returned the cell centred at 12.375°N, 86.875°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -6858,10 +6858,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO leon_llanura (12.45, -86.85), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 12.375, -86.875",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a plains site near León (12.45°N, 86.85°W), not a regional average.",
+    "Giovanni returned the cell centred at 12.375°N, 86.875°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -6966,10 +6966,10 @@
    ],
    "contrastes": [],
    "notas": [
-    "Serie de PUNTO leon_llanura (12.45, -86.85), celda Noah 0.25°; no media regional",
-    "coordenadas devueltas por Giovanni: 12.375, -86.875",
-    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar",
-    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos"
+    "One model grid cell (0.25°, about 28 km) at a plains site near León (12.45°N, 86.85°W), not a regional average.",
+    "Giovanni returned the cell centred at 12.375°N, 86.875°W.",
+    "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not filled in.",
+    "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -7655,8 +7655,8 @@
    "id": "airs_tas_nic",
    "categoria": "temperatura",
    "lugar": "NIC",
-   "titulo_en": "Surface air temperature (AIRS, Nicaragua)",
-   "definicion_en": "NASA AIRS3STM 7.0 monthly near-surface air temperature over Nicaragua via GES DISC OPeNDAP (mean of daytime 13:30 and nighttime 01:30 overpasses, °C), 2003–2024.",
+   "titulo_en": "Surface air temperature (AIRS satellite)",
+   "definicion_en": "Air temperature near the ground measured from space by NASA's AIRS instrument and averaged over Nicaragua: the mean of the 1:30 pm and 1:30 am satellite passes.",
    "unidad": "°C",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -7709,8 +7709,8 @@
     25.6192
    ],
    "fuente": {
-    "producto": "NASA GPM IMERG monthly, area average from GES DISC OPeNDAP",
-    "url": "https://oceancolor.gsfc.nasa.gov/"
+    "producto": "NASA AIRS AIRS3STM v7.0 monthly (GES DISC OPeNDAP)",
+    "url": "https://disc.gsfc.nasa.gov/datasets/AIRS3STM_7.0/summary"
    },
    "recursos": [],
    "contrastes": [
@@ -7753,9 +7753,9 @@
    "id": "omi_no2_managua",
    "categoria": "aire",
    "lugar": "omi_no2_managua",
-   "titulo_en": "Tropospheric NO2 column (Managua, OMI)",
-   "definicion_en": "OMI OMNO2d v003 cloud-screened tropospheric NO2 column (10^15 molecules/cm^2) over the Managua urban box (12.05–12.20 N, 86.35–86.15 W), 2005–2024.",
-   "unidad": "1e15 molec cm-2",
+   "titulo_en": "Nitrogen dioxide (NO₂) in the air (OMI satellite)",
+   "definicion_en": "Amount of NO₂, a gas that comes mostly from traffic and burning, in the air above the Managua urban box (12.05–12.20°N, 86.35–86.15°W), measured on cloud-free days by NASA's OMI instrument.",
+   "unidad": "10¹⁵ molecules/cm²",
    "papel": "tendencia",
    "frecuencia": "anual",
    "tiempos": [
@@ -7803,8 +7803,8 @@
     0.6871
    ],
    "fuente": {
-    "producto": "NASA GPM IMERG monthly, area average from GES DISC OPeNDAP",
-    "url": "https://oceancolor.gsfc.nasa.gov/"
+    "producto": "NASA Aura OMI OMNO2d v003 daily NO₂ (GES DISC OPeNDAP)",
+    "url": "https://disc.gsfc.nasa.gov/datasets/OMNO2d_003/summary"
    },
    "recursos": [],
    "contrastes": [
@@ -7819,7 +7819,7 @@
      2005,
      2024
     ],
-    "unidad_pendiente": "1e15 molec cm-2/decade",
+    "unidad_pendiente": "10¹⁵ molecules/cm²/decade",
     "sen": {
      "por_decada": -0.0434,
      "ic": [
@@ -7847,9 +7847,9 @@
    "id": "omi_no2_rural",
    "categoria": "aire",
    "lugar": "omi_no2_rural",
-   "titulo_en": "Tropospheric NO2 column (rural background, OMI)",
-   "definicion_en": "OMI OMNO2d v003 cloud-screened tropospheric NO2 column (10^15 molecules/cm^2) over the Chontales rural background box (12.35–12.50 N, 85.10–84.90 W), 2005–2024.",
-   "unidad": "1e15 molec cm-2",
+   "titulo_en": "Nitrogen dioxide (NO₂) in the air (OMI satellite)",
+   "definicion_en": "Amount of NO₂, a gas that comes mostly from traffic and burning, in the air above a rural box in Chontales (12.35–12.50°N, 85.10–84.90°W), measured on cloud-free days by NASA's OMI instrument. It is the clean-air background to compare with Managua.",
+   "unidad": "10¹⁵ molecules/cm²",
    "papel": "tendencia",
    "frecuencia": "anual",
    "tiempos": [
@@ -7897,8 +7897,8 @@
     0.399
    ],
    "fuente": {
-    "producto": "NASA GPM IMERG monthly, area average from GES DISC OPeNDAP",
-    "url": "https://oceancolor.gsfc.nasa.gov/"
+    "producto": "NASA Aura OMI OMNO2d v003 daily NO₂ (GES DISC OPeNDAP)",
+    "url": "https://disc.gsfc.nasa.gov/datasets/OMNO2d_003/summary"
    },
    "recursos": [],
    "contrastes": [
@@ -7913,7 +7913,7 @@
      2005,
      2024
     ],
-    "unidad_pendiente": "1e15 molec cm-2/decade",
+    "unidad_pendiente": "10¹⁵ molecules/cm²/decade",
     "sen": {
      "por_decada": -0.0487,
      "ic": [
@@ -8335,7 +8335,7 @@
     "swot_vs_grealm_cocibolca"
    ],
    "notas": [
-    "Años con los 12 meses observados; la serie combina varias misiones de altimetría."
+    "Only years with all 12 months observed; the record joins several radar altimetry satellite missions."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -14915,7 +14915,7 @@
    "id": "nivel_mar_san_juan",
    "categoria": "costa",
    "lugar": "san_juan",
-   "titulo_en": "Sea level at the tide gauge",
+   "titulo_en": "Sea level",
    "definicion_en": "Yearly mean sea level measured against the land at the gauge, compared with its 1991–2020 average. It includes any rise or sinking of the land itself.",
    "unidad": "mm",
    "papel": "tendencia",
@@ -15080,7 +15080,7 @@
    "id": "nivel_mar_magueyes",
    "categoria": "costa",
    "lugar": "magueyes",
-   "titulo_en": "Sea level at the tide gauge",
+   "titulo_en": "Sea level",
    "definicion_en": "Yearly mean sea level measured against the land at the gauge, compared with its 1991–2020 average. It includes any rise or sinking of the land itself.",
    "unidad": "mm",
    "papel": "tendencia",
@@ -15263,7 +15263,7 @@
    "id": "nivel_mar_charlotte_amalie",
    "categoria": "costa",
    "lugar": "charlotte_amalie",
-   "titulo_en": "Sea level at the tide gauge",
+   "titulo_en": "Sea level",
    "definicion_en": "Yearly mean sea level measured against the land at the gauge, compared with its 1991–2020 average. It includes any rise or sinking of the land itself.",
    "unidad": "mm",
    "papel": "tendencia",
@@ -15388,7 +15388,7 @@
    "id": "nivel_mar_balboa",
    "categoria": "costa",
    "lugar": "balboa",
-   "titulo_en": "Sea level at the tide gauge",
+   "titulo_en": "Sea level",
    "definicion_en": "Yearly mean sea level measured against the land at the gauge, compared with its 1991–2020 average. It includes any rise or sinking of the land itself.",
    "unidad": "mm",
    "papel": "tendencia",
@@ -15667,7 +15667,7 @@
    "id": "nivel_mar_key_west",
    "categoria": "costa",
    "lugar": "key_west",
-   "titulo_en": "Sea level at the tide gauge",
+   "titulo_en": "Sea level",
    "definicion_en": "Yearly mean sea level measured against the land at the gauge, compared with its 1991–2020 average. It includes any rise or sinking of the land itself.",
    "unidad": "mm",
    "papel": "tendencia",
@@ -18360,7 +18360,7 @@
    "id": "grace_masa_groenlandia",
    "categoria": "polos",
    "lugar": "groenlandia",
-   "titulo_en": "Greenland ice-sheet mass change per year",
+   "titulo_en": "Ice-sheet mass change per year",
    "definicion_en": "Change in the mass of the ice sheet from one year to the next, weighed by the GRACE and GRACE-FO gravity satellites. Below zero means ice lost.",
    "unidad": "Gt",
    "papel": "tendencia",
@@ -18414,7 +18414,7 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Average -274 Gt per year over 2004–2025 (1 Gt = 1 billion tonnes; 360 Gt raise the sea by about 1 mm).",
+    "Average −274 Gt per year over 2004–2025 (1 Gt = 1 billion tonnes; 360 Gt raise the sea by about 1 mm).",
     "The trend asks whether the yearly loss is growing, not whether ice is being lost. Years 2017–2018 are missing: the gap between the two missions.",
     "Published check: Greenland and Antarctica lost ice in 1992–2020, with Greenland losing more (IMBIE, Otosaka et al. 2023, doi:10.5194/essd-15-1597-2023)."
    ],
@@ -18454,7 +18454,7 @@
    "id": "grace_masa_antartico",
    "categoria": "polos",
    "lugar": "antartico",
-   "titulo_en": "Antarctica ice-sheet mass change per year",
+   "titulo_en": "Ice-sheet mass change per year",
    "definicion_en": "Change in the mass of the ice sheet from one year to the next, weighed by the GRACE and GRACE-FO gravity satellites. Below zero means ice lost.",
    "unidad": "Gt",
    "papel": "tendencia",
@@ -18508,7 +18508,7 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Average -110 Gt per year over 2004–2025 (1 Gt = 1 billion tonnes; 360 Gt raise the sea by about 1 mm).",
+    "Average −110 Gt per year over 2004–2025 (1 Gt = 1 billion tonnes; 360 Gt raise the sea by about 1 mm).",
     "The trend asks whether the yearly loss is growing, not whether ice is being lost. Years 2017–2018 are missing: the gap between the two missions.",
     "Published check: Greenland and Antarctica lost ice in 1992–2020, with Greenland losing more (IMBIE, Otosaka et al. 2023, doi:10.5194/essd-15-1597-2023)."
    ],
@@ -20989,7 +20989,7 @@
    "id": "cuenca_colorado_caudal",
    "categoria": "agua",
    "lugar": "colorado_lees_ferry",
-   "titulo_en": "Colorado River annual discharge (since 1922)",
+   "titulo_en": "Yearly river flow (since 1922)",
    "definicion_en": "Total yearly river volume passing Lees Ferry, Arizona, the legal dividing point between the Upper and Lower Colorado River basins.",
    "unidad": "km³",
    "papel": "tendencia",
@@ -21253,7 +21253,7 @@
    "id": "cuenca_colorado_caudal_pos1963",
    "categoria": "agua",
    "lugar": "colorado_lees_ferry",
-   "titulo_en": "Colorado River regulated flow (since 1963)",
+   "titulo_en": "Yearly river flow under dam control (since 1963)",
    "definicion_en": "Yearly river volume at Lees Ferry since Glen Canyon Dam closed in 1963, where legal delivery rules buffer year-to-year swings.",
    "unidad": "km³",
    "papel": "tendencia",
@@ -21435,7 +21435,7 @@
    "id": "canada_alaska_permafrost_magt_deadhorse",
    "categoria": "polos",
    "lugar": "permafrost_deadhorse",
-   "titulo_en": "Permafrost ground temperature at Deadhorse",
+   "titulo_en": "Deep permafrost temperature",
    "definicion_en": "Mean annual ground temperature at 20 m depth in continuous Arctic permafrost on Alaska's North Slope.",
    "unidad": "°C",
    "papel": "tendencia",
@@ -21562,7 +21562,7 @@
    "id": "canada_alaska_permafrost_magt_west_dock",
    "categoria": "polos",
    "lugar": "permafrost_west_dock",
-   "titulo_en": "Permafrost ground temperature at West Dock",
+   "titulo_en": "Deep permafrost temperature",
    "definicion_en": "Mean annual ground temperature at 20 m depth near the Beaufort Sea coast at Prudhoe Bay, Alaska.",
    "unidad": "°C",
    "papel": "tendencia",
@@ -21685,7 +21685,7 @@
    "id": "canada_alaska_permafrost_magt_franklin_bluffs",
    "categoria": "polos",
    "lugar": "permafrost_franklin_bluffs",
-   "titulo_en": "Permafrost temperature at Franklin Bluffs",
+   "titulo_en": "Deep permafrost temperature",
    "definicion_en": "Mean annual ground temperature at 20 m depth in inland North Slope tundra south of Prudhoe Bay, Alaska.",
    "unidad": "°C",
    "papel": "tendencia",
@@ -21806,7 +21806,7 @@
    "id": "canada_alaska_permafrost_magt_chandalar_shelf",
    "categoria": "polos",
    "lugar": "permafrost_chandalar_shelf",
-   "titulo_en": "Permafrost temperature at Chandalar Shelf",
+   "titulo_en": "Deep permafrost temperature",
    "definicion_en": "Mean annual ground temperature at 20 m depth in the Brooks Range foothills of northern Alaska.",
    "unidad": "°C",
    "papel": "tendencia",
@@ -21921,7 +21921,7 @@
    "id": "canada_alaska_permafrost_magt_alert_2",
    "categoria": "polos",
    "lugar": "permafrost_alert",
-   "titulo_en": "Permafrost ground temperature at Alert 2",
+   "titulo_en": "Deep permafrost temperature",
    "definicion_en": "Mean annual ground temperature at 24.4 m depth at Alert on northern Ellesmere Island, Nunavut, Canada.",
    "unidad": "°C",
    "papel": "tendencia",
@@ -22048,7 +22048,7 @@
    "id": "norteamerica_hielo_lagos_bayfield",
    "categoria": "polos",
    "lugar": "lago_superior_bayfield",
-   "titulo_en": "Lake Superior ice cover at Bayfield",
+   "titulo_en": "Winter ice duration",
    "definicion_en": "Days of winter ice cover each season at Bayfield, Wisconsin, on the southern shore of Lake Superior.",
    "unidad": "days",
    "papel": "tendencia",
@@ -22347,7 +22347,7 @@
    "id": "norteamerica_hielo_lagos_monona",
    "categoria": "polos",
    "lugar": "lago_monona",
-   "titulo_en": "Lake Monona winter ice duration",
+   "titulo_en": "Winter ice duration",
    "definicion_en": "Days between autumn freeze-up and spring ice breakup on Lake Monona in Madison, Wisconsin.",
    "unidad": "days",
    "papel": "tendencia",
@@ -22698,7 +22698,7 @@
    "id": "norteamerica_hielo_lagos_mendota",
    "categoria": "polos",
    "lugar": "lago_mendota",
-   "titulo_en": "Lake Mendota winter ice duration",
+   "titulo_en": "Winter ice duration",
    "definicion_en": "Days of winter ice cover each season on Lake Mendota, Wisconsin, tracked since the mid-19th century.",
    "unidad": "days",
    "papel": "tendencia",
@@ -23031,7 +23031,7 @@
    "id": "norteamerica_hielo_lagos_simcoe",
    "categoria": "polos",
    "lugar": "lago_simcoe",
-   "titulo_en": "Lake Simcoe ice duration (to 1995)",
+   "titulo_en": "Winter ice duration (record ends in 1995)",
    "definicion_en": "Days of winter ice cover on Lake Simcoe, Ontario, showing a Canadian record that stops in the mid-1990s.",
    "unidad": "days",
    "papel": "tendencia",
@@ -23195,7 +23195,7 @@
    "id": "norteamerica_hielo_lagos_utopia",
    "categoria": "polos",
    "lugar": "lago_utopia",
-   "titulo_en": "Lake Utopia ice duration (to 1994)",
+   "titulo_en": "Winter ice duration (record ends in 1994)",
    "definicion_en": "Days of winter ice cover on Lake Utopia, New Brunswick, before Canadian ground reporting ended in 1994.",
    "unidad": "days",
    "papel": "tendencia",
@@ -23301,7 +23301,7 @@
    "id": "chile_central_megasequia",
    "categoria": "lluvia",
    "lugar": "chile_central",
-   "titulo_en": "Central Chile yearly rainfall (CHIRPS)",
+   "titulo_en": "Yearly rainfall (CHIRPS)",
    "definicion_en": "Area-averaged annual rainfall across Central Chile (30°S–38°S), tracking the multi-year megadrought that began in 2010.",
    "unidad": "mm",
    "papel": "tendencia",
@@ -23445,8 +23445,8 @@
    "id": "chile_central_megasequia_cru",
    "categoria": "lluvia",
    "lugar": "chile_central",
-   "titulo_en": "Central Chile yearly rainfall (CRU)",
-   "definicion_en": "Long-term gridded rain-gauge annual precipitation across Central Chile (30°S–38°S) since 1951 from CRU TS 4.10.",
+   "titulo_en": "Yearly rainfall (CRU, rain gauges)",
+   "definicion_en": "Yearly rainfall across Central Chile (30°S–38°S) since 1951, from a map built only from rain gauges (CRU TS 4.10).",
    "unidad": "mm",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -23650,7 +23650,7 @@
    "id": "nordeste_brasil_semiarido_lluvia",
    "categoria": "lluvia",
    "lugar": "nordeste_brasil",
-   "titulo_en": "Northeast Brazil yearly rainfall (CHIRPS)",
+   "titulo_en": "Yearly rainfall (CHIRPS)",
    "definicion_en": "Yearly total rainfall over semiarid Northeast Brazil (Caatinga, 16°S–3°S, 45°W–35°W), shaped by strong El Niño and tropical Atlantic swings.",
    "unidad": "mm",
    "papel": "tendencia",
@@ -23794,8 +23794,8 @@
    "id": "nordeste_brasil_semiarido_lluvia_fmam",
    "categoria": "lluvia",
    "lugar": "nordeste_brasil",
-   "titulo_en": "Northeast Brazil rainy-season rain (CHIRPS)",
-   "definicion_en": "February–May (FMAM) main rainy-season total across semiarid Northeast Brazil from CHIRPS v2.0.",
+   "titulo_en": "Rainy-season rain, February–May (CHIRPS)",
+   "definicion_en": "Total rain from February to May, the main rainy season, across semiarid Northeast Brazil (CHIRPS v2.0).",
    "unidad": "mm",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -23937,8 +23937,8 @@
    "id": "nordeste_brasil_semiarido_lluvia_cru",
    "categoria": "lluvia",
    "lugar": "nordeste_brasil",
-   "titulo_en": "Northeast Brazil yearly rainfall (CRU)",
-   "definicion_en": "Gridded rain-gauge annual precipitation over semiarid Northeast Brazil since 1951 from CRU TS 4.10.",
+   "titulo_en": "Yearly rainfall (CRU, rain gauges)",
+   "definicion_en": "Yearly rainfall over semiarid Northeast Brazil since 1951, from a map built only from rain gauges (CRU TS 4.10).",
    "unidad": "mm",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -24142,8 +24142,8 @@
    "id": "huracanes_rapida_intensificacion_na_pasos",
    "categoria": "ciclones",
    "lugar": "atlantico_norte_ciclones",
-   "titulo_en": "North Atlantic rapid intensification steps",
-   "definicion_en": "Yearly count of 6-hour synoptic track intervals in the North Atlantic where maximum sustained wind rose by at least 30 knots in 24 hours.",
+   "titulo_en": "Rapid intensification steps",
+   "definicion_en": "Number of 6-hour track points each year, over all North Atlantic storms, where a storm's maximum sustained wind rose by at least 30 knots (56 km/h) within 24 hours.",
    "unidad": "steps",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -24287,8 +24287,8 @@
    "id": "huracanes_rapida_intensificacion_na_pct",
    "categoria": "ciclones",
    "lugar": "atlantico_norte_ciclones",
-   "titulo_en": "North Atlantic storms with rapid intensification",
-   "definicion_en": "Percentage of tracked North Atlantic storms each year that underwent at least one 24-hour wind jump of 30 knots or more in raw IBTrACS.",
+   "titulo_en": "Storms with rapid intensification",
+   "definicion_en": "Share of North Atlantic storms each year whose maximum sustained wind rose by at least 30 knots (56 km/h) within 24 hours at least once, counted in the raw IBTrACS record.",
    "unidad": "%",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -24393,7 +24393,7 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Modern satellite and aircraft monitoring detect more short-lived weak tropical storms, which increases the total storm denominator in raw IBTrACS.",
+    "Satellites and aircraft now detect more short-lived weak storms; they add to the total number of storms and can pull this percentage down.",
     "Published check: Homogenized satellite records show North Atlantic peak 24-hour intensification rates rose by 28.7% between 1971–1990 and 2001–2020 (Garner 2023, doi:10.1038/s41598-023-42669-y; Bhatia et al. 2019, doi:10.1038/s41467-019-08471-z), whereas raw best-track storm proportions are sensitive to improved detection of short-lived storms (Klotzbach et al. 2022, doi:10.1029/2021GL095774)."
    ],
    "tendencia": {
@@ -24432,8 +24432,8 @@
    "id": "huracanes_rapida_intensificacion_ep_pasos",
    "categoria": "ciclones",
    "lugar": "pacifico_oriental_ciclones",
-   "titulo_en": "Eastern Pacific rapid intensification steps",
-   "definicion_en": "Yearly count of 6-hour synoptic track intervals in the Eastern Pacific where maximum sustained wind rose by at least 30 knots in 24 hours.",
+   "titulo_en": "Rapid intensification steps",
+   "definicion_en": "Number of 6-hour track points each year, over all Eastern Pacific storms, where a storm's maximum sustained wind rose by at least 30 knots (56 km/h) within 24 hours.",
    "unidad": "steps",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -24577,8 +24577,8 @@
    "id": "huracanes_rapida_intensificacion_ep_pct",
    "categoria": "ciclones",
    "lugar": "pacifico_oriental_ciclones",
-   "titulo_en": "Eastern Pacific storms with rapid intensification",
-   "definicion_en": "Percentage of tracked Eastern Pacific storms each year that underwent at least one 24-hour wind jump of 30 knots or more in raw IBTrACS.",
+   "titulo_en": "Storms with rapid intensification",
+   "definicion_en": "Share of Eastern Pacific storms each year whose maximum sustained wind rose by at least 30 knots (56 km/h) within 24 hours at least once, counted in the raw IBTrACS record.",
    "unidad": "%",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -24683,7 +24683,7 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Modern satellite and aircraft monitoring detect more short-lived weak tropical storms, which increases the total storm denominator in raw IBTrACS.",
+    "Satellites and aircraft now detect more short-lived weak storms; they add to the total number of storms and can pull this percentage down.",
     "Published check: Homogenized satellite records show North Atlantic peak 24-hour intensification rates rose by 28.7% between 1971–1990 and 2001–2020 (Garner 2023, doi:10.1038/s41598-023-42669-y; Bhatia et al. 2019, doi:10.1038/s41467-019-08471-z), whereas raw best-track storm proportions are sensitive to improved detection of short-lived storms (Klotzbach et al. 2022, doi:10.1029/2021GL095774)."
    ],
    "tendencia": {
@@ -24722,7 +24722,7 @@
    "id": "oeste_eeuu_nieve_swe_abril_blewett_pass_wa",
    "categoria": "polos",
    "lugar": "snotel_blewett_pass",
-   "titulo_en": "April 1 snowpack at Blewett Pass",
+   "titulo_en": "April 1 snowpack",
    "definicion_en": "Snow water equivalent (water depth if the snowpack melted) measured on April 1 at Blewett Pass (Washington Cascades, 1292 m elevation).",
    "unidad": "mm",
    "papel": "tendencia",
@@ -24866,7 +24866,7 @@
    "id": "oeste_eeuu_nieve_swe_abril_arbuckle_mtn_or",
    "categoria": "polos",
    "lugar": "snotel_arbuckle_mtn",
-   "titulo_en": "April 1 snowpack at Arbuckle Mountain",
+   "titulo_en": "April 1 snowpack",
    "definicion_en": "Snow water equivalent (water depth if the snowpack melted) measured on April 1 at Arbuckle Mountain (Oregon Blue Mountains, 1759 m elevation).",
    "unidad": "mm",
    "papel": "tendencia",
@@ -25012,7 +25012,7 @@
    "id": "oeste_eeuu_nieve_swe_abril_bateman_nm",
    "categoria": "polos",
    "lugar": "snotel_bateman",
-   "titulo_en": "April 1 snowpack at Bateman",
+   "titulo_en": "April 1 snowpack",
    "definicion_en": "Snow water equivalent (water depth if the snowpack melted) measured on April 1 at Bateman (New Mexico Southern Rockies, 2835 m elevation).",
    "unidad": "mm",
    "papel": "tendencia",
@@ -25158,7 +25158,7 @@
    "id": "oeste_eeuu_nieve_swe_abril_niwot_co",
    "categoria": "polos",
    "lugar": "snotel_niwot",
-   "titulo_en": "April 1 snowpack at Niwot Ridge",
+   "titulo_en": "April 1 snowpack",
    "definicion_en": "Snow water equivalent (water depth if the snowpack melted) measured on April 1 at Niwot Ridge (Colorado Front Range, 3021 m elevation).",
    "unidad": "mm",
    "papel": "tendencia",
@@ -25304,8 +25304,8 @@
    "id": "altiplano_lagos_titicaca",
    "categoria": "agua",
    "lugar": "lago_titicaca",
-   "titulo_en": "Lake Titicaca water level",
-   "definicion_en": "Annual satellite radar altimetry water surface elevation (EGM2008) of Lake Titicaca in the Andean Altiplano.",
+   "titulo_en": "Lake water level",
+   "definicion_en": "Yearly average height of the surface of Lake Titicaca, in the Andean Altiplano, above sea level (EGM2008), measured by radar satellites.",
    "unidad": "m",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -25380,8 +25380,8 @@
    "id": "altiplano_lagos_colhue_huapi",
    "categoria": "agua",
    "lugar": "lago_colhue_huapi",
-   "titulo_en": "Lake Colhué Huapi water level",
-   "definicion_en": "Annual satellite radar altimetry surface elevation (EGM2008) of shallow Lake Colhué Huapi in central Patagonia, Argentina.",
+   "titulo_en": "Lake water level",
+   "definicion_en": "Yearly average height of the surface of shallow Lake Colhué Huapi, in central Patagonia, above sea level (EGM2008), measured by radar satellites.",
    "unidad": "m",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -25488,8 +25488,8 @@
    "id": "altiplano_lagos_argentino",
    "categoria": "agua",
    "lugar": "lago_argentino",
-   "titulo_en": "Lago Argentino water level",
-   "definicion_en": "Annual satellite radar altimetry surface elevation (EGM2008) of glacier-fed Lago Argentino in southern Patagonia.",
+   "titulo_en": "Lake water level",
+   "definicion_en": "Yearly average height of the surface of glacier-fed Lago Argentino, in southern Patagonia, above sea level (EGM2008), measured by radar satellites.",
    "unidad": "m",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -25610,8 +25610,8 @@
    "id": "altiplano_lagos_junin",
    "categoria": "agua",
    "lugar": "lago_junin",
-   "titulo_en": "Lake Junín water level",
-   "definicion_en": "Annual satellite radar altimetry surface elevation (EGM2008) of high-Andean Lake Junín (Chinchaycocha) in central Peru.",
+   "titulo_en": "Lake water level",
+   "definicion_en": "Yearly average height of the surface of high-Andean Lake Junín (Chinchaycocha), in central Peru, above sea level (EGM2008), measured by radar satellites.",
    "unidad": "m",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -25700,7 +25700,7 @@
    "id": "glaciares_europa_central",
    "categoria": "polos",
    "lugar": "glaciares_europa_central",
-   "titulo_en": "Central European glacier mass balance",
+   "titulo_en": "Glacier mass balance",
    "definicion_en": "Ice gained or lost each year, expressed as an equivalent depth of water. Negative values mean ice loss.",
    "unidad": "m w.e.",
    "papel": "tendencia",
@@ -25804,7 +25804,7 @@
    "id": "mediterraneo_sst",
    "categoria": "costa",
    "lugar": "mediterraneo",
-   "titulo_en": "Mediterranean sea surface temperature",
+   "titulo_en": "Sea surface temperature",
    "definicion_en": "Yearly average temperature of the sea surface across the whole Mediterranean, from satellites, ships and buoys.",
    "unidad": "°C",
    "papel": "tendencia",
@@ -25948,7 +25948,7 @@
    "id": "mediterraneo_olas_calor",
    "categoria": "costa",
    "lugar": "mediterraneo",
-   "titulo_en": "Days in a Mediterranean marine heatwave",
+   "titulo_en": "Days in a marine heatwave",
    "definicion_en": "Days of the year when the basin-average sea surface was in a marine heatwave: at least 5 days in a row warmer than 9 in 10 days of 1991–2020 for that time of year.",
    "unidad": "days",
    "papel": "tendencia",
@@ -26094,7 +26094,7 @@
    "id": "lluvias_largas_africa_oriental",
    "categoria": "lluvia",
    "lugar": "africa_oriental",
-   "titulo_en": "East African long rains (March–May)",
+   "titulo_en": "Long rains (March–May)",
    "definicion_en": "Total rain from March to May, averaged over the land of eastern Kenya and southern Somalia.",
    "unidad": "mm",
    "papel": "tendencia",
@@ -26240,7 +26240,7 @@
    "id": "lluvias_cortas_africa_oriental",
    "categoria": "lluvia",
    "lugar": "africa_oriental",
-   "titulo_en": "East African short rains (October–December)",
+   "titulo_en": "Short rains (October–December)",
    "definicion_en": "Total rain from October to December, averaged over the land of eastern Kenya and southern Somalia.",
    "unidad": "mm",
    "papel": "tendencia",
@@ -26386,7 +26386,7 @@
    "id": "lluvia_jjas_sahel_chirps",
    "categoria": "lluvia",
    "lugar": "sahel",
-   "titulo_en": "Sahel rainy-season rain (CHIRPS)",
+   "titulo_en": "Rainy-season rain, June–September (CHIRPS)",
    "definicion_en": "Total rain from June to September, averaged over the land of the western and central Sahel.",
    "unidad": "mm",
    "papel": "tendencia",
@@ -26532,7 +26532,7 @@
    "id": "lluvia_jjas_sahel_cru",
    "categoria": "lluvia",
    "lugar": "sahel",
-   "titulo_en": "Sahel rainy-season rain (CRU, rain gauges)",
+   "titulo_en": "Rainy-season rain, June–September (CRU, rain gauges)",
    "definicion_en": "Total rain from June to September, averaged over the western and central Sahel, from a map built only from rain gauges.",
    "unidad": "mm",
    "papel": "tendencia",
@@ -26776,8 +26776,8 @@
    "id": "nivel_caspio_grealm",
    "categoria": "agua",
    "lugar": "caspio",
-   "titulo_en": "Caspian Sea water level (April–October)",
-   "definicion_en": "Average water level measured along a satellite track, relative to the EGM2008 geoid.",
+   "titulo_en": "Water level (April–October)",
+   "definicion_en": "Yearly average height of the water surface above sea level (EGM2008), measured by radar satellites along their tracks over the lake.",
    "unidad": "m",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -26858,7 +26858,7 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Published check: The Caspian Sea level declined after the mid-1990s. (doi:10.1002/2017GL073958).",
+    "Published check: The Caspian Sea level declined after the mid-1990s (doi:10.1002/2017GL073958).",
     "Caspian means require all seven months from April to October, excluding winter ice.",
     "Water level is not lake area or volume. Rainfall, evaporation and water management can affect the level.",
     "Shallow water and vegetation can affect radar measurements, especially at Lake Chad."
@@ -26899,8 +26899,8 @@
    "id": "nivel_victoria_grealm",
    "categoria": "agua",
    "lugar": "victoria",
-   "titulo_en": "Lake Victoria water level",
-   "definicion_en": "Average water level measured along a satellite track, relative to the EGM2008 geoid.",
+   "titulo_en": "Lake water level",
+   "definicion_en": "Yearly average height of the water surface above sea level (EGM2008), measured by radar satellites along their tracks over the lake.",
    "unidad": "m",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -26981,7 +26981,7 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Published check: Lake Victoria rose sharply in 2019–2020. (doi:10.3390/s21134304).",
+    "Published check: Lake Victoria rose sharply in 2019–2020 (doi:10.3390/s21134304).",
     "Annual means require all 12 monthly means. Missing years are omitted, not interpolated.",
     "Water level is not lake area or volume. Rainfall, evaporation and water management can affect the level.",
     "Shallow water and vegetation can affect radar measurements, especially at Lake Chad."
@@ -27022,8 +27022,8 @@
    "id": "nivel_chad_grealm",
    "categoria": "agua",
    "lugar": "chad",
-   "titulo_en": "Lake Chad water level",
-   "definicion_en": "Average water level measured along a satellite track, relative to the EGM2008 geoid.",
+   "titulo_en": "Lake water level",
+   "definicion_en": "Yearly average height of the water surface above sea level (EGM2008), measured by radar satellites along their tracks over the lake.",
    "unidad": "m",
    "papel": "tendencia",
    "frecuencia": "anual",
@@ -27088,7 +27088,7 @@
    "recursos": [],
    "contrastes": [],
    "notas": [
-    "Published check: Modern Lake Chad variability differs from its earlier historical collapse. (doi:10.1038/s41598-020-62417-w).",
+    "Published check: Modern Lake Chad variability differs from its earlier historical collapse (doi:10.1038/s41598-020-62417-w).",
     "Annual means require all 12 monthly means. Missing years are omitted, not interpolated.",
     "Water level is not lake area or volume. Rainfall, evaporation and water management can affect the level.",
     "Shallow water and vegetation can affect radar measurements, especially at Lake Chad."
@@ -27131,7 +27131,7 @@
    "id": "cru_caja_sicc",
    "investigacion": "lluvia_caja_sicc",
    "tipo": "fuente",
-   "frase_en": "CRU TS 4.10 vs IMERG over SICC box (10.7–12.6°N, 86.5–83.6°W), 2001–2024: r = 0.71, mean difference +209 mm/yr; Sen slopes +7 vs -29 mm/decade; both 'insufficient evidence'; June–November correlation with Niño 3.4: -0.46 (CRU TS 4.10) vs -0.59 (IMERG).",
+   "frase_en": "CRU TS 4.10 vs IMERG over the study box (10.7–12.6°N, 86.5–83.6°W), 2001–2024: r = 0.71, mean difference +209 mm/yr; Sen slopes +7 vs -29 mm/decade; both 'insufficient evidence'; June–November correlation with Niño 3.4: -0.46 (CRU TS 4.10) vs -0.59 (IMERG).",
    "periodo": [
     2001,
     2024
@@ -27389,7 +27389,7 @@
    "id": "gpcc_caja_sicc",
    "investigacion": "lluvia_caja_sicc",
    "tipo": "fuente",
-   "frase_en": "GPCC (PSL copy) vs IMERG over SICC box (10.7–12.6°N, 86.5–83.6°W), 2001–2024: r = 0.81, mean difference +127 mm/yr; Sen slopes -16 vs -29 mm/decade; both 'insufficient evidence'; June–November correlation with Niño 3.4: -0.57 (GPCC (PSL copy)) vs -0.59 (IMERG).",
+   "frase_en": "GPCC (PSL copy) vs IMERG over the study box (10.7–12.6°N, 86.5–83.6°W), 2001–2024: r = 0.81, mean difference +127 mm/yr; Sen slopes -16 vs -29 mm/decade; both 'insufficient evidence'; June–November correlation with Niño 3.4: -0.57 (GPCC (PSL copy)) vs -0.59 (IMERG).",
    "periodo": [
     2001,
     2024
@@ -28073,7 +28073,7 @@
    "id": "opendap_imerg_caja_sicc",
    "investigacion": "lluvia_caja_sicc",
    "tipo": "fuente",
-   "frase_en": "GES DISC OPeNDAP (GPM_3IMERGM 07) area-averaged IMERG vs the app's IMERG series over SICC box (10.7–12.6 N, 86.5–83.6 W), 2001–2024: r = 1.000, mean difference -0 mm/yr (cos(lat) cell-center box mean vs EPSG:6933 polygon-overlap weights); Sen slopes -29 vs -29 mm/decade, both 'insufficient evidence'.",
+   "frase_en": "GES DISC OPeNDAP (GPM_3IMERGM 07) area-averaged IMERG vs the app's IMERG series over the study box (10.7–12.6 N, 86.5–83.6 W), 2001–2024: r = 1.000, mean difference -0 mm/yr (cos(lat) cell-center box mean vs EPSG:6933 polygon-overlap weights); Sen slopes -29 vs -29 mm/decade, both 'insufficient evidence'.",
    "periodo": [
     2001,
     2024
@@ -28333,7 +28333,7 @@
    "tipo": "metodo",
    "frase_en": "Fragile warming signal in AIRS3STM 7.0 surface air temperature over Nicaragua (2003–2024, GES DISC OPeNDAP): annual Theil–Sen +0.13 °C/decade ('trend detected', MK p = 0.0095), whereas monthly OLS is not significant (+0.14 °C/decade, p = 0.073) and the monthly Theil–Sen 95% CI spans -0.01 to +0.25 °C/decade. Matches GISTEMP in sign and interannual variability (r = 0.92) at roughly one-third its rate (+0.13 vs +0.38 °C/decade; GISTEMP magnitude is not supported); NASA POWER MERRA-2 gives +0.22 °C/decade ('insufficient evidence', r = 0.82). Caveat: long-term AIRS instrument stability, orbit drift, and cloudy retrieval sampling.",
    "externa": {
-    "nombre_en": "NASA GPM IMERG monthly, area average from GES DISC OPeNDAP",
+    "nombre_en": "Least squares on raw monthly data (F-test)",
     "por_decada": 0.1365,
     "p_valor": 0.0726,
     "significativa": false
@@ -28346,7 +28346,7 @@
    "tipo": "metodo",
    "frase_en": "OMI tropospheric NO2 over Managua (urban box) (2005–2024, mean 0.74 x 10^15 molec/cm^2): monthly OLS -0.049 (significant, p = 0.01); annual Theil–Sen -0.043 x 10^15 molec/cm^2 per decade, verdict 'trend detected'. Managua averages 0.74 vs 0.49 x 10^15 molec/cm^2 in Chontales rural box.",
    "externa": {
-    "nombre_en": "NASA GPM IMERG monthly, area average from GES DISC OPeNDAP",
+    "nombre_en": "Least squares on raw monthly data (F-test)",
     "por_decada": -0.049,
     "p_valor": 0.0106,
     "significativa": true
@@ -28359,7 +28359,7 @@
    "tipo": "metodo",
    "frase_en": "OMI tropospheric NO2 over Chontales (rural box) (2005–2024, mean 0.49 x 10^15 molec/cm^2): monthly OLS -0.050 (significant, p = 0.01); annual Theil–Sen -0.049 x 10^15 molec/cm^2 per decade, verdict 'methods disagree'. Managua averages 0.74 vs 0.49 x 10^15 molec/cm^2 in Chontales rural box.",
    "externa": {
-    "nombre_en": "NASA GPM IMERG monthly, area average from GES DISC OPeNDAP",
+    "nombre_en": "Least squares on raw monthly data (F-test)",
     "por_decada": -0.0495,
     "p_valor": 0.0094,
     "significativa": true
@@ -28370,7 +28370,7 @@
    "id": "giovanni_imerg_caja_sicc",
    "investigacion": "lluvia_caja_sicc",
    "tipo": "fuente",
-   "frase_en": "NASA Giovanni's own area average of IMERG monthly over the SICC box reproduces this app's series: r = 1.000, mean difference -0.0 mm/yr over 2001–2024.",
+   "frase_en": "NASA Giovanni's own area average of IMERG monthly over the study box reproduces this app's series: r = 1.000, mean difference -0.0 mm/yr over 2001–2024.",
    "periodo": [
     2001,
     2024
@@ -28501,13 +28501,13 @@
    "id": "giovanni_gldas_sm0_10_caja_sicc",
    "investigacion": "humedad_gldas_0_10_caja_sicc",
    "tipo": "fuente",
-   "frase_en": "NASA Giovanni's area average of GLDAS-2.1 0–10 cm soil moisture over the SICC box vs this app's area-weighted GLDAS series: r = 1.000, mean difference +0.001 m³/m³ (Giovanni averages every cell in the box; this app excludes model water cells).",
+   "frase_en": "NASA Giovanni's area average of GLDAS-2.1 0–10 cm soil moisture over the study box vs this app's area-weighted GLDAS series: r = 1.000, mean difference +0.001 m³/m³ (Giovanni averages every cell in the box; this app excludes model water cells).",
    "periodo": [
     2001,
     2024
    ],
    "nuestra": {
-    "nombre_en": "GLDAS-2.1 por OPeNDAP, media por área sin celdas de agua",
+    "nombre_en": "NASA GLDAS-2.1 Noah land model (GES DISC), area average without water cells",
     "por_decada": -0.0038,
     "veredicto": "metodos_discrepan",
     "anios": [
@@ -28564,7 +28564,7 @@
     ]
    },
    "externa": {
-    "nombre_en": "NASA GLDAS-2.1 Noah land model (GES DISC), regional mean",
+    "nombre_en": "NASA Giovanni area-averaged time series (GLDAS-2.1 monthly)",
     "por_decada": -0.0039,
     "veredicto": "metodos_discrepan",
     "url": "https://harmony.earthdata.nasa.gov/jobs/caa73e3a-64b4-4a4c-a9c2-57dca2268b87",
@@ -28632,7 +28632,7 @@
    "id": "knmi_chirps_caja_sicc",
    "investigacion": "lluvia_caja_sicc",
    "tipo": "fuente",
-   "frase_en": "CHIRPS v2.0 (UCSB Climate Hazards Center) via KNMI Climate Explorer over the SICC box, 2001–2024: r = 0.78 with IMERG, mean difference +86 mm/yr; Sen slopes +80 vs -29 mm/decade.",
+   "frase_en": "CHIRPS v2.0 (UCSB Climate Hazards Center) via KNMI Climate Explorer over the study box, 2001–2024: r = 0.78 with IMERG, mean difference +86 mm/yr; Sen slopes +80 vs -29 mm/decade.",
    "periodo": [
     2001,
     2024
@@ -29187,7 +29187,7 @@
    "id": "merra2_humedad_gldas_0_10_NIC",
    "investigacion": "humedad_gldas_0_10_NIC",
    "tipo": "fuente",
-   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over NIC, 2001–2024: r = 0.34 (annual values); Sen slopes -0.0044 m³/m³ vs +0.0480 0–5 cm wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
+   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over Nicaragua, 2001–2024: r = 0.34 (annual values); Sen slopes -0.0044 m³/m³ vs +0.0480 0–5 cm wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
    "periodo": [
     2001,
     2024
@@ -29316,7 +29316,7 @@
    "id": "merra2_humedad_gldas_10_40_NIC",
    "investigacion": "humedad_gldas_10_40_NIC",
    "tipo": "fuente",
-   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over NIC, 2001–2024: r = 0.37 (annual values); Sen slopes -0.0049 m³/m³ vs +0.0410 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
+   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over Nicaragua, 2001–2024: r = 0.37 (annual values); Sen slopes -0.0049 m³/m³ vs +0.0410 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
    "periodo": [
     2001,
     2024
@@ -29445,7 +29445,7 @@
    "id": "merra2_humedad_gldas_0_10_caja_sicc",
    "investigacion": "humedad_gldas_0_10_caja_sicc",
    "tipo": "fuente",
-   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over caja_sicc, 2001–2024: r = 0.40 (annual values); Sen slopes -0.0038 m³/m³ vs +0.0453 0–5 cm wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
+   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over Study box (SW Nicaragua), 2001–2024: r = 0.40 (annual values); Sen slopes -0.0038 m³/m³ vs +0.0453 0–5 cm wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
    "periodo": [
     2001,
     2024
@@ -29574,7 +29574,7 @@
    "id": "merra2_humedad_gldas_10_40_caja_sicc",
    "investigacion": "humedad_gldas_10_40_caja_sicc",
    "tipo": "fuente",
-   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over caja_sicc, 2001–2024: r = 0.42 (annual values); Sen slopes -0.0041 m³/m³ vs +0.0313 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
+   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over Study box (SW Nicaragua), 2001–2024: r = 0.42 (annual values); Sen slopes -0.0041 m³/m³ vs +0.0313 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
    "periodo": [
     2001,
     2024
@@ -29703,7 +29703,7 @@
    "id": "merra2_humedad_gldas_0_10_caribe",
    "investigacion": "humedad_gldas_0_10_caribe",
    "tipo": "fuente",
-   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over caribe, 2001–2024: r = 0.25 (annual values); Sen slopes -0.0054 m³/m³ vs +0.0356 0–5 cm wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
+   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over Caribbean coast, 2001–2024: r = 0.25 (annual values); Sen slopes -0.0054 m³/m³ vs +0.0356 0–5 cm wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
    "periodo": [
     2001,
     2024
@@ -29832,7 +29832,7 @@
    "id": "merra2_humedad_gldas_10_40_caribe",
    "investigacion": "humedad_gldas_10_40_caribe",
    "tipo": "fuente",
-   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over caribe, 2001–2024: r = 0.24 (annual values); Sen slopes -0.0059 m³/m³ vs +0.0361 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
+   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over Caribbean coast, 2001–2024: r = 0.24 (annual values); Sen slopes -0.0059 m³/m³ vs +0.0361 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
    "periodo": [
     2001,
     2024
@@ -29961,7 +29961,7 @@
    "id": "merra2_humedad_gldas_0_10_central",
    "investigacion": "humedad_gldas_0_10_central",
    "tipo": "fuente",
-   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over central, 2001–2024: r = 0.34 (annual values); Sen slopes -0.0056 m³/m³ vs +0.0627 0–5 cm wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
+   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over Central highlands, 2001–2024: r = 0.34 (annual values); Sen slopes -0.0056 m³/m³ vs +0.0627 0–5 cm wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
    "periodo": [
     2001,
     2024
@@ -30090,7 +30090,7 @@
    "id": "merra2_humedad_gldas_10_40_central",
    "investigacion": "humedad_gldas_10_40_central",
    "tipo": "fuente",
-   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over central, 2001–2024: r = 0.38 (annual values); Sen slopes -0.0065 m³/m³ vs +0.0506 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
+   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over Central highlands, 2001–2024: r = 0.38 (annual values); Sen slopes -0.0065 m³/m³ vs +0.0506 root-zone wetness index per decade; verdicts 'methods disagree' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
    "periodo": [
     2001,
     2024
@@ -30219,7 +30219,7 @@
    "id": "merra2_humedad_gldas_0_10_pacifico",
    "investigacion": "humedad_gldas_0_10_pacifico",
    "tipo": "fuente",
-   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over pacifico, 2001–2024: r = 0.64 (annual values); Sen slopes -0.0011 m³/m³ vs +0.0627 0–5 cm wetness index per decade; verdicts 'insufficient evidence' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
+   "frase_en": "GLDAS-2.1 vs MERRA-2 surface soil wetness over Pacific lowlands, 2001–2024: r = 0.64 (annual values); Sen slopes -0.0011 m³/m³ vs +0.0627 0–5 cm wetness index per decade; verdicts 'insufficient evidence' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
    "periodo": [
     2001,
     2024
@@ -30348,7 +30348,7 @@
    "id": "merra2_humedad_gldas_10_40_pacifico",
    "investigacion": "humedad_gldas_10_40_pacifico",
    "tipo": "fuente",
-   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over pacifico, 2001–2024: r = 0.68 (annual values); Sen slopes +0.0000 m³/m³ vs +0.0481 root-zone wetness index per decade; verdicts 'insufficient evidence' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
+   "frase_en": "GLDAS-2.1 vs MERRA-2 root-zone soil wetness over Pacific lowlands, 2001–2024: r = 0.68 (annual values); Sen slopes +0.0000 m³/m³ vs +0.0481 root-zone wetness index per decade; verdicts 'insufficient evidence' vs 'trend detected'. Shown as standardized anomalies because the units differ.",
    "periodo": [
     2001,
     2024

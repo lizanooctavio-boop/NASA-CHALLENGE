@@ -4,7 +4,7 @@ from pathlib import Path
 from . import recursos
 
 LUGARES = {
-    'glaciares_europa_central': ('Central European glaciers', 'RGI region 11', [46.5, 10.0], 5),
+    'glaciares_europa_central': ('Central European glaciers', 'Alps and Pyrenees (RGI region 11)', [46.5, 10.0], 5),
 }
 ESTUDIOS = {
     'glaciares': 'Published check: GlaMBIE documents glacier mass loss in Central Europe during 2000–2023 (doi:10.1038/s41586-024-08545-z).',
@@ -23,7 +23,7 @@ def _glaciares(carpeta):
         return [], []
     inv = recursos._investigacion(
         'glaciares_europa_central', 'polos', 'glaciares_europa_central',
-        'Central European glacier mass balance',
+        'Glacier mass balance',
         'Ice gained or lost each year, expressed as an equivalent depth of water. Negative values mean ice loss.',
         'm w.e.', [int(r['anio']) for r in filas], [float(r['balance_mwe']) for r in filas],
         {'producto': 'GlaMBIE 1.0.0, region 11, calendar years',
@@ -35,13 +35,13 @@ def _glaciares(carpeta):
 
 
 LAGOS = {
-    'caspio': ('Caspian Sea', [42, 51], '10.1002/2017GL073958', 'The Caspian Sea level declined after the mid-1990s.'),
-    'victoria': ('Lake Victoria', [-0.5, 33.5], '10.3390/s21134304', 'Lake Victoria rose sharply in 2019–2020.'),
-    'chad': ('Lake Chad', [13, 14], '10.1038/s41598-020-62417-w', 'Modern Lake Chad variability differs from its earlier historical collapse.'),
+    'caspio': ('Caspian Sea', 'Russia, Kazakhstan, Turkmenistan, Iran and Azerbaijan', [42, 51], '10.1002/2017GL073958', 'The Caspian Sea level declined after the mid-1990s.'),
+    'victoria': ('Lake Victoria', 'Uganda, Kenya and Tanzania', [-0.5, 33.5], '10.3390/s21134304', 'Lake Victoria rose sharply in 2019–2020.'),
+    'chad': ('Lake Chad', 'Chad, Cameroon, Niger and Nigeria', [13, 14], '10.1038/s41598-020-62417-w', 'Modern Lake Chad variability differs from its earlier historical collapse.'),
 }
-for zona, (nombre, centro, doi, texto) in LAGOS.items():
-    LUGARES[zona] = (nombre, 'G-REALM satellite track', centro, 5)
-    ESTUDIOS[zona] = f'Published check: {texto} (doi:{doi}).'
+for zona, (nombre, paises, centro, doi, texto) in LAGOS.items():
+    LUGARES[zona] = (nombre, paises, centro, 5)
+    ESTUDIOS[zona] = f'Published check: {texto.rstrip(".")} (doi:{doi}).'
 recursos.LUGARES.update(LUGARES)
 
 
@@ -99,12 +99,12 @@ def _mediterraneo(carpeta):
     comun = 'Average over all sea cells of the basin, weighted by area; the Black Sea and the Atlantic are left out.'
     return [
         recursos._investigacion(
-            'mediterraneo_sst', 'costa', 'mediterraneo', 'Mediterranean sea surface temperature',
+            'mediterraneo_sst', 'costa', 'mediterraneo', 'Sea surface temperature',
             'Yearly average temperature of the sea surface across the whole Mediterranean, from satellites, ships and '
             'buoys.', '°C', anios, [float(r['sst_c']) for r in filas], OISST,
             notas=[ESTUDIOS['mediterraneo_sst'], comun, aviso]),
         recursos._investigacion(
-            'mediterraneo_olas_calor', 'costa', 'mediterraneo', 'Days in a Mediterranean marine heatwave',
+            'mediterraneo_olas_calor', 'costa', 'mediterraneo', 'Days in a marine heatwave',
             'Days of the year when the basin-average sea surface was in a marine heatwave: at least 5 days in a row '
             'warmer than 9 in 10 days of 1991–2020 for that time of year.', 'days', anios,
             [int(r['dias_ola_calor']) for r in filas], OISST,
@@ -133,10 +133,10 @@ def _lluvia_africa(carpeta):
         entradas.append(ruta_ch)
         filas = _leer(ruta_ch)
         for id_, meses, titulo, definicion, estudio in (
-                ('lluvias_largas_africa_oriental', (3, 4, 5), 'East African long rains (March–May)',
+                ('lluvias_largas_africa_oriental', (3, 4, 5), 'Long rains (March–May)',
                  'Total rain from March to May, averaged over the land of eastern Kenya and southern Somalia.',
                  'lluvias_largas'),
-                ('lluvias_cortas_africa_oriental', (10, 11, 12), 'East African short rains (October–December)',
+                ('lluvias_cortas_africa_oriental', (10, 11, 12), 'Short rains (October–December)',
                  'Total rain from October to December, averaged over the land of eastern Kenya and southern Somalia.',
                  'lluvias_cortas')):
             total = _estacional(filas, 'africa_oriental', meses)
@@ -146,7 +146,7 @@ def _lluvia_africa(carpeta):
                        'seasons that can change in opposite ways.', aviso_chirps]))
         total = _estacional(filas, 'sahel', (6, 7, 8, 9))
         invs.append(recursos._investigacion(
-            'lluvia_jjas_sahel_chirps', 'lluvia', 'sahel', 'Sahel rainy-season rain (CHIRPS)',
+            'lluvia_jjas_sahel_chirps', 'lluvia', 'sahel', 'Rainy-season rain, June–September (CHIRPS)',
             'Total rain from June to September, averaged over the land of the western and central Sahel.', 'mm',
             list(total), list(total.values()), CHIRPS,
             notas=[ESTUDIOS['sahel'], 'The record starts in 1981, close to the driest years of the 1980s, so a '
@@ -162,7 +162,7 @@ def _lluvia_africa(carpeta):
         anios = list(total)
         primero, ultimo = (sum(estaciones[a]) / len(estaciones[a]) for a in (anios[0], anios[-1]))
         invs.append(recursos._investigacion(
-            'lluvia_jjas_sahel_cru', 'lluvia', 'sahel', 'Sahel rainy-season rain (CRU, rain gauges)',
+            'lluvia_jjas_sahel_cru', 'lluvia', 'sahel', 'Rainy-season rain, June–September (CRU, rain gauges)',
             'Total rain from June to September, averaged over the western and central Sahel, from a map built only '
             'from rain gauges.', 'mm', anios, list(total.values()), CRU,
             notas=[ESTUDIOS['sahel'], f'Gauges feeding each grid cell, on average: {primero:.1f} in {anios[0]} and '
@@ -201,7 +201,7 @@ def europa_africa(carpeta):
         entradas.append(ruta)
         with ruta.open(encoding='utf-8') as f:
             filas = list(csv.DictReader(f))
-        for zona, (nombre, _, _, _) in LAGOS.items():
+        for zona, (nombre, _, _, _, _) in LAGOS.items():
             propias = [r for r in filas if r['zona'] == zona]
             if zona == 'caspio':
                 propias = [r for r in propias if 4 <= int(r['mes'][5:7]) <= 10]
@@ -209,8 +209,9 @@ def europa_africa(carpeta):
             if not anual:
                 continue
             investigaciones.append(recursos._investigacion(
-                f'nivel_{zona}_grealm', 'agua', zona, f'{nombre} water level' + (' (April–October)' if zona == 'caspio' else ''),
-                'Average water level measured along a satellite track, relative to the EGM2008 geoid.',
+                f'nivel_{zona}_grealm', 'agua', zona, 'Water level (April–October)' if zona == 'caspio' else 'Lake water level',
+                'Yearly average height of the water surface above sea level (EGM2008), measured by radar satellites along '
+                'their tracks over the lake.',
                 'm', list(anual), list(anual.values()),
                 {'producto':'NASA GSFC G-REALM 10-day altimetry', 'url':'https://earth.gsfc.nasa.gov/gwm/zip/lake.10.tar.gz'},
                 notas=[ESTUDIOS[zona], ('Caspian means require all seven months from April to October, excluding winter ice.' if zona == 'caspio' else 'Annual means require all 12 monthly means. Missing years are omitted, not interpolated.'),
