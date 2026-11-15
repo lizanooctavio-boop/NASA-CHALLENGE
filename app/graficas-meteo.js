@@ -8,7 +8,7 @@ const C={cian:'#6fd8ff',ambar:'#f6c76b',rojo:'#ff7b6b',verde:'#6fe0a0',violeta:'
 const SSP={ssp126:C.verde,ssp245:C.cian,ssp370:C.ambar,ssp585:C.rojo};
 const NOMBRE_SSP={ssp126:'SSP1-2.6',ssp245:'SSP2-4.5',ssp370:'SSP3-7.0',ssp585:'SSP5-8.5'};
 const graficas={};
-function crear(id,config){const c=$(id);if(!c)return null;graficas[id]?.destroy();graficas[id]=new Chart(c,config);return graficas[id]}
+function crear(id,config){const c=$(id);if(!c)return null;c.setAttribute('role','img');graficas[id]?.destroy();graficas[id]=new Chart(c,config);return graficas[id]}
 const eje=(titulo,extra={})=>({title:{display:true,text:titulo},...extra});
 const signo=(v,d=1)=>(v>0?'+':v<0?'−':'')+Math.abs(v).toFixed(d);
 let S=null;

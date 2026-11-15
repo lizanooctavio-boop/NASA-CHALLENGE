@@ -76,9 +76,11 @@ if(typeof ResizeObserver==='function')new ResizeObserver(ajustarAltoMapa).observ
 addEventListener('resize',ajustarAltoMapa);ajustarAltoMapa();
 // Ventanas: barra de título con ocultar, minimizar y ancho completo
 document.querySelectorAll('.vista').forEach(v=>{const titulo=document.querySelector(`[data-tab="${v.id}"]`).textContent;const cuerpo=nodo('div',undefined,'ventana-cuerpo');while(v.firstChild)cuerpo.append(v.firstChild);const barra=nodo('div',undefined,'ventana-barra');const pts=nodo('div',undefined,'ventana-botones');
-  const boton=(clase,etiqueta,accion)=>{const b=nodo('button','','punto '+clase);b.type='button';b.title=etiqueta;b.setAttribute('aria-label',etiqueta);b.onclick=accion;pts.append(b)};
-  boton('rojo','Hide panel',()=>soloMapa(true));boton('ambar','Minimize',()=>{v.classList.toggle('minimizada');document.dispatchEvent(new CustomEvent('sicc:paneles'))});boton('verde','Wide',()=>{v.classList.toggle('ancha');document.dispatchEvent(new CustomEvent('sicc:paneles'))});
-  barra.append(pts,nodo('span',titulo,'ventana-titulo'));barra.ondblclick=()=>v.classList.toggle('minimizada');v.append(barra,cuerpo);v.classList.add('ventana')});
+  const boton=(clase,etiqueta,accion,pressed)=>{const b=nodo('button','','punto '+clase);b.type='button';b.title=etiqueta;b.setAttribute('aria-label',etiqueta);if(pressed!==undefined)b.setAttribute('aria-pressed',String(pressed));b.onclick=()=>accion(b);pts.append(b);return b};
+  boton('rojo','Hide panel',()=>{soloMapa(true);$('solomapa')?.focus()});
+  const bMin=boton('ambar','Minimize',b=>{const m=v.classList.toggle('minimizada');b.setAttribute('aria-pressed',String(m));document.dispatchEvent(new CustomEvent('sicc:paneles'))},false);
+  boton('verde','Wide',b=>{const a=v.classList.toggle('ancha');b.setAttribute('aria-pressed',String(a));document.dispatchEvent(new CustomEvent('sicc:paneles'))},false);
+  barra.append(pts,nodo('span',titulo,'ventana-titulo'));barra.ondblclick=()=>{const m=v.classList.toggle('minimizada');bMin.setAttribute('aria-pressed',String(m))};v.append(barra,cuerpo);v.classList.add('ventana')});
 iniciarMapa();
 
 const pref={leer:(k,s=localStorage)=>{try{return s.getItem(k)}catch(e){return null}},guardar:(k,v,s=localStorage)=>{try{s.setItem(k,v)}catch(e){}}};

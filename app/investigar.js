@@ -33,9 +33,11 @@ function cargar(){
 
 // ---------------------------------------------------------------- selectores
 function botones(cont,items,activo,alElegir){
+  const teniaFoco=cont.contains(document.activeElement);
   cont.replaceChildren();
-  items.forEach(([id,nombre,rol])=>{const b=nodo('button');b.type='button';b.setAttribute('role','radio');b.dataset.id=id;b.setAttribute('aria-checked',String(id===activo));
-    b.append(nodo('span',nombre));if(rol)b.append(nodo('span',rol,'rol'));b.onclick=()=>alElegir(id);cont.append(b)});
+  items.forEach(([id,nombre,rol])=>{const on=id===activo,b=nodo('button');b.type='button';b.setAttribute('role','radio');b.dataset.id=id;b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1;
+    b.append(nodo('span',nombre));if(rol)b.append(nodo('span',rol,'rol'));b.onclick=()=>{alElegir(id);cont.querySelector(`[data-id="${id}"]`)?.focus()};cont.append(b)});
+  if(teniaFoco)cont.querySelector('[aria-checked="true"]')?.focus();
   cont.onkeydown=ev=>{const paso={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[ev.key];if(!paso)return;ev.preventDefault();
     const ids=items.map(i=>i[0]),i=ids.indexOf(cont.querySelector('[aria-checked="true"]')?.dataset.id);const n=ids[(i+paso+ids.length)%ids.length];alElegir(n);cont.querySelector(`[data-id="${n}"]`)?.focus()};
 }
@@ -125,7 +127,7 @@ function serie(x,t,ok){
     ds.push({type:'line',label:'Theil–Sen trend',data:eje.tiempos.map(a=>a0+b*a),borderColor:'#f6c76b',borderDash:[6,4],pointRadius:0,borderWidth:2});
   }
   const [desde,hasta]=x.periodo||[x.tiempos[0],x.tiempos.at(-1)];
-  $('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${desde} to ${hasta}`);
+  $('inv-serie').setAttribute('role','img');$('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${desde} to ${hasta}`);
   crear('inv-serie',{data:{labels:eje.tiempos,datasets:ds},options:{locale:x.validacion?'en-US':undefined,interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
 }
 
@@ -151,7 +153,7 @@ function contrastes(){
     bloque.append(tj);
     const etiquetas=c.externa.anios||c.externa.tiempos,ve=c.externa.valores,vn=c.nuestra?.valores;
     if(etiquetas?.length&&ve?.length&&vn?.length){
-      const lienzo=nodo('canvas');lienzo.id='inv-c-'+k;lienzo.setAttribute('aria-label',`${c.externa.nombre_en} compared with ${c.nuestra.nombre_en}`);
+      const lienzo=nodo('canvas');lienzo.id='inv-c-'+k;lienzo.setAttribute('role','img');lienzo.setAttribute('aria-label',`${c.externa.nombre_en} compared with ${c.nuestra.nombre_en}`);
       const g=nodo('div',undefined,'graf baja');g.append(lienzo);bloque.append(g);
       const ejes=c.nuestra.anios||c.nuestra.tiempos,mapa=new Map(ejes.map((a,i)=>[a,vn[i]]));
       crear(lienzo.id,{type:'line',data:{labels:etiquetas,datasets:[
@@ -166,12 +168,12 @@ function contrastes(){
 // ---------------------------------------------------------------- recorridos guiados
 function demostraciones(){
   const cont=$('inv-demos');cont.replaceChildren();
-  D.demostraciones.forEach(dm=>{const b=nodo('button',dm.titulo_en);b.type='button';b.dataset.demo=dm.id;b.onclick=()=>iniciarDemo(dm.id);cont.append(b)});
+  D.demostraciones.forEach(dm=>{const b=nodo('button',dm.titulo_en);b.type='button';b.dataset.demo=dm.id;b.onclick=()=>iniciarDemo(dm.id,true);cont.append(b)});
 }
-function iniciarDemo(id){demo={dm:D.demostraciones.find(d=>d.id===id),paso:0};pasoDemo()}
-function pasoDemo(){
+function iniciarDemo(id,enfocar){demo={dm:D.demostraciones.find(d=>d.id===id),paso:0};pasoDemo(enfocar?'next':null)}
+function pasoDemo(foco){
   const panel=$('inv-demo-panel');
-  if(!demo){panel.hidden=true;return}
+  if(!demo){panel.hidden=true;if(foco)document.querySelector(`#inv-demos [data-demo="${foco}"]`)?.focus();return}
   const {dm,paso}=demo,p=dm.pasos[paso],x=inv(p.investigacion);
   sel.categoria=x.categoria;sel.lugar=x.lugar;sel.investigacion=x.id;pintar();
   panel.hidden=false;panel.replaceChildren();
@@ -183,13 +185,15 @@ function pasoDemo(){
     panel.append(tj);
   }
   const ctl=nodo('div',undefined,'controles');
-  const boton=(txt,fn,des)=>{const b=nodo('button',txt);b.type='button';b.disabled=!!des;b.onclick=fn;ctl.append(b)};
-  boton('Previous',()=>{demo.paso--;pasoDemo()},paso===0);
-  if(paso<dm.pasos.length-1)boton('Next',()=>{demo.paso++;pasoDemo()});else boton('Finish',()=>{demo=null;pasoDemo()});
+  const boton=(txt,fn,des)=>{const b=nodo('button',txt);b.type='button';b.disabled=!!des;b.onclick=fn;ctl.append(b);return b};
+  const bPrev=boton('Previous',()=>{demo.paso--;pasoDemo('prev')},paso===0);
+  const bNext=paso<dm.pasos.length-1?boton('Next',()=>{demo.paso++;pasoDemo('next')}):boton('Finish',()=>{const id=dm.id;demo=null;pasoDemo(id)});
   panel.append(ctl);
   const destino={veredicto:'inv-veredicto',contrastes:'inv-contrastes'}[p.ver];
   if(p.ver==='aprender'){const b=nodo('button','Open the explanation');b.type='button';b.onclick=()=>aprender(p.ancla||'aprender-no-significativo');ctl.append(b)}
-  (destino?$(destino):panel).scrollIntoView({block:'nearest',behavior:'smooth'});
+  if(foco==='prev')(!bPrev.disabled?bPrev:bNext).focus({preventScroll:true});
+  else if(foco==='next')bNext.focus({preventScroll:true});
+  (destino?$(destino):panel).scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
 }
 
 // ---------------------------------------------------------------- Learn y Sources
