@@ -14,7 +14,14 @@ const mqReducido = matchMedia('(prefers-reduced-motion: reduce)');
 let reducido = mqReducido.matches;
 
 const canvas = document.getElementById('espacio');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+} catch (e) {
+  // Sin WebGL no hay globo: el shell pasa al mapa 2D sin esperar a 'espacio:listo'.
+  document.dispatchEvent(new CustomEvent('espacio:error', { detail: String(e?.message || e) }));
+  throw e;
+}
 renderer.setPixelRatio(Math.min(2, devicePixelRatio));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const escena = new THREE.Scene();

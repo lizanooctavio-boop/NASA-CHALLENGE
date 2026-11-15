@@ -31,6 +31,9 @@ function borde(fi,fj){return Math.max(0,Math.min(1,Math.min(fi,G.latitudes.lengt
 let GM=null;const cacheG={},pidiendo={};
 function mundialDisponible(){return GM&&GM.horas_utc.length>0&&soporte.utc(GM.corrida_utc)<=Date.now()}
 const horasActivas=()=>G?.horas_utc||(mundialDisponible()?GM.horas_utc:[]);
+// La serie cubre el presente si la hora actual cae entre su primera hora y un paso (3 h) después de la última.
+// Fuera de ese intervalo es archivo: no se etiqueta ninguna hora como «now».
+function cubreAhora(){const H=horasActivas();if(!H.length)return false;const t=Date.now();return soporte.utc(H[0])-90*60000<=t&&t<=soporte.utc(H.at(-1))+3*3600000}
 function pasoGlobal(h=hora){if(!mundialDisponible())return null;if(!G)return GM.horas_utc[h]?h:null;const t=soporte.utc(G.horas_utc[h]);let mejor=null,d=1e15;GM.horas_utc.forEach((x,k)=>{const e=Math.abs(soporte.utc(x)-t);if(e<d){d=e;mejor=k}});return d<=90*60000?mejor:null}
 const varGlobal=v=>v==='viento_ms'||v==='viento_u_ms'||v==='viento_v_ms'?'viento':v;
 function campoG(v,paso){if(paso===null)return null;if(v==='viento_ms'){const w=cacheG['viento|'+paso];if(!w)return null;return cacheG['vms|'+paso]??=w.viento_u_ms.map((f,i)=>f.map((u,j)=>{
@@ -104,7 +107,8 @@ const fechaCorta=iso=>new Date(soporte.utc(iso)).toLocaleString('en-US',{month:'
 function indicador(){
   if(!ind)return;
   let nivel,txt;
-  if(mundialDisponible()){nivel='ok';txt='ECMWF IFS · '+fechaCorta(GM.corrida_utc)}
+  if(mundialDisponible()&&!G&&!cubreAhora()){nivel='pendiente';txt='Archived run · '+fechaCorta(GM.corrida_utc)}
+  else if(mundialDisponible()){nivel='ok';txt='ECMWF IFS · '+fechaCorta(GM.corrida_utc)}
   else if(!globalListo){nivel='pendiente';txt='Loading data…'}
   else{nivel='error';txt='No model data'}
   ind.dataset.nivel=nivel;texto('indicador-texto',txt);
@@ -178,7 +182,8 @@ function indiceAhora(){
 function relativa(i){
   const H=horasActivas(),t=soporte.utc(H[i]);if(!Number.isFinite(t))return '';
   const d=Math.round((t-Date.now())/3600000);
-  if(i===indiceAhora())return 'now';
+  if(i===indiceAhora()&&cubreAhora())return 'now';
+  if(Math.abs(d)>=48)return (d>0?'+':'−')+Math.round(Math.abs(d)/24)+' d';
   return (d>0?'+':'−')+Math.abs(d)+' h';
 }
 function etiquetaHora(){
@@ -188,6 +193,7 @@ function etiquetaHora(){
   const principal=document.createElement('strong');principal.textContent=txt;
   const detalle=document.createElement('small');detalle.textContent='ECMWF IFS · '+utc;
   ltEt.replaceChildren(principal,detalle);
+  ltAhora.disabled=!cubreAhora();
   lt.setAttribute('aria-valuetext',`${txt}, ${utc}`);
   indicador();
 }
@@ -201,13 +207,14 @@ function marcas(){
   let dia=null;
   H.forEach((iso,i)=>{const f=new Date(soporte.utc(iso)),d=f.toDateString();if(d===dia)return;const nuevo=dia!==null;dia=d;if(!nuevo)return;
     const m=document.createElement('span');m.className='lt-dia';m.style.left=pos(i);m.textContent=f.toLocaleDateString('en-US',{weekday:'short',day:'numeric'});ltMarcas.append(m)});
+  if(!cubreAhora())return;
   let ia=indiceAhora();
   if(ia<n-1){const t0=soporte.utc(H[ia]),t1=soporte.utc(H[ia+1]);if(t1>t0)ia+=Math.min(1,Math.max(0,(Date.now()-t0)/(t1-t0)))}
   const a=document.createElement('span');a.className='lt-ahora';a.style.left=pos(ia);ltMarcas.append(a);
 }
 function ajustarTiempo(iso,seguirAhora){
   const horas=horasActivas();
-  lt.disabled=ltPlay.disabled=ltAhora.disabled=!horas.length;
+  lt.disabled=ltPlay.disabled=!horas.length;ltAhora.disabled=!cubreAhora();
   marcas();
   if(!horas.length){parar();etiquetaHora();return}
   const i=seguirAhora?-1:horas.indexOf(iso);

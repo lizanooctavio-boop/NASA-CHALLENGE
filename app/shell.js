@@ -153,6 +153,7 @@ function marcarVista(){
 }
 async function cambiarVista(nuevo){
   if(!mapa)return;
+  if(nuevo==='globo'&&$('vista-globo').disabled)return;
   if(cambiando){vistaPendiente=nuevo;return transicionActual}
   if(nuevo===modo)return;
   if(nuevo==='mapa')cargarBaseVectorial();
@@ -201,6 +202,12 @@ function marcar(lat,lon,nombre){
 window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{await cambiarVista('mapa');mapa.setView([lat,lon],z)},marcar,soloMapa};
 const salidaHash=()=>{if(location.hash==='#map'){if(modo==='mapa'&&window.Espacio)window.Espacio.pausar(true);else cambiarVista('mapa')}};
 document.addEventListener('espacio:listo',()=>{document.body.classList.remove('cargando');salidaHash()});
+// Sin WebGL el globo no arranca: se entra al mapa 2D y se desactiva el botón Globe.
+document.addEventListener('espacio:error',()=>{
+  document.body.classList.remove('cargando');
+  const b=$('vista-globo');b.disabled=true;b.title='3D globe unavailable: WebGL is disabled in this browser';
+  cambiarVista('mapa');error('The 3D globe needs WebGL, which is unavailable in this browser. Showing the 2D map.');
+});
 if(window.Espacio)document.body.classList.remove('cargando');
 setTimeout(()=>{if(location.hash==='#map'&&modo!=='mapa'&&!window.Espacio)salidaHash()},1200);
 addEventListener('hashchange',()=>{cambiarVista(location.hash==='#map'?'mapa':'globo')});
