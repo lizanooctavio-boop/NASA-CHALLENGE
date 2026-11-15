@@ -50,6 +50,10 @@ Every series with at least 10 annual observations is tested simultaneously by **
 
 ## 3. How to Run Locally & Verify
 
+### GIS workspace
+
+The application uses horizontal section tabs, a grouped command ribbon, docked results and layer panes, and a map-view status bar, inspired by the [ArcGIS Pro interface structure](https://pro.arcgis.com/en/pro-app/3.5/get-started/user-interface.htm). It retains the Earth Trend Detective identity and needs no ArcGIS Pro installation for these controls. **Dark theme / Light theme** switches the controls and charts and saves the preference locally. **Hide panels** clears the results pane; **Reset panes** restores panel visibility, height and width. On mobile, section tabs scroll horizontally and results use the full screen width. The presentation is isolated in `app/workbench.css` and `app/workbench.js`; scientific data and statistical calculations are unchanged.
+
 ### Prerequisites
 - **Node.js** ($\ge 18$)
 - **Python** ($\ge 3.11$) with `numpy`, `scipy`, `shapely`, `pyproj`, `h5py`, `rasterio`, `fastapi`, `uvicorn`, `httpx`, and `pytest` (`pip install -r backend/requirements.txt`).

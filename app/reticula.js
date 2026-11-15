@@ -60,8 +60,8 @@
   function multiplos(min,max,s){const xs=[];for(let k=Math.ceil((min-1e-8)/s),fin=Math.floor((max+1e-8)/s);k<=fin&&xs.length<200;k++)xs.push(Number((k*s).toFixed(7)));return xs;}
   function espacioLibre(){const r=mapa.getContainer().getBoundingClientRect(),s=mapa.getSize();let izq=7,der=s.x-7,arriba=7,abajo=s.y-7;
     // Los rótulos se sitúan en el borde de la parte del mapa que dejan libre los paneles.
-    const header=document.querySelector('header')?.getBoundingClientRect();if(header&&header.bottom>r.top&&header.top<r.bottom)arriba=Math.max(arriba,header.bottom-r.top+7);
-    if(innerWidth>700){for(const e of document.querySelectorAll('aside,.vista:not([hidden])')){const q=e.getBoundingClientRect();if(q.width&&q.height&&q.left-r.left<s.x/2&&q.bottom>r.top)izq=Math.max(izq,q.right-r.left+7);}
+    for(const e of document.querySelectorAll('header,.workspace-tab')){const q=e.getBoundingClientRect();if(q.bottom>r.top&&q.top<r.bottom)arriba=Math.max(arriba,q.bottom-r.top+7);}
+    if(innerWidth>700){for(const e of document.querySelectorAll('aside,.vista:not([hidden])')){const q=e.getBoundingClientRect();if(q.width&&q.height&&q.left-r.left<s.x/2&&q.bottom>r.top+arriba)izq=Math.max(izq,q.right-r.left+7);}
       const c=$('barra-capas').getBoundingClientRect();if(c.width&&c.left>r.left)der=Math.min(der,c.left-r.left-7);}
     if(der-izq<80){izq=7;der=s.x-7;}
     return {izq,der,arriba,abajo};

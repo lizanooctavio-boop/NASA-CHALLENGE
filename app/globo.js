@@ -47,8 +47,7 @@
     const ancho = innerWidth;
     if (ancho < 1000 || document.body.classList.contains('solo-mapa')) return window.Espacio.desplazar(0);
     const panel = [...document.querySelectorAll('.vista')].find(v => !v.hidden);
-    const aside = document.querySelector('aside').getBoundingClientRect();
-    const izquierda = panel && !panel.classList.contains('minimizada') ? panel.getBoundingClientRect().right : aside.right;
+    const izquierda = panel && !panel.classList.contains('minimizada') ? panel.getBoundingClientRect().right : 0;
     const derecha = $('barra-capas').getBoundingClientRect().left;
     window.Espacio.desplazar(Math.max(0, ((izquierda + derecha) / 2 - ancho / 2) * 0.85));
   }

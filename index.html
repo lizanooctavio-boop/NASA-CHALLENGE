@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="app/estilos.css">
 <link rel="stylesheet" href="app/reticula.css">
 <link rel="stylesheet" href="app/buscador.css">
+<link rel="stylesheet" href="app/workbench.css">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('etd-theme')==='dark'?'dark':'light'}catch(e){}</script>
 </head>
 <body class="modo-globo cargando">
 <a href="#contenido-principal" class="saltar-contenido">Skip to main content</a>
@@ -25,7 +27,7 @@
     <div class="marca"><span class="marca-punto" aria-hidden="true"></span>Trend<b>Detective</b></div>
     <button id="plegar-menu" type="button" aria-expanded="true" aria-controls="menu-principal" aria-label="Collapse menu" title="Collapse menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
   </div>
-  <p class="sub">Live weather globe &amp; NASA long-term climate trend detective. Start in <strong>Investigate</strong> for trends.</p>
+  <p class="sub">NASA SPACE APPS · EARTH SYSTEM EXPLORER</p>
   <nav id="menu-principal" aria-label="Sections">
     <button class="activo" data-tab="meteorologia" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 1 1 .8-7.9A5.5 5.5 0 0 1 18.4 12 3 3 0 0 1 18 18z"/></svg><span class="txt">Weather</span></button>
     <button data-tab="investigar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/></svg><span class="txt">Investigate</span></button>
@@ -43,16 +45,18 @@
 
 <main id="contenido-principal" tabindex="-1">
 <header>
-  <div><p class="etiqueta">NASA SPACE APPS</p><h1 id="titulo">Weather</h1></div>
+  <div class="ribbon-context"><p class="etiqueta">ACTIVE WORKSPACE</p><h1 id="titulo">Weather</h1><span class="ribbon-caption">Explore · compare · investigate</span></div>
   <div class="acciones">
-    <div class="interruptor" role="group" aria-label="View">
+    <div class="ribbon-group"><div class="interruptor" role="group" aria-label="View">
       <button type="button" id="vista-globo" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Globe</button>
       <button type="button" id="vista-mapa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"/></svg>Map</button>
-    </div>
+    </div><span class="ribbon-caption">View</span></div>
     <div class="indicador-envoltura"><button id="indicador-datos" type="button" class="indicador" data-nivel="pendiente" aria-expanded="false" aria-controls="indicador-detalle" title="Live weather globe model (ECMWF IFS). Historical trend datasets are cited inside each panel and in Sources."><i aria-hidden="true"></i><span id="indicador-texto">Loading data…</span></button><div id="indicador-detalle" class="ventana" role="region" aria-label="Data status" hidden></div></div>
-    <button id="solomapa" type="button" aria-pressed="false">Hide panels</button>
+    <div class="ribbon-group"><div class="ribbon-tools"><button id="solomapa" type="button" aria-pressed="false">Hide panels</button><button id="restaurar-paneles" type="button" title="Restore the panel width, height and visibility" disabled>Reset panes</button></div><span class="ribbon-caption">Workspace</span></div>
+    <div class="ribbon-group"><button id="tema-interfaz" type="button" aria-pressed="false" disabled>Dark theme</button><span class="ribbon-caption">Appearance</span></div>
   </div>
 </header>
+<div class="workspace-tab"><span class="workspace-tab-icon" aria-hidden="true">◎</span><span id="workspace-view">Global scene · 3D</span><span class="workspace-tab-hint">EARTH TREND DETECTIVE</span></div>
 <div id="error" role="alert" hidden><span id="error-texto"></span><button id="error-cerrar" type="button" aria-label="Close">×</button></div>
 
 <section id="meteorologia" class="vista">
@@ -252,6 +256,7 @@
 </div>
 
 <div class="tooltip" id="tooltip" role="presentation" hidden></div>
+<footer class="workbench-status"><span><i aria-hidden="true"></i>Earth Trend Detective</span><span id="workspace-section">Weather</span><span class="status-reference">NASA &amp; NOAA · Sources and methods inside each panel</span></footer>
 
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -260,6 +265,7 @@
 <script defer src="src/globo-meteo.js"></script>
 <script defer src="app/config.js"></script>
 <script defer src="app/shell.js"></script>
+<script defer src="app/workbench.js"></script>
 <script defer src="app/soporte-meteo.js"></script>
 <script defer src="app/campo.js"></script>
 <script defer src="app/graficas-meteo.js"></script>
