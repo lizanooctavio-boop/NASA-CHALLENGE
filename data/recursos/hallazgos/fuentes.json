@@ -1,75 +1,113 @@
 {
- "generado_utc": "2026-11-14T17:50:21+00:00",
- "chirps": {
-  "producto": "CHIRPS v2.0 daily 0.25° (UCSB Climate Hazards Center)",
-  "acceso": "IRI Data Library",
-  "url": "https://www.chc.ucsb.edu/data/chirps",
-  "primer_dia": "1981-01-01",
-  "ultimo_dia": "2026-09-30",
-  "base_percentiles": [
-   1991,
-   2020
-  ],
-  "celdas_por_region": {
-   "NIC": 160,
-   "pacifico": 23,
-   "central": 51,
-   "caribe": 86,
-   "caja_sicc": 77
-  }
- },
- "oni": {
-  "producto": "NOAA CPC Oceanic Niño Index (ERSSTv5)",
-  "url": "https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt"
- },
- "nsidc": {
-  "producto": "NSIDC Sea Ice Index, Version 4 (G02135)",
-  "url": "https://nsidc.org/data/g02135"
- },
- "gistemp": {
-  "producto": "NASA GISS GISTEMP v4, zonal annual means",
-  "url": "https://data.giss.nasa.gov/gistemp/tabledata_v4/ZonAnn.Ts+dSST.csv"
- },
- "ersst": {
-  "producto": "NOAA ERSSTv5 (Extended Reconstructed SST), 2°",
-  "url": "https://www.ncei.noaa.gov/products/extended-reconstructed-sst",
-  "caja": "12–14° N, 80–82° W (cell centres)",
-  "ultimo_mes": "202610"
- },
- "psmsl": {
-  "producto": "PSMSL Revised Local Reference annual means",
-  "url": "https://psmsl.org/",
-  "estaciones": {
-   "1001": "San Juan",
-   "759": "Magueyes Island",
-   "1393": "Charlotte Amalie",
-   "163": "Balboa",
-   "188": "Key West"
-  }
- },
- "ibtracs": {
-  "producto": "NOAA IBTrACS v04r01",
-  "url": "https://www.ncei.noaa.gov/products/international-best-track-archive",
-  "zona": {
-   "lat": [
-    9.24,
-    16.5
-   ],
-   "lon": [
-    -89.18,
-    -81.66
-   ]
+  "generado_utc": "2026-11-14T17:50:21+00:00",
+  "chirps": {
+    "producto": "CHIRPS v2.0 daily 0.25° (UCSB Climate Hazards Center)",
+    "acceso": "IRI Data Library",
+    "url": "https://www.chc.ucsb.edu/data/chirps",
+    "primer_dia": "1981-01-01",
+    "ultimo_dia": "2026-09-30",
+    "base_percentiles": [
+      1991,
+      2020
+    ],
+    "celdas_por_region": {
+      "NIC": 160,
+      "pacifico": 23,
+      "central": 51,
+      "caribe": 86,
+      "caja_sicc": 77
+    }
   },
-  "generado_utc": "2026-11-14T17:50:55+00:00"
- },
- "crw": {
-  "producto": "NOAA Coral Reef Watch v3.1 daily 5 km Regional Virtual Station «Nicaragua»",
-  "url": "https://coralreefwatch.noaa.gov/product/vs/",
-  "datos": "https://coralreefwatch.noaa.gov/product/vs/data/nicaragua.txt",
-  "ultimo_dia": "2026-11-12",
-  "dhw_ultimo": 11.7143,
-  "alerta_ultima": 4,
-  "dias_ola_calor_anio_en_curso": 59,
-  "dhw_max_anio_en_curso": 11.7143
- }
+  "oni": {
+    "producto": "NOAA CPC Oceanic Niño Index (ERSSTv5)",
+    "url": "https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt"
+  },
+  "nsidc": {
+    "producto": "NSIDC Sea Ice Index, Version 4 (G02135)",
+    "url": "https://nsidc.org/data/g02135"
+  },
+  "gistemp": {
+    "producto": "NASA GISS GISTEMP v4, zonal annual means",
+    "url": "https://data.giss.nasa.gov/gistemp/tabledata_v4/ZonAnn.Ts+dSST.csv"
+  },
+  "ersst": {
+    "producto": "NOAA ERSSTv5 (Extended Reconstructed SST), 2°",
+    "url": "https://www.ncei.noaa.gov/products/extended-reconstructed-sst",
+    "caja": "12–14° N, 80–82° W (cell centres)",
+    "ultimo_mes": "202610"
+  },
+  "psmsl": {
+    "producto": "PSMSL Revised Local Reference annual means",
+    "url": "https://psmsl.org/",
+    "estaciones": {
+      "1001": "San Juan",
+      "759": "Magueyes Island",
+      "1393": "Charlotte Amalie",
+      "163": "Balboa",
+      "188": "Key West"
+    }
+  },
+  "ibtracs": {
+    "producto": "NOAA IBTrACS v04r01",
+    "url": "https://www.ncei.noaa.gov/products/international-best-track-archive",
+    "zona": {
+      "lat": [
+        9.24,
+        16.5
+      ],
+      "lon": [
+        -89.18,
+        -81.66
+      ]
+    },
+    "generado_utc": "2026-11-14T17:50:55+00:00"
+  },
+  "crw": {
+    "producto": "NOAA Coral Reef Watch v3.1 daily 5 km Regional Virtual Station «Nicaragua»",
+    "url": "https://coralreefwatch.noaa.gov/product/vs/",
+    "datos": "https://coralreefwatch.noaa.gov/product/vs/data/nicaragua.txt",
+    "ultimo_dia": "2026-11-12",
+    "dhw_ultimo": 11.7143,
+    "alerta_ultima": 4,
+    "dias_ola_calor_anio_en_curso": 59,
+    "dhw_max_anio_en_curso": 11.7143
+  },
+  "usgs_colorado": {
+    "producto": "USGS National Water Information System (NWIS) gauge 09380000 at Lees Ferry, Arizona",
+    "url": "https://waterservices.usgs.gov/nwis/stat/?format=rdb&sites=09380000&statReportType=annual&statTypeCd=mean&parameterCd=00060",
+    "periodo": "1922-2025"
+  },
+  "gtnp_permafrost": {
+    "producto": "GTN-P long-term permafrost borehole temperature archive (PANGAEA)",
+    "url": "https://doi.org/10.1594/PANGAEA.930669",
+    "periodo": "1978-2016"
+  },
+  "nsidc_g01377": {
+    "producto": "Global Lake and River Ice Phenology Database, Version 1 (NSIDC G01377)",
+    "url": "https://noaadata.apps.nsidc.org/NOAA/G01377/liag_freeze_thaw_table.csv",
+    "periodo": "1851-2019"
+  },
+  "chirps_erddap": {
+    "producto": "CHIRPS v2.0 global precipitation (UCSB Climate Hazards Center via NOAA CoastWatch ERDDAP)",
+    "url": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalMonthlyP05.html"
+  },
+  "cru_ts410": {
+    "producto": "CRU TS v4.10 monthly gridded precipitation at 0.5° (Climatic Research Unit, University of East Anglia)",
+    "url": "https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.10/"
+  },
+  "ibtracs_ri": {
+    "producto": "IBTrACS v04r01 tropical cyclone best-track archive (NOAA NCEI)",
+    "url": "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r01/access/csv/",
+    "periodo": "1980-2024"
+  },
+  "snotel_swe": {
+    "producto": "USDA NRCS National Water and Climate Center SNOTEL telemetered snowpack network (AWDB REST API v1)",
+    "url": "https://wcc.sc.egov.usda.gov/awdbRestApi/swagger-ui/index.html",
+    "periodo": "1981-2025"
+  },
+  "grealm_sudamerica": {
+    "producto": "NASA GSFC Global Water Monitor (G-REALM) satellite radar altimetry lake levels",
+    "url": "https://earth.gsfc.nasa.gov/gwm/lake/Index",
+    "periodo": "1993-2025"
+  }
 }
