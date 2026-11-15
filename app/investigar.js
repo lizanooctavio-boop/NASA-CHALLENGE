@@ -10,10 +10,10 @@ const DECIMALES={mm:0,'°C':2,NDVI:3,m:2,'mg/m³':2,days:1,'mm/day':2,'million k
 const dec=u=>DECIMALES[u]??2;
 
 const VEREDICTO={
-  tendencia_detectada:['Trend detected','aprender-metodos'],
-  evidencia_insuficiente:['Not enough evidence of a trend','aprender-no-significativo'],
-  metodos_discrepan:['Methods disagree','aprender-metodos'],
-  datos_insuficientes:['Not enough data for a trend test','aprender-registro-corto']};
+  tendencia_detectada:['Trend detected','aprender-metodos','All three statistical methods agree on the direction of change.'],
+  evidencia_insuficiente:['Not enough evidence of a trend','aprender-no-significativo','Natural year-to-year swings may hide a slow trend — not enough evidence is not the same as no change.'],
+  metodos_discrepan:['Methods disagree','aprender-metodos','Different statistical methods disagree here, so this is not presented as a confirmed trend.'],
+  datos_insuficientes:['Not enough data for a trend test','aprender-registro-corto','This record is too short for a reliable long-term trend test.']};
 const ICONOS={aumento:'<path d="M4 15l6-6 4 4 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   disminucion:'<path d="M4 7l6 6 4-4 6 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   insuficiente:'<path d="M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>'};
@@ -79,8 +79,8 @@ function resultado(){
   const ic=nodo('div',undefined,'icono');ic.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${ICONOS[forma]}</svg>`;
   const [desde,hasta]=x.periodo||[x.tiempos[0],x.tiempos.at(-1)];
   const periodo=desde===hasta?String(desde):`${desde}–${hasta}`;
-  const [texto,ancla]=corto?['Record too short for a trend test','aprender-registro-corto']:VEREDICTO[t.veredicto]||[t.veredicto,'aprender-tendencia'];
-  const cab=nodo('div');cab.append(nodo('p',texto,'estado'),nodo('p',`${x.titulo_en} · ${l.nombre_en} · ${periodo}`,'sub'));
+  const [texto,ancla,resumen]=corto?['Record too short for a trend test','aprender-registro-corto','This record is too short for a reliable long-term trend test.']:VEREDICTO[t.veredicto]||[t.veredicto,'aprender-tendencia',''];
+  const cab=nodo('div');cab.append(nodo('p',texto,'estado'),nodo('p',`${x.titulo_en} · ${l.nombre_en} · ${periodo}`,'sub'));if(resumen)cab.append(nodo('p',resumen,'resumen-veredicto'));
   c.append(ic,cab);
   const tj=nodo('div',undefined,'tarjetas');tj.style.gridColumn='1/-1';
   const tar=(a,b,dd)=>{const e=nodo('div',undefined,'tarjeta');e.append(nodo('small',a),nodo('strong',b));if(dd)e.append(nodo('p',dd));tj.append(e)};
@@ -99,7 +99,7 @@ function resultado(){
   if(x.validacion?.estado==='NO_VALIDADA')tar('Validation','Not validated',x.validacion.detalle_en);
   c.append(tj);
   const pie=nodo('p',undefined,'detalle');pie.append(nodo('span',x.definicion_en+' '));
-  const a=nodo('a','What does this mean?');a.href='#'+ancla;a.onclick=ev=>{ev.preventDefault();aprender(ancla)};pie.append(a);
+  const a=nodo('a','What does this mean?','enlace-ayuda');a.href='#'+ancla;a.onclick=ev=>{ev.preventDefault();aprender(ancla)};pie.append(a);
   c.append(pie);
   (x.notas||[]).forEach(n=>c.append(nodo('p',n,'detalle nota')));
   c.append(nodo('p',x.fuente.producto,'detalle fuente'));
