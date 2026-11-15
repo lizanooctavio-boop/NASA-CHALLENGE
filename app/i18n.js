@@ -45,6 +45,12 @@
     if ((m = /^Weekly sea temperature anomalies by Niño region from (.+) to (.+); Niño 3\.4 range (.+) to (.+) °C, latest (.+) °C$/.exec(s))) return `Anomalías semanales de temperatura del mar por región Niño, de ${m[1]} a ${m[2]}; intervalo Niño 3.4 ${m[3]} a ${m[4]} °C, último dato ${m[5]} °C`;
     if ((m = /^Projected (warming|precipitation change) from (\d{4}) to (\d{4}) for (.+), active scenario (.+) reaches (.+) by (\d{4}); range across scenarios (.+) to (.+)$/.exec(s))) return `${m[1] === 'warming' ? 'Calentamiento proyectado' : 'Cambio de precipitación proyectado'} de ${m[2]} a ${m[3]} para ${translate(m[4])}; el escenario activo ${m[5]} alcanza ${m[6]} en ${m[7]}; intervalo entre escenarios ${m[8]} a ${m[9]}`;
     if ((m = /^(95% CI|95% confidence interval):? (.+) to (.+)$/.exec(s))) return `IC del 95%: ${m[2]} a ${m[3]}`;
+    if ((m = /^([-+−\d.,]+) (.+)\/decade \(95% CI (.+) to (.+)\)$/.exec(s))) return `${m[1]} ${m[2]}/década (IC del 95%: ${m[3]} a ${m[4]})`;
+    if ((m = /^now, (.+)$/.exec(s))) return `ahora, ${m[1]}`;
+    if ((m = /^· used in: (.+)$/.exec(s))) return '· usado en: ' + m[1].split(', ').map(x => { const c = /^(.+) \(cross-check\)$/.exec(x); return c ? `${translate(c[1])} (contraste)` : translate(x); }).join(', ');
+    if ((m = /^Box (.+)$/.exec(s))) return `Recuadro ${m[1]}`;
+    if ((m = /^Temperature anomaly vs\. (\S+) in (.+), (\d{4}) to (\d{4}), values (.+) to (.+) °C, Theil–Sen trend (.+) °C per decade$/.exec(s))) return `Anomalía de temperatura respecto a ${m[1]} en ${translate(m[2])}, ${m[3]} a ${m[4]}, valores de ${m[5]} a ${m[6]} °C, tendencia Theil–Sen ${m[7]} °C por década`;
+    if ((m = /^(.+) compared with (.+), (\d{4}) to (\d{4}), anomalies (.+) to (.+) °C$/.exec(s))) return `${m[1]} comparado con ${m[2]}, ${m[3]} a ${m[4]}, anomalías de ${m[5]} a ${m[6]} °C`;
     if ((m = /^(.+) · (now|past|forecast)$/.exec(s))) return `${m[1]} · ${translate(m[2])}`;
     // Translate complete clauses only; never change numeric values or substrings of names.
     const parts = s.split(/( · |\n)/);
