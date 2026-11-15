@@ -166,12 +166,12 @@ function contrastes(){
 // ---------------------------------------------------------------- recorridos guiados
 function demostraciones(){
   const cont=$('inv-demos');cont.replaceChildren();
-  D.demostraciones.forEach(dm=>{const b=nodo('button',dm.titulo_en);b.type='button';b.dataset.demo=dm.id;b.onclick=()=>iniciarDemo(dm.id);cont.append(b)});
+  D.demostraciones.forEach(dm=>{const b=nodo('button',dm.titulo_en);b.type='button';b.dataset.demo=dm.id;b.onclick=()=>iniciarDemo(dm.id,true);cont.append(b)});
 }
-function iniciarDemo(id){demo={dm:D.demostraciones.find(d=>d.id===id),paso:0};pasoDemo()}
-function pasoDemo(){
+function iniciarDemo(id,enfocar){demo={dm:D.demostraciones.find(d=>d.id===id),paso:0};pasoDemo(enfocar?'next':null)}
+function pasoDemo(foco){
   const panel=$('inv-demo-panel');
-  if(!demo){panel.hidden=true;return}
+  if(!demo){panel.hidden=true;if(foco)document.querySelector(`#inv-demos [data-demo="${foco}"]`)?.focus();return}
   const {dm,paso}=demo,p=dm.pasos[paso],x=inv(p.investigacion);
   sel.categoria=x.categoria;sel.lugar=x.lugar;sel.investigacion=x.id;pintar();
   panel.hidden=false;panel.replaceChildren();
@@ -183,12 +183,14 @@ function pasoDemo(){
     panel.append(tj);
   }
   const ctl=nodo('div',undefined,'controles');
-  const boton=(txt,fn,des)=>{const b=nodo('button',txt);b.type='button';b.disabled=!!des;b.onclick=fn;ctl.append(b)};
-  boton('Previous',()=>{demo.paso--;pasoDemo()},paso===0);
-  if(paso<dm.pasos.length-1)boton('Next',()=>{demo.paso++;pasoDemo()});else boton('Finish',()=>{demo=null;pasoDemo()});
+  const boton=(txt,fn,des)=>{const b=nodo('button',txt);b.type='button';b.disabled=!!des;b.onclick=fn;ctl.append(b);return b};
+  const bPrev=boton('Previous',()=>{demo.paso--;pasoDemo('prev')},paso===0);
+  const bNext=paso<dm.pasos.length-1?boton('Next',()=>{demo.paso++;pasoDemo('next')}):boton('Finish',()=>{const id=dm.id;demo=null;pasoDemo(id)});
   panel.append(ctl);
   const destino={veredicto:'inv-veredicto',contrastes:'inv-contrastes'}[p.ver];
   if(p.ver==='aprender'){const b=nodo('button','Open the explanation');b.type='button';b.onclick=()=>aprender(p.ancla||'aprender-no-significativo');ctl.append(b)}
+  if(foco==='prev')(!bPrev.disabled?bPrev:bNext).focus({preventScroll:true});
+  else if(foco==='next')bNext.focus({preventScroll:true});
   (destino?$(destino):panel).scrollIntoView({block:'nearest',behavior:'smooth'});
 }
 
