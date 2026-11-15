@@ -72,6 +72,7 @@ function resultado(){
   const a0=res.length%2?res[(res.length-1)/2]:(res[res.length/2-1]+res[res.length/2])/2;
   const recta=anios.map(a=>a0+b*a);
   $('ind-serie-titulo').textContent=`${v.titulo} · ${nombreRegion}`;
+  $('ind-serie').setAttribute('role','img');$('ind-serie').setAttribute('aria-label',`${v.titulo} in ${nombreRegion}, ${anios[0]} to ${anios.at(-1)}, with Theil–Sen trend`);
   crear('ind-serie',{data:{labels:anios,datasets:[
     {type:v.unidad==='mm'?'bar':'line',label:`${v.nombre} (${u})`,data:vals,borderColor:'#6fd8ff',backgroundColor:v.unidad==='mm'?'rgba(79,143,232,.7)':'rgba(111,216,255,.15)',pointRadius:v.unidad==='mm'?0:2,borderWidth:v.unidad==='mm'?0:2},
     {type:'line',label:'Theil–Sen trend',data:recta,borderColor:'#f6c76b',borderDash:[6,4],pointRadius:0,borderWidth:2}]},
@@ -89,6 +90,7 @@ function contraste(){
   const anomalia=(x)=>{const par=anios.map(a=>x.valores[x.anios.indexOf(a)]);const m=par.reduce((s,y)=>s+y,0)/par.length;return par.map(y=>y-m)};
   const u=v.unidad,d=v.dec+1;
   $('ind-contraste-sub').textContent=`${cfg.a} vs. ${cfg.b} reanalysis · ${ini}–${fin} · anomalies from each product's mean`;
+  $('ind-contraste-graf').setAttribute('role','img');$('ind-contraste-graf').setAttribute('aria-label',`${cfg.a} compared with ${cfg.b} reanalysis in ${REGIONES.find(r=>r[0]===sel.region)[1]}, ${ini} to ${fin}`);
   crear('ind-contraste-graf',{type:'line',data:{labels:anios,datasets:[
     {label:cfg.a,data:anomalia(propia),borderColor:'#6fd8ff',pointRadius:0,borderWidth:2.4,tension:.2},
     {label:cfg.b,data:anomalia(otra),borderColor:'#ff7b6b',pointRadius:0,borderWidth:1.6,borderDash:[4,3],tension:.2}]},

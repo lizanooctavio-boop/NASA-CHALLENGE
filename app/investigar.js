@@ -127,7 +127,7 @@ function serie(x,t,ok){
     ds.push({type:'line',label:'Theil–Sen trend',data:eje.tiempos.map(a=>a0+b*a),borderColor:'#f6c76b',borderDash:[6,4],pointRadius:0,borderWidth:2});
   }
   const [desde,hasta]=x.periodo||[x.tiempos[0],x.tiempos.at(-1)];
-  $('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${desde} to ${hasta}`);
+  $('inv-serie').setAttribute('role','img');$('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${desde} to ${hasta}`);
   crear('inv-serie',{data:{labels:eje.tiempos,datasets:ds},options:{locale:x.validacion?'en-US':undefined,interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
 }
 
@@ -153,7 +153,7 @@ function contrastes(){
     bloque.append(tj);
     const etiquetas=c.externa.anios||c.externa.tiempos,ve=c.externa.valores,vn=c.nuestra?.valores;
     if(etiquetas?.length&&ve?.length&&vn?.length){
-      const lienzo=nodo('canvas');lienzo.id='inv-c-'+k;lienzo.setAttribute('aria-label',`${c.externa.nombre_en} compared with ${c.nuestra.nombre_en}`);
+      const lienzo=nodo('canvas');lienzo.id='inv-c-'+k;lienzo.setAttribute('role','img');lienzo.setAttribute('aria-label',`${c.externa.nombre_en} compared with ${c.nuestra.nombre_en}`);
       const g=nodo('div',undefined,'graf baja');g.append(lienzo);bloque.append(g);
       const ejes=c.nuestra.anios||c.nuestra.tiempos,mapa=new Map(ejes.map((a,i)=>[a,vn[i]]));
       crear(lienzo.id,{type:'line',data:{labels:etiquetas,datasets:[
