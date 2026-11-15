@@ -372,3 +372,8 @@ body.en-transicion .interruptor button{cursor:progress}
 #aprender article.resaltado{outline:2px solid var(--ambar);outline-offset:2px;transition:outline-color .4s}
 .fuentes-lista li{margin:10px 0}.fuentes-lista p{margin:2px 0 0;font-size:12.5px;color:var(--texto-2)}.fuentes-lista .tenue{color:var(--tenue);font-size:12px}
 .hora-capa{display:block;font-size:.72em;opacity:.7}
+/* C-01: objetivos táctiles >= 44 px en móvil, tablet y pantallas táctiles */
+@media(max-width:1024px),(pointer:coarse){
+  nav button,.interruptor button,#solomapa,#indicador-datos,.botones-region button,.botones-variable button,.controles button,.controles a.boton{min-height:44px}
+  #plegar-menu{min-width:44px;min-height:44px}
+}
