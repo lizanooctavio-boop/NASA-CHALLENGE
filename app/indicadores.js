@@ -20,12 +20,31 @@ const ESCENARIOS=[['lluvia_anual','Annual rainfall','%'],['lluvia_jun_nov','Rain
 
 let D=null,carga=null,sel={region:'NIC',variable:'temperatura_gistemp'},capaMapa=null;
 const graficas={};
-function crear(id,config){graficas[id]?.destroy();graficas[id]=new Chart($(id),config);return graficas[id]}
+function crear(id,config){
+  const cv=$(id);if(!cv||!window.Chart)return null;
+  graficas[id]?.destroy();graficas[id]=new Chart(cv,config);return graficas[id];
+}
 const region=id=>D.regiones.find(r=>r.id===id);
 const disponibles=r=>VARIABLES.filter(v=>region(r)?.variables[v.id]);
 
+function avisoCargaInd(msg){
+  const c=$('ind-veredicto');if(!c)return;
+  c.replaceChildren();c.className='veredicto insuficiente';
+  const cab=nodo('div');cab.append(nodo('p','Climate indicators unavailable','estado'),nodo('p',msg,'sub'));
+  const btn=nodo('button','Retry');btn.type='button';btn.onclick=()=>{cargar().catch(err=>typeof error==='function'&&error(err))};
+  c.append(cab,btn);
+}
 function cargar(){
-  carga??=fetch('data/fenomenos_nicaragua.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(d=>{D=d;construir();return d});
+  if(D)return Promise.resolve(D);
+  carga??=fetch('data/fenomenos_nicaragua.json')
+    .then(r=>{if(!r.ok)throw Error(`Climate indicators could not be loaded (HTTP ${r.status}).`);return r.json()})
+    .then(d=>{D=d;if($('error'))$('error').hidden=true;construir();return d})
+    .catch(e=>{
+      carga=null;
+      const msg=e?.message&&!/failed to fetch|load failed|networkerror/i.test(e.message)?e.message:'Climate indicators data could not be loaded. Check your connection and try again.';
+      avisoCargaInd(msg);
+      throw Error(msg);
+    });
   return carga;
 }
 
@@ -136,11 +155,11 @@ $('ind-ver-mapa').onclick=()=>window.SICC_vista.irA(12.8,-85.2,7);
 
 // ---------------------------------------------------------------- descargas
 function bajar(nombre,texto,tipo){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([texto],{type:tipo}));a.download=nombre;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),30000)}
-$('ind-csv').onclick=async()=>{await cargar();const v=VARIABLES.find(x=>x.id===sel.variable),x=region(sel.region).variables[v.id];
-  bajar(`${v.id}_${sel.region}.csv`,'﻿'+[`# Source: ${v.fuente}`,`# Area: ${REGIONES.find(r=>r[0]===sel.region)[1]}, Nicaragua`,`year,${v.id}_${v.unidad==='NDVI'?'ndvi':v.unidad==='°C'?'c':'mm'}`,...x.anios.map((a,i)=>`${a},${x.valores[i]}`)].join('\r\n')+'\r\n','text/csv;charset=utf-8')};
+$('ind-csv').onclick=async()=>{try{await cargar();const v=VARIABLES.find(x=>x.id===sel.variable),x=region(sel.region).variables[v.id];
+  bajar(`${v.id}_${sel.region}.csv`,'﻿'+[`# Source: ${v.fuente}`,`# Area: ${REGIONES.find(r=>r[0]===sel.region)[1]}, Nicaragua`,`year,${v.id}_${v.unidad==='NDVI'?'ndvi':v.unidad==='°C'?'c':'mm'}`,...x.anios.map((a,i)=>`${a},${x.valores[i]}`)].join('\r\n')+'\r\n','text/csv;charset=utf-8')}catch(err){typeof error==='function'&&error(err)}};
 
 document.addEventListener('sicc:pestana',e=>{
-  if(e.detail==='indicadores'||e.detail==='escenarios')cargar().then(()=>{mapaRegiones();setTimeout(()=>Object.values(graficas).forEach(g=>g.resize()),30)}).catch(err=>typeof error==='function'&&error(err));
+  if(e.detail==='indicadores'||e.detail==='escenarios')cargar().then(()=>{mapaRegiones();setTimeout(()=>Object.values(graficas).forEach(g=>g?.resize()),30)}).catch(err=>typeof error==='function'&&error(err));
   else mapaRegiones();
 });
 window.SICC_indicadores={estado:()=>({cargado:!!D,sel:{...sel},graficas:Object.keys(graficas)})};

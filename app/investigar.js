@@ -20,14 +20,37 @@ const ICONOS={aumento:'<path d="M4 15l6-6 4 4 6-7" fill="none" stroke="currentCo
 
 let D=null,carga=null,sel={categoria:null,lugar:null,investigacion:null},demo=null;
 const graficas={};
-function crear(id,config){graficas[id]?.destroy();graficas[id]=new Chart($(id),config);return graficas[id]}
+function crear(id,config){
+  const cv=$(id);if(!cv||!window.Chart)return null;
+  graficas[id]?.destroy();graficas[id]=new Chart(cv,config);return graficas[id];
+}
 const inv=id=>D.investigaciones.find(i=>i.id===id);
 const lugar=id=>D.lugares.find(l=>l.id===id);
 const contraste=id=>D.contrastes.find(c=>c.id===id);
 const deCategoria=c=>D.investigaciones.filter(i=>i.categoria===c);
 
+function avisoCargaInv(msg){
+  const c=$('inv-veredicto');
+  if(c){
+    c.replaceChildren();c.className='veredicto insuficiente';
+    const cab=nodo('div');cab.append(nodo('p','Investigations unavailable','estado'),nodo('p',msg,'sub'));
+    const btn=nodo('button','Retry');btn.type='button';btn.onclick=()=>{cargar().catch(err=>typeof error==='function'&&error(err))};
+    c.append(cab,btn);
+  }
+  const f=$('fuentes-recursos');
+  if(f&&!f.children.length)f.replaceChildren(nodo('li',msg));
+}
 function cargar(){
-  carga??=fetch('data/recursos_integrados.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(d=>{D=d;construir();return d});
+  if(D)return Promise.resolve(D);
+  carga??=fetch('data/recursos_integrados.json')
+    .then(r=>{if(!r.ok)throw Error(`Investigations data could not be loaded (HTTP ${r.status}).`);return r.json()})
+    .then(d=>{D=d;if($('error'))$('error').hidden=true;construir();return d})
+    .catch(e=>{
+      carga=null;
+      const msg=e?.message&&!/failed to fetch|load failed|networkerror/i.test(e.message)?e.message:'Investigations data could not be loaded. Check your connection and try again.';
+      avisoCargaInv(msg);
+      throw Error(msg);
+    });
   return carga;
 }
 
@@ -46,6 +69,7 @@ function construir(){
 }
 // Fija la selección y completa lo que falte con la primera opción disponible.
 function elegir(cambio){
+  if(!D)return;
   Object.assign(sel,cambio);
   const candidatas=deCategoria(sel.categoria);
   if(cambio.categoria&&!cambio.lugar)sel.lugar=null;
@@ -133,7 +157,7 @@ function serie(x,t,ok){
 function contrastes(){
   const x=inv(sel.investigacion),art=$('inv-contrastes'),lista=$('inv-contrastes-lista');
   const cs=x.contrastes.map(contraste).filter(Boolean);
-  art.hidden=!cs.length;lista.replaceChildren();Object.keys(graficas).filter(k=>k.startsWith('inv-c-')).forEach(k=>{graficas[k].destroy();delete graficas[k]});
+  art.hidden=!cs.length;lista.replaceChildren();Object.keys(graficas).filter(k=>k.startsWith('inv-c-')).forEach(k=>{graficas[k]?.destroy();delete graficas[k]});
   const u=x.unidad,d=dec(u)+1;
   cs.forEach((c,k)=>{
     const bloque=nodo('div',undefined,'contraste');bloque.dataset.id=c.id;lista.append(bloque);
@@ -168,7 +192,7 @@ function demostraciones(){
   const cont=$('inv-demos');cont.replaceChildren();
   D.demostraciones.forEach(dm=>{const b=nodo('button',dm.titulo_en);b.type='button';b.dataset.demo=dm.id;b.onclick=()=>iniciarDemo(dm.id);cont.append(b)});
 }
-function iniciarDemo(id){demo={dm:D.demostraciones.find(d=>d.id===id),paso:0};pasoDemo()}
+function iniciarDemo(id){if(!D)return;const dm=D.demostraciones.find(d=>d.id===id);if(!dm)return;demo={dm,paso:0};pasoDemo()}
 function pasoDemo(){
   const panel=$('inv-demo-panel');
   if(!demo){panel.hidden=true;return}
@@ -207,15 +231,15 @@ function fuentes(){
 
 // ---------------------------------------------------------------- mapa y descarga
 // En el móvil los paneles tapan el mapa entero: se ocultan para que se vea el lugar marcado.
-$('inv-mapa').onclick=async()=>{const l=lugar(inv(sel.investigacion).lugar);
+$('inv-mapa').onclick=async()=>{if(!D||!sel.investigacion)return;const l=lugar(inv(sel.investigacion).lugar);
   await window.SICC_vista.irA(l.centro[0],l.centro[1],l.zoom);window.SICC_vista.marcar?.(l.centro[0],l.centro[1],l.nombre_en);
   if(matchMedia('(max-width:700px),(max-height:500px) and (max-width:1000px)').matches)window.SICC_vista.soloMapa?.(true)};
 function bajar(nombre,texto){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([texto],{type:'text/csv;charset=utf-8'}));a.download=nombre;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),30000)}
-$('inv-csv').onclick=async()=>{await cargar();const x=inv(sel.investigacion),col=x.frecuencia==='mensual'?'month':x.frecuencia==='escena'?'date':'year';
-  bajar(`${x.id}.csv`,'﻿'+[`# Source: ${x.fuente.producto}`,`# Place: ${lugar(x.lugar).nombre_en}`,`${col},value_${x.unidad.replace(/[^\w°³]+/g,'_')}`,...x.tiempos.map((a,i)=>`${a},${x.valores[i]??''}`)].join('\r\n')+'\r\n')};
+$('inv-csv').onclick=async()=>{try{await cargar();const x=inv(sel.investigacion),col=x.frecuencia==='mensual'?'month':x.frecuencia==='escena'?'date':'year';
+  bajar(`${x.id}.csv`,'﻿'+[`# Source: ${x.fuente.producto}`,`# Place: ${lugar(x.lugar).nombre_en}`,`${col},value_${x.unidad.replace(/[^\w°³]+/g,'_')}`,...x.tiempos.map((a,i)=>`${a},${x.valores[i]??''}`)].join('\r\n')+'\r\n')}catch(err){typeof error==='function'&&error(err)}};
 
 document.addEventListener('sicc:pestana',e=>{
-  if(['investigar','aprender','fuentes'].includes(e.detail))cargar().then(()=>setTimeout(()=>Object.values(graficas).forEach(g=>g.resize()),30)).catch(err=>typeof error==='function'&&error(err));
+  if(['investigar','aprender','fuentes'].includes(e.detail))cargar().then(()=>setTimeout(()=>Object.values(graficas).forEach(g=>g?.resize()),30)).catch(err=>typeof error==='function'&&error(err));
 });
 window.SICC_investigar={estado:()=>({cargado:!!D,sel:{...sel},demo:demo&&{id:demo.dm.id,paso:demo.paso}}),elegir:c=>{elegir(c)},demo:iniciarDemo};
 })();
