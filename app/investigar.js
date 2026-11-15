@@ -19,6 +19,9 @@ const VEREDICTO_AYUDA={
   evidencia_insuficiente:'Does NOT mean “no change”: natural year-to-year swings or a short record may be hiding a real shift.',
   metodos_discrepan:'At least one method rules out zero while another still crosses zero or gives p ≥ 0.05, so it is not confirmed as a trend.',
   datos_insuficientes:'Too few years to test a long-term trend reliably; this series shows short-term or seasonal values instead.'};
+const TEMA_PISTA={
+  Temperature:'Land and air temperature records. Looking for sea or ocean warming (such as the Mediterranean Sea or Caribbean Sea)? Select “Coast & ocean” above.',
+  'Coast & ocean':'Includes coastal stations (tide gauges, reefs, river mouths) and regional seas or oceans (including the Mediterranean Sea, Caribbean Sea, and global sea level).'};
 const ICONOS={aumento:'<path d="M4 15l6-6 4 4 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   disminucion:'<path d="M4 7l6 6 4-4 6 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   insuficiente:'<path d="M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>'};
@@ -64,7 +67,8 @@ function pintar(){
   botones($('inv-categorias'),cats.map(c=>[c.id,c.nombre_en]),sel.categoria,id=>elegir({categoria:id}));
   const c=D.categorias.find(x=>x.id===sel.categoria);
   $('inv-pregunta').textContent=c.pregunta_en;
-  $('inv-descripcion').textContent=c.descripcion_en||'';$('inv-descripcion').hidden=!c.descripcion_en;
+  const desc=[c.descripcion_en||'',TEMA_PISTA[c.nombre_en]||''].filter(Boolean).join(' ');
+  $('inv-descripcion').textContent=desc;$('inv-descripcion').hidden=!desc;
   const lugares=[...new Set(deCategoria(sel.categoria).map(i=>i.lugar))].map(lugar).filter(Boolean);
   botones($('inv-lugares'),lugares.map(l=>[l.id,l.nombre_en,l.pais]),sel.lugar,id=>elegir({lugar:id}));
   const variantes=deCategoria(sel.categoria).filter(i=>i.lugar===sel.lugar);
