@@ -18,7 +18,7 @@ const ICONOS={aumento:'<path d="M4 15l6-6 4 4 6-7" fill="none" stroke="currentCo
   disminucion:'<path d="M4 7l6 6 4-4 6 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   insuficiente:'<path d="M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>'};
 
-let D=null,carga=null,sel={categoria:null,lugar:null,investigacion:null},demo=null;
+let D=null,carga=null,sel={categoria:null,lugar:null,investigacion:null},demo=null,demoOrigen=null;
 const graficas={};
 function crear(id,config){graficas[id]?.destroy();graficas[id]=new Chart($(id),config);return graficas[id]}
 const inv=id=>D.investigaciones.find(i=>i.id===id);
@@ -33,11 +33,16 @@ function cargar(){
 
 // ---------------------------------------------------------------- selectores
 function botones(cont,items,activo,alElegir){
+  const teniaFoco=cont.contains(document.activeElement);
   cont.replaceChildren();
-  items.forEach(([id,nombre,rol])=>{const b=nodo('button');b.type='button';b.setAttribute('role','radio');b.dataset.id=id;b.setAttribute('aria-checked',String(id===activo));
+  const hayActivo=items.some(([id])=>id===activo);
+  items.forEach(([id,nombre,rol],idx)=>{const b=nodo('button');b.type='button';b.setAttribute('role','radio');b.dataset.id=id;
+    const on=id===activo;b.setAttribute('aria-checked',String(on));b.tabIndex=on||(!hayActivo&&idx===0)?0:-1;
     b.append(nodo('span',nombre));if(rol)b.append(nodo('span',rol,'rol'));b.onclick=()=>alElegir(id);cont.append(b)});
+  if(teniaFoco)(cont.querySelector('[aria-checked="true"]')||cont.querySelector('button'))?.focus({preventScroll:true});
   cont.onkeydown=ev=>{const paso={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[ev.key];if(!paso)return;ev.preventDefault();
-    const ids=items.map(i=>i[0]),i=ids.indexOf(cont.querySelector('[aria-checked="true"]')?.dataset.id);const n=ids[(i+paso+ids.length)%ids.length];alElegir(n);cont.querySelector(`[data-id="${n}"]`)?.focus()};
+    const ids=items.map(i=>i[0]);if(!ids.length)return;
+    const i=Math.max(0,ids.indexOf(cont.querySelector('[aria-checked="true"]')?.dataset.id));const n=ids[(i+paso+ids.length)%ids.length];alElegir(n);cont.querySelector(`[data-id="${n}"]`)?.focus()};
 }
 function construir(){
   const primera=D.categorias.find(c=>c.con_datos);
@@ -168,13 +173,23 @@ function demostraciones(){
   const cont=$('inv-demos');cont.replaceChildren();
   D.demostraciones.forEach(dm=>{const b=nodo('button',dm.titulo_en);b.type='button';b.dataset.demo=dm.id;b.onclick=()=>iniciarDemo(dm.id);cont.append(b)});
 }
-function iniciarDemo(id){demo={dm:D.demostraciones.find(d=>d.id===id),paso:0};pasoDemo()}
-function pasoDemo(){
+function iniciarDemo(id){
+  demoOrigen=document.activeElement?.closest('#inv-demos')?document.activeElement:document.querySelector(`#inv-demos [data-demo="${id}"]`);
+  demo={dm:D.demostraciones.find(d=>d.id===id),paso:0};pasoDemo('inicio');
+}
+function pasoDemo(focoDestino){
   const panel=$('inv-demo-panel');
-  if(!demo){panel.hidden=true;return}
+  if(!demo){
+    const volver=panel.contains(document.activeElement);
+    panel.hidden=true;
+    if(volver)(demoOrigen?.isConnected?demoOrigen:document.querySelector('#inv-demos button'))?.focus({preventScroll:true});
+    return;
+  }
   const {dm,paso}=demo,p=dm.pasos[paso],x=inv(p.investigacion);
   sel.categoria=x.categoria;sel.lugar=x.lugar;sel.investigacion=x.id;pintar();
-  panel.hidden=false;panel.replaceChildren();
+  panel.hidden=false;panel.tabIndex=-1;panel.setAttribute('aria-label',`${dm.titulo_en} · step ${paso+1} of ${dm.pasos.length}`);
+  panel.onkeydown=e=>{if(e.key==='Escape'&&demo){e.preventDefault();demo=null;pasoDemo()}};
+  panel.replaceChildren();
   panel.append(nodo('p',`${dm.titulo_en} · step ${paso+1} of ${dm.pasos.length}`,'demo-titulo'),nodo('p',p.texto_en,'demo-texto'));
   if(p.ver==='comparacion'&&dm.comparacion){
     const tj=nodo('div',undefined,'tarjetas');
@@ -183,13 +198,18 @@ function pasoDemo(){
     panel.append(tj);
   }
   const ctl=nodo('div',undefined,'controles');
-  const boton=(txt,fn,des)=>{const b=nodo('button',txt);b.type='button';b.disabled=!!des;b.onclick=fn;ctl.append(b)};
-  boton('Previous',()=>{demo.paso--;pasoDemo()},paso===0);
-  if(paso<dm.pasos.length-1)boton('Next',()=>{demo.paso++;pasoDemo()});else boton('Finish',()=>{demo=null;pasoDemo()});
+  const boton=(txt,fn,des)=>{const b=nodo('button',txt);b.type='button';b.disabled=!!des;b.dataset.accion=txt.toLowerCase();b.onclick=fn;ctl.append(b)};
+  boton('Previous',()=>{demo.paso--;pasoDemo('previous')},paso===0);
+  if(paso<dm.pasos.length-1)boton('Next',()=>{demo.paso++;pasoDemo('next')});else boton('Finish',()=>{demo=null;pasoDemo()});
   panel.append(ctl);
   const destino={veredicto:'inv-veredicto',contrastes:'inv-contrastes'}[p.ver];
   if(p.ver==='aprender'){const b=nodo('button','Open the explanation');b.type='button';b.onclick=()=>aprender(p.ancla||'aprender-no-significativo');ctl.append(b)}
   (destino?$(destino):panel).scrollIntoView({block:'nearest',behavior:'smooth'});
+  if(focoDestino==='inicio')panel.focus({preventScroll:true});
+  else if(focoDestino){
+    const elegido=ctl.querySelector(`[data-accion="${focoDestino}"]:not(:disabled)`)||ctl.querySelector('button:not(:disabled)');
+    elegido?.focus({preventScroll:true});
+  }
 }
 
 // ---------------------------------------------------------------- Learn y Sources
