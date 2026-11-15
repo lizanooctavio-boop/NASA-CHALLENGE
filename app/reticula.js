@@ -54,7 +54,7 @@
   ayuda.onclick=()=>{if(!guia.hidden){cerrarGuia();return;}pintarGuia();guia.hidden=false;ayuda.setAttribute('aria-expanded','true');posicionGuia();guia.focus();};
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!guia.hidden){e.preventDefault();cerrarGuia();}});
   document.addEventListener('pointerdown',e=>{if(!guia.hidden&&!guia.contains(e.target)&&!ayuda.contains(e.target)){guia.hidden=true;ayuda.setAttribute('aria-expanded','false');}});
-  function sincronizar(){boton.textContent=visible?'Grid: hide':'Grid: show';boton.setAttribute('aria-pressed',String(visible));boton.title=visible?'Hide geographic grid':'Show geographic grid';if(canvas)canvas.hidden=!visible;}
+  function sincronizar(){boton.textContent=visible?'Hide grid':'Show grid';boton.setAttribute('aria-pressed',String(visible));boton.title=visible?'Hide geographic grid':'Show geographic grid';if(canvas)canvas.hidden=!visible;}
   // Solo se enumeran los múltiplos presentes en el intervalo visible, incluso junto a ±180°.
   function multiplos(min,max,s){const xs=[];for(let k=Math.ceil((min-1e-8)/s),fin=Math.floor((max+1e-8)/s);k<=fin&&xs.length<200;k++)xs.push(Number((k*s).toFixed(7)));return xs;}
   function espacioLibre(){const r=mapa.getContainer().getBoundingClientRect(),s=mapa.getSize();let izq=7,der=s.x-7,arriba=7,abajo=s.y-7;

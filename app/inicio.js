@@ -21,3 +21,19 @@ ejemplo.onclick=()=>{
 fila.append(abrir,ejemplo);
 tarjeta.append(fila);
 })();
+
+// Orientación en paneles largos: títulos de sección en Layers y el lugar o la variable
+// elegidos siempre a la vista dentro de sus listas con desplazamiento.
+(function(){
+const cuerpo=document.querySelector('#barra-capas .ventana-cuerpo');
+const titulo=texto=>{const t=document.createElement('div');t.className='capas-seccion';t.textContent=texto;return t};
+const reticula=document.getElementById('reticula-controles');
+if(cuerpo&&reticula&&reticula.parentNode===cuerpo)reticula.before(titulo('Map grid'));
+const primera=cuerpo&&cuerpo.querySelector(':scope > [data-var]');
+if(primera)primera.before(titulo('Weather layer'));
+const aLaVista=lista=>{const b=lista.querySelector('[aria-checked="true"]');if(!b)return;
+  const r=b.getBoundingClientRect(),q=lista.getBoundingClientRect();if(!q.height)return;
+  if(r.top<q.top)lista.scrollTop+=r.top-q.top-6;else if(r.bottom>q.bottom)lista.scrollTop+=r.bottom-q.bottom+6};
+['inv-lugares','inv-variables'].forEach(id=>{const lista=document.getElementById(id);
+  if(lista)new MutationObserver(()=>aLaVista(lista)).observe(lista,{childList:true})});
+})();
