@@ -154,6 +154,15 @@ a{color:var(--cian)}
   body.menu-plegado nav button:is(:hover,:focus-visible)::after{content:attr(data-nombre);position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;padding:6px 10px;border-radius:7px;background:rgba(14,20,32,.95);border:1px solid var(--borde);color:var(--texto);font-size:12.5px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.4);pointer-events:none;z-index:20}
   body.menu-plegado #plegar-menu svg{transform:rotate(180deg)}
 }
+/* Tabletas y portatiles medianos: ajustar --col y ancho maximo para no solapar con el panel Meteorologia. */
+@media(min-width:701px) and (min-height:501px) and (max-width:1060px){
+  body{--col:min(360px,36vw)}
+  .vista.ventana{width:min(600px,max(220px,calc(100vw - var(--izq) - var(--col) - 44px)))}
+  #aviso-publico{max-width:min(600px,max(220px,calc(100vw - var(--izq) - var(--col) - 44px)))}
+}
+@media(min-width:701px) and (min-height:501px) and (max-width:960px){
+  body{--col:min(296px,38vw)}
+}
 @media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:10px;padding:14px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:12px;gap:4px}nav button{font-size:12px;padding:10px;flex:none;white-space:nowrap}nav.mas-derecha{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}nav.mas-izquierda.mas-derecha{-webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent);mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent)}nav.mas-izquierda:not(.mas-derecha){-webkit-mask-image:linear-gradient(to right,transparent,#000 12%);mask-image:linear-gradient(to right,transparent,#000 12%)}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:10px}.etiqueta{letter-spacing:1.2px}h1{font-size:19px}.acciones{width:100%;justify-content:space-between}.estado{white-space:normal}.ventana,.ventana.ancha,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}#indicador-detalle{right:auto;left:0}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
 /* Movil apaisado (poca altura vertical): compactar menu y cabecera en una fila para liberar el lienzo. */
 @media(max-height:500px) and (max-width:1000px){
