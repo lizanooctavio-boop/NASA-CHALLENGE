@@ -245,6 +245,7 @@ function orientar() {
 }
 function tamano() {
   const w = innerWidth, h = innerHeight;
+  if (w <= 0 || h <= 0) return;
   renderer.setSize(w, h, false);
   camara.aspect = w / h;
   camara.updateProjectionMatrix();
@@ -256,6 +257,7 @@ function encuadrar() {
   camara.position.set(0, 0, estado.dist);
   camara.lookAt(0, 0, 0);
   const w = innerWidth, h = innerHeight;
+  if (w <= 0 || h <= 0) return;
   if (Math.abs(estado.desp) > 0.5) camara.setViewOffset(w, h, -estado.desp, 0, w, h);
   else camara.clearViewOffset();
   uniformes.uCamPos.value.copy(camara.position);
@@ -270,6 +272,7 @@ function encuadrar() {
   orientar();
 }
 function dibujar() {
+  if (innerWidth <= 0 || innerHeight <= 0) return;
   encuadrar();
   renderer.render(escena, camara);
 }
