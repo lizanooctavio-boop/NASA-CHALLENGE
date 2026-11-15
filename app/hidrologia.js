@@ -40,7 +40,7 @@
     if(p.HYBAS_ID)d.append(el('p','HYBAS_ID (separate identifier): '+p.HYBAS_ID));
     if(p.n3)d.append(el('p','Published components: '+[3,4,5,6,7].map(n=>'n'+n+'='+p['n'+n]).join(' · ')));
     if(p.codigo_discrepa)d.append(el('p','Code from the published components: '+p.codigo_componentes),el('p','Source inconsistency: code_pfafs differs from the published n3–n7 components. Both are retained; neither is corrected.'));
-    if(capa){cuencas?.resetStyle();capa.setStyle({weight:3,color:'#fff3a1',fillOpacity:.25});capa.bringToFront();}
+    if(capa){seleccionada=capa;cuencas?.resetStyle();resaltar();}
   }
   function buscar(){const fs=H.buscar(fc?.features??[],$('hid-buscar').value),c=$('hid-resultados');c.replaceChildren();
     fs.slice(0,100).forEach(f=>{const li=el('li'),b=el('button',H.codigo(f.properties)+' · '+(f.properties.cuencas||f.properties.HYBAS_ID||'Watershed'));b.type='button';b.onclick=()=>{let encontrado;cuencas?.eachLayer(l=>{if(l.feature===f)encontrado=l;});detalle(f,encontrado);if(encontrado)mapa.fitBounds(encontrado.getBounds(),{maxZoom:11,padding:[30,30]});};li.append(b);c.append(li);});
@@ -50,10 +50,20 @@
     let n=0;cuencas?.eachLayer(l=>{if(n>=150||!mapa.getBounds().intersects(l.getBounds()))return;const centro=l.getCenter();if(!mapa.getBounds().contains(centro))return;
       const t=el('span',H.codigo(l.feature.properties));L.marker(centro,{interactive:false,keyboard:false,icon:L.divIcon({className:'hid-etiqueta',html:t,iconSize:null})}).addTo(etiquetas);n++;});if(!mapa.hasLayer(etiquetas))etiquetas.addTo(mapa);
   }
-  function pintarCuencas(){cuencas?.remove();
+  // Más cerca de la precisión de origen, el trazo se atenúa y se vuelve punteado: INETER publica sus
+  // cuencas a escala 1:750 000 (~375 m) y HydroBASINS está simplificado a 0,003° (nivel 6) o 0,01°
+  // (nivel 4); con imagen satelital de detalle, un trazo sólido aparentaría más exactitud de la que tiene.
+  let seleccionada=null;
+  function zoomPreciso(){const r=$('hid-region').value;return r==='nic'?12:(r==='world'||$('hid-nivel').value==='4')?8:10}
+  function aproximado(){return mapa.getZoom()>=zoomPreciso()}
+  function resaltar(){if(seleccionada&&cuencas?.hasLayer(seleccionada)){seleccionada.setStyle({weight:3,color:'#fff3a1',fillOpacity:.25,opacity:1,dashArray:null});seleccionada.bringToFront();}}
+  let aproxPrevio=null;
+  mapa.on('zoomend',()=>{if(!cuencas)return;const a=aproximado();if(a===aproxPrevio)return;aproxPrevio=a;cuencas.resetStyle();resaltar();});
+  function pintarCuencas(){cuencas?.remove();seleccionada=null;aproxPrevio=null;
     cuencas=L.geoJSON(fc,{renderer:L.canvas({padding:.3}),bubblingMouseEvents:false,
       attribution:$('hid-region').value==='nic'?'Watersheds: INETER / IDE-RH Nicaragua (public service)':'Watersheds: HydroBASINS © HydroSHEDS (Lehner & Grill 2013)',
-      style:f=>{const n=[...H.codigo(f.properties)].reduce((a,c)=>a+c.charCodeAt(0),0);return {color:`hsl(${170+n%100},75%,68%)`,weight:1.1,fillOpacity:.07};},
+      style:f=>{const n=[...H.codigo(f.properties)].reduce((a,c)=>a+c.charCodeAt(0),0),color=`hsl(${170+n%100},75%,68%)`;
+        return aproximado()?{color,weight:1,opacity:.75,dashArray:'4 5',fillOpacity:0}:{color,weight:1.1,opacity:1,dashArray:null,fillOpacity:.07};},
       onEachFeature:(f,l)=>{l.bindTooltip(el('span',H.codigo(f.properties)+(f.properties.cuencas?' · '+f.properties.cuencas:'')),{sticky:true});l.on('click',()=>detalle(f,l));}
     });if(visible)cuencas.addTo(mapa);buscar();rotular();
   }

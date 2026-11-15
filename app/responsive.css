@@ -1,0 +1,26 @@
+/* Ajustes responsive añadidos sin tocar estilos.css.
+   Móvil y móvil horizontal: la cabecera pasa de cinco filas a dos (o una en horizontal), para que
+   el contenido empiece antes. El título queda para lectores de pantalla: la sección activa ya se ve
+   en el menú y en la barra de la ventana. */
+@media (max-width:700px),(max-height:500px) and (max-width:1000px){
+  header{gap:6px;padding:8px 10px;align-items:center}
+  header > div:first-child{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  header .acciones{display:contents}
+  header .interruptor{order:1}
+  header #solomapa{order:2}
+  header #menu-tour{order:3}
+  header .indicador-envoltura{order:4;flex:0 1 auto;min-width:0}
+  header .buscador-envoltura{order:5;flex:1 1 150px;min-width:0;max-width:none}
+  header :is(#solomapa,#menu-tour){padding:8px 10px;font-size:13px;margin:0}
+  header .interruptor button{padding:8px 10px}
+}
+@media (max-height:500px) and (max-width:1000px){
+  header{flex-wrap:nowrap}
+  header .buscador-envoltura{flex:1 1 120px}
+}
+/* Tableta vertical: la ventana usa el hueco entre el menú y la columna Layers y termina por encima
+   de la leyenda y la línea de tiempo, en lugar de quedarse en 340 px de ancho. */
+@media (orientation:portrait) and (min-width:701px) and (max-width:1060px) and (min-height:501px){
+  .vista.ventana,.vista:not(.ventana){width:min(600px,calc(100vw - var(--izq) - 226px))}
+  main{padding-bottom:calc(var(--alto-lt,64px) + var(--alto-ley,0px) + 52px)}
+}
