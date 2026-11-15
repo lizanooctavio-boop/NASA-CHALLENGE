@@ -1,0 +1,24 @@
+/* Estilos aislados: no modifica las capas, el armazón ni sus controles. */
+.reticula-controles{display:flex;flex-direction:column;gap:6px;padding:8px 0;border-top:1px solid var(--borde,#455164);flex:none}
+.reticula-controles .reticula-fila{display:flex;align-items:center;gap:4px;flex:none}
+.reticula-controles button,.reticula-controles select{min-height:36px;min-width:0;font:inherit;font-size:12px;line-height:1.2;white-space:nowrap}
+.reticula-controles .reticula-principal{width:100%;justify-content:center}
+.reticula-controles select{width:100%;max-width:100%;padding:6px;border:1px solid var(--borde,#455164);border-radius:6px;background:var(--panel,#121c2a);color:var(--texto,#eef4ff)}
+.reticula-controles .reticula-norte{flex:1;justify-content:center;gap:6px}
+.reticula-controles .reticula-ayuda{width:36px;flex:none;justify-content:center}
+.reticula-controles svg{width:17px;height:21px;flex:none}
+.reticula-controles button[aria-pressed=true]{border-color:#8bc9ed;background:rgba(99,181,219,.18)}
+.reticula-controles :is(button,select):focus-visible,.reticula-guia button:focus-visible{outline:3px solid #ffe49b;outline-offset:2px}
+.reticula-canvas{position:absolute;inset:0;z-index:460;pointer-events:none}
+.reticula-guia[hidden]{display:none}
+.reticula-guia{position:fixed;z-index:12;width:290px;max-width:calc(100vw - 24px);padding:14px;background:#101b2a;color:#f0f5ff;border:1px solid #758da2;border-radius:10px;box-shadow:0 8px 28px #0009;overflow:auto;max-height:55dvh;font-size:13px}
+.reticula-guia h2{margin:0 0 10px;font-size:15px}.reticula-guia p{line-height:1.5}.reticula-guia ul{padding-left:18px}.reticula-guia li{margin:8px 0}.reticula-guia button{min-height:44px}
+.reticula-estado{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:700px),(max-height:500px) and (max-width:1000px){
+  .reticula-controles{flex-direction:row;align-items:center;gap:4px;padding:0 5px 0 0;border-top:0;border-right:1px solid var(--borde,#455164);height:48px;flex:none}
+  .reticula-controles button,.reticula-controles select{min-height:44px;font-size:11px;padding:6px}
+  .reticula-controles .reticula-principal{width:83px;flex:none}
+  .reticula-controles select{width:83px;flex:none}
+  .reticula-controles .reticula-norte{width:85px;flex:none}
+  .reticula-controles .reticula-ayuda{width:44px;min-width:44px}
+}
