@@ -2,8 +2,11 @@
 // entre el globo 3D (app/espacio.js) y el mapa 2D.
 let mapa,punto;
 const $=id=>document.getElementById(id);
-function error(e){$('error').hidden=false;$('error-texto').textContent=e.message||String(e)}
-$('error-cerrar').onclick=()=>{$('error').hidden=true};
+let focoAntesError=null;
+function cerrarError(){const caja=$('error');if(caja.hidden)return;const dentro=caja.contains(document.activeElement);caja.hidden=true;if(dentro)(focoAntesError?.isConnected?focoAntesError:$('contenido-principal'))?.focus({preventScroll:true});focoAntesError=null}
+function error(e){if($('error').hidden&&document.activeElement&&!$('error').contains(document.activeElement))focoAntesError=document.activeElement;$('error').hidden=false;$('error-texto').textContent=e.message||String(e)}
+$('error-cerrar').onclick=cerrarError;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('error').hidden){e.preventDefault();cerrarError()}});
 // Lee JSON sin errores crípticos («Unexpected token <») cuando el servidor devuelve HTML.
 async function leerJSON(r){const t=await r.text();try{return JSON.parse(t)}catch(e){throw Error(r.ok?'Invalid server response.':`Server responded ${r.status}.`)}}
 function limpiar(n){n.replaceChildren()}
