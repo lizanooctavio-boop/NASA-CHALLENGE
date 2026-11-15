@@ -30,6 +30,12 @@
 ## Comprobación de exportaciones CSV/JSON
 
 - Verificación directa de bytes (`Uint8Array` sobre `Blob.arrayBuffer()`):
-  - Con BOM UTF-8 (`239, 187, 191`): `temperatura_gistemp_NIC.csv`, `temperatura_NIC.csv`, `clorofila_golfo_fonseca.csv` (incluye `mg_m³`), `hielo_september_artico.csv`, `radar_rcm_cocibolca.csv`, `omi_no2_managua.csv`, `acidez_aragonito_mar_caribe_nic.csv`, `incendios_area_NIC.csv`.
+  - Con BOM UTF-8 (`239, 187, 191`): `forecast_12.14_-86.25.csv` (pronóstico puntual; columnas horarias sin sufijo de unidad en cabecera), `temperatura_gistemp_NIC.csv`, `temperatura_NIC.csv`, `clorofila_golfo_fonseca.csv` (incluye `mg_m³`), `hielo_september_artico.csv`, `radar_rcm_cocibolca.csv`, `omi_no2_managua.csv`, `acidez_aragonito_mar_caribe_nic.csv`, `incendios_area_NIC.csv`, `nivel_mar_san_juan.csv` y `nivel_mar_magueyes.csv` (con saltos temporales reales conservados sin relleno artificial).
   - Sin BOM UTF-8: `annual_rainfall_nicaragua.csv`, `rainfall_trends_by_area.csv`, `rainfall_trend_evidence.json`, `/clima-base/enos.csv`, `/clima-base/tormentas.csv`, `/clima-base/proyecciones.csv`.
 - **Nota metodológica:** `Blob.prototype.text()` retira automáticamente el BOM UTF-8 según la especificación Fetch/Encoding; por ello la auditoría comprobó directamente los bytes crudos con `arrayBuffer()`.
+
+## Correcciones aplicadas y verificación final
+
+- **Corregidos en `codex/audit-robustez` (fuera de alcance/datos intactos):** `D-01` (`src/fuentes-meteo.js`), `D-02` (`app/shell.js`), `D-03` (`app/graficas-meteo.js`), `D-04` (`app/fenomenos.js`, `app/shell.js`), `D-05` (`app/espacio.js`, `app/shell.js`), `D-06` (`app/indicadores.js`, `app/investigar.js`) y `D-07` (`app/campo.js`, `app/espacio.js`).
+- **Quedan como propuesta:** `D-08` (BOM UTF-8 en `src/tendencias.js` y `/clima-base/*.csv`, comentarios en inglés en `scripts/preparar_meteo.mjs`, cabeceras completas de unidad en CSV) y `D-09` (`favicon` en `index.html` y carga condicional de `campo_nicaragua.json`).
+- **Verificación posterior sobre `public/` (`node scripts/preparar_render.mjs`):** Chrome y Edge sin excepciones no capturadas; bloqueos de GIBS (`#hora-sat` → `Unavailable` + aviso), Esri (`274` etiquetas vectoriales visibles a zoom 8 + aviso), Open-Meteo (mensaje legible + `#meteo` con aviso), RainViewer (aviso + `unavailable`), `/clima-base/*.json` (respaldo ENOS desde `oni_2001_2024.csv` + aviso CMIP6) y `data/recursos_integrados.json` (botón `Retry` con recuperación completa al desbloquear); transiciones encadenadas, `#map` y `history.back()` (`hashchange`) operativos.
