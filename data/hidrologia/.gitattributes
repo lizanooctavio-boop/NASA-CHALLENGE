@@ -1,0 +1,2 @@
+# gzip es binario: nunca convertir bytes CRLF dentro del flujo comprimido.
+*.geojson.gz binary

@@ -81,3 +81,16 @@ def mapa(variable: str = "prcptot"):
     if variable not in m:
         raise HTTPException(status_code=400, detail=f"Opciones: {list(m)}")
     return m[variable]
+
+
+@app.get("/hidrologia/observaciones/{capa}")
+def observaciones_hidrologicas(capa: str):
+    """Pasarela de solo lectura: INETER WFS no declara CORS para el navegador."""
+    import requests
+    from .hidrologia import OBSERVACIONES, obtener_observaciones
+    if capa not in OBSERVACIONES:
+        raise HTTPException(status_code=404, detail="Unknown INETER layer")
+    try:
+        return obtener_observaciones(capa)
+    except (requests.RequestException, ValueError) as e:
+        raise HTTPException(status_code=502, detail="INETER unavailable or incomplete response; retain the dated snapshot.") from e

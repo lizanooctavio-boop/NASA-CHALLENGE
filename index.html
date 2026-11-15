@@ -23,6 +23,7 @@
   <nav id="menu-principal" aria-label="Sections">
     <button class="activo" data-tab="meteorologia" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 1 1 .8-7.9A5.5 5.5 0 0 1 18.4 12 3 3 0 0 1 18 18z"/></svg><span class="txt">Weather</span></button>
     <button data-tab="investigar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/></svg><span class="txt">Investigate</span></button>
+    <button data-tab="hidrologia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3l7 7-3 4 8 7M20 3l-9 7M3 15l5-1M20 12l-7 5"/></svg><span class="txt">Watersheds</span></button>
     <button data-tab="tendencias"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M5 16l5-5 4 3 6-7M16 7h4v4"/></svg><span class="txt">Rainfall trend</span></button>
     <button data-tab="indicadores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span class="txt">Climate indicators</span></button>
     <button data-tab="fenomenos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/></svg><span class="txt">El Niño &amp; cyclones</span></button>
@@ -106,6 +107,44 @@
   <article id="ind-contraste" hidden><h2>Second opinion: satellite and stations vs. reanalysis</h2><p class="sub-art" id="ind-contraste-sub"></p>
     <div class="graf"><canvas id="ind-contraste-graf" aria-label="Comparison of two NASA products"></canvas></div><div id="ind-contraste-tarjetas" class="tarjetas"></div></article>
   <article><h2>Can the rainy season be anticipated?</h2><p class="sub-art" id="ind-estacional-sub"></p><div id="ind-estacional" class="tarjetas"></div></article>
+</section>
+
+<section id="hidrologia" class="vista" hidden>
+  <article><h2>Follow water across borders</h2><p>Explore watershed boundaries and their complete source codes. Boundaries are reference maps; station readings carry their own dates. Neither alone establishes a climate trend.</p></article>
+  <article><h2>Watersheds</h2>
+    <div class="controles"><label>Dataset and region<select id="hid-region"><option value="nic">Nicaragua · INETER/SINAPRED 2021</option><option value="world">World · HydroBASINS (level 4)</option></select></label>
+      <label>Detail<select id="hid-nivel"><option value="4">Level 4</option><option value="6">Level 6</option><option value="7" selected>Level 7 · Nicaragua</option></select></label></div>
+    <div class="controles"><button type="button" id="hid-ver">Show watersheds</button><button type="button" id="hid-ocultar">Hide watersheds</button></div>
+    <p id="hid-estado" role="status" aria-live="polite">Choose a region to load its original watershed codes.</p>
+    <label class="chk"><input type="checkbox" id="hid-etiquetas"> Label visible watershed codes (up to 150)</label>
+    <label>Find a code or basin name<input id="hid-buscar" type="search" placeholder="e.g. 9519522" autocomplete="off"></label>
+    <ul id="hid-resultados" class="lista hid-resultados" aria-label="Matching watersheds"></ul>
+    <div id="hid-detalle" aria-live="polite"></div>
+    <div class="controles"><button type="button" id="hid-geojson" disabled>Map vectors (GeoJSON)</button><button type="button" id="hid-csv" disabled>Codes (CSV)</button></div>
+    <p class="hid-atribucion">Sources: watershed boundaries and station readings from INETER (Nicaraguan Institute of Territorial Studies) through its public IDE-RH map services, hazard maps from SINAPRED, and HydroBASINS from HydroSHEDS (Lehner and Grill 2013). Public data shown with attribution and unchanged codes; rights remain with each provider.</p>
+    <p><a id="hid-original" href="https://www.arcgis.com/home/item.html?id=a367394491e5470c89ab165525c4c246" target="_blank" rel="noopener">Original source and download</a></p>
+    <p class="sub-art">The national source is titled “Level 7” but includes 3-, 6- and 7-digit codes, all retained as published. Nicaragua's national codes and HydroBASINS codes belong to separate systems. No equivalence is assumed. Display boundaries are simplified; use originals for spatial analysis. HydroBASINS excludes Antarctica.</p>
+  </article>
+  <article><h2>INETER station readings</h2>
+    <label>Station layer<select id="hid-estacion"><option value="nivel_rio">River level</option><option value="lluvia_24h">24-hour rainfall</option><option value="temperatura">Air temperature</option><option value="viento">Wind</option></select></label>
+    <div class="controles"><button type="button" id="hid-estaciones-ver">Show station readings</button><button type="button" id="hid-actualizar">Refresh from INETER</button><button type="button" id="hid-estaciones-ocultar">Hide stations</button></div>
+    <p id="hid-estaciones-estado" role="status" aria-live="polite">Dates are checked station by station. A recent retrieval can contain old observations.</p>
+    <label class="chk"><input type="checkbox" id="hid-auto"> Refresh every 5 minutes while this panel is open</label>
+    <button type="button" id="hid-estaciones-csv" disabled>Station attributes (CSV)</button>
+    <p class="sub-art">Missing values remain missing. Units absent from the source are not inferred. These readings are not flood alerts; follow INETER and SINAPRED official notices.</p>
+  </article>
+  <article><h2>National climate and hazard maps</h2>
+    <label>Reference layer<select id="hid-referencia"></select></label>
+    <div class="controles"><button type="button" id="hid-referencia-ver">Show reference map</button><button type="button" id="hid-referencia-ocultar">Hide reference map</button></div>
+    <p id="hid-referencia-estado" role="status" aria-live="polite">Historical hazard maps describe mapped conditions, not current events or detected trends.</p>
+    <p><a id="hid-referencia-fuente" target="_blank" rel="noopener">Source service and original vectors</a></p>
+    <p><a id="hid-referencia-leyenda" target="_blank" rel="noopener">Provider legend</a></p>
+    <details><summary>More hazard maps (SINAPRED)</summary><p>Nicaragua's national hazard maps from SINAPRED. INETER publishes many more layers in its <a href="https://mapserveride.ineter.gob.ni/geoserver/ows?service=WFS&amp;request=GetCapabilities" target="_blank" rel="noopener">official map catalogue</a>; period, units and quality must be checked before any layer can enter a trend test.</p><label>Find a map<input id="hid-catalogo-buscar" type="search" placeholder="Flood, drought, hurricane…"></label><ul id="hid-catalogo" class="lista hid-resultados"></ul></details>
+  </article>
+  <article><h2>Global observations already on the map</h2><p>Combine watershed boundaries with NASA rainfall, sea temperature and aerosol observations. The satellite layer shows its own date.</p><div class="controles">
+    <button type="button" data-hid-capa="chk-imerg">NASA GPM rainfall</button><button type="button" data-hid-capa="chk-sst">Sea temperature anomaly</button><button type="button" data-hid-capa="chk-aod">Dust and smoke</button></div>
+    <p><a href="data/hidrologia/fuentes_y_limites.md" target="_blank" rel="noopener">Sources, missing climate variables and limitations</a> · <a href="data/hidrologia/procedencia.json" download>Download provenance</a></p>
+  </article>
 </section>
 
 <section id="fenomenos" class="vista" hidden>
@@ -221,6 +260,8 @@
 <script src="src/tendencias.js"></script>
 <script src="app/indicadores.js"></script>
 <script src="app/investigar.js"></script>
+<script src="src/hidrologia-datos.js"></script>
+<script src="app/hidrologia.js"></script>
 <script src="app/globo.js"></script>
 <script type="module" src="app/espacio.js"></script>
 </body>
