@@ -53,9 +53,9 @@ According to the Judging & Awards Guide, every eligible project (responding to a
 ## Part 2. Project Description — Gnomon
 
 ### 2.1 High-Level Summary
-**Gnomon** is an open, interactive climate-diagnostics web application built for the 2026 NASA Space Apps Challenge (**"Be an Earth System Trend Detective!"**). Starting from an interactive 3D WebGL globe that unfolds into a 2D map, users investigate **202 observed Earth-system time series** across **74 locations** worldwide and **8 thematic categories** (*Rain*, *Temperature*, *Vegetation & ecosystems*, *Water bodies*, *Air quality*, *Coast & ocean*, *Hurricanes*, and *Ice*), integrating all **13 official challenge resources** plus **33 independent cross-checks**.
+**Gnomon** is an open, interactive climate-diagnostics web application built for the 2026 NASA Space Apps Challenge (**"Be an Earth System Trend Detective!"**). Starting from an interactive 3D WebGL globe that unfolds into a 2D map, users investigate **217 observed Earth-system time series** across **89 locations** worldwide and **8 thematic categories** (*Rain*, *Temperature*, *Vegetation & ecosystems*, *Water bodies*, *Air quality*, *Coast & ocean*, *Hurricanes*, and *Ice*), integrating all **13 official challenge resources** plus **33 independent cross-checks**.
 
-Instead of relying on a single regression line that can be fooled by El Niño cycles, outlier years, autocorrelation, or sensor changes, every series with at least 10 years of observations is evaluated simultaneously by **four statistical estimators**—**Theil–Sen slope**, **modified Mann–Kendall with Hamed–Rao autocorrelation correction**, **AR(1)-adjusted Ordinary Least Squares (OLS)**, and **Newey–West HAC least squares**—to issue one of three transparent verdicts: **`Trend detected`** (`66` series), **`Not enough evidence of a trend`** (`83` series), or **`Methods disagree`** (`48` series), while guarding short satellite records (`5` series) as **`Record too short for a trend test`**.
+Instead of relying on a single regression line that can be fooled by El Niño cycles, outlier years, autocorrelation, or sensor changes, every series with at least 10 years of observations is evaluated simultaneously by **four statistical estimators**—**Theil–Sen slope**, **modified Mann–Kendall with Hamed–Rao autocorrelation correction**, **AR(1)-adjusted Ordinary Least Squares (OLS)**, and **Newey–West HAC least squares**—to issue one of three transparent verdicts: **`Trend detected`** (`79` series), **`Not enough evidence of a trend`** (`85` series), or **`Methods disagree`** (`48` series), while guarding short satellite records (`5` series) as **`Record too short for a trend test`**.
 
 ### 2.2 What the App Does, Who It Is For, and the Challenge It Answers
 The challenge **"Be an Earth System Trend Detective!"** asks for a tool that lets users select Earth science variables from satellites, ground networks, and models, visualize their evolution over time, and answer four core questions:
@@ -78,10 +78,10 @@ All counts below are computed directly from the versioned public dataset (`data/
 
 | Metric in Public Demo | Exact Count | Breakdown in Screen Interface |
 | :--- | :---: | :--- |
-| **Total Investigations (`investigaciones`)** | **202** | `Water bodies` (**64**), `Rain` (**53**), `Ice` (**31**), `Coast & ocean` (**21**), `Temperature` (**14**), `Vegetation & ecosystems` (**10**), `Hurricanes` (**7**), `Air quality` (**2**) |
-| **Locations (`lugares`)** | **74** | Central America & Nicaragua, North & South America, Caribbean, Europe, Africa, Middle East, Arctic, Antarctic, and Global latitude bands |
-| **Verdict: `Trend detected`** | **66** | All parametric and non-parametric 95% CIs exclude zero with the same sign and modified Mann–Kendall $p < 0.05$ |
-| **Verdict: `Not enough evidence of a trend`** | **83** | Confidence intervals include zero and modified Mann–Kendall $p \ge 0.05$ over the observed window |
+| **Total Investigations (`investigaciones`)** | **217** | `Water bodies` (**65**), `Rain` (**55**), `Coast & ocean` (**32**), `Ice` (**31**), `Temperature` (**15**), `Vegetation & ecosystems` (**10**), `Hurricanes` (**7**), `Air quality` (**2**) |
+| **Locations (`lugares`)** | **89** | Central America & Nicaragua, North & South America, Caribbean, Europe, Africa, Middle East, Asia, Oceania & Pacific islands, Arctic, Antarctic, and Global latitude bands |
+| **Verdict: `Trend detected`** | **79** | All parametric and non-parametric 95% CIs exclude zero with the same sign and modified Mann–Kendall $p < 0.05$ |
+| **Verdict: `Not enough evidence of a trend`** | **85** | Confidence intervals include zero and modified Mann–Kendall $p \ge 0.05$ over the observed window |
 | **Verdict: `Methods disagree`** | **48** | Parametric (OLS / Newey–West HAC) and non-parametric (Theil–Sen / modified Mann–Kendall) tests reach different conclusions at the 5% level |
 | **Guardrail: `Record too short for a trend test`** | **5** | Series with `< 10` years (`SWOT` monthly lake elevation for Lakes Cocibolca and Xolotlán, `OPERA DSWx-S1` radar water scenes, and monthly `SMAP L4` soil moisture) |
 | **Cross-Checks (`contrastes`)** | **33** | Independent dataset comparisons (e.g., IMERG vs. CRU TS 4.10, GPCC, Giovanni, OPeNDAP, and NOAA stations; GLDAS vs. MERRA-2; SWOT vs. G-REALM) and method comparisons |

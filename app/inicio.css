@@ -1,0 +1,4 @@
+.inicio-atajos{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.inicio-atajos button{min-height:44px}
+.inicio-atajos .inicio-principal{background:var(--cian);border-color:var(--cian);color:#04121f}
+.inicio-atajos .inicio-principal:hover{filter:brightness(1.08);background:var(--cian)}
