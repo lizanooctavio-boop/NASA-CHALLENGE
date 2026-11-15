@@ -99,6 +99,9 @@ function medirColumnaMapa(){
   raiz.setProperty('--alto-lt',alto($('linea-tiempo'))+'px');raiz.setProperty('--alto-ley',alto($('leyenda-campo'))+'px');
   raiz.setProperty('--alto-cabecera',(alto(document.querySelector('header'))||58)+'px');marcarDesborde();
 }
+// En pantallas estrechas el menú se desplaza en horizontal: se difumina el borde que aún tiene pestañas detrás.
+function marcarMenu(){const n=$('menu-principal');if(n){n.classList.toggle('mas-derecha',n.scrollLeft+n.clientWidth<n.scrollWidth-4);n.classList.toggle('mas-izquierda',n.scrollLeft>4)}}
+$('menu-principal')?.addEventListener('scroll',marcarMenu,{passive:true});addEventListener('resize',marcarMenu);setTimeout(marcarMenu,0);
 function marcarDesborde(){const c=document.querySelector('#barra-capas .ventana-cuerpo');if(c)c.classList.toggle('mas-abajo',c.scrollTop+c.clientHeight<c.scrollHeight-4)}
 document.querySelector('#barra-capas .ventana-cuerpo').addEventListener('scroll',marcarDesborde,{passive:true});
 if(typeof ResizeObserver==='function'){const ro=new ResizeObserver(medirColumnaMapa);['linea-tiempo','leyenda-campo','barra-capas'].forEach(id=>ro.observe($(id)));ro.observe(document.querySelector('header'))}
@@ -130,7 +133,14 @@ async function cambiarVista(nuevo){
 }
 $('vista-globo').onclick=()=>cambiarVista('globo');
 $('vista-mapa').onclick=()=>cambiarVista('mapa');
-window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{await cambiarVista('mapa');mapa.setView([lat,lon],z)}};
+// Marca del lugar de una investigación («Show on the map»): un círculo con su nombre, uno cada vez.
+let marcaLugar=null;
+function marcar(lat,lon,nombre){
+  marcaLugar?.remove();
+  marcaLugar=L.circleMarker([lat,lon],{radius:9,color:'#f6c76b',weight:3,fillColor:'#f6c76b',fillOpacity:.25}).addTo(mapa);
+  if(nombre)marcaLugar.bindTooltip(nombre,{permanent:true,direction:'top',offset:[0,-8],className:'marca-lugar'}).openTooltip();
+}
+window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{await cambiarVista('mapa');mapa.setView([lat,lon],z)},marcar,soloMapa};
 const salidaHash=()=>{if(location.hash==='#map')cambiarVista('mapa')};
 document.addEventListener('espacio:listo',()=>setTimeout(salidaHash,3700));
 

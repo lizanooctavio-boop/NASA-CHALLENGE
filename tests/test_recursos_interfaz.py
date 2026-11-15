@@ -333,3 +333,22 @@ def test_canicula_arrecifes_grace_y_glaciares():
         assert max(x["valores"]) < 1.2 * min(x["valores"]) and rec.ESTUDIOS["lagos_landsat"] in x["notas"]
     # La cita dice que el área quemada mundial disminuye: comprobarlo.
     assert fuego["global"]["tendencia"]["sen"]["por_decada"] < 0 and rec.ESTUDIOS["incendios"] in fuego["global"]["notas"]
+
+
+def test_textos_publicados_en_ingles_y_sin_lugar_repetido():
+    """Control de calidad de textos: nada en español, fuentes correctas y títulos que no repiten el lugar."""
+    import re
+    d = json.loads((Path(__file__).resolve().parents[1] / "data" / "recursos_integrados.json").read_text(encoding="utf-8"))
+    lugares = {l["id"]: l for l in d["lugares"]}
+    espanol = re.compile(r"\b(celdas|consulta|exigen|media por|años|serie de|coordenadas|cobertura)\b", re.I)
+    for x in d["investigaciones"]:
+        for texto in [x["titulo_en"], x["definicion_en"], *x["notas"]]:
+            assert not espanol.search(texto), f"texto en español en {x['id']}: {texto}"
+        nombre = lugares[x["lugar"]]["nombre_en"]
+        assert nombre.lower() not in x["titulo_en"].lower(), f"el título repite el lugar: {x['id']}"
+    for c in d["contrastes"]:
+        for texto in [c.get("frase_en", ""), c["externa"]["nombre_en"], (c.get("nuestra") or {}).get("nombre_en", "")]:
+            assert not espanol.search(texto), f"texto en español en {c['id']}: {texto}"
+    ids = {x["id"]: x for x in d["investigaciones"]}
+    for i in ("airs_tas_nic", "omi_no2_managua", "omi_no2_rural"):
+        assert "IMERG" not in ids[i]["fuente"]["producto"], i

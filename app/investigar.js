@@ -105,19 +105,28 @@ function resultado(){
   c.append(nodo('p',x.fuente.producto,'detalle fuente'));
   serie(x,t,ok);
 }
+// Las series anuales con años sin dato se dibujan con hueco: el eje es de categorías y, sin rellenar, juntaría 2016 y 2019.
+function conHuecos(x){
+  const t=x.tiempos;
+  if(x.frecuencia!=='anual'||!t.every(Number.isInteger)||t.at(-1)-t[0]+1===t.length)return {tiempos:t,valores:x.valores};
+  const por=new Map(t.map((a,i)=>[a,x.valores[i]])),tiempos=[];
+  for(let a=t[0];a<=t.at(-1);a++)tiempos.push(a);
+  return {tiempos,valores:tiempos.map(a=>por.has(a)?por.get(a):null)};
+}
 function serie(x,t,ok){
   const u=x.unidad,barras=['mm','storms','months','Gt'].includes(u)&&!x.id.startsWith('nivel_mar_');
+  const eje=conHuecos(x);
   $('inv-serie-titulo').textContent=`${x.titulo_en} · ${lugar(x.lugar).nombre_en}`;
-  const ds=[{type:barras?'bar':'line',label:`${x.titulo_en} (${u})`,data:x.valores,borderColor:'#6fd8ff',backgroundColor:barras?'rgba(79,143,232,.7)':'rgba(111,216,255,.15)',pointRadius:barras?0:2,borderWidth:barras?0:2,spanGaps:false}];
+  const ds=[{type:barras?'bar':'line',label:`${x.titulo_en} (${u})`,data:eje.valores,borderColor:'#6fd8ff',backgroundColor:barras?'rgba(79,143,232,.7)':'rgba(111,216,255,.15)',pointRadius:barras?0:2,borderWidth:barras?0:2,spanGaps:false}];
   if(ok){
     // Ordenada de Sen: mediana de y − b·x, la misma que usa scipy.stats.theilslopes.
     const b=t.sen.por_decada/10,res=x.tiempos.map((a,i)=>x.valores[i]===null?null:x.valores[i]-b*a).filter(v=>v!==null).sort((p,q)=>p-q);
     const a0=res.length%2?res[(res.length-1)/2]:(res[res.length/2-1]+res[res.length/2])/2;
-    ds.push({type:'line',label:'Theil–Sen trend',data:x.tiempos.map(a=>a0+b*a),borderColor:'#f6c76b',borderDash:[6,4],pointRadius:0,borderWidth:2});
+    ds.push({type:'line',label:'Theil–Sen trend',data:eje.tiempos.map(a=>a0+b*a),borderColor:'#f6c76b',borderDash:[6,4],pointRadius:0,borderWidth:2});
   }
   const [desde,hasta]=x.periodo||[x.tiempos[0],x.tiempos.at(-1)];
   $('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${desde} to ${hasta}`);
-  crear('inv-serie',{data:{labels:x.tiempos,datasets:ds},options:{locale:x.validacion?'en-US':undefined,interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
+  crear('inv-serie',{data:{labels:eje.tiempos,datasets:ds},options:{locale:x.validacion?'en-US':undefined,interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
 }
 
 // ---------------------------------------------------------------- segundas opiniones
@@ -197,7 +206,10 @@ function fuentes(){
 }
 
 // ---------------------------------------------------------------- mapa y descarga
-$('inv-mapa').onclick=()=>{const l=lugar(inv(sel.investigacion).lugar);window.SICC_vista.irA(l.centro[0],l.centro[1],l.zoom)};
+// En el móvil los paneles tapan el mapa entero: se ocultan para que se vea el lugar marcado.
+$('inv-mapa').onclick=async()=>{const l=lugar(inv(sel.investigacion).lugar);
+  await window.SICC_vista.irA(l.centro[0],l.centro[1],l.zoom);window.SICC_vista.marcar?.(l.centro[0],l.centro[1],l.nombre_en);
+  if(matchMedia('(max-width:700px),(max-height:500px) and (max-width:1000px)').matches)window.SICC_vista.soloMapa?.(true)};
 function bajar(nombre,texto){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([texto],{type:'text/csv;charset=utf-8'}));a.download=nombre;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),30000)}
 $('inv-csv').onclick=async()=>{await cargar();const x=inv(sel.investigacion),col=x.frecuencia==='mensual'?'month':x.frecuencia==='escena'?'date':'year';
   bajar(`${x.id}.csv`,'﻿'+[`# Source: ${x.fuente.producto}`,`# Place: ${lugar(x.lugar).nombre_en}`,`${col},value_${x.unidad.replace(/[^\w°³]+/g,'_')}`,...x.tiempos.map((a,i)=>`${a},${x.valores[i]??''}`)].join('\r\n')+'\r\n')};

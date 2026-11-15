@@ -18,6 +18,7 @@ Los datos sintéticos (`"sintetico": true`) se rechazan salvo que se pida expres
 import csv
 import json
 import math
+import re
 from datetime import date
 from pathlib import Path
 
@@ -115,6 +116,23 @@ CONTRASTE_A_INVESTIGACION = {
 }
 # Prefijo de id de una variable nueva del agente 2 → (categoría, lugar por defecto)
 PREFIJO_CATEGORIA = {"clorofila_": "costa", "omi_no2": "aire", "airs_tas": "temperatura"}
+# Textos de la interfaz para las variables nuevas del agente 2: los suyos repetían el lugar en el título y eran técnicos.
+TEXTOS_CONTRASTE = {
+    "airs_tas_nic": ("Surface air temperature (AIRS satellite)",
+                     "Air temperature near the ground measured from space by NASA's AIRS instrument and averaged over "
+                     "Nicaragua: the mean of the 1:30 pm and 1:30 am satellite passes."),
+    "omi_no2_managua": ("Nitrogen dioxide (NO₂) in the air (OMI satellite)",
+                        "Amount of NO₂, a gas that comes mostly from traffic and burning, in the air above the Managua "
+                        "urban box (12.05–12.20°N, 86.35–86.15°W), measured on cloud-free days by NASA's OMI instrument."),
+    "omi_no2_rural": ("Nitrogen dioxide (NO₂) in the air (OMI satellite)",
+                      "Amount of NO₂, a gas that comes mostly from traffic and burning, in the air above a rural box in "
+                      "Chontales (12.35–12.50°N, 85.10–84.90°W), measured on cloud-free days by NASA's OMI instrument. "
+                      "It is the clean-air background to compare with Managua."),
+}
+URL_CONTRASTE = {"airs_": "https://disc.gsfc.nasa.gov/datasets/AIRS3STM_7.0/summary",
+                 "omi_no2": "https://disc.gsfc.nasa.gov/datasets/OMNO2d_003/summary"}
+# País de las cajas costeras que no son solo de Nicaragua.
+PAIS_CAJA = {"clorofila_golfo_fonseca": "El Salvador, Honduras and Nicaragua"}
 # CRU y GPCC se descargaron directamente (KNMI pide verificación humana): no cuentan como uso de KNMI.
 FUENTE_CONTRASTE = {"knmi_": 6, "giovanni_": 1, "noaa_": 4}
 
@@ -172,7 +190,13 @@ def nombre_en(texto):
         return f"{estacion} weather station (NOAA GHCN-Daily)"
     if estacion:
         return f"{estacion} weather station (NOAA GSOM)"
-    reglas = [("CRU TS", "CRU TS 4.10 (University of East Anglia)"), ("GPCC", "GPCC gauge analysis (via NOAA PSL)"),
+    # Las reglas más específicas van antes que «GES DISC OPeNDAP», que antes nombraba IMERG a las series de AIRS y OMI.
+    reglas = [("OLS mensual cruda", "Least squares on raw monthly data (F-test)"),
+              ("AIRS3STM", "NASA AIRS AIRS3STM v7.0 monthly (GES DISC OPeNDAP)"),
+              ("OMNO2d", "NASA Aura OMI OMNO2d v003 daily NO₂ (GES DISC OPeNDAP)"),
+              ("Giovanni, Area-Averaged Time Series (GLDAS", "NASA Giovanni area-averaged time series (GLDAS-2.1 monthly)"),
+              ("GLDAS-2.1 por OPeNDAP", "NASA GLDAS-2.1 Noah land model (GES DISC), area average without water cells"),
+              ("CRU TS", "CRU TS 4.10 (University of East Anglia)"),("GPCC", "GPCC gauge analysis (via NOAA PSL)"),
               ("GPM IMERG", "NASA GPM IMERG Final V07B"), ("NASA POWER", "NASA POWER (MERRA-2), nearest grid cell"),
               ("MODIS-Aqua L3m CHL", "NASA MODIS-Aqua chlorophyll-a (OBPG, 4 km)"),
               ("GLDAS_NOAH025_M", "NASA GLDAS-2.1 Noah land model (GES DISC), regional mean"),
@@ -186,7 +210,54 @@ def nombre_en(texto):
 
 def frase_en(contraste):
     """Frase del agente sin rutas internas del repositorio."""
-    return contraste.get("frase_en", "").replace("data/clima.json", "the app's IMERG series")
+    texto = contraste.get("frase_en", "").replace("data/clima.json", "the app's IMERG series")
+    texto = texto.replace("the SICC box", "the study box").replace("SICC box", "the study box")
+    # Algunos agentes escriben el id interno de la región («over caribe,»): se cambia por su nombre en inglés.
+    return re.sub(r"\bover (\w+)\b", lambda m: f"over {LUGARES[m[1]][0]}" if m[1] in LUGARES else m[0], texto)
+
+
+# Notas en español que traen las series GLDAS de los agentes (data/recursos/tierra/): se publican en inglés llano.
+SITIOS_PUNTO = {"siuna_bosque": "a forest site near Siuna", "esteli_corredor_seco": "a Dry Corridor site near Estelí",
+                "leon_llanura": "a plains site near León"}
+NOTAS_FIJAS_EN = {
+    "El residuo anual lluvia − ET − escorrentía refleja cambios de almacenamiento; su media 2001–2024 es menor del 2 % "
+    "de la lluvia.":
+        "Rain minus evapotranspiration minus runoff should equal the change in stored water; over 2001–2024 it averages "
+        "less than 2% of the rain, so the model's water budget adds up.",
+    "El README de GLDAS-2 advierte un desplazamiento de origen desconocido en la radiación AGRMET después de 2011 y "
+    "reescalados desde 2008: un salto en 2008–2013 puede ser artefacto del forzamiento y no un cambio climático. "
+    "Contrastar con SMAP y MERRA-2 antes de interpretar una tendencia.":
+        "The GLDAS-2 documentation warns that its sunlight input shifted after 2011 and was rescaled from 2008, so a "
+        "jump in 2008–2013 may come from the model's inputs rather than the climate. Compare with SMAP and MERRA-2 "
+        "before reading a trend.",
+    "meses exigen todos los intervalos de 3 h; años exigen 12 meses; sin interpolar":
+        "A month counts only if every 3-hour step is present, and a year only if all 12 months are; gaps are not "
+        "filled in.",
+    "GLDAS es modelo; sin bitfield QA; se excluyen undef y valores no físicos":
+        "GLDAS is a computer model, not a direct measurement; missing and physically impossible values are left out.",
+}
+
+
+def nota_en(nota):
+    """Versión en inglés de una nota de los agentes; las que ya están en inglés se devuelven igual."""
+    if nota in NOTAS_FIJAS_EN:
+        return NOTAS_FIJAS_EN[nota]
+    if m := re.fullmatch(r"Media ponderada por área \(EPSG:6933\) de las celdas de 0,25° de GLDAS dentro de (\w+); "
+                         r"las celdas sin suelo del modelo \(agua\) se excluyen renormalizando los pesos\.", nota):
+        nombre = LUGARES[m[1]][0] if m[1] in LUGARES else m[1]
+        return (f"Area-weighted average of the 0.25° GLDAS grid cells inside {nombre}; cells the model treats as water "
+                "are left out.")
+    if m := re.fullmatch(r"Cobertura mínima de celdas con dato: ([\d.]+) del área de la región\.", nota):
+        return f"Grid cells with data cover at least {float(m[1]):.0%} of the region's area."
+    if m := re.fullmatch(r"Consulta OPeNDAP en la nube de GES DISC, (\d{4}-\d{2}-\d{2})T[\d:]+Z\.", nota):
+        return f"Downloaded from NASA GES DISC (OPeNDAP) on {m[1]}."
+    if m := re.fullmatch(r"Serie de PUNTO (\w+) \(([-\d.]+), ([-\d.]+)\), celda Noah 0\.25°; no media regional", nota):
+        sitio = SITIOS_PUNTO.get(m[1], m[1].replace("_", " "))
+        return (f"One model grid cell (0.25°, about 28 km) at {sitio} ({float(m[2]):.2f}°N, {-float(m[3]):.2f}°W), "
+                "not a regional average.")
+    if m := re.fullmatch(r"coordenadas devueltas por Giovanni: ([-\d.]+), ([-\d.]+)", nota):
+        return f"Giovanni returned the cell centred at {float(m[1]):.3f}°N, {-float(m[2]):.3f}°W."
+    return nota
 
 
 def _leer_json(ruta, permitir_sintetico):
@@ -333,7 +404,7 @@ def _tierra(carpeta, permitir_sintetico):
                 }
                 invs.append(registro)
                 continue
-            notas = list(s.get("notas", []))
+            notas = [nota_en(n) for n in s.get("notas", [])]
             # GLDAS de punto viene de la API de Giovanni (recursos #2 y #1); el regional, del archivo de GES DISC.
             punto = familia == "gldas" and "giovanni" in s["fuente"].lower()
             if punto:
@@ -371,17 +442,20 @@ def _contraste(carpeta, permitir_sintetico, nombre_json="resumen_contrastes.json
             caja = c.get("caja")
             lugar = cid if caja else c.get("region")
             if caja:
-                lugares[cid] = (c["region"], "Nicaragua", [round((caja[1] + caja[3]) / 2, 2), round((caja[0] + caja[2]) / 2, 2)], 8)
-            unidad = c["serie_nuestra"]["unidad"].split("/")[0].replace("mg m-3", "mg/m³")
+                lugares[cid] = (c["region"], PAIS_CAJA.get(cid, "Nicaragua"),
+                                [round((caja[1] + caja[3]) / 2, 2), round((caja[0] + caja[2]) / 2, 2)], 8)
+            unidad = (c["serie_nuestra"]["unidad"].split("/")[0].replace("mg m-3", "mg/m³")
+                      .replace("1e15 molec cm-2", "10¹⁵ molecules/cm²"))
             recursos = [recurso] if recurso else []
             if cid.startswith("clorofila_"):
                 recursos.append(5)
                 titulo, definicion = ("Chlorophyll-a in coastal water",
                                       "A green pigment in microscopic algae; more chlorophyll usually means more algae.")
             else:
-                titulo, definicion = c.get("titulo_en", cid), c.get("definicion_en", "")
+                titulo, definicion = TEXTOS_CONTRASTE.get(cid, (c.get("titulo_en", cid), c.get("definicion_en", "")))
+            url = next((u for p, u in URL_CONTRASTE.items() if cid.startswith(p)), "https://oceancolor.gsfc.nasa.gov/")
             inv = _investigacion(cid, cat, lugar, titulo, definicion, unidad, [a for a, _ in puntos], [v for _, v in puntos],
-                                 {"producto": nombre_en(c["serie_nuestra"]["fuente"]), "url": "https://oceancolor.gsfc.nasa.gov/"},
+                                 {"producto": nombre_en(c["serie_nuestra"]["fuente"]), "url": url},
                                  recursos=recursos)
             ext = c["serie_externa"]
             inv["contrastes"].append(cid + "_metodo")
@@ -457,7 +531,8 @@ def _csa(carpeta, permitir_sintetico):
                              "m", anios, [sum(anual[a]) / 12 for a in anios],
                              {"producto": "G-REALM lake 000351 (USDA FAS / NASA GSFC satellite altimetry)",
                               "url": "https://ipad.fas.usda.gov/cropexplorer/global_reservoir/"},
-                             notas=["Años con los 12 meses observados; la serie combina varias misiones de altimetría."])
+                             notas=["Only years with all 12 months observed; the record joins several radar altimetry "
+                                    "satellite missions."])
         invs.append(inv)
         comp = carpeta / "comparacion_cocibolca_grealm_swot.csv"
         if comp.is_file():
@@ -804,7 +879,7 @@ def _hallazgos(carpeta, permitir_sintetico):
             valores = [v - sum(base) / len(base) for _, v in puntos]  # respecto de la media 1991–2020 de la estación
             reciente = [(a, v) for a, v in zip(anios, valores) if a >= 1981]
             t = tendencia_compacta(*zip(*reciente), "mm")
-            invs.append(_investigacion(f"nivel_mar_{lugar}", "costa", lugar, "Sea level at the tide gauge",
+            invs.append(_investigacion(f"nivel_mar_{lugar}", "costa", lugar, "Sea level",
                                        "Yearly mean sea level measured against the land at the gauge, compared with its "
                                        "1991–2020 average. It includes any rise or sinking of the land itself.", "mm",
                                        anios, valores, psmsl,
@@ -940,11 +1015,11 @@ def _mundo(carpeta, fuentes, chirps, notas_lluvia):
             medias = _anuales_mensuales(filas, columna, minimo=9)
             anios = [a for a in medias if a - 1 in medias and a < ultimo]
             cambios = [medias[a] - medias[a - 1] for a in anios]
-            invs.append(_investigacion(f"grace_masa_{lugar}", "polos", lugar, f"{nombre} ice-sheet mass change per year",
+            invs.append(_investigacion(f"grace_masa_{lugar}", "polos", lugar, "Ice-sheet mass change per year",
                                        "Change in the mass of the ice sheet from one year to the next, weighed by the "
                                        "GRACE and GRACE-FO gravity satellites. Below zero means ice lost.", "Gt", anios,
                                        cambios, grace,
-                                       notas=[f"Average {sum(cambios) / len(cambios):+.0f} Gt per year over "
+                                       notas=[f"Average {_menos(f'{sum(cambios) / len(cambios):+.0f}')} Gt per year over "
                                               f"{anios[0]}–{anios[-1]} (1 Gt = 1 billion tonnes; 360 Gt raise the sea by "
                                               "about 1 mm).", "The trend asks whether the yearly loss is growing, not "
                                               "whether ice is being lost. Years 2017–2018 are missing: the gap between "
