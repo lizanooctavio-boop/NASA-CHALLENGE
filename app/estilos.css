@@ -246,9 +246,9 @@ code{font-size:12px;background:rgba(255,255,255,.08);padding:1px 5px;border-radi
   body.solo-mapa header{position:fixed;top:10px;left:6px;right:6px;width:auto;height:auto;min-height:58px;padding:8px 10px}
   body.solo-mapa header>div:first-child{display:none}
   body.solo-mapa .acciones{gap:8px}
-  body.solo-mapa #solomapa{font-size:12px;padding:8px 10px;min-height:40px}
+  body.solo-mapa #solomapa{font-size:12px;padding:8px 10px;min-height:44px}
   body.solo-mapa .estado{font-size:10px;padding:6px 8px}
-  body.solo-mapa .indicador{font-size:11px;padding:6px 10px;min-height:40px}
+  body.solo-mapa .indicador{font-size:11px;padding:6px 10px;min-height:44px}
   body.solo-mapa #aviso-publico{position:fixed;top:calc(18px + var(--alto-cabecera,58px));left:6px;right:6px;max-width:none;max-height:22dvh;overflow:auto;padding:7px 10px;font-size:11px}
 }
 @media(max-height:500px) and (min-width:560px) and (max-width:1000px){
@@ -280,6 +280,17 @@ body.aviso-encima main{z-index:7}
   .ventana-botones{gap:31px}
   .punto::before{inset:-15.5px}
   .chk{min-height:44px}
+  button:not(.punto),a.boton,select,input:not([type="checkbox"]),summary{min-height:44px}
+  button:not(.punto),a.boton,#plegar-menu,#error-cerrar,#aviso-cerrar{min-width:44px}
+  #plegar-menu{width:44px;height:44px}
+  body.solo-mapa #solomapa,body.solo-mapa .indicador{min-height:44px}
+  .interruptor{gap:2px}
+  .interruptor button{padding:8px 12px}
+  .indicador,#solomapa{padding:8px 12px}
+  button.mini,.mini{padding:8px 12px}
+  .capas-mapa [data-var],.botones-variable button,.botones-region button,.descargas button,nav button{min-height:44px}
+  .vista a,.fuentes-lista a{min-height:44px;display:inline-flex;align-items:center}
+  details.mundial summary,.fuente-detalle summary{display:flex;align-items:center}
   .leaflet-touch .leaflet-bar a,.leaflet-bar a{width:44px;height:44px;line-height:44px}
   #linea-tiempo button{min-height:44px;min-width:44px}
   .leyenda-alternar{min-height:44px}
