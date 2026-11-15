@@ -79,9 +79,9 @@
 </section>
 
 <section id="tendencias" class="vista" hidden>
-  <div class="intro"><h2>Has annual rainfall changed in Nicaragua?</h2><p id="tend-sub">NASA GPM IMERG Final V07B · 2001–2024</p></div>
+  <div class="intro"><h2>Has annual rainfall changed in Nicaragua?</h2><p id="tend-sub">NASA GPM IMERG Final V07B · 2001–2024</p><p class="pista">Nicaragua &amp; neighbors comparison. This view puts the least-squares slope first alongside Theil–Sen, whereas <strong>Investigate</strong> headlines the outlier-resistant Theil–Sen slope. “Insufficient evidence” here means the same as “Not enough evidence of a trend”.</p></div>
   <div class="botones-region" role="radiogroup" aria-label="Area" id="botones-region"></div>
-  <article id="tarjeta-resultado" aria-live="polite"><div id="veredicto"></div></article>
+  <article id="tarjeta-resultado" aria-live="polite"><div id="veredicto"></div><p class="pista nota-veredicto">“Insufficient evidence” does not mean “no change” — year-to-year variability can mask a real trend. Open <strong>Learn</strong> in the menu for how confidence intervals and methods work.</p></article>
   <article>
     <h2>Annual rainfall</h2>
     <ul class="leyenda" id="leyenda-serie"></ul>
@@ -100,10 +100,10 @@
 </section>
 
 <section id="indicadores" class="vista" hidden>
-  <div class="intro"><h2>Is Nicaragua's climate changing?</h2><p>Trends by region from NASA records that do not depend on a single model.</p></div>
+  <div class="intro"><h2>Is Nicaragua's climate changing?</h2><p>Trends by region from NASA records that do not depend on a single model.</p><p class="pista">Focused Nicaragua regional view with El Niño removed and seasonal outlook. Use <strong>Investigate</strong> for all global topics, ecosystems, seas, and cross-checks.</p></div>
   <div class="botones-region" role="radiogroup" aria-label="Region" id="ind-regiones"></div>
   <div class="botones-region botones-variable" role="radiogroup" aria-label="Indicator" id="ind-variables"></div>
-  <article aria-live="polite"><div id="ind-veredicto" class="veredicto"></div></article>
+  <article aria-live="polite"><div id="ind-veredicto" class="veredicto"></div><p class="pista nota-veredicto">“Not enough evidence of a trend” does not mean “no change” — natural year-to-year swings (such as El Niño) can hide a real long-term shift. See <strong>Learn</strong> for plain-language explanations.</p></article>
   <article><h2 id="ind-serie-titulo">Series</h2><div class="graf"><canvas id="ind-serie" aria-label="Annual series with Theil–Sen trend"></canvas></div>
     <div class="controles"><button type="button" id="ind-csv">Series (CSV)</button><button type="button" id="ind-ver-mapa">Regions on the map</button></div></article>
   <article id="ind-contraste" hidden><h2>Second opinion: satellite and stations vs. reanalysis</h2><p class="sub-art" id="ind-contraste-sub"></p>
