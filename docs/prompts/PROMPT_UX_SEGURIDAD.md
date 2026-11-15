@@ -37,7 +37,7 @@ Al mismo tiempo, identifica y corrige riesgos de seguridad demostrables en las s
 
 ### UI UX Pro Max
 
-Aplica la skill al revisar navegación, componentes, accesibilidad, formularios, estados y visualización de datos.
+Usa obligatoriamente `ui-ux-pro-max` tanto para revisar como para diseñar e implementar los cambios de interfaz de usuario: navegación, componentes, accesibilidad, formularios, estados y visualización de datos. Incluye el selector de idioma y los ajustes de distribución necesarios para textos traducidos. No limites su uso a generar recomendaciones: aplica las guías pertinentes en el código y verifica el resultado en navegador.
 
 - Detecta el stack real antes de elegir recomendaciones.
 - Consulta las guías específicas para cada problema.
@@ -45,6 +45,7 @@ Aplica la skill al revisar navegación, componentes, accesibilidad, formularios,
 - Propón un sistema visual coherente cuando los problemas afecten a toda la aplicación.
 - Comprueba que cada recomendación encaje con una herramienta científica y cartográfica.
 - No conviertas la aplicación en una landing comercial ni añadas decoración que dificulte leer los datos.
+- En el PR, explica qué guías de la skill aplicaste a cada cambio de interfaz relevante y aporta evidencia de su validación.
 
 ### Security Audit
 
@@ -80,6 +81,25 @@ Revisa:
 - Interacción táctil y alternativas al arrastre.
 - Legibilidad sobre fondos cartográficos variables.
 - Estado visible de los controles y respuesta a cada acción.
+
+### Selector de idioma: español e inglés
+
+Implementa un botón o selector visible y accesible que permita cambiar toda la interfaz entre **Español** y **English**, tanto en escritorio como en móvil. Este requisito es una funcionalidad nueva autorizada; no depende de encontrar un bug previo.
+
+- Usa `ui-ux-pro-max` para definir su ubicación, presentación, estados e interacción, respetando los componentes y el estilo existentes.
+- Identifica las opciones por su nombre de idioma; no dependas únicamente de banderas o iconos. Haz evidente la opción activa.
+- Conserva inglés como idioma inicial cuando no haya una preferencia guardada. Recuerda la elección localmente y permite cambiarla en cualquier momento, sin iniciar sesión.
+- El cambio debe ser inmediato y mantener la sección, ubicación, capas, variables y selección temporal actuales, sin reiniciar el mapa ni el globo.
+- Traduce menús, botones, formularios, mensajes de carga/error/ausencia de datos, diálogos, ayudas, recorrido de Terra, leyendas, tooltips, etiquetas de gráficas, veredictos y nombres accesibles. Incluye contenido que se genere después del cambio.
+- Centraliza las traducciones en diccionarios con claves estables. Reutiliza la infraestructura de internacionalización existente si la hay y evita condicionales de idioma dispersos.
+- Actualiza el atributo `lang` del documento y utiliza el idioma elegido para formatos de fecha y número. Conserva valores científicos, unidades, identificadores y estructura de los archivos de datos; el formato de exportación debe seguir siendo compatible.
+- Mantén nombres propios, referencias y títulos originales de fuentes cuando traducirlos pueda alterar su identificación. Conserva atribuciones y advertencias científicas en ambos idiomas.
+- Si falta una traducción, usa inglés como respaldo y registra la clave durante la verificación; no muestres claves internas ni textos vacíos al usuario.
+- Renderiza traducciones como texto mediante APIs seguras. No uses HTML sin sanear ni envíes contenido del usuario o datos privados a servicios externos de traducción.
+- Maneja almacenamiento local bloqueado o no disponible sin impedir el cambio durante la sesión. Valida la preferencia guardada contra los idiomas admitidos.
+- Comprueba teclado, foco, lector de pantalla y nombres accesibles en ambos idiomas. Evita que los textos más largos en español recorten controles o provoquen superposiciones.
+
+Verifica al menos: primera visita, cambio EN → ES y ES → EN, persistencia tras recargar, actualización de contenido dinámico, almacenamiento no disponible y conservación del estado. Recorre las secciones principales en ambos idiomas y añade pruebas de las claves de traducción y de los flujos afectados. No presentes la traducción como completa si quedan textos visibles sin cubrir.
 
 ### Formularios y recuperación
 
@@ -206,6 +226,8 @@ Entrega:
 6. Enlace al PR en borrador con los cambios verificados.
 
 Incluye pruebas de regresión para bugs relevantes y correcciones de seguridad. Comprueba que las defensas añadidas no rompan la navegación, los mapas, las gráficas ni las descargas.
+
+Incluye capturas comparables de escritorio y móvil en español e inglés, los resultados de las pruebas del selector y cualquier traducción pendiente. Documenta cómo añadir nuevas claves e idiomas al sistema de traducción.
 
 No afirmes que la aplicación es completamente segura o accesible por haber superado una sola revisión.
 
