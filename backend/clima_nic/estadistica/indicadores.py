@@ -184,7 +184,9 @@ def spei(balance_mensual, meses, escala, base_mascara=None):
         except ValueError:
             # Muestra con asimetría negativa: la log-logística no tiene solución. Se usa una normal
             # ajustada al período base (alternativa declarada; ocurre en meses muy húmedos y regulares).
-            r[ok] = (v[ok] - ref.mean()) / ref.std(ddof=1)
+            sd = ref.std(ddof=1)
+            if sd > 0:
+                r[ok] = (v[ok] - ref.mean()) / sd
         out[sel] = r
     return out
 
@@ -219,6 +221,8 @@ def percentil_humedo(fechas, pr, anios_base, q=95):
     anio, _, _ = descomponer(fechas)
     pr = np.asarray(pr, float)
     sel = np.isin(anio, list(anios_base)) & np.isfinite(pr) & (pr >= UMBRAL_HUMEDO)
+    if not sel.any():
+        return math.nan
     return float(np.percentile(pr[sel], q))
 
 

@@ -37,7 +37,7 @@ def obtener_observaciones(id_):
         d = r.json()
     except ValueError as e:
         raise ValueError('INETER returned a non-JSON response') from e
-    if d.get('type') != 'FeatureCollection' or not isinstance(d.get('features'), list):
+    if not isinstance(d, dict) or d.get('type') != 'FeatureCollection' or not isinstance(d.get('features'), list):
         raise ValueError('Invalid WFS feature collection')
     total = d.get('numberMatched', d.get('totalFeatures'))
     if str(total).isdigit() and int(total) != len(d['features']):
