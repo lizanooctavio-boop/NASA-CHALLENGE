@@ -2,7 +2,12 @@
 // entre el globo 3D (app/espacio.js) y el mapa 2D.
 let mapa,punto;
 const $=id=>document.getElementById(id);
-function error(e){$('error').hidden=false;$('error-texto').textContent=e.message||String(e)}
+function mensajeError(e,respaldo='Connection error: external data could not be loaded.'){
+  const m=e&&e.message?String(e.message):String(e||'');
+  if(!m||/failed to fetch|networkerror|load failed|fetch/i.test(m))return respaldo;
+  return m;
+}
+function error(e,respaldo){$('error').hidden=false;$('error-texto').textContent=mensajeError(e,respaldo)}
 $('error-cerrar').onclick=()=>{$('error').hidden=true};
 // Lee JSON sin errores crípticos («Unexpected token <») cuando el servidor devuelve HTML.
 async function leerJSON(r){const t=await r.text();try{return JSON.parse(t)}catch(e){throw Error(r.ok?'Invalid server response.':`Server responded ${r.status}.`)}}
@@ -42,7 +47,8 @@ async function consultar(){const b=$('consultar');if(b.disabled)return;
   document.dispatchEvent(new CustomEvent('sicc:punto',{detail:[lat,lon]}));
   b.disabled=true;b.textContent='Loading…';$('error').hidden=true;
   try{
-    const r=await api(`/api/tiempo?lat=${lat}&lon=${lon}`);const c=r.datos.current,u=r.datos.current_units;
+    const r=await api(`/api/tiempo?lat=${lat}&lon=${lon}`);const c=r?.datos?.current,u=r?.datos?.current_units;
+    if(!c||!u)throw Error('Live forecast service returned incomplete data.');
     const met=$('meteo');limpiar(met);
     met.append(nodo('p',`${Math.abs(lat).toFixed(2)}° ${lat>=0?'N':'S'}, ${Math.abs(lon).toFixed(2)}° ${lon>=0?'E':'W'} · ${c.time.replace('T',' ')} UTC`,'coordenadas'));
     const tarjetas=nodo('div',undefined,'tarjetas');const valor=v=>v===null||v===undefined?'—':decimal(v,1);
@@ -53,7 +59,11 @@ async function consultar(){const b=$('consultar');if(b.disabled)return;
     pronostico={lat,lon,horas:r.datos.hourly,unidades:r.datos.hourly_units,fuente:r.fuente,consulta:r.consulta_utc};
     if(mapa){if(punto)mapa.removeLayer(punto);const dir=Number(c.wind_direction_10m);const icon=L.divIcon({className:'',html:Number.isFinite(dir)?`<div class="viento" style="transform:rotate(${dir+180}deg)">↑</div>`:'<div class="marca-punto-mapa"></div>',iconSize:[32,38],iconAnchor:[16,19]});punto=L.marker([lat,lon],{icon,interactive:false}).addTo(mapa)}
     document.dispatchEvent(new CustomEvent('sicc:pronostico',{detail:pronostico}));
-  }catch(e){error(e);limpiar($('meteo'));pronostico=null;document.dispatchEvent(new CustomEvent('sicc:pronostico',{detail:null}))}
+  }catch(e){
+    const msg=mensajeError(e,'Live forecast service could not be reached. Check your connection or try again later.');
+    error(msg);const met=$('meteo');limpiar(met);met.append(nodo('p',msg,'pista'));
+    pronostico=null;document.dispatchEvent(new CustomEvent('sicc:pronostico',{detail:null}));
+  }
   finally{b.disabled=false;b.textContent='Get forecast'}}
 $('consulta-punto').onsubmit=e=>{e.preventDefault();consultar()};
 function csvPunto(){
