@@ -130,7 +130,10 @@ function serie(x,t,ok){
     ds.push({type:'line',label:'Theil–Sen trend',data:eje.tiempos.map(a=>a0+b*a),borderColor:'#f6c76b',borderDash:[6,4],pointRadius:0,borderWidth:2});
   }
   const [desde,hasta]=x.periodo||[x.tiempos[0],x.tiempos.at(-1)];
-  $('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${desde} to ${hasta}`);
+  const valsNum=eje.valores.filter(v=>v!==null&&v!==undefined&&Number.isFinite(Number(v)));
+  const rTxt=valsNum.length?`, range ${num(Math.min(...valsNum),dec(u))} to ${num(Math.max(...valsNum),dec(u))} ${u}`:'';
+  const tTxt=ok?`, Theil–Sen trend ${signo(t.sen.por_decada,dec(u)+1)} ${u} per decade`:'';
+  $('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${desde} to ${hasta}${rTxt}${tTxt}`);
   crear('inv-serie',{data:{labels:eje.tiempos,datasets:ds},options:{locale:x.validacion?'en-US':undefined,interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
 }
 
@@ -156,7 +159,8 @@ function contrastes(){
     bloque.append(tj);
     const etiquetas=c.externa.anios||c.externa.tiempos,ve=c.externa.valores,vn=c.nuestra?.valores;
     if(etiquetas?.length&&ve?.length&&vn?.length){
-      const lienzo=nodo('canvas');lienzo.id='inv-c-'+k;lienzo.setAttribute('aria-label',`${c.externa.nombre_en} compared with ${c.nuestra.nombre_en}`);
+      const lienzo=nodo('canvas');lienzo.id='inv-c-'+k;lienzo.setAttribute('role','img');
+      lienzo.setAttribute('aria-label',`${c.externa.nombre_en} compared with ${c.nuestra.nombre_en}, ${etiquetas[0]} to ${etiquetas.at(-1)}${c.r!=null?`, correlation r = ${num(c.r,2)}`:''}`);
       const g=nodo('div',undefined,'graf baja');g.append(lienzo);bloque.append(g);
       const ejes=c.nuestra.anios||c.nuestra.tiempos,mapa=new Map(ejes.map((a,i)=>[a,vn[i]]));
       crear(lienzo.id,{type:'line',data:{labels:etiquetas,datasets:[
