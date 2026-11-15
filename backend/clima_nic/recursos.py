@@ -95,6 +95,9 @@ LUGARES = {
     "balboa": ("Balboa tide gauge (Pacific)", "Panama", [8.97, -79.57], 10),
     "key_west": ("Key West tide gauge", "Florida, USA", [24.56, -81.81], 10),
 }
+# Los módulos regionales (recursos_americas, recursos_europa_africa…) añaden lugares a LUGARES al importarse; el orden
+# de importación varía, así que la salida ordena primero estos y luego los demás según aparecen sus investigaciones.
+LUGARES_PROPIOS = tuple(LUGARES)
 # Mareógrafos PSMSL publicados → lugar.
 MAREOGRAFOS = {"1001": "san_juan", "759": "magueyes", "1393": "charlotte_amalie", "163": "balboa", "188": "key_west"}
 NOMBRES_PAIS = {"NIC": "Nicaragua", "HND": "Honduras", "CRI": "Costa Rica"}
@@ -847,8 +850,10 @@ def _hallazgos(carpeta, permitir_sintetico):
                                           "that partly comes from better detection.", ESTUDIOS["subregistro_ciclones"]]))
     from .recursos_americas import americas
     n_inv, n_ent = _mundo(carpeta, fuentes, chirps, notas_lluvia)
+    from .recursos_europa_africa import europa_africa
     a_inv, a_ent = americas(carpeta)
-    return invs + n_inv + a_inv, entradas + n_ent + a_ent
+    e_inv, e_ent = europa_africa(carpeta)
+    return invs + n_inv + a_inv + e_inv, entradas + n_ent + a_ent + e_ent
 
 
 def _serie(filas, clave, valor):
@@ -1157,11 +1162,14 @@ def construir(datos=DATOS, permitir_sintetico=False):
     contrastes = [c for c in contrastes if c["investigacion"] in por_id]
     usados = {i["lugar"] for i in invs}
     con_datos = {i["categoria"] for i in invs}
+    todos = {**LUGARES, **lugares_extra}
+    orden = [k for k in LUGARES_PROPIOS if k in todos] + [k for k in dict.fromkeys(i["lugar"] for i in invs)
+                                                         if k not in LUGARES_PROPIOS] + list(todos)
     return {
         "esquema": "nasa-challenge/recursos", "version_esquema": VERSION, "generado": date.today().isoformat(),
         "categorias": [{**c, "con_datos": c["id"] in con_datos} for c in CATEGORIAS],
         "lugares": [{"id": k, "nombre_en": v[0], "pais": v[1], "centro": v[2], "zoom": v[3]}
-                    for k, v in {**LUGARES, **lugares_extra}.items() if k in usados],
+                    for k, v in ((k, todos[k]) for k in dict.fromkeys(orden)) if k in usados],
         "investigaciones": invs,
         "contrastes": contrastes,
         "demostraciones": _demostraciones(invs),
