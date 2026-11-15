@@ -27,7 +27,18 @@ const contraste=id=>D.contrastes.find(c=>c.id===id);
 const deCategoria=c=>D.investigaciones.filter(i=>i.categoria===c);
 
 function cargar(){
-  carga??=fetch('data/recursos_integrados.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(d=>{D=d;construir();return d});
+  carga??=fetch('data/recursos_integrados.json')
+    .then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()})
+    .then(d=>{D=d;construir();const m=$('inv-mapa'),c=$('inv-csv');if(m)m.disabled=false;if(c)c.disabled=false;return d})
+    .catch(err=>{
+      carga=null;
+      const v=$('inv-veredicto');
+      if(v)v.textContent='Could not load investigation datasets. Check your connection and try opening this tab again.';
+      const m=$('inv-mapa'),c=$('inv-csv');
+      if(m)m.disabled=true;
+      if(c)c.disabled=true;
+      throw err;
+    });
   return carga;
 }
 
@@ -207,12 +218,12 @@ function fuentes(){
 
 // ---------------------------------------------------------------- mapa y descarga
 // En el móvil los paneles tapan el mapa entero: se ocultan para que se vea el lugar marcado.
-$('inv-mapa').onclick=async()=>{const l=lugar(inv(sel.investigacion).lugar);
+$('inv-mapa').onclick=async()=>{try{await cargar();const x=inv(sel.investigacion),l=x&&lugar(x.lugar);if(!l)return;
   await window.SICC_vista.irA(l.centro[0],l.centro[1],l.zoom);window.SICC_vista.marcar?.(l.centro[0],l.centro[1],l.nombre_en);
-  if(matchMedia('(max-width:700px),(max-height:500px) and (max-width:1000px)').matches)window.SICC_vista.soloMapa?.(true)};
+  if(matchMedia('(max-width:700px),(max-height:500px) and (max-width:1000px)').matches)window.SICC_vista.soloMapa?.(true)}catch(err){typeof error==='function'&&error(err)}};
 function bajar(nombre,texto){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([texto],{type:'text/csv;charset=utf-8'}));a.download=nombre;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),30000)}
-$('inv-csv').onclick=async()=>{await cargar();const x=inv(sel.investigacion),col=x.frecuencia==='mensual'?'month':x.frecuencia==='escena'?'date':'year';
-  bajar(`${x.id}.csv`,'﻿'+[`# Source: ${x.fuente.producto}`,`# Place: ${lugar(x.lugar).nombre_en}`,`${col},value_${x.unidad.replace(/[^\w°³]+/g,'_')}`,...x.tiempos.map((a,i)=>`${a},${x.valores[i]??''}`)].join('\r\n')+'\r\n')};
+$('inv-csv').onclick=async()=>{try{await cargar();const x=inv(sel.investigacion);if(!x)return;const col=x.frecuencia==='mensual'?'month':x.frecuencia==='escena'?'date':'year';
+  bajar(`${x.id}.csv`,'\ufeff'+[`# Source: ${x.fuente.producto}`,`# Place: ${lugar(x.lugar).nombre_en}`,`${col},value_${x.unidad.replace(/[^\w°²³Ω]+/g,'_').replace(/^_+|_+$/g,'')}`,...x.tiempos.map((a,i)=>`${a},${x.valores[i]??''}`)].join('\r\n')+'\r\n')}catch(err){typeof error==='function'&&error(err)}};
 
 document.addEventListener('sicc:pestana',e=>{
   if(['investigar','aprender','fuentes'].includes(e.detail))cargar().then(()=>setTimeout(()=>Object.values(graficas).forEach(g=>g.resize()),30)).catch(err=>typeof error==='function'&&error(err));

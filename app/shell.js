@@ -2,7 +2,14 @@
 // entre el globo 3D (app/espacio.js) y el mapa 2D.
 let mapa,punto;
 const $=id=>document.getElementById(id);
-function error(e){$('error').hidden=false;$('error-texto').textContent=e.message||String(e)}
+function error(e){
+  $('error').hidden=false;
+  const raw=e&&e.message?e.message:String(e||'');
+  let msg=raw;
+  if(/failed to fetch|networkerror|load failed/i.test(raw))msg='Network request failed. Check your connection and try again.';
+  else if(/timeout|aborted/i.test(raw)||(e&&(e.name==='TimeoutError'||e.name==='AbortError')))msg='The request timed out. Please try again.';
+  $('error-texto').textContent=msg;
+}
 $('error-cerrar').onclick=()=>{$('error').hidden=true};
 // Lee JSON sin errores crípticos («Unexpected token <») cuando el servidor devuelve HTML.
 async function leerJSON(r){const t=await r.text();try{return JSON.parse(t)}catch(e){throw Error(r.ok?'Invalid server response.':`Server responded ${r.status}.`)}}
@@ -11,7 +18,16 @@ function nodo(tag,texto,clase){const n=document.createElement(tag);if(texto!==un
 function tarjeta(contenedor,titulo,valor,detalle){const d=nodo('div',undefined,'tarjeta');d.append(nodo('small',titulo),nodo('strong',valor));if(detalle)d.append(nodo('p',detalle));contenedor.append(d)}
 const decimal=(v,n=2)=>Number(v).toLocaleString('en-US',{maximumFractionDigits:n,minimumFractionDigits:n});
 async function api(url){const r=await window.FuentesMeteo.fetch(url);const d=await leerJSON(r);if(!r.ok)throw Error(d.error||'Data unavailable');return d}
-function tab(id){document.querySelectorAll('.vista').forEach(v=>v.hidden=v.id!==id);document.querySelectorAll('nav button').forEach(b=>{b.classList.toggle('activo',b.dataset.tab===id);if(b.dataset.tab===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});$('titulo').textContent=document.querySelector(`[data-tab="${id}"]`).textContent;soloMapa(false);document.dispatchEvent(new CustomEvent('sicc:pestana',{detail:id}))}
+function tab(id,sinHistorial){
+  if(!document.getElementById(id))return;
+  document.querySelectorAll('.vista').forEach(v=>v.hidden=v.id!==id);
+  document.querySelectorAll('nav button').forEach(b=>{b.classList.toggle('activo',b.dataset.tab===id);if(b.dataset.tab===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+  const btn=document.querySelector(`[data-tab="${id}"]`);
+  if(btn)$('titulo').textContent=btn.textContent;
+  soloMapa(false);
+  if(!sinHistorial&&location.hash!=='#'+id){try{history.pushState({tab:id},'','#'+id)}catch(_){location.hash=id}}
+  document.dispatchEvent(new CustomEvent('sicc:pestana',{detail:id}));
+}
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 
 // ---------------------------------------------------------------- mapa 2D
@@ -79,7 +95,9 @@ document.querySelectorAll('.vista').forEach(v=>{const titulo=document.querySelec
   const boton=(clase,etiqueta,accion)=>{const b=nodo('button','','punto '+clase);b.type='button';b.title=etiqueta;b.setAttribute('aria-label',etiqueta);b.onclick=accion;pts.append(b)};
   boton('rojo','Hide panel',()=>soloMapa(true));boton('ambar','Minimize',()=>{v.classList.toggle('minimizada');document.dispatchEvent(new CustomEvent('sicc:paneles'))});boton('verde','Wide',()=>{v.classList.toggle('ancha');document.dispatchEvent(new CustomEvent('sicc:paneles'))});
   barra.append(pts,nodo('span',titulo,'ventana-titulo'));barra.ondblclick=()=>v.classList.toggle('minimizada');v.append(barra,cuerpo);v.classList.add('ventana')});
+let vistaPendiente=null;
 iniciarMapa();
+if(vistaPendiente){const v=vistaPendiente;vistaPendiente=null;cambiarVista(v)}
 
 const pref={leer:(k,s=localStorage)=>{try{return s.getItem(k)}catch(e){return null}},guardar:(k,v,s=localStorage)=>{try{s.setItem(k,v)}catch(e){}}};
 // Menú plegable: en escritorio se reduce a una barra de iconos.
@@ -112,7 +130,8 @@ let modo='globo',cambiando=false;
 const esperar=ms=>new Promise(r=>setTimeout(r,ms));
 function marcarVista(){$('vista-globo').setAttribute('aria-pressed',String(modo==='globo'));$('vista-mapa').setAttribute('aria-pressed',String(modo==='mapa'))}
 async function cambiarVista(nuevo){
-  if(nuevo===modo||cambiando||!mapa)return;
+  if(!mapa){vistaPendiente=nuevo;return}
+  if(nuevo===modo||cambiando)return;
   if(!window.Espacio){modo=nuevo;document.body.classList.toggle('modo-mapa',nuevo==='mapa');document.body.classList.toggle('modo-globo',nuevo==='globo');marcarVista();return}
   cambiando=true;document.body.classList.add('en-transicion');modo=nuevo;marcarVista();
   try{
@@ -141,8 +160,31 @@ function marcar(lat,lon,nombre){
   if(nombre)marcaLugar.bindTooltip(nombre,{permanent:true,direction:'top',offset:[0,-8],className:'marca-lugar'}).openTooltip();
 }
 window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{await cambiarVista('mapa');mapa.setView([lat,lon],z)},marcar,soloMapa};
-const salidaHash=()=>{if(location.hash==='#map')cambiarVista('mapa')};
-document.addEventListener('espacio:listo',()=>setTimeout(salidaHash,3700));
+const aplicarHash=()=>{
+  const h=location.hash.replace(/^#/,'');
+  if(!h)return;
+  if(h==='map'||h==='mapa'){cambiarVista('mapa');return}
+  if(document.querySelector(`.vista#${CSS.escape(h)}`))tab(h,true);
+};
+window.addEventListener('hashchange',aplicarHash);
+window.addEventListener('popstate',aplicarHash);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',aplicarHash);
+else setTimeout(aplicarHash,0);
+const salidaHash=()=>{if(location.hash==='#map'||location.hash==='#mapa')cambiarVista('mapa')};
+document.addEventListener('espacio:listo',salidaHash);
+document.addEventListener('espacio:fallo',()=>{cambiarVista('mapa');error(Error('3D globe requires WebGL; switched to the 2D map.'))});
+document.addEventListener('click',async ev=>{
+  const a=ev.target.closest?.('a[href^="/clima-base/"][download]');
+  if(!a)return;
+  ev.preventDefault();
+  try{
+    const r=await fetch(a.getAttribute('href'));
+    if(!r.ok)throw Error('This data file is not available in this build (HTTP '+r.status+').');
+    const b=await r.blob(),u=URL.createObjectURL(b),tmp=document.createElement('a');
+    tmp.href=u;tmp.download=a.getAttribute('download')||'';tmp.click();
+    setTimeout(()=>URL.revokeObjectURL(u),30000);
+  }catch(err){error(err)}
+});
 
 // ---------------------------------------------------------------- base vectorial: fronteras y nombres (Natural Earth)
 function baseVectorial(){

@@ -54,7 +54,7 @@ document.addEventListener('sicc:pronostico',e=>{
     options:{interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:9}},y:eje('°C'),y1:eje('mm/h',{position:'right',grid:{drawOnChartArea:false},min:0}),y2:{display:false,min:0}}}});
 });
 
-window.FuentesMeteo.fetch('/api/series').then(r=>r.json().then(d=>{if(!r.ok)throw Error(d.error);S=d;const selector=$('ventana-cmip');[...new Set(S.proyecciones.map(f=>f.ventana))].forEach(v=>selector.add(new Option(v,v)));escenarios()})).catch(()=>{});
+window.FuentesMeteo.fetch('/api/series').then(async r=>{const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'HTTP '+r.status);S=d;const selector=$('ventana-cmip');[...new Set(S.proyecciones.map(f=>f.ventana))].forEach(v=>selector.add(new Option(v,v)));['graf-dT','graf-dP'].forEach(id=>{const el=$(id);if(el)el.hidden=false});escenarios()}).catch(()=>{const selector=$('ventana-cmip');if(selector&&!selector.options.length){selector.add(new Option('Unavailable',''));selector.disabled=true}const c=$('cambios');if(c)c.textContent='Regional climate projection series are temporarily unavailable.';['graf-dT','graf-dP'].forEach(id=>{const el=$(id);if(el)el.hidden=true})});
 ['ssp','ventana-cmip'].forEach(id=>$(id)?.addEventListener('change',()=>S&&escenarios()));
 // Chart.js no dibuja bien en lienzos ocultos: se redimensiona al cambiar de pestaña.
 document.addEventListener('sicc:pestana',()=>setTimeout(()=>Object.values(graficas).forEach(g=>g.resize()),30));

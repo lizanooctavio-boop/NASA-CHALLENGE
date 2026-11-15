@@ -25,7 +25,18 @@ const region=id=>D.regiones.find(r=>r.id===id);
 const disponibles=r=>VARIABLES.filter(v=>region(r)?.variables[v.id]);
 
 function cargar(){
-  carga??=fetch('data/fenomenos_nicaragua.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(d=>{D=d;construir();return d});
+  carga??=fetch('data/fenomenos_nicaragua.json')
+    .then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()})
+    .then(d=>{D=d;construir();const c=$('ind-csv'),m=$('ind-ver-mapa');if(c)c.disabled=false;if(m)m.disabled=false;return d})
+    .catch(err=>{
+      carga=null;
+      const v=$('ind-veredicto');
+      if(v)v.textContent='Could not load regional climate series. Check your connection and try opening this tab again.';
+      const c=$('ind-csv'),m=$('ind-ver-mapa');
+      if(c)c.disabled=true;
+      if(m)m.disabled=true;
+      throw err;
+    });
   return carga;
 }
 
@@ -136,8 +147,8 @@ $('ind-ver-mapa').onclick=()=>window.SICC_vista.irA(12.8,-85.2,7);
 
 // ---------------------------------------------------------------- descargas
 function bajar(nombre,texto,tipo){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([texto],{type:tipo}));a.download=nombre;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),30000)}
-$('ind-csv').onclick=async()=>{await cargar();const v=VARIABLES.find(x=>x.id===sel.variable),x=region(sel.region).variables[v.id];
-  bajar(`${v.id}_${sel.region}.csv`,'﻿'+[`# Source: ${v.fuente}`,`# Area: ${REGIONES.find(r=>r[0]===sel.region)[1]}, Nicaragua`,`year,${v.id}_${v.unidad==='NDVI'?'ndvi':v.unidad==='°C'?'c':'mm'}`,...x.anios.map((a,i)=>`${a},${x.valores[i]}`)].join('\r\n')+'\r\n','text/csv;charset=utf-8')};
+$('ind-csv').onclick=async()=>{try{await cargar();const v=VARIABLES.find(x=>x.id===sel.variable),r=region(sel.region),x=r&&v&&r.variables[v.id];if(!x)return;
+  bajar(`${v.id}_${sel.region}.csv`,'\ufeff'+[`# Source: ${v.fuente}`,`# Area: ${REGIONES.find(r=>r[0]===sel.region)[1]}, Nicaragua`,`year,${v.id}_${v.unidad==='NDVI'?'ndvi':v.unidad==='°C'?'c':'mm'}`,...x.anios.map((a,i)=>`${a},${x.valores[i]}`)].join('\r\n')+'\r\n','text/csv;charset=utf-8')}catch(err){typeof error==='function'&&error(err)}};
 
 document.addEventListener('sicc:pestana',e=>{
   if(e.detail==='indicadores'||e.detail==='escenarios')cargar().then(()=>{mapaRegiones();setTimeout(()=>Object.values(graficas).forEach(g=>g.resize()),30)}).catch(err=>typeof error==='function'&&error(err));

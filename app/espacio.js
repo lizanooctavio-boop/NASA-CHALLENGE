@@ -3,6 +3,8 @@
 // así el globo se aplana con América al centro y encaja píxel a píxel con el mapa 2D.
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js';
 
+(async () => {
+
 const RAD = Math.PI / 180;
 const LON_CENTRO = -80;            // costura de la malla en 100° E: América queda al centro del plano
 const DIST_REPOSO = 4.9, DIST_MIN = 1.28, DIST_MAX = 34, DIST_INTRO = 30, DIST_PLANO = 3.1;
@@ -10,7 +12,13 @@ const FOV = 38;
 const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const canvas = document.getElementById('espacio');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+} catch (err) {
+  document.dispatchEvent(new CustomEvent('espacio:fallo', { detail: err }));
+  return;
+}
 renderer.setPixelRatio(Math.min(2, devicePixelRatio));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const escena = new THREE.Scene();
@@ -489,3 +497,4 @@ document.dispatchEvent(new CustomEvent('espacio:listo'));
 arrancar();
 if (reducido) { estado.dist = DIST_REPOSO; estado.lon = -84; estado.intro = false; estado.desp = estado.despObjetivo; }
 else intro();
+})();

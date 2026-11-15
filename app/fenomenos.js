@@ -40,7 +40,7 @@ async function capaGibs(k){
     vivo[k]=L.tileLayer(`${GIBS}${d.capa}/default/${d.hora_utc}/${d.matriz}/{z}/{y}/{x}.${d.formato}`,{maxNativeZoom:c.zoom,maxZoom:18,bounds:c.limites,opacity:c.op,zIndex:c.z,attribution:'NASA GIBS'}).addTo(mapa);
     if(viejo)vivo[k].once('load',()=>mapa.removeLayer(viejo));
     estado[k]=d.hora_utc;
-  }catch(e){if(turno[k]===mio){if(vivo[k]){mapa.removeLayer(vivo[k]);vivo[k]=null}estado[k]='unavailable'}}
+  }catch(e){if(turno[k]===mio){if(vivo[k]){mapa.removeLayer(vivo[k]);vivo[k]=null}estado[k]='unavailable';chk.checked=false;typeof error==='function'&&error(Error(`${c.nombre||k} layer could not be loaded.`))}}
   if(k==='sat')horaSat();
 }
 function horaSat(){
@@ -53,7 +53,7 @@ async function radar(){
   if(!$('chk-radar').checked){estado.radar=null;return}
   try{const r=await fetch('https://api.rainviewer.com/public/weather-maps.json');const d=await json(r);if(!r.ok)throw Error('RainViewer '+r.status);const f=d.radar.past.at(-1);if(!$('chk-radar').checked||turno.radar!==mio)return;
     vivo.radar=L.tileLayer(`${d.host}${f.path}/256/{z}/{x}/{y}/2/1_1.png`,{opacity:.8,maxNativeZoom:7,maxZoom:18,zIndex:6,attribution:'Radar © RainViewer'}).addTo(mapa);
-    estado.radar=new Date(f.time*1000).toISOString()}catch(e){if(turno.radar===mio)estado.radar='unavailable'}
+    estado.radar=new Date(f.time*1000).toISOString()}catch(e){if(turno.radar===mio){estado.radar='unavailable';$('chk-radar').checked=false;typeof error==='function'&&error(Error('Weather radar layer could not be loaded.'))}}
 }
 for(const k in CAPAS)$('chk-'+k).onchange=()=>capaGibs(k);
 $('chk-radar').onchange=radar;
