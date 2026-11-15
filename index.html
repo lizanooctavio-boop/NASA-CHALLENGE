@@ -10,10 +10,11 @@
 <link rel="stylesheet" href="app/estilos.css">
 </head>
 <body class="modo-globo cargando">
+<a href="#contenido-principal" class="saltar-contenido">Skip to main content</a>
 <canvas id="espacio" tabindex="0" role="img" aria-label="3D Earth. Drag or use arrow keys to rotate, scroll or press plus or minus to zoom, click or press Enter to get a forecast."></canvas>
 <div id="mapa" aria-label="2D weather map" aria-hidden="true"></div>
 
-<aside>
+<aside aria-label="Navigation and tools">
   <div class="cabeza-menu">
     <div class="marca"><span class="marca-punto" aria-hidden="true"></span>Trend<b>Detective</b></div>
     <button id="plegar-menu" type="button" aria-expanded="true" aria-controls="menu-principal" aria-label="Collapse menu" title="Collapse menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
@@ -33,7 +34,7 @@
   <div class="pie">NASA Space Apps 2026<br>Earth System Trend Detective</div>
 </aside>
 
-<main>
+<main id="contenido-principal" tabindex="-1">
 <header>
   <div><p class="etiqueta">NASA SPACE APPS</p><h1 id="titulo">Weather</h1></div>
   <div class="acciones">
