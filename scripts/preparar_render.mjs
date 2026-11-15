@@ -27,3 +27,5 @@ cpSync('data/regiones_nicaragua.geojson', 'public/data/regiones_nicaragua.geojso
 cpSync('data/recursos_integrados.json', 'public/data/recursos_integrados.json');
 // Vectores web y lecturas fechadas. Los ZIP/SHP de la caché nunca se publican.
 cpSync('data/hidrologia', 'public/data/hidrologia', { recursive: true });
+// Pestaña Help: las 100 preguntas frecuentes (app/ayuda.js).
+cpSync('data/ayuda_preguntas.json', 'public/data/ayuda_preguntas.json');

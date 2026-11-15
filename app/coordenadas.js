@@ -157,8 +157,7 @@
   const toggle = nodo('button', 'coords-toggle', 'Coords ▾');
   toggle.type = 'button';
   toggle.id = 'coords-toggle';
-  const esMovil = matchMedia('(max-width:700px)').matches;
-  toggle.setAttribute('aria-expanded', String(!esMovil));
+  toggle.setAttribute('aria-expanded', 'false');
   toggle.setAttribute('aria-controls', 'coords-cuerpo');
 
   const resumen = nodo('span', 'coords-resumen', '12.1364°, -86.2514°');
@@ -166,7 +165,7 @@
 
   const cuerpo = nodo('div', 'coords-cuerpo');
   cuerpo.id = 'coords-cuerpo';
-  cuerpo.hidden = esMovil;
+  cuerpo.hidden = true;
 
   const fila = nodo('div', 'coords-fila');
   const sel = nodo('select', 'coords-select');
@@ -190,8 +189,11 @@
   cuerpo.append(fila, valor, nota);
   panel.append(cab, cuerpo);
 
-  const main = document.querySelector('main');
-  (main || document.body).append(panel);
+  // En la columna de capas (junto a la retícula), no flotando sobre las ventanas: fijo abajo a la izquierda
+  // tapaba el pronóstico y las gráficas. Si la columna no existe, se queda al final de <main>.
+  const columna = document.querySelector('#barra-capas .ventana-cuerpo');
+  if (columna) { panel.classList.add('coords-en-capas'); columna.prepend(panel); }
+  else (document.querySelector('main') || document.body).append(panel);
 
   let punto = { lat: 12.1364, lon: -86.2514 };
 
@@ -213,7 +215,7 @@
     toggle.setAttribute('aria-expanded', String(!plegado));
     toggle.textContent = plegado ? 'Coords ▸' : 'Coords ▾';
   }
-  setPlegado(esMovil);
+  setPlegado(true);
 
   toggle.onclick = () => setPlegado(!cuerpo.hidden);
   sel.onchange = pintar;
