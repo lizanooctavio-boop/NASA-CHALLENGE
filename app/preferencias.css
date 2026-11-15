@@ -124,10 +124,9 @@
 /* Con «Settings» el menú tiene 12 secciones: en pantallas de escritorio bajas se compacta
    para que quepa entero sin barra de desplazamiento (el objetivo sigue ≥ 36 px). */
 @media (pointer: fine) and (min-width: 701px) and (max-height: 960px) {
-  nav { gap: 3px; }
-  nav button { padding-top: 8px; padding-bottom: 8px; }
+  /* Mismo tamaño en todos los idiomas: el del español, que ya cabe sin desplazamiento. */
+  nav { gap: 2px; }
+  nav button { padding-top: 8px; padding-bottom: 8px; font-size: 13px; }
   nav button[data-tab="aprender"] { margin-top: 4px; }
-  html[lang="es"] nav { gap: 2px; }
-  html[lang="es"] nav button { font-size: 13px; }
-  html[lang="es"] nav button .txt { white-space: nowrap; }
+  nav button .txt { white-space: nowrap; }
 }
