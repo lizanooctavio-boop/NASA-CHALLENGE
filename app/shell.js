@@ -2,7 +2,14 @@
 // entre el globo 3D (app/espacio.js) y el mapa 2D.
 let mapa,punto;
 const $=id=>document.getElementById(id);
-function error(e){$('error').hidden=false;$('error-texto').textContent=e.message||String(e)}
+function error(e){
+  $('error').hidden=false;
+  const raw=e&&e.message?e.message:String(e||'');
+  let msg=raw;
+  if(/failed to fetch|networkerror|load failed/i.test(raw))msg='Network request failed. Check your connection and try again.';
+  else if(/timeout|aborted/i.test(raw)||(e&&(e.name==='TimeoutError'||e.name==='AbortError')))msg='The request timed out. Please try again.';
+  $('error-texto').textContent=msg;
+}
 $('error-cerrar').onclick=()=>{$('error').hidden=true};
 // Lee JSON sin errores crípticos («Unexpected token <») cuando el servidor devuelve HTML.
 async function leerJSON(r){const t=await r.text();try{return JSON.parse(t)}catch(e){throw Error(r.ok?'Invalid server response.':`Server responded ${r.status}.`)}}
