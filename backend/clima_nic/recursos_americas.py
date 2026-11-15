@@ -119,7 +119,7 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
             "cuenca_colorado_caudal",
             "agua",
             "colorado_lees_ferry",
-            "Colorado River annual discharge (since 1922)",
+            "Yearly river flow (since 1922)",
             "Total yearly river volume passing Lees Ferry, Arizona, the legal dividing point between the Upper and "
             "Lower Colorado River basins.",
             "km³",
@@ -137,7 +137,7 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
             "cuenca_colorado_caudal_pos1963",
             "agua",
             "colorado_lees_ferry",
-            "Colorado River regulated flow (since 1963)",
+            "Yearly river flow under dam control (since 1963)",
             "Yearly river volume at Lees Ferry since Glen Canyon Dam closed in 1963, where legal delivery rules buffer "
             "year-to-year swings.",
             "km³",
@@ -164,27 +164,27 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
         meta_pozos = {
             "deadhorse": (
                 "permafrost_deadhorse",
-                "Permafrost ground temperature at Deadhorse",
+                "Deep permafrost temperature",
                 "Mean annual ground temperature at 20 m depth in continuous Arctic permafrost on Alaska's North Slope.",
             ),
             "west_dock": (
                 "permafrost_west_dock",
-                "Permafrost ground temperature at West Dock",
+                "Deep permafrost temperature",
                 "Mean annual ground temperature at 20 m depth near the Beaufort Sea coast at Prudhoe Bay, Alaska.",
             ),
             "franklin_bluffs": (
                 "permafrost_franklin_bluffs",
-                "Permafrost temperature at Franklin Bluffs",
+                "Deep permafrost temperature",
                 "Mean annual ground temperature at 20 m depth in inland North Slope tundra south of Prudhoe Bay, Alaska.",
             ),
             "chandalar_shelf": (
                 "permafrost_chandalar_shelf",
-                "Permafrost temperature at Chandalar Shelf",
+                "Deep permafrost temperature",
                 "Mean annual ground temperature at 20 m depth in the Brooks Range foothills of northern Alaska.",
             ),
             "alert_2": (
                 "permafrost_alert",
-                "Permafrost ground temperature at Alert 2",
+                "Deep permafrost temperature",
                 "Mean annual ground temperature at 24.4 m depth at Alert on northern Ellesmere Island, Nunavut, Canada.",
             ),
         }
@@ -228,35 +228,35 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
             "JJM33": (
                 "norteamerica_hielo_lagos_bayfield",
                 "lago_superior_bayfield",
-                "Lake Superior ice cover at Bayfield",
+                "Winter ice duration",
                 "Days of winter ice cover each season at Bayfield, Wisconsin, on the southern shore of Lake Superior.",
                 False,
             ),
             "DMR2": (
                 "norteamerica_hielo_lagos_monona",
                 "lago_monona",
-                "Lake Monona winter ice duration",
+                "Winter ice duration",
                 "Days between autumn freeze-up and spring ice breakup on Lake Monona in Madison, Wisconsin.",
                 False,
             ),
             "DMR1": (
                 "norteamerica_hielo_lagos_mendota",
                 "lago_mendota",
-                "Lake Mendota winter ice duration",
+                "Winter ice duration",
                 "Days of winter ice cover each season on Lake Mendota, Wisconsin, tracked since the mid-19th century.",
                 False,
             ),
             "PJD28": (
                 "norteamerica_hielo_lagos_simcoe",
                 "lago_simcoe",
-                "Lake Simcoe ice duration (to 1995)",
+                "Winter ice duration (record ends in 1995)",
                 "Days of winter ice cover on Lake Simcoe, Ontario, showing a Canadian record that stops in the mid-1990s.",
                 True,
             ),
             "WRS310": (
                 "norteamerica_hielo_lagos_utopia",
                 "lago_utopia",
-                "Lake Utopia ice duration (to 1994)",
+                "Winter ice duration (record ends in 1994)",
                 "Days of winter ice cover on Lake Utopia, New Brunswick, before Canadian ground reporting ended in 1994.",
                 True,
             ),
@@ -325,7 +325,7 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
                 "chile_central_megasequia",
                 "lluvia",
                 "chile_central",
-                "Central Chile yearly rainfall (CHIRPS)",
+                "Yearly rainfall (CHIRPS)",
                 "Area-averaged annual rainfall across Central Chile (30°S–38°S), tracking the multi-year megadrought "
                 "that began in 2010.",
                 "mm",
@@ -343,8 +343,8 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
                 "chile_central_megasequia_cru",
                 "lluvia",
                 "chile_central",
-                "Central Chile yearly rainfall (CRU)",
-                "Long-term gridded rain-gauge annual precipitation across Central Chile (30°S–38°S) since 1951 from CRU TS 4.10.",
+                "Yearly rainfall (CRU, rain gauges)",
+                "Yearly rainfall across Central Chile (30°S–38°S) since 1951, from a map built only from rain gauges (CRU TS 4.10).",
                 "mm",
                 ch_a_cru,
                 ch_v_cru,
@@ -368,7 +368,7 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
                 "nordeste_brasil_semiarido_lluvia",
                 "lluvia",
                 "nordeste_brasil",
-                "Northeast Brazil yearly rainfall (CHIRPS)",
+                "Yearly rainfall (CHIRPS)",
                 "Yearly total rainfall over semiarid Northeast Brazil (Caatinga, 16°S–3°S, 45°W–35°W), shaped by strong "
                 "El Niño and tropical Atlantic swings.",
                 "mm",
@@ -387,8 +387,8 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
                     "nordeste_brasil_semiarido_lluvia_fmam",
                     "lluvia",
                     "nordeste_brasil",
-                    "Northeast Brazil rainy-season rain (CHIRPS)",
-                    "February–May (FMAM) main rainy-season total across semiarid Northeast Brazil from CHIRPS v2.0.",
+                    "Rainy-season rain, February–May (CHIRPS)",
+                    "Total rain from February to May, the main rainy season, across semiarid Northeast Brazil (CHIRPS v2.0).",
                     "mm",
                     ne_af_ch,
                     ne_vf_ch,
@@ -403,8 +403,8 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
                 "nordeste_brasil_semiarido_lluvia_cru",
                 "lluvia",
                 "nordeste_brasil",
-                "Northeast Brazil yearly rainfall (CRU)",
-                "Gridded rain-gauge annual precipitation over semiarid Northeast Brazil since 1951 from CRU TS 4.10.",
+                "Yearly rainfall (CRU, rain gauges)",
+                "Yearly rainfall over semiarid Northeast Brazil since 1951, from a map built only from rain gauges (CRU TS 4.10).",
                 "mm",
                 ne_a_cru,
                 ne_v_cru,
@@ -439,9 +439,9 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
                 f"huracanes_rapida_intensificacion_{sufijo}_pasos",
                 "ciclones",
                 lugar,
-                f"{nombre_cuenca} rapid intensification steps",
-                f"Yearly count of 6-hour synoptic track intervals in the {nombre_cuenca} where maximum sustained wind "
-                "rose by at least 30 knots in 24 hours.",
+                "Rapid intensification steps",
+                f"Number of 6-hour track points each year, over all {nombre_cuenca} storms, where a storm's maximum "
+                "sustained wind rose by at least 30 knots (56 km/h) within 24 hours.",
                 "steps",
                 anios,
                 pasos,
@@ -456,16 +456,16 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
                 f"huracanes_rapida_intensificacion_{sufijo}_pct",
                 "ciclones",
                 lugar,
-                f"{nombre_cuenca} storms with rapid intensification",
-                f"Percentage of tracked {nombre_cuenca} storms each year that underwent at least one 24-hour wind jump "
-                "of 30 knots or more in raw IBTrACS.",
+                "Storms with rapid intensification",
+                f"Share of {nombre_cuenca} storms each year whose maximum sustained wind rose by at least 30 knots "
+                "(56 km/h) within 24 hours at least once, counted in the raw IBTrACS record.",
                 "%",
                 anios,
                 pcts,
                 ib_fuente,
                 notas=[
-                    "Modern satellite and aircraft monitoring detect more short-lived weak tropical storms, which increases "
-                    "the total storm denominator in raw IBTrACS.",
+                    "Satellites and aircraft now detect more short-lived weak storms; they add to the total number of "
+                    "storms and can pull this percentage down.",
                     ESTUDIOS["huracanes_ri"],
                 ],
             ))
@@ -480,10 +480,10 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
         }
         filas = _rec._leer_csv(ruta)
         meta_snotel = (
-            ("blewett_pass_wa", "snotel_blewett_pass", "April 1 snowpack at Blewett Pass", "Washington Cascades"),
-            ("arbuckle_mtn_or", "snotel_arbuckle_mtn", "April 1 snowpack at Arbuckle Mountain", "Oregon Blue Mountains"),
-            ("bateman_nm", "snotel_bateman", "April 1 snowpack at Bateman", "New Mexico Southern Rockies"),
-            ("niwot_co", "snotel_niwot", "April 1 snowpack at Niwot Ridge", "Colorado Front Range"),
+            ("blewett_pass_wa", "snotel_blewett_pass", "April 1 snowpack", "Washington Cascades"),
+            ("arbuckle_mtn_or", "snotel_arbuckle_mtn", "April 1 snowpack", "Oregon Blue Mountains"),
+            ("bateman_nm", "snotel_bateman", "April 1 snowpack", "New Mexico Southern Rockies"),
+            ("niwot_co", "snotel_niwot", "April 1 snowpack", "Colorado Front Range"),
         )
         for sitio, lugar, titulo, cordillera in meta_snotel:
             propias = sorted((f for f in filas if f["sitio"] == sitio), key=lambda f: int(f["anio"]))
@@ -525,29 +525,29 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
             (
                 "titicaca",
                 "lago_titicaca",
-                "Lake Titicaca water level",
-                "Annual satellite radar altimetry water surface elevation (EGM2008) of Lake Titicaca in the Andean Altiplano.",
+                "Lake water level",
+                "Yearly average height of the surface of Lake Titicaca, in the Andean Altiplano, above sea level (EGM2008), measured by radar satellites.",
                 "Regulated outflow at the Desaguadero River gates and multi-year El Niño/La Niña cycles dominate short-term level swings.",
             ),
             (
                 "colhue_huapi",
                 "lago_colhue_huapi",
-                "Lake Colhué Huapi water level",
-                "Annual satellite radar altimetry surface elevation (EGM2008) of shallow Lake Colhué Huapi in central Patagonia, Argentina.",
+                "Lake water level",
+                "Yearly average height of the surface of shallow Lake Colhué Huapi, in central Patagonia, above sea level (EGM2008), measured by radar satellites.",
                 "Shallow Patagonian lake affected by Senguer River diversions and wind evaporation.",
             ),
             (
                 "argentino",
                 "lago_argentino",
-                "Lago Argentino water level",
-                "Annual satellite radar altimetry surface elevation (EGM2008) of glacier-fed Lago Argentino in southern Patagonia.",
+                "Lake water level",
+                "Yearly average height of the surface of glacier-fed Lago Argentino, in southern Patagonia, above sea level (EGM2008), measured by radar satellites.",
                 "Fed by meltwater from the Southern Patagonian Ice Field (including Perito Moreno and Upsala glaciers).",
             ),
             (
                 "junin",
                 "lago_junin",
-                "Lake Junín water level",
-                "Annual satellite radar altimetry surface elevation (EGM2008) of high-Andean Lake Junín (Chinchaycocha) in central Peru.",
+                "Lake water level",
+                "Yearly average height of the surface of high-Andean Lake Junín (Chinchaycocha), in central Peru, above sea level (EGM2008), measured by radar satellites.",
                 "High-Andean regulated reservoir lake at ~4,080 m elevation.",
             ),
         )

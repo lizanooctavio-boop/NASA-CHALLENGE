@@ -130,6 +130,7 @@ a{color:var(--cian)}
 #leyenda-campo[hidden]{display:none}
 #leyenda-campo .ventana-titulo{margin-right:0}
 #leyenda-campo .ventana-cuerpo{padding:12px 14px}
+.marca-lugar{font-weight:600}
 .leyenda-alternar{width:100%;padding:0;border:0;background:transparent;font-size:12px;letter-spacing:.3px;min-height:26px}
 .gradiente{height:10px;border-radius:5px}
 .etiquetas{position:relative;height:14px;font-size:10px;color:var(--tenue);margin:4px 6px 8px}.etiquetas span{position:absolute;transform:translateX(-50%)}
@@ -153,7 +154,7 @@ a{color:var(--cian)}
   body.menu-plegado nav button:is(:hover,:focus-visible)::after{content:attr(data-nombre);position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;padding:6px 10px;border-radius:7px;background:rgba(14,20,32,.95);border:1px solid var(--borde);color:var(--texto);font-size:12.5px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.4);pointer-events:none;z-index:20}
   body.menu-plegado #plegar-menu svg{transform:rotate(180deg)}
 }
-@media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:10px;padding:14px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:12px;gap:4px}nav button{font-size:12px;padding:10px;min-width:125px}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:10px}.etiqueta{letter-spacing:1.2px}h1{font-size:19px}.acciones{width:100%;justify-content:space-between}.estado{white-space:normal}.ventana,.ventana.ancha,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}#indicador-detalle{right:auto;left:0}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
+@media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:10px;padding:14px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:12px;gap:4px}nav button{font-size:12px;padding:10px;flex:none;white-space:nowrap}nav.mas-derecha{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}nav.mas-izquierda.mas-derecha{-webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent);mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent)}nav.mas-izquierda:not(.mas-derecha){-webkit-mask-image:linear-gradient(to right,transparent,#000 12%);mask-image:linear-gradient(to right,transparent,#000 12%)}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:10px}.etiqueta{letter-spacing:1.2px}h1{font-size:19px}.acciones{width:100%;justify-content:space-between}.estado{white-space:normal}.ventana,.ventana.ancha,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}#indicador-detalle{right:auto;left:0}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
 
 
 /* Barra de capas estilo Meteored (derecha) */
@@ -242,6 +243,9 @@ code{font-size:12px;background:rgba(255,255,255,.08);padding:1px 5px;border-radi
   body.solo-mapa .estado{display:none}
   body.solo-mapa .acciones{flex-wrap:nowrap}
   body.solo-mapa .indicador-envoltura,body.solo-mapa .indicador{min-width:0}
+  body.solo-mapa .indicador-envoltura{flex:1 1 auto;overflow:hidden}
+  body.solo-mapa .indicador{max-width:100%}
+  body.solo-mapa #solomapa{flex:none}
   body.solo-mapa #indicador-texto{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 }
 @media(pointer:coarse) and (max-width:700px){.leaflet-control-zoom{display:flex}.leaflet-touch .leaflet-bar .leaflet-control-zoom-in{border-bottom:0;border-right:1px solid var(--borde)}}
@@ -254,6 +258,7 @@ body.aviso-encima main{z-index:7}
   .chk{min-height:44px}
   .leaflet-touch .leaflet-bar a,.leaflet-bar a{width:44px;height:44px;line-height:44px}
   #linea-tiempo button{min-height:44px;min-width:44px}
+  .leyenda-alternar{min-height:44px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}.ciclon,.indicador i{animation:none!important}}
 
