@@ -139,6 +139,12 @@ cd backend && python -m clima_nic recursos
 
 ---
 
+### 4.3 Watersheds and national hydrology
+
+The **Watersheds** map includes Nicaragua's published INETER/SINAPRED Pfafstetter vectors (2021 edition), complete source codes, and HydroBASINS levels 4 and 6 for all nine source regions. It provides original level-12 downloads, station readings with observation dates, and INETER/SINAPRED climate and natural-hazard catalogues. Reference maps and dated readings are kept distinct from detected climate trends.
+
+See [sources, reproducible downloads, API refresh configuration and limitations](data/hidrologia/fuentes_y_limites.md). A static installation displays dated station snapshots; live station requests require the optional `clima_nic` read-only API. Source data retain their own licenses and are not relicensed under Apache 2.0.
+
 ## 5. Repository Structure
 
 - `index.html`, `app/`, `src/`, `estilos.css`: Frontend web application (`Three.js` 3D globe, `Leaflet` 2D map, `Chart.js` time-series diagnostics, `Investigate`, `Learn`, and `Sources` tabs).
