@@ -3,7 +3,7 @@
 (function(){
 const $=id=>document.getElementById(id);
 const nodo=(t,txt,c)=>{const n=document.createElement(t);if(txt!==undefined)n.textContent=txt;if(c)n.className=c;return n};
-const dec=(v,n=1)=>v===null||v===undefined?'—':Number(v).toLocaleString('en-US',{minimumFractionDigits:n,maximumFractionDigits:n});
+const dec=(v,n=1)=>v===null||v===undefined?'—':Number(v).toLocaleString((window.GnomonI18n?.locale()||'en-US'),{minimumFractionDigits:n,maximumFractionDigits:n});
 const json=r=>typeof leerJSON==='function'?leerJSON(r):r.json();
 if(typeof mapa==='undefined'||!mapa)return;
 
@@ -94,6 +94,7 @@ const capaTormentas=L.layerGroup();
 const CATEGORIAS={'Depresión tropical':['Tropical depression','#5ec8ff'],'Tormenta tropical':['Tropical storm','#5fe08a'],'Huracán cat. 1':['Hurricane cat. 1','#ffe066'],'Huracán cat. 2':['Hurricane cat. 2','#ffb347'],'Huracán cat. 3':['Hurricane cat. 3','#ff7b4a'],'Huracán cat. 4':['Hurricane cat. 4','#ff4d6d'],'Huracán cat. 5':['Hurricane cat. 5','#d65cff']};
 const categoria=c=>CATEGORIAS[c]||[c,'#fff'];
 function geo(fc,estilo,popup){if(!fc||!fc.features||!fc.features.length)return null;const g=L.geoJSON(fc,{style:estilo,pointToLayer:(f,ll)=>L.circleMarker(ll,{radius:4,color:'#fff',weight:1,fillColor:estilo().color,fillOpacity:1})});if(popup)g.bindPopup(()=>nodo('span',popup));return g}
+function enlaceAviso(valor){try{const u=new URL(valor);return u.protocol==='https:'?u.href:null}catch(_){return null}}
 let tormentasDatos=null;
 async function cargarTormentas(){
   const lista=$('lista-tormentas');
@@ -108,7 +109,7 @@ async function cargarTormentas(){
        geo(t.puntos_pronostico,()=>({color:c}),`${t.nombre}: forecast points`)].forEach(g=>g&&capaTormentas.addLayer(g));
       if(t.lat!=null)capaTormentas.addLayer(L.marker([t.lat,t.lon],{icon:L.divIcon({className:'',html:`<div class="ciclon" style="--c:${c}">🌀</div>`,iconSize:[30,30],iconAnchor:[15,15]})}).bindPopup(()=>nodo('span',pop)));
       const li=nodo('li');li.append(nodo('strong',`${t.nombre} — ${cat}`),nodo('span',` · ${dec(t.viento_kt,0)} kt · ${dec(t.presion_hpa,0)} hPa `));
-      if(t.aviso_url){const a=nodo('a','NHC advisory');a.href=t.aviso_url;a.target='_blank';a.rel='noreferrer';li.append(a)}
+      const aviso=enlaceAviso(t.aviso_url);if(aviso){const a=nodo('a','NHC advisory');a.href=aviso;a.target='_blank';a.rel='noopener noreferrer';li.append(a)}
       if(t.lat!=null&&t.lon!=null){const ver=nodo('button','Show','mini');ver.type='button';ver.onclick=async()=>{$('chk-tormentas').checked=true;capaTormentas.addTo(mapa);await window.SICC_vista.irA(t.lat,t.lon,5)};li.append(' ',ver)}
       lista.append(li);
     });

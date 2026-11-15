@@ -128,7 +128,7 @@ function resaltar(el){if(!el)return;el.classList.remove('ayuda-resaltado');void 
 function iniciarTour(){if(window.SICC_tutorial)window.SICC_tutorial.iniciar();else estado(TXT[idioma].sinTour)}
 
 // ---------------------------------------------------------------- interfaz
-let preguntas=null,carga=null,idioma=pref.leer('etd-ayuda-idioma')==='es'?'es':'en',ultima='';
+let preguntas=null,carga=null,idioma=window.GnomonI18n?.language()||(pref.leer('etd-ayuda-idioma')==='es'?'es':'en'),ultima='';
 const MAX=15;
 let seccion,cuerpo,entrada,lista,linea,botonIdioma,botonTour,titulo,intro,etiquetaBuscar;
 function estado(t){if(linea)linea.textContent=t}
@@ -166,7 +166,8 @@ function crearSeccion(){
   etiquetaBuscar.append(etqTexto,entrada);
   const acciones=nodo('div',undefined,'ayuda-acciones');
   botonIdioma=nodo('button',undefined,'mini');botonIdioma.type='button';botonIdioma.id='ayuda-idioma';
-  botonIdioma.onclick=()=>{idioma=idioma==='en'?'es':'en';pref.guardar('etd-ayuda-idioma',idioma);textos();pintar(entrada.value)};
+  botonIdioma.setAttribute('data-i18n-ignore','');
+  botonIdioma.onclick=()=>{if(window.GnomonI18n){window.GnomonI18n.setLanguage(idioma==='en'?'es':'en');return}idioma=idioma==='en'?'es':'en';pref.guardar('etd-ayuda-idioma',idioma);textos();pintar(entrada.value)};
   botonTour=nodo('button',undefined,'ayuda-tour');botonTour.type='button';botonTour.id='ayuda-tour';
   botonTour.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>';botonTour.append(nodo('span'));
   botonTour.onclick=iniciarTour;
@@ -258,5 +259,6 @@ crearBotonMenu();crearSeccion();
 if(!window.SICC_tutorial){const s=document.createElement('script');s.src='app/tutorial.js';s.defer=true;
   s.onerror=()=>{botonTour.disabled=true;botonTour.title=TXT.en.sinTour};document.head.append(s)}
 document.addEventListener('sicc:pestana',e=>{if(e.detail==='ayuda')cargar()});
+document.addEventListener('gnomon:languagechange',e=>{idioma=e.detail.language;if(entrada){textos();if(preguntas)pintar(entrada.value)}});
 window.SICC_ayuda={abrir,buscar:texto=>{if(!indice.length)return [];return buscar(texto).map(r=>r.q.id)},cargar,mostrar};
 })();

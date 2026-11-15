@@ -66,7 +66,7 @@
       fc={type:'FeatureCollection',features:colecciones.flatMap(c=>c.features),metadata:{sources:colecciones.map(c=>c.metadata),retrieved_snapshot:manifiesto.generated_utc}};
       visible=true;await window.SICC_vista.cambiar('mapa');if(turno!==secuencia)return;pintarCuencas();
       if(r==='nic')mapa.fitBounds(cuencas.getBounds(),{padding:[20,20]});else if(r==='world')mapa.setView([15,0],2);else mapa.fitBounds(cuencas.getBounds(),{maxZoom:5,padding:[20,20]});
-      texto('hid-estado',`${fc.features.length.toLocaleString('en-US')} polygons · ${r==='nic'?'2021 edition · '+manifiesto.nicaragua.code_discrepancies+' source code inconsistencies retained':'HydroBASINS v1c · level '+n} · Reference boundaries, not live water conditions.`);
+      texto('hid-estado',`${fc.features.length.toLocaleString((window.GnomonI18n?.locale()||'en-US'))} polygons · ${r==='nic'?'2021 edition · '+manifiesto.nicaragua.code_discrepancies+' source code inconsistencies retained':'HydroBASINS v1c · level '+n} · Reference boundaries, not live water conditions.`);
       $('hid-geojson').disabled=$('hid-csv').disabled=false;
       $('hid-original').href=r==='nic'?'https://www.arcgis.com/home/item.html?id=a367394491e5470c89ab165525c4c246':r==='world'?'https://www.hydrosheds.org/products/hydrobasins':`https://data.hydrosheds.org/file/hydrobasins/standard/hybas_${r}_lev12_v1c.zip`;
       $('hid-original').textContent=r==='nic'?'Original national vectors (ArcGIS REST)':r==='world'?'Original vectors · all regions and levels 1–12':'Download original level 12 vectors (SHP ZIP)';

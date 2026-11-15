@@ -33,7 +33,7 @@ function mundialDisponible(){return GM&&GM.horas_utc.length>0&&soporte.utc(GM.co
 const horasActivas=()=>G?.horas_utc||(mundialDisponible()?GM.horas_utc:[]);
 // La serie cubre el presente si la hora actual cae entre su primera hora y un paso (3 h) después de la última.
 // Fuera de ese intervalo es archivo: no se etiqueta ninguna hora como «now».
-function cubreAhora(){const H=horasActivas();if(!H.length)return false;const t=Date.now();return soporte.utc(H[0])-90*60000<=t&&t<=soporte.utc(H.at(-1))+3*3600000}
+function cubreAhora(){return soporte.vigente(horasActivas())}
 function pasoGlobal(h=hora){if(!mundialDisponible())return null;if(!G)return GM.horas_utc[h]?h:null;const t=soporte.utc(G.horas_utc[h]);let mejor=null,d=1e15;GM.horas_utc.forEach((x,k)=>{const e=Math.abs(soporte.utc(x)-t);if(e<d){d=e;mejor=k}});return d<=90*60000?mejor:null}
 const varGlobal=v=>v==='viento_ms'||v==='viento_u_ms'||v==='viento_v_ms'?'viento':v;
 function campoG(v,paso){if(paso===null)return null;if(v==='viento_ms'){const w=cacheG['viento|'+paso];if(!w)return null;return cacheG['vms|'+paso]??=w.viento_u_ms.map((f,i)=>f.map((u,j)=>{
@@ -103,11 +103,11 @@ pantallaCorta.addEventListener('change',()=>{if(leyendaElegida===null)leyenda()}
 // Indicador en la cabecera: modelo y hora de la corrida.
 const ind=$('indicador-datos'),indDet=$('indicador-detalle');
 let globalListo=false;
-const fechaCorta=iso=>new Date(soporte.utc(iso)).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'UTC'})+' UTC';
+const fechaCorta=iso=>new Date(soporte.utc(iso)).toLocaleString((window.GnomonI18n?.locale()||'en-US'),{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'UTC'})+' UTC';
 function indicador(){
   if(!ind)return;
   let nivel,txt;
-  if(mundialDisponible()&&!G&&!cubreAhora()){nivel='pendiente';txt='Archived run · '+fechaCorta(GM.corrida_utc)}
+  if(mundialDisponible()&&!cubreAhora()){nivel='pendiente';txt='Archived run · '+fechaCorta(GM.corrida_utc)}
   else if(mundialDisponible()){nivel='ok';txt='ECMWF IFS · '+fechaCorta(GM.corrida_utc)}
   else if(!globalListo){nivel='pendiente';txt='Loading data…'}
   else{nivel='error';txt='No model data'}
@@ -174,7 +174,7 @@ mapa.on('mousemove',e=>{lecturaPend=e.latlng;if(lecturaProg)return;lecturaProg=t
 
 // Línea de tiempo
 const lt=$('lt-rango'),ltEt=$('lt-etiqueta'),ltPlay=$('lt-play'),ltAhora=$('lt-ahora');
-function fechaLocal(iso){return new Date(soporte.utc(iso)).toLocaleString('en-US',{weekday:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false})}
+function fechaLocal(iso){return new Date(soporte.utc(iso)).toLocaleString((window.GnomonI18n?.locale()||'en-US'),{weekday:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false})}
 function indiceAhora(){
   if(G){const actual=new Date().toISOString().slice(0,13)+':00';const i=G.horas_utc.indexOf(actual);return i<0?G.indice_actual:i}
   return Math.max(0,horasActivas().findLastIndex(h=>soporte.utc(h)<=Date.now()));
@@ -206,7 +206,7 @@ function marcas(){
   if(!n)return;
   let dia=null;
   H.forEach((iso,i)=>{const f=new Date(soporte.utc(iso)),d=f.toDateString();if(d===dia)return;const nuevo=dia!==null;dia=d;if(!nuevo)return;
-    const m=document.createElement('span');m.className='lt-dia';m.style.left=pos(i);m.textContent=f.toLocaleDateString('en-US',{weekday:'short',day:'numeric'});ltMarcas.append(m)});
+    const m=document.createElement('span');m.className='lt-dia';m.style.left=pos(i);m.textContent=f.toLocaleDateString((window.GnomonI18n?.locale()||'en-US'),{weekday:'short',day:'numeric'});ltMarcas.append(m)});
   if(!cubreAhora())return;
   let ia=indiceAhora();
   if(ia<n-1){const t0=soporte.utc(H[ia]),t1=soporte.utc(H[ia+1]);if(t1>t0)ia+=Math.min(1,Math.max(0,(Date.now()-t0)/(t1-t0)))}
@@ -281,6 +281,7 @@ async function cargarGlobal(){
 }
 cargarGlobal();setInterval(()=>{if(!document.hidden)cargarGlobal()},30*60000);
 
+document.addEventListener('gnomon:languagechange',()=>{etiquetaHora();marcas();leyenda()});
 window.SICC_campo={
   estado:()=>({datos:!!G,variable,hora,horaUTC:horasActivas()[hora]??null,particulas:N,mundial:GM?{corrida:GM.corrida_utc,paso:pasoGlobal(),horaGlobal:pasoGlobal()!==null?GM.horas_utc[pasoGlobal()]:null}:null}),
   meta:()=>GM,

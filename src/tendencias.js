@@ -182,6 +182,7 @@
       t = setTimeout(pintar, 150);
     });
     document.addEventListener('sicc:pestana', function (e) { if (e.detail === 'tendencias') requestAnimationFrame(pintar); });
+    document.addEventListener('gnomon:languagechange', pintar);
     document.addEventListener('sicc:paneles', function () { if (!$('tendencias').hidden) requestAnimationFrame(pintar); });
   }).catch(function (e) {
     $('veredicto').innerHTML = '<p class="detalle">Trend data unavailable (' + G.escapar(e.message) + ').</p>';

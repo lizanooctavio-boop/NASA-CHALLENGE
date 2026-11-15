@@ -4,7 +4,7 @@
 (function(){
 const $=id=>document.getElementById(id);
 const nodo=(t,txt,c)=>{const n=document.createElement(t);if(txt!==undefined)n.textContent=txt;if(c)n.className=c;return n};
-const num=(v,d=2)=>Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const num=(v,d=2)=>Number(v).toLocaleString((window.GnomonI18n?.locale()||'en-US'),{minimumFractionDigits:d,maximumFractionDigits:d});
 const signo=(v,d=2)=>(v>0?'+':v<0?'−':'')+num(Math.abs(v),d);
 const DECIMALES={mm:0,'°C':2,NDVI:3,m:2,'mg/m³':2,days:1,'mm/day':2,'million km²':2,storms:1,months:1,Gt:0,cm:1,pH:3,'Ω':2,fraction:2,'°C-weeks':1,'km²':0};
 const dec=u=>DECIMALES[u]??2;
@@ -173,7 +173,7 @@ function serie(x,t,ok){
   const rTxt=valsNum.length?`, range ${num(Math.min(...valsNum),dec(u))} to ${num(Math.max(...valsNum),dec(u))} ${u}`:'';
   const tTxt=ok?`, Theil–Sen trend ${signo(t.sen.por_decada,dec(u)+1)} ${u} per decade`:'';
   $('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${desde} to ${hasta}${rTxt}${tTxt}`);
-  crear('inv-serie',{data:{labels:eje.tiempos,datasets:ds},options:{locale:x.validacion?'en-US':undefined,interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
+  crear('inv-serie',{data:{labels:eje.tiempos,datasets:ds},options:{locale:x.validacion?(window.GnomonI18n?.locale()||'en-US'):undefined,interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
 }
 
 // ---------------------------------------------------------------- segundas opiniones
@@ -285,5 +285,6 @@ $('inv-csv').onclick=async()=>{try{await cargar();const x=inv(sel.investigacion)
 document.addEventListener('sicc:pestana',e=>{
   if(['investigar','aprender','fuentes'].includes(e.detail))cargar().then(()=>setTimeout(()=>Object.values(graficas).forEach(g=>g?.resize()),30)).catch(err=>typeof error==='function'&&error(err));
 });
+document.addEventListener('gnomon:languagechange',()=>{if(D){pintar();fuentes();demostraciones()}});
 window.SICC_investigar={estado:()=>({cargado:!!D,sel:{...sel},demo:demo&&{id:demo.dm.id,paso:demo.paso}}),elegir:c=>{elegir(c)},demo:iniciarDemo};
 })();

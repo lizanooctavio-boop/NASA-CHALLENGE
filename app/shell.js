@@ -17,9 +17,9 @@ async function leerJSON(r){const t=await r.text();try{return JSON.parse(t)}catch
 function limpiar(n){n.replaceChildren()}
 function nodo(tag,texto,clase){const n=document.createElement(tag);if(texto!==undefined)n.textContent=texto;if(clase)n.className=clase;return n}
 function tarjeta(contenedor,titulo,valor,detalle){const d=nodo('div',undefined,'tarjeta');d.append(nodo('small',titulo),nodo('strong',valor));if(detalle)d.append(nodo('p',detalle));contenedor.append(d)}
-const decimal=(v,n=2)=>Number(v).toLocaleString('en-US',{maximumFractionDigits:n,minimumFractionDigits:n});
+const decimal=(v,n=2)=>Number(v).toLocaleString(window.GnomonI18n?.locale()||'en-US',{maximumFractionDigits:n,minimumFractionDigits:n});
 async function api(url){const r=await window.FuentesMeteo.fetch(url);const d=await leerJSON(r);if(!r.ok)throw Error(d.error||'Data unavailable');return d}
-function tab(id){document.querySelectorAll('.vista').forEach(v=>v.hidden=v.id!==id);document.querySelectorAll('nav button').forEach(b=>{b.classList.toggle('activo',b.dataset.tab===id);if(b.dataset.tab===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});$('titulo').textContent=document.querySelector(`[data-tab="${id}"]`).textContent;soloMapa(false);document.dispatchEvent(new CustomEvent('sicc:pestana',{detail:id}))}
+function tab(id,actualizarRuta=true){const boton=document.querySelector(`nav button[data-tab="${id}"]`);if(!boton)return;document.querySelectorAll('.vista').forEach(v=>v.hidden=v.id!==id);document.querySelectorAll('nav button').forEach(b=>{b.classList.toggle('activo',b.dataset.tab===id);if(b.dataset.tab===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});$('titulo').textContent=boton.textContent;soloMapa(false);if(actualizarRuta&&location.hash!=='#'+id)history.pushState(null,'','#'+id);document.dispatchEvent(new CustomEvent('sicc:pestana',{detail:id}))}
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 
 // ---------------------------------------------------------------- mapa 2D
@@ -112,7 +112,7 @@ document.querySelectorAll('.vista').forEach(v=>{const titulo=document.querySelec
   barra.append(pts,nodo('span',titulo,'ventana-titulo'));barra.ondblclick=()=>v.classList.toggle('minimizada');v.append(barra,cuerpo);v.classList.add('ventana')});
 iniciarMapa();
 
-const pref={leer:(k,s=localStorage)=>{try{return s.getItem(k)}catch(e){return null}},guardar:(k,v,s=localStorage)=>{try{s.setItem(k,v)}catch(e){}}};
+const pref={leer:(k,s)=>{try{return (s||window.localStorage).getItem(k)}catch(e){return null}},guardar:(k,v,s)=>{try{(s||window.localStorage).setItem(k,v)}catch(e){}}};
 // Menú plegable: en escritorio se reduce a una barra de iconos.
 function plegarMenu(v,guardar){
   document.body.classList.toggle('menu-plegado',v);
@@ -190,14 +190,14 @@ async function cambiarVista(nuevo){
   })();
   return transicionActual;
 }
-$('vista-globo').onclick=()=>cambiarVista('globo');
-$('vista-mapa').onclick=()=>cambiarVista('mapa');
+$('vista-globo').onclick=()=>{if(!$('meteorologia').hidden)history.pushState(null,'','#globe');cambiarVista('globo')};
+$('vista-mapa').onclick=()=>{if(!$('meteorologia').hidden)history.pushState(null,'','#map');cambiarVista('mapa')};
 // Marca del lugar de una investigación («Show on the map»): un círculo con su nombre, uno cada vez.
 let marcaLugar=null;
 function marcar(lat,lon,nombre){
   marcaLugar?.remove();
   marcaLugar=L.circleMarker([lat,lon],{radius:9,color:'#f6c76b',weight:3,fillColor:'#f6c76b',fillOpacity:.25}).addTo(mapa);
-  if(nombre)marcaLugar.bindTooltip(nombre,{permanent:true,direction:'top',offset:[0,-8],className:'marca-lugar'}).openTooltip();
+  if(nombre)marcaLugar.bindTooltip(nodo('span',nombre),{permanent:true,direction:'top',offset:[0,-8],className:'marca-lugar'}).openTooltip();
 }
 window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{await cambiarVista('mapa');mapa.setView([lat,lon],z)},marcar,soloMapa};
 const salidaHash=()=>{if(location.hash==='#map'){if(modo==='mapa'&&window.Espacio)window.Espacio.pausar(true);else cambiarVista('mapa')}};
@@ -210,7 +210,10 @@ document.addEventListener('espacio:error',()=>{
 });
 if(window.Espacio)document.body.classList.remove('cargando');
 setTimeout(()=>{if(location.hash==='#map'&&modo!=='mapa'&&!window.Espacio)salidaHash()},1200);
-addEventListener('hashchange',()=>{cambiarVista(location.hash==='#map'?'mapa':'globo')});
+function seguirRuta(){const hash=location.hash.slice(1);if(hash==='map'||hash==='globe'){tab('meteorologia',false);cambiarVista(hash==='map'?'mapa':'globo');return}const id=hash==='proyecciones'?'escenarios':hash;if(document.querySelector(`nav button[data-tab="${CSS.escape(id)}"]`))tab(id,false);else if(!hash)tab('meteorologia',false)}
+addEventListener('hashchange',seguirRuta);
+addEventListener('popstate',seguirRuta);
+document.addEventListener('DOMContentLoaded',seguirRuta);
 
 // ---------------------------------------------------------------- base vectorial: fronteras y nombres (Natural Earth)
 function baseVectorial(){
@@ -220,7 +223,7 @@ function baseVectorial(){
   fetch('assets/mundo.geojson').then(r=>r.json()).then(g=>{
     L.geoJSON({type:'FeatureCollection',features:g.features.filter(f=>f.properties.tipo==='pais')},{pane:'referencia',renderer:L.canvas({pane:'referencia'}),interactive:false,style:{color:'rgba(235,242,250,.5)',weight:.7,fill:false}}).addTo(mapa);
     const etq=[];
-    g.features.filter(f=>f.properties.tipo==='pais'&&f.properties.lx!=null).forEach(f=>etq.push([L.marker([f.properties.ly,f.properties.lx],{pane:'referencia',interactive:false,keyboard:false,icon:L.divIcon({className:'etq-pais',html:f.properties.nombre_en||f.properties.nombre,iconSize:null})}),Math.max(3,(f.properties.rango||5)-1)]));
+    g.features.filter(f=>f.properties.tipo==='pais'&&f.properties.lx!=null).forEach(f=>etq.push([L.marker([f.properties.ly,f.properties.lx],{pane:'referencia',interactive:false,keyboard:false,icon:L.divIcon({className:'etq-pais',html:nodo('span',f.properties.nombre_en||f.properties.nombre),iconSize:null})}),Math.max(3,(f.properties.rango||5)-1)]));
     etq.sort((a,b)=>a[1]-b[1]);
     CIUDADES.forEach(([n,la,lo,z])=>etq.push([L.marker([la,lo],{pane:'referencia',interactive:false,keyboard:false,icon:L.divIcon({className:'etq-ciudad',html:'<i></i>'+n,iconSize:null})}),z]));
     const capa=L.layerGroup().addTo(mapa);

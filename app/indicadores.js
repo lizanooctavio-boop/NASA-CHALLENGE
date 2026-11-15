@@ -4,7 +4,7 @@
 (function(){
 const $=id=>document.getElementById(id);
 const nodo=(t,txt,c)=>{const n=document.createElement(t);if(txt!==undefined)n.textContent=txt;if(c)n.className=c;return n};
-const num=(v,d=2)=>Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const num=(v,d=2)=>Number(v).toLocaleString((window.GnomonI18n?.locale()||'en-US'),{minimumFractionDigits:d,maximumFractionDigits:d});
 const signo=(v,d=2)=>(v>0?'+':v<0?'−':'')+num(Math.abs(v),d);
 
 const REGIONES=[['NIC','Nicaragua','whole country'],['pacifico','Pacific','lowlands'],['central','Central','highlands · Dry Corridor'],['caribe','Caribbean','coast']];
@@ -207,5 +207,6 @@ document.addEventListener('sicc:pestana',e=>{
   if(e.detail==='indicadores'||e.detail==='escenarios')cargar().then(()=>{mapaRegiones();setTimeout(()=>Object.values(graficas).forEach(g=>g?.resize()),30)}).catch(err=>typeof error==='function'&&error(err));
   else mapaRegiones();
 });
+document.addEventListener('gnomon:languagechange',()=>{if(D){resultado();contraste();estacional();escenarios()}});
 window.SICC_indicadores={estado:()=>({cargado:!!D,sel:{...sel},graficas:Object.keys(graficas)})};
 })();

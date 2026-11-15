@@ -60,11 +60,13 @@ document.addEventListener('sicc:enos',e=>{const d=e.detail;if(!d?.oni_local)retu
 });
 
 // ---------------------------------------------------------------- pronóstico del punto elegido
-document.addEventListener('sicc:pronostico',e=>{
+let ultimoPronostico=null;
+function pintarPronostico(e){
+  ultimoPronostico=e.detail;
   const p=e.detail,caja=$('graf-meteograma').parentElement;
   caja.hidden=!p?.horas;
   if(!p?.horas){graficas['graf-meteograma']?.destroy();delete graficas['graf-meteograma'];return}
-  const h=p.horas,etiquetas=h.time.map(t=>new Date(t+'Z').toLocaleString('en-US',{weekday:'short',hour:'2-digit',hour12:false}));
+  const h=p.horas,etiquetas=h.time.map(t=>new Date(t+'Z').toLocaleString((window.GnomonI18n?.locale()||'en-US'),{weekday:'short',hour:'2-digit',hour12:false}));
   const rT=extremos(h.temperature_2m||[]),rP=extremos(h.precipitation||[]),rG=extremos(h.wind_gusts_10m||[]);
   $('graf-meteograma')?.setAttribute('aria-label',`Hourly forecast at ${Math.abs(p.lat).toFixed(2)}° ${p.lat>=0?'N':'S'}, ${Math.abs(p.lon).toFixed(2)}° ${p.lon>=0?'E':'W'}${rT?`, temperature ${rT[0].toFixed(1)} to ${rT[1].toFixed(1)} °C`:''}${rP?`, peak rainfall ${rP[1].toFixed(1)} mm/h`:''}${rG?`, peak wind gusts ${rG[1].toFixed(1)} m/s`:''}`);
   crear('graf-meteograma',{data:{labels:etiquetas,datasets:[
@@ -72,7 +74,9 @@ document.addEventListener('sicc:pronostico',e=>{
     {type:'bar',label:'Rain (mm/h)',data:h.precipitation,backgroundColor:'rgba(106,168,255,.82)',yAxisID:'y1'},
     {type:'line',label:'Gusts (m/s)',data:h.wind_gusts_10m,borderColor:C.violeta,borderDash:[3,3],pointRadius:0,yAxisID:'y2'}]},
     options:{interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:9}},y:eje('°C'),y1:eje('mm/h',{position:'right',grid:{drawOnChartArea:false},min:0}),y2:{display:false,min:0}}}});
-});
+}
+document.addEventListener('sicc:pronostico',pintarPronostico);
+document.addEventListener('gnomon:languagechange',()=>{if(ultimoPronostico)pintarPronostico({detail:ultimoPronostico})});
 
 function sinSeries(){
   const selector=$('ventana-cmip');

@@ -5,9 +5,10 @@
 (function () {
   'use strict';
   var NS = 'http://www.w3.org/2000/svg';
-  var nf1 = new Intl.NumberFormat('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-  var nf0 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
-  var nf2 = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  function formato(options) { return { format: function(v) { return new Intl.NumberFormat(window.GnomonI18n?.locale() || 'en-US', options).format(v); } }; }
+  var nf1 = formato({ minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  var nf0 = formato({ maximumFractionDigits: 0 });
+  var nf2 = formato({ minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   function conSigno(v, f) { f = f || nf1; return (v > 0 ? '+' : v < 0 ? '−' : '') + f.format(Math.abs(v)); }
 
@@ -150,7 +151,7 @@
       guia.setAttribute('x1', X(anio)); guia.setAttribute('x2', X(anio)); guia.setAttribute('visibility', 'visible');
       if (p && p.valor !== null) { foco.setAttribute('cx', X(anio)); foco.setAttribute('cy', Y(p.valor)); foco.setAttribute('visibility', 'visible'); }
       else foco.setAttribute('visibility', 'hidden');
-      var html = '<strong>' + anio + '</strong><br>Observed: ' + (p && p.valor !== null ? nf0.format(p.valor) + ' ' + meta.unidades : 'no data');
+      var html = '<strong>' + anio + '</strong><br>Observed: ' + (p && p.valor !== null ? nf0.format(p.valor) + ' ' + escapar(meta.unidades) : 'no data');
       if (tm) html += '<br><span class="t">Least squares: ' + nf0.format(window.SofContrato.valorAjustado(tm, anio)) + '</span>';
       if (ts) html += '<br><span class="t">Theil–Sen: ' + nf0.format(window.SofContrato.valorAjustado(ts, anio)) + '</span>';
       if (cx === undefined) {
@@ -220,7 +221,7 @@
         var hit = el('rect', { x: X(t.ic_inf) - 6, y: y - 7, width: X(t.ic_sup) - X(t.ic_inf) + 12, height: 14, fill: 'transparent' }, grupo);
         [hit, forma].forEach(function (n) {
           n.addEventListener('pointermove', function (ev) {
-            mostrarTip('<strong>' + r.nombre + ' · ' + cfg[3] + '</strong><br>' + conSigno(t.pendiente) + ' ' + meta.unidades_pendiente +
+            mostrarTip('<strong>' + escapar(r.nombre) + ' · ' + escapar(cfg[3]) + '</strong><br>' + conSigno(t.pendiente) + ' ' + escapar(meta.unidades_pendiente) +
               '<br><span class="t">' + Math.round(meta.nivel_confianza * 100) + '% CI: ' + conSigno(t.ic_inf) + ' to ' + conSigno(t.ic_sup) + '</span>', ev.clientX, ev.clientY);
           });
           n.addEventListener('pointerleave', ocultarTip);

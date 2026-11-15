@@ -5,6 +5,7 @@
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gnomon · Earth trend explorer</title>
+<link rel="icon" type="image/svg+xml" href="assets/gnomon-icon.svg">
 <meta name="description" content="Explore Earth's weather from space and test whether annual rainfall in Nicaragua has changed, with NASA GPM IMERG data.">
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -14,6 +15,7 @@
 <link rel="stylesheet" href="app/buscador.css">
 <link rel="stylesheet" href="app/ayuda.css">
 <link rel="stylesheet" href="app/inicio.css">
+<link rel="stylesheet" href="app/ux-local.css">
 </head>
 <body class="modo-globo cargando">
 <a href="#contenido-principal" class="saltar-contenido">Skip to main content</a>
@@ -47,6 +49,11 @@
 <header>
   <div><p class="etiqueta">NASA SPACE APPS</p><h1 id="titulo">Weather</h1></div>
   <div class="acciones">
+    <div id="language-switcher" class="language-switcher" role="group" aria-label="Language / Idioma" data-i18n-ignore>
+      <button type="button" data-language="en" lang="en" aria-pressed="true">English</button>
+      <button type="button" data-language="es" lang="es" aria-pressed="false">Español</button>
+    </div>
+    <span id="language-status" class="sr-only" role="status" aria-live="polite" data-i18n-ignore></span>
     <div class="interruptor" role="group" aria-label="View">
       <button type="button" id="vista-globo" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Globe</button>
       <button type="button" id="vista-mapa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"/></svg>Map</button>
@@ -257,6 +264,8 @@
 
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha384-9nhczxUqK87bcKHh20fSQcTGD4qq5GhayNYSYWqwBkINBhOfQLg/P5HG5lF1urn4" crossorigin="anonymous"></script>
+<script defer src="app/locales/es.js"></script>
+<script defer src="app/i18n.js"></script>
 <script defer src="src/fuentes-meteo.js"></script>
 <script defer src="src/meteo-paletas.js"></script>
 <script defer src="src/globo-meteo.js"></script>
