@@ -29,6 +29,7 @@ button,select,input,summary{font:inherit}
 button{cursor:pointer;border:1px solid var(--borde);padding:9px 15px;border-radius:8px;background:rgba(255,255,255,.08);color:var(--texto);font-weight:600;transition:background .15s,border-color .15s}
 button:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3)}
 button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--cian);outline-offset:2px}
+#espacio:focus-visible{outline:2px solid var(--cian);outline-offset:-4px}
 button:disabled{opacity:.55;cursor:progress}
 button[data-csv-meteo]:disabled,#linea-tiempo button:disabled{cursor:not-allowed}
 button[data-csv-meteo][aria-busy="true"]{cursor:progress}
