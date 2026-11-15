@@ -926,9 +926,11 @@ def _hallazgos(carpeta, permitir_sintetico):
     from .recursos_americas import americas
     n_inv, n_ent = _mundo(carpeta, fuentes, chirps, notas_lluvia)
     from .recursos_europa_africa import europa_africa
+    from .recursos_asia_oceania import asia_oceania
     a_inv, a_ent = americas(carpeta)
     e_inv, e_ent = europa_africa(carpeta)
-    return invs + n_inv + a_inv + e_inv, entradas + n_ent + a_ent + e_ent
+    o_inv, o_ent = asia_oceania(carpeta)
+    return invs + n_inv + a_inv + e_inv + o_inv, entradas + n_ent + a_ent + e_ent + o_ent
 
 
 def _serie(filas, clave, valor):
