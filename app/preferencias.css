@@ -40,9 +40,13 @@
 /* Theme the interface independently of the map tiles and scientific color scales. */
 :root[data-theme="light"] {
   color-scheme: light;
-  --vidrio: #f6f9fd;
-  --vidrio-barra: #e8eff7;
-  --borde: #8296ab;
+  --vidrio: rgba(246, 250, 255, .74);
+  --vidrio-barra: rgba(255, 255, 255, .5);
+  --borde: rgba(255, 255, 255, .78);
+  --cristal-sombra: 0 18px 48px rgba(23, 49, 82, .22), inset 0 1px 0 rgba(255, 255, 255, .9), inset 0 0 0 1px rgba(130, 150, 171, .28);
+  --cristal-control: rgba(255, 255, 255, .5);
+  --cristal-control-hover: rgba(255, 255, 255, .78);
+  --cristal-activo: rgba(8, 97, 136, .14);
   --texto: #152a3e;
   --tenue: #42596d;
   --cian: #086188;
@@ -68,15 +72,30 @@
 [data-theme="light"] :is(h1, h2, .ventana-titulo, .marca b, .sub strong, .ayuda-inicio strong, .tarjeta strong, .pendiente-principal strong),
 [data-theme="light"] #investigar :is(.pregunta, .veredicto .estado, .veredicto-ayuda, .veredicto .nota-clave),
 [data-theme="light"] .demo-panel .demo-texto { color: var(--texto); }
+[data-theme="light"] :is(aside, header, .ventana, .coords-panel, .carga-globo, .leaflet-bar a) {
+  background: var(--vidrio);
+  border-color: var(--borde);
+  -webkit-backdrop-filter: blur(26px) saturate(1.8) brightness(1.06);
+  backdrop-filter: blur(26px) saturate(1.8) brightness(1.06);
+  box-shadow: var(--cristal-sombra);
+}
 [data-theme="light"] :is(article, .tarjeta, .ayuda-inicio, button:not(.ventana-botones button, .inicio-principal), .boton, input:not([type="range"]), select, .coords-valor) {
-  background-color: #e8eff7;
+  background-color: var(--cristal-control);
+  border-color: rgba(130, 150, 171, .45);
   color: var(--texto);
 }
-[data-theme="light"] :is(button:not(.ventana-botones button, .inicio-principal), .boton):hover { background-color: #d8e6f4; border-color: var(--cian); }
-[data-theme="light"] :is(nav button.activo, nav button[data-tab="investigar"]:not(.activo), .interruptor button[aria-pressed="true"], .capas-mapa [data-var][aria-pressed="true"], .botones-region button[aria-checked="true"]) {
-  background: #cde6f2;
+[data-theme="light"] :is(article, .tarjeta, .ayuda-inicio) { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .85); }
+[data-theme="light"] option { background: #f6faff; color: var(--texto); }
+[data-theme="light"] option:checked { background: #cde6f2; color: var(--texto); }
+[data-theme="light"] :is(button:not(.ventana-botones button, .inicio-principal), .boton):hover { background-color: var(--cristal-control-hover); border-color: var(--cian); }
+/* El menú solo marca el módulo abierto: los demás quedan transparentes sobre el cristal. */
+[data-theme="light"] nav button:not(.activo) { background: transparent; border-color: transparent; color: var(--texto); }
+[data-theme="light"] nav button:not(.activo):hover { background: var(--cristal-control); border-color: rgba(130, 150, 171, .45); }
+[data-theme="light"] :is(nav button.activo, .interruptor button[aria-pressed="true"], .capas-mapa [data-var][aria-pressed="true"], .botones-region button[aria-checked="true"]) {
+  background: var(--cristal-activo);
   border-color: var(--cian);
   color: var(--texto);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8);
 }
 [data-theme="light"] .preferencias-opciones button[aria-pressed="true"] {
   background: var(--preferencias-seleccion);
@@ -84,12 +103,15 @@
 }
 [data-theme="light"] .capas-mapa label { color: var(--texto); }
 [data-theme="light"] :is(#indicador-detalle, .tooltip, .buscador-lista, .buscador-caja, .coords-panel, .leaflet-popup-content-wrapper, .leaflet-popup-tip, .tour-tarjeta, .tour-invitacion, .reticula-ayuda, .carga-globo, #error) {
-  background: var(--vidrio);
+  background: rgba(246, 250, 255, .9);
   color: var(--texto);
   border-color: var(--borde);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow: var(--cristal-sombra);
 }
 [data-theme="light"] :is(.buscador-opcion.activo, .buscador-opcion:hover) { background: #cde6f2; color: var(--texto); }
-[data-theme="light"] .interruptor { background: #e8eff7; }
+[data-theme="light"] .interruptor { background: var(--cristal-control); }
 [data-theme="light"] .buscador-entrada::placeholder { color: var(--tenue); }
 [data-theme="light"] :is(.nota-veredicto, .advertencia p, #investigar .paso-nota, .ayuda-respuesta) { color: var(--tenue); }
 [data-theme="light"] .grafica .cero { stroke: var(--texto); }

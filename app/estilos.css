@@ -50,7 +50,6 @@ nav button svg{opacity:.85}
 #plegar-menu{width:34px;height:34px;padding:0;display:grid;place-items:center;flex:none}
 #plegar-menu svg{transition:transform .2s}
 nav button.activo{background:rgba(111,216,255,.16);border-color:rgba(111,216,255,.6);color:#fff}
-nav button[data-tab="investigar"]:not(.activo){border-color:rgba(111,216,255,.28);background:rgba(111,216,255,.06);color:#eef6ff}
 nav button[data-tab="aprender"]{margin-top:6px}
 .ayuda-inicio{padding:12px 14px;border:1px solid rgba(111,216,255,.28);background:rgba(111,216,255,.07);border-radius:10px;margin-bottom:14px}
 .ayuda-inicio h2{font-size:15px;margin:0 0 4px;color:#fff}
