@@ -416,6 +416,11 @@ def _tierra(carpeta, permitir_sintetico):
     return invs, entradas
 
 
+def _sin_decada(unidad):
+    """Unidad de la serie a partir de la de su pendiente: «m³/m³/década» → «m³/m³»."""
+    return re.sub(r"\s*/\s*(década|decada|decade)$", "", unidad or "")
+
+
 def _contraste(carpeta, permitir_sintetico, nombre_json="resumen_contrastes.json", nombre_csv="series_anuales.csv"):
     """Contrastes y variables nuevas con el esquema del agente 2 (también lo usa el agente 3 para Canadá)."""
     carpeta = Path(carpeta)
@@ -444,7 +449,7 @@ def _contraste(carpeta, permitir_sintetico, nombre_json="resumen_contrastes.json
             if caja:
                 lugares[cid] = (c["region"], PAIS_CAJA.get(cid, "Nicaragua"),
                                 [round((caja[1] + caja[3]) / 2, 2), round((caja[0] + caja[2]) / 2, 2)], 8)
-            unidad = (c["serie_nuestra"]["unidad"].split("/")[0].replace("mg m-3", "mg/m³")
+            unidad = (_sin_decada(c["serie_nuestra"]["unidad"]).replace("mg m-3", "mg/m³")
                       .replace("1e15 molec cm-2", "10¹⁵ molecules/cm²"))
             recursos = [recurso] if recurso else []
             notas_c = ()
@@ -483,7 +488,7 @@ def _contraste(carpeta, permitir_sintetico, nombre_json="resumen_contrastes.json
                 "externa": {"nombre_en": nombre_en(ext["fuente"]), "por_decada": _r(ext.get("pendiente")), "veredicto": ext.get("veredicto_robusto") or ext.get("veredicto"),
                             "url": ext.get("url", ""), "anios": [a for a, _ in se], "valores": [v for _, v in se]},
                 "r": _r(dif.get("r"), 2), "diferencia_media": _r(dif.get("media"), 2),
-                "unidad": nuestra.get("unidad", "").split("/")[0], "recursos": [recurso] if recurso else []})
+                "unidad": _sin_decada(nuestra.get("unidad", "")), "recursos": [recurso] if recurso else []})
     entradas = [ruta] + ([series_csv] if series_csv.is_file() else [])
     return invs, contrastes, entradas, lugares
 

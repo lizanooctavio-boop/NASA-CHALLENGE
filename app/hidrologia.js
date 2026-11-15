@@ -1,6 +1,8 @@
 // Cuencas de referencia, catálogo nacional y observaciones con sus fechas originales.
 (function(){
   'use strict';
+  // Sin Leaflet (CDN caída) la pestaña lo explica en vez de romper el resto de la app.
+  if(!window.L){const e=document.getElementById('hid-estado');if(e)e.textContent='The map library could not be loaded. Reload the page to see watersheds.';return;}
   const $=id=>document.getElementById(id), H=window.HidrologiaDatos;
   const regiones={af:'Africa',ar:'North American Arctic',as:'Asia',au:'Australia and Oceania',eu:'Europe and Middle East',gr:'Greenland',na:'North and Central America and Caribbean',sa:'South America',si:'Siberia'};
   const WFS='https://mapserveride.ineter.gob.ni/geoserver/ows';

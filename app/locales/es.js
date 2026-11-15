@@ -1614,5 +1614,11 @@ window.GnomonSpanishMessages = Object.freeze({
   "station-based": "basado en estaciones",
   "GISTEMP v4 vs. MERRA-2 T2M reanalysis": "GISTEMP v4 frente al reanálisis MERRA-2 T2M",
   "anomalies from each product's mean": "anomalías respecto a la media de cada producto",
-  "Brazil (16°S–3°S, 45°W–35°W)": "Brasil (16°S–3°S, 45°W–35°W)"
+  "Brazil (16°S–3°S, 45°W–35°W)": "Brasil (16°S–3°S, 45°W–35°W)",
+  "The 3D globe could not be downloaded. Showing the 2D map; reload to try again.": "No se pudo descargar el globo 3D. Se muestra el mapa 2D; recarga la página para intentarlo de nuevo.",
+  "3D globe unavailable: its files could not be downloaded": "Globo 3D no disponible: no se pudieron descargar sus archivos",
+  "3D globe unavailable: WebGL is disabled in this browser": "Globo 3D no disponible: WebGL está desactivado en este navegador",
+  "The 2D map could not be downloaded. The 3D globe still works; reload to try again.": "No se pudo descargar el mapa 2D. El globo 3D sigue funcionando; recarga la página para intentarlo de nuevo.",
+  "2D map unavailable: its files could not be downloaded": "Mapa 2D no disponible: no se pudieron descargar sus archivos",
+  "The map library could not be loaded. Reload the page to see watersheds.": "No se pudo cargar la biblioteca del mapa. Recarga la página para ver las cuencas."
 });

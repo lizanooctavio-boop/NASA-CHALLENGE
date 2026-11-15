@@ -36,9 +36,28 @@
   // ---------- tooltip compartido ----------
   var tip = null;
   function tooltip() { return tip || (tip = document.getElementById('tooltip')); }
+  // El tooltip solo admite <strong>, <br> y <span class>: cualquier otra etiqueta o atributo se descarta
+  // aunque llegara un texto sin escapar desde los datos.
+  function limpiarTip(html) {
+    var plantilla = document.createElement('template');
+    plantilla.innerHTML = html;
+    (function limpiar(nodo) {
+      Array.prototype.slice.call(nodo.childNodes).forEach(function (h) {
+        if (h.nodeType === 3) return;
+        if (h.nodeType !== 1) { nodo.removeChild(h); return; }
+        if (['STRONG', 'BR', 'SPAN'].indexOf(h.tagName) < 0) {
+          nodo.replaceChild(document.createTextNode(h.textContent || ''), h);
+          return;
+        }
+        Array.prototype.slice.call(h.attributes).forEach(function (a) { if (a.name !== 'class') h.removeAttribute(a.name); });
+        limpiar(h);
+      });
+    })(plantilla.content);
+    return plantilla.content;
+  }
   function mostrarTip(html, clientX, clientY) {
     var t = tooltip();
-    t.innerHTML = html;
+    t.replaceChildren(limpiarTip(html));
     t.hidden = false;
     var x = clientX, y = clientY;
     var ancho = t.offsetWidth, min = ancho / 2 + 8, max = document.documentElement.clientWidth - ancho / 2 - 8;

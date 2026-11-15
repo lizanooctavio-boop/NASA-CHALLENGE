@@ -30959,7 +30959,7 @@
    },
    "r": 1.0,
    "diferencia_media": 0.0,
-   "unidad": "m³",
+   "unidad": "m³/m³",
    "recursos": [
     1
    ]

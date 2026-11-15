@@ -111,6 +111,7 @@ document.querySelectorAll('.vista').forEach(v=>{const titulo=document.querySelec
   boton('rojo','Hide panel',()=>soloMapa(true));boton('ambar','Minimize',()=>{v.classList.toggle('minimizada');document.dispatchEvent(new CustomEvent('sicc:paneles'))});boton('verde','Wide',()=>{v.classList.toggle('ancha');document.dispatchEvent(new CustomEvent('sicc:paneles'))});
   barra.append(pts,nodo('span',titulo,'ventana-titulo'));barra.ondblclick=()=>v.classList.toggle('minimizada');v.append(barra,cuerpo);v.classList.add('ventana')});
 iniciarMapa();
+if(!window.L){const b=$('vista-mapa');if(b){b.disabled=true;b.title='2D map unavailable: its files could not be downloaded'}error('The 2D map could not be downloaded. The 3D globe still works; reload to try again.')}
 
 const pref={leer:(k,s)=>{try{return (s||window.localStorage).getItem(k)}catch(e){return null}},guardar:(k,v,s)=>{try{(s||window.localStorage).setItem(k,v)}catch(e){}}};
 // Menú plegable: en escritorio se reduce a una barra de iconos.
@@ -195,18 +196,22 @@ $('vista-mapa').onclick=()=>{if(!$('meteorologia').hidden)history.pushState(null
 // Marca del lugar de una investigación («Show on the map»): un círculo con su nombre, uno cada vez.
 let marcaLugar=null;
 function marcar(lat,lon,nombre){
+  if(!mapa)return;
   marcaLugar?.remove();
   marcaLugar=L.circleMarker([lat,lon],{radius:9,color:'#f6c76b',weight:3,fillColor:'#f6c76b',fillOpacity:.25}).addTo(mapa);
   if(nombre)marcaLugar.bindTooltip(nodo('span',nombre),{permanent:true,direction:'top',offset:[0,-8],className:'marca-lugar'}).openTooltip();
 }
-window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{await cambiarVista('mapa');mapa.setView([lat,lon],z)},marcar,soloMapa};
+window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{if(!mapa)return;await cambiarVista('mapa');mapa.setView([lat,lon],z)},marcar,soloMapa};
 const salidaHash=()=>{if(location.hash==='#map'){if(modo==='mapa'&&window.Espacio)window.Espacio.pausar(true);else cambiarVista('mapa')}};
 document.addEventListener('espacio:listo',()=>{document.body.classList.remove('cargando');salidaHash()});
 // Sin WebGL el globo no arranca: se entra al mapa 2D y se desactiva el botón Globe.
-document.addEventListener('espacio:error',()=>{
+// Si falla la descarga del globo (Three.js desde la CDN) ocurre lo mismo, con otro aviso.
+document.addEventListener('espacio:error',e=>{
   document.body.classList.remove('cargando');
-  const b=$('vista-globo');b.disabled=true;b.title='3D globe unavailable: WebGL is disabled in this browser';
-  cambiarVista('mapa');error('The 3D globe needs WebGL, which is unavailable in this browser. Showing the 2D map.');
+  const carga=e.detail==='carga',b=$('vista-globo');b.disabled=true;
+  b.title=carga?'3D globe unavailable: its files could not be downloaded':'3D globe unavailable: WebGL is disabled in this browser';
+  cambiarVista('mapa');
+  error(carga?'The 3D globe could not be downloaded. Showing the 2D map; reload to try again.':'The 3D globe needs WebGL, which is unavailable in this browser. Showing the 2D map.');
 });
 if(window.Espacio)document.body.classList.remove('cargando');
 setTimeout(()=>{if(location.hash==='#map'&&modo!=='mapa'&&!window.Espacio)salidaHash()},1200);

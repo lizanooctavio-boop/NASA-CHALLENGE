@@ -22,6 +22,13 @@ try {
   document.dispatchEvent(new CustomEvent('espacio:error', { detail: String(e?.message || e) }));
   throw e;
 }
+// Si el navegador retira el contexto WebGL (GPU reiniciada, demasiadas pestañas) se detiene el bucle
+// y se reanuda cuando lo devuelve; three.js vuelve a subir texturas y búferes por su cuenta.
+canvas.addEventListener('webglcontextlost', e => {
+  e.preventDefault();
+  cancelAnimationFrame(cuadro); cuadro = 0;
+});
+canvas.addEventListener('webglcontextrestored', () => { dibujar(); arrancar(); });
 renderer.setPixelRatio(Math.min(2, devicePixelRatio));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const escena = new THREE.Scene();

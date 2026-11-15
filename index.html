@@ -316,7 +316,7 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.2/proj4.js" integrity="sha384-ya9rOV6flD2e7foN1ut7/l/2s6X6qzHni8jM2di15mILoBTx+nT9/u/FGLOcNFQG" crossorigin="anonymous"></script>
 <script defer src="app/buscador.js"></script>
 <script defer src="app/coordenadas.js"></script>
-<script type="module" src="app/espacio.js"></script>
+<script type="module" src="app/espacio.js" onerror="document.dispatchEvent(new CustomEvent('espacio:error',{detail:'carga'}))"></script>
 <script defer src="app/reticula.js" onerror="const aviso=document.createElement('p');aviso.setAttribute('role','status');aviso.textContent='Map grid controls could not load. Reload to retry.';document.getElementById('barra-capas')?.append(aviso)"></script>
 <script defer src="app/ayuda.js"></script>
 <script defer src="app/inicio.js"></script>
