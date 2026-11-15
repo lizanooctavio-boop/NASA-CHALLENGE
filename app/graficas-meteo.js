@@ -2,7 +2,7 @@
 (function(){
 const $=id=>document.getElementById(id);
 if(!window.Chart){window.SICC_graf={estado:()=>({chart:false})};return}
-Chart.defaults.color='#c0cfe0';Chart.defaults.borderColor='rgba(205,220,238,.36)';Chart.defaults.font.family='system-ui,"Segoe UI",sans-serif';Chart.defaults.font.size=11;
+Chart.defaults.color='#c0cfe0';Chart.defaults.borderColor='rgba(205,220,238,.48)';Chart.defaults.font.family='system-ui,"Segoe UI",sans-serif';Chart.defaults.font.size=11;
 const mqReducido=matchMedia('(prefers-reduced-motion:reduce)');
 const fijarAnim=r=>{Chart.defaults.animation.duration=r?0:300};
 Chart.defaults.plugins.legend.labels.boxWidth=12;Chart.defaults.maintainAspectRatio=false;fijarAnim(mqReducido.matches);

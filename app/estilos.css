@@ -44,7 +44,7 @@ nav button svg{opacity:.85}
 .cabeza-menu{display:flex;align-items:center;justify-content:space-between;gap:8px}
 #plegar-menu{width:34px;height:34px;padding:0;display:grid;place-items:center;flex:none}
 #plegar-menu svg{transition:transform .2s}
-nav button.activo{background:rgba(111,216,255,.16);border-color:rgba(111,216,255,.35);color:#fff}
+nav button.activo{background:rgba(111,216,255,.16);border-color:rgba(111,216,255,.6);color:#fff}
 .pie{margin-top:auto;color:var(--tenue);font-size:12px;line-height:1.9}
 .insignia{display:inline-block;margin-top:12px;background:rgba(246,199,107,.12);border:1px solid rgba(246,199,107,.4);color:var(--ambar);border-radius:5px;padding:3px 9px}
 /* El margen derecho deja libre la barra de capas; los paneles se estrechan para no tapar la columna inferior. */
@@ -171,7 +171,7 @@ a{color:var(--cian)}
 .capas-mapa .ventana-cuerpo{padding:8px;display:flex;flex-direction:column;gap:4px}
 .capas-mapa [data-var]{display:flex;align-items:center;gap:8px;padding:7px 9px;font-size:12.5px;text-align:left;background:transparent;border-color:transparent}
 .capas-mapa [data-var] i{width:22px;height:8px;border-radius:4px;background:var(--c);flex:none;border:1px solid rgba(255,255,255,.2)}
-.capas-mapa [data-var][aria-pressed="true"]{background:rgba(111,216,255,.18);border-color:rgba(111,216,255,.45);color:#fff}
+.capas-mapa [data-var][aria-pressed="true"]{background:rgba(111,216,255,.18);border-color:rgba(111,216,255,.6);color:#fff}
 .capas-mapa hr{border:0;border-top:1px solid var(--borde);margin:6px 0;width:100%}
 .capas-mapa .chk{font-size:12px;margin:1px 0}
 /* Línea de tiempo */
