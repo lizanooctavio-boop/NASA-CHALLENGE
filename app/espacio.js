@@ -432,6 +432,10 @@ canvas.addEventListener('keydown', e => {
   if (m) { e.preventDefault(); estado.lon += m[0]; estado.lat = Math.max(-80, Math.min(80, estado.lat + m[1])); }
   else if (e.key === '+' || e.key === '=') acercar(0.85);
   else if (e.key === '-') acercar(1.18);
+  else if ((e.key === 'Enter' || e.key === ' ') && alElegir) {
+    e.preventDefault();
+    alElegir(estado.lat, ((estado.lon + 540) % 360) - 180);
+  }
   else return;
   estado.ultimoGesto = performance.now();
 });

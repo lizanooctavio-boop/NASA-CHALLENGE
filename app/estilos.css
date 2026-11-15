@@ -3,7 +3,10 @@
 html,body{height:100%}
 body{margin:0;color:var(--texto);background:#01030a;overflow:hidden}
 /* Fondo: escena espacial 3D; el mapa 2D aparece encima cuando el globo termina de aplanarse. */
-#espacio{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block;opacity:0;transition:opacity 1.2s ease;touch-action:none;outline:none;cursor:grab}
+#espacio{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block;opacity:0;transition:opacity 1.2s ease;touch-action:none;cursor:grab}
+#espacio:focus:not(:focus-visible),#mapa:focus:not(:focus-visible){outline:none}
+#espacio:focus-visible,#mapa:focus-visible{outline:3px solid var(--cian);outline-offset:-3px}
+#mapa:focus-visible::after{content:'';position:fixed;inset:0;border:3px solid var(--cian);pointer-events:none;z-index:999}
 #espacio.listo{opacity:1}
 #espacio:active{cursor:grabbing}
 #mapa{position:fixed;inset:0;z-index:1;background:#01030a;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s linear .5s}

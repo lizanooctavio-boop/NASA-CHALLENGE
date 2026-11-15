@@ -110,7 +110,15 @@ addEventListener('resize',medirColumnaMapa);medirColumnaMapa();
 // ---------------------------------------------------------------- globo 3D ⇄ mapa 2D
 let modo='globo',cambiando=false;
 const esperar=ms=>new Promise(r=>setTimeout(r,ms));
-function marcarVista(){$('vista-globo').setAttribute('aria-pressed',String(modo==='globo'));$('vista-mapa').setAttribute('aria-pressed',String(modo==='mapa'))}
+function marcarVista(){
+  $('vista-globo').setAttribute('aria-pressed',String(modo==='globo'));
+  $('vista-mapa').setAttribute('aria-pressed',String(modo==='mapa'));
+  // Evita que #espacio siga en el orden de tabulación detrás de #mapa cuando el mapa 2D está activo.
+  const enMapa=modo==='mapa';
+  $('espacio')?.setAttribute('tabindex',enMapa?'-1':'0');
+  if(enMapa){$('espacio')?.setAttribute('aria-hidden','true');$('mapa')?.removeAttribute('aria-hidden')}
+  else{$('espacio')?.removeAttribute('aria-hidden');$('mapa')?.setAttribute('aria-hidden','true')}
+}
 async function cambiarVista(nuevo){
   if(nuevo===modo||cambiando||!mapa)return;
   if(!window.Espacio){modo=nuevo;document.body.classList.toggle('modo-mapa',nuevo==='mapa');document.body.classList.toggle('modo-globo',nuevo==='globo');marcarVista();return}
