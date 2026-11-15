@@ -63,3 +63,6 @@ nav button[data-tab="ayuda"] svg{fill:none}
   .tour-invitacion.tour-en-flujo{animation:tour-entra .3s ease}
 }
 @keyframes tour-entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* Botón del recorrido de Terra en la cabecera: mismo tamaño que «Hide panels». */
+#menu-tour{flex:none;font-size:inherit;padding:8px 12px;min-height:44px}
+body.solo-mapa #menu-tour{display:none}

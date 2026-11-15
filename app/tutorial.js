@@ -30,7 +30,7 @@ const PASOS=[
   {destino:'nav button[data-tab="hidrologia"]',titulo:'Watersheds',texto:'Follow water across borders: watershed boundaries for Nicaragua and the world, with their original codes and dated station readings.'},
   {destino:'nav button[data-tab="aprender"]',titulo:'Learn',texto:'Plain-language explanations of trends, confidence intervals, p-values and why methods sometimes disagree.'},
   {destino:'nav button[data-tab="fuentes"]',titulo:'Sources',texto:'Every dataset and challenge resource behind the app, with links to the originals.'},
-  {destino:'nav button[data-tab="ayuda"]',titulo:'Help',texto:'Search 100 questions in English or Spanish whenever you are stuck. You can restart this tour from Help.'}];
+  {destino:'nav button[data-tab="ayuda"]',titulo:'Help',texto:'Search 100 questions in English or Spanish whenever you are stuck. You can replay this tour any time with the Guided tour button at the top.'}];
 
 let capa=null,foco=null,tarjeta=null,paso=0,previo=null,marco=0;
 // ---------------------------------------------------------------- recorrido
