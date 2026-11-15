@@ -19,33 +19,55 @@
       current: 'temperature_2m,precipitation,wind_speed_10m,wind_direction_10m',
       hourly: 'temperature_2m,precipitation,wind_speed_10m,wind_gusts_10m'
     });
-    const r = await fetch('https://api.open-meteo.com/v1/forecast?' + params, { signal: AbortSignal.timeout(12000) });
+    let r, temporizador;
+    const ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+    if (ctrl) temporizador = setTimeout(() => ctrl.abort('timeout'), 12000);
+    try {
+      r = await fetch('https://api.open-meteo.com/v1/forecast?' + params, ctrl ? { signal: ctrl.signal } : undefined);
+    } catch (e) {
+      const agotado = e?.name === 'AbortError' || e === 'timeout' || /timed? ?out/i.test(String(e));
+      return Response.json({
+        error: agotado
+          ? 'Live forecast request timed out. Please try again.'
+          : 'Live forecast service could not be reached. Check your connection or try again later.'
+      }, { status: 503 });
+    } finally {
+      if (temporizador) clearTimeout(temporizador);
+    }
     if (!r.ok) return Response.json({ error: 'Forecast service responded ' + r.status }, { status: r.status });
     const datos = await r.json();
     return Response.json({ datos, fuente: 'Open-Meteo · ECMWF IFS 0.25°', consulta_utc: new Date().toISOString() });
   }
 
   async function enosLocal() {
-    const r = await fetch('/clima-base/enos.json');
-    if (r.ok) return r;
-    const csv = await fetch('data/fuentes/oni_2001_2024.csv');
-    if (!csv.ok) return r;
-    const lineas = (await csv.text()).trim().split(/\r?\n/).slice(1);
-    const oni_local = lineas.map(l => {
-      const [a, m, v] = l.split(',');
-      return { anio: Number(a), mes: Number(m), oni: Number(v) };
-    }).filter(x => Number.isFinite(x.oni));
-    if (!oni_local.length) return r;
-    const ult = oni_local.at(-1);
-    const fase = ult.oni >= 0.5 ? 'El Niño' : ult.oni <= -0.5 ? 'La Niña' : 'Neutral';
-    return Response.json({
-      oni_local,
-      fuente_local: 'NOAA CPC · data/fuentes/oni_2001_2024.csv',
-      cpc: { ultimas: [{ temporada: TEMPORADAS[ult.mes] || 'NDJ', anio: ult.anio, oni: ult.oni }] },
-      nino34_semanal: { semanas: [] },
-      fase_actual: fase,
-      oni_actual: ult.oni
-    });
+    let fallo = null;
+    try {
+      const r = await fetch('/clima-base/enos.json');
+      if (r.ok) return r;
+      fallo = r;
+    } catch (_) {}
+    try {
+      const csv = await fetch('data/fuentes/oni_2001_2024.csv');
+      if (!csv.ok) return fallo || Response.json({ error: 'ENSO reference data is currently unavailable.' }, { status: 503 });
+      const lineas = (await csv.text()).trim().split(/\r?\n/).slice(1);
+      const oni_local = lineas.map(l => {
+        const [a, m, v] = l.split(',');
+        return { anio: Number(a), mes: Number(m), oni: Number(v) };
+      }).filter(x => Number.isFinite(x.oni));
+      if (!oni_local.length) return fallo || Response.json({ error: 'ENSO reference data is empty.' }, { status: 503 });
+      const ult = oni_local.at(-1);
+      const fase = ult.oni >= 0.5 ? 'El Niño' : ult.oni <= -0.5 ? 'La Niña' : 'Neutral';
+      return Response.json({
+        oni_local,
+        fuente_local: 'NOAA CPC · data/fuentes/oni_2001_2024.csv',
+        cpc: { ultimas: [{ temporada: TEMPORADAS[ult.mes] || 'NDJ', anio: ult.anio, oni: ult.oni }] },
+        nino34_semanal: { semanas: [] },
+        fase_actual: fase,
+        oni_actual: ult.oni
+      });
+    } catch (_) {
+      return fallo || Response.json({ error: 'ENSO reference data is currently unavailable.' }, { status: 503 });
+    }
   }
 
   function solicitud(ruta) {
