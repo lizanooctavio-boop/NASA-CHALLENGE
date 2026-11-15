@@ -79,11 +79,14 @@ li{color:#d4deea}
 .ventana{display:flex;flex-direction:column;background:var(--vidrio);border:1px solid var(--borde);border-radius:12px;backdrop-filter:blur(20px) saturate(1.35);-webkit-backdrop-filter:blur(20px) saturate(1.35);box-shadow:0 22px 60px rgba(0,0,0,.5);overflow:hidden;width:min(600px,100%);min-height:0;flex:0 1 auto;max-height:calc(100vh - 118px)}
 .vista[hidden]{display:none}
 .vista.ventana{width:min(600px,max(340px,calc(100vw - var(--izq) - var(--col) - 44px)))}
+/* Reservar el marco de .ventana antes de que shell.js envuelva la vista (evita CLS). */
+.vista:not(.ventana){display:flex;flex-direction:column;background:var(--vidrio);border:1px solid var(--borde);border-radius:12px;overflow:hidden;width:min(600px,max(340px,calc(100vw - var(--izq) - var(--col) - 44px)));min-height:0;flex:0 1 auto;max-height:calc(100vh - 118px);padding:0 22px 20px}
+.vista:not(.ventana)::before{content:'';display:block;height:46px;margin:0 -22px 20px;background:var(--vidrio-barra);border-bottom:1px solid var(--borde);flex:none}
 .ventana.ancha,.vista.ventana.ancha{width:min(1000px,100%)}
 .ventana.minimizada{flex:none}
 .ventana.minimizada .ventana-cuerpo{display:none}
 body.solo-mapa .vista{display:none}
-.ventana-barra{display:flex;align-items:center;gap:12px;padding:9px 12px;background:var(--vidrio-barra);border-bottom:1px solid var(--borde);user-select:none;flex:none}
+.ventana-barra{display:flex;align-items:center;gap:12px;padding:9px 12px;min-height:46px;background:var(--vidrio-barra);border-bottom:1px solid var(--borde);user-select:none;flex:none}
 .ventana-botones{display:flex;gap:12px}
 .punto{width:13px;height:13px;padding:0;border-radius:50%;border:0;display:inline-block;position:relative}
 .punto::before{content:'';position:absolute;inset:-6px}
@@ -92,7 +95,10 @@ body.solo-mapa .vista{display:none}
 .ventana-titulo{font-size:12px;letter-spacing:.6px;color:#dbe6f2;font-weight:600;flex:1;text-align:center;margin-right:50px}
 .ventana-cuerpo{padding:20px 22px;overflow:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.3) transparent}
 .vista article{padding:18px;border:1px solid var(--borde);background:rgba(255,255,255,.05);border-radius:10px;margin-bottom:16px}
-.vista article{margin-bottom:16px}.vista .ventana-cuerpo>article:last-child{margin-bottom:0}
+.vista article{margin-bottom:16px}.vista>article:last-child,.vista .ventana-cuerpo>article:last-child{margin-bottom:0}
+#inv-categorias:empty,#inv-lugares:empty{min-height:110px}
+#inv-veredicto:empty,#ind-veredicto:empty,#veredicto:empty{min-height:160px}
+#esc-tabla:empty{min-height:140px}
 .intro{margin-bottom:16px}
 .intro h2{font-size:20px;letter-spacing:-.3px}
 .tarjetas{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
@@ -161,13 +167,13 @@ a{color:var(--cian)}
 /* Tabletas y portatiles medianos: ajustar --col y ancho maximo para no solapar con el panel Meteorologia. */
 @media(min-width:701px) and (min-height:501px) and (max-width:1060px){
   body{--col:min(360px,36vw)}
-  .vista.ventana{width:min(600px,max(220px,calc(100vw - var(--izq) - var(--col) - 44px)))}
+  .vista.ventana,.vista:not(.ventana){width:min(600px,max(220px,calc(100vw - var(--izq) - var(--col) - 44px)))}
   #aviso-publico{max-width:min(600px,max(220px,calc(100vw - var(--izq) - var(--col) - 44px)))}
 }
 @media(min-width:701px) and (min-height:501px) and (max-width:960px){
   body{--col:min(296px,38vw)}
 }
-@media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:10px;padding:14px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:12px;gap:4px}nav button{font-size:12px;padding:10px;flex:none;white-space:nowrap}nav.mas-derecha{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}nav.mas-izquierda.mas-derecha{-webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent);mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent)}nav.mas-izquierda:not(.mas-derecha){-webkit-mask-image:linear-gradient(to right,transparent,#000 12%);mask-image:linear-gradient(to right,transparent,#000 12%)}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:10px}.etiqueta{letter-spacing:1.2px}h1{font-size:19px}.acciones{width:100%;justify-content:space-between}.estado{white-space:normal}.ventana,.ventana.ancha,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}#indicador-detalle{right:auto;left:0}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
+@media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:10px;padding:14px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:12px;gap:4px}nav button{font-size:12px;padding:10px;flex:none;white-space:nowrap}nav.mas-derecha{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}nav.mas-izquierda.mas-derecha{-webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent);mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent)}nav.mas-izquierda:not(.mas-derecha){-webkit-mask-image:linear-gradient(to right,transparent,#000 12%);mask-image:linear-gradient(to right,transparent,#000 12%)}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:10px}.etiqueta{letter-spacing:1.2px}h1{font-size:19px}.acciones{width:100%;justify-content:space-between}.estado{white-space:normal}.ventana,.ventana.ancha,.vista,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}#indicador-detalle{right:auto;left:0}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
 /* Movil apaisado (poca altura vertical): compactar menu y cabecera en una fila para liberar el lienzo. */
 @media(max-height:500px) and (max-width:1000px){
   aside{display:flex;flex-direction:row;align-items:center;gap:10px;margin:6px 8px 4px;padding:5px 10px}

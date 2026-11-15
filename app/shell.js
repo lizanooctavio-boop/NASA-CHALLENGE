@@ -29,7 +29,6 @@ function iniciarMapa(){
   mapa.createPane('etiquetas').style.zIndex=350;
   L.tileLayer(ESRI+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{pane:'etiquetas',minZoom:6,maxNativeZoom:19,maxZoom:18,attribution:'Labels © Esri'}).addTo(mapa);
   mapa.on('click',e=>{if($('consultar').disabled)return;elegirPunto(e.latlng.lat,L.Util.wrapNum(e.latlng.lng,[-180,180]))});
-  baseVectorial();
 }
 function elegirPunto(lat,lon){$('lat').value=lat.toFixed(3);$('lon').value=lon.toFixed(3);if(!$('meteorologia').hidden||true)$('consulta-punto').requestSubmit()}
 
@@ -108,11 +107,13 @@ if(typeof ResizeObserver==='function'){const ro=new ResizeObserver(medirColumnaM
 addEventListener('resize',medirColumnaMapa);medirColumnaMapa();
 
 // ---------------------------------------------------------------- globo 3D ⇄ mapa 2D
-let modo='globo',cambiando=false;
+let modo='globo',cambiando=false,vectorialCargado=false;
+function cargarBaseVectorial(){if(vectorialCargado||!mapa)return;vectorialCargado=true;baseVectorial()}
 const esperar=ms=>new Promise(r=>setTimeout(r,ms));
 function marcarVista(){$('vista-globo').setAttribute('aria-pressed',String(modo==='globo'));$('vista-mapa').setAttribute('aria-pressed',String(modo==='mapa'))}
 async function cambiarVista(nuevo){
   if(nuevo===modo||cambiando||!mapa)return;
+  if(nuevo==='mapa')cargarBaseVectorial();
   if(!window.Espacio){modo=nuevo;document.body.classList.toggle('modo-mapa',nuevo==='mapa');document.body.classList.toggle('modo-globo',nuevo==='globo');marcarVista();return}
   cambiando=true;document.body.classList.add('en-transicion');modo=nuevo;marcarVista();
   try{
@@ -165,5 +166,5 @@ function baseVectorial(){
       visibles.map(([m])=>m.getElement()).forEach(el=>{const r=el.getBoundingClientRect();const cruza=ocupados.some(o=>r.left<o.right+4&&r.right+4>o.left&&r.top<o.bottom+2&&r.bottom+2>o.top);el.style.visibility=cruza?'hidden':'';if(!cruza)ocupados.push(r)});
     };
     mapa.on('zoomend',ver);ver();
-  }).catch(()=>{});
+  }).catch(()=>{vectorialCargado=false});
 }
