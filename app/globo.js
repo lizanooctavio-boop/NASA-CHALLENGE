@@ -62,7 +62,7 @@
   }
   ['sicc:hora', 'sicc:capa', 'sicc:campo'].forEach(ev => document.addEventListener(ev, sincronizar));
   $('chk-particulas').addEventListener('change', sincronizar);
-  $('opacidad-temp').addEventListener('input', () => window.Espacio?.opacidad(Number($('opacidad-temp').value) / 100));
+  $('opacidad-temp').addEventListener('input', e => { e.target.setAttribute('aria-valuetext', `${e.target.value}%`); window.Espacio?.opacidad(Number(e.target.value) / 100); });
   ['sicc:paneles', 'sicc:pestana'].forEach(ev => document.addEventListener(ev, () => requestAnimationFrame(desplazar)));
   addEventListener('resize', desplazar);
   if (window.Espacio) iniciar(); else document.addEventListener('espacio:listo', iniciar, { once: true });

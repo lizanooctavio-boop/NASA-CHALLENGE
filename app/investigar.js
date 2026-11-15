@@ -27,7 +27,7 @@ const ICONOS={aumento:'<path d="M4 15l6-6 4 4 6-7" fill="none" stroke="currentCo
   disminucion:'<path d="M4 7l6 6 4-4 6 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   insuficiente:'<path d="M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>'};
 
-let D=null,carga=null,sel={categoria:null,lugar:null,investigacion:null},demo=null;
+let D=null,carga=null,sel={categoria:null,lugar:null,investigacion:null},demo=null,demoOrigen=null;
 const graficas={};
 function crear(id,config){
   const cv=$(id);if(!cv||!window.Chart)return null;
@@ -65,11 +65,16 @@ function cargar(){
 
 // ---------------------------------------------------------------- selectores
 function botones(cont,items,activo,alElegir){
+  const teniaFoco=cont.contains(document.activeElement);
   cont.replaceChildren();
-  items.forEach(([id,nombre,rol])=>{const b=nodo('button');b.type='button';b.setAttribute('role','radio');b.dataset.id=id;b.setAttribute('aria-checked',String(id===activo));
+  const hayActivo=items.some(([id])=>id===activo);
+  items.forEach(([id,nombre,rol],idx)=>{const b=nodo('button');b.type='button';b.setAttribute('role','radio');b.dataset.id=id;
+    const on=id===activo;b.setAttribute('aria-checked',String(on));b.tabIndex=on||(!hayActivo&&idx===0)?0:-1;
     b.append(nodo('span',nombre));if(rol)b.append(nodo('span',rol,'rol'));b.onclick=()=>alElegir(id);cont.append(b)});
+  if(teniaFoco)(cont.querySelector('[aria-checked="true"]')||cont.querySelector('button'))?.focus({preventScroll:true});
   cont.onkeydown=ev=>{const paso={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[ev.key];if(!paso)return;ev.preventDefault();
-    const ids=items.map(i=>i[0]),i=ids.indexOf(cont.querySelector('[aria-checked="true"]')?.dataset.id);const n=ids[(i+paso+ids.length)%ids.length];alElegir(n);cont.querySelector(`[data-id="${n}"]`)?.focus()};
+    const ids=items.map(i=>i[0]);if(!ids.length)return;
+    const i=Math.max(0,ids.indexOf(cont.querySelector('[aria-checked="true"]')?.dataset.id));const n=ids[(i+paso+ids.length)%ids.length];alElegir(n);cont.querySelector(`[data-id="${n}"]`)?.focus()};
 }
 function construir(){
   const primera=D.categorias.find(c=>c.con_datos);
@@ -156,7 +161,7 @@ function serie(x,t,ok){
   const u=x.unidad,barras=['mm','storms','months','Gt'].includes(u)&&!x.id.startsWith('nivel_mar_');
   const eje=conHuecos(x);
   $('inv-serie-titulo').textContent=`${x.titulo_en} · ${lugar(x.lugar).nombre_en}`;
-  const ds=[{type:barras?'bar':'line',label:`${x.titulo_en} (${u})`,data:eje.valores,borderColor:'#6fd8ff',backgroundColor:barras?'rgba(79,143,232,.7)':'rgba(111,216,255,.15)',pointRadius:barras?0:2,borderWidth:barras?0:2,spanGaps:false}];
+  const ds=[{type:barras?'bar':'line',label:`${x.titulo_en} (${u})`,data:eje.valores,borderColor:'#6fd8ff',backgroundColor:barras?'rgba(106,168,255,.82)':'rgba(111,216,255,.15)',pointRadius:barras?0:2,borderWidth:barras?0:2,spanGaps:false}];
   if(ok){
     // Ordenada de Sen: mediana de y − b·x, la misma que usa scipy.stats.theilslopes.
     const b=t.sen.por_decada/10,res=x.tiempos.map((a,i)=>x.valores[i]===null?null:x.valores[i]-b*a).filter(v=>v!==null).sort((p,q)=>p-q);
@@ -164,7 +169,10 @@ function serie(x,t,ok){
     ds.push({type:'line',label:'Theil–Sen trend',data:eje.tiempos.map(a=>a0+b*a),borderColor:'#f6c76b',borderDash:[6,4],pointRadius:0,borderWidth:2});
   }
   const [desde,hasta]=x.periodo||[x.tiempos[0],x.tiempos.at(-1)];
-  $('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${desde} to ${hasta}`);
+  const valsNum=eje.valores.filter(v=>v!==null&&v!==undefined&&Number.isFinite(Number(v)));
+  const rTxt=valsNum.length?`, range ${num(Math.min(...valsNum),dec(u))} to ${num(Math.max(...valsNum),dec(u))} ${u}`:'';
+  const tTxt=ok?`, Theil–Sen trend ${signo(t.sen.por_decada,dec(u)+1)} ${u} per decade`:'';
+  $('inv-serie').setAttribute('aria-label',`${x.titulo_en} in ${lugar(x.lugar).nombre_en}, ${desde} to ${hasta}${rTxt}${tTxt}`);
   crear('inv-serie',{data:{labels:eje.tiempos,datasets:ds},options:{locale:x.validacion?'en-US':undefined,interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
 }
 
@@ -190,7 +198,8 @@ function contrastes(){
     bloque.append(tj);
     const etiquetas=c.externa.anios||c.externa.tiempos,ve=c.externa.valores,vn=c.nuestra?.valores;
     if(etiquetas?.length&&ve?.length&&vn?.length){
-      const lienzo=nodo('canvas');lienzo.id='inv-c-'+k;lienzo.setAttribute('aria-label',`${c.externa.nombre_en} compared with ${c.nuestra.nombre_en}`);
+      const lienzo=nodo('canvas');lienzo.id='inv-c-'+k;lienzo.setAttribute('role','img');
+      lienzo.setAttribute('aria-label',`${c.externa.nombre_en} compared with ${c.nuestra.nombre_en}, ${etiquetas[0]} to ${etiquetas.at(-1)}${c.r!=null?`, correlation r = ${num(c.r,2)}`:''}`);
       const g=nodo('div',undefined,'graf baja');g.append(lienzo);bloque.append(g);
       const ejes=c.nuestra.anios||c.nuestra.tiempos,mapa=new Map(ejes.map((a,i)=>[a,vn[i]]));
       crear(lienzo.id,{type:'line',data:{labels:etiquetas,datasets:[
@@ -207,13 +216,23 @@ function demostraciones(){
   const cont=$('inv-demos');cont.replaceChildren();
   D.demostraciones.forEach(dm=>{const b=nodo('button',dm.titulo_en);b.type='button';b.dataset.demo=dm.id;b.onclick=()=>iniciarDemo(dm.id);cont.append(b)});
 }
-function iniciarDemo(id){if(!D)return;const dm=D.demostraciones.find(d=>d.id===id);if(!dm)return;demo={dm,paso:0};pasoDemo()}
-function pasoDemo(){
+function iniciarDemo(id){if(!D)return;const dm=D.demostraciones.find(d=>d.id===id);if(!dm)return;
+  demoOrigen=document.activeElement?.closest('#inv-demos')?document.activeElement:document.querySelector(`#inv-demos [data-demo="${id}"]`);
+  demo={dm,paso:0};pasoDemo('inicio');
+}
+function pasoDemo(focoDestino){
   const panel=$('inv-demo-panel');
-  if(!demo){panel.hidden=true;return}
+  if(!demo){
+    const volver=panel.contains(document.activeElement);
+    panel.hidden=true;
+    if(volver)(demoOrigen?.isConnected?demoOrigen:document.querySelector('#inv-demos button'))?.focus({preventScroll:true});
+    return;
+  }
   const {dm,paso}=demo,p=dm.pasos[paso],x=inv(p.investigacion);
   sel.categoria=x.categoria;sel.lugar=x.lugar;sel.investigacion=x.id;pintar();
-  panel.hidden=false;panel.replaceChildren();
+  panel.hidden=false;panel.tabIndex=-1;panel.setAttribute('aria-label',`${dm.titulo_en} · step ${paso+1} of ${dm.pasos.length}`);
+  panel.onkeydown=e=>{if(e.key==='Escape'&&demo){e.preventDefault();demo=null;pasoDemo()}};
+  panel.replaceChildren();
   panel.append(nodo('p',`${dm.titulo_en} · step ${paso+1} of ${dm.pasos.length}`,'demo-titulo'),nodo('p',p.texto_en,'demo-texto'));
   if(p.ver==='comparacion'&&dm.comparacion){
     const tj=nodo('div',undefined,'tarjetas');
@@ -222,13 +241,18 @@ function pasoDemo(){
     panel.append(tj);
   }
   const ctl=nodo('div',undefined,'controles');
-  const boton=(txt,fn,des)=>{const b=nodo('button',txt);b.type='button';b.disabled=!!des;b.onclick=fn;ctl.append(b)};
-  boton('Previous',()=>{demo.paso--;pasoDemo()},paso===0);
-  if(paso<dm.pasos.length-1)boton('Next',()=>{demo.paso++;pasoDemo()});else boton('Finish',()=>{demo=null;pasoDemo()});
+  const boton=(txt,fn,des)=>{const b=nodo('button',txt);b.type='button';b.disabled=!!des;b.dataset.accion=txt.toLowerCase();b.onclick=fn;ctl.append(b)};
+  boton('Previous',()=>{demo.paso--;pasoDemo('previous')},paso===0);
+  if(paso<dm.pasos.length-1)boton('Next',()=>{demo.paso++;pasoDemo('next')});else boton('Finish',()=>{demo=null;pasoDemo()});
   panel.append(ctl);
   const destino={veredicto:'inv-veredicto',contrastes:'inv-contrastes'}[p.ver];
   if(p.ver==='aprender'){const b=nodo('button','Open the explanation');b.type='button';b.onclick=()=>aprender(p.ancla||'aprender-no-significativo');ctl.append(b)}
-  (destino?$(destino):panel).scrollIntoView({block:'nearest',behavior:'smooth'});
+  (destino?$(destino):panel).scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+  if(focoDestino==='inicio')panel.focus({preventScroll:true});
+  else if(focoDestino){
+    const elegido=ctl.querySelector(`[data-accion="${focoDestino}"]:not(:disabled)`)||ctl.querySelector('button:not(:disabled)');
+    elegido?.focus({preventScroll:true});
+  }
 }
 
 // ---------------------------------------------------------------- Learn y Sources

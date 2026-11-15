@@ -50,11 +50,16 @@ function cargar(){
 
 // ---------------------------------------------------------------- selectores
 function botones(cont,items,activo,alElegir){
+  const teniaFoco=cont.contains(document.activeElement);
   cont.replaceChildren();
-  items.forEach(([id,nombre,rol])=>{const b=nodo('button');b.type='button';b.setAttribute('role','radio');b.dataset.id=id;b.setAttribute('aria-checked',String(id===activo));
+  const hayActivo=items.some(([id])=>id===activo);
+  items.forEach(([id,nombre,rol],idx)=>{const b=nodo('button');b.type='button';b.setAttribute('role','radio');b.dataset.id=id;
+    const on=id===activo;b.setAttribute('aria-checked',String(on));b.tabIndex=on||(!hayActivo&&idx===0)?0:-1;
     b.append(nodo('span',nombre));if(rol)b.append(nodo('span',rol,'rol'));b.onclick=()=>alElegir(id);cont.append(b)});
+  if(teniaFoco)(cont.querySelector('[aria-checked="true"]')||cont.querySelector('button'))?.focus({preventScroll:true});
   cont.onkeydown=ev=>{const paso={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[ev.key];if(!paso)return;ev.preventDefault();
-    const ids=items.map(i=>i[0]),i=ids.indexOf(cont.querySelector('[aria-checked="true"]')?.dataset.id);const n=ids[(i+paso+ids.length)%ids.length];alElegir(n);cont.querySelector(`[data-id="${n}"]`)?.focus()};
+    const ids=items.map(i=>i[0]);if(!ids.length)return;
+    const i=Math.max(0,ids.indexOf(cont.querySelector('[aria-checked="true"]')?.dataset.id));const n=ids[(i+paso+ids.length)%ids.length];alElegir(n);cont.querySelector(`[data-id="${n}"]`)?.focus()};
 }
 function construir(){
   botones($('ind-regiones'),REGIONES,sel.region,id=>{sel.region=id;if(!region(id).variables[sel.variable])sel.variable=disponibles(id)[0].id;pintar()});
@@ -89,8 +94,11 @@ function resultado(){
   const a0=res.length%2?res[(res.length-1)/2]:(res[res.length/2-1]+res[res.length/2])/2;
   const recta=anios.map(a=>a0+b*a);
   $('ind-serie-titulo').textContent=`${v.titulo} · ${nombreRegion}`;
+  const validos=vals.filter(y=>y!==null&&y!==undefined&&Number.isFinite(Number(y)));
+  const rTxt=validos.length?`, values ${num(Math.min(...validos),v.dec)} to ${num(Math.max(...validos),v.dec)} ${u}`:'';
+  $('ind-serie')?.setAttribute('aria-label',`${v.titulo} in ${nombreRegion}, ${anios[0]} to ${anios.at(-1)}${rTxt}, Theil–Sen trend ${signo(sen.por_decada,v.dec+1)} ${u} per decade`);
   crear('ind-serie',{data:{labels:anios,datasets:[
-    {type:v.unidad==='mm'?'bar':'line',label:`${v.nombre} (${u})`,data:vals,borderColor:'#6fd8ff',backgroundColor:v.unidad==='mm'?'rgba(79,143,232,.7)':'rgba(111,216,255,.15)',pointRadius:v.unidad==='mm'?0:2,borderWidth:v.unidad==='mm'?0:2},
+    {type:v.unidad==='mm'?'bar':'line',label:`${v.nombre} (${u})`,data:vals,borderColor:'#6fd8ff',backgroundColor:v.unidad==='mm'?'rgba(106,168,255,.82)':'rgba(111,216,255,.15)',pointRadius:v.unidad==='mm'?0:2,borderWidth:v.unidad==='mm'?0:2},
     {type:'line',label:'Theil–Sen trend',data:recta,borderColor:'#f6c76b',borderDash:[6,4],pointRadius:0,borderWidth:2}]},
     options:{interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:u}}}}});
 }
@@ -106,9 +114,14 @@ function contraste(){
   const anomalia=(x)=>{const par=anios.map(a=>x.valores[x.anios.indexOf(a)]);const m=par.reduce((s,y)=>s+y,0)/par.length;return par.map(y=>y-m)};
   const u=v.unidad,d=v.dec+1;
   $('ind-contraste-sub').textContent=`${cfg.a} vs. ${cfg.b} reanalysis · ${ini}–${fin} · anomalies from each product's mean`;
+  const aProp=anomalia(propia),aOtra=anomalia(otra);
+  const todas=[...aProp,...aOtra].filter(Number.isFinite);
+  const rAnom=todas.length?`, anomalies ${signo(Math.min(...todas),d)} to ${signo(Math.max(...todas),d)} ${u}`:'';
+  const corr=c.r_anual!==undefined?`, correlation r = ${num(c.r_anual,2)}`:'';
+  $('ind-contraste-graf')?.setAttribute('aria-label',`${cfg.a} compared with ${cfg.b}, ${ini} to ${fin}${rAnom}${corr}`);
   crear('ind-contraste-graf',{type:'line',data:{labels:anios,datasets:[
-    {label:cfg.a,data:anomalia(propia),borderColor:'#6fd8ff',pointRadius:0,borderWidth:2.4,tension:.2},
-    {label:cfg.b,data:anomalia(otra),borderColor:'#ff7b6b',pointRadius:0,borderWidth:1.6,borderDash:[4,3],tension:.2}]},
+    {label:cfg.a,data:aProp,borderColor:'#6fd8ff',pointRadius:0,borderWidth:2.4,tension:.2},
+    {label:cfg.b,data:aOtra,borderColor:'#ff7b6b',pointRadius:0,borderWidth:1.6,borderDash:[4,3],tension:.2}]},
     options:{interaction:{mode:'index',intersect:false},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:`Anomaly (${u})`}}}}});
   const tj=$('ind-contraste-tarjetas');tj.replaceChildren();
   [[cfg.a,c[cfg.ka],c[cfg.ia],c[cfg.va]],[cfg.b,c[cfg.kb],c[cfg.ib],c[cfg.vb]]].forEach(([n,p,ic,ver],i)=>{
@@ -130,12 +143,17 @@ function estacional(){
 // ---------------------------------------------------------------- escenarios NEX-GDDP-CMIP6
 function escenarios(){
   const r=$('esc-region').value||'NIC',E=D.escenarios_cmip6[r];if(!E)return;
+  const nombreR=REGIONES.find(x=>x[0]===r)?.[1]||r;
   const t=$('esc-tabla');t.replaceChildren();
-  const cab=nodo('tr');['Variable','Recent (1995–2014)','SSP2-4.5','SSP5-8.5','Models drier / wetter'].forEach(h=>cab.append(nodo('th',h)));t.append(cab);
-  ESCENARIOS.forEach(([k,n,u])=>{const e=E[k];if(!e)return;const fila=nodo('tr');fila.append(nodo('td',n));
+  const cap=nodo('caption',`Projected climate changes by 2050 for ${nombreR}`);
+  const thead=nodo('thead'),tbody=nodo('tbody');
+  const cab=nodo('tr');['Variable','Recent (1995–2014)','SSP2-4.5','SSP5-8.5','Models drier / wetter'].forEach(h=>{const th=nodo('th',h);th.setAttribute('scope','col');cab.append(th)});thead.append(cab);
+  ESCENARIOS.forEach(([k,n,u])=>{const e=E[k];if(!e)return;const fila=nodo('tr');
+    const th=nodo('th',n);th.setAttribute('scope','row');fila.append(th);
     fila.append(nodo('td',e.unidad==='mm'?`${num(e.observado_historico,0)} mm`:`${num(e.observado_historico,1)} °C`));
     ['ssp245','ssp585'].forEach(s=>{const c=e.escenarios[s].cambio,dd=u==='%'?0:1;const td=nodo('td');td.append(nodo('strong',`${signo(c.mediana,dd)} ${u}`),nodo('span',` ${signo(c.minimo,dd)} to ${signo(c.maximo,dd)}`,'tenue'));fila.append(td)});
-    const c=e.escenarios.ssp585.cambio;fila.append(nodo('td',u==='%'?`${c.modelos_disminucion} / ${c.modelos_aumento} of ${c.n_modelos}`:`${c.n_modelos} of ${c.n_modelos} warmer`));t.append(fila)});
+    const c=e.escenarios.ssp585.cambio;fila.append(nodo('td',u==='%'?`${c.modelos_disminucion} / ${c.modelos_aumento} of ${c.n_modelos}`:`${c.n_modelos} of ${c.n_modelos} warmer`));tbody.append(fila)});
+  t.append(cap,thead,tbody);
   const e0=Object.values(E)[0];
   $('esc-sub').textContent=`NASA NEX-GDDP-CMIP6 · ${e0.escenarios.ssp245.cambio.n_modelos} models · ${e0.periodo_futuro[0]}–${e0.periodo_futuro[1]} average vs. ${e0.periodo_historico[0]}–${e0.periodo_historico[1]} · median and model range`;
 }

@@ -7,7 +7,8 @@ const RAD = Math.PI / 180;
 const LON_CENTRO = -80;            // costura de la malla en 100° E: América queda al centro del plano
 const DIST_REPOSO = 4.9, DIST_MIN = 1.28, DIST_MAX = 34, DIST_INTRO = 30, DIST_PLANO = 3.1;
 const FOV = 38;
-const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mqReducido = matchMedia('(prefers-reduced-motion: reduce)');
+let reducido = mqReducido.matches;
 
 const canvas = document.getElementById('espacio');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
@@ -278,9 +279,14 @@ function dibujar() {
 }
 
 let anterior = performance.now(), cuadro = 0;
+function trazarVientoEstatico() {
+  if (!vientoActivo) return;
+  ctxV.clearRect(0, 0, VW, VH);
+  for (let i = 0; i < 16; i++) pasoViento();
+}
 function bucle(ahora) {
   cuadro = 0;
-  if (estado.pausado || document.hidden) return;
+  if (estado.pausado || document.hidden || reducido) return;
   const dt = Math.min(0.1, (ahora - anterior) / 1000);
   anterior = ahora;
   if (!estado.animando) {
@@ -289,7 +295,7 @@ function bucle(ahora) {
       estado.lat = Math.max(-80, Math.min(80, estado.lat + estado.velLat));
       estado.velLon *= 0.93;
       estado.velLat *= 0.93;
-    } else if (!reducido && !estado.intro && ahora - estado.ultimoGesto > 7000) {
+    } else if (!estado.intro && ahora - estado.ultimoGesto > 7000) {
       estado.lon += dt * 1.1;
     }
     estado.desp += (estado.despObjetivo - estado.desp) * Math.min(1, dt * 5);
@@ -300,9 +306,21 @@ function bucle(ahora) {
   cuadro = requestAnimationFrame(bucle);
 }
 function arrancar() {
-  if (!cuadro && !estado.pausado) { anterior = performance.now(); cuadro = requestAnimationFrame(bucle); }
+  if (estado.pausado) return;
+  if (reducido) { dibujar(); return; }
+  if (!cuadro) { anterior = performance.now(); cuadro = requestAnimationFrame(bucle); }
 }
 document.addEventListener('visibilitychange', arrancar);
+mqReducido.addEventListener?.('change', e => {
+  reducido = e.matches;
+  if (reducido) {
+    cancelAnimationFrame(cuadro); cuadro = 0;
+    estado.velLon = estado.velLat = 0;
+    estado.desp = estado.despObjetivo;
+    trazarVientoEstatico();
+    dibujar();
+  } else arrancar();
+});
 
 // ---------------------------------------------------------------- animaciones
 const suave = t => t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
@@ -312,6 +330,12 @@ function animar(ms, paso) {
   if (animRaf) { cancelAnimationFrame(animRaf); animRaf = 0; }
   if (animFin) { const previa = animFin; animFin = null; previa(false); }
   const id = ++animId;
+  if (reducido) {
+    paso(1);
+    estado.animando = false;
+    dibujar();
+    return Promise.resolve(true);
+  }
   estado.animando = true;
   return new Promise(ok => {
     const t0 = performance.now();
@@ -426,9 +450,10 @@ canvas.addEventListener('pointermove', e => {
   const k = gradosPorPixel();
   estado.lon -= dx * k;
   estado.lat = Math.max(-80, Math.min(80, estado.lat + dy * k));
-  estado.velLon = -dx * k * 0.6;
-  estado.velLat = dy * k * 0.6;
+  estado.velLon = reducido ? 0 : -dx * k * 0.6;
+  estado.velLat = reducido ? 0 : dy * k * 0.6;
   estado.ultimoGesto = performance.now();
+  if (reducido) dibujar();
 });
 function soltar(e) {
   if (!punteros.has(e.pointerId)) return;
@@ -441,6 +466,7 @@ canvas.addEventListener('pointercancel', soltar);
 function acercar(factor) {
   estado.dist = Math.max(DIST_MIN, Math.min(DIST_MAX, estado.dist * factor));
   estado.ultimoGesto = performance.now();
+  if (reducido) dibujar();
 }
 canvas.addEventListener('wheel', e => {
   if (estado.animando || estado.morph > 0) return;
@@ -452,8 +478,13 @@ canvas.addEventListener('keydown', e => {
   if (m) { e.preventDefault(); estado.lon += m[0]; estado.lat = Math.max(-80, Math.min(80, estado.lat + m[1])); }
   else if (e.key === '+' || e.key === '=') acercar(0.85);
   else if (e.key === '-') acercar(1.18);
+  else if ((e.key === 'Enter' || e.key === ' ') && alElegir) {
+    e.preventDefault();
+    alElegir(estado.lat, ((estado.lon + 540) % 360) - 180);
+  }
   else return;
   estado.ultimoGesto = performance.now();
+  if (reducido) dibujar();
 });
 
 const rayo = new THREE.Raycaster(), esfera = new THREE.Sphere(new THREE.Vector3(), 1), impacto = new THREE.Vector3();
@@ -487,8 +518,9 @@ window.Espacio = {
       uniformes.uMeteo.value = texMeteo;
     } else uniformes.uMeteo.value = vacia;
     uniformes.uMeteoOp.value = lienzo ? opacidad : 0;
+    if (reducido) dibujar();
   },
-  opacidad(v) { if (texMeteo) uniformes.uMeteoOp.value = v; },
+  opacidad(v) { if (texMeteo) { uniformes.uMeteoOp.value = v; if (reducido) dibujar(); } },
   viento(meta, campo, activo) {
     muestraU = campo ? muestreador(meta, campo.viento_u_ms) : null;
     muestraV = campo ? muestreador(meta, campo.viento_v_ms) : null;
@@ -496,8 +528,10 @@ window.Espacio = {
     uniformes.uVientoOn.value = vientoActivo ? 1 : 0;
     uniformes.uViento.value = vientoActivo ? texViento : vacia;
     if (!vientoActivo) ctxV.clearRect(0, 0, VW, VH);
+    else if (reducido) trazarVientoEstatico();
+    if (reducido) dibujar();
   },
-  desplazar(px) { estado.despObjetivo = px; if (estado.intro) estado.desp = 0; },
+  desplazar(px) { estado.despObjetivo = px; if (estado.intro || reducido) { estado.desp = px; if (reducido) dibujar(); } },
   alElegir(f) { alElegir = f; },
   aMapa,
   aGlobo,
@@ -506,6 +540,6 @@ window.Espacio = {
   estado: () => ({ ...estado })
 };
 document.dispatchEvent(new CustomEvent('espacio:listo'));
-arrancar();
 if (reducido) { estado.dist = DIST_REPOSO; estado.lon = -84; estado.intro = false; estado.desp = estado.despObjetivo; }
 else intro();
+arrancar();

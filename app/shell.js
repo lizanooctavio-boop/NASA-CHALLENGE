@@ -7,8 +7,11 @@ function mensajeError(e,respaldo='Connection error: external data could not be l
   if(!m||/failed to fetch|networkerror|load failed|fetch/i.test(m))return respaldo;
   return m;
 }
-function error(e,respaldo){$('error').hidden=false;$('error-texto').textContent=mensajeError(e,respaldo)}
-$('error-cerrar').onclick=()=>{$('error').hidden=true};
+let focoAntesError=null;
+function cerrarError(){const caja=$('error');if(caja.hidden)return;const dentro=caja.contains(document.activeElement);caja.hidden=true;if(dentro)(focoAntesError?.isConnected?focoAntesError:$('contenido-principal'))?.focus({preventScroll:true});focoAntesError=null}
+function error(e,respaldo){if($('error').hidden&&document.activeElement&&!$('error').contains(document.activeElement))focoAntesError=document.activeElement;$('error').hidden=false;$('error-texto').textContent=mensajeError(e,respaldo)}
+$('error-cerrar').onclick=cerrarError;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('error').hidden){e.preventDefault();cerrarError()}});
 // Lee JSON sin errores crípticos («Unexpected token <») cuando el servidor devuelve HTML.
 async function leerJSON(r){const t=await r.text();try{return JSON.parse(t)}catch(e){throw Error(r.ok?'Invalid server response.':`Server responded ${r.status}.`)}}
 function limpiar(n){n.replaceChildren()}
@@ -139,7 +142,15 @@ addEventListener('resize',medirColumnaMapa);medirColumnaMapa();
 // ---------------------------------------------------------------- globo 3D ⇄ mapa 2D
 let modo='globo',cambiando=false,vistaPendiente=null,transicionActual=null;
 const esperar=ms=>new Promise(r=>setTimeout(r,ms));
-function marcarVista(){$('vista-globo').setAttribute('aria-pressed',String(modo==='globo'));$('vista-mapa').setAttribute('aria-pressed',String(modo==='mapa'))}
+function marcarVista(){
+  $('vista-globo').setAttribute('aria-pressed',String(modo==='globo'));
+  $('vista-mapa').setAttribute('aria-pressed',String(modo==='mapa'));
+  // Evita que #espacio siga en el orden de tabulación detrás de #mapa cuando el mapa 2D está activo.
+  const enMapa=modo==='mapa';
+  $('espacio')?.setAttribute('tabindex',enMapa?'-1':'0');
+  if(enMapa){$('espacio')?.setAttribute('aria-hidden','true');$('mapa')?.removeAttribute('aria-hidden')}
+  else{$('espacio')?.removeAttribute('aria-hidden');$('mapa')?.setAttribute('aria-hidden','true')}
+}
 async function cambiarVista(nuevo){
   if(!mapa)return;
   if(cambiando){vistaPendiente=nuevo;return transicionActual}
@@ -160,13 +171,14 @@ async function cambiarVista(nuevo){
         document.body.classList.toggle('modo-mapa',true);document.body.classList.toggle('modo-globo',false);
         document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'mapa'}));
         if(baseFallo&&!avisoBase){avisoBase=true;error('Base satellite imagery could not be loaded. Vector borders and labels remain active.')}
-        await esperar(520);
+        if(!matchMedia('(prefers-reduced-motion:reduce)').matches)await esperar(520);
         if(!vistaPendiente||vistaPendiente==='mapa')window.Espacio.pausar(true);
       }else{
         const c=mapa.getCenter(),vuelta=window.Espacio.aGlobo({lon:L.Util.wrapNum(c.lng,[-180,180]),lat:c.lat,zoom:mapa.getZoom()});
         document.body.classList.toggle('modo-globo',true);document.body.classList.toggle('modo-mapa',false);
         document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'globo'}));
-        await esperar(420);await vuelta.animar();
+        if(!matchMedia('(prefers-reduced-motion:reduce)').matches)await esperar(420);
+        await vuelta.animar();
       }
     }finally{
       cambiando=false;document.body.classList.remove('en-transicion');

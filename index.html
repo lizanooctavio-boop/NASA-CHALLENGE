@@ -10,10 +10,11 @@
 <link rel="stylesheet" href="app/estilos.css">
 </head>
 <body class="modo-globo cargando">
-<canvas id="espacio" tabindex="0" aria-label="3D Earth. Drag to rotate, scroll to zoom, click to get a forecast."></canvas>
-<div id="mapa" aria-label="2D weather map"></div>
+<a href="#contenido-principal" class="saltar-contenido">Skip to main content</a>
+<canvas id="espacio" tabindex="0" role="img" aria-label="3D Earth. Drag or use arrow keys to rotate, scroll or press plus or minus to zoom, click or press Enter to get a forecast."></canvas>
+<div id="mapa" aria-label="2D weather map" aria-hidden="true"></div>
 
-<aside>
+<aside aria-label="Navigation and tools">
   <div class="cabeza-menu">
     <div class="marca"><span class="marca-punto" aria-hidden="true"></span>Trend<b>Detective</b></div>
     <button id="plegar-menu" type="button" aria-expanded="true" aria-controls="menu-principal" aria-label="Collapse menu" title="Collapse menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
@@ -34,7 +35,7 @@
   <div class="pie">NASA Space Apps 2026<br>Earth System Trend Detective</div>
 </aside>
 
-<main>
+<main id="contenido-principal" tabindex="-1">
 <header>
   <div><p class="etiqueta">NASA SPACE APPS</p><h1 id="titulo">Weather</h1></div>
   <div class="acciones">
@@ -53,12 +54,12 @@
     <h2>Live weather vs. long-term climate trends</h2>
     <p>This globe shows a <strong>48-hour weather forecast</strong>. To test whether rainfall, temperature, forests, lakes, oceans, or ice have changed over decades with NASA &amp; NOAA records, open <strong>Investigate</strong> in the left menu.</p>
   </div>
-  <label class="rango" for="opacidad-temp">Layer opacity<input id="opacidad-temp" type="range" min="15" max="95" value="60"></label>
+  <label class="rango" for="opacidad-temp">Layer opacity<input id="opacidad-temp" type="range" min="15" max="95" value="60" aria-valuetext="60%"></label>
   <article>
     <h2 id="meteograma-titulo">Point forecast</h2>
     <form id="consulta-punto" class="controles"><label>Latitude<input id="lat" type="number" step="any" min="-90" max="90" required></label><label>Longitude<input id="lon" type="number" step="any" min="-180" max="180" required></label><button id="consultar" type="submit">Get forecast</button></form>
     <div id="meteo" role="status"><p class="pista">Click anywhere on the globe or the map, or enter coordinates above, for a 48-hour forecast.</p></div>
-    <div class="graf alta" hidden><canvas id="graf-meteograma" aria-label="Hourly forecast at the selected point"></canvas></div>
+    <div class="graf alta" hidden><canvas id="graf-meteograma" role="img" aria-label="Hourly forecast at the selected point"></canvas></div>
     <div class="controles"><button id="exp-punto" type="button" disabled>Download forecast (CSV)</button></div>
   </article>
 </section>
@@ -73,7 +74,7 @@
   <div class="botones-region botones-variable" role="radiogroup" aria-label="Variable" id="inv-variables" hidden></div>
   <article id="inv-demo-panel" class="demo-panel" aria-live="polite" hidden></article>
   <article aria-live="polite"><div id="inv-veredicto" class="veredicto"></div></article>
-  <article><h2 id="inv-serie-titulo">Series</h2><div class="graf"><canvas id="inv-serie"></canvas></div>
+  <article><h2 id="inv-serie-titulo">Series</h2><div class="graf"><canvas id="inv-serie" role="img" aria-label="Investigate time series"></canvas></div>
     <div class="controles"><button type="button" id="inv-csv">Series (CSV)</button><button type="button" id="inv-mapa">Show on the map</button></div></article>
   <article id="inv-contrastes" hidden><h2>Cross-checks</h2><p class="sub-art">The same question answered with another source or another method.</p><div id="inv-contrastes-lista"></div></article>
   <article><h2>Guided examples</h2><div id="inv-demos" class="demos"></div></article>
@@ -105,10 +106,10 @@
   <div class="botones-region" role="radiogroup" aria-label="Region" id="ind-regiones"></div>
   <div class="botones-region botones-variable" role="radiogroup" aria-label="Indicator" id="ind-variables"></div>
   <article aria-live="polite"><div id="ind-veredicto" class="veredicto"></div><p class="pista nota-veredicto">“Not enough evidence of a trend” does not mean “no change” — natural year-to-year swings (such as El Niño) can hide a real long-term shift. See <strong>Learn</strong> for plain-language explanations.</p></article>
-  <article><h2 id="ind-serie-titulo">Series</h2><div class="graf"><canvas id="ind-serie" aria-label="Annual series with Theil–Sen trend"></canvas></div>
+  <article><h2 id="ind-serie-titulo">Series</h2><div class="graf"><canvas id="ind-serie" role="img" aria-label="Annual series with Theil–Sen trend"></canvas></div>
     <div class="controles"><button type="button" id="ind-csv">Series (CSV)</button><button type="button" id="ind-ver-mapa">Regions on the map</button></div></article>
   <article id="ind-contraste" hidden><h2>Second opinion: satellite and stations vs. reanalysis</h2><p class="sub-art" id="ind-contraste-sub"></p>
-    <div class="graf"><canvas id="ind-contraste-graf" aria-label="Comparison of two NASA products"></canvas></div><div id="ind-contraste-tarjetas" class="tarjetas"></div></article>
+    <div class="graf"><canvas id="ind-contraste-graf" role="img" aria-label="Comparison of two NASA products"></canvas></div><div id="ind-contraste-tarjetas" class="tarjetas"></div></article>
   <article><h2>Can the rainy season be anticipated?</h2><p class="sub-art" id="ind-estacional-sub"></p><div id="ind-estacional" class="tarjetas"></div></article>
 </section>
 
@@ -152,8 +153,8 @@
 
 <section id="fenomenos" class="vista" hidden>
   <div id="enos-tarjetas" class="tarjetas"></div>
-  <article><h2>Oceanic Niño Index, 1950–present</h2><div class="graf"><canvas id="graf-oni"></canvas></div></article>
-  <article><h2>Weekly anomalies by Niño region</h2><div class="graf"><canvas id="graf-nino34"></canvas></div>
+  <article><h2>Oceanic Niño Index, 1950–present</h2><div class="graf"><canvas id="graf-oni" role="img" aria-label="Oceanic Niño Index, 1950 to present"></canvas></div></article>
+  <article><h2>Weekly anomalies by Niño region</h2><div class="graf"><canvas id="graf-nino34" role="img" aria-label="Weekly anomalies by Niño region"></canvas></div>
     <div class="controles"><button type="button" data-activar="chk-sst" data-vista="2,-120,3">Sea temperature anomaly on the map</button><a class="boton" href="/clima-base/enos.csv" download>ONI (CSV)</a></div></article>
   <article><h2>Active tropical cyclones</h2><ul id="lista-tormentas" class="lista"></ul>
     <div class="controles"><button type="button" data-activar="chk-tormentas" data-vista="18,-75,3">Cyclones on the map</button><a class="boton" href="/clima-base/tormentas.csv" download>Active cyclones (CSV)</a></div></article>
@@ -169,11 +170,11 @@
 <section id="escenarios" class="vista" hidden>
   <article><h2>Nicaragua by 2050</h2><p class="sub-art" id="esc-sub">NASA NEX-GDDP-CMIP6</p>
     <div class="controles"><label>Region<select id="esc-region"></select></label></div>
-    <div class="tabla"><table id="esc-tabla"></table></div></article>
+    <div class="tabla" aria-live="polite"><table id="esc-tabla"></table></div></article>
   <div class="controles"><label>Scenario<select id="ssp"><option value="ssp126">SSP1-2.6</option><option value="ssp245" selected>SSP2-4.5</option><option value="ssp370">SSP3-7.0</option><option value="ssp585">SSP5-8.5</option></select></label><label>Season<select id="ventana-cmip"></select></label></div>
-  <article><h2>Projected change by period</h2><p class="sub-art">CMIP6 · Central America (SCA) · vs. 1981–1995</p><div id="cambios" class="tarjetas"></div></article>
-  <article><h2>Warming 2026–2100</h2><div class="graf"><canvas id="graf-dT"></canvas></div></article>
-  <article><h2>Precipitation change 2026–2100</h2><div class="graf"><canvas id="graf-dP"></canvas></div></article>
+  <article><h2>Projected change by period</h2><p class="sub-art">CMIP6 · Central America (SCA) · vs. 1981–1995</p><div id="cambios" class="tarjetas" aria-live="polite"></div></article>
+  <article><h2>Warming 2026–2100</h2><div class="graf"><canvas id="graf-dT" role="img" aria-label="Projected warming 2026 to 2100 across SSP scenarios"></canvas></div></article>
+  <article><h2>Precipitation change 2026–2100</h2><div class="graf"><canvas id="graf-dP" role="img" aria-label="Projected precipitation change 2026 to 2100 across SSP scenarios"></canvas></div></article>
   <div class="controles"><a class="boton" href="/clima-base/proyecciones.csv" download>Projections (CSV)</a></div>
 </section>
 

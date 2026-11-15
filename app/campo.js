@@ -11,7 +11,8 @@ if(!soporte){sinCampo('Weather support module unavailable.');return}
 if(typeof mapa==='undefined'||!mapa){sinCampo('Map library unavailable.');return}
 
 const { escalas: ESCALAS, color } = window.PaletasMeteo;
-const reducido=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const mqReducido=matchMedia('(prefers-reduced-motion:reduce)');
+let reducido=mqReducido.matches;
 const DPR=Math.min(2,window.devicePixelRatio||1);
 const REFRESCO_MIN=60;
 let G=null,variable='temperatura_c',hora=0,raf=0,opacidad=.7,conParticulas=true,reproducir=null;
@@ -132,6 +133,7 @@ function reiniciar(conservar){
 mapa.on('movestart zoomstart',()=>{cancelAnimationFrame(raf);raf=0;cP.style.visibility='hidden'});
 mapa.on('moveend zoomend resize',()=>{cP.style.visibility='';reiniciar()});
 document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(raf);raf=0;if(!document.hidden&&!reducido&&FV&&!enGlobo())raf=requestAnimationFrame(frame)});
+mqReducido.addEventListener?.('change',e=>{reducido=e.matches;if(FV&&!enGlobo())reiniciar(true)});
 document.addEventListener('sicc:vista',()=>reiniciar());
 
 // Leyenda
@@ -144,8 +146,8 @@ function leyenda(){
   ley.classList.toggle('minimizada',!expandida);
   ley.replaceChildren();
   const bar=document.createElement('div');bar.className='ventana-barra';const tt=document.createElement('button');tt.type='button';tt.className='leyenda-alternar';tt.setAttribute('aria-expanded',String(expandida));tt.setAttribute('aria-controls','cuerpo-leyenda-meteo');
-  const rotulo=a=>`${a?'▾':'▸'} ${E.nombre} · ${E.unidad}`;tt.textContent=rotulo(expandida);
-  tt.onclick=()=>{leyendaElegida=ley.classList.contains('minimizada');ley.classList.toggle('minimizada',!leyendaElegida);tt.setAttribute('aria-expanded',String(leyendaElegida));tt.textContent=rotulo(leyendaElegida)};bar.append(tt);
+  const rotulo=a=>{tt.replaceChildren();const ic=document.createElement('span');ic.setAttribute('aria-hidden','true');ic.textContent=(a?'▾':'▸')+' ';tt.append(ic,`${E.nombre} · ${E.unidad}`)};rotulo(expandida);
+  tt.onclick=()=>{leyendaElegida=ley.classList.contains('minimizada');ley.classList.toggle('minimizada',!leyendaElegida);tt.setAttribute('aria-expanded',String(leyendaElegida));rotulo(leyendaElegida)};bar.append(tt);
   const cuerpo=document.createElement('div');cuerpo.className='ventana-cuerpo';cuerpo.id='cuerpo-leyenda-meteo';
   const g=document.createElement('div');g.className='gradiente';g.style.background=`linear-gradient(90deg,${grad})`;
   const et=document.createElement('div');et.className='etiquetas';E.etiquetas.forEach(t=>{const s=document.createElement('span');s.textContent=String(t);s.style.left=`${pos(t)*100}%`;et.append(s)});
@@ -181,10 +183,12 @@ function relativa(i){
 }
 function etiquetaHora(){
   const iso=horasActivas()[hora];
-  if(!iso){ltEt.textContent='No forecast data';return}
-  const principal=document.createElement('strong');principal.textContent=fechaLocal(iso)+' · '+relativa(hora);
-  const detalle=document.createElement('small');detalle.textContent='ECMWF IFS · '+iso.slice(11,16)+' UTC';
+  if(!iso){ltEt.textContent='No forecast data';lt.setAttribute('aria-valuetext','No forecast data');return}
+  const txt=fechaLocal(iso)+' · '+relativa(hora),utc=iso.slice(11,16)+' UTC';
+  const principal=document.createElement('strong');principal.textContent=txt;
+  const detalle=document.createElement('small');detalle.textContent='ECMWF IFS · '+utc;
   ltEt.replaceChildren(principal,detalle);
+  lt.setAttribute('aria-valuetext',`${txt}, ${utc}`);
   indicador();
 }
 // Marcas bajo el deslizador: cambio de día (hora local del visitante) y la hora actual.
@@ -227,7 +231,7 @@ ltAhora.onclick=()=>{parar();ponerHora(indiceAhora())};
 // Selector de capas
 document.querySelectorAll('#barra-capas [data-var]').forEach(b=>b.onclick=()=>{variable=b.dataset.var;document.querySelectorAll('#barra-capas [data-var]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));leyenda();reiniciar(true);avisar('sicc:capa')});
 $('chk-particulas').onchange=e=>{conParticulas=e.target.checked;reiniciar()};
-const op=$('opacidad-temp');if(op){opacidad=Number(op.value)/100;op.oninput=e=>{opacidad=Number(e.target.value)/100;cT.style.opacity=opacidad}}
+const op=$('opacidad-temp');const actOp=()=>{if(op)op.setAttribute('aria-valuetext',`${op.value}%`)};if(op){opacidad=Number(op.value)/100;actOp();op.oninput=e=>{opacidad=Number(e.target.value)/100;cT.style.opacity=opacidad;actOp()}}
 
 async function cargar(){
   try{
