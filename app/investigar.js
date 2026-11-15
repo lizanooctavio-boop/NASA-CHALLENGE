@@ -193,7 +193,7 @@ function pasoDemo(foco){
   if(p.ver==='aprender'){const b=nodo('button','Open the explanation');b.type='button';b.onclick=()=>aprender(p.ancla||'aprender-no-significativo');ctl.append(b)}
   if(foco==='prev')(!bPrev.disabled?bPrev:bNext).focus({preventScroll:true});
   else if(foco==='next')bNext.focus({preventScroll:true});
-  (destino?$(destino):panel).scrollIntoView({block:'nearest',behavior:'smooth'});
+  (destino?$(destino):panel).scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
 }
 
 // ---------------------------------------------------------------- Learn y Sources

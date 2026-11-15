@@ -7,7 +7,9 @@ const RAD = Math.PI / 180;
 const LON_CENTRO = -80;            // costura de la malla en 100° E: América queda al centro del plano
 const DIST_REPOSO = 4.9, DIST_MIN = 1.28, DIST_MAX = 34, DIST_INTRO = 30, DIST_PLANO = 3.1;
 const FOV = 38;
-const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mqReducido = matchMedia('(prefers-reduced-motion: reduce)');
+let reducido = mqReducido.matches;
+mqReducido.addEventListener?.('change', e => { reducido = e.matches; if (!reducido) arrancar(); });
 
 const canvas = document.getElementById('espacio');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
@@ -291,10 +293,13 @@ function bucle(ahora) {
     }
     estado.desp += (estado.despObjetivo - estado.desp) * Math.min(1, dt * 5);
   }
-  moverLuna(dt);
-  pasoViento();
+  if (!reducido) {
+    moverLuna(dt);
+    pasoViento();
+  }
   dibujar();
-  cuadro = requestAnimationFrame(bucle);
+  const enMovimiento = estado.animando || Math.abs(estado.velLon) + Math.abs(estado.velLat) > 0.001 || Math.abs(estado.despObjetivo - estado.desp) > 0.5;
+  if (!reducido || enMovimiento) cuadro = requestAnimationFrame(bucle);
 }
 function arrancar() {
   if (!cuadro && !estado.pausado) { anterior = performance.now(); cuadro = requestAnimationFrame(bucle); }
@@ -309,7 +314,7 @@ function animar(ms, paso) {
   return new Promise(ok => {
     const t0 = performance.now();
     function f(ahora) {
-      const t = Math.min(1, (ahora - t0) / (reducido ? Math.min(ms, 300) : ms));
+      const t = reducido ? 1 : Math.min(1, (ahora - t0) / ms);
       paso(t);
       if (t < 1) requestAnimationFrame(f);
       else { estado.animando = false; ok(); }
@@ -388,6 +393,7 @@ canvas.addEventListener('pointerdown', e => {
   gesto = { x0: e.clientX, y0: e.clientY, movido: false, t: performance.now() };
   estado.velLon = estado.velLat = 0;
   estado.ultimoGesto = performance.now();
+  if (reducido) dibujar();
 });
 canvas.addEventListener('pointermove', e => {
   const p = punteros.get(e.pointerId);
@@ -409,6 +415,7 @@ canvas.addEventListener('pointermove', e => {
   estado.velLon = -dx * k * 0.6;
   estado.velLat = dy * k * 0.6;
   estado.ultimoGesto = performance.now();
+  if (reducido) dibujar();
 });
 function soltar(e) {
   if (!punteros.has(e.pointerId)) return;
@@ -435,6 +442,7 @@ canvas.addEventListener('keydown', e => {
   else if ((e.key === 'Enter' || e.key === ' ') && alElegir) { e.preventDefault(); alElegir(estado.lat, ((estado.lon + 540) % 360) - 180); return; }
   else return;
   estado.ultimoGesto = performance.now();
+  if (reducido) dibujar();
 });
 
 const rayo = new THREE.Raycaster(), esfera = new THREE.Sphere(new THREE.Vector3(), 1), impacto = new THREE.Vector3();
@@ -488,5 +496,5 @@ window.Espacio = {
 };
 document.dispatchEvent(new CustomEvent('espacio:listo'));
 arrancar();
-if (reducido) { estado.dist = DIST_REPOSO; estado.lon = -84; estado.intro = false; estado.desp = estado.despObjetivo; }
+if (reducido) { moverLuna(0); estado.dist = DIST_REPOSO; estado.lon = -84; estado.intro = false; estado.desp = estado.despObjetivo; dibujar(); }
 else intro();
