@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="app/estilos.css">
+<link rel="stylesheet" href="app/reticula.css">
 </head>
 <body class="modo-globo cargando">
 <a href="#contenido-principal" class="saltar-contenido">Skip to main content</a>
@@ -271,5 +272,6 @@
 <script defer src="app/hidrologia.js"></script>
 <script defer src="app/globo.js"></script>
 <script type="module" src="app/espacio.js"></script>
+<script defer src="app/reticula.js" onerror="const aviso=document.createElement('p');aviso.setAttribute('role','status');aviso.textContent='Map grid controls could not load. Reload to retry.';document.getElementById('barra-capas')?.append(aviso)"></script>
 </body>
 </html>
