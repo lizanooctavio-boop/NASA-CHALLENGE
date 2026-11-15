@@ -1,5 +1,6 @@
 /* Estilo de texto opcional (paletas de Benjamin): solo color de letra y tipografía sobre el cristal original.
-   Sin atributo data-ui-theme se ve el estilo original; en el tema claro no se aplica. Lo seleccionado
+   Sin atributo data-ui-theme se ve el estilo original; en el tema claro se usa la misma tipografía con
+   una versión oscura de cada color (bloque final) para que se lea sobre el cristal claro. Lo seleccionado
    conserva su resaltado original para no parecer desactivado. */
 :root[data-ui-theme="pastel-lavanda"]{--ui-text:#DDCEF5;--ui-muted:#C6B5E7;--ui-accent-ink:#a88ace;--ui-title:"Space Grotesk","Segoe UI",sans-serif;--ui-body:"DM Sans",sans-serif;--ui-mono:"JetBrains Mono",monospace;--ui-heading-weight:700;--ui-heading-tracking:-.025em;--ui-type-scale:1.04}
 :root[data-ui-theme="pastel-menta"]{--ui-text:#C0EBDA;--ui-muted:#9FD7C7;--ui-accent-ink:#67a296;--ui-title:"Plus Jakarta Sans","Segoe UI",sans-serif;--ui-body:"Work Sans",sans-serif;--ui-mono:"JetBrains Mono",monospace;--ui-heading-weight:700;--ui-heading-tracking:-.02em;--ui-type-scale:0.97}
@@ -27,3 +28,21 @@
 :root[data-ui-theme]:not([data-theme="light"]) .veredicto .tarjeta strong{color:#fff}
 :root[data-ui-theme]:not([data-theme="light"]) #leyenda-campo .ventana-titulo,:root[data-ui-theme]:not([data-theme="light"]) #leyenda-campo button,:root[data-ui-theme]:not([data-theme="light"]) #leyenda-campo .lectura{color:#eef3f9}
 :root[data-ui-theme]:not([data-theme="light"]) #mapa,:root[data-ui-theme]:not([data-theme="light"]) .etq-pais,:root[data-ui-theme]:not([data-theme="light"]) .etq-ciudad,:root[data-ui-theme]:not([data-theme="light"]) .hid-etiqueta{font-family:"Inter",system-ui,"Segoe UI",sans-serif}
+
+/* Tema claro: tinta oscura del mismo tono de cada paleta (contraste ≥ 4,5:1 sobre el cristal claro). */
+:root[data-ui-theme="pastel-lavanda"]{--ui-ink:#3b2a63;--ui-ink-muted:#54467a;--ui-ink-accent:#5f45a0}
+:root[data-ui-theme="pastel-menta"]{--ui-ink:#1c4a3d;--ui-ink-muted:#30604f;--ui-ink-accent:#226c5b}
+:root[data-ui-theme="pastel-coral"]{--ui-ink:#682727;--ui-ink-muted:#7f3d43;--ui-ink-accent:#953f57}
+:root[data-ui-theme="pastel-orbita"]{--ui-ink:#1b3a61;--ui-ink-muted:#33557d;--ui-ink-accent:#245a90}
+:root[data-ui-theme="pastel-terracota"]{--ui-ink:#5b301f;--ui-ink-muted:#724533;--ui-ink-accent:#86492f}
+:root[data-ui-theme="pastel-rosa"]{--ui-ink:#5a234d;--ui-ink-muted:#733a64;--ui-ink-accent:#8a376f}
+:root[data-ui-theme="pastel-arena"]{--ui-ink:#4a3e18;--ui-ink-muted:#62552e;--ui-ink-accent:#6e5a22}
+:root[data-ui-theme="pastel-lima"]{--ui-ink:#31431a;--ui-ink-muted:#475b2c;--ui-ink-accent:#456325}
+:root[data-ui-theme="royal"]{--ui-ink:#271d4a;--ui-ink-muted:#474063;--ui-ink-accent:#5a3bb0}
+:root[data-ui-theme="nordic"]{--ui-ink:#22354a;--ui-ink-muted:#3a4d64;--ui-ink-accent:#245f75}
+:root[data-ui-theme][data-theme="light"]{--texto:var(--ui-ink);--tenue:var(--ui-ink-muted);--cian:var(--ui-ink-accent);--preferencias-seleccion:var(--ui-ink-accent);color:var(--ui-ink);font-family:var(--ui-body)}
+:root[data-ui-theme][data-theme="light"] :is(button,select,input,summary,.boton){font-family:var(--ui-body)}
+:root[data-ui-theme][data-theme="light"] :is(h1,h2,h3,.marca,.ventana-titulo){font-family:var(--ui-title);font-weight:var(--ui-heading-weight);letter-spacing:var(--ui-heading-tracking)}
+:root[data-ui-theme][data-theme="light"] :is(code,kbd,pre,.coords-valor,.coords-resumen){font-family:var(--ui-mono)}
+:root[data-ui-theme][data-theme="light"] :is(a,.etiqueta,#indicador-detalle dt){color:var(--ui-ink-accent)}
+:root[data-ui-theme][data-theme="light"] :is(.graf,.grafica,.leyenda,.veredicto,#veredicto,#ind-veredicto,#inv-veredicto,#leyenda-campo,.leyenda-tendencia,#mapa,.etq-pais,.etq-ciudad,.hid-etiqueta){font-family:"Inter",system-ui,"Segoe UI",sans-serif}

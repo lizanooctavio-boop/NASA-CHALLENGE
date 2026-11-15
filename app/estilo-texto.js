@@ -28,6 +28,18 @@ function fuentes(id){
 }
 function aplicar(id){
   if(id==='original')delete raiz.dataset.uiTheme;else{raiz.dataset.uiTheme=id;fuentes(id)}
+  requestAnimationFrame(ajustarMenu);
+}
+// Si un nombre del menú lateral no cabe con la tipografía elegida, baja su letra de 0,5 en 0,5 px
+// (mínimo 10,5 px) en lugar de mostrar una barra de desplazamiento horizontal.
+function ajustarMenu(){
+  const nav=document.querySelector('aside nav');
+  if(!nav||getComputedStyle(nav).display!=='grid'||document.body?.classList.contains('menu-plegado'))return;
+  for(const b of nav.querySelectorAll('button')){
+    b.style.fontSize='';
+    let t=parseFloat(getComputedStyle(b).fontSize);
+    while(b.scrollWidth>b.clientWidth+1&&t>10.5){t-=.5;b.style.fontSize=t+'px'}
+  }
 }
 // Antes del primer dibujo, para no ver un destello con otro estilo.
 aplicar(actual);
@@ -43,6 +55,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     try{localStorage.setItem(CLAVE,actual)}catch(e){/* vale para esta sesión */}
     if(estado)estado.textContent=t('Text style applied.');
   });
-  document.addEventListener('gnomon:languagechange',opciones);
+  document.addEventListener('gnomon:languagechange',()=>{opciones();requestAnimationFrame(ajustarMenu)});
+  addEventListener('resize',ajustarMenu);
+  document.fonts?.addEventListener?.('loadingdone',ajustarMenu);
+  document.fonts?.ready.then(ajustarMenu);
+  new MutationObserver(ajustarMenu).observe(document.body,{attributes:true,attributeFilter:['class']});
+  ajustarMenu();
 });
 })();

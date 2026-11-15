@@ -130,3 +130,11 @@
   nav button[data-tab="aprender"] { margin-top: 4px; }
   nav button .txt { white-space: nowrap; }
 }
+
+/* Menú lateral de escritorio: nunca desplazamiento horizontal; los nombres usan todo el ancho y, si una
+   tipografía es más ancha, estilo-texto.js reduce su letra hasta que caben. */
+@media (min-width: 701px) {
+  nav { overflow-x: hidden; }
+  nav button { min-width: 0; }
+  nav button .txt { min-width: 0; }
+}

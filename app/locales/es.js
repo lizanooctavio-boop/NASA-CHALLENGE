@@ -1374,7 +1374,7 @@ window.GnomonSpanishMessages = Object.freeze({
   "Hide grid": "Ocultar retícula",
   "Weather layer": "Capa meteorológica",
   "Text style": "Estilo de texto",
-  "Colour and typeface of the interface text. Charts, legends and verdicts keep their colours. Applies to the dark theme.": "Color y tipografía de los textos de la interfaz. Las gráficas, leyendas y veredictos conservan sus colores. Se aplica en el tema oscuro.",
+  "Colour and typeface of the interface text. Charts, legends and verdicts keep their colours.": "Color y tipografía de los textos de la interfaz. Las gráficas, leyendas y veredictos conservan sus colores.",
   "Text style applied.": "Estilo de texto aplicado.",
   "Original": "Original",
   "Lavender mist": "Neblina lavanda",
