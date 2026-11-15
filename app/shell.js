@@ -2,7 +2,12 @@
 // entre el globo 3D (app/espacio.js) y el mapa 2D.
 let mapa,punto;
 const $=id=>document.getElementById(id);
-function error(e){$('error').hidden=false;$('error-texto').textContent=e.message||String(e)}
+function mensajeError(e,respaldo='Connection error: external data could not be loaded.'){
+  const m=e&&e.message?String(e.message):String(e||'');
+  if(!m||/failed to fetch|networkerror|load failed|fetch/i.test(m))return respaldo;
+  return m;
+}
+function error(e,respaldo){$('error').hidden=false;$('error-texto').textContent=mensajeError(e,respaldo)}
 $('error-cerrar').onclick=()=>{$('error').hidden=true};
 // Lee JSON sin errores crípticos («Unexpected token <») cuando el servidor devuelve HTML.
 async function leerJSON(r){const t=await r.text();try{return JSON.parse(t)}catch(e){throw Error(r.ok?'Invalid server response.':`Server responded ${r.status}.`)}}
@@ -17,17 +22,36 @@ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>tab(b.dataset.t
 // ---------------------------------------------------------------- mapa 2D
 const CENTRO_AMERICA=[12,-80];
 const zoomAjuste=()=>Math.max(2,Math.ceil(Math.log2(Math.max(innerWidth,innerHeight)/256)));
+let esriEtiquetasOk=true,refrescarEtiquetas=null,baseFallo=false,avisoBase=false;
+function vigilarBase(capa,nombre,esEtiqueta){
+  let cargadas=0,errores=0;
+  capa.on('tileload',()=>{
+    cargadas++;
+    if(esEtiqueta&&!esriEtiquetasOk){esriEtiquetasOk=true;refrescarEtiquetas?.()}
+    if(!esEtiqueta){baseFallo=false}
+  });
+  capa.on('tileerror',()=>{
+    errores++;
+    if(cargadas===0&&errores>=2){
+      if(esEtiqueta&&esriEtiquetasOk){esriEtiquetasOk=false;refrescarEtiquetas?.()}
+      if(!esEtiqueta){baseFallo=true;if(modo==='mapa'&&!avisoBase){avisoBase=true;error(`${nombre} base imagery could not be loaded. Vector borders and labels remain active.`)}}
+    }
+  });
+}
 function iniciarMapa(){
   if(mapa||!window.L)return;
   mapa=L.map('mapa',{zoomControl:false,worldCopyJump:true,minZoom:2,maxZoom:18,zoomSnap:1}).setView(CENTRO_AMERICA,zoomAjuste());
   L.control.zoom({position:'bottomright'}).addTo(mapa);
   // Mismo mosaico Blue Marble que la textura del globo: el paso de 3D a 2D no cambia la imagen.
-  L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg',{maxNativeZoom:8,maxZoom:18,className:'base-nasa',attribution:'NASA Blue Marble · GIBS'}).addTo(mapa);
+  const nasaBase=L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg',{maxNativeZoom:8,maxZoom:18,className:'base-nasa',attribution:'NASA Blue Marble · GIBS'}).addTo(mapa);
+  vigilarBase(nasaBase,'NASA Blue Marble',false);
   // Al acercarse, foto satelital de alta resolución (mosaico fijo, no en vivo) y nombres de lugares encima.
   const ESRI='https://server.arcgisonline.com/ArcGIS/rest/services/';
-  L.tileLayer(ESRI+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{minZoom:6,maxNativeZoom:19,maxZoom:18,zIndex:1,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}).addTo(mapa);
+  const esriImg=L.tileLayer(ESRI+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{minZoom:6,maxNativeZoom:19,maxZoom:18,zIndex:1,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}).addTo(mapa);
+  vigilarBase(esriImg,'High-resolution satellite',false);
   mapa.createPane('etiquetas').style.zIndex=350;
-  L.tileLayer(ESRI+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{pane:'etiquetas',minZoom:6,maxNativeZoom:19,maxZoom:18,attribution:'Labels © Esri'}).addTo(mapa);
+  const esriEtq=L.tileLayer(ESRI+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{pane:'etiquetas',minZoom:6,maxNativeZoom:19,maxZoom:18,attribution:'Labels © Esri'}).addTo(mapa);
+  vigilarBase(esriEtq,'Place labels',true);
   mapa.on('click',e=>{if($('consultar').disabled)return;elegirPunto(e.latlng.lat,L.Util.wrapNum(e.latlng.lng,[-180,180]))});
   baseVectorial();
 }
@@ -42,7 +66,8 @@ async function consultar(){const b=$('consultar');if(b.disabled)return;
   document.dispatchEvent(new CustomEvent('sicc:punto',{detail:[lat,lon]}));
   b.disabled=true;b.textContent='Loading…';$('error').hidden=true;
   try{
-    const r=await api(`/api/tiempo?lat=${lat}&lon=${lon}`);const c=r.datos.current,u=r.datos.current_units;
+    const r=await api(`/api/tiempo?lat=${lat}&lon=${lon}`);const c=r?.datos?.current,u=r?.datos?.current_units;
+    if(!c||!u)throw Error('Live forecast service returned incomplete data.');
     const met=$('meteo');limpiar(met);
     met.append(nodo('p',`${Math.abs(lat).toFixed(2)}° ${lat>=0?'N':'S'}, ${Math.abs(lon).toFixed(2)}° ${lon>=0?'E':'W'} · ${c.time.replace('T',' ')} UTC`,'coordenadas'));
     const tarjetas=nodo('div',undefined,'tarjetas');const valor=v=>v===null||v===undefined?'—':decimal(v,1);
@@ -53,7 +78,11 @@ async function consultar(){const b=$('consultar');if(b.disabled)return;
     pronostico={lat,lon,horas:r.datos.hourly,unidades:r.datos.hourly_units,fuente:r.fuente,consulta:r.consulta_utc};
     if(mapa){if(punto)mapa.removeLayer(punto);const dir=Number(c.wind_direction_10m);const icon=L.divIcon({className:'',html:Number.isFinite(dir)?`<div class="viento" style="transform:rotate(${dir+180}deg)">↑</div>`:'<div class="marca-punto-mapa"></div>',iconSize:[32,38],iconAnchor:[16,19]});punto=L.marker([lat,lon],{icon,interactive:false}).addTo(mapa)}
     document.dispatchEvent(new CustomEvent('sicc:pronostico',{detail:pronostico}));
-  }catch(e){error(e);limpiar($('meteo'));pronostico=null;document.dispatchEvent(new CustomEvent('sicc:pronostico',{detail:null}))}
+  }catch(e){
+    const msg=mensajeError(e,'Live forecast service could not be reached. Check your connection or try again later.');
+    error(msg);const met=$('meteo');limpiar(met);met.append(nodo('p',msg,'pista'));
+    pronostico=null;document.dispatchEvent(new CustomEvent('sicc:pronostico',{detail:null}));
+  }
   finally{b.disabled=false;b.textContent='Get forecast'}}
 $('consulta-punto').onsubmit=e=>{e.preventDefault();consultar()};
 function csvPunto(){
@@ -108,28 +137,44 @@ if(typeof ResizeObserver==='function'){const ro=new ResizeObserver(medirColumnaM
 addEventListener('resize',medirColumnaMapa);medirColumnaMapa();
 
 // ---------------------------------------------------------------- globo 3D ⇄ mapa 2D
-let modo='globo',cambiando=false;
+let modo='globo',cambiando=false,vistaPendiente=null,transicionActual=null;
 const esperar=ms=>new Promise(r=>setTimeout(r,ms));
 function marcarVista(){$('vista-globo').setAttribute('aria-pressed',String(modo==='globo'));$('vista-mapa').setAttribute('aria-pressed',String(modo==='mapa'))}
 async function cambiarVista(nuevo){
-  if(nuevo===modo||cambiando||!mapa)return;
-  if(!window.Espacio){modo=nuevo;document.body.classList.toggle('modo-mapa',nuevo==='mapa');document.body.classList.toggle('modo-globo',nuevo==='globo');marcarVista();return}
+  if(!mapa)return;
+  if(cambiando){vistaPendiente=nuevo;return transicionActual}
+  if(nuevo===modo)return;
+  if(!window.Espacio){
+    modo=nuevo;document.body.classList.toggle('modo-mapa',nuevo==='mapa');document.body.classList.toggle('modo-globo',nuevo==='globo');
+    marcarVista();document.dispatchEvent(new CustomEvent('sicc:vista',{detail:nuevo}));
+    if(nuevo==='mapa'&&baseFallo&&!avisoBase){avisoBase=true;error('Base satellite imagery could not be loaded. Vector borders and labels remain active.')}
+    return;
+  }
   cambiando=true;document.body.classList.add('en-transicion');modo=nuevo;marcarVista();
-  try{
-    if(nuevo==='mapa'){
-      mapa.invalidateSize({animate:false});mapa.setView(CENTRO_AMERICA,zoomAjuste(),{animate:false});
-      const c=mapa.getCenter();
-      await window.Espacio.aMapa({lon:c.lng,lat:c.lat,zoom:mapa.getZoom()});
-      document.body.classList.replace('modo-globo','modo-mapa');
-      document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'mapa'}));
-      await esperar(520);window.Espacio.pausar(true);
-    }else{
-      const c=mapa.getCenter(),vuelta=window.Espacio.aGlobo({lon:L.Util.wrapNum(c.lng,[-180,180]),lat:c.lat,zoom:mapa.getZoom()});
-      document.body.classList.replace('modo-mapa','modo-globo');
-      document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'globo'}));
-      await esperar(420);await vuelta.animar();
+  transicionActual=(async()=>{
+    try{
+      if(nuevo==='mapa'){
+        mapa.invalidateSize({animate:false});mapa.setView(CENTRO_AMERICA,zoomAjuste(),{animate:false});
+        const c=mapa.getCenter();
+        await window.Espacio.aMapa({lon:c.lng,lat:c.lat,zoom:mapa.getZoom()});
+        document.body.classList.toggle('modo-mapa',true);document.body.classList.toggle('modo-globo',false);
+        document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'mapa'}));
+        if(baseFallo&&!avisoBase){avisoBase=true;error('Base satellite imagery could not be loaded. Vector borders and labels remain active.')}
+        await esperar(520);
+        if(!vistaPendiente||vistaPendiente==='mapa')window.Espacio.pausar(true);
+      }else{
+        const c=mapa.getCenter(),vuelta=window.Espacio.aGlobo({lon:L.Util.wrapNum(c.lng,[-180,180]),lat:c.lat,zoom:mapa.getZoom()});
+        document.body.classList.toggle('modo-globo',true);document.body.classList.toggle('modo-mapa',false);
+        document.dispatchEvent(new CustomEvent('sicc:vista',{detail:'globo'}));
+        await esperar(420);await vuelta.animar();
+      }
+    }finally{
+      cambiando=false;document.body.classList.remove('en-transicion');
     }
-  }finally{cambiando=false;document.body.classList.remove('en-transicion')}
+    const sig=vistaPendiente;vistaPendiente=null;
+    if(sig&&sig!==modo)return cambiarVista(sig);
+  })();
+  return transicionActual;
 }
 $('vista-globo').onclick=()=>cambiarVista('globo');
 $('vista-mapa').onclick=()=>cambiarVista('mapa');
@@ -141,8 +186,10 @@ function marcar(lat,lon,nombre){
   if(nombre)marcaLugar.bindTooltip(nombre,{permanent:true,direction:'top',offset:[0,-8],className:'marca-lugar'}).openTooltip();
 }
 window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{await cambiarVista('mapa');mapa.setView([lat,lon],z)},marcar,soloMapa};
-const salidaHash=()=>{if(location.hash==='#map')cambiarVista('mapa')};
-document.addEventListener('espacio:listo',()=>setTimeout(salidaHash,3700));
+const salidaHash=()=>{if(location.hash==='#map'){if(modo==='mapa'&&window.Espacio)window.Espacio.pausar(true);else cambiarVista('mapa')}};
+document.addEventListener('espacio:listo',salidaHash);
+setTimeout(()=>{if(location.hash==='#map'&&modo!=='mapa'&&!window.Espacio)salidaHash()},1200);
+addEventListener('hashchange',()=>{cambiarVista(location.hash==='#map'?'mapa':'globo')});
 
 // ---------------------------------------------------------------- base vectorial: fronteras y nombres (Natural Earth)
 function baseVectorial(){
@@ -157,12 +204,13 @@ function baseVectorial(){
     CIUDADES.forEach(([n,la,lo,z])=>etq.push([L.marker([la,lo],{pane:'referencia',interactive:false,keyboard:false,icon:L.divIcon({className:'etq-ciudad',html:'<i></i>'+n,iconSize:null})}),z]));
     const capa=L.layerGroup().addTo(mapa);
     const ver=()=>{
-      // Desde el zoom 6 rotulan las etiquetas de Esri, más detalladas.
-      const z=mapa.getZoom(),visibles=z>=6?[]:etq.filter(([,zmin])=>z>=zmin);
+      // Desde el zoom 6 rotulan las etiquetas de Esri, más detalladas, salvo si sus teselas fallan.
+      const z=mapa.getZoom(),visibles=(z>=6&&esriEtiquetasOk)?[]:etq.filter(([,zmin])=>z>=zmin);
       capa.clearLayers();visibles.forEach(([m])=>capa.addLayer(m));
       const ocupados=[];
       visibles.map(([m])=>m.getElement()).forEach(el=>{const r=el.getBoundingClientRect();const cruza=ocupados.some(o=>r.left<o.right+4&&r.right+4>o.left&&r.top<o.bottom+2&&r.bottom+2>o.top);el.style.visibility=cruza?'hidden':'';if(!cruza)ocupados.push(r)});
     };
+    refrescarEtiquetas=ver;
     mapa.on('zoomend',ver);ver();
   }).catch(()=>{});
 }

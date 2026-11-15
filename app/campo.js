@@ -51,10 +51,12 @@ const cP=document.createElement('canvas');cP.className='campo-particulas';cP.set
 const ctxP=cP.getContext('2d');
 
 function pintarCampo(){
-  const s=mapa.getSize();cT.style.width=s.x+'px';cT.style.height=s.y+'px';L.DomUtil.setPosition(cT,mapa.containerPointToLayerPoint([0,0]));cT.style.opacity=opacidad;
-  if(!horasActivas().length||variable==='ninguna'){cT.width=1;cT.height=1;return}
+  const s=mapa.getSize();cT.style.width=Math.max(0,s.x)+'px';cT.style.height=Math.max(0,s.y)+'px';L.DomUtil.setPosition(cT,mapa.containerPointToLayerPoint([0,0]));cT.style.opacity=opacidad;
+  if(!horasActivas().length||variable==='ninguna'||s.x<=0||s.y<=0){cT.width=1;cT.height=1;return}
   // Mercator: la latitud solo depende de y y la longitud solo de x.
-  const paso=3,w=Math.ceil(s.x/paso),h=Math.ceil(s.y/paso),img=new ImageData(w,h),lats=new Float64Array(h),lons=new Float64Array(w);
+  const paso=3,w=Math.ceil(s.x/paso),h=Math.ceil(s.y/paso);
+  if(w<=0||h<=0){cT.width=1;cT.height=1;return}
+  const img=new ImageData(w,h),lats=new Float64Array(h),lons=new Float64Array(w);
   for(let y=0;y<h;y++)lats[y]=mapa.containerPointToLatLng([0,y*paso+paso/2]).lat;
   for(let x=0;x<w;x++)lons[x]=mapa.containerPointToLatLng([x*paso+paso/2,0]).lng;
   const M=G?campo(variable,hora):null,pg=pasoGlobal(),MG=campoG(variable,pg);if(GM&&pg!==null&&!MG)pedirGlobal(variable,pg);
@@ -66,7 +68,8 @@ function pintarCampo(){
 // Partículas: campo de velocidad en píxeles precalculado (rejilla de 8 px); velocidad en pantalla constante con el zoom.
 const CEL=8,ESC=.42;let FV=null;
 function campoPantalla(){
-  const s=mapa.getSize(),nx=Math.ceil(s.x/CEL)+1,ny=Math.ceil(s.y/CEL)+1,u=new Float32Array(nx*ny),v=new Float32Array(nx*ny),ok=new Uint8Array(nx*ny),rap=new Float32Array(nx*ny);
+  const s=mapa.getSize();if(s.x<=0||s.y<=0)return null;
+  const nx=Math.ceil(s.x/CEL)+1,ny=Math.ceil(s.y/CEL)+1,u=new Float32Array(nx*ny),v=new Float32Array(nx*ny),ok=new Uint8Array(nx*ny),rap=new Float32Array(nx*ny);
   const lats=[],lons=[];for(let y=0;y<ny;y++)lats.push(mapa.containerPointToLatLng([0,y*CEL]).lat);for(let x=0;x<nx;x++)lons.push(mapa.containerPointToLatLng([x*CEL,0]).lng);
   const U=G?G.variables.viento_u_ms[hora]:null,V=G?G.variables.viento_v_ms[hora]:null,pg=pasoGlobal(),W=campoG('viento',pg);if(GM&&pg!==null&&!W)pedirGlobal('viento',pg);
   const UG=W?W.viento_u_ms:null,VG=W?W.viento_v_ms:null;
@@ -87,7 +90,7 @@ function frame(){
   if(!reducido&&!document.hidden&&!enGlobo())raf=requestAnimationFrame(frame);
 }
 function estatico(){ctxP.setTransform(1,0,0,1,0,0);ctxP.clearRect(0,0,cP.width,cP.height);if(!FV||!conParticulas)return;ctxP.setTransform(DPR,0,0,DPR,0,0);ctxP.lineWidth=1.2;ctxP.strokeStyle='rgba(255,255,255,.7)';const c=new Path2D();for(let k=0;k<Math.min(N,900);k++){let x=px[k],y=py[k];if(x<0)continue;c.moveTo(x,y);for(let s=0;s<16;s++){const q=vel(x,y);if(!q)break;x+=q[0]*1.5;y+=q[1]*1.5;c.lineTo(x,y)}}ctxP.stroke(c)}
-function tamano(){const s=mapa.getSize();cP.width=Math.round(s.x*DPR);cP.height=Math.round(s.y*DPR)}
+function tamano(){const s=mapa.getSize();cP.width=Math.max(1,Math.round(s.x*DPR));cP.height=Math.max(1,Math.round(s.y*DPR))}
 const ley=$('leyenda-campo');
 const pantallaCorta=matchMedia('(max-width:700px), (max-height:700px)');
 let leyendaElegida=null;

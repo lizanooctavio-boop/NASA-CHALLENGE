@@ -14,7 +14,25 @@ const CAPAS={
   sst:{capa:'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies',z:3,op:.75,zoom:7},
   aod:{capa:'MODIS_Combined_Value_Added_AOD',z:4,op:.7,zoom:6}
 };
-const estado={},vivo={},turno={};
+const NOMBRES_CAPAS={sat:'GOES-East satellite',imerg:'IMERG rain rate',sst:'Sea surface temperature anomaly',aod:'Dust and smoke (AOD)',radar:'Precipitation radar'};
+const estado={},vivo={},turno={},avisados=new Set();
+function avisarFuente(clave,msg){
+  if(avisados.has(clave))return;
+  avisados.add(clave);
+  if(typeof error==='function')error(msg);
+}
+function vigilarTeselas(capa,k,alFallo){
+  let cargadas=0,errores=0;
+  capa.on('tileload',()=>{cargadas++;avisados.delete(k)});
+  capa.on('tileerror',()=>{
+    errores++;
+    if(cargadas===0&&errores>=2){
+      estado[k]='unavailable';
+      alFallo?.();
+      avisarFuente(k,`${NOMBRES_CAPAS[k]||k} imagery is currently unavailable.`);
+    }
+  });
+}
 const GIBS='https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/';
 // GOES-East publica una imagen cada 10 min con ~30–40 min de retraso; las horas aún no publicadas dan 404.
 // Se busca la más reciente desde el navegador, sin depender de la hora fijada al compilar.
@@ -37,10 +55,12 @@ async function capaGibs(k){
     if(vivo[k]&&estado[k]===d.hora_utc)return;
     // La imagen nueva se superpone y la anterior se retira al cargar: sin parpadeo al renovar.
     const viejo=vivo[k];
-    vivo[k]=L.tileLayer(`${GIBS}${d.capa}/default/${d.hora_utc}/${d.matriz}/{z}/{y}/{x}.${d.formato}`,{maxNativeZoom:c.zoom,maxZoom:18,bounds:c.limites,opacity:c.op,zIndex:c.z,attribution:'NASA GIBS'}).addTo(mapa);
+    vivo[k]=L.tileLayer(`${GIBS}${d.capa}/default/${d.hora_utc}/${d.matriz}/{z}/{y}/{x}.${d.formato}`,{maxNativeZoom:c.zoom,maxZoom:18,bounds:c.limites,opacity:c.op,zIndex:c.z,attribution:'NASA GIBS'});
+    vigilarTeselas(vivo[k],k,()=>{if(vivo[k]){mapa.removeLayer(vivo[k]);vivo[k]=null}if(k==='sat')horaSat()});
+    vivo[k].addTo(mapa);
     if(viejo)vivo[k].once('load',()=>mapa.removeLayer(viejo));
     estado[k]=d.hora_utc;
-  }catch(e){if(turno[k]===mio){if(vivo[k]){mapa.removeLayer(vivo[k]);vivo[k]=null}estado[k]='unavailable'}}
+  }catch(e){if(turno[k]===mio){if(vivo[k]){mapa.removeLayer(vivo[k]);vivo[k]=null}estado[k]='unavailable';avisarFuente(k,`${NOMBRES_CAPAS[k]||k} imagery is currently unavailable.`)}}
   if(k==='sat')horaSat();
 }
 function horaSat(){
@@ -51,9 +71,11 @@ async function radar(){
   const mio=turno.radar=(turno.radar||0)+1;
   if(vivo.radar){mapa.removeLayer(vivo.radar);vivo.radar=null}
   if(!$('chk-radar').checked){estado.radar=null;return}
-  try{const r=await fetch('https://api.rainviewer.com/public/weather-maps.json');const d=await json(r);if(!r.ok)throw Error('RainViewer '+r.status);const f=d.radar.past.at(-1);if(!$('chk-radar').checked||turno.radar!==mio)return;
-    vivo.radar=L.tileLayer(`${d.host}${f.path}/256/{z}/{x}/{y}/2/1_1.png`,{opacity:.8,maxNativeZoom:7,maxZoom:18,zIndex:6,attribution:'Radar © RainViewer'}).addTo(mapa);
-    estado.radar=new Date(f.time*1000).toISOString()}catch(e){if(turno.radar===mio)estado.radar='unavailable'}
+  try{const r=await fetch('https://api.rainviewer.com/public/weather-maps.json');const d=await json(r);if(!r.ok)throw Error('RainViewer '+r.status);const f=d?.radar?.past?.at(-1);if(!f?.path)throw Error('Radar unavailable');if(!$('chk-radar').checked||turno.radar!==mio)return;
+    vivo.radar=L.tileLayer(`${d.host}${f.path}/256/{z}/{x}/{y}/2/1_1.png`,{opacity:.8,maxNativeZoom:7,maxZoom:18,zIndex:6,attribution:'Radar © RainViewer'});
+    vigilarTeselas(vivo.radar,'radar',()=>{if(vivo.radar){mapa.removeLayer(vivo.radar);vivo.radar=null}});
+    vivo.radar.addTo(mapa);
+    estado.radar=new Date(f.time*1000).toISOString()}catch(e){if(turno.radar===mio){estado.radar='unavailable';avisarFuente('radar','Live precipitation radar is currently unavailable.')}}
 }
 for(const k in CAPAS)$('chk-'+k).onchange=()=>capaGibs(k);
 $('chk-radar').onchange=radar;
