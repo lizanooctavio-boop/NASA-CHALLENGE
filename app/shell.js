@@ -142,7 +142,8 @@ function marcar(lat,lon,nombre){
 }
 window.SICC_vista={modo:()=>modo,cambiar:cambiarVista,irA:async(lat,lon,z)=>{await cambiarVista('mapa');mapa.setView([lat,lon],z)},marcar,soloMapa};
 const salidaHash=()=>{if(location.hash==='#map')cambiarVista('mapa')};
-document.addEventListener('espacio:listo',()=>setTimeout(salidaHash,3700));
+document.addEventListener('espacio:listo',()=>{document.body.classList.remove('cargando');setTimeout(salidaHash,3700)});
+if(window.Espacio)document.body.classList.remove('cargando');
 
 // ---------------------------------------------------------------- base vectorial: fronteras y nombres (Natural Earth)
 function baseVectorial(){
