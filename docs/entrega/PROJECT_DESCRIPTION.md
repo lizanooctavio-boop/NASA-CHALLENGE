@@ -17,11 +17,11 @@ All project submission form fields on `spaceappschallenge.org` must be completed
 | **Project Name** | Short, descriptive title of the project. | **Earth System Trend Detective** |
 | **High-Level Project Summary** | Concise overview of what the team built and why it matters. | Provided in Section 2.1 below. |
 | **Link to Project Demo** | Publicly accessible URL (no logins, permissions, or paywalls) to **either** a `<= 30-second video` **or** a `<= 7-slide presentation`. | Choose one format; see `docs/entrega/GUION_DEMO.md`. |
-| **Link to Final Project** | Publicly accessible URL to the live interactive application and/or open-source code repository (`github.com`). | Live demo: <https://sicc952.onrender.com> · Repo: <https://github.com/lizanooctavio-boop/NASA-CHALLENGE> |
+| **Link to Final Project** | Publicly accessible URL to the live interactive application and/or open-source code repository (`github.com`). | Live demo: <https://nasa-challenge-q6cx.onrender.com/> · Repo: <https://github.com/lizanooctavio-boop/NASA-CHALLENGE> |
 | **Detailed Project Description** | Explanation of what the solution does, how it works, how it responds to the challenge objectives, and what benefits it provides. | Provided in Sections 2.2–2.6 below. |
-| **Space Agency Data** | Explicit list and citations of all NASA and Space Agency Partner datasets, APIs, and resources used (required for Global Judging eligibility). | All **13** official challenge resources and additional NASA/CSA/NOAA datasets listed in Section 2.5 and `README.md`. |
-| **Other Data, Tools, Coding Languages & Hardware** | All third-party datasets, software libraries, programming languages, and hardware used. | Listed in Section 2.6 and `README.md`. |
-| **Use of Artificial Intelligence (AI) / Super Intelligence (SI)** | Mandatory disclosure explaining which AI/SI tools were used, how they were used, and how outputs were verified. | Full disclosure in `docs/entrega/AI_USE.md`. |
+| **NASA Data** | Specific NASA data and resources used; at least one is required to be eligible for a Global Award. | All **13** official challenge resources and additional NASA/CSA/NOAA datasets listed in Section 2.5 and `README.md`. |
+| **Space Agency Partner Data and Other References** | All data, resources and tools used, including code, text and images, even if open source. | Listed in Section 2.6 and `README.md`. |
+| **Use of Super Intelligence (SI)** | Whether and how SI tools were used. This answer is collected for data purposes and is **not shown to judges**; judges do see SI indicators (watermarks, descriptive text, metadata) inside the project. | Full disclosure in `docs/entrega/AI_USE.md`. |
 | **Mandatory Submission Checkboxes** | Teams must check **`Terms and Conditions`** and **`Confirm All Work is Original`** before clicking **Submit for Judging**. | Open-source licensing (OSI-approved license; defaults to `Apache 2.0` if unspecified per Space Apps Terms). |
 
 ### 1.2 Demo Format Limits (Video vs. Slide Deck)
@@ -45,7 +45,8 @@ According to the Judging & Awards Guide, every eligible project (responding to a
 - **Permitted with Mandatory Disclosure:** Participants may use AI/SI tools (LLMs, code assistants, media generators), provided the submission clearly discloses which tools were used and how they contributed.
 - **Watermarking & Metadata:** Any AI-generated visual or audio assets in the project or demo must carry a visible watermark/label and appropriate file metadata.
 - **Strict Prohibition on Agency Logos:** Neither AI-generated assets nor project materials may include or modify official NASA branding, logos (*meatball* or *worm*), mission insignias, or agency flags. Attribution to NASA, CSA, and NOAA must be textual only.
-- **What is not published on `spaceappschallenge.org`:** Exact character limits per text box in the live web portal (which vary slightly by browser/edition, typically ~300–500 characters for the short summary and several thousand characters for detailed fields) and local judging schedule hours are managed inside each authenticated Local Event team dashboard rather than on the public static guide pages.
+- **Not stated in the public guide:** character limits for each form field and local judging hours; check them in the team's Project tab and with the Local Lead.
+- **Other official rules:** demos and final projects may not show images, video, audio or likeness of persons under 18; exceeding 30 seconds or 7 slides makes a project ineligible for Global Judging; the project can be edited and resubmitted until the deadline, and only the last saved submission is judged.
 
 ---
 

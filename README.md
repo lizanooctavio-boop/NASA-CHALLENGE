@@ -2,7 +2,7 @@
 
 **2026 NASA International Space Apps Challenge — "Be an Earth System Trend Detective!"**
 
-- **Live Public Demo:** <https://sicc952.onrender.com>
+- **Live Public Demo:** <https://nasa-challenge-q6cx.onrender.com/>
 - **Challenge Page:** <https://www.spaceappschallenge.org/2026/challenges/earth-system-trend-detective/>
 - **Submission Package Docs:**
   - [Project Description & Official 2026 Requirements](docs/entrega/PROJECT_DESCRIPTION.md)
@@ -66,7 +66,7 @@ node scripts/preparar_meteo.mjs
 python -m http.server 8982 --directory public
 ```
 
-### Run the Automated Test Suite (`236 passed, 242 subtests passed`)
+### Run the Automated Test Suite
 ```bash
 # Run all unit, statistical, cryptographic provenance, and browser E2E tests
 python -m pytest -q
@@ -145,7 +145,7 @@ cd backend && python -m clima_nic recursos
 - `backend/clima_nic/`: Python statistical engine (`estadistica/tendencia_robusta.py`, `estadistica/fdr.py`, `estadistica/indicadores.py`), dataset integrators (`recursos.py`, `recursos_americas.py`, `recursos_europa_africa.py`), and FastAPI service (`api.py`).
 - `data/`: Versioned JSON and compact CSV time series (`recursos_integrados.json`, `clima.json`, `fenomenos_nicaragua.json`, and `data/recursos/`), verified by SHA-256 hashes.
 - `scripts/`: Build scripts (`preparar_render.mjs`, `preparar_meteo.mjs`), core trend contract (`scripts/datos/tendencia.py`), and SAR water-extent calibration (`scripts/sar/`).
-- `tests/`: Automated test suite (`236` tests and `242` subtests).
+- `tests/`: Automated test suite (unit, statistical, provenance and browser tests).
 - `docs/`: Technical documentation, audit logs, and Space Apps submission package (`docs/entrega/`).
 
 ---
@@ -159,5 +159,5 @@ cd backend && python -m clima_nic recursos
   - **Manuel Paniagua** (`Manuel Paniagua`) — Land-surface hydrology (`GLDAS-2.1`, `AppEEARS`, `SMAP`) and regional diagnostics.
   - **Javi** (`JAVITHEARKHI`) — Historical event context and verification support.
 - **Prior Work Disclosure:** The 3D/2D meteorological base viewer and southwest Nicaragua bounding box (`caja_sicc`) adapt foundational components from the team's prior project `SICC-952` (documented in `data/contrato.md` Section 5). All statistical trend engines, multi-method verdicts, 202 regional/global climate investigations, 33 cross-checks, and educational modules were built specifically for `Earth System Trend Detective`.
-- **AI / Super Intelligence (SI) Disclosure:** Developed with assistance from **Claude Code (Opus)**, **OpenAI Codex**, and **Google Gemini (Antigravity)** under human scientific direction and verified by 236 automated tests, independent series recalculations, and Crossref API DOI checks. Full details in [`docs/entrega/AI_USE.md`](docs/entrega/AI_USE.md).
+- **AI / Super Intelligence (SI) Disclosure:** Developed with assistance from **Claude Code (Opus)**, **OpenAI Codex**, and **Google Gemini (Antigravity)** under human scientific direction and verified by the full automated test suite, independent series recalculations, and Crossref API DOI checks. Full details in [`docs/entrega/AI_USE.md`](docs/entrega/AI_USE.md).
 - **License:** Original source code is released under an OSI-compliant open-source license (**Apache License 2.0** per NASA Space Apps Challenge Terms and Conditions); adapted CSA SAR tutorial scripts in `scripts/sar/` retain their original **MIT License** (`scripts/sar/LICENSE-CSA.txt`), and third-party datasets follow their respective open data licenses listed in Section 4.2.
