@@ -327,15 +327,15 @@ def _base_nicaragua(fen, clima):
         v = regiones[rid]["variables"].get("lluvia_anual_imerg")
         if v:
             invs.append(_investigacion(f"lluvia_{rid}", "lluvia", rid, "Annual rainfall", "All the rain that fell in a year.",
-                                       "mm", v["anios"], v["valores"], imerg))
+                                       "mm", v["anios"], v["valores"], imerg, notas=("Area-averaged over the target polygon from 0.1° GPM IMERG Final V07B monthly grids.",)))
     v = regiones["NIC"]["variables"].get("lluvia_jun_nov_imerg")
     if v:
         invs.append(_investigacion("lluvia_jun_nov_NIC", "lluvia", "NIC", "Rainy-season rainfall (June–November)",
-                                   "Rain during the main rainy season.", "mm", v["anios"], v["valores"], imerg))
+                                   "Rain during the main rainy season.", "mm", v["anios"], v["valores"], imerg, notas=("Area-averaged across Nicaragua for June–November from 0.1° GPM IMERG Final V07B monthly grids.",)))
     for d in clima["dominios"]:
         if d["id"] in ("HND", "CRI"):
             invs.append(_investigacion(f"lluvia_{d['id']}", "lluvia", d["id"], "Annual rainfall", "All the rain that fell in a year.",
-                                       "mm", d["anios_validos"], d["serie_anual_mm"], imerg))
+                                       "mm", d["anios_validos"], d["serie_anual_mm"], imerg, notas=("Area-averaged over the national boundary from 0.1° GPM IMERG Final V07B monthly grids.",)))
     for rid in ("NIC", "pacifico", "central", "caribe"):
         v = regiones[rid]["variables"].get("temperatura_gistemp")
         if v:
@@ -348,7 +348,7 @@ def _base_nicaragua(fen, clima):
             invs.append(_investigacion(f"ndvi_sitios_{rid}", "vegetacion", rid, "Vegetation greenness (NDVI) at sample sites",
                                        "How green the vegetation is, from 0 (bare) to 1 (dense), at representative sites.",
                                        "NDVI", v["anios"], v["valores"],
-                                       {"producto": "NASA MODIS MOD13Q1 NDVI (ORNL DAAC subsets)", "url": "https://modis.ornl.gov/"}))
+                                       {"producto": "NASA MODIS MOD13Q1 NDVI (ORNL DAAC subsets)", "url": "https://modis.ornl.gov/"}, notas=("Annual mean across representative MODIS 250 m sample sites in the region (not a wall-to-wall regional average).",)))
     return invs
 
 
@@ -447,16 +447,18 @@ def _contraste(carpeta, permitir_sintetico, nombre_json="resumen_contrastes.json
             unidad = (c["serie_nuestra"]["unidad"].split("/")[0].replace("mg m-3", "mg/m³")
                       .replace("1e15 molec cm-2", "10¹⁵ molecules/cm²"))
             recursos = [recurso] if recurso else []
+            notas_c = ()
             if cid.startswith("clorofila_"):
                 recursos.append(5)
                 titulo, definicion = ("Chlorophyll-a in coastal water",
                                       "A green pigment in microscopic algae; more chlorophyll usually means more algae.")
+                notas_c = ("In shallow coastal waters and estuaries, suspended sediment and dissolved organic matter (CDOM) can inflate satellite chlorophyll-a estimates. Annual averages are tested to avoid seasonal bias.",)
             else:
                 titulo, definicion = TEXTOS_CONTRASTE.get(cid, (c.get("titulo_en", cid), c.get("definicion_en", "")))
             url = next((u for p, u in URL_CONTRASTE.items() if cid.startswith(p)), "https://oceancolor.gsfc.nasa.gov/")
             inv = _investigacion(cid, cat, lugar, titulo, definicion, unidad, [a for a, _ in puntos], [v for _, v in puntos],
                                  {"producto": nombre_en(c["serie_nuestra"]["fuente"]), "url": url},
-                                 recursos=recursos)
+                                 recursos=recursos, notas=notas_c)
             ext = c["serie_externa"]
             inv["contrastes"].append(cid + "_metodo")
             contrastes.append({"id": cid + "_metodo", "investigacion": cid, "tipo": "metodo", "frase_en": frase_en(c),
@@ -497,7 +499,7 @@ def _csa(carpeta, permitir_sintetico):
         invs.append(_investigacion("lluvia_CAN_prairies", "lluvia", "CAN_prairies", "Annual rainfall", "All the rain that fell in a year.",
                                    "mm", d["anios"], d["valores"],
                                    {"producto": "NASA GPM IMERG Final V07B", "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGM_07/summary"},
-                                   recursos=[10]))
+                                   recursos=[10], notas=("Area-averaged across the Canadian Prairies ecological boundary from 0.1° GPM IMERG Final V07B.",)))
     ruta = carpeta / "canada_imerg_may_sep.json"
     if ruta.is_file():
         entradas.append(ruta)
@@ -506,7 +508,7 @@ def _csa(carpeta, permitir_sintetico):
                                    "Rain from May to September, when most of the Prairies' rain falls and satellite estimates are most reliable.",
                                    "mm", d["anios"], d["valores"],
                                    {"producto": "NASA GPM IMERG Final V07B", "url": "https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGM_07/summary"},
-                                   recursos=[10]))
+                                   recursos=[10], notas=("Area-averaged across the Canadian Prairies ecological boundary from 0.1° GPM IMERG Final V07B.",)))
     ruta = carpeta / "canada_gistemp.json"
     if ruta.is_file():
         entradas.append(ruta)
@@ -515,7 +517,7 @@ def _csa(carpeta, permitir_sintetico):
                                    "How much warmer or cooler the air near the ground was than the 1951–1980 average.",
                                    "°C", d["anios"], d["valores"],
                                    {"producto": "NASA GISS GISTEMP v4 (250 km)", "url": d.get("fuente", "https://data.giss.nasa.gov/gistemp/")},
-                                   recursos=[10]))
+                                   recursos=[10], notas=("Area-averaged across the Canadian Prairies ecological boundary from NASA GISS GISTEMP v4 (250 km grid).",)))
     ruta = carpeta / "cocibolca_grealm.csv"
     if ruta.is_file():
         entradas.append(ruta)
