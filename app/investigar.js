@@ -33,9 +33,11 @@ function cargar(){
 
 // ---------------------------------------------------------------- selectores
 function botones(cont,items,activo,alElegir){
+  const teniaFoco=cont.contains(document.activeElement);
   cont.replaceChildren();
-  items.forEach(([id,nombre,rol])=>{const b=nodo('button');b.type='button';b.setAttribute('role','radio');b.dataset.id=id;b.setAttribute('aria-checked',String(id===activo));
-    b.append(nodo('span',nombre));if(rol)b.append(nodo('span',rol,'rol'));b.onclick=()=>alElegir(id);cont.append(b)});
+  items.forEach(([id,nombre,rol])=>{const on=id===activo,b=nodo('button');b.type='button';b.setAttribute('role','radio');b.dataset.id=id;b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1;
+    b.append(nodo('span',nombre));if(rol)b.append(nodo('span',rol,'rol'));b.onclick=()=>{alElegir(id);cont.querySelector(`[data-id="${id}"]`)?.focus()};cont.append(b)});
+  if(teniaFoco)cont.querySelector('[aria-checked="true"]')?.focus();
   cont.onkeydown=ev=>{const paso={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[ev.key];if(!paso)return;ev.preventDefault();
     const ids=items.map(i=>i[0]),i=ids.indexOf(cont.querySelector('[aria-checked="true"]')?.dataset.id);const n=ids[(i+paso+ids.length)%ids.length];alElegir(n);cont.querySelector(`[data-id="${n}"]`)?.focus()};
 }
