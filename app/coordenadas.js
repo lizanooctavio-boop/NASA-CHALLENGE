@@ -194,6 +194,22 @@
   const columna = document.querySelector('#barra-capas .ventana-cuerpo');
   if (columna) { panel.classList.add('coords-en-capas'); columna.prepend(panel); }
   else (document.querySelector('main') || document.body).append(panel);
+  // Opcional: apagado por defecto; solo aparece si el usuario marca «Coordinates» (se recuerda en este navegador).
+  const opcion = nodo('label', 'chk coords-opcion');
+  const casilla = nodo('input');
+  casilla.type = 'checkbox';
+  casilla.id = 'coords-visible';
+  opcion.append(casilla, ' Coordinates');
+  let activo = false;
+  try { activo = localStorage.getItem('etd-coords-visible') === '1'; } catch (e) { /* sin almacenamiento */ }
+  casilla.checked = activo;
+  panel.hidden = !activo;
+  casilla.onchange = () => {
+    panel.hidden = !casilla.checked;
+    try { localStorage.setItem('etd-coords-visible', casilla.checked ? '1' : '0'); } catch (e) { /* sin almacenamiento */ }
+  };
+  if (columna) columna.prepend(opcion);
+  else panel.before(opcion);
 
   let punto = { lat: 12.1364, lon: -86.2514 };
 
