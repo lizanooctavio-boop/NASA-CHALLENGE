@@ -2,10 +2,10 @@
  {
   "id": "primeros_pasos-01",
   "tema": "primeros_pasos",
-  "pregunta_en": "What is Earth System Trend Detective?",
-  "respuesta_en": "An app to explore Earth's weather and long climate records. In Investigate it answers four questions about a series: what changed, where, by how much and how sure we can be.",
-  "pregunta_es": "¿Qué es Earth System Trend Detective?",
-  "respuesta_es": "Una app para explorar el tiempo y los registros climáticos largos de la Tierra. En Investigate responde cuatro preguntas sobre una serie: qué cambió, dónde, cuánto y con qué seguridad.",
+  "pregunta_en": "What is Gnomon?",
+  "respuesta_en": "Gnomon is an app to explore Earth's weather and long climate records. In Investigate it answers four questions about a series: what changed, where, by how much and how sure we can be.",
+  "pregunta_es": "¿Qué es Gnomon?",
+  "respuesta_es": "Gnomon es una app para explorar el tiempo y los registros climáticos largos de la Tierra. En Investigate responde cuatro preguntas sobre una serie: qué cambió, dónde, cuánto y con qué seguridad.",
   "enlace": "investigar"
  },
  {
@@ -894,9 +894,9 @@
   "id": "fuentes_limites-10",
   "tema": "fuentes_limites",
   "pregunta_en": "Is this an official NASA product?",
-  "respuesta_en": "No. It is a team project built for the NASA Space Apps Challenge 2026, \"Earth System Trend Detective\". It uses public data from NASA, NOAA, CSA and other providers, credited by name in Sources.",
+  "respuesta_en": "No. Gnomon is a team project built for the NASA Space Apps Challenge 2026 challenge \"Be an Earth System Trend Detective!\". It uses public data from NASA, NOAA, CSA and other providers, credited by name in Sources.",
   "pregunta_es": "¿Es un producto oficial de la NASA?",
-  "respuesta_es": "No. Es un proyecto de equipo hecho para el NASA Space Apps Challenge 2026, «Earth System Trend Detective». Usa datos públicos de NASA, NOAA, CSA y otros proveedores, citados por su nombre en Sources.",
+  "respuesta_es": "No. Gnomon es un proyecto de equipo hecho para el reto «Be an Earth System Trend Detective!» del NASA Space Apps Challenge 2026. Usa datos públicos de NASA, NOAA, CSA y otros proveedores, citados por su nombre en Sources.",
   "enlace": "fuentes"
  }
 ]

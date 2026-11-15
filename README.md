@@ -1,4 +1,6 @@
-# Earth System Trend Detective
+# Gnomon
+
+*Reading Earth's long-term trends from open satellite and climate records.*
 
 **2026 NASA International Space Apps Challenge — "Be an Earth System Trend Detective!"**
 
@@ -13,7 +15,9 @@
 
 ## 1. What It Does
 
-**Earth System Trend Detective** is an interactive climate-diagnostics platform that answers the four questions of the challenge—**what** is changing, **where** it is changing, **how much** it is changing, and **whether** those changes are statistically **significant**—across **217 observed Earth-system time series**, **89 locations** worldwide, **8 thematic categories**, **33 independent cross-checks**, and all **13 official challenge resources**.
+> The name comes from the Greek *gnṓmōn*, "one who discerns": the rod of a sundial, which reveals something invisible from a shadow. Around 240 BC Eratosthenes compared the shadows of a gnomon in two cities and measured the size of the Earth. Gnomon follows the same idea: open data plus careful reasoning to tell real long-term change from noise.
+
+**Gnomon** is an interactive climate-diagnostics platform that answers the four questions of the challenge—**what** is changing, **where** it is changing, **how much** it is changing, and **whether** those changes are statistically **significant**—across **217 observed Earth-system time series**, **89 locations** worldwide, **8 thematic categories**, **33 independent cross-checks**, and all **13 official challenge resources**.
 
 Every series with at least 10 annual observations is tested simultaneously by **four statistical estimators**:
 1. **Theil–Sen non-parametric slope** with 95% confidence interval (`scipy.stats.theilslopes`), resistant to extreme outlier years.
@@ -170,6 +174,6 @@ See [sources, reproducible downloads, API refresh configuration and limitations]
   - **Astral** (`AstralPiolinXD`) — Europe, Africa & Middle East observational series, in-app help and guided tour, audit verification, and data quality control.
   - **Manuel Paniagua** (`Manuel Paniagua`) — Land-surface hydrology (`GLDAS-2.1`, `AppEEARS`, `SMAP`) and regional diagnostics.
   - **Javi** (`JAVITHEARKHI`) — Asia, Oceania & ocean observational series, Watersheds map, geographic grid, and historical event context.
-- **Prior Work Disclosure:** The 3D/2D meteorological base viewer and southwest Nicaragua bounding box (`caja_sicc`) adapt foundational components from the team's prior project `SICC-952` (documented in `data/contrato.md` Section 5). All statistical trend engines, multi-method verdicts, 217 regional/global climate investigations, 33 cross-checks, and educational modules were built specifically for `Earth System Trend Detective`.
+- **Prior Work Disclosure:** The 3D/2D meteorological base viewer and southwest Nicaragua bounding box (`caja_sicc`) adapt foundational components from the team's prior project `SICC-952` (documented in `data/contrato.md` Section 5). All statistical trend engines, multi-method verdicts, 217 regional/global climate investigations, 33 cross-checks, and educational modules were built specifically for `Gnomon`.
 - **AI / Super Intelligence (SI) Disclosure:** Developed with assistance from **Claude Code (Opus)**, **OpenAI Codex**, and **Google Gemini (Antigravity)** under human scientific direction and verified by the full automated test suite, independent series recalculations, and Crossref API DOI checks. Full details in [`docs/entrega/AI_USE.md`](docs/entrega/AI_USE.md).
 - **License:** Original source code is released under the **Apache License 2.0** ([`LICENSE`](LICENSE), copyright notice in [`NOTICE`](NOTICE)); adapted CSA SAR tutorial scripts in `scripts/sar/` retain their original **MIT License** (`scripts/sar/LICENSE-CSA.txt`), and third-party datasets follow their respective open data licenses listed in Section 4.2.

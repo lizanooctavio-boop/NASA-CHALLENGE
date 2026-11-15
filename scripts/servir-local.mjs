@@ -24,5 +24,5 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(404, {'Content-Type':'text/plain; charset=utf-8'}); res.end('Not found');
   }
 });
-server.listen(8996, '127.0.0.1', () => console.log('Earth Trend Detective: http://127.0.0.1:8996/'));
+server.listen(8996, '127.0.0.1', () => console.log('Gnomon: http://127.0.0.1:8996/'));
 server.on('error', error => { console.error(error.message); process.exitCode = 1; });

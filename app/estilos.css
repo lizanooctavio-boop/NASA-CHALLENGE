@@ -326,7 +326,7 @@ body.aviso-encima main{z-index:7}
 .etq-pais{color:#dfe8f2;font-size:10.5px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;white-space:nowrap;transform:translate(-50%,-50%);text-shadow:0 0 3px #000,0 0 6px #000,0 0 10px #000;pointer-events:none}
 .etq-ciudad{color:#f2f6fa;font-size:11.5px;white-space:nowrap;text-shadow:0 0 3px #000,0 0 6px #000;transform:translate(-3px,-50%);pointer-events:none}.etq-ciudad i{display:inline-block;width:5px;height:5px;border-radius:50%;background:#fff;margin-right:5px;vertical-align:middle;box-shadow:0 0 3px #000}
 
-/* Tendencia de precipitación anual (Trend Detective) */
+/* Tendencia de precipitación anual (Gnomon) */
 .tend-mapa{height:170px;margin:8px 0;border-radius:6px;overflow:hidden;background:#0d1b2a}
 .tend-resumen{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
 .tend-resumen>div{background:rgba(255,255,255,.05);border-radius:6px;padding:8px}
@@ -340,7 +340,7 @@ body.aviso-encima main{z-index:7}
 .tend-etiqueta{background:rgba(13,27,42,.8);border:0;color:#e8f1fa;font-size:11px;box-shadow:none}
 @media(max-width:700px){.tend-mapa-reg{height:170px}}
 
-/* ---------------------------------------------------------------- Trend Detective: escena espacial */
+/* ---------------------------------------------------------------- Gnomon: escena espacial */
 .marca{display:flex;align-items:center;gap:9px;font-size:21px;letter-spacing:-.6px;font-weight:500;color:#dfe8f2}
 .marca b{font-weight:800;color:#fff;margin-left:-5px}
 .marca-punto{width:18px;height:18px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#bfe9ff,#3a8ee8 45%,#0b2a5c 75%);box-shadow:0 0 12px rgba(111,216,255,.55)}
