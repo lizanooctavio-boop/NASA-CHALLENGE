@@ -1,0 +1,65 @@
+/* Pestaña «Help» y recorrido guiado de Terra (app/ayuda.js, app/tutorial.js). Usa las variables de app/estilos.css. */
+
+/* ---------------------------------------------------------------- Help */
+#ayuda .ayuda-herramientas{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:end;margin-bottom:6px}
+#ayuda .ayuda-buscar{display:flex;flex-direction:column;gap:6px;flex:1 1 220px;min-width:0;font-size:13px;color:var(--tenue)}
+#ayuda .ayuda-buscar input{max-width:none;width:100%;box-sizing:border-box;font-size:15px;padding:10px 12px;border-radius:9px;border:1px solid var(--borde);background:rgba(255,255,255,.07);color:var(--texto)}
+#ayuda .ayuda-buscar input::placeholder{color:#9fb0c4}
+#ayuda .ayuda-acciones{display:flex;gap:8px;flex-wrap:wrap}
+#ayuda .ayuda-tour{display:inline-flex;align-items:center;gap:7px;background:rgba(111,216,255,.16);border-color:rgba(111,216,255,.6)}
+#ayuda .ayuda-tour svg{width:14px;height:14px;fill:currentColor}
+#ayuda .ayuda-estado{margin:6px 0 12px;font-size:13px;color:var(--tenue);min-height:1.3em}
+#ayuda .ayuda-tema{margin-bottom:14px}
+#ayuda .ayuda-tema h3{font-size:12px;letter-spacing:.7px;text-transform:uppercase;color:var(--cian);margin:0 0 6px}
+#ayuda .ayuda-preguntas{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+#ayuda .ayuda-item{border:1px solid var(--borde);border-radius:9px;background:rgba(255,255,255,.04);overflow:hidden}
+#ayuda .ayuda-pregunta{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;border:0;border-radius:0;background:transparent;padding:10px 12px;font-size:14px;font-weight:600;line-height:1.35}
+#ayuda .ayuda-pregunta:hover{background:rgba(255,255,255,.07)}
+#ayuda .ayuda-pregunta:focus-visible{outline-offset:-2px}
+#ayuda .ayuda-pregunta svg{flex:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;transition:transform .15s}
+#ayuda .ayuda-pregunta[aria-expanded="true"]{background:rgba(111,216,255,.1)}
+#ayuda .ayuda-pregunta[aria-expanded="true"] svg{transform:rotate(180deg)}
+#ayuda .ayuda-respuesta{padding:2px 12px 12px;font-size:14px;line-height:1.5;color:var(--texto)}
+#ayuda .ayuda-respuesta p{margin:6px 0 10px}
+#ayuda .ayuda-respuesta[hidden]{display:none}
+/* Resaltado temporal del elemento al que lleva «Show me». */
+.ayuda-resaltado{outline:3px solid var(--ambar)!important;outline-offset:3px;border-radius:8px;transition:outline-color .4s}
+nav button[data-tab="ayuda"] svg{fill:none}
+
+/* ---------------------------------------------------------------- recorrido de Terra */
+.tour-capa{position:fixed;inset:0;z-index:4000}
+.tour-capa[hidden]{display:none}
+.tour-capa.tour-sin-foco{background:rgba(3,8,16,.74)}
+.tour-foco{position:fixed;border-radius:12px;box-shadow:0 0 0 9999px rgba(3,8,16,.74);outline:3px solid var(--ambar);pointer-events:none}
+.tour-foco[hidden]{display:none}
+.tour-tarjeta,.tour-invitacion{background:rgba(14,20,34,.97);border:1px solid var(--borde);border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.6);color:var(--texto)}
+.tour-tarjeta{position:fixed;box-sizing:border-box;padding:16px 18px 14px;max-height:calc(100dvh - 24px);overflow:auto}
+.tour-tarjeta:focus{outline:none}
+.tour-tarjeta:focus-visible{outline:2px solid var(--cian);outline-offset:2px}
+.tour-cabeza{display:flex;align-items:center;gap:10px}
+.tour-avatar{flex:none;width:46px;height:46px;border-radius:50%;background:rgba(111,216,255,.12);border:1px solid rgba(111,216,255,.45);display:grid;place-items:center}
+.tour-avatar svg{width:40px;height:40px}
+.tour-quien{margin:0;font-size:13px;color:var(--tenue)}.tour-quien strong{color:#fff;font-size:15px}
+.tour-contador{margin:10px 0 2px;font-size:12px;letter-spacing:.5px;color:var(--tenue)}
+.tour-tarjeta h2{margin:0 0 4px;font-size:18px}
+.tour-tarjeta #tour-texto{margin:0 0 10px;font-size:14.5px;line-height:1.5}
+.tour-oculto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.tour-puntos{display:flex;gap:5px;margin:0 0 12px}
+.tour-puntos i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25)}
+.tour-puntos i.activo{background:var(--ambar)}
+.tour-controles{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.tour-grupo{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+.tour-principal{background:rgba(111,216,255,.22)!important;border-color:rgba(111,216,255,.75)!important}
+.tour-saltar{background:transparent;border-color:transparent;color:var(--tenue);padding-left:4px;padding-right:4px}
+.tour-saltar:hover{color:#fff}
+/* Invitación de la primera visita: pequeña y sin bloquear la app. */
+.tour-invitacion{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:min(360px,calc(100vw - 32px));z-index:3900;display:flex;gap:12px;align-items:flex-start;padding:14px 16px;box-sizing:border-box}
+.tour-invitacion p{margin:2px 0 10px;font-size:14.5px;line-height:1.4}
+.tour-invitacion .tour-controles{justify-content:flex-start}
+.tour-invitacion.tour-en-flujo{position:relative;bottom:auto;left:auto;transform:none;z-index:auto;width:auto;margin:0 0 14px;box-shadow:none;border-color:rgba(246,199,107,.6)}
+@media(prefers-reduced-motion:no-preference){
+  .tour-tarjeta{transition:top .2s ease,left .2s ease}
+  .tour-foco{transition:left .2s ease,top .2s ease,width .2s ease,height .2s ease}
+  .tour-invitacion.tour-en-flujo{animation:tour-entra .3s ease}
+}
+@keyframes tour-entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
