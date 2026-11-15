@@ -1,6 +1,6 @@
 # Auditoría científica de rigor y coherencia (Agente E)
 
-- **Worktree / rama**: `C:\Users\DELL\NASA-CHALLENGE-audit-E` (`codex/audit-ciencia`, base `origin/codex/herramientas-nasa` en `7324c64`).
+- **Rama**: `codex/audit-ciencia` (base `origin/codex/herramientas-nasa` en `7324c64`).
 - **Alcance de la auditoría**: Coherencia interna entre `titulo_en`, `definicion_en`, unidad, periodo, notas, veredicto y gráfica en *Investigate*; rigor e inferencia causal en los 3 recorridos guiados (*guided tours*) y en la pestaña *Learn*; vigencia en vivo de los 13 recursos del reto, URLs de conjuntos de datos y resolución bibliográfica de DOIs en *Sources* y notas.
 - **Línea base**: `217` investigaciones (`85` *Not enough evidence of a trend*, `48` *Methods disagree*, `79` *Trend detected*, `5` sin prueba de tendencia por registro corto), `33` contrastes, `3` recorridos guiados y `13` recursos activos.
 

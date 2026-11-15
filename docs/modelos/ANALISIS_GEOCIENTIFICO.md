@@ -1,8 +1,6 @@
 # Análisis geocientífico: tendencias climáticas de Nicaragua y sus impactos por región
 
-**Documento completo con fuentes:** <https://claude.ai/artifact/RFRMkrS1SfGZMzq8xCtSKr> («Nicaragua: tendencias climáticas y sus impactos por región»).
-
-Resumen de lo que usa el backend (las referencias completas están en el documento enlazado):
+Resumen de lo que usa el backend:
 
 - **Pacífico.** ENOS domina la lluvia de junio–noviembre (r ≈ −0,56 con IMERG 2001–2024). La escorrentía del norte de Centroamérica muestra disminución desde ~1980 y se proyecta −10 a −30 % para 2050–2099 (Hidalgo et al., 2013, *J. Hydrol.* 495).
 - **Central / Corredor Seco.** Canícula más tardía en CHIRPS 1981–2020 (Maurer et al., 2022, *HESS* 26) y más de una semana más larga a mitad de siglo en CMIP5 (Hidalgo y Alfaro, 2019). El resultado depende mucho de la definición: hay que fijarla y publicarla (aquí: `regiones[*].canicula.definicion`).

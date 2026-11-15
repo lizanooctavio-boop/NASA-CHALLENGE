@@ -1,7 +1,6 @@
 # Informe de auditoría — Agente D: Robustez y fallos
 
 - **Rama:** `codex/audit-robustez` (base: `origin/codex/herramientas-nasa` en `7324c64`)
-- **Worktree:** `C:\Users\DELL\NASA-CHALLENGE-audit-D`
 - **Entorno probado:** Build local en `public/` mediante `node scripts/preparar_render.mjs` y `node scripts/preparar_meteo.mjs` (snapshot `128/129`, con `campo_nicaragua` devolviendo HTTP 503 en origen y omitido en `public/clima-base/`).
 - **Navegadores probados:** Google Chrome y Microsoft Edge (CDP headless con WebGL SwiftShader). Firefox y Safari no están instalados en este equipo Windows y quedan pendientes de verificación externa.
 - **Línea base de pruebas:** `pytest -q` → `277 passed, 2 skipped, 2 warnings, 274 subtests passed in 37.48s`.
