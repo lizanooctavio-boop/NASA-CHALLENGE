@@ -57,3 +57,6 @@
 .coords-en-capas .coords-copiar{width:100%}
 .coords-en-capas .coords-valor{font-size:11px}
 
+/* Panel de coordenadas opcional: oculto mientras «Coordinates» no esté marcado. */
+.coords-panel[hidden]{display:none!important}
+.coords-opcion{margin:0 0 6px}
