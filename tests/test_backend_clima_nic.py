@@ -304,6 +304,9 @@ def test_pronostico_imerg_subregion_y_habilidad():
     imerg = consulta.pronostico_estacional("NIC", 2024, "lluvia_jun_nov_imerg")
     merra = consulta.pronostico_estacional("NIC", 2024, "lluvia_jun_nov")
     assert imerg["habilidad_publicada"]["msess"] != merra["habilidad_publicada"]["msess"]
+    principales = {(e["region"], e["modelo"]): e for e in consulta.cargar()["modelo_estacional"]["principales"]}
+    assert imerg["habilidad_publicada"]["msess"] == principales[("NIC (IMERG)", "nino34_tna_mam")]["bloque_1"]["msess"]
+    assert merra["habilidad_publicada"]["msess"] == principales[("NIC", "nino34_tna_mam_sin_tendencia")]["bloque_1"]["msess"]
     fastapi = pytest.importorskip("fastapi")  # noqa: F841
     pytest.importorskip("httpx")
     from fastapi.testclient import TestClient

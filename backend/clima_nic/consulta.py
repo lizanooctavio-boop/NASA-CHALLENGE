@@ -122,8 +122,10 @@ def pronostico_estacional(region, anio, variable="lluvia_jun_nov"):
         p = me.pronostico(y, X, x_nuevo)
     observado = v["valores"][v["anios"].index(anio)] if anio in v["anios"] else None
     clave_region = f"{region} (IMERG)" if variable.endswith("_imerg") else region
+    # La habilidad publicada debe ser la del experimento que reproduce este ajuste (con o sin tendencia).
+    clave_modelo = "nino34_tna_mam_sin_tendencia" if sin_tendencia else "nino34_tna_mam"
     principal = next((e for e in d["modelo_estacional"]["principales"]
-                      if e["region"] == clave_region and e["modelo"] == "nino34_tna_mam"), None)
+                      if e["region"] == clave_region and e["modelo"] == clave_modelo), None)
     return {"disponible": True, "tipo": "pronostico_estacional", "anio": anio, "region": region, "variable": variable,
             "unidad": v["unidad"], "predictores": {"nino34_mam": preds["nino34"][anio], "tna_mam": preds["tna"][anio]},
             **p, "observado": observado,
