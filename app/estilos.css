@@ -173,7 +173,7 @@ a{color:var(--cian)}
 @media(min-width:701px) and (min-height:501px) and (max-width:960px){
   body{--col:min(296px,38vw)}
 }
-@media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:10px;padding:14px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:12px;gap:4px}nav button{font-size:12px;padding:10px;flex:none;white-space:nowrap}nav.mas-derecha{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}nav.mas-izquierda.mas-derecha{-webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent);mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent)}nav.mas-izquierda:not(.mas-derecha){-webkit-mask-image:linear-gradient(to right,transparent,#000 12%);mask-image:linear-gradient(to right,transparent,#000 12%)}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:10px}.etiqueta{letter-spacing:1.2px}h1{font-size:19px}.acciones{width:100%;justify-content:space-between}.estado{white-space:normal}.ventana,.ventana.ancha,.vista,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}#indicador-detalle{right:auto;left:0}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
+@media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:10px;padding:14px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:12px;gap:4px}nav button{font-size:12px;padding:10px;flex:none;white-space:nowrap}nav.mas-derecha{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}nav.mas-izquierda.mas-derecha{-webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent);mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent)}nav.mas-izquierda:not(.mas-derecha){-webkit-mask-image:linear-gradient(to right,transparent,#000 12%);mask-image:linear-gradient(to right,transparent,#000 12%)}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:10px}.etiqueta{letter-spacing:1.2px}h1{font-size:19px}.acciones{width:100%;justify-content:space-between;gap:6px}.estado{white-space:normal}.ventana,.ventana.ancha,.vista,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.vista .ventana-cuerpo{padding:12px}.vista:not(.ventana){padding:0 12px 12px}.vista:not(.ventana)::before{margin:0 -12px 12px}.vista article{padding:12px}#esc-tabla th,#esc-tabla td{padding:8px 5px;font-size:12px}#esc-tabla th{font-size:10px;letter-spacing:.3px}#esc-tabla td strong{white-space:nowrap}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}header .indicador-envoltura{position:static}#indicador-detalle{left:0;right:0;width:auto;max-width:none;max-height:calc(100dvh - 80px);overflow:auto}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
 /* Movil apaisado (poca altura vertical): compactar menu y cabecera en una fila para liberar el lienzo. */
 @media(max-height:500px) and (max-width:1000px){
   aside{display:flex;flex-direction:row;align-items:center;gap:10px;margin:6px 8px 4px;padding:5px 10px}
@@ -255,10 +255,12 @@ code{font-size:12px;background:rgba(255,255,255,.08);padding:1px 5px;border-radi
   body.solo-mapa main{position:fixed;inset:0;margin:0;padding:0;min-height:0;height:100dvh;width:100%}
   body.solo-mapa header{position:fixed;top:10px;left:6px;right:6px;width:auto;height:auto;min-height:58px;padding:8px 10px}
   body.solo-mapa header>div:first-child{display:none}
-  body.solo-mapa .acciones{gap:8px}
-  body.solo-mapa #solomapa{font-size:12px;padding:8px 10px;min-height:44px}
+  body.solo-mapa .acciones{gap:6px;min-width:0}
+  body.solo-mapa .indicador-envoltura{min-width:0}
+  body.solo-mapa .indicador{font-size:11px;padding:6px 10px;min-height:44px;min-width:0;max-width:100%;overflow:hidden}
+  body.solo-mapa #indicador-texto{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.solo-mapa #solomapa{font-size:12px;padding:8px 10px;min-height:44px;flex:none}
   body.solo-mapa .estado{font-size:10px;padding:6px 8px}
-  body.solo-mapa .indicador{font-size:11px;padding:6px 10px;min-height:44px}
   body.solo-mapa #aviso-publico{position:fixed;top:calc(18px + var(--alto-cabecera,58px));left:6px;right:6px;max-width:none;max-height:22dvh;overflow:auto;padding:7px 10px;font-size:11px}
 }
 @media(max-height:500px) and (min-width:560px) and (max-width:1000px){
@@ -269,17 +271,18 @@ code{font-size:12px;background:rgba(255,255,255,.08);padding:1px 5px;border-radi
   #controles-mapa .capas-mapa{grid-area:capas;height:calc(56px + env(safe-area-inset-bottom,0px))}
   .capas-mapa .ventana-cuerpo{padding:4px 6px}
   body.solo-mapa header{top:6px;left:6px;right:calc(50% + 3px);min-height:48px;padding:4px 8px}
+  body.solo-mapa:not(:has(#aviso-publico:not([hidden]))) header{right:auto;max-width:calc(100vw - 12px)}
   body.solo-mapa .estado{display:none}
   body.solo-mapa .acciones{justify-content:space-between;flex:1;min-width:0}
   body.solo-mapa #aviso-publico{top:6px;left:calc(50% + 3px);right:6px;max-height:56px;overflow:auto;padding:5px 9px;font-size:11px;line-height:1.25}
 }
 @media(max-width:480px){
   body.solo-mapa .estado{display:none}
-  body.solo-mapa .acciones{flex-wrap:nowrap}
+  body.solo-mapa .acciones{flex-wrap:wrap;gap:6px}
   body.solo-mapa .indicador-envoltura,body.solo-mapa .indicador{min-width:0}
-  body.solo-mapa .indicador-envoltura{flex:1 1 auto;overflow:hidden}
-  body.solo-mapa .indicador{max-width:100%}
-  body.solo-mapa #solomapa{flex:none}
+  body.solo-mapa .indicador-envoltura{order:3;flex:1 1 100%;overflow:visible}
+  body.solo-mapa .indicador{width:100%;max-width:100%;overflow:hidden;padding:8px 10px;gap:6px;font-size:11px}
+  body.solo-mapa #solomapa{flex:none;padding:8px 10px}
   body.solo-mapa #indicador-texto{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 }
 @media(pointer:coarse) and (max-width:700px),(pointer:coarse) and (max-height:500px) and (max-width:1000px){.leaflet-control-zoom{display:flex}.leaflet-touch .leaflet-bar .leaflet-control-zoom-in{border-bottom:0;border-right:1px solid var(--borde)}}
@@ -299,7 +302,7 @@ body.aviso-encima main{z-index:7}
   .indicador,#solomapa{padding:8px 12px}
   button.mini,.mini{padding:8px 12px}
   .capas-mapa [data-var],.botones-variable button,.botones-region button,.descargas button,nav button{min-height:44px}
-  .vista a,.fuentes-lista a{min-height:44px;display:inline-flex;align-items:center}
+  .vista a,.fuentes-lista a{min-width:44px;min-height:44px;display:inline-flex;align-items:center}
   details.mundial summary,.fuente-detalle summary{display:flex;align-items:center}
   .leaflet-touch .leaflet-bar a,.leaflet-bar a{width:44px;height:44px;line-height:44px}
   #linea-tiempo button{min-height:44px;min-width:44px}
