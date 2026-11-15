@@ -75,9 +75,9 @@ ESTUDIOS = {
         "(Mote et al. 2018, doi:10.1038/s41612-018-0012-1)."
     ),
     "lagos_altiplano": (
-        "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca "
-        "and South American basins driven by Altiplano rainfall variability and rising evaporative demand "
-        "(Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
+        "Published check: Multi-mission satellite radar altimetry tracks multi-year water level swings across South American "
+        "lakes and reservoirs (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004); local climate drivers, glacier melt "
+        "and water management vary by basin."
     ),
 }
 
@@ -558,6 +558,18 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
             anios = [int(f["anio"]) for f in propias]
             valores = [float(f["nivel_m"]) for f in propias]
             rango_m = max(valores) - min(valores)
+            notas_lago = [
+                f"Level range over {anios[0]}–{anios[-1]}: {min(valores):.2f} to {max(valores):.2f} m above sea level "
+                f"(span of {rango_m:.2f} m).",
+                advertencia,
+                ESTUDIOS["lagos_altiplano"],
+            ]
+            if lago_id == "titicaca":
+                notas_lago.append(
+                    "Published check (Altiplano): CHIRPS precipitation records over 1981–2018 document multi-year "
+                    "rainfall variability across the southern Andean Altiplano (Torres-Batlló & Martí-Cardona 2020, "
+                    "doi:10.1016/j.jhydrol.2020.125485)."
+                )
             invs.append(_rec._investigacion(
                 f"altiplano_lagos_{lago_id}",
                 "agua",
@@ -568,12 +580,7 @@ def americas(carpeta: Path) -> tuple[list[dict], list[Path]]:
                 anios,
                 valores,
                 grealm_f,
-                notas=[
-                    f"Level range over {anios[0]}–{anios[-1]}: {min(valores):.2f} to {max(valores):.2f} m above sea level "
-                    f"(span of {rango_m:.2f} m).",
-                    advertencia,
-                    ESTUDIOS["lagos_altiplano"],
-                ],
+                notas=notas_lago,
             ))
 
     return [_limpiar_cero_negativo(i) for i in invs], entradas

@@ -1,7 +1,7 @@
 {
  "esquema": "nasa-challenge/recursos",
  "version_esquema": "1.0.0",
- "generado": "2026-11-14",
+ "generado": "2026-11-15",
  "categorias": [
   {
    "id": "lluvia",
@@ -25492,7 +25492,8 @@
    "notas": [
     "Level range over 2016–2025: 3810.12 to 3810.99 m above sea level (span of 0.87 m).",
     "Regulated outflow at the Desaguadero River gates and multi-year El Niño/La Niña cycles dominate short-term level swings.",
-    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
+    "Published check: Multi-mission satellite radar altimetry tracks multi-year water level swings across South American lakes and reservoirs (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004); local climate drivers, glacier melt and water management vary by basin.",
+    "Published check (Altiplano): CHIRPS precipitation records over 1981–2018 document multi-year rainfall variability across the southern Andean Altiplano (Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
@@ -25600,7 +25601,7 @@
    "notas": [
     "Level range over 1993–2025: 250.98 to 255.01 m above sea level (span of 4.03 m).",
     "Shallow Patagonian lake affected by Senguer River diversions and wind evaporation.",
-    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
+    "Published check: Multi-mission satellite radar altimetry tracks multi-year water level swings across South American lakes and reservoirs (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004); local climate drivers, glacier melt and water management vary by basin."
    ],
    "tendencia": {
     "veredicto": "tendencia_detectada",
@@ -25722,7 +25723,7 @@
    "notas": [
     "Level range over 1993–2025: 178.55 to 179.24 m above sea level (span of 0.69 m).",
     "Fed by meltwater from the Southern Patagonian Ice Field (including Perito Moreno and Upsala glaciers).",
-    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
+    "Published check: Multi-mission satellite radar altimetry tracks multi-year water level swings across South American lakes and reservoirs (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004); local climate drivers, glacier melt and water management vary by basin."
    ],
    "tendencia": {
     "veredicto": "evidencia_insuficiente",
@@ -25812,7 +25813,7 @@
    "notas": [
     "Level range over 2009–2025: 4081.91 to 4083.73 m above sea level (span of 1.82 m).",
     "High-Andean regulated reservoir lake at ~4,080 m elevation.",
-    "Published check: Satellite radar altimetry tracks multi-year water level swings across regulated Lake Titicaca and South American basins driven by Altiplano rainfall variability and rising evaporative demand (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004; Torres-Batlló & Martí-Cardona 2020, doi:10.1016/j.jhydrol.2020.125485)."
+    "Published check: Multi-mission satellite radar altimetry tracks multi-year water level swings across South American lakes and reservoirs (Crétaux et al. 2011, doi:10.1016/j.asr.2011.01.004); local climate drivers, glacier melt and water management vary by basin."
    ],
    "tendencia": {
     "veredicto": "metodos_discrepan",
