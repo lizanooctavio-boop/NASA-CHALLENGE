@@ -23,8 +23,9 @@ body{--izq:256px;--col:min(400px,calc(100vw - 28px))}
 aside{position:fixed;inset:14px auto 14px 14px;width:calc(var(--izq) - 28px);z-index:5;background:var(--vidrio);border:1px solid var(--borde);border-radius:12px;backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);padding:22px 16px;display:flex;flex-direction:column;box-shadow:0 18px 50px rgba(0,0,0,.45)}
 .marca{font-size:30px;letter-spacing:-2px;font-weight:800}
 .marca span{color:var(--cian);margin-left:6px}
-.sub{color:var(--tenue);line-height:1.6;font-size:13px}
-nav{margin-top:22px;display:grid;gap:6px}
+.sub{color:var(--tenue);line-height:1.5;font-size:12.5px}
+.sub strong{color:#fff}
+nav{margin-top:18px;display:grid;gap:5px}
 button,select,input,summary{font:inherit}
 button{cursor:pointer;border:1px solid var(--borde);padding:9px 15px;border-radius:8px;background:rgba(255,255,255,.08);color:var(--texto);font-weight:600;transition:background .15s,border-color .15s}
 button:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3)}
@@ -39,6 +40,12 @@ nav button svg{opacity:.85}
 #plegar-menu{width:34px;height:34px;padding:0;display:grid;place-items:center;flex:none}
 #plegar-menu svg{transition:transform .2s}
 nav button.activo{background:rgba(111,216,255,.16);border-color:rgba(111,216,255,.35);color:#fff}
+nav button[data-tab="investigar"]:not(.activo){border-color:rgba(111,216,255,.28);background:rgba(111,216,255,.06);color:#eef6ff}
+nav button[data-tab="aprender"]{margin-top:6px}
+.ayuda-inicio{padding:12px 14px;border:1px solid rgba(111,216,255,.28);background:rgba(111,216,255,.07);border-radius:10px;margin-bottom:14px}
+.ayuda-inicio h2{font-size:15px;margin:0 0 4px;color:#fff}
+.ayuda-inicio p{margin:0;font-size:12.5px;line-height:1.5;color:#d4e2f0}
+.ayuda-inicio strong{color:#fff}
 .pie{margin-top:auto;color:var(--tenue);font-size:12px;line-height:1.9}
 .insignia{display:inline-block;margin-top:12px;background:rgba(246,199,107,.12);border:1px solid rgba(246,199,107,.4);color:var(--ambar);border-radius:5px;padding:3px 9px}
 /* El margen derecho deja libre la barra de capas; los paneles se estrechan para no tapar la columna inferior. */
@@ -154,7 +161,7 @@ a{color:var(--cian)}
   body.menu-plegado nav button:is(:hover,:focus-visible)::after{content:attr(data-nombre);position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;padding:6px 10px;border-radius:7px;background:rgba(14,20,32,.95);border:1px solid var(--borde);color:var(--texto);font-size:12.5px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.4);pointer-events:none;z-index:20}
   body.menu-plegado #plegar-menu svg{transform:rotate(180deg)}
 }
-@media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:10px;padding:14px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:12px;gap:4px}nav button{font-size:12px;padding:10px;flex:none;white-space:nowrap}nav.mas-derecha{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}nav.mas-izquierda.mas-derecha{-webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent);mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent)}nav.mas-izquierda:not(.mas-derecha){-webkit-mask-image:linear-gradient(to right,transparent,#000 12%);mask-image:linear-gradient(to right,transparent,#000 12%)}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:10px}.etiqueta{letter-spacing:1.2px}h1{font-size:19px}.acciones{width:100%;justify-content:space-between}.estado{white-space:normal}.ventana,.ventana.ancha,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}#indicador-detalle{right:auto;left:0}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
+@media(max-width:700px),(max-height:500px) and (max-width:1000px){body{overflow:auto}aside{position:relative;inset:auto;width:auto;margin:6px 10px 4px;padding:10px 12px}.sub,.pie{display:none}nav{display:flex;overflow:auto;margin-top:8px;gap:4px}nav button{font-size:11.5px;padding:7px 9px;flex:none;white-space:nowrap}nav.mas-derecha{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}nav.mas-izquierda.mas-derecha{-webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent);mask-image:linear-gradient(to right,transparent,#000 12%,#000 82%,transparent)}nav.mas-izquierda:not(.mas-derecha){-webkit-mask-image:linear-gradient(to right,transparent,#000 12%);mask-image:linear-gradient(to right,transparent,#000 12%)}main{margin:0;padding:0 10px 10px;height:auto;width:100%;min-height:60vh}header{width:100%;flex-wrap:wrap;gap:6px 8px;padding:8px 12px}.etiqueta{display:none;letter-spacing:1.2px}h1{font-size:17px}.acciones{width:100%;justify-content:space-between}.estado{white-space:normal}.ventana,.ventana.ancha,.vista.ventana,.vista.ventana.ancha{width:100%;max-height:none}.cabeza-menu #plegar-menu{display:none}#error{right:10px;left:10px;top:10px;bottom:auto;max-width:none}#indicador-detalle{right:auto;left:0}.fila-barra{grid-template-columns:105px 1fr 40px}#mapa{height:100dvh}}
 
 
 /* Barra de capas estilo Meteored (derecha) */
@@ -291,6 +298,7 @@ body.aviso-encima main{z-index:7}
 .interruptor button[aria-pressed="true"]{background:rgba(111,216,255,.2);color:#fff;box-shadow:inset 0 0 0 1px rgba(111,216,255,.45)}
 body.en-transicion .interruptor button{cursor:progress}
 .pista{margin:4px 0 0;font-size:13px;color:var(--tenue)}
+.nota-veredicto{margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,.1);font-size:12px;color:#c6d4e3}
 .coordenadas{margin:0 0 4px;font-size:12.5px;color:var(--cian);font-variant-numeric:tabular-nums}
 .sub-art{margin:-6px 0 4px;font-size:12px}
 .marca-punto-mapa{width:14px;height:14px;border-radius:50%;background:var(--cian);box-shadow:0 0 0 4px rgba(111,216,255,.3);margin:12px auto}
@@ -356,12 +364,45 @@ body.en-transicion .interruptor button{cursor:progress}
 #esc-tabla td strong{display:block;font-size:14px}#esc-tabla .tenue{font-size:11.5px;color:var(--tenue)}
 #ind-contraste-tarjetas strong,#ind-estacional strong{font-size:19px}
 /* Investigate, Learn y Sources */
-#investigar .paso{font-size:12px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--tenue);margin:14px 0 8px}
-#investigar .pregunta{margin:-4px 0 6px;font-size:15px;color:#fff}
+#investigar .ventana-cuerpo{padding:14px 18px}
+#investigar .intro{margin-bottom:8px}
+#investigar .intro h2{font-size:18px;margin-bottom:4px}
+#investigar .intro p{margin:0;font-size:12.5px;line-height:1.45}
+#investigar .paso{font-size:11px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--tenue);margin:8px 0 5px}
+#investigar .paso-nota{font-weight:400;text-transform:none;letter-spacing:0;color:#8fa1b5;font-size:11px}
+#investigar .botones-region{gap:5px;margin:0 0 8px}
+#investigar .botones-region button{padding:5px 10px;font-size:12px;border-radius:8px}
+#investigar .botones-region button .rol{font-size:9.5px}
+#investigar .pregunta{margin:0 0 3px;font-size:14px;font-weight:600;color:#fff}
+#investigar .pista{margin:0 0 4px;font-size:12px;line-height:1.4}
+#inv-lugares{max-height:112px;overflow-y:auto;padding:6px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.3) transparent}
+#inv-variables{max-height:84px;overflow-y:auto;padding:5px 6px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.3) transparent}
+#investigar article{padding:14px 16px;margin-bottom:12px}
+#investigar .tarjetas{gap:10px;margin:10px 0}
+#investigar .tarjeta{padding:11px 13px}
 #investigar .veredicto.aumento{color:#ffb3a8}#investigar .veredicto.disminucion{color:#9cc4ff}#investigar .veredicto.insuficiente{color:var(--tenue)}
-#investigar .veredicto .tarjeta strong{font-size:21px}#investigar .veredicto .detalle{font-size:12.5px}#investigar .veredicto .fuente{font-size:11.5px;color:var(--tenue);margin-top:2px}
+#investigar .veredicto .estado{font-size:18px}
+#investigar .veredicto .veredicto-ayuda{margin:4px 0 0;font-size:12px;line-height:1.4;color:#d6e2ef}
+#investigar .veredicto .tarjeta strong{font-size:20px}#investigar .veredicto .detalle{font-size:12.5px}#investigar .veredicto .fuente{font-size:11.5px;color:var(--tenue);margin-top:2px}
 #investigar .veredicto .nota{margin-top:6px;padding-left:10px;border-left:2px solid var(--linea,rgba(255,255,255,.18))}
+#investigar .veredicto .nota-clave{margin-top:8px;padding:8px 11px;border:1px solid rgba(111,216,255,.38);border-left:3px solid var(--cian);border-radius:8px;background:rgba(111,216,255,.1);color:#fff;font-size:13px;font-weight:600}
 #investigar .veredicto a,#fuentes a{color:var(--cian)}
+@media(max-width:700px),(max-height:500px) and (max-width:1000px){
+  nav button[data-tab="aprender"]{margin-top:0}
+  .ayuda-inicio{padding:8px 10px;margin-top:8px}
+  #investigar .ventana-cuerpo{padding:10px 12px}
+  #investigar .intro{margin-bottom:6px}
+  #investigar .intro h2{font-size:16px;margin-bottom:2px}
+  #investigar .intro p{font-size:12px;line-height:1.35}
+  #investigar .paso{margin:6px 0 4px}
+  #investigar .botones-region{gap:4px;margin:0 0 6px}
+  #investigar .botones-region button{padding:4px 8px;font-size:11.5px}
+  #inv-lugares{max-height:92px;padding:5px}
+  #inv-variables{max-height:72px;padding:4px 5px}
+  #investigar article{padding:11px 12px;margin-bottom:10px}
+  #investigar .tarjetas{gap:8px;margin:8px 0}
+  #investigar .veredicto .estado{font-size:16.5px}
+}
 .contraste{border-top:1px solid var(--borde);padding-top:12px;margin-top:12px}.contraste:first-child{border-top:0;margin-top:0;padding-top:0}
 .contraste h3{font-size:14px;margin:0 0 4px}.contraste .tarjeta strong{font-size:19px}.contraste .frase{font-size:12.5px;color:var(--texto-2);margin:6px 0 0}
 .graf.baja{height:170px}

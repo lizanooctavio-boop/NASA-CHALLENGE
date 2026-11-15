@@ -14,6 +14,15 @@ const VEREDICTO={
   evidencia_insuficiente:['Not enough evidence of a trend','aprender-no-significativo'],
   metodos_discrepan:['Methods disagree','aprender-metodos'],
   datos_insuficientes:['Not enough data for a trend test','aprender-registro-corto']};
+const VEREDICTO_AYUDA={
+  tendencia_detectada:'All statistical methods agree on the direction and rule out zero change at 95% confidence.',
+  evidencia_insuficiente:'Does NOT mean “no change”: natural year-to-year swings or a short record may be hiding a real shift.',
+  metodos_discrepan:'At least one method rules out zero while another still crosses zero or gives p ≥ 0.05, so it is not confirmed as a trend.',
+  datos_insuficientes:'Too few years to test a long-term trend reliably; this series shows short-term or seasonal values instead.'};
+const TEMA_PISTA={
+  Temperature:'Land and air temperature records. Looking for sea or ocean warming (such as the Mediterranean Sea or Caribbean Sea)? Select “Coast & ocean” above.',
+  'Vegetation & ecosystems':'Covers vegetation greenness (NDVI), annual burned area, and forest / tree cover loss (pick a place such as Nicaragua, then select “Tree cover lost per year” below).',
+  'Coast & ocean':'Includes coastal stations (tide gauges, reefs, river mouths) and regional seas or oceans (including the Mediterranean Sea, Caribbean Sea, and global sea level).'};
 const ICONOS={aumento:'<path d="M4 15l6-6 4 4 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   disminucion:'<path d="M4 7l6 6 4-4 6 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
   insuficiente:'<path d="M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>'};
@@ -83,7 +92,8 @@ function pintar(){
   botones($('inv-categorias'),cats.map(c=>[c.id,c.nombre_en]),sel.categoria,id=>elegir({categoria:id}));
   const c=D.categorias.find(x=>x.id===sel.categoria);
   $('inv-pregunta').textContent=c.pregunta_en;
-  $('inv-descripcion').textContent=c.descripcion_en||'';$('inv-descripcion').hidden=!c.descripcion_en;
+  const desc=[c.descripcion_en||'',TEMA_PISTA[c.nombre_en]||''].filter(Boolean).join(' ');
+  $('inv-descripcion').textContent=desc;$('inv-descripcion').hidden=!desc;
   const lugares=[...new Set(deCategoria(sel.categoria).map(i=>i.lugar))].map(lugar).filter(Boolean);
   botones($('inv-lugares'),lugares.map(l=>[l.id,l.nombre_en,l.pais]),sel.lugar,id=>elegir({lugar:id}));
   const variantes=deCategoria(sel.categoria).filter(i=>i.lugar===sel.lugar);
@@ -104,12 +114,15 @@ function resultado(){
   const [desde,hasta]=x.periodo||[x.tiempos[0],x.tiempos.at(-1)];
   const periodo=desde===hasta?String(desde):`${desde}–${hasta}`;
   const [texto,ancla]=corto?['Record too short for a trend test','aprender-registro-corto']:VEREDICTO[t.veredicto]||[t.veredicto,'aprender-tendencia'];
+  const ayuda=corto?VEREDICTO_AYUDA.datos_insuficientes:VEREDICTO_AYUDA[t?.veredicto];
   const cab=nodo('div');cab.append(nodo('p',texto,'estado'),nodo('p',`${x.titulo_en} · ${l.nombre_en} · ${periodo}`,'sub'));
+  if(ayuda)cab.append(nodo('p',ayuda,'veredicto-ayuda'));
   c.append(ic,cab);
   const tj=nodo('div',undefined,'tarjetas');tj.style.gridColumn='1/-1';
   const tar=(a,b,dd)=>{const e=nodo('div',undefined,'tarjeta');e.append(nodo('small',a),nodo('strong',b));if(dd)e.append(nodo('p',dd));tj.append(e)};
+  const esTasaAnual=x.titulo_en==='Tree cover lost per year'||x.titulo_en==='Burned area per year';
   if(ok){
-    tar('How much per decade',`${signo(t.sen.por_decada,d)} ${u}`,`95% CI ${signo(t.sen.ic[0],d)} to ${signo(t.sen.ic[1],d)} · Theil–Sen`);
+    tar(esTasaAnual?'Annual loss rate change / decade':'How much per decade',`${signo(t.sen.por_decada,d)} ${u}`,`95% CI ${signo(t.sen.ic[0],d)} to ${signo(t.sen.ic[1],d)} · Theil–Sen${esTasaAnual?' (change in yearly loss)':''}`);
     tar('How sure',t.mann_kendall_p<0.001?'p < 0.001':`p = ${num(t.mann_kendall_p,3)}`,'Mann–Kendall, corrected for autocorrelation');
     tar('Least squares',`${signo(t.mco.por_decada,d)} ${u}`,`95% CI ${signo(t.mco.ic[0],d)} to ${signo(t.mco.ic[1],d)}`);
   }else if(corto){
@@ -122,11 +135,13 @@ function resultado(){
   }
   if(x.validacion?.estado==='NO_VALIDADA')tar('Validation','Not validated',x.validacion.detalle_en);
   c.append(tj);
+  const notas=x.notas||[];
+  notas.filter(n=>/^Total\b/i.test(n)).forEach(n=>c.append(nodo('p',n,'detalle nota nota-clave')));
   const pie=nodo('p',undefined,'detalle');pie.append(nodo('span',x.definicion_en+' '));
   const a=nodo('a','What does this mean?');a.href='#'+ancla;a.onclick=ev=>{ev.preventDefault();aprender(ancla)};pie.append(a);
   c.append(pie);
-  (x.notas||[]).forEach(n=>c.append(nodo('p',n,'detalle nota')));
-  c.append(nodo('p',x.fuente.producto,'detalle fuente'));
+  notas.filter(n=>!/^Total\b/i.test(n)).forEach(n=>c.append(nodo('p',n,'detalle nota')));
+  c.append(nodo('p',`Trend data source: ${x.fuente.producto} (listed in Sources)`,'detalle fuente'));
   serie(x,t,ok);
 }
 // Las series anuales con años sin dato se dibujan con hueco: el eje es de categorías y, sin rellenar, juntaría 2016 y 2019.
@@ -222,11 +237,16 @@ function fuentes(){
   const lista=$('fuentes-recursos');lista.replaceChildren();
   D.recursos.filter(r=>r.estado==='en_uso').forEach(r=>{const li=nodo('li');li.dataset.recurso=r.id;const a=nodo('a',r.nombre);a.href=r.url;a.target='_blank';a.rel='noopener';
     li.append(a,nodo('span',` · ${r.organizacion}`,'tenue'),nodo('p',r.uso_en));lista.append(li)});
-  const otros=new Map();
-  D.investigaciones.forEach(i=>otros.set(i.fuente.producto,i.fuente.url||''));
-  D.contrastes.forEach(c=>{if(c.tipo==='fuente')otros.set(c.externa.nombre_en,c.externa.url||'')});
+  const catNombre=new Map(D.categorias.map(c=>[c.id,c.nombre_en]));
+  const otros=new Map(),usos=new Map();
+  const sumarUso=(nombre,etq)=>{if(!usos.has(nombre))usos.set(nombre,new Set());if(etq)usos.get(nombre).add(etq)};
+  D.investigaciones.forEach(i=>{otros.set(i.fuente.producto,i.fuente.url||'');sumarUso(i.fuente.producto,catNombre.get(i.categoria)||i.categoria)});
+  D.contrastes.forEach(c=>{if(c.tipo==='fuente'){otros.set(c.externa.nombre_en,c.externa.url||'');
+    const rel=D.investigaciones.filter(i=>i.contrastes.includes(c.id)).map(i=>catNombre.get(i.categoria)||i.categoria);
+    sumarUso(c.externa.nombre_en,rel.length?[...new Set(rel)].join(', ')+' (cross-check)':'cross-check')}});
   const l2=$('fuentes-datos');l2.replaceChildren();
-  [...otros].sort((a,b)=>a[0].localeCompare(b[0])).forEach(([n,u])=>{const li=nodo('li');if(/^https?:/.test(u)&&!u.includes('{')){const a=nodo('a',n);a.href=u;a.target='_blank';a.rel='noopener';li.append(a)}else li.textContent=n;l2.append(li)});
+  [...otros].sort((a,b)=>a[0].localeCompare(b[0])).forEach(([n,u])=>{const li=nodo('li');if(/^https?:/.test(u)&&!u.includes('{')){const a=nodo('a',n);a.href=u;a.target='_blank';a.rel='noopener';li.append(a)}else li.append(nodo('span',n));
+    const uTxt=[...(usos.get(n)||[])].join(', ');if(uTxt)li.append(nodo('span',` · used in: ${uTxt}`,'tenue'));l2.append(li)});
 }
 
 // ---------------------------------------------------------------- mapa y descarga
