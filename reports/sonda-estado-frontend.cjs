@@ -1,0 +1,13 @@
+const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const campo=fs.readFileSync(path.join(root,'app/campo.js'),'utf8');
+const functions=campo.slice(campo.indexOf('function indiceAhora()'),campo.indexOf('function etiquetaHora()'));
+const times=['2026-11-01T00:00','2026-11-01T03:00'];
+const ctx={G:null,horasActivas:()=>times,soporte:{utc:s=>Date.parse(s+'Z')},Date:{now:()=>Date.parse('2026-11-15T12:00Z')}};
+vm.createContext(ctx);vm.runInContext(functions,ctx);
+const result={expiredClock:vm.runInContext('({index:indiceAhora(),label:relativa(indiceAhora())})',ctx)};
+const handlers={},responses=[],requests=[];let run='old';
+const globe={document:{getElementById:id=>({value:60,checked:false,addEventListener(){}}),addEventListener:(e,f)=>handlers[e]=f},window:{FuentesMeteo:{fetch:async url=>{requests.push({url,run});return {ok:true,json:async()=>({run})}}},SICC_campo:{estado:()=>({variable:'temperatura_c',mundial:{paso:0}}),meta:()=>({corrida_utc:run})},GloboMeteo:{textura:(meta,data)=>({meta:meta.corrida_utc,data:data.run})}},addEventListener(){},console,requestAnimationFrame(){}};
+vm.runInNewContext(fs.readFileSync(path.join(root,'app/globo.js'),'utf8'),globe);
+globe.window.Espacio={meteo:data=>responses.push(data),viento(){}};
+(async()=>{await handlers['sicc:campo']();run='new';await handlers['sicc:campo']();result.globeCache={requests,responses};fs.writeFileSync(path.join(__dirname,'frontend-2026-11-15/estado.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2))})();

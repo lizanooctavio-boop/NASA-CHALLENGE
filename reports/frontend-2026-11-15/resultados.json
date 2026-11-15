@@ -1,0 +1,421 @@
+{
+  "initial": {
+    "errors": [],
+    "espacio": true
+  },
+  "investigar": "Investigate\nBe an Earth system trend detective\n\nChoose what to investigate and where. Each answer tells what changed, where, by how much and how sure we can be.\n\nWHAT DO YOU WANT TO INVESTIGATE?\nRain\nTemperature\nVegetation & ecosystems\nWater bodies\nAir quality\nCoast & ocean\nHurricanes\nIce\n\nIs it raining more or less than before?\n\nWHERE?\nNicaragua\nNICARAGUA\nStudy box (SW Nicaragua)\nNICARAGUA\nHonduras\nHONDURAS\nCosta Rica\nCOSTA RICA\nCanadian Prairies\nCANADA\nPacific lowlands\nNICARAGUA\nCentral highlands\nNICARAGUA\nCaribbean coast\nNICARAGUA\nAnnual rainfall\nRainy-season rainfall (June–November)\nAnnual rainfall since 1981 (CHIRPS)\nDays with heavy rain (≥ 10 mm)\nDays with very heavy rain (≥ 20 mm)\nRain per wet day\nWettest 5 days of the year\nLongest dry spell\nRainfall January–September, 1981–2026\nMidsummer drought (canícula) length\nMidsummer drought (canícula) strength\nRain from 15 July to 15 August\n\nNot enough evidence of a trend\n\nAnnual rainfall · Nicaragua · 2001–2024\n\nHOW MUCH PER DECADE\n−64.9 mm\n\n95% CI −233.2 to +98.3 · Theil–Sen\n\nHOW SURE\np = 0.442\n\nMann–Kendall, corrected for autocorrelation\n\nLEAST SQUARES\n−62.3 mm\n\n95% CI −210.8 to +86.1\n\nAll the rain that fell in a year. What does this mean?\n\nNASA GPM IMERG Final V07B\n\nAnnual rainfall · Nicaragua\nSeries (CSV)\nShow on the map\nCross-checks\n\nThe same question answered with another source or another method.\n\nCRU TS 4.10 (University of East Anglia)\nCRU TS 4.10 (UNIVERSITY OF EAST ANGLIA)\n−21.3 mm/decade\n\nNot enough evidence of a trend\n\nNASA GPM IMERG FINAL V07B\n−64.9 mm/decade\n\nNot enough evidence of a trend\n\nAGREEMENT\nr = 0.63\n\nmean difference +210 mm\n\nCRU TS 4.10 vs IMERG over Nicaragua, 2001–2024: r = 0.63, mean difference +210 mm/yr; Sen slopes -21 vs -65 mm/decade; both 'insufficient evidence'; June–November correlation with Niño 3.4: -0.47 (CRU TS 4.10) vs -0.56 (IMERG).\n\nGPCC gauge analysis (via NOAA PSL)\nGPCC GAUGE ANALYSIS (VIA NOAA PSL)\n−79.2 mm/decade\n\nNot enough evidence of a trend\n\nNASA GPM IMERG FINAL V07B\n−64.9 mm/decade\n\nNot enough evidence of a trend\n\nAGREEMENT\nr = 0.94\n\nmean difference −47 mm\n\nGPCC (PSL copy) vs IMERG over Nicaragua, 2001–2024: r = 0.94, mean difference -47 mm/yr; Sen slopes -79 vs -65 mm/decade; both 'insufficient evidence'; June–November correlation with Niño 3.4: -0.64 (GPCC (PSL copy)) vs -0.56 (IMERG).\n\nNASA GPM IMERG monthly, area average from GES DISC OPeNDAP\nNASA GPM IMERG MONTHLY, AREA AVERAGE FROM GES DISC OPENDAP\n−52.3 mm/decade\n\nNot enough evidence of a trend\n\nNASA GPM IMERG FINAL V07B\n−64.9 mm/decade\n\nNot enough evidence of a trend\n\nAGREEMENT\nr = 1.00\n\nmean difference −25 mm\n\nGES DISC OPeNDAP (GPM_3IMERGM 07) area-averaged IMERG vs the app's IMERG series over Nicaragua, 2001–2024: r = 0.999, mean difference -25 mm/yr (polygon includes lakes and uses cell-center cos(lat) weights); Sen slopes -52 vs -65 mm/decade, both 'insufficient evidence'.\n\nGuided examples\nHas Nicaragua's rainfall changed?\nSame total, different rain?\nTropics vs. prairies: is warming the same everywhere?",
+  "tendencias": "Rainfall trend\nHas annual rainfall changed in Nicaragua?\n\nNASA GPM IMERG Final V07B · 2001–2024 · 95% confidence\n\nNicaragua\nMAIN AREA\nStudy box\nREFERENCE BOX\nHonduras\nNEIGHBOR\nCosta Rica\nNEIGHBOR\n\nNicaragua · 2001–2024\n\nInsufficient evidence\n\n−62.3 mm/decade\nLeast-squares slope · 24 years\n\nThe intervals include zero: the change cannot be distinguished from year-to-year variability.\n\nLeast squares\n−62.3 mm/decade (95% CI −210.8 to +86.1)\nLeast squares, HAC\n−62.3 mm/decade (95% CI −144.6 to +19.9)\nTheil–Sen\n−64.9 mm/decade (95% CI −233.2 to +98.3)\nAnnual rainfall\nAnnual rainfall\nLeast squares\nTheil–Sen\n1,600\n1,800\n2,000\n2,200\n2,400\n2001\n2004\n2007\n2010\n2013\n2016\n2019\n2022\n2024\nmm/yr\nTrend and 95% confidence interval by area\nLeast squares\nTheil–Sen\n−400\n−200\n0\n+200\nmm/decade\nNicaragua\nInsufficient evidence\nStudy box\nInsufficient evidence\nHonduras\nInsufficient evidence\nCosta Rica\nMethods disagree\nDownload the evidence\nAnnual series\nSelected area · CSV\nTrends by area\nSlopes and intervals · CSV\nFull evidence\nData, method and rule · JSON",
+  "indicadores": "Climate indicators\nIs Nicaragua's climate changing?\n\nTrends by region from NASA records that do not depend on a single model.\n\nNicaragua\nWHOLE COUNTRY\nPacific\nLOWLANDS\nCentral\nHIGHLANDS · DRY CORRIDOR\nCaribbean\nCOAST\nTemperature\nAnnual rainfall\nRainy season\n\nTrend detected\n\nTemperature anomaly vs. 1951–1980 · Nicaragua · 1981–2024\n\nCHANGE PER DECADE\n+0.294 °C\n\n95% CI +0.217 to +0.374 · Theil–Sen\n\nSIGNIFICANCE\np < 0.001\n\nMann–Kendall, corrected for autocorrelation\n\nWITHOUT EL NIÑO\n+0.269 °C\n\n95% CI +0.220 to +0.318 · Niño 3.4 removed\n\nNASA GISS GISTEMP v4 · station-based\n\nTemperature anomaly vs. 1951–1980 · Nicaragua\nSeries (CSV)\nRegions on the map\nSecond opinion: satellite and stations vs. reanalysis\n\nGISTEMP v4 vs. MERRA-2 T2M reanalysis · 1981–2024 · anomalies from each product's mean\n\nGISTEMP V4\n+0.294 °C/decade\n\n95% CI +0.217 to +0.374\n\nTrend detected\n\nMERRA-2 T2M\n−0.105 °C/decade\n\n95% CI −0.252 to +0.037\n\nNot enough evidence of a trend\n\nCan the rainy season be anticipated?\n\nPredicting June–November rainfall from March–May sea temperatures · NASA IMERG, Nicaragua, 2001–2024 · each year left out of the fit\n\nEL NIÑO 3.4 ALONE\n−10%\n\nskill vs. climatology · p = 0.789\n\n33% of terciles right (33% by chance)\n\nEL NIÑO 3.4 + TROPICAL NORTH ATLANTIC\n+10%\n\nskill vs. climatology · p = 0.051\n\n46% of terciles right (33% by chance)",
+  "fenomenos": "El Niño & cyclones\nENSO PHASE\nNeutral\n\nNOAA ONI thresholds\n\nONI\n-0.43 °C\n\nNDJ 2024 · NOAA CPC\n\nOceanic Niño Index, 1950–present\nWeekly anomalies by Niño region\nSea temperature anomaly on the map\nONI (CSV)\nActive tropical cyclones\nCyclone data unavailable.\nCyclones on the map\nActive cyclones (CSV)\nMore layers\nNASA GPM IMERG rainfall · every 30 min\nShow\nMODIS dust and smoke (aerosol optical depth)\nShow\nGOES-East GeoColor satellite\nShow\nRainViewer radar\nShow",
+  "escenarios": "Climate scenarios\nNicaragua by 2050\n\nNASA NEX-GDDP-CMIP6 · 6 models · 2041–2060 average vs. 1995–2014 · median and model range\n\nRegion\nNicaragua\nPacific\nCentral\nCaribbean\nVARIABLE\tRECENT (1995–2014)\tSSP2-4.5\tSSP5-8.5\tMODELS DRIER / WETTER\nAnnual rainfall\t1,335 mm\t\n−5 %\n−12 to −3\t\n−10 %\n−18 to −2\t6 / 0 of 6\nRainy season (Jun–Nov)\t1,036 mm\t\n−4 %\n−15 to +0\t\n−9 %\n−22 to +2\t5 / 1 of 6\nMidsummer drought (Jul–Aug)\t317 mm\t\n−10 %\n−17 to −1\t\n−16 %\n−22 to −5\t6 / 0 of 6\nMean temperature\t25.9 °C\t\n+1.4 °C\n+1.1 to +1.7\t\n+2.0 °C\n+1.3 to +2.1\t6 of 6 warmer\nScenario\nSSP1-2.6\nSSP2-4.5\nSSP3-7.0\nSSP5-8.5\nSeason\nProjected change by period\n\nCMIP6 · Central America (SCA) · vs. 1981–1995\n\nWarming 2026–2100\nPrecipitation change 2026–2100\nProjections (CSV)",
+  "aprender": "Learn\nHow a trend detective decides\n\nThe ideas behind every verdict in this app.\n\nWhat is a trend?\n\nA trend is a change that keeps going in one direction over many years: rising or falling, wetter or drier, warmer or cooler. Single years jump up and down for many reasons, so a detective looks at the whole record and asks whether the long-term slope stands out from that year-to-year noise.\n\nWe report the slope as change per decade, in the same units as the data, so “+0.30 °C per decade” means about three tenths of a degree warmer every ten years.\n\nConfidence interval\n\nThe slope is an estimate. The 95% confidence interval is the range of slopes that are consistent with the data: if we could repeat the measurement many times, about 95 out of 100 intervals built this way would contain the true value. A narrow interval means a precise estimate; a wide one means a lot of uncertainty.\n\nIf the interval includes zero, the data cannot rule out “no change”.\n\np-value\n\nThe p-value answers one question: if there were no trend at all, how often would random year-to-year variation produce a pattern at least this strong? A small p-value (below 0.05 here) means that would rarely happen by chance.\n\nIt is not the probability that the trend is real, and a small p-value does not prove the cause of a change. It also says nothing about whether the change is large enough to matter: always read it next to the size of the slope.\n\n“Not significant” is not “no change”\n\nWhen the verdict is “Not enough evidence of a trend”, the record and the methods could not tell a trend apart from natural variability. The change may still be there. Missing a real change is called a Type II error, and it is common when the record is short or the year-to-year swings are large.\n\nA longer record can make the same change detectable. That is why a trend that falls short of significance is still worth reporting.\n\nWhy months are not independent\n\nA wet month is often followed by another wet month, and every year repeats the same seasonal cycle. Tests that treat each month as an independent sample count the same information many times and become overconfident.\n\nExample from this app: chlorophyll in the Gulf of Fonseca. A straight line through 264 raw monthly values gives p = 0.0007. After removing the seasonal cycle, averaging each year and correcting for autocorrelation, the Mann–Kendall test gives p = 0.08: the evidence is much weaker than it first looked.\n\nThree methods, one verdict\n\nEvery series is tested three ways: a least-squares line with an interval corrected for autocorrelation, the same line with Newey–West (HAC) errors, and the Theil–Sen slope, which is robust to unusual years. The Mann–Kendall test, corrected for autocorrelation, checks whether values tend to rise or fall without assuming a straight line.\n\nTrend detected: all three intervals exclude zero with the same sign and both tests agree.\nNot enough evidence of a trend: all three intervals include zero.\nMethods disagree: anything in between. The result depends on the method, so it is not presented as a confirmed trend.\nMany questions, more false alarms\n\nEach test has about a 5% chance of a false alarm. Test many variables and places and some will look significant just by luck. Maps of many grid cells use the false discovery rate correction to keep that in check, and a single significant result is always read next to its cross-checks.\n\nShort records\n\nSome satellites are new. SWOT has measured lake levels only since 2023, so its record shows the seasons clearly but is far too short for a trend test. We use it to confirm an older, longer record instead.\n\nMonthly SMAP soil moisture shows how wet Nicaragua’s soils get through the year. Comparing it with GLDAS shows whether both datasets follow the same seasonal cycle. SMAP estimates the top 5 cm, while GLDAS averages the top 10 cm. Local measurements would be needed to validate either estimate.\n\nOther trend tests\n\nSeasonal Mann–Kendall. In monthly data the seasonal cycle swamps a slow trend, so the ordinary Mann–Kendall test loses sensitivity. The seasonal version compares each month only with the same month in other years. This app reaches the same goal by testing annual totals and season totals instead of raw months.\n\nUnit-root tests (augmented Dickey–Fuller). They ask a different question: whether a series wanders like a random walk, not whether it rises or falls. A series with a clear trend can pass or fail them, so they are not used here to decide whether a trend exists.\n\nBased on Statistical test methods to detect trends in time series data (MCMC Addict, 2024).\n\nRecord years, El Niño and how it rains\n\nOne extreme year is not a trend. In 2020 hurricanes Eta and Iota hit Nicaragua two weeks apart; in 2026, a strong El Niño year, the Pacific lowlands had their driest January–September since 1981. Swings like these, driven largely by El Niño and La Niña, are much larger than a slow change in the yearly total, so they can hide it. Removing the part that follows the El Niño index is one way to look underneath.\n\nThe total is also only one way to describe rain. The same yearly amount can fall on fewer, heavier days or on more, lighter ones, and dry spells can grow inside the rainy season. That is why this app also tests how many days bring heavy rain, how hard it rains on a wet day, the wettest five days and the longest dry spell.\n\nFinally, the data source itself can change. A reanalysis such as MERRA-2 suggests Nicaragua’s rainfall doubled since the 1980s, while satellites and rain gauges show nothing of the kind: the observations fed into the model changed, not the climate. Rain trends here come only from records built to stay consistent over time.\n\nCross-checks\n\nEvery dataset has its own errors. A satellite can confuse sediment with algae; a weather station can move; a reanalysis can jump when new observations are added. When a second source or a second method reaches the same verdict, the conclusion is more trustworthy. When they disagree, the disagreement itself is a clue worth investigating.",
+  "fuentes": "Sources\nNASA Space Apps challenge resources used\nGiovanni · NASA\n\nArea-averaged NASA time series and point series used as data sources and cross-checks.\n\nHydrology Time Series · NASA\n\nGLDAS land-model hydrology at sample points.\n\nAppEEARS · NASA\n\nRegional soil moisture from NASA SMAP Level 4.\n\nClimate Data Online (CDO) · NOAA\n\nWeather-station records (GSOM, GHCN-Daily) to cross-check satellite and reanalysis data.\n\nTime-Series Analysis of Remotely-Sensed SeaWiFS Chlorophyll in River-Influenced Coastal Regions · NASA\n\nMethod for chlorophyll time series and significance tests in river-influenced coastal waters.\n\nKNMI Climate Explorer · KNMI\n\nIndependent gridded datasets to cross-check rainfall trends.\n\nStatistical test methods to detect trends in time series data · Medium\n\nSeasonal Mann–Kendall and unit-root tests, explained in the Learn section.\n\nA Comprehensive Guide to Statistical Significance · Statsig\n\nPlain-language guide to p-values, confidence intervals and common misreadings (Learn section).\n\nRadarsat Constellation Mission (RCM) - Data · CSA\n\nRadar images of water extent.\n\nGeo.ca · Government of Canada\n\nBoundary of the Canadian Prairies ecozone used as a contrast region.\n\nSWOT Mission - Information · CSA\n\nLake water-surface elevation for Lake Nicaragua and Lake Managua.\n\nMonitoring and protecting our ecosystem from space · CSA\n\nFraming of the vegetation & ecosystems and water-bodies questions.\n\nSynthetic Aperture Radar python Tutorial · CSA\n\nWorkflow to map surface water from radar images.\n\nDatasets in this app\nCHIRPS v2.0 (UCSB Climate Hazards Center) via KNMI Climate Explorer\nCHIRPS v2.0 daily, 0.25° (UCSB Climate Hazards Center)\nCRU TS 4.10 (University of East Anglia)\nG-REALM lake 000351 (USDA FAS / NASA GSFC satellite altimetry)\nGFED5 burned area, MODIS era (Global Fire Emissions Database)\nGlaMBIE 1.0.0 glacier mass balance (World Glacier Monitoring Service)\nGPCC gauge analysis (via NOAA PSL)\nGRACE/GRACE-FO mascons, CSR RL06.03 (University of Texas at Austin)\nJuigalpa weather station (NOAA GHCN-Daily)\nManagua weather station (NOAA GHCN-Daily)\nMERRA-2 root-zone soil wetness (GWETROOT), regional mean\nMERRA-2 surface soil wetness (GWETTOP), regional mean\nNASA Giovanni area-averaged time series (GPM IMERG monthly)\nNASA GISS GISTEMP v4 (250 km)\nNASA GISS GISTEMP v4, latitude-band means\nNASA GLDAS-2.1 Noah land model (GES DISC), regional mean\nNASA GLDAS-2.1 Noah land model, sample point (Giovanni time series)\nNASA GPM IMERG Final V07B\nNASA GPM IMERG monthly, area average from GES DISC OPeNDAP\nNASA MODIS MOD13Q1 NDVI (ORNL DAAC subsets)\nNASA MODIS-Aqua chlorophyll-a (OBPG, 4 km)\nNASA OPERA DSWx-S1 (Sentinel-1 radar) via PO.DAAC\nNASA SPL4SMGP.008 via AppEEARS\nNASA/CNES SWOT L2 HR LakeSP via PO.DAAC Hydrocron\nNOAA Coral Reef Watch v3.1 daily 5 km Regional Virtual Station «Nicaragua»\nNOAA ERSSTv5 sea surface temperature, 2°\nNOAA IBTrACS v04r01 storm tracks\nNSIDC Sea Ice Index, Version 4 (G02135)\nOceanSODA-ETHZ v2025 surface ocean carbonate system (NOAA NCEI)\nPrairies weather stations (NOAA GSOM from GHCN-Daily, 3 stations)\nPSMSL tide-gauge annual means (Revised Local Reference)\nRADARSAT Constellation Mission (CSA), ScanSAR 30 m GRD, via EODMS\nSWOT (NASA/CNES) monthly mean\nTegucigalpa weather station (NOAA GSOM)\nLicences\n\nCanadian Prairies boundary: Agriculture and Agri-Food Canada, National Ecological Framework for Canada. Contains information licensed under the Open Government Licence – Canada.",
+  "width375": {
+    "scroll": 375,
+    "width": 375,
+    "nav": [
+      {
+        "text": "Weather",
+        "rect": {
+          "x": 25,
+          "y": 65,
+          "width": 125,
+          "height": 54,
+          "top": 65,
+          "right": 150,
+          "bottom": 119,
+          "left": 25
+        },
+        "name": null
+      },
+      {
+        "text": "Investigate",
+        "rect": {
+          "x": 154,
+          "y": 65,
+          "width": 125,
+          "height": 54,
+          "top": 65,
+          "right": 279,
+          "bottom": 119,
+          "left": 154
+        },
+        "name": null
+      },
+      {
+        "text": "Rainfall trend",
+        "rect": {
+          "x": 283,
+          "y": 65,
+          "width": 125,
+          "height": 54,
+          "top": 65,
+          "right": 408,
+          "bottom": 119,
+          "left": 283
+        },
+        "name": null
+      },
+      {
+        "text": "Climate indicators",
+        "rect": {
+          "x": 412,
+          "y": 65,
+          "width": 125,
+          "height": 54,
+          "top": 65,
+          "right": 537,
+          "bottom": 119,
+          "left": 412
+        },
+        "name": null
+      },
+      {
+        "text": "El Niño & cyclones",
+        "rect": {
+          "x": 541,
+          "y": 65,
+          "width": 125,
+          "height": 54,
+          "top": 65,
+          "right": 666,
+          "bottom": 119,
+          "left": 541
+        },
+        "name": null
+      },
+      {
+        "text": "Climate scenarios",
+        "rect": {
+          "x": 670,
+          "y": 65,
+          "width": 125,
+          "height": 54,
+          "top": 65,
+          "right": 795,
+          "bottom": 119,
+          "left": 670
+        },
+        "name": null
+      },
+      {
+        "text": "Data downloads",
+        "rect": {
+          "x": 799,
+          "y": 65,
+          "width": 125,
+          "height": 54,
+          "top": 65,
+          "right": 924,
+          "bottom": 119,
+          "left": 799
+        },
+        "name": null
+      },
+      {
+        "text": "Learn",
+        "rect": {
+          "x": 928,
+          "y": 65,
+          "width": 125,
+          "height": 54,
+          "top": 65,
+          "right": 1053,
+          "bottom": 119,
+          "left": 928
+        },
+        "name": null
+      },
+      {
+        "text": "Sources",
+        "rect": {
+          "x": 1057,
+          "y": 65,
+          "width": 125,
+          "height": 54,
+          "top": 65,
+          "right": 1182,
+          "bottom": 119,
+          "left": 1057
+        },
+        "name": null
+      }
+    ]
+  },
+  "width768": {
+    "scroll": 768,
+    "width": 768,
+    "nav": [
+      {
+        "text": "Weather",
+        "rect": {
+          "x": 31,
+          "y": 121.796875,
+          "width": 156,
+          "height": 45,
+          "top": 121.796875,
+          "right": 187,
+          "bottom": 166.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Investigate",
+        "rect": {
+          "x": 31,
+          "y": 172.796875,
+          "width": 156,
+          "height": 45,
+          "top": 172.796875,
+          "right": 187,
+          "bottom": 217.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Rainfall trend",
+        "rect": {
+          "x": 31,
+          "y": 223.796875,
+          "width": 156,
+          "height": 45,
+          "top": 223.796875,
+          "right": 187,
+          "bottom": 268.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Climate indicators",
+        "rect": {
+          "x": 31,
+          "y": 274.796875,
+          "width": 156,
+          "height": 64,
+          "top": 274.796875,
+          "right": 187,
+          "bottom": 338.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "El Niño & cyclones",
+        "rect": {
+          "x": 31,
+          "y": 344.796875,
+          "width": 156,
+          "height": 64,
+          "top": 344.796875,
+          "right": 187,
+          "bottom": 408.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Climate scenarios",
+        "rect": {
+          "x": 31,
+          "y": 414.796875,
+          "width": 156,
+          "height": 64,
+          "top": 414.796875,
+          "right": 187,
+          "bottom": 478.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Data downloads",
+        "rect": {
+          "x": 31,
+          "y": 484.796875,
+          "width": 156,
+          "height": 64,
+          "top": 484.796875,
+          "right": 187,
+          "bottom": 548.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Learn",
+        "rect": {
+          "x": 31,
+          "y": 554.796875,
+          "width": 156,
+          "height": 45,
+          "top": 554.796875,
+          "right": 187,
+          "bottom": 599.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Sources",
+        "rect": {
+          "x": 31,
+          "y": 605.796875,
+          "width": 156,
+          "height": 45,
+          "top": 605.796875,
+          "right": 187,
+          "bottom": 650.796875,
+          "left": 31
+        },
+        "name": null
+      }
+    ]
+  },
+  "width1280": {
+    "scroll": 1280,
+    "width": 1280,
+    "nav": [
+      {
+        "text": "Weather",
+        "rect": {
+          "x": 31,
+          "y": 121.796875,
+          "width": 194,
+          "height": 45,
+          "top": 121.796875,
+          "right": 225,
+          "bottom": 166.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Investigate",
+        "rect": {
+          "x": 31,
+          "y": 172.796875,
+          "width": 194,
+          "height": 45,
+          "top": 172.796875,
+          "right": 225,
+          "bottom": 217.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Rainfall trend",
+        "rect": {
+          "x": 31,
+          "y": 223.796875,
+          "width": 194,
+          "height": 45,
+          "top": 223.796875,
+          "right": 225,
+          "bottom": 268.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Climate indicators",
+        "rect": {
+          "x": 31,
+          "y": 274.796875,
+          "width": 194,
+          "height": 45,
+          "top": 274.796875,
+          "right": 225,
+          "bottom": 319.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "El Niño & cyclones",
+        "rect": {
+          "x": 31,
+          "y": 325.796875,
+          "width": 194,
+          "height": 45,
+          "top": 325.796875,
+          "right": 225,
+          "bottom": 370.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Climate scenarios",
+        "rect": {
+          "x": 31,
+          "y": 376.796875,
+          "width": 194,
+          "height": 45,
+          "top": 376.796875,
+          "right": 225,
+          "bottom": 421.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Data downloads",
+        "rect": {
+          "x": 31,
+          "y": 427.796875,
+          "width": 194,
+          "height": 45,
+          "top": 427.796875,
+          "right": 225,
+          "bottom": 472.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Learn",
+        "rect": {
+          "x": 31,
+          "y": 478.796875,
+          "width": 194,
+          "height": 45,
+          "top": 478.796875,
+          "right": 225,
+          "bottom": 523.796875,
+          "left": 31
+        },
+        "name": null
+      },
+      {
+        "text": "Sources",
+        "rect": {
+          "x": 31,
+          "y": 529.796875,
+          "width": 194,
+          "height": 45,
+          "top": 529.796875,
+          "right": 225,
+          "bottom": 574.796875,
+          "left": 31
+        },
+        "name": null
+      }
+    ]
+  },
+  "noWebGL": {
+    "mode": "globo",
+    "mapVisibility": "hidden",
+    "globe": false,
+    "errors": [
+      "Error creating WebGL context."
+    ]
+  },
+  "retry": {
+    "requests": 1,
+    "text": "Investigate\nBe an Earth system trend detective\n\nChoose what to investigate and where. Each answer tells what changed, where, by how much and how sure we can be.\n\nWHAT DO YOU WANT TO INVESTIGATE?\n\nWHERE?\nSeries\nSeries (CSV)\nShow on the map\nGuided examples"
+  }
+}

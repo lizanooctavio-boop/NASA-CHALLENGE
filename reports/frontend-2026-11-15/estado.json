@@ -1,0 +1,28 @@
+{
+  "expiredClock": {
+    "index": 1,
+    "label": "now"
+  },
+  "globeCache": {
+    "requests": [
+      {
+        "url": "/api/global?var=temperatura_c&paso=0",
+        "run": "old"
+      },
+      {
+        "url": "/api/global?var=viento&paso=0",
+        "run": "old"
+      }
+    ],
+    "responses": [
+      {
+        "meta": "old",
+        "data": "old"
+      },
+      {
+        "meta": "new",
+        "data": "old"
+      }
+    ]
+  }
+}
