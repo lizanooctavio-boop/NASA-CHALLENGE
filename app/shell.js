@@ -84,7 +84,7 @@ iniciarMapa();
 const pref={leer:(k,s=localStorage)=>{try{return s.getItem(k)}catch(e){return null}},guardar:(k,v,s=localStorage)=>{try{s.setItem(k,v)}catch(e){}}};
 // Menú plegable: en escritorio se reduce a una barra de iconos.
 function plegarMenu(v,guardar){
-  document.body.classList.toggle('menu-plegado',v);
+  document.body.classList.toggle('menu-plegado',v);document.body.classList.toggle('menu-abierto',!v);
   const b=$('plegar-menu');b.setAttribute('aria-expanded',String(!v));b.setAttribute('aria-label',v?'Expand menu':'Collapse menu');b.title=v?'Expand menu':'Collapse menu';
   document.querySelectorAll('nav button').forEach(x=>{x.dataset.nombre=x.textContent.trim();x.removeAttribute('title')});
   if(guardar)pref.guardar('etd-menu-plegado',v?'1':'0');
