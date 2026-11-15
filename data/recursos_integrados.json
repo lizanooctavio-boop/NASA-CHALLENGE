@@ -420,6 +420,46 @@
    "zoom": 10
   },
   {
+   "id": "glaciares_europa_central",
+   "nombre_en": "Central European glaciers",
+   "pais": "RGI region 11",
+   "centro": [
+    46.5,
+    10.0
+   ],
+   "zoom": 5
+  },
+  {
+   "id": "caspio",
+   "nombre_en": "Caspian Sea",
+   "pais": "G-REALM satellite track",
+   "centro": [
+    42,
+    51
+   ],
+   "zoom": 5
+  },
+  {
+   "id": "victoria",
+   "nombre_en": "Lake Victoria",
+   "pais": "G-REALM satellite track",
+   "centro": [
+    -0.5,
+    33.5
+   ],
+   "zoom": 5
+  },
+  {
+   "id": "chad",
+   "nombre_en": "Lake Chad",
+   "pais": "G-REALM satellite track",
+   "centro": [
+    13,
+    14
+   ],
+   "zoom": 5
+  },
+  {
    "id": "clorofila_golfo_fonseca",
    "nombre_en": "Gulf of Fonseca",
    "pais": "Nicaragua",
@@ -20002,6 +20042,463 @@
     "mann_kendall_p": 0.0,
     "media": 7754672.375
    }
+  },
+  {
+   "id": "glaciares_europa_central",
+   "categoria": "polos",
+   "lugar": "glaciares_europa_central",
+   "titulo_en": "Central European glacier mass balance",
+   "definicion_en": "Ice gained or lost each year, expressed as an equivalent depth of water. Negative values mean ice loss.",
+   "unidad": "m w.e.",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "valores": [
+    -0.278,
+    0.1901,
+    -0.3605,
+    -1.9738,
+    -0.6996,
+    -0.892,
+    -1.169,
+    -0.7901,
+    -0.7627,
+    -0.8077,
+    -0.5331,
+    -1.2984,
+    -1.4708,
+    -0.3022,
+    -0.1867,
+    -1.6078,
+    -0.7565,
+    -1.4337,
+    -1.3653,
+    -1.0869,
+    -0.7305,
+    -0.9167,
+    -3.653,
+    -2.5918
+   ],
+   "fuente": {
+    "producto": "GlaMBIE 1.0.0, region 11, calendar years",
+    "url": "https://doi.org/10.5904/wgms-glambie-2024-07"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Published check: GlaMBIE documents glacier mass loss in Central Europe during 2000–2023 (doi:10.1038/s41586-024-08545-z).",
+    "The trend measures changes in annual mass balance, not cumulative ice loss.",
+    "Regional averages do not describe every glacier. Source uncertainty is retained in the CSV."
+   ],
+   "tendencia": {
+    "veredicto": "tendencia_detectada",
+    "veredicto_contrato": "tendencia_detectada",
+    "anios": 24,
+    "periodo": [
+     2000,
+     2023
+    ],
+    "unidad_pendiente": "m w.e./decade",
+    "sen": {
+     "por_decada": -0.48,
+     "ic": [
+      -0.9595,
+      -0.0876
+     ]
+    },
+    "mco": {
+     "por_decada": -0.61,
+     "ic": [
+      -1.126,
+      -0.094
+     ],
+     "p_valor": 0.0234
+    },
+    "hac_ic": [
+     -1.163,
+     -0.056
+    ],
+    "mann_kendall_p": 0.0273,
+    "media": -1.062
+   }
+  },
+  {
+   "id": "nivel_caspio_grealm",
+   "categoria": "agua",
+   "lugar": "caspio",
+   "titulo_en": "Caspian Sea water level (April–October)",
+   "definicion_en": "Average water level measured along a satellite track, relative to the EGM2008 geoid.",
+   "unidad": "m",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    -26.2898,
+    -26.0583,
+    -25.9419,
+    -26.1964,
+    -26.2998,
+    -26.2946,
+    -26.3294,
+    -26.4161,
+    -26.481,
+    -26.4585,
+    -26.4062,
+    -26.3205,
+    -26.2456,
+    -26.3662,
+    -26.3439,
+    -26.4909,
+    -26.5319,
+    -26.6092,
+    -26.8199,
+    -26.8615,
+    -26.9007,
+    -27.061,
+    -27.269,
+    -27.2278,
+    -27.2593,
+    -27.3302,
+    -27.5102,
+    -27.4748,
+    -27.7369,
+    -27.9901,
+    -28.2373,
+    -28.3973,
+    -28.5256
+   ],
+   "fuente": {
+    "producto": "NASA GSFC G-REALM 10-day altimetry",
+    "url": "https://earth.gsfc.nasa.gov/gwm/zip/lake.10.tar.gz"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Published check: The Caspian Sea level declined after the mid-1990s. (doi:10.1002/2017GL073958).",
+    "Caspian means require all seven months from April to October, excluding winter ice.",
+    "Water level is not lake area or volume. Rainfall, evaporation and water management can affect the level.",
+    "Shallow water and vegetation can affect radar measurements, especially at Lake Chad."
+   ],
+   "tendencia": {
+    "veredicto": "metodos_discrepan",
+    "veredicto_contrato": "metodos_discrepan",
+    "anios": 33,
+    "periodo": [
+     1993,
+     2025
+    ],
+    "unidad_pendiente": "m/decade",
+    "sen": {
+     "por_decada": -0.6623,
+     "ic": [
+      -0.8159,
+      -0.5327
+     ]
+    },
+    "mco": {
+     "por_decada": -0.676,
+     "ic": [
+      -1.412,
+      0.06
+     ],
+     "p_valor": 0.0592
+    },
+    "hac_ic": [
+     -0.866,
+     -0.486
+    ],
+    "mann_kendall_p": 0.0003,
+    "media": -26.869
+   }
+  },
+  {
+   "id": "nivel_victoria_grealm",
+   "categoria": "agua",
+   "lugar": "victoria",
+   "titulo_en": "Lake Victoria water level",
+   "definicion_en": "Average water level measured along a satellite track, relative to the EGM2008 geoid.",
+   "unidad": "m",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    1135.6103,
+    1135.3291,
+    1135.5344,
+    1135.7003,
+    1135.5293,
+    1136.4279,
+    1136.1368,
+    1135.7061,
+    1135.6388,
+    1135.6995,
+    1135.6187,
+    1135.2358,
+    1134.8588,
+    1134.5542,
+    1135.0825,
+    1135.1215,
+    1135.1248,
+    1135.2587,
+    1135.1128,
+    1135.3833,
+    1135.7618,
+    1135.8178,
+    1135.9692,
+    1136.221,
+    1135.769,
+    1135.9533,
+    1136.0049,
+    1136.9687,
+    1136.9516,
+    1136.5868,
+    1136.6139,
+    1137.1024,
+    1136.8869
+   ],
+   "fuente": {
+    "producto": "NASA GSFC G-REALM 10-day altimetry",
+    "url": "https://earth.gsfc.nasa.gov/gwm/zip/lake.10.tar.gz"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Published check: Lake Victoria rose sharply in 2019–2020. (doi:10.3390/s21134304).",
+    "Annual means require all 12 monthly means. Missing years are omitted, not interpolated.",
+    "Water level is not lake area or volume. Rainfall, evaporation and water management can affect the level.",
+    "Shallow water and vegetation can affect radar measurements, especially at Lake Chad."
+   ],
+   "tendencia": {
+    "veredicto": "metodos_discrepan",
+    "veredicto_contrato": "metodos_discrepan",
+    "anios": 33,
+    "periodo": [
+     1993,
+     2025
+    ],
+    "unidad_pendiente": "m/decade",
+    "sen": {
+     "por_decada": 0.3925,
+     "ic": [
+      0.1517,
+      0.6376
+     ]
+    },
+    "mco": {
+     "por_decada": 0.38,
+     "ic": [
+      -0.902,
+      1.661
+     ],
+     "p_valor": 0.3749
+    },
+    "hac_ic": [
+     0.085,
+     0.675
+    ],
+    "mann_kendall_p": 0.0759,
+    "media": 1135.796
+   }
+  },
+  {
+   "id": "nivel_chad_grealm",
+   "categoria": "agua",
+   "lugar": "chad",
+   "titulo_en": "Lake Chad water level",
+   "definicion_en": "Average water level measured along a satellite track, relative to the EGM2008 geoid.",
+   "unidad": "m",
+   "papel": "tendencia",
+   "frecuencia": "anual",
+   "tiempos": [
+    1993,
+    1994,
+    1995,
+    1996,
+    1998,
+    1999,
+    2000,
+    2001,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "valores": [
+    281.0997,
+    281.2157,
+    281.3625,
+    281.4931,
+    281.5068,
+    281.5708,
+    281.5685,
+    281.4149,
+    281.0986,
+    281.2017,
+    281.1824,
+    281.3292,
+    281.3656,
+    281.2853,
+    281.1773,
+    281.1874,
+    281.2996,
+    281.3319,
+    281.4973,
+    281.6542,
+    281.4915,
+    281.5336,
+    281.6444,
+    281.598,
+    281.617
+   ],
+   "fuente": {
+    "producto": "NASA GSFC G-REALM 10-day altimetry",
+    "url": "https://earth.gsfc.nasa.gov/gwm/zip/lake.10.tar.gz"
+   },
+   "recursos": [],
+   "contrastes": [],
+   "notas": [
+    "Published check: Modern Lake Chad variability differs from its earlier historical collapse. (doi:10.1038/s41598-020-62417-w).",
+    "Annual means require all 12 monthly means. Missing years are omitted, not interpolated.",
+    "Water level is not lake area or volume. Rainfall, evaporation and water management can affect the level.",
+    "Shallow water and vegetation can affect radar measurements, especially at Lake Chad."
+   ],
+   "tendencia": {
+    "veredicto": "metodos_discrepan",
+    "veredicto_contrato": "metodos_discrepan",
+    "anios": 25,
+    "periodo": [
+     1993,
+     2025
+    ],
+    "unidad_pendiente": "m/decade",
+    "sen": {
+     "por_decada": 0.1008,
+     "ic": [
+      0.0112,
+      0.2401
+     ]
+    },
+    "mco": {
+     "por_decada": 0.051,
+     "ic": [
+      -0.514,
+      0.616
+     ],
+     "p_valor": 0.7144
+    },
+    "hac_ic": [
+     -0.041,
+     0.143
+    ],
+    "mann_kendall_p": 0.1397,
+    "media": 281.389
+   }
   }
  ],
  "contrastes": [
@@ -23641,6 +24138,8 @@
   "recursos/hallazgos/grace_csr_mensual.csv": "01adbe1bbc7fe9b5b0acb78c092da5bde0dd6a3e1695579e63f96911b0906878",
   "recursos/hallazgos/glambie_america_anual.csv": "0c36b2823fdc94b9cf4558a10af65ded402ed3719d7011a0699c9496641e5cb2",
   "recursos/hallazgos/oceansoda_caribe_mensual.csv": "36b9d347f31c31fdf85ccd55c4a479a576092f62a4ad1deebd0ff2655af9302d",
-  "recursos/hallazgos/gfed5_area_quemada_mensual.csv": "4a4812a807d9bcd2989c67a8f24c9ca4336c96ad2e3aed6376f7eae966a37236"
+  "recursos/hallazgos/gfed5_area_quemada_mensual.csv": "4a4812a807d9bcd2989c67a8f24c9ca4336c96ad2e3aed6376f7eae966a37236",
+  "recursos/hallazgos/glambie_europa_anual.csv": "32bec806013ae199afccbb9558603b26b4a3cf4e7c380f05d35fbfaf7ece6462",
+  "recursos/hallazgos/grealm_europa_africa_mensual.csv": "8bc4afe637a059c1e0782cffb25061f32e1088bf0fd26f520c3630f1c2e5c945"
  }
 }
