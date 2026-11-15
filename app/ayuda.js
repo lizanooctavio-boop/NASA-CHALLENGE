@@ -141,6 +141,10 @@ function crearBotonMenu(){
   b.onclick=()=>abrir();
   const aprender=nav.querySelector('[data-tab="aprender"]');
   if(aprender)aprender.after(b);else nav.append(b);
+  // Acceso permanente al recorrido de Terra (tras verlo una vez la invitación ya no vuelve a salir).
+  // Va en la cabecera, junto a «Hide panels»: en el menú lateral empujaba Sources fuera de la vista.
+  const solo=$('solomapa');
+  if(solo&&!$('menu-tour')){const t=nodo('button','Guided tour');t.type='button';t.id='menu-tour';t.onclick=iniciarTour;solo.after(t)}
 }
 function crearSeccion(){
   const main=$('contenido-principal')||document.querySelector('main');if(!main)return;

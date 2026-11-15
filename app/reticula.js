@@ -18,15 +18,14 @@
   if(!contenedor)return;
   let visible=false,unidad='degrees';
   try{visible=localStorage.getItem('etd-reticula-visible')==='1';unidad=localStorage.getItem('etd-reticula-unidad')==='radians'?'radians':'degrees';}catch(e){}
-  const grupo=crear('div',null,'reticula-controles');grupo.id='reticula-controles';grupo.setAttribute('role','group');grupo.setAttribute('aria-label','Map grid and orientation');
+  const grupo=crear('div',null,'reticula-controles');grupo.id='reticula-controles';grupo.setAttribute('role','group');grupo.setAttribute('aria-label','Map grid');
   const boton=crear('button',null,'reticula-principal');boton.type='button';boton.id='reticula-toggle';boton.setAttribute('aria-label','Geographic grid');
   const unidades=crear('select');unidades.id='reticula-unidades';unidades.setAttribute('aria-label','Coordinate units');
   for(const [valor,texto] of [['degrees','Degrees'],['radians','Radians']]){const o=crear('option',texto);o.value=valor;unidades.append(o);}unidades.value=unidad;
-  const fila=crear('div',null,'reticula-fila'),norte=crear('button',null,'reticula-norte');norte.id='reticula-norte';norte.type='button';norte.setAttribute('aria-label','North up');
-  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 20 24');svg.setAttribute('aria-hidden','true');
-  const flecha=document.createElementNS(svg.namespaceURI,'path');flecha.setAttribute('d','M10 3L4 18l6-4 6 4z');flecha.setAttribute('fill','none');flecha.setAttribute('stroke','currentColor');flecha.setAttribute('stroke-width','1.5');svg.append(flecha);norte.append(svg,crear('span','North up'));
+  // Sin botón «North up»: el globo y el mapa ya muestran siempre el norte arriba y no se pueden girar.
+  const fila=crear('div',null,'reticula-fila');
   const ayuda=crear('button','?','reticula-ayuda');ayuda.id='reticula-ayuda';ayuda.type='button';ayuda.setAttribute('aria-label','Geographic grid guide');ayuda.setAttribute('aria-expanded','false');ayuda.setAttribute('aria-controls','reticula-guia');
-  fila.append(norte,ayuda);grupo.append(boton,unidades,fila);contenedor.prepend(grupo);
+  fila.append(unidades,ayuda);grupo.append(boton,fila);contenedor.prepend(grupo);
   const estado=crear('p',null,'reticula-estado');estado.setAttribute('role','status');estado.setAttribute('aria-live','polite');grupo.append(estado);
   const guia=crear('section',null,'reticula-guia');guia.id='reticula-guia';guia.hidden=true;guia.tabIndex=-1;guia.setAttribute('role','dialog');guia.setAttribute('aria-label','Geographic grid guide');
   document.body.append(guia);
@@ -71,16 +70,16 @@
     canvas.width=Math.ceil(s.x*dpr);canvas.height=Math.ceil(s.y*dpr);canvas.style.width=s.x+'px';canvas.style.height=s.y+'px';canvas.style.visibility='';ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,s.x,s.y);
     const b=mapa.getBounds(),sur=Math.max(-85.05112878,b.getSouth()),norte=Math.min(85.05112878,b.getNorth()),oeste=b.getWest(),este=b.getEast();
     paso=PASOS.find(p=>p/360*256*2**mapa.getZoom()>=85)||90;lineas=0;
-    const libre=espacioLibre(),ocupados=[];ctx.font='11px system-ui, sans-serif';ctx.textBaseline='middle';
+    const libre=espacioLibre(),ocupados=[];ctx.font='500 10px system-ui, sans-serif';ctx.textBaseline='middle';
     const obstaculos=[...document.querySelectorAll('header,aside,.vista,#controles-mapa>*,.leaflet-control')].filter(e=>!e.hidden).map(e=>{const q=e.getBoundingClientRect(),m=mapa.getContainer().getBoundingClientRect();return {x:q.left-m.left,y:q.top-m.top,w:q.width,h:q.height};}).filter(q=>q.w&&q.h);
     const choca=(a,b)=>a.x<b.x+b.w+3&&a.x+a.w+3>b.x&&a.y<b.y+b.h+3&&a.y+a.h+3>b.y;
-    function etiqueta(t,x,y,color,alinear){const w=ctx.measureText(t).width+10,h=18;const r={x:alinear==='right'?x-w:x,y:y-h/2,w,h};
+    function etiqueta(t,x,y,color,alinear){const w=ctx.measureText(t).width+8,h=15;const r={x:alinear==='right'?x-w:x,y:y-h/2,w,h};
       if(r.x<1||r.x+w>s.x-1||r.y<1||r.y+h>s.y-1||ocupados.some(q=>choca(r,q))||obstaculos.some(q=>choca(r,q)))return;
-      ocupados.push(r);ctx.fillStyle='rgba(7,17,29,.86)';ctx.fillRect(r.x,r.y,w,h);ctx.fillStyle=color;ctx.fillText(t,r.x+5,y);
+      ocupados.push(r);ctx.fillStyle='rgba(7,17,29,.62)';ctx.beginPath();if(ctx.roundRect)ctx.roundRect(r.x,r.y,w,h,4);else ctx.rect(r.x,r.y,w,h);ctx.fill();ctx.globalAlpha=.9;ctx.fillStyle=color;ctx.fillText(t,r.x+4,y);ctx.globalAlpha=1;
     }
-    function linea(v,eje,especial){const p=mapa.latLngToContainerPoint(eje==='lat'?[v,oeste]:[sur,v]),c=especial?.color||'rgba(225,238,249,.52)';
-      ctx.beginPath();ctx.lineWidth=especial?1.5:.7;ctx.strokeStyle=c;ctx.setLineDash(especial&&especial.valor!==0?[5,4]:[]);
-      if(eje==='lat'){ctx.moveTo(0,p.y);ctx.lineTo(s.x,p.y);}else{ctx.moveTo(p.x,0);ctx.lineTo(p.x,s.y);}ctx.stroke();ctx.setLineDash([]);lineas++;
+    function linea(v,eje,especial){const p=mapa.latLngToContainerPoint(eje==='lat'?[v,oeste]:[sur,v]),c=especial?.color||'rgba(225,238,249,.78)';
+      ctx.beginPath();ctx.lineWidth=especial?.9:.5;ctx.strokeStyle=especial?c:'rgba(225,238,249,.2)';ctx.globalAlpha=especial?.7:1;ctx.setLineDash(especial&&especial.valor!==0?[3,4]:[]);
+      if(eje==='lat'){ctx.moveTo(0,p.y);ctx.lineTo(s.x,p.y);}else{ctx.moveTo(p.x,0);ctx.lineTo(p.x,s.y);}ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1;lineas++;
       const valor=eje==='lon'?envolver(v):v,t=(especial?especial.nombre+' · ':'')+formato(especial?.nombre==='Antimeridian'?180:valor,eje);
       if(eje==='lat'){etiqueta(t,libre.izq,p.y,c);if(especial)etiqueta(t,libre.der,p.y,c,'right');}
       else{etiqueta(t,p.x+3,libre.arriba+10,c);if(especial)etiqueta(t,p.x+3,libre.abajo-10,c);}
@@ -97,10 +96,10 @@
     const dist=E.centro().dist,intervalo=dist<1.7?5:dist<3?10:30,clave=visible+'|'+unidad+'|'+intervalo;
     if(clave===ultimaTextura)return;ultimaTextura=clave;if(!visible){E.reticula(null);return;}
     const c=crear('canvas');c.width=2048;c.height=1024;const x=c.getContext('2d');if(!x){avisar('Globe grid unavailable: canvas could not be created.');return;}
-    function linea(v,eje,ref){const px=(v+180)/360*c.width,py=(90-v)/180*c.height;x.beginPath();x.strokeStyle=ref?.color||'rgba(228,239,250,.45)';x.lineWidth=ref?2:1;x.setLineDash(ref&&ref.valor!==0?[8,5]:[]);
-      if(eje==='lat'){x.moveTo(0,py);x.lineTo(c.width,py);}else{x.moveTo(px,0);x.lineTo(px,c.height);}x.stroke();x.setLineDash([]);
-      if(ref&&eje==='lat'){x.font='15px system-ui, sans-serif';for(const lon of [-120,0,120]){const xx=(lon+180)/360*c.width;x.lineWidth=3;x.strokeStyle='#081320';const t=ref.nombre+' · '+formato(v,'lat');x.strokeText(t,xx+5,py-5);x.fillStyle=ref.color;x.fillText(t,xx+5,py-5);}}
-      if(ref&&eje==='lon'){x.font='15px system-ui, sans-serif';for(const lat of [-45,0,45]){const yy=(90-lat)/180*c.height,xx=((px%c.width)+c.width)%c.width+5,t=ref.nombre+' · '+formato(ref.valor,'lon');x.lineWidth=3;x.strokeStyle='#081320';x.strokeText(t,xx,yy+17);x.fillStyle=ref.color;x.fillText(t,xx,yy+17);}}
+    function linea(v,eje,ref){const px=(v+180)/360*c.width,py=(90-v)/180*c.height;x.beginPath();x.strokeStyle=ref?.color||'rgba(228,239,250,.2)';x.lineWidth=ref?1.2:.8;x.globalAlpha=ref?.75:1;x.setLineDash(ref&&ref.valor!==0?[5,6]:[]);
+      if(eje==='lat'){x.moveTo(0,py);x.lineTo(c.width,py);}else{x.moveTo(px,0);x.lineTo(px,c.height);}x.stroke();x.setLineDash([]);x.globalAlpha=1;
+      if(ref&&eje==='lat'){x.font='500 12px system-ui, sans-serif';for(const lon of [-120,0,120]){const xx=(lon+180)/360*c.width;x.lineWidth=2.5;x.strokeStyle='rgba(8,19,32,.7)';const t=ref.nombre+' · '+formato(v,'lat');x.strokeText(t,xx+5,py-5);x.fillStyle=ref.color;x.fillText(t,xx+5,py-5);}}
+      if(ref&&eje==='lon'){x.font='500 12px system-ui, sans-serif';for(const lat of [-45,0,45]){const yy=(90-lat)/180*c.height,xx=((px%c.width)+c.width)%c.width+5,t=ref.nombre+' · '+formato(ref.valor,'lon');x.lineWidth=2.5;x.strokeStyle='rgba(8,19,32,.7)';x.strokeText(t,xx,yy+17);x.fillStyle=ref.color;x.fillText(t,xx,yy+17);}}
     }
     for(let v=-180;v<=180;v+=intervalo)linea(v,'lon');for(let v=-90+intervalo;v<90;v+=intervalo)linea(v,'lat');
     for(const l of PARALELOS)linea(l.valor,'lat',l);for(const l of MERIDIANOS){linea(l.valor,'lon',l);if(l.valor===180)linea(-180,'lon',l);}
@@ -110,9 +109,6 @@
   function pedir(){if(!turno)turno=requestAnimationFrame(repintar);}
   boton.onclick=()=>{visible=!visible;const guardado=guardar();pedir();avisar((visible?'Geographic grid shown.':'Geographic grid hidden.')+(guardado?'':' Settings could not be saved on this device.'));};
   unidades.onchange=()=>{unidad=unidades.value;const guardado=guardar();if(!guia.hidden)pintarGuia();pedir();avisar((unidad==='radians'?'Coordinates in radians.':'Coordinates in degrees.')+(guardado?'':' Settings could not be saved on this device.'));};
-  norte.onclick=()=>{if(window.SICC_vista?.modo()==='mapa'){if(typeof mapa.setBearing==='function')mapa.setBearing(0);pedir();avisar('North is up.');}
-    else if(window.Espacio?.norteArriba){avisar(window.Espacio.norteArriba()?'North is up.':'Wait for the view change, then try North up again.');}
-    else avisar('Globe orientation unavailable. Use the 2D map or reload to retry.');};
   if(mapaListo){canvas=crear('canvas',null,'reticula-canvas');canvas.style.cssText='position:absolute;inset:0;pointer-events:none;z-index:460';canvas.id='reticula-canvas';canvas.setAttribute('role','img');mapa.getContainer().append(canvas);ctx=canvas.getContext('2d');
     if(!ctx)avisar('Map grid unavailable: this browser could not create a canvas.');
     mapa.on('movestart zoomstart',()=>{canvas.style.visibility='hidden';});mapa.on('moveend zoomend resize',pedir);

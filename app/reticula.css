@@ -4,7 +4,7 @@
 .reticula-controles button,.reticula-controles select{min-height:36px;min-width:0;font:inherit;font-size:12px;line-height:1.2;white-space:nowrap}
 .reticula-controles .reticula-principal{width:100%;justify-content:center}
 .reticula-controles select{width:100%;max-width:100%;padding:6px;border:1px solid var(--borde,#455164);border-radius:6px;background:var(--panel,#121c2a);color:var(--texto,#eef4ff)}
-.reticula-controles .reticula-norte{flex:1;justify-content:center;gap:6px}
+.reticula-controles .reticula-fila select{flex:1}
 .reticula-controles .reticula-ayuda{width:36px;flex:none;justify-content:center}
 .reticula-controles svg{width:17px;height:21px;flex:none}
 .reticula-controles button[aria-pressed=true]{border-color:#8bc9ed;background:rgba(99,181,219,.18)}
@@ -19,6 +19,5 @@
   .reticula-controles button,.reticula-controles select{min-height:44px;font-size:11px;padding:6px}
   .reticula-controles .reticula-principal{width:83px;flex:none}
   .reticula-controles select{width:83px;flex:none}
-  .reticula-controles .reticula-norte{width:85px;flex:none}
   .reticula-controles .reticula-ayuda{width:44px;min-width:44px}
 }
