@@ -381,3 +381,5 @@ body.en-transicion .interruptor button{cursor:progress}
 header{min-height:62px}
 #indicador-datos{min-width:132px;justify-content:center}
 .capas-mapa,#linea-tiempo,#leyenda-campo{contain:layout style}
+/* C-03: indicador visual mientras cargan los JSON grandes en red lenta */
+#inv-veredicto:empty::before,#ind-veredicto:empty::before{content:'Loading datasets…';display:block;color:var(--tenue);font-size:13px;padding:6px 0}
