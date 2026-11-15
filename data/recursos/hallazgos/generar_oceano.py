@@ -121,11 +121,17 @@ def main():
     def mes(ym):
         try:
             return ym, leer_ersst(bajar(ERSST.format(ym=ym), args.cache / "ersst" / f"ersst.v5.{ym}.nc"))
-        except OSError:  # mes aún no publicado
+        except OSError:  # aún no publicado o fallo de red: se decide abajo
             return ym, None
 
     with ThreadPoolExecutor(8) as ex:
-        sst = [x for x in ex.map(mes, meses) if x[1] is not None]
+        todos = list(ex.map(mes, meses))
+    disponibles = [ym for ym, x in todos if x is not None]
+    # Un hueco anterior al último mes publicado es un fallo de descarga, no un mes por publicar: no se calla.
+    huecos = [ym for ym, x in todos if x is None and disponibles and ym < disponibles[-1]]
+    if huecos:
+        raise SystemExit(f"ERSST: faltan meses intermedios {huecos[:12]}; vuelva a ejecutar (se reanuda desde la caché)")
+    sst = [x for x in todos if x[1] is not None]
     with open(AQUI / "ersst_caribe_nicaragua.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["anio", "mes", "sst_c"])

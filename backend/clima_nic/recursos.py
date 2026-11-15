@@ -844,7 +844,11 @@ def _hallazgos(carpeta, permitir_sintetico):
             por_anio.setdefault(a, []).append(v)
         anios = [a for a in sorted(por_anio) if len(por_anio[a]) == 12]
         valores = [sum(por_anio[a]) / 12 for a in anios]
-        clima = {m: sum(v for a, mm, v in filas if mm == m and 1991 <= a <= 2020) / 30 for m in range(1, 13)}
+        base_mes = {m: [v for a, mm, v in filas if mm == m and 1991 <= a <= 2020] for m in range(1, 13)}
+        incompletos = [m for m, v in base_mes.items() if len(v) != 30]
+        if incompletos:
+            raise ValueError(f"ERSST 1991–2020 incompleto en los meses {incompletos}: regenere generar_oceano.py")
+        clima = {m: sum(v) / len(v) for m, v in base_mes.items()}
         anomalias = [(a, m, v - clima[m]) for a, m, v in filas]
         base = sorted(x for a, _, x in anomalias if 1991 <= a <= 2020)
         p90 = base[int(round(0.9 * (len(base) - 1)))]
@@ -901,7 +905,10 @@ def _hallazgos(carpeta, permitir_sintetico):
         ibtracs = {"producto": "NOAA IBTrACS v04r01 storm tracks", "url": fuentes["ibtracs"]["url"]}
         tormentas = [f for f in _leer_csv(ruta) if int(f["temporada"]) >= 1981]
         ultimo = max(int(f["temporada"]) for f in tormentas)
-        anios = list(range(1981, ultimo + 1))
+        # Una temporada aún abierta (termina el 30 de noviembre) no entra en la prueba de tendencia: queda como nota.
+        en_curso = str(ultimo) == fuentes["ibtracs"]["generado_utc"][:4]
+        fin = ultimo - 1 if en_curso else ultimo
+        anios = list(range(1981, fin + 1))
         for umbral, sufijo, titulo, definicion in (
                 (34, "tormentas", "Tropical storms and hurricanes nearby",
                  "Storms per year with winds of at least 34 knots (63 km/h) while near Nicaragua."),
@@ -915,24 +922,28 @@ def _hallazgos(carpeta, permitir_sintetico):
                          "to stand out. Because most years record 0 or 1 event, the median pairwise slope "
                          "(Theil–Sen) can stay at 0.00.")
             notas.append(ESTUDIOS["racha_ciclones"])
-            if str(ultimo) == fuentes["ibtracs"]["generado_utc"][:4]:
+            if en_curso:
+                n = sum(1 for f in fuertes if int(f["temporada"]) == ultimo)
                 notas.append(f"The {ultimo} season was still running when the tracks were downloaded "
-                             f"({fuentes['ibtracs']['generado_utc'][:10]}).")
+                             f"({fuentes['ibtracs']['generado_utc'][:10]}), so it is left out of the trend test; "
+                             f"so far it counts {n}.")
             invs.append(_investigacion(f"ciclones_{sufijo}_NIC", "ciclones", "NIC", titulo, definicion, "storms", anios,
                                        [sum(1 for f in fuertes if int(f["temporada"]) == a) for a in anios], ibtracs,
                                        notas=notas))
         # Registro completo sin corregir: antes de los satélites se perdían tormentas en mar abierto.
         historicas = [f for f in _leer_csv(ruta) if int(f["temporada"]) >= 1851 and float(f["viento_max_kt"]) >= 34]
-        largo = list(range(1851, ultimo + 1))
+        largo = list(range(1851, fin + 1))
         notas_1851 = [
             "Compare with the record since 1981: an older record can suggest a rise that partly comes from better detection.",
             "Many years record 0 storms, so the median pairwise slope (Theil–Sen) stays at 0.00 even when "
             "least-squares and Mann–Kendall detect a long-term rise.",
             ESTUDIOS["subregistro_ciclones"],
         ]
-        if str(ultimo) == fuentes["ibtracs"]["generado_utc"][:4]:
+        if en_curso:
+            n = sum(1 for f in historicas if int(f["temporada"]) == ultimo)
             notas_1851.append(f"The {ultimo} season was still running when the tracks were downloaded "
-                              f"({fuentes['ibtracs']['generado_utc'][:10]}).")
+                              f"({fuentes['ibtracs']['generado_utc'][:10]}), so it is left out of the trend test; "
+                              f"so far it counts {n}.")
         invs.append(_investigacion("ciclones_tormentas_NIC_1851", "ciclones", "NIC",
                                    "Tropical storms and hurricanes nearby, raw record since 1851",
                                    "The same count as above, back to 1851, with no correction for storms missed before "
@@ -958,11 +969,16 @@ def _serie(filas, clave, valor):
 
 
 def _anuales_mensuales(filas, columna, minimo=12):
-    """Media anual de una columna mensual («mes» = AAAA-MM) solo con años que tienen al menos `minimo` meses."""
-    por = {}
+    """Media anual de una columna mensual («mes» = AAAA-MM) solo con años que tienen al menos `minimo` meses distintos.
+
+    Si la fuente repite un mes (GRACE trae 2011-10 y 2015-04 dos veces), se promedian sus valores y cuenta una vez."""
+    por_mes = {}
     for f in filas:
         if f[columna] not in ("", "nan"):
-            por.setdefault(int(f["mes"][:4]), []).append(float(f[columna]))
+            por_mes.setdefault(f["mes"][:7], []).append(float(f[columna]))
+    por = {}
+    for mes, v in sorted(por_mes.items()):
+        por.setdefault(int(mes[:4]), []).append(sum(v) / len(v))
     return {a: sum(v) / len(v) for a, v in sorted(por.items()) if len(v) >= minimo}
 
 
