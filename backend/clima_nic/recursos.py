@@ -841,8 +841,10 @@ def _hallazgos(carpeta, permitir_sintetico):
                                    [sum(1 for f in historicas if int(f["temporada"]) == a) for a in largo], ibtracs,
                                    notas=["Compare with the record since 1981: an older record can suggest a rise "
                                           "that partly comes from better detection.", ESTUDIOS["subregistro_ciclones"]]))
+    from .recursos_americas import americas
     n_inv, n_ent = _mundo(carpeta, fuentes, chirps, notas_lluvia)
-    return invs + n_inv, entradas + n_ent
+    a_inv, a_ent = americas(carpeta)
+    return invs + n_inv + a_inv, entradas + n_ent + a_ent
 
 
 def _serie(filas, clave, valor):

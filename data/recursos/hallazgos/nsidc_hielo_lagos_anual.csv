@@ -1,0 +1,489 @@
+lakecode,nombre,pais,lat,lon,anio,duracion_dias
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1855,118
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1856,151
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1857,121
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1858,96
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1859,110
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1860,117
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1861,132
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1862,104
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1863,125
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1864,118
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1865,125
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1866,123
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1867,110
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1868,127
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1869,131
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1870,99
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1871,126
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1872,144
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1873,136
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1874,126
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1876,130
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1878,112
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1879,99
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1880,161
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1882,124
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1883,119
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1884,124
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1885,128
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1886,131
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1887,113
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1889,88
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1890,111
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1891,97
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1892,112
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1893,101
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1894,101
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1896,110
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1897,100
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1898,130
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1899,111
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1900,107
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1901,105
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1902,89
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1903,126
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1904,108
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1906,94
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1908,106
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1909,98
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1910,101
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1911,108
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1912,99
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1914,115
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1915,102
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1916,116
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1917,115
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1919,110
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1920,81
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1921,96
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1922,125
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1924,105
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1925,124
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1926,103
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1927,106
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1928,96
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1929,107
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1930,98
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1932,115
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1933,91
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1934,94
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1935,101
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1936,121
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1937,105
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1938,97
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1940,105
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1941,96
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1942,116
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1943,114
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1944,92
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1945,98
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1946,101
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1947,104
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1948,96
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1949,109
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1950,122
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1951,114
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1952,81
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1953,85
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1955,114
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1956,111
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1957,95
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1958,126
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1959,105
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1960,108
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1961,117
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1962,112
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1963,113
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1964,120
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1966,98
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1967,91
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1968,108
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1969,113
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1970,110
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1972,97
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1973,105
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1975,88
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1976,115
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1977,123
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1978,118
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1979,99
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1980,93
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1981,96
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1983,111
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1984,85
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1985,107
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1986,89
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1988,97
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1989,93
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1990,88
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1991,99
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1992,108
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1993,94
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1995,119
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1996,102
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,1998,81
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2000,115
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2002,21
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2003,89
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2004,101
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2005,95
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2007,106
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2008,97
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2009,87
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2010,109
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2012,57
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2013,117
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2015,91
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2016,62
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2017,94
+DMR1,Lake Mendota,"Wisconsin, USA",43.10,-89.40,2018,86
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1851,103
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1855,118
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1856,151
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1857,119
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1858,94
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1859,111
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1860,129
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1861,133
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1862,119
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1863,131
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1864,117
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1865,125
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1866,128
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1867,108
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1868,126
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1869,138
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1870,100
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1871,142
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1872,141
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1873,136
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1874,123
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1876,132
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1878,115
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1879,93
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1880,160
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1882,127
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1883,120
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1884,121
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1885,131
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1886,131
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1887,137
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1888,87
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1890,113
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1891,96
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1892,117
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1893,99
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1894,104
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1895,119
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1896,123
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1897,101
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1898,129
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1899,112
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1900,118
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1901,103
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1902,85
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1903,140
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1904,111
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1905,115
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1906,106
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1907,106
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1908,118
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1909,96
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1910,103
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1911,113
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1912,104
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1913,83
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1914,115
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1915,111
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1916,116
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1917,116
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1918,83
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1919,116
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1920,85
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1921,96
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1922,127
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1924,103
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1925,126
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1926,102
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1927,108
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1928,96
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1929,104
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1930,98
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1932,107
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1933,103
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1934,98
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1935,107
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1936,123
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1937,111
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1938,102
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1939,102
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1940,127
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1941,85
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1942,114
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1943,101
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1944,89
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1945,99
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1946,108
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1947,108
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1948,92
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1949,113
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1950,118
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1951,112
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1952,93
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1953,72
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1954,83
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1955,109
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1956,92
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1957,109
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1958,125
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1959,101
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1960,98
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1961,113
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1962,112
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1963,92
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1964,114
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1966,65
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1967,87
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1968,101
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1969,92
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1970,93
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1972,90
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1973,94
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1975,90
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1976,103
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1977,121
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1978,117
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1979,104
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1980,86
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1981,100
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1983,107
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1984,92
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1985,113
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1986,85
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1987,91
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1988,93
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1989,98
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1990,88
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1991,91
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1992,108
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1993,95
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1995,107
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1996,96
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,1998,70
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2000,108
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2002,83
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2003,75
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2004,97
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2005,94
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2007,122
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2008,98
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2009,88
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2010,115
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2012,101
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2013,121
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2014,105
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2016,81
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2017,93
+DMR2,Lake Monona,"Wisconsin, USA",43.05,-89.37,2018,97
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1858,107
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1859,111
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1860,121
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1861,117
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1862,99
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1863,114
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1864,121
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1865,115
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1866,112
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1867,128
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1868,116
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1869,111
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1870,102
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1871,135
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1872,146
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1873,149
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1874,138
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1875,141
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1876,122
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1878,116
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1879,129
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1880,152
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1882,120
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1883,130
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1884,129
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1886,139
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1887,133
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1889,81
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1890,101
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1891,104
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1892,134
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1893,122
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1895,114
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1896,108
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1897,113
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1898,123
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1900,98
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1901,108
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1902,107
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1903,146
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1905,97
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1906,92
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1907,102
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1908,77
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1909,85
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1911,108
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1913,108
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1914,108
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1916,129
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1919,134
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1921,107
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1922,105
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1924,110
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1926,112
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1927,142
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1929,109
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1930,99
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1932,137
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1933,133
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1934,100
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1935,128
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1936,112
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1937,105
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1939,97
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1940,100
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1941,79
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1942,101
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1944,90
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1945,102
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1946,110
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1948,91
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1949,127
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1951,118
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1953,82
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1954,91
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1955,110
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1957,95
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1958,114
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1960,105
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1964,115
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1966,72
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1967,86
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1968,96
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1970,92
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1971,95
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1972,96
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1973,108
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1975,67
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1976,111
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1978,109
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1980,90
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1982,96
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1983,108
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1985,104
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1987,44
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1988,89
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1989,104
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1991,90
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1992,73
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1993,82
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1994,96
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1995,56
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1996,109
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1997,91
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,1999,73
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2000,44
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2001,57
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2002,7
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2003,80
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2004,67
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2005,78
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2006,11
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2007,54
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2008,74
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2009,92
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2010,38
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2011,63
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2013,64
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2014,109
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2015,76
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2018,92
+JJM33,Lake Superior at Bayfield,"Wisconsin, USA",46.81,-90.81,2019,64
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1901,104
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1902,123
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1903,98
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1905,106
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1911,119
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1913,88
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1915,109
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1917,117
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1918,108
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1919,116
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1920,121
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1921,108
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1922,125
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1924,111
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1929,126
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1931,72
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1932,116
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1933,131
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1934,112
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1935,119
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1936,124
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1937,101
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1939,123
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1941,105
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1942,129
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1943,126
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1944,121
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1945,129
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1946,117
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1947,103
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1963,109
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1965,85
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1966,103
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1967,98
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1968,118
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1969,127
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1970,123
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1971,94
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1973,104
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1975,112
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1976,116
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1977,123
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1978,111
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1980,102
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1982,111
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1983,121
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1985,107
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1987,84
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1988,111
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1989,117
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1990,101
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1992,103
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1993,111
+PJD28,Lake Simcoe,"Ontario, Canada",44.38,-79.68,1995,93
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1962,129
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1963,126
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1964,133
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1965,121
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1967,111
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1969,118
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1970,133
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1971,140
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1972,121
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1973,104
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1975,113
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1976,133
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1977,137
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1979,99
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1980,111
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1982,106
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1983,86
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1984,112
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1985,107
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1986,111
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1988,99
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1989,108
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1991,91
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1992,115
+WRS310,Lake Utopia,"New Brunswick, Canada",45.10,-66.73,1994,95
