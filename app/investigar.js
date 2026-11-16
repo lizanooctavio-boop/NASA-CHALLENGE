@@ -256,7 +256,7 @@ function pasoDemo(focoDestino){
 }
 
 // ---------------------------------------------------------------- Learn y Sources
-function aprender(ancla){tab('aprender');const e=$(ancla);if(e){e.scrollIntoView({block:'start'});e.classList.add('resaltado');setTimeout(()=>e.classList.remove('resaltado'),1600)}}
+function aprender(ancla){abrirExplicacion(ancla)}
 function fuentes(){
   const lista=$('fuentes-recursos');lista.replaceChildren();
   D.recursos.filter(r=>r.estado==='en_uso').forEach(r=>{const li=nodo('li');li.dataset.recurso=r.id;const a=nodo('a',r.nombre);a.href=r.url;a.target='_blank';a.rel='noopener';

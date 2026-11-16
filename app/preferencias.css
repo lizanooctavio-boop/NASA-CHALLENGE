@@ -138,3 +138,12 @@
   nav button { min-width: 0; }
   nav button .txt { min-width: 0; }
 }
+
+/* Móvil: «Settings» pasa al encabezado del menú para que idioma y tema estén a la vista sin desplazar la barra. */
+#atajo-configuracion { display: none; }
+@media (max-width: 700px), (max-height: 500px) and (max-width: 1000px) {
+  #atajo-configuracion { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 12px; font-size: 13px; }
+  #atajo-configuracion svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  #atajo-configuracion[aria-current="page"] { border-color: var(--cian); }
+  nav #nav-configuracion { display: none; }
+}

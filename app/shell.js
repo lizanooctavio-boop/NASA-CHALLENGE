@@ -21,6 +21,9 @@ const decimal=(v,n=2)=>Number(v).toLocaleString(window.GnomonI18n?.locale()||'en
 async function api(url){const r=await window.FuentesMeteo.fetch(url);const d=await leerJSON(r);if(!r.ok)throw Error(d.error||'Data unavailable');return d}
 function tab(id,actualizarRuta=true){const boton=document.querySelector(`nav button[data-tab="${id}"]`);if(!boton)return;document.querySelectorAll('.vista').forEach(v=>v.hidden=v.id!==id);document.querySelectorAll('nav button').forEach(b=>{b.classList.toggle('activo',b.dataset.tab===id);if(b.dataset.tab===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});$('titulo').textContent=boton.textContent;soloMapa(false);if(actualizarRuta&&location.hash!=='#'+id)history.pushState(null,'','#'+id);document.dispatchEvent(new CustomEvent('sicc:pestana',{detail:id}))}
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+// Acceso a Configuración del encabezado del menú móvil (en escritorio sigue en la lista).
+$('atajo-configuracion').onclick=()=>tab('configuracion');
+document.addEventListener('sicc:pestana',e=>{if(e.detail==='configuracion')$('atajo-configuracion').setAttribute('aria-current','page');else $('atajo-configuracion').removeAttribute('aria-current')});
 
 // ---------------------------------------------------------------- mapa 2D
 const CENTRO_AMERICA=[12,-80];
@@ -99,7 +102,9 @@ $('exp-punto').onclick=csvPunto;
 document.querySelector('[data-descarga="punto"]').onclick=csvPunto;
 
 // ---------------------------------------------------------------- paneles
-function soloMapa(v){document.body.classList.toggle('solo-mapa',v);$('solomapa').setAttribute('aria-pressed',String(v));$('solomapa').textContent=v?'Show panels':'Hide panels';document.dispatchEvent(new CustomEvent('sicc:paneles'));requestAnimationFrame(ajustarAltoMapa)}
+// Si el foco estaba en un panel que se oculta, pasa a «Show panels»; al restaurarlos vuelve a ese control.
+let focoPaneles=null;
+function soloMapa(v){const activo=document.activeElement;document.body.classList.toggle('solo-mapa',v);if(v){if(activo&&activo!==$('solomapa')&&activo.closest?.('aside,.vista')){focoPaneles=activo;$('solomapa').focus()}}else{const f=focoPaneles;focoPaneles=null;if(f&&document.activeElement===$('solomapa')&&f.isConnected&&f.getClientRects().length)f.focus()}$('solomapa').setAttribute('aria-pressed',String(v));$('solomapa').textContent=v?'Show panels':'Hide panels';document.dispatchEvent(new CustomEvent('sicc:paneles'));requestAnimationFrame(ajustarAltoMapa)}
 $('solomapa').onclick=()=>soloMapa(!document.body.classList.contains('solo-mapa'));
 // El mapa ocupa el espacio que deja la franja de controles en pantallas compactas.
 function ajustarAltoMapa(){const cont=$('controles-mapa');if(!cont)return;const compacto=matchMedia('(max-width:700px), (max-height:500px) and (max-width:1000px)').matches;const valor=(compacto?Math.ceil(cont.getBoundingClientRect().height):0)+'px';if(document.documentElement.style.getPropertyValue('--alto-controles-mapa')===valor)return;document.documentElement.style.setProperty('--alto-controles-mapa',valor);if(mapa)mapa.invalidateSize({animate:false})}
@@ -215,7 +220,9 @@ document.addEventListener('espacio:error',e=>{
 });
 if(window.Espacio)document.body.classList.remove('cargando');
 setTimeout(()=>{if(location.hash==='#map'&&modo!=='mapa'&&!window.Espacio)salidaHash()},1200);
-function seguirRuta(){const hash=location.hash.slice(1);if(hash==='map'||hash==='globe'){tab('meteorologia',false);cambiarVista(hash==='map'?'mapa':'globo');return}const id=hash==='proyecciones'?'escenarios':hash;if(document.querySelector(`nav button[data-tab="${CSS.escape(id)}"]`))tab(id,false);else if(!hash)tab('meteorologia',false)}
+// Explicación concreta de Aprender: abre la pestaña, conserva el fragmento exacto en la URL y la resalta.
+function abrirExplicacion(ancla,actualizarRuta=true){const e=ancla.startsWith('aprender-')&&document.getElementById(ancla);if(!e||!$('aprender').contains(e))return false;tab('aprender',false);if(actualizarRuta&&location.hash!=='#'+ancla)history.pushState(null,'','#'+ancla);e.scrollIntoView({block:'start'});e.classList.add('resaltado');setTimeout(()=>e.classList.remove('resaltado'),1600);return true}
+function seguirRuta(){const hash=location.hash.slice(1);if(abrirExplicacion(hash,false))return;if(hash==='map'||hash==='globe'){tab('meteorologia',false);cambiarVista(hash==='map'?'mapa':'globo');return}const id=hash==='proyecciones'?'escenarios':hash;if(document.querySelector(`nav button[data-tab="${CSS.escape(id)}"]`))tab(id,false);else if(!hash)tab('meteorologia',false)}
 addEventListener('hashchange',seguirRuta);
 addEventListener('popstate',seguirRuta);
 document.addEventListener('DOMContentLoaded',seguirRuta);
