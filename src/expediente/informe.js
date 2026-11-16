@@ -622,7 +622,7 @@
       if (T.sen) filas.push(['Theil-Sen', n(T.sen.pendiente_decada, dec + 2), n(T.sen.ic_inf_decada, dec + 2) + ' … ' + n(T.sen.ic_sup_decada, dec + 2), 'Mann-Kendall p ' + pf(T.sen.p_mann_kendall), String(T.sen.n)]);
       if (T.mco) filas.push([idioma === 'en' ? 'Least squares' : 'Mínimos cuadrados', n(T.mco.pendiente_decada, dec + 2) + ' ± ' + n(T.mco.error_estandar_decada, dec + 2), n(T.mco.ic_inf_decada, dec + 2) + ' … ' + n(T.mco.ic_sup_decada, dec + 2), 't p ' + pf(T.mco.p), String(T.mco.n)]);
       if (filas.length) tabla([idioma === 'en' ? 'Method' : 'Método', u + '/' + (idioma === 'en' ? 'decade' : 'década'), (idioma === 'en' ? 'CI ' + nivelPct + '%' : 'IC ' + nivelPct + ' %'), 'p', 'n'], filas, [40, 32, 40, 38, 12], { titulo: (idioma === 'en' ? 'Trend and uncertainty · verdict: ' : 'Tendencia e incertidumbre · veredicto: ') + veredictoTxt() });
-      parrafo(t('expl.' + T.veredicto.estado), { tam: 8.6 });
+      parrafo(op.desacuerdo ? desacuerdoTxt() : t('expl.' + T.veredicto.estado), { tam: 8.6 });
       if (plantilla === 'completo') {
         grafAnomalias();
         grafCiclo();
