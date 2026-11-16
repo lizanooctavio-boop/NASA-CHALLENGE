@@ -5,6 +5,7 @@
 **2026 NASA International Space Apps Challenge — "Be an Earth System Trend Detective!"**
 
 - **Live Public Demo:** <https://nasa-challenge-q6cx.onrender.com/>
+- **30-Second Demo Video:** <https://youtu.be/uy025KuxvBw>
 - **Challenge Page:** <https://www.spaceappschallenge.org/2026/challenges/earth-system-trend-detective/>
 - **Submission Package Docs:**
   - [Project Description & Official 2026 Requirements](docs/entrega/PROJECT_DESCRIPTION.md)
