@@ -660,7 +660,7 @@
       campo(t('exp.idioma'), selector('exp-inf-idioma', [['es', 'Español'], ['en', 'English']], ex.idioma, ev => { ex.idioma = ev.target.value; })),
       campo(t('exp.plantilla'), selector('exp-plantilla', [['resumen', t('exp.resumen')], ['completo', t('exp.completo')]], ex.plantilla, ev => { ex.plantilla = ev.target.value; ex.secciones = (ex.plantilla === 'resumen' ? INF.RESUMEN : INF.SECCIONES).slice(); render(); }))));
     const secs = h('fieldset', { class: 'exp-secciones' }, h('legend', null, t('exp.secciones')));
-    INF.SECCIONES.forEach(s => secs.append(h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: ex.secciones.includes(s), 'data-seccion': s, onchange: ev => { ex.secciones = ev.target.checked ? INF.SECCIONES.filter(x => x === s || ex.secciones.includes(x)) : ex.secciones.filter(x => x !== s); } }), s + '. ' + t('sec.' + s))));
+    INF.SECCIONES.forEach(s => secs.append(h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: ex.secciones.includes(s), 'data-seccion': s, onchange: ev => { ex.secciones = ev.target.checked ? INF.SECCIONES.filter(x => x === s || ex.secciones.includes(x)) : ex.secciones.filter(x => x !== s); } }), s + '. ' + t('sec.' + s, s === 'P' ? (() => { const pv = S.resultado && S.resultado.perspectiva, a = Number(((S.resultado && S.resultado.generado_utc) || new Date().toISOString()).slice(0, 4)); return pv && pv.horizonte ? { ini: pv.horizonte.inicio, fin: pv.horizonte.fin } : { ini: a + 1, fin: a + 10 }; })() : undefined))));
     art.append(secs);
     art.append(h('div', { class: 'controles' },
       campo(t('exp.autor'), entrada('exp-autor', 'text', ex.autor, { maxlength: 120 }, ev => { ex.autor = ev.target.value; })),

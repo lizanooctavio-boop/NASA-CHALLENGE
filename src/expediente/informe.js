@@ -66,8 +66,10 @@
     var varsSec = PV ? { ini: PV.horizonte.inicio, fin: PV.horizonte.fin } : {};
     function seccion(letra) { numSeccion++; titular(letra + '. ' + t('sec.' + letra, varsSec), 1); doc.outline && doc.outline.add(null, letra + '. ' + limpio(t('sec.' + letra, varsSec)), { pageNumber: doc.getNumberOfPages() }); }
     function banda(txt) {
-      asegurar(12); color([232, 240, 252], 'f'); doc.rect(M.l, y, ANCHO, 8, 'F'); color(COL.acento, 'f'); doc.rect(M.l, y, 1.6, 8, 'F');
-      fuente(9, 'bold'); color(COL.acento); doc.text(limpio(txt), M.l + 4, y + 5.4); y += 11;
+      fuente(9, 'bold');
+      var ls = doc.splitTextToSize(limpio(txt), ANCHO - 8), alto = 4 + ls.length * 4;
+      asegurar(alto + 4); color([232, 240, 252], 'f'); doc.rect(M.l, y, ANCHO, alto, 'F'); color(COL.acento, 'f'); doc.rect(M.l, y, 1.6, alto, 'F');
+      fuente(9, 'bold'); color(COL.acento); ls.forEach(function (l, i) { doc.text(l, M.l + 4, y + 5.4 + i * 4); }); y += alto + 3;
     }
     function pie(txt) { parrafo(txt, { tam: 7.8, color: COL.suave, despues: 3 }); }
 

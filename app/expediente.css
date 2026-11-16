@@ -41,3 +41,24 @@
 .exp-abrir input{font-size:12px}
 .expediente button.principal{background:rgba(111,216,255,.25);border-color:rgba(111,216,255,.65);font-weight:600}
 @media (max-width:700px){.exp-cabecera{flex-direction:column}.exp-rango input{width:72px}}
+
+/* Tabla de la perspectiva: cinco columnas en un panel estrecho. Anchos fijos, texto que parte por palabras y, en
+   pantallas pequeñas, cada indicador como tarjeta. */
+.exp-pp-tabla{table-layout:fixed;font-size:12px}
+.exp-pp-tabla th,.exp-pp-tabla td{padding:6px 8px 6px 0;vertical-align:top;overflow-wrap:break-word;word-break:normal;hyphens:auto}
+.exp-pp-tabla th[scope=col]{width:auto;font-size:11px;text-transform:none;color:var(--tenue)}
+.exp-pp-tabla th[scope=col]:nth-child(1){width:27%}
+.exp-pp-tabla th[scope=col]:nth-child(2){width:15%}
+.exp-pp-tabla th[scope=col]:nth-child(3){width:19%}
+.exp-pp-tabla th[scope=col]:nth-child(4){width:21%}
+.exp-pp-tabla th[scope=col]:nth-child(5){width:18%}
+.exp-pp-tabla th[scope=row]{width:auto;text-transform:none;letter-spacing:0;color:inherit;font-weight:600}
+.exp-pp-tabla td:nth-child(2){font-variant-numeric:tabular-nums}
+.exp-pp-tabla tr[data-clase=validada] td:last-child{color:#7ddc9a;font-weight:600}
+.exp-pp-tabla tr[data-clase=no_proyectable] td:last-child{color:var(--tenue)}
+@media (max-width:640px){
+  .exp-pp-tabla,.exp-pp-tabla tbody,.exp-pp-tabla tr,.exp-pp-tabla th,.exp-pp-tabla td{display:block;width:auto!important}
+  .exp-pp-tabla tr:first-child{display:none}
+  .exp-pp-tabla tr{padding:8px 0}
+  .exp-pp-tabla th,.exp-pp-tabla td{padding:1px 0}
+}
