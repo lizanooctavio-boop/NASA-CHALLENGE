@@ -196,7 +196,8 @@ class Perspectiva(unittest.TestCase):
 
     def test_cmip6_es_dispersion_entre_modelos(self):
         pv = self.pv
-        self.assertTrue(pv["cmip6_fuente"]["interpolado"])
+        anios = {int(l.split(",")[5]) for l in (RAIZ / "data/expediente/cmip6_regional_mensual.csv").read_text(encoding="utf-8").splitlines()[1:] if l}
+        self.assertEqual(pv["cmip6_fuente"]["interpolado"], 2027 not in anios)  # se interpola solo si faltan los años
         t2m = next(o for o in pv["indicadores"] if o["id"] == "consulta_T2M")
         for esc, c in t2m["cmip6"]["escenarios"].items():
             self.assertEqual(c["n_modelos"], 6)

@@ -94,8 +94,9 @@ Son **tendencias destacadas** (como máximo 10) las validadas cuyo IC 95 % del c
 
 ## CMIP6
 
-`data/expediente/cmip6_regional_mensual.csv` se prepara con `scripts/expediente/preparar_cmip6.py` a partir de `data/fenomenos/cmip6_mensual.csv`. Hoy solo contiene los periodos 1995–2014 y 2041–2060. Mientras falten los años de la década, el cambio de cada modelo se interpola linealmente entre los centros de esos dos periodos. Se marca como `interpolado` y el informe lo dice.
-Para tener los años reales, se descarga 2015–2040 con `backend/clima_nic/fuentes/nex_gddp.py`, se vuelve a ejecutar `preparar_cmip6.py <csv>`, y la interpolación deja de usarse sola.
+`data/expediente/cmip6_regional_mensual.csv` se prepara con `scripts/expediente/preparar_cmip6.py`. Sus entradas son `data/fenomenos/cmip6_mensual.csv` (1995–2014 y 2041–2060) y `data/fenomenos/cmip6_mensual_2015_2040.csv`.
+El segundo archivo se descargó el 2026-11-15 con `backend/clima_nic/fuentes/nex_gddp.py`: 624 recortes, 423 MB, sin fallos. Cubre los 6 modelos, SSP2-4.5 y SSP5-8.5, `pr` y `tas`, las 5 regiones y los 12 meses de cada año de 2015 a 2040.
+Por eso cada SSP tiene años continuos de 2015 a 2060 y la década se calcula con los años reales de cada modelo. La interpolación lineal entre 1995–2014 y 2041–2060 solo se usaría si faltaran esos años, y el informe lo indicaría.
 
 ## Reproducibilidad
 
@@ -105,14 +106,16 @@ Para tener los años reales, se descarga 2015–2040 con `backend/clima_nic/fuen
 
 ## Ejemplo: departamento de Matagalpa, T2M anual, generado en 2026
 
-Datos: fixture de POWER del 2026-11-15, índices de las 7 celdas (cobertura 100 %), GISTEMP de la Región Central y CMIP6 interpolado.
+Datos: fixture de POWER del 2026-11-15, índices de las 7 celdas (cobertura 100 %), GISTEMP de la Región Central y CMIP6 con los años reales 2027–2036.
 
 - **Apta para proyección validada y destacada:** la anomalía GISTEMP de la Región Central.
   - Histórico: Sen +0,29 °C/década (IC 0,21 … 0,37), q < 10⁻⁴.
   - Modelo: tendencia con errores AR(1), con MSSS 0,94 y coberturas de 0,80 y 1,00.
   - Cambio de 2027–2036 frente a 1991–2020: +0,75 °C, con intervalo predictivo del 80 % de 0,54 a 0,96.
   - Probabilidad de detectar la tendencia dentro de la década: 13 %.
-- **CMIP6 para la Región Central:** +0,89 °C (de 0,68 a 1,08) con SSP2-4.5 y +1,24 °C (de 0,83 a 1,37) con SSP5-8.5, frente a 1995–2014.
+- **CMIP6 para la Región Central**, cambio de 2027–2036 frente a 1995–2014 (mediana, mínimo y máximo de los 6 modelos):
+  - Temperatura: +0,87 °C (0,56 a 1,06) con SSP2-4.5 y +1,00 °C (0,73 a 1,21) con SSP5-8.5.
+  - Lluvia anual: +1,6 % (−3,3 a +22,1) con SSP2-4.5 y −7,1 % (−15,0 a +11,2) con SSP5-8.5. Los modelos no coinciden en el signo.
 - **Solo exploratorio:** la T2M de POWER y Tmax. Su tendencia histórica es negativa, en sentido contrario a GISTEMP y a CMIP6; en el caso de Tmax, además, sus intervalos no están calibrados. TX90p contradice a CMIP6. Toda la lluvia de MERRA-2 es exploratoria por inhomogeneidad.
 
 Que POWER (MERRA-2) y GISTEMP den signos distintos es una **comparación entre fuentes**: difieren en producto, escala y periodo. No es un desacuerdo entre métodos.

@@ -73,10 +73,13 @@ const ind = (id, s, extra) => Object.assign({ id, nombre: id, nombre_en: id, uni
   const res = A.analizar({ consulta: c, area, variable: F.VARIABLES.T2M, fuente: F.POWER, lecturas: lect, generado_utc: '2026-11-15T00:00:00Z' });
   const idx = PP.leerIndicesCeldas(leer('data/fenomenos/indices_anuales_celdas.csv'));
   const ar = PP.indicadoresDeArea(res.celdas, idx, 0.9);
-  const cm = PP.interpolarCmip6(PP.leerCmip6(leer('data/expediente/cmip6_regional_mensual.csv'), 'central', null), 2027, 2036);
+  const cm0 = PP.leerCmip6(leer('data/expediente/cmip6_regional_mensual.csv'), 'central', null);
+  // igual que la app: se interpola solo si la década no está en los datos descargados
+  const tieneDecada = Object.values(cm0.variables).some(V => Object.values(V.escenarios).some(E2 => Object.values(E2).some(m => m[2027] !== undefined)));
+  const cm = tieneDecada ? cm0 : PP.interpolarCmip6(cm0, 2027, 2036);
   const inds = [PP.indicadorDeConsulta(res)].concat(ar.indicadores.filter(x => x.id !== 't2m_media'), [PP.indicadorGistemp(leer('data/fenomenos/gistemp_nicaragua.csv'), 'central', 'Región Central')]);
   const pc = c.perspectiva;
-  res.perspectiva = PP.evaluar({ anio_generacion: 2026, referencia: c.referencia, indicadores: inds, cmip6: { region: 'central', nombre: 'Región Central', interpolado: true, anual: cm, escenarios: pc.escenarios, archivo: 'data/expediente/cmip6_regional_mensual.csv', modelos: cm.modelos },
+  res.perspectiva = PP.evaluar({ anio_generacion: 2026, referencia: c.referencia, indicadores: inds, cmip6: { region: 'central', nombre: 'Región Central', interpolado: !tieneDecada, anual: cm, escenarios: pc.escenarios, archivo: 'data/expediente/cmip6_regional_mensual.csv', modelos: cm.modelos },
     semilla: pc.semilla, n_sim: pc.n_sim, modelo: pc.modelo, excluidas: PP.EXCLUIDAS, mapas: PP.mapasCeldas(idx, res.celdas, res.area.extension, c.referencia) });
   out.matagalpa = { cobertura: ar.cobertura, perspectiva: res.perspectiva, gistemp: leer('data/fenomenos/gistemp_nicaragua.csv').split(/\r?\n/).slice(0, 1)[0] };
   const conPP = pp => () => E.validar(Object.assign(E.valoresPorDefecto(), { area: c.area, perspectiva: Object.assign({}, E.valoresPorDefecto().perspectiva, pp) })).perspectiva;
