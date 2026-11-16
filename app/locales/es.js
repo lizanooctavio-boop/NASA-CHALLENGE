@@ -34,6 +34,7 @@ window.GnomonSpanishMessages = Object.freeze({
   "Normal width": "Ancho normal",
   "Close": "Cerrar",
   "Loading…": "Cargando…",
+  "Area report": "Expediente por área",
   "Loading data…": "Cargando datos…",
   "Loading 3D Earth…": "Cargando la Tierra en 3D…",
   "Loading forecast…": "Cargando pronóstico…",

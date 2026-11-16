@@ -1,0 +1,54 @@
+{
+ "fuente": "NASA NEX-GDDP-CMIP6 v2.0 (NCCS THREDDS/NCSS), medias regionales ponderadas por superficie (solo tierra)",
+ "doi_producto": "10.1038/s41597-022-01393-4",
+ "modelos": [
+  "ACCESS-CM2",
+  "CanESM5",
+  "EC-Earth3",
+  "GFDL-ESM4",
+  "MPI-ESM1-2-HR",
+  "MRI-ESM2-0"
+ ],
+ "escenarios": {
+  "historical": [
+   1995,
+   2014
+  ],
+  "ssp245": [
+   2015,
+   2060
+  ],
+  "ssp585": [
+   2015,
+   2060
+  ]
+ },
+ "anios_por_escenario": {
+  "historical": 20,
+  "ssp245": 46,
+  "ssp585": 46
+ },
+ "variables": {
+  "pr": "mm/mes",
+  "tas": "°C"
+ },
+ "regiones": [
+  "NIC",
+  "caja_sicc",
+  "caribe",
+  "central",
+  "pacifico"
+ ],
+ "entradas": [
+  {
+   "archivo": "cmip6_mensual.csv",
+   "sha256": "6e8795ef8e88bacd983901610137faae35e489db62e860db1396c38e050f5a06"
+  },
+  {
+   "archivo": "cmip6_mensual_2015_2040.csv",
+   "sha256": "ac72cc4a33378aa6190af95b316098863e0d3fb1beb85241efbcfdb6d431b638"
+  }
+ ],
+ "generado_utc": "2026-11-16T00:14:03+00:00",
+ "uso": "escenarios condicionados a forzamiento; la dispersión entre modelos no es un intervalo de confianza"
+}

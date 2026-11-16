@@ -58,7 +58,7 @@ function iniciarMapa(){
   mapa.createPane('etiquetas').style.zIndex=350;
   const esriEtq=L.tileLayer(ESRI+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{pane:'etiquetas',minZoom:6,maxNativeZoom:19,maxZoom:18,attribution:'Labels © Esri'}).addTo(mapa);
   vigilarBase(esriEtq,'Place labels',true);
-  mapa.on('click',e=>{if($('consultar').disabled)return;elegirPunto(e.latlng.lat,L.Util.wrapNum(e.latlng.lng,[-180,180]))});
+  mapa.on('click',e=>{if(window.ETDCapturaMapa?.(e))return;if($('consultar').disabled)return;elegirPunto(e.latlng.lat,L.Util.wrapNum(e.latlng.lng,[-180,180]))});
 }
 function elegirPunto(lat,lon){$('lat').value=lat.toFixed(3);$('lon').value=lon.toFixed(3);if(!$('meteorologia').hidden||true)$('consulta-punto').requestSubmit()}
 
@@ -222,7 +222,8 @@ if(window.Espacio)document.body.classList.remove('cargando');
 setTimeout(()=>{if(location.hash==='#map'&&modo!=='mapa'&&!window.Espacio)salidaHash()},1200);
 // Explicación concreta de Aprender: abre la pestaña, conserva el fragmento exacto en la URL y la resalta.
 function abrirExplicacion(ancla,actualizarRuta=true){const e=ancla.startsWith('aprender-')&&document.getElementById(ancla);if(!e||!$('aprender').contains(e))return false;tab('aprender',false);if(actualizarRuta&&location.hash!=='#'+ancla)history.pushState(null,'','#'+ancla);e.scrollIntoView({block:'start'});e.classList.add('resaltado');setTimeout(()=>e.classList.remove('resaltado'),1600);return true}
-function seguirRuta(){const hash=location.hash.slice(1);if(abrirExplicacion(hash,false))return;if(hash==='map'||hash==='globe'){tab('meteorologia',false);cambiarVista(hash==='map'?'mapa':'globo');return}const id=hash==='proyecciones'?'escenarios':hash;if(document.querySelector(`nav button[data-tab="${CSS.escape(id)}"]`))tab(id,false);else if(!hash)tab('meteorologia',false)}
+// #inv=… es una investigación compartida (app/expediente.js): no cambia la vista por sí sola.
+function seguirRuta(){const hash=location.hash.slice(1);if(hash.startsWith('inv='))return;if(abrirExplicacion(hash,false))return;if(hash==='map'||hash==='globe'){tab('meteorologia',false);cambiarVista(hash==='map'?'mapa':'globo');return}const id=hash==='proyecciones'?'escenarios':hash;if(document.querySelector(`nav button[data-tab="${CSS.escape(id)}"]`))tab(id,false);else if(!hash)tab('meteorologia',false)}
 addEventListener('hashchange',seguirRuta);
 addEventListener('popstate',seguirRuta);
 document.addEventListener('DOMContentLoaded',seguirRuta);
