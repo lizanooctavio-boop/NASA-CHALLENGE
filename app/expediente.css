@@ -1,0 +1,64 @@
+/* Pestaña «Area report / Expediente por área» */
+.expediente h2{font-size:18px;margin:0 0 4px}
+.expediente h3{font-size:15px;margin:0 0 10px}
+.expediente h4{font-size:13px;margin:12px 0 4px}
+.exp-cabecera{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.exp-idioma{display:flex;gap:4px;flex:none}
+.exp-idioma button{min-width:42px;padding:6px 8px}
+.exp-idioma button[aria-pressed="true"]{background:rgba(111,216,255,.22);border-color:rgba(111,216,255,.6)}
+.exp-mensaje{border-radius:8px;padding:9px 12px;font-size:13px;margin:0 0 12px;border:1px solid var(--borde);overflow-wrap:anywhere}
+.exp-error{background:rgba(255,77,94,.14);border-color:rgba(255,77,94,.5)}
+.exp-ok{background:rgba(80,200,120,.13);border-color:rgba(80,200,120,.45)}
+.exp-info{background:rgba(111,216,255,.1);border-color:rgba(111,216,255,.4)}
+.exp-sello{display:inline-block;font-size:11.5px;padding:3px 8px;border-radius:6px;background:rgba(246,199,107,.15);border:1px solid rgba(246,199,107,.5);margin:0 0 8px}
+.exp-meses{display:flex;flex-wrap:wrap;gap:4px 10px;margin:0 0 12px}
+.exp-meses .chk{display:flex;gap:4px;align-items:center;font-size:12px}
+.exp-rango{display:flex;gap:6px;align-items:center}
+.exp-rango input{width:84px}
+.exp-ficha{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
+.exp-ficha caption{text-align:left;font-weight:600;margin-bottom:4px}
+.exp-ficha th{text-align:left;font-weight:500;color:var(--tenue);padding:4px 8px 4px 0;vertical-align:top;width:38%}
+.exp-ficha td{padding:4px 0;overflow-wrap:anywhere}
+.exp-ficha tr+tr{border-top:1px solid var(--borde)}
+.exp-veredicto[data-estado="aumento"] strong,.exp-veredicto[data-estado="disminucion"] strong{color:#ffd166}
+.exp-veredicto[data-estado="faltan"] strong{color:#ff8a95}
+.exp-figura{margin:10px 0}
+.exp-svg{width:100%;height:auto;display:block}
+.exp-svg .exp-rejilla{stroke:rgba(255,255,255,.12)}
+.exp-svg .exp-eje{fill:var(--tenue);font-size:10px}
+.exp-svg .exp-linea{fill:none;stroke:#97caff;stroke-width:1.2}
+.exp-svg .exp-punto{fill:#e6e8f5}
+.exp-svg .exp-sen{stroke:#fbc894;stroke-width:2}
+.exp-svg .exp-mco{stroke:#97caff;stroke-width:1.5;stroke-dasharray:5 4}
+.exp-svg .exp-falta{fill:#ff8a95;font-size:12px}
+.exp-avisos li{font-size:12.5px}
+.exp-ids code{font-size:11px;overflow-wrap:anywhere}
+.exp-secciones{border:1px solid var(--borde);border-radius:8px;padding:8px 12px;margin:0 0 12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px 12px}
+.exp-secciones legend{font-size:12px;color:var(--tenue)}
+.exp-secciones .chk{display:flex;gap:6px;align-items:center;font-size:12.5px}
+.expediente textarea,.expediente input[type=text]{width:100%;box-sizing:border-box}
+.exp-enlaces input{font-size:11.5px}
+.exp-abrir input{font-size:12px}
+.expediente button.principal{background:rgba(111,216,255,.25);border-color:rgba(111,216,255,.65);font-weight:600}
+@media (max-width:700px){.exp-cabecera{flex-direction:column}.exp-rango input{width:72px}}
+
+/* Tabla de la perspectiva: cinco columnas en un panel estrecho. Anchos fijos, texto que parte por palabras y, en
+   pantallas pequeñas, cada indicador como tarjeta. */
+.exp-pp-tabla{table-layout:fixed;font-size:12px}
+.exp-pp-tabla th,.exp-pp-tabla td{padding:6px 8px 6px 0;vertical-align:top;overflow-wrap:break-word;word-break:normal;hyphens:auto}
+.exp-pp-tabla th[scope=col]{width:auto;font-size:11px;text-transform:none;color:var(--tenue)}
+.exp-pp-tabla th[scope=col]:nth-child(1){width:27%}
+.exp-pp-tabla th[scope=col]:nth-child(2){width:15%}
+.exp-pp-tabla th[scope=col]:nth-child(3){width:19%}
+.exp-pp-tabla th[scope=col]:nth-child(4){width:21%}
+.exp-pp-tabla th[scope=col]:nth-child(5){width:18%}
+.exp-pp-tabla th[scope=row]{width:auto;text-transform:none;letter-spacing:0;color:inherit;font-weight:600}
+.exp-pp-tabla td:nth-child(2){font-variant-numeric:tabular-nums}
+.exp-pp-tabla tr[data-clase=validada] td:last-child{color:#7ddc9a;font-weight:600}
+.exp-pp-tabla tr[data-clase=no_proyectable] td:last-child{color:var(--tenue)}
+@media (max-width:640px){
+  .exp-pp-tabla,.exp-pp-tabla tbody,.exp-pp-tabla tr,.exp-pp-tabla th,.exp-pp-tabla td{display:block;width:auto!important}
+  .exp-pp-tabla tr:first-child{display:none}
+  .exp-pp-tabla tr{padding:8px 0}
+  .exp-pp-tabla th,.exp-pp-tabla td{padding:1px 0}
+}
