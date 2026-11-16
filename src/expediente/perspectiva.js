@@ -671,15 +671,20 @@
   // Minimapas: valores reales por celda de la malla de índices alrededor del área (tendencia de Sen y anomalía de la
   // última década frente a la referencia). Solo se dibuja lo que la malla resuelve: 0,5° × 0,625°.
   function mapasCeldas(indicesCeldas, celdasArea, ext, ref) {
+    // Ámbito nacional: toda la malla de índices (Nicaragua), para dibujar campos continuos como los mapas de la OMM o
+    // del IDEAM. El área consultada se dibuja encima; si queda fuera de la malla no hay minimapas.
     var e = ext.slice(); if (e[2] < e[0]) e[2] += 360;
-    var mx = Math.max(1.0, (e[2] - e[0]) * 0.5), my = Math.max(1.0, (e[3] - e[1]) * 0.5);
-    var v = [e[0] - mx, e[1] - my, e[2] + mx, e[3] + my];
     var enArea = {}; celdasArea.forEach(function (c) { enArea[Number(c.lat).toFixed(3) + ',' + Number(c.lon).toFixed(3)] = c.peso; });
-    var claves = Object.keys(indicesCeldas).filter(function (k) { var p = k.split(',').map(Number); return p[0] >= v[1] && p[0] <= v[3] && p[1] >= v[0] && p[1] <= v[2]; });
+    var claves = Object.keys(indicesCeldas);
     if (!claves.length) return null;
+    var pts = claves.map(function (k) { return k.split(',').map(Number); });
+    var la0 = Math.min.apply(null, pts.map(function (p) { return p[0]; })), la1 = Math.max.apply(null, pts.map(function (p) { return p[0]; }));
+    var lo0 = Math.min.apply(null, pts.map(function (p) { return p[1]; })), lo1 = Math.max.apply(null, pts.map(function (p) { return p[1]; }));
+    if (e[2] < lo0 - 1 || e[0] > lo1 + 1 || e[3] < la0 - 1 || e[1] > la1 + 1) return null;
+    var v = [Math.min(lo0 - 0.45, e[0] - 0.1), Math.min(la0 - 0.4, e[1] - 0.1), Math.max(lo1 + 0.45, e[2] + 0.1), Math.max(la1 + 0.4, e[3] + 0.1)];
     var ultimo = 0;
     claves.forEach(function (k) { var t = indicesCeldas[k].t2m_media || {}; Object.keys(t).forEach(function (a) { if (t[a] !== null) ultimo = Math.max(ultimo, Number(a)); }); });
-    var out = { ventana: v, rejilla: { dlat: 0.5, dlon: 0.625 }, periodo_ultimo: [ultimo - 9, ultimo], referencia: [ref.inicio, ref.fin],
+    var out = { ambito: 'nacional', ventana: v, rejilla: { dlat: 0.5, dlon: 0.625 }, periodo_ultimo: [ultimo - 9, ultimo], referencia: [ref.inicio, ref.fin],
       celdas: claves.map(function (k) { var p = k.split(',').map(Number); return { lat: p[0], lon: p[1], peso_area: enArea[k] || 0 }; }), indicadores: {} };
     Object.keys(INDICES).forEach(function (id) {
       var sen = [], anom = [];
@@ -693,6 +698,27 @@
       out.indicadores[id] = { sen_decada: sen, anomalia_ultima_decada: anom };
     });
     return out;
+  }
+
+  // Cambio CMIP6 de la década por región (mediana, mínimo y máximo de los modelos) para los minimapas regionales.
+  // Mismo método delta que cmipDecada: tas aditivo (°C) y pr relativo (%), frente a 1995–2014.
+  function cmipRegiones(texto, regiones, h, escenarios) {
+    if (!texto || !regiones || !regiones.length) return null;
+    var out = { base: [1995, 2014], decada: [h.inicio, h.fin], interpolado: false, escenarios: {} };
+    regiones.forEach(function (rg) {
+      var c = leerCmip6(texto, rg.id, null);
+      var tiene = Object.keys(c.variables).some(function (vv) { return Object.keys(c.variables[vv].escenarios).some(function (e) { return Object.keys(c.variables[vv].escenarios[e]).some(function (m) { return c.variables[vv].escenarios[e][m][h.inicio] !== undefined; }); }); });
+      if (!tiene) { interpolarCmip6(c, h.inicio, h.fin); out.interpolado = true; }
+      ['tas', 'pr'].forEach(function (vv) {
+        var d = cmipDecada({ cmip_variable: vv, unidad: vv === 'tas' ? '°C' : 'mm' }, { region: rg.id, nombre: rg.nombre, anual: c, escenarios: escenarios || null }, h, null);
+        if (!d) return;
+        Object.keys(d.escenarios).forEach(function (e) {
+          var x = d.escenarios[e], E = out.escenarios[e] = out.escenarios[e] || {}, V = E[vv] = E[vv] || {};
+          V[rg.id] = { nombre: rg.nombre, mediana: x.cambio_mediana, min: x.cambio_min, max: x.cambio_max, n_modelos: x.n_modelos, unidad: x.unidad_cambio, modelos_aumento: x.modelos_aumento, modelos_disminucion: x.modelos_disminucion };
+        });
+      });
+    });
+    return Object.keys(out.escenarios).length ? out : null;
   }
 
   // GISTEMP v4 (250 km) por región: anomalía anual (base 1951–1980) solo con los 12 meses presentes.
@@ -732,6 +758,6 @@
     evaluar: evaluar, verificar: verificar, historico: historico, validar: validar, mannKendallModificado: mannKendallModificado,
     benjaminiHochberg: benjaminiHochberg, generador: generador, semillaDe: semillaDe,
     leerIndicesCeldas: leerIndicesCeldas, indicadoresDeArea: indicadoresDeArea, indicadorDeConsulta: indicadorDeConsulta,
-    leerCmip6: leerCmip6, indicadorGistemp: indicadorGistemp, mapasCeldas: mapasCeldas, interpolarCmip6: interpolarCmip6, redondearTodo: redondearTodo
+    leerCmip6: leerCmip6, indicadorGistemp: indicadorGistemp, mapasCeldas: mapasCeldas, cmipRegiones: cmipRegiones, interpolarCmip6: interpolarCmip6, redondearTodo: redondearTodo
   };
 });

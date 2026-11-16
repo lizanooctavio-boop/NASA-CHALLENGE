@@ -236,9 +236,8 @@
         color([60, 60, 60], 'd'); doc.setLineWidth(0.15);
         if (col) { color(col, 'f'); doc.setGState && doc.setGState(new doc.GState({ opacity: 0.8 })); anillo(P, poly, 'FD'); doc.setGState && doc.setGState(new doc.GState({ opacity: 1 })); }
         else {
-          color([200, 200, 200], 'f'); anillo(P, poly, 'FD');
-          var a = P.p(b[0], b[3]), z = P.p(b[2], b[1]); color([120, 120, 120], 'd'); doc.setLineWidth(0.1);
-          for (var k = 0; k < 8; k++) { var f = k / 8; doc.line(a[0] + (z[0] - a[0]) * f, z[1], a[0], z[1] - (z[1] - a[1]) * (1 - f)); }
+          // celda sin dato: gris claro y discontinua, sin rayado
+          color([215, 215, 215], 'f'); doc.setLineDashPattern([0.8, 0.6], 0); anillo(P, poly, 'FD'); doc.setLineDashPattern([], 0);
         }
       });
       dibujarArea(P, 0.7);
@@ -267,11 +266,12 @@
       yy += 9;
       color(COL.area, 'd'); doc.setLineWidth(0.7); doc.line(x, yy, x + 6, yy); fuente(6.8, 'normal'); color(COL.texto); doc.text(limpio(t('c.area')), x + 8, yy + 1);
       yy += 4; color([60, 60, 60], 'd'); doc.setLineWidth(0.15); doc.rect(x, yy - 1.5, 6, 3, 'S'); doc.text(limpio(t('c.celdas')), x + 8, yy + 1);
-      yy += 4; color([200, 200, 200], 'f'); doc.rect(x, yy - 1.5, 6, 3, 'FD'); doc.text(limpio(t('c.sin_cobertura')), x + 8, yy + 1);
+      yy += 4; color([215, 215, 215], 'f'); doc.setLineDashPattern([0.8, 0.6], 0); doc.rect(x, yy - 1.5, 6, 3, 'FD'); doc.setLineDashPattern([], 0); doc.text(limpio(t('c.sin_cobertura')), x + 8, yy + 1);
       return yy + 4;
     }
     function nombreCapa(capa) { return t('capa.' + capa); }
-    function anioCapa(capa) { return capa === 'anomalia_anual' ? String(res.consulta.vista.anio_visible || res.consulta.periodo.fin) + ' · ' + t('res.referencia', { ini: res.referencia.inicio, fin: res.referencia.fin }) : res.consulta.periodo.inicio + '–' + res.consulta.periodo.fin; }
+    function anioMostrado() { return res.mapa_anomalia ? res.mapa_anomalia.anio_mostrado : (res.consulta.vista.anio_visible || res.consulta.periodo.fin); }
+    function anioCapa(capa) { return capa === 'anomalia_anual' ? String(anioMostrado()) + (res.mapa_anomalia && res.mapa_anomalia.anio_mostrado !== res.mapa_anomalia.anio_pedido ? ' (' + t('c.anio_sustituido', { pedido: res.mapa_anomalia.anio_pedido }) + ')' : '') + ' · ' + t('res.referencia', { ini: res.referencia.inicio, fin: res.referencia.fin }) : res.consulta.periodo.inicio + '–' + res.consulta.periodo.fin; }
     function bloqueMapaDetalle(capa, alto) {
       capa = capa || res.consulta.vista.capa || 'anomalia_anual';
       if (capa === 'anomalia_anual' && !res.referencia.suficiente) capa = 'peso_celda';
@@ -282,6 +282,34 @@
       doc.text(doc.splitTextToSize(limpio(t('c.capa', { capa: nombreCapa(capa), anio: anioCapa(capa) })), 48), M.l + ANCHO - 48, yy + 2);
       y += alto + 6;
       pie(t('c.proyeccion', { lat: n(info.P.lat0, 2) }) + ' ' + t('c.atribucion', { limites: limitesTexto() }));
+    }
+    // Mapa con foto satelital (imagen equirectangular ya compuesta en la app: foto + límites, nombres y carreteras de Esri)
+    // con la malla de celdas de NASA POWER y el contorno del área encima.
+    function bloqueSatelite(img) {
+      var ih = Math.min(118, ANCHO * img.alto / img.ancho), iw = ih * img.ancho / img.alto, x0 = M.l + (ANCHO - iw) / 2;
+      asegurar(ih + 16); leyendaFigura(t('c.satelite'));
+      var y0 = y + 1;
+      try { doc.addImage(img.datos, img.formato || 'JPEG', x0, y0, iw, ih, undefined, 'FAST'); }
+      catch (e) { parrafo(t('p.imagen_error'), { tam: 7.5, color: COL.suave }); return; }
+      var e2 = img.ext, Pi = { lat0: (e2[1] + e2[3]) / 2, p: function (lon, lat) { return [x0 + (lon - e2[0]) / (e2[2] - e2[0]) * iw, y0 + (e2[3] - lat) / (e2[3] - e2[1]) * ih]; } };
+      doc.saveGraphicsState(); doc.rect(x0, y0, iw, ih, null); doc.clip(); doc.discardPath();
+      color([255, 255, 255], 'd'); doc.setLineWidth(0.2); doc.setLineDashPattern([1, 0.7], 0);
+      res.celdas.forEach(function (c) { var b = c.caja; if (b) anillo(Pi, [[b[0], b[1]], [b[2], b[1]], [b[2], b[3]], [b[0], b[3]], [b[0], b[1]]], 'S'); });
+      doc.setLineDashPattern([], 0);
+      color([255, 77, 94], 'd'); doc.setLineWidth(0.8);
+      var g = res.area.geometria;
+      if (g.type === 'Point') { var pp = Pi.p(g.coordinates[0], g.coordinates[1]); color([255, 77, 94], 'f'); doc.circle(pp[0], pp[1], 1.2, 'FD'); }
+      else Geo.poligonos(g).forEach(function (pol) { Geo.desenvolverPoligono(pol).forEach(function (a) { anillo(Pi, a, 'S'); }); });
+      doc.restoreGraphicsState();
+      color(COL.texto, 'd'); doc.setLineWidth(0.25); doc.rect(x0, y0, iw, ih, 'S');
+      // norte y escala (en x la imagen ya está corregida por cos(lat): mm por km iguales en ambos ejes)
+      color([255, 255, 255], 'f'); doc.rect(x0 + iw - 8, y0 + 1.5, 6.5, 9, 'F'); norte(x0 + iw - 4.75, y0 + 3);
+      var mmKm = ih / ((e2[3] - e2[1]) * 111.32), bruto = iw * 0.22 / mmKm, pot = Math.pow(10, Math.floor(Math.log10(bruto))), km = [1, 2, 5].map(function (k) { return k * pot; }).filter(function (k) { return k <= bruto; }).pop() || pot, mm = km * mmKm;
+      color([255, 255, 255], 'f'); doc.rect(x0 + 1.5, y0 + ih - 7.5, mm + 16, 6, 'F');
+      color(COL.texto, 'f'); doc.rect(x0 + 3, y0 + ih - 4.6, mm, 1, 'F');
+      fuente(6, 'normal'); color(COL.texto); doc.text(n(km, km < 1 ? 1 : 0) + ' km', x0 + 4 + mm, y0 + ih - 3.6);
+      y = y0 + ih + 2;
+      pie(t('c.satelite_pie', { fuente: img.fuente, fecha: img.fecha || t('na'), limites: limitesTexto() }));
     }
     function limitesTexto() { return res.area.procedencia && res.area.procedencia.tipo === 'ineter' ? 'INETER (WFS público), ' + (res.area.procedencia.version || '') : limpio(t('proc.' + (res.area.procedencia && res.area.procedencia.tipo || 'dibujo'))); }
     function mapaContexto(rect) {
@@ -421,7 +449,7 @@
           if (img.ext) {
             var Pi = { lat0: 0, p: function (lon, lat) { return [M.l + (lon - img.ext[0]) / (img.ext[2] - img.ext[0]) * ANCHO, y + (img.ext[3] - lat) / (img.ext[3] - img.ext[1]) * ih]; } };
             doc.saveGraphicsState(); doc.rect(M.l, y, ANCHO, ih, null); doc.clip(); doc.discardPath();
-            color([255, 235, 59], 'd'); doc.setLineWidth(0.6);
+            color([255, 77, 94], 'd'); doc.setLineWidth(0.7);
             Geo.poligonos(res.area.geometria).forEach(function (pol) { Geo.desenvolverPoligono(pol).forEach(function (a) { anillo(Pi, a, 'S'); }); });
             if (res.area.geometria.type === 'Point') { var pp = Pi.p(res.area.geometria.coordinates[0], res.area.geometria.coordinates[1]); doc.circle(pp[0], pp[1], 1.4, 'S'); }
             doc.restoreGraphicsState();
@@ -502,7 +530,8 @@
         y = rect.y + rect.h + 6;
         pie(t('c.proyeccion', { lat: n(P.lat0, 2) }) + ' ' + t('c.atribucion', { limites: limitesTexto() }) + (idioma === 'en' ? ' Blue frame: extent of the detail map.' : ' Recuadro azul: extensión del mapa de detalle.'));
       }
-      leyendaFigura(t('c.detalle'));
+      if (op.mapaSatelite && op.mapaSatelite.datos) bloqueSatelite(op.mapaSatelite);
+      asegurar(96 + 24); leyendaFigura(t('c.detalle'));
       bloqueMapaDetalle(null, 96);
       ficha();
     }
@@ -656,52 +685,206 @@
     function rango(q, d, uu) { return n(q.p10, d) + ' … ' + n(q.p90, d) + (uu ? ' ' + uu : ''); }
     function sgn(v, d) { return (v > 0 ? '+' : '') + n(v, d); }
     function mesTxt(o) { var m = o.ultima_observacion; return m || t('na'); }
-    function miniMapa(rect, M2, valores, titulo, et) {
-      var P = proyector(M2.ventana, rect);
-      color(COL.agua, 'f'); doc.rect(rect.x, rect.y, rect.w, rect.h, 'F');
-      recortarA(rect); paises(P, rect, op.mundo, false);
-      var vals = valores.filter(function (x) { return x !== null; }), m = vals.length ? Math.max.apply(null, vals.map(Math.abs)) || 1 : 1;
-      var inv = /prcp|rx|r95|lluvia|rain/.test(et.id) && !/cdd/.test(et.id);
-      M2.celdas.forEach(function (c, i) {
-        var val = valores[i], b = [c.lon - M2.rejilla.dlon / 2, c.lat - M2.rejilla.dlat / 2, c.lon + M2.rejilla.dlon / 2, c.lat + M2.rejilla.dlat / 2];
-        var poly = [[b[0], b[1]], [b[2], b[1]], [b[2], b[3]], [b[0], b[3]], [b[0], b[1]]];
-        var col = val === null ? [205, 205, 205] : rampa(val, -m, m, true, inv);
-        color(col, 'f'); color([255, 255, 255], 'd'); doc.setLineWidth(0.08); anillo(P, poly, 'FD');
-      });
-      dibujarArea(P, 0.45);
-      doc.restoreGraphicsState();
+    // Minimapas de campo continuo (estilo OMM/IDEAM): los valores reales por celda (0,5° × 0,625°) se interpolan
+    // bilinealmente solo para dibujar, se recortan a la tierra de Nicaragua (lagos restados) y se colorean por clases.
+    var PALETAS = {
+      temp: [[5, 48, 97], [33, 102, 172], [67, 147, 195], [146, 197, 222], [209, 229, 240], [247, 247, 247], [253, 219, 199], [244, 165, 130], [214, 96, 77], [178, 24, 43], [103, 0, 31]],
+      lluvia: [[84, 48, 5], [140, 81, 10], [191, 129, 45], [223, 194, 125], [246, 232, 195], [245, 245, 245], [199, 234, 229], [128, 205, 193], [53, 151, 143], [1, 102, 94], [0, 60, 48]]
+    };
+    function tipoPaleta(id) { return /prcp|rx1|rx5|r95|lluvia|rain|^pr$/.test(id) ? 'lluvia' : /cdd/.test(id) ? 'seco' : 'temp'; }
+    function colorPaleta(x, tipo) {
+      var pal = PALETAS[tipo === 'temp' ? 'temp' : 'lluvia'];
+      if (tipo === 'seco') x = 1 - x;
+      x = Math.max(0, Math.min(1, x)) * (pal.length - 1);
+      var i = Math.min(pal.length - 2, Math.floor(x)), f = x - i;
+      return [0, 1, 2].map(function (k) { return Math.round(pal[i][k] + (pal[i + 1][k] - pal[i][k]) * f); });
+    }
+    function clasesSimetricas(vals) {
+      var a = vals.filter(function (x) { return x !== null && x !== undefined && isFinite(x); }).map(Math.abs).sort(function (p, q) { return p - q; });
+      var m = a.length ? a[Math.min(a.length - 1, Math.floor(0.98 * (a.length - 1) + 0.5))] : 1;
+      if (!(m > 0)) m = a.length && a[a.length - 1] > 0 ? a[a.length - 1] : 1;
+      var paso = niceStep(m / 5), nk = Math.max(2, Math.ceil(m / paso - 1e-9));
+      var lim = []; for (var k = -nk; k <= nk; k++) lim.push(k * paso);
+      return { lim: lim, paso: paso, n: 2 * nk, dec: paso >= 1 ? 0 : paso >= 0.1 ? 1 : paso >= 0.01 ? 2 : 3 };
+    }
+    function claseDe(v, C) { var k = Math.floor((v - C.lim[0]) / C.paso); return Math.max(0, Math.min(C.n - 1, k)); }
+    var cacheMascara = {};
+    function geomNicaragua() {
+      var f = op.regiones && op.regiones.features && op.regiones.features.filter(function (x) { return x.properties && x.properties.id === 'NIC'; })[0];
+      return f ? f.geometry : null;
+    }
+    function mascaraGeom(g, ext, W, H, nombre) {
+      var clave = nombre + '|' + ext.join(',') + '|' + W + 'x' + H;
+      if (cacheMascara[clave]) return cacheMascara[clave];
+      var m = new Uint8Array(W * H);
+      if (!g) { for (var q = 0; q < m.length; q++) m[q] = 1; return (cacheMascara[clave] = m); }
+      var anillos = []; Geo.poligonos(g).forEach(function (pol) { pol.forEach(function (a) { anillos.push(a); }); });
+      for (var r = 0; r < H; r++) {
+        var lat = ext[3] - (r + 0.5) / H * (ext[3] - ext[1]), xs = [];
+        anillos.forEach(function (a) { for (var i = 0, j = a.length - 1; i < a.length; j = i++) { var yi = a[i][1], yj = a[j][1]; if ((yi > lat) !== (yj > lat)) xs.push(a[i][0] + (lat - yi) / (yj - yi) * (a[j][0] - a[i][0])); } });
+        xs.sort(function (p2, q2) { return p2 - q2; });
+        for (var k = 0; k + 1 < xs.length; k += 2) {
+          var c0 = Math.max(0, Math.ceil((xs[k] - ext[0]) / (ext[2] - ext[0]) * W - 0.5)), c1 = Math.min(W - 1, Math.floor((xs[k + 1] - ext[0]) / (ext[2] - ext[0]) * W - 0.5));
+          for (var c = c0; c <= c1; c++) m[r * W + c] = 1;
+        }
+      }
+      return (cacheMascara[clave] = m);
+    }
+    function mascaraTierra(ext, W, H) { return mascaraGeom(geomNicaragua(), ext, W, H, 'NIC'); }
+    function interpolador(M2, valores) {
+      var g = {}, a0 = M2.celdas[0], dla = M2.rejilla.dlat, dlo = M2.rejilla.dlon;
+      var cl = function (la, lo) { return la.toFixed(3) + ',' + lo.toFixed(3); };
+      M2.celdas.forEach(function (c, i) { var v2 = valores[i]; if (v2 !== null && v2 !== undefined && isFinite(v2)) g[cl(c.lat, c.lon)] = v2; });
+      return function (lon, lat) {
+        var fi = (lat - a0.lat) / dla, fj = (lon - a0.lon) / dlo, i0 = Math.floor(fi), j0 = Math.floor(fj), ti = fi - i0, tj = fj - j0, s2 = 0, w2 = 0;
+        for (var di = 0; di < 2; di++) for (var dj = 0; dj < 2; dj++) {
+          var v2 = g[cl(a0.lat + (i0 + di) * dla, a0.lon + (j0 + dj) * dlo)];
+          if (v2 === undefined) continue;
+          var ww = (di ? ti : 1 - ti) * (dj ? tj : 1 - tj) + 1e-6; s2 += ww * v2; w2 += ww;
+        }
+        if (w2 > 0) return s2 / w2;
+        var mejor = null, bd = 1.05;
+        for (di = -1; di <= 2; di++) for (dj = -1; dj <= 2; dj++) {
+          var la = a0.lat + (i0 + di) * dla, lo = a0.lon + (j0 + dj) * dlo, v3 = g[cl(la, lo)];
+          if (v3 === undefined) continue;
+          var d = Math.sqrt(Math.pow((lat - la) / dla, 2) + Math.pow((lon - lo) / dlo, 2));
+          if (d < bd) { bd = d; mejor = v3; }
+        }
+        return mejor;
+      };
+    }
+    // Ráster RGBA (transparente fuera de Nicaragua o sin dato) de la función f(lon, lat) → valor o null.
+    function rasterCampo(ext, W, H, f, C, tipo) {
+      // ráster opaco: el recorte a la tierra de Nicaragua lo hace el trazado vectorial (jsPDF no aplica el canal alfa)
+      var m = mascaraTierra(ext, W, H), data = new Uint8ClampedArray(W * H * 4), cols = [];
+      for (var k = 0; k < C.n; k++) cols.push(colorPaleta((k + 0.5) / C.n, tipo));
+      for (var r = 0; r < H; r++) {
+        var lat = ext[3] - (r + 0.5) / H * (ext[3] - ext[1]);
+        for (var c = 0; c < W; c++) {
+          var q = r * W + c;
+          var v2 = f(ext[0] + (c + 0.5) / W * (ext[2] - ext[0]), lat, q, W, H), o = q * 4;
+          if (v2 === null || v2 === undefined || !isFinite(v2)) { var gr = m[q] ? 205 : 236; data[o] = gr; data[o + 1] = gr; data[o + 2] = gr; data[o + 3] = 255; continue; }
+          var col = cols[claseDe(v2, C)]; data[o] = col[0]; data[o + 1] = col[1]; data[o + 2] = col[2]; data[o + 3] = 255;
+        }
+      }
+      return { data: data, width: W, height: H };
+    }
+    function lagos(P) {
+      if (!op.mundo) return;
+      color(COL.agua, 'f'); color([120, 150, 175], 'd'); doc.setLineWidth(0.1);
+      op.mundo.features.forEach(function (f) { if (f.properties && f.properties.tipo === 'lago' && f.geometry) Geo.poligonos(f.geometry).forEach(function (pol) { anillo(P, pol[0], 'FD'); }); });
+    }
+    function limitesNacionales(P) {
+      if (op.admin && op.admin.features) {
+        color([255, 255, 255], 'd'); doc.setLineWidth(0.12);
+        op.admin.features.forEach(function (f) { if (f.geometry) Geo.poligonos(f.geometry).forEach(function (pol) { anillo(P, pol[0], 'S'); }); });
+      }
+      var g = geomNicaragua();
+      if (g) { color([40, 40, 40], 'd'); doc.setLineWidth(0.22); Geo.poligonos(g).forEach(function (pol) { pol.forEach(function (a) { anillo(P, a, 'S'); }); }); }
+    }
+    function marcoMinimapa(rect, P) {
       color(COL.texto, 'd'); doc.setLineWidth(0.2); doc.rect(rect.x, rect.y, rect.w, rect.h, 'S');
-      // norte mínimo y escala
       fuente(5.5, 'bold'); color(COL.texto); doc.text('N', rect.x + rect.w - 3, rect.y + 3.2, { align: 'center' });
       color(COL.texto, 'f'); doc.triangle(rect.x + rect.w - 3, rect.y + 3.8, rect.x + rect.w - 4.2, rect.y + 7, rect.x + rect.w - 1.8, rect.y + 7, 'F');
       var kmPorMm = Geo.distanciaKm(0, P.lat0, 1, P.lat0) / (P.k * P.s), km = [10, 20, 25, 50, 100, 200].filter(function (k) { return k / kmPorMm <= rect.w * 0.3; }).pop() || 10, mm = km / kmPorMm;
       color([255, 255, 255], 'f'); doc.rect(rect.x + 1, rect.y + rect.h - 5, mm + 9, 4, 'F');
       color(COL.texto, 'f'); doc.rect(rect.x + 2, rect.y + rect.h - 3.2, mm, 0.8, 'F');
       fuente(5, 'normal'); color(COL.texto); doc.text(km + ' km', rect.x + 3 + mm, rect.y + rect.h - 2.4);
-      // título y barra de color
+    }
+    function barraClases(x, yb, w, C, tipo, unidad) {
+      var bw = w / C.n;
+      for (var k = 0; k < C.n; k++) { color(colorPaleta((k + 0.5) / C.n, tipo), 'f'); doc.rect(x + k * bw, yb, bw + 0.03, 2.4, 'F'); }
+      color(COL.texto, 'd'); doc.setLineWidth(0.1); doc.rect(x, yb, w, 2.4, 'S');
+      fuente(5.2, 'normal'); color(COL.texto);
+      var cada = C.n > 8 ? 2 : 1;
+      C.lim.forEach(function (l, k) { if (k % cada) return; doc.line(x + k * bw, yb + 2.4, x + k * bw, yb + 3.1); doc.text(n(l, C.dec), x + k * bw, yb + 5.2, { align: 'center' }); });
+      fuente(5.4, 'normal'); doc.text(limpio(unidad), x + w / 2, yb + 7.6, { align: 'center' });
+    }
+    function rectMinimapa(x, yy, w, ext) {
+      var k = Math.cos((ext[1] + ext[3]) / 2 * Math.PI / 180);
+      return { x: x, y: yy, w: w, h: w * (ext[3] - ext[1]) / ((ext[2] - ext[0]) * k) };
+    }
+    // Dibuja un minimapa: f(lon, lat) da el valor (o null); C son las clases comunes de la figura.
+    function miniCampo(rect, ext, f, C, tipo, titulo, unidad, conArea) {
+      var P = proyector(ext, rect);
+      color(COL.agua, 'f'); doc.rect(rect.x, rect.y, rect.w, rect.h, 'F');
+      recortarA(rect); paises(P, rect, op.mundo, false);
+      var a = P.p(ext[0], ext[3]), z = P.p(ext[2], ext[1]);
+      var W = Math.max(60, Math.min(420, Math.round((z[0] - a[0]) * 6))), H = Math.max(40, Math.round(W * (z[1] - a[1]) / (z[0] - a[0])));
+      var gN = geomNicaragua();
+      doc.saveGraphicsState();
+      if (gN) {
+        Geo.poligonos(gN).forEach(function (pol) { var pts = pol[0].map(function (c2) { return P.p(c2[0], c2[1]); }), d = []; for (var i = 1; i < pts.length; i++) d.push([pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]]); doc.lines(d, pts[0][0], pts[0][1], [1, 1], null, true); });
+        doc.clip(); doc.discardPath();
+      }
+      try { doc.addImage(rasterCampo(ext, W, H, f, C, tipo), 'RGBA', a[0], a[1], z[0] - a[0], z[1] - a[1], undefined, 'FAST'); } catch (e) { /* sin ráster: queda el mapa base */ }
+      doc.restoreGraphicsState();
+      lagos(P);
+      limitesNacionales(P);
+      if (conArea !== false) dibujarArea(P, 0.45);
+      doc.restoreGraphicsState();
+      marcoMinimapa(rect, P);
       fuente(6.6, 'bold'); color(COL.texto);
       doc.text(doc.splitTextToSize(limpio(titulo), rect.w).slice(0, 2), rect.x, rect.y - 3.6);
-      var yb = rect.y + rect.h + 1.6, nn = 20, w = rect.w / nn;
-      for (var i = 0; i < nn; i++) { color(rampa(-m + 2 * m * (i + 0.5) / nn, -m, m, true, inv), 'f'); doc.rect(rect.x + i * w, yb, w + 0.05, 2.2, 'F'); }
-      color(COL.texto, 'd'); doc.setLineWidth(0.1); doc.rect(rect.x, yb, rect.w, 2.2, 'S');
-      fuente(5.6, 'normal'); color(COL.texto);
-      doc.text(n(-m, m < 1 ? 2 : m < 10 ? 1 : 0), rect.x, yb + 4.6); doc.text(n(m, m < 1 ? 2 : m < 10 ? 1 : 0), rect.x + rect.w, yb + 4.6, { align: 'right' });
-      doc.text(limpio(et.u), rect.x + rect.w / 2, yb + 4.6, { align: 'center' });
+      barraClases(rect.x, rect.y + rect.h + 1.4, rect.w, C, tipo, unidad);
+      return P;
     }
     function rejillaMinimapas(clave, titulo, unidadFn) {
       var M2 = PV.mapas, ids = Object.keys(M2.indicadores).filter(function (id) { return PV.indicadores.some(function (o) { return o.id === id; }); });
       if (!ids.length) return;
-      var cols = 3, gap = 6, w = (ANCHO - gap * (cols - 1)) / cols, h = w * 0.78, filaH = h + 16;
+      var cols = 3, gap = 6, w = (ANCHO - gap * (cols - 1)) / cols, r0 = rectMinimapa(0, 0, w, M2.ventana), filaH = r0.h + 17;
       asegurar(filaH + 12); leyendaFigura(titulo);
       y += 5;
       ids.forEach(function (id, k) {
         var c = k % cols;
         if (c === 0 && k > 0) y += filaH;
         if (c === 0 && asegurar(filaH)) y += 5;
-        var o = PV.indicadores.filter(function (x) { return x.id === id; })[0];
-        miniMapa({ x: M.l + c * (w + gap), y: y, w: w, h: h }, M2, M2.indicadores[id][clave], nomInd(o), { id: id, u: unidadFn(o) });
+        var o = PV.indicadores.filter(function (x) { return x.id === id; })[0], vals = M2.indicadores[id][clave];
+        miniCampo(rectMinimapa(M.l + c * (w + gap), y, w, M2.ventana), M2.ventana, interpolador(M2, vals), clasesSimetricas(vals), tipoPaleta(id), nomInd(o), unidadFn(o));
       });
       y += filaH + 1;
+    }
+    // CMIP6 por región (Pacífico, Central, Caribe): mediana de los modelos del cambio de la década frente a 1995–2014.
+    function rejillaCmipRegiones() {
+      var CR = PV.mapas && PV.mapas.cmip6_regiones, reg = op.regiones;
+      if (!CR || !reg) return false;
+      var paneles = [];
+      ['tas', 'pr'].forEach(function (vv) { Object.keys(CR.escenarios).sort().forEach(function (e) { if (CR.escenarios[e][vv]) paneles.push({ v: vv, e: e, d: CR.escenarios[e][vv] }); }); });
+      if (!paneles.length) return false;
+      var geoms = {}; reg.features.forEach(function (f) { geoms[f.properties.id] = f.geometry; });
+      var ext = PV.mapas.ventana, cols = paneles.length >= 4 ? 2 : paneles.length, gap = 10, w = Math.min(80, (ANCHO - gap * (cols - 1)) / cols), r0 = rectMinimapa(0, 0, w, ext), filaH = r0.h + 18;
+      var x0 = M.l + (ANCHO - cols * w - (cols - 1) * gap) / 2;
+      asegurar(filaH + 14);
+      leyendaFigura(t('p.b.fig_cmip', { ini: CR.decada[0], fin: CR.decada[1] }));
+      y += 5;
+      // clases comunes por variable para que los escenarios se comparen con la misma barra
+      var Cv = {};
+      ['tas', 'pr'].forEach(function (vv) { var vals = []; paneles.forEach(function (p2) { if (p2.v === vv) Object.keys(p2.d).forEach(function (r) { vals.push(p2.d[r].mediana); }); }); if (vals.length) Cv[vv] = clasesSimetricas(vals); });
+      paneles.forEach(function (p2, k) {
+        var c = k % cols;
+        if (c === 0 && k > 0) y += filaH;
+        if (c === 0 && asegurar(filaH)) y += 5;
+        var f = function (lon, lat, q, W, H) {
+          for (var r in p2.d) if (geoms[r] && mascaraGeom(geoms[r], ext, W, H, r)[q]) return p2.d[r].mediana;
+          return null;
+        };
+        var esc = p2.e.toUpperCase().replace(/(\d)(\d)(\d)$/, '$1-$2.$3');
+        var tit = (p2.v === 'tas' ? t('p.b.cmip_tas') : t('p.b.cmip_pr')) + ' · ' + esc;
+        var rect = rectMinimapa(x0 + c * (w + gap), y, w, ext);
+        var P = miniCampo(rect, ext, f, Cv[p2.v], p2.v === 'pr' ? 'lluvia' : 'temp', tit, p2.v === 'tas' ? '°C' : '%');
+        // rótulos con la mediana y el rango de los modelos por región
+        fuente(5.2, 'bold');
+        Object.keys(p2.d).forEach(function (r) {
+          var f2 = reg.features.filter(function (x) { return x.properties.id === r; })[0]; if (!f2) return;
+          var b = f2.properties.bbox, q = P.p((b[0] + b[2]) / 2, (b[1] + b[3]) / 2), d = p2.d[r], dd = p2.v === 'tas' ? 2 : 1;
+          var txt = sgn(d.mediana, dd) + ' (' + n(d.min, dd) + '…' + n(d.max, dd) + ')';
+          color([255, 255, 255], 'f'); var tw = doc.getTextWidth(limpio(txt)) + 1.2; doc.rect(q[0] - tw / 2, q[1] - 2, tw, 2.8, 'F');
+          color(COL.texto); doc.text(limpio(txt), q[0], q[1], { align: 'center' });
+        });
+      });
+      y += filaH + 1;
+      pie(t('p.b.pie_cmip', { n: paneles[0].d[Object.keys(paneles[0].d)[0]].n_modelos }) + (CR.interpolado ? ' ' + t('p.a.cmip_interp') : ''));
+      return true;
     }
     function grafIndicador(rect, o) {
       var obs = o.observaciones.filter(function (x) { return x.valor !== null; }), pr = o.proyeccion, h = PV.horizonte;
@@ -807,6 +990,7 @@
         rejillaMinimapas('sen_decada', t('p.b.fig_sen', { ini: 1981, fin: PV.mapas.periodo_ultimo[1] }), function (o) { return uInd(o) + '/' + (idioma === 'en' ? 'decade' : 'década'); });
         rejillaMinimapas('anomalia_ultima_decada', t('p.b.fig_anom', { a: PV.mapas.periodo_ultimo[0], b: PV.mapas.periodo_ultimo[1], ini: PV.referencia.inicio, fin: PV.referencia.fin }), function (o) { return uInd(o); });
         pie(t('p.b.pie'));
+        rejillaCmipRegiones();
       } else parrafo(t('p.b.sin_mapas'), { tam: 8.6 });
       var cob = inds.map(function (o) { return [nomInd(o), o.fuente, t('p.escala.' + (o.escala || 'area')), o.historico.n_validos + '/' + o.historico.n_esperados + ' · ' + n(o.historico.faltantes_pct, 1) + ' %', t('tipo.' + (o.tipo_dato === 'observacion' ? 'observacion' : 'reanalisis'))]; });
       tabla([t('f.indicador'), t('p.c.fuente'), t('p.c.escala'), t('p.c.validos'), t('p.c.tipo')], cob, [44, 52, 26, 26, 22], { titulo: t('p.b.cobertura'), tam: 7 });

@@ -178,6 +178,13 @@
         diferencia: r(mu - mediaRef, 4), solapan: ult[0].anio <= c.referencia.fin };
     }
 
+    // ---- año del mapa de anomalías: el pedido o, si ese año no tiene dato completo (p. ej. el año en curso), el último
+    // año válido anterior. Así el mapa no queda vacío por un año sin datos; el informe dice qué año se muestra.
+    var anioPedido = c.vista.anio_visible || c.periodo.fin, anioMapa = anioPedido;
+    if (!validos.some(function (p) { return p.anio === anioPedido; })) {
+      var previos = validos.filter(function (p) { return p.anio <= anioPedido; });
+      if (previos.length) anioMapa = previos[previos.length - 1].anio;
+    }
     // ---- celdas: media y tendencia propias (misma regla de completitud, sin agregación espacial)
     celdas.forEach(function (cel) {
       if (cel.estado !== 'ok') { cel.media = null; cel.tendencia = null; return; }
@@ -191,7 +198,7 @@
       cel.media = r(media(s.map(function (p) { return p.valor; })), 4);
       cel.n_anios = s.length;
       cel.tendencia = tc.sen ? { sen_decada: r(tc.sen.pendiente_decada, 5), ic_inf_decada: r(tc.sen.ic_inf_decada, 5), ic_sup_decada: r(tc.sen.ic_sup_decada, 5), p_mann_kendall: r(tc.sen.p, 6), veredicto: tc.veredicto.estado } : { veredicto: 'faltan' };
-      var an2 = c.vista.anio_visible || c.periodo.fin;
+      var an2 = anioMapa;
       var vsa = meses.map(function (m) { return datosCeldas[cel.id][clave(an2, m)]; }), xa = agregarAnio(v, vsa, an2, meses);
       var refc = [];
       for (an = c.referencia.inicio; an <= c.referencia.fin; an++) {
@@ -233,7 +240,7 @@
       consulta_id: Estado.consultaId(c), consulta: c,
       area: Object.assign({}, area, { celdas: undefined }),
       cobertura: cobertura, fuente: fuente, variable: v,
-      celdas: celdas, mensual: mensual, serie: serie, resumen: resumen,
+      celdas: celdas, mensual: mensual, serie: serie, resumen: resumen, mapa_anomalia: { anio_pedido: anioPedido, anio_mostrado: anioMapa },
       referencia: { inicio: c.referencia.inicio, fin: c.referencia.fin, media: r(mediaRef, 4), n: ref.length, n_esperados: nRef, suficiente: refOk },
       tendencia: tendencia, ciclo_estacional: ciclo, comparacion_periodos: comp,
       calidad: { avisos: avisos, insuficiente: insuficiente, motivos: motivos, anios_excluidos: faltanAnios },

@@ -228,39 +228,74 @@
       }
     }
     const ext = res.area.extension || G.extension(res.area.geometria);
+    const mapas = PP.mapasCeldas(ins.indices, res.celdas, ext, c.referencia);
+    if (mapas && ins.cmip6 && ins.regiones) {
+      const regs = ins.regiones.features.filter(f => ['pacifico', 'central', 'caribe'].includes(f.properties.id)).map(f => ({ id: f.properties.id, nombre: f.properties.nombre }));
+      mapas.cmip6_regiones = PP.cmipRegiones(ins.cmip6, regs, { inicio: ini, fin }, pc.escenarios);
+    }
     return PP.evaluar({ anio_generacion: h0, referencia: c.referencia, indicadores, cmip6, semilla: pc.semilla, n_sim: pc.n_sim, modelo: pc.modelo,
-      excluidas, mapas: PP.mapasCeldas(ins.indices, res.celdas, ext, c.referencia) });
+      excluidas, mapas });
   }
 
-  // Imagen ilustrativa de la portada: Esri World Imagery y, si falla, NASA Blue Marble (GIBS). Sin imagen si ambas fallan.
+  // Mapa con foto satelital para la portada y la sección C: Esri World Imagery con las capas de referencia de Esri
+  // (límites y nombres de lugares, carreteras) superpuestas en un lienzo, como el mapa de la app. Si la foto de Esri
+  // falla se usa NASA Blue Marble (GIBS) sin etiquetas; si todo falla, el informe dibuja el mapa vectorial.
   const imagenes = {};
   function aDataURL(blob) { return new Promise((ok, mal) => { const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = mal; r.readAsDataURL(blob); }); }
-  async function imagenPortada(res) {
-    if (imagenes[res.resultado_id] !== undefined) return imagenes[res.resultado_id];
-    const g = res.area.geometria, e = res.area.extension || G.extension(g);
-    if (e[0] > e[2]) return (imagenes[res.resultado_id] = null);
+  function cajaImagen(e, asp, margen, minimo) {
     const k = Math.cos(((e[1] + e[3]) / 2) * Math.PI / 180), cx = (e[0] + e[2]) / 2, cy = (e[1] + e[3]) / 2;
-    let wk = Math.max((e[2] - e[0]) * k, 0.06) * 1.25, hk = Math.max(e[3] - e[1], 0.06) * 1.25;
-    const asp = 2.15; if (wk / hk < asp) wk = hk * asp; else hk = wk / asp;
-    const ext = [cx - wk / k / 2, cy - hk / 2, cx + wk / k / 2, cy + hk / 2].map(v => Number(v.toFixed(5)));
-    const W = 1600, H = Math.round(W * (ext[3] - ext[1]) / (ext[2] - ext[0])), hoy = new Date().toISOString().slice(0, 10), en = S.exp.idioma === 'en';
-    const intentos = [
-      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=' + ext.join(',') + '&bboxSR=4326&imageSR=4326&size=' + W + ',' + H + '&format=jpg&f=image',
-        fuente: 'Esri World Imagery (Esri, Maxar, Earthstar Geographics)', fecha: (en ? 'multi-date mosaic, accessed ' : 'mosaico de varias fechas, consultado ') + hoy },
-      { url: 'https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&LAYERS=BlueMarble_NextGeneration&STYLES=&SRS=EPSG:4326&BBOX=' + ext.join(',') + '&WIDTH=' + W + '&HEIGHT=' + H + '&FORMAT=image/jpeg',
-        fuente: 'NASA Blue Marble: Next Generation (GIBS)', fecha: (en ? '2004 composite, accessed ' : 'compuesto de 2004, consultado ') + hoy }];
+    let wk = Math.max((e[2] - e[0]) * k, minimo) * margen, hk = Math.max(e[3] - e[1], minimo) * margen;
+    if (wk / hk < asp) wk = hk * asp; else hk = wk / asp;
+    return [cx - wk / k / 2, cy - hk / 2, cx + wk / k / 2, cy + hk / 2].map(v => Number(v.toFixed(5)));
+  }
+  async function traerImagen(url, tipoRe) {
     const traer = window.ETD_FETCH_IMAGEN || window.fetch.bind(window);
-    for (const it of intentos) {
-      try {
-        const ctl = new AbortController(), tm = setTimeout(() => ctl.abort(), 15000);
-        const r = await traer(it.url, { signal: ctl.signal }); clearTimeout(tm);
-        const tipo = (r.headers.get('content-type') || '');
-        if (!r.ok || !/jpe?g/.test(tipo)) continue;
-        const b = await r.blob(); if (b.size < 2000) continue;
-        return (imagenes[res.resultado_id] = { datos: await aDataURL(b), formato: 'JPEG', ancho: asp, alto: 1, ext, fuente: it.fuente, fecha: it.fecha });
-      } catch (x) { /* siguiente fuente */ }
+    const ctl = new AbortController(), tm = setTimeout(() => ctl.abort(), 15000);
+    try {
+      const r = await traer(url, { signal: ctl.signal });
+      const tipo = (r.headers.get('content-type') || '');
+      if (!r.ok || !tipoRe.test(tipo)) return null;
+      const b = await r.blob(); return b.size < 200 ? null : b;
+    } catch (x) { return null; } finally { clearTimeout(tm); }
+  }
+  async function aImagen(blob) {
+    if (window.createImageBitmap) { try { return await createImageBitmap(blob); } catch (x) { /* abajo */ } }
+    const url = URL.createObjectURL(blob);
+    try { return await new Promise((ok, mal) => { const im = new Image(); im.onload = () => ok(im); im.onerror = mal; im.src = url; }); } finally { setTimeout(() => URL.revokeObjectURL(url), 1000); }
+  }
+  async function mapaSatelital(e, asp, margen, minimo) {
+    if (e[0] > e[2]) return null;
+    const ext = cajaImagen(e, asp, margen, minimo), W = 1600, H = Math.round(W * (ext[3] - ext[1]) / (ext[2] - ext[0])), hoy = new Date().toISOString().slice(0, 10), en = S.exp.idioma === 'en';
+    const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/';
+    // imageSR=4326 y bbox con el mismo aspecto que la imagen: proyección equirectangular, la misma que usa el PDF
+    const exp = (svc, fmt) => ESRI + svc + '/MapServer/export?bbox=' + ext.join(',') + '&bboxSR=4326&imageSR=4326&size=' + W + ',' + H + '&dpi=144&format=' + fmt + '&transparent=' + (fmt === 'png32') + '&f=image';
+    let base = await traerImagen(exp('World_Imagery', 'jpg'), /jpe?g/), fuente = 'Esri World Imagery (Esri, Maxar, Earthstar Geographics)', fecha = (en ? 'multi-date mosaic, accessed ' : 'mosaico de varias fechas, consultado ') + hoy, capas = [];
+    if (base) {
+      const [lim, vias] = await Promise.all([traerImagen(exp('Reference/World_Boundaries_and_Places', 'png32'), /png/), traerImagen(exp('Reference/World_Transportation', 'png32'), /png/)]);
+      if (vias) capas.push({ b: vias, n: en ? 'roads (Esri World Transportation)' : 'carreteras (Esri World Transportation)' });
+      if (lim) capas.push({ b: lim, n: en ? 'boundaries and place names (Esri World Boundaries and Places)' : 'límites y nombres de lugares (Esri World Boundaries and Places)' });
+    } else {
+      base = await traerImagen('https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&LAYERS=BlueMarble_NextGeneration&STYLES=&SRS=EPSG:4326&BBOX=' + ext.join(',') + '&WIDTH=' + W + '&HEIGHT=' + H + '&FORMAT=image/jpeg', /jpe?g/);
+      fuente = 'NASA Blue Marble: Next Generation (GIBS)'; fecha = (en ? '2004 composite, accessed ' : 'compuesto de 2004, consultado ') + hoy;
     }
-    return (imagenes[res.resultado_id] = null);
+    if (!base) return null;
+    let datos = null, etiquetas = [];
+    try {
+      const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+      const cx = cv.getContext('2d');
+      cx.drawImage(await aImagen(base), 0, 0, W, H);
+      for (const c of capas) { try { cx.drawImage(await aImagen(c.b), 0, 0, W, H); etiquetas.push(c.n); } catch (x) { /* capa omitida */ } }
+      datos = cv.toDataURL('image/jpeg', 0.86);
+    } catch (x) { datos = await aDataURL(base); etiquetas = []; }
+    return { datos, formato: 'JPEG', ancho: asp, alto: 1, ext, fuente: fuente + (etiquetas.length ? (en ? '; overlays: ' : '; capas superpuestas: ') + etiquetas.join(', ') : ''), fecha, etiquetas: etiquetas.length > 0 };
+  }
+  async function imagenPortada(res) {
+    const k = res.resultado_id + '|' + S.exp.idioma;
+    if (imagenes[k] !== undefined) return imagenes[k];
+    const e = res.area.extension || G.extension(res.area.geometria);
+    const celdas = res.celdas.map(c => c.caja).filter(Boolean), ed = celdas.length && e[0] <= e[2] ? [Math.min(e[0], ...celdas.map(b => b[0])), Math.min(e[1], ...celdas.map(b => b[1])), Math.max(e[2], ...celdas.map(b => b[2])), Math.max(e[3], ...celdas.map(b => b[3]))] : e;
+    const [portada, detalle] = await Promise.all([mapaSatelital(e, 2.15, 1.25, 0.06), mapaSatelital(ed, 1.45, 1.12, 0.06)]);
+    return (imagenes[k] = portada || detalle ? { portada, detalle } : null);
   }
 
   function panelPerspectiva() {
@@ -354,8 +389,11 @@
   async function generarPDF() {
     const L2 = await cargarLibs(), e = await enlaceActual();
     const res = S.resultado, ex = S.exp;
-    const imagen = res.perspectiva ? await imagenPortada(res) : null;
-    return INF.crear(res, { imagen, jsPDF: L2.jsPDF, qrcode: L2.qrcode, mundo: L2.mundo, enlace: e && !e.demasiado_largo ? e.url : null, idioma: ex.idioma, plantilla: ex.plantilla, secciones: ex.secciones, autor: ex.autor, organizacion: ex.organizacion, notas: ex.notas, comparaciones: res.comparaciones || [], generado_utc: new Date().toISOString() });
+    const sat = await imagenPortada(res);
+    let regiones = null, admin = null;
+    if (res.perspectiva && PP) { try { regiones = (await insumosPerspectiva()).regiones; } catch (x) { regiones = null; } }
+    try { admin = (await cargarAdmin()).dep; } catch (x) { admin = null; }
+    return INF.crear(res, { imagen: sat && sat.portada, mapaSatelite: sat && sat.detalle, regiones, admin, jsPDF: L2.jsPDF, qrcode: L2.qrcode, mundo: L2.mundo, enlace: e && !e.demasiado_largo ? e.url : null, idioma: ex.idioma, plantilla: ex.plantilla, secciones: ex.secciones, autor: ex.autor, organizacion: ex.organizacion, notas: ex.notas, comparaciones: res.comparaciones || [], generado_utc: new Date().toISOString() });
   }
   function descargar(nombre, datos, tipo) {
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([datos], { type: tipo })); a.download = nombre; document.body.append(a); a.click(); a.remove();

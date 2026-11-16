@@ -98,6 +98,24 @@ Son **tendencias destacadas** (como máximo 10) las validadas cuyo IC 95 % del c
 El segundo archivo se descargó el 2026-11-15 con `backend/clima_nic/fuentes/nex_gddp.py`: 624 recortes, 423 MB, sin fallos. Cubre los 6 modelos, SSP2-4.5 y SSP5-8.5, `pr` y `tas`, las 5 regiones y los 12 meses de cada año de 2015 a 2040.
 Por eso cada SSP tiene años continuos de 2015 a 2060 y la década se calcula con los años reales de cada modelo. La interpolación lineal entre 1995–2014 y 2041–2060 solo se usaría si faltaran esos años, y el informe lo indicaría.
 
+## Mapas del informe
+
+Todos los mapas los dibuja la propia app dentro del PDF que se descarga desde **Area report** (`src/expediente/informe.js`).
+
+- **Minimapas de campo continuo (sección P-B)**, al estilo de los mapas de la OMM y del IDEAM. Hay uno por indicador para la tendencia de Sen y otro para la anomalía de la última década.
+  - Cubren toda Nicaragua con los valores reales de la malla de índices (57 celdas de 0,5° × 0,625°).
+  - El color continuo es una interpolación bilineal entre centros de celda, solo para dibujar, y el pie de figura lo dice.
+  - Se recortan a la tierra de Nicaragua con los lagos restados (`data/regiones_nicaragua.geojson`). Llevan los departamentos de INETER y el contorno del área.
+  - La barra de color usa clases simétricas alrededor de 0. Se ve en rojo lo más cálido, en verde azulado lo más lluvioso y en marrón los más días secos.
+- **Proyección CMIP6 por región (sección P-B).** Son cuatro paneles: temperatura y lluvia, con SSP2-4.5 y SSP5-8.5.
+  - El color de cada región (Pacífico, Central y Caribe) es la mediana entre modelos del cambio de la década frente a 1995–2014. El rótulo da la mediana, el mínimo y el máximo (`ETDPerspectiva.cmipRegiones`).
+  - No hay mapas de pronóstico por celda, porque la extrapolación estadística es del área agregada.
+- **Mapa con foto satelital (portada y figura de la sección C).**
+  - La app pide a Esri la exportación de World Imagery con `imageSR=4326`. Le superpone en un lienzo las capas de referencia de Esri: límites y nombres de lugares, y carreteras.
+  - Encima dibuja las celdas de NASA POWER y el contorno del área.
+  - Si Esri falla, usa NASA Blue Marble (GIBS) sin etiquetas. Si todo falla, dibuja el mapa vectorial.
+- **Mapa de celdas.** Si el año pedido no tiene datos completos, por ejemplo el año en curso, se muestra el último año con datos, y la leyenda lo dice (`resultados.mapa_anomalia`). Las celdas sin dato quedan en gris claro, sin rayado.
+
 ## Reproducibilidad
 
 - `perspectiva_id = 'P-' + SHA-256` del objeto canónico, con los números redondeados a 10⁻⁶. `ETDPerspectiva.verificar` lo comprueba al abrir un `resultados.json` guardado.

@@ -79,8 +79,11 @@ const ind = (id, s, extra) => Object.assign({ id, nombre: id, nombre_en: id, uni
   const cm = tieneDecada ? cm0 : PP.interpolarCmip6(cm0, 2027, 2036);
   const inds = [PP.indicadorDeConsulta(res)].concat(ar.indicadores.filter(x => x.id !== 't2m_media'), [PP.indicadorGistemp(leer('data/fenomenos/gistemp_nicaragua.csv'), 'central', 'Región Central')]);
   const pc = c.perspectiva;
+  const regiones = JSON.parse(leer('data/regiones_nicaragua.geojson'));
+  const mapas = PP.mapasCeldas(idx, res.celdas, res.area.extension, c.referencia);
+  mapas.cmip6_regiones = PP.cmipRegiones(leer('data/expediente/cmip6_regional_mensual.csv'), regiones.features.filter(f => ['pacifico', 'central', 'caribe'].includes(f.properties.id)).map(f => ({ id: f.properties.id, nombre: f.properties.nombre })), { inicio: 2027, fin: 2036 }, pc.escenarios);
   res.perspectiva = PP.evaluar({ anio_generacion: 2026, referencia: c.referencia, indicadores: inds, cmip6: { region: 'central', nombre: 'Región Central', interpolado: !tieneDecada, anual: cm, escenarios: pc.escenarios, archivo: 'data/expediente/cmip6_regional_mensual.csv', modelos: cm.modelos },
-    semilla: pc.semilla, n_sim: pc.n_sim, modelo: pc.modelo, excluidas: PP.EXCLUIDAS, mapas: PP.mapasCeldas(idx, res.celdas, res.area.extension, c.referencia) });
+    semilla: pc.semilla, n_sim: pc.n_sim, modelo: pc.modelo, excluidas: PP.EXCLUIDAS, mapas });
   out.matagalpa = { cobertura: ar.cobertura, perspectiva: res.perspectiva, gistemp: leer('data/fenomenos/gistemp_nicaragua.csv').split(/\r?\n/).slice(0, 1)[0] };
   const conPP = pp => () => E.validar(Object.assign(E.valoresPorDefecto(), { area: c.area, perspectiva: Object.assign({}, E.valoresPorDefecto().perspectiva, pp) })).perspectiva;
   const errDe = fn => { try { fn(); return null; } catch (e) { return e.codigo || String(e.message); } };
@@ -88,8 +91,21 @@ const ind = (id, s, extra) => Object.assign({ id, nombre: id, nombre_en: id, uni
     modelo_invalido: errDe(conPP({ modelo: 'inventado' })), semilla_invalida: errDe(conPP({ semilla: -4 })), n_sim_invalido: errDe(conPP({ n_sim: 5 })),
     mismo_consulta_id: E.consultaId ? E.consultaId(c) === E.consultaId(Object.assign({}, c, { perspectiva: Object.assign({}, c.perspectiva, { modelo: 'persistencia' }) })) : null };
   const mundo = JSON.parse(leer('assets/mundo.geojson'));
-  const pdfEs = INF.crear(res, { jsPDF, qrcode, mundo, idioma: 'es', plantilla: 'completo', generado_utc: '2026-11-15T00:00:00Z' });
-  const pdfEn = INF.crear(res, { jsPDF, qrcode, mundo, idioma: 'en', plantilla: 'resumen', generado_utc: '2026-11-15T00:00:00Z' });
+  // mapa satelital de la sección C: imagen sintética de prueba (no del lugar) sobre la extensión de las celdas
+  const jpgSat = 'data:image/jpeg;base64,' + fs.readFileSync(R + '/tests/fixtures/expediente/portada_prueba.jpg').toString('base64');
+  const cj = res.celdas.map(x => x.caja), extSat = [Math.min(...cj.map(b => b[0])) - 0.05, Math.min(...cj.map(b => b[1])) - 0.05, Math.max(...cj.map(b => b[2])) + 0.05, Math.max(...cj.map(b => b[3])) + 0.05];
+  const mapaSatelite = { datos: jpgSat, formato: 'JPEG', ancho: (extSat[2] - extSat[0]) * Math.cos(12.8 * Math.PI / 180), alto: extSat[3] - extSat[1], ext: extSat, fuente: 'Imagen de prueba', fecha: '2026-11-16' };
+  const pdfEs = INF.crear(res, { jsPDF, qrcode, mundo, regiones, admin: dep, mapaSatelite, idioma: 'es', plantilla: 'completo', generado_utc: '2026-11-15T00:00:00Z' });
+  const pdfSinRegiones = INF.crear(res, { jsPDF, qrcode, mundo, idioma: 'es', plantilla: 'completo', generado_utc: '2026-11-15T00:00:00Z' });
+  out.mapas = { ambito: mapas.ambito, ventana: mapas.ventana, n_celdas: mapas.celdas.length, cmip6_regiones: mapas.cmip6_regiones, anio_mapa: res.mapa_anomalia,
+    paginas_sin_regiones: pdfSinRegiones.paginas };
+  // periodo hasta un año sin datos (como 2025 en Masaya): el mapa de anomalías usa el último año con datos
+  const c25 = E.validar(Object.assign(E.valoresPorDefecto(), { area: c.area, variable: 'T2M', periodo: { inicio: 1981, fin: 2025 } }));
+  const r25 = A.analizar({ consulta: c25, area, variable: F.VARIABLES.T2M, fuente: F.POWER, lecturas: lect, generado_utc: '2026-11-15T00:00:00Z' });
+  out.mapas.anio_2025 = { mapa: r25.mapa_anomalia, con_valor: r25.celdas.filter(x => x.anomalia_anio_visible !== null).length, celdas: r25.celdas.length };
+  const pdf25 = INF.crear(r25, { jsPDF, qrcode, mundo, idioma: 'es', plantilla: 'resumen', generado_utc: '2026-11-15T00:00:00Z' });
+  if (salida) fs.writeFileSync(salida + '/anio_2025.pdf', new Uint8Array(pdf25.doc.output('arraybuffer')));
+  const pdfEn = INF.crear(res, { jsPDF, qrcode, mundo, regiones, admin: dep, idioma: 'en', plantilla: 'resumen', generado_utc: '2026-11-15T00:00:00Z' });
   const bytes = new Uint8Array(pdfEs.doc.output('arraybuffer'));
   // portada con imagen (imagen sintética de prueba, no del lugar) y contorno del área
   const jpg = 'data:image/jpeg;base64,' + fs.readFileSync(R + '/tests/fixtures/expediente/portada_prueba.jpg').toString('base64');

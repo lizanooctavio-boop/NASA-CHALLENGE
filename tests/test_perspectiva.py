@@ -259,6 +259,51 @@ class Perspectiva(unittest.TestCase):
         self.assertIn("2027–2036", en)
         self.assertNotIn("Ficha por indicador", en)
 
+    def test_minimapas_nacionales_con_datos_reales(self):
+        m = self.o["mapas"]
+        self.assertEqual(m["ambito"], "nacional")
+        # toda la malla de índices de Nicaragua, no solo las celdas alrededor del área
+        celdas = {tuple(l.split(",")[:2]) for l in (RAIZ / "data/fenomenos/indices_anuales_celdas.csv").read_text(encoding="utf-8").splitlines()[1:]}
+        self.assertEqual(m["n_celdas"], len(celdas))
+        v = m["ventana"]
+        self.assertLess(v[0], -87.6); self.assertGreater(v[2], -83.2); self.assertLess(v[1], 10.8); self.assertGreater(v[3], 15.0)
+
+    def test_cmip6_por_region_coincide_con_el_indicador(self):
+        cr = self.o["mapas"]["cmip6_regiones"]
+        self.assertEqual(cr["decada"], [2027, 2036]); self.assertFalse(cr["interpolado"])
+        self.assertEqual(set(cr["escenarios"]), {"ssp245", "ssp585"})
+        for esc in cr["escenarios"].values():
+            self.assertEqual(set(esc["tas"]), {"pacifico", "central", "caribe"})
+            for r in esc["tas"].values():
+                self.assertLessEqual(r["min"], r["mediana"]); self.assertLessEqual(r["mediana"], r["max"]); self.assertEqual(r["n_modelos"], 6)
+        # la región Central del mapa es la misma cifra que la del indicador GISTEMP de la Región Central (mismo método delta)
+        gi = [o for o in self.pv["indicadores"] if o["id"] == "gistemp_central"][0]
+        for e in ("ssp245", "ssp585"):
+            self.assertAlmostEqual(cr["escenarios"][e]["tas"]["central"]["mediana"], gi["cmip6"]["escenarios"][e]["cambio_mediana"], places=4)
+
+    def test_anio_del_mapa_con_datos(self):
+        a = self.o["mapas"]["anio_mapa"]
+        self.assertLessEqual(a["anio_mostrado"], a["anio_pedido"])
+        self.assertEqual(a["anio_mostrado"], 2024)
+        b = self.o["mapas"]["anio_2025"]
+        self.assertEqual(b["mapa"], {"anio_pedido": 2025, "anio_mostrado": 2024})
+        self.assertEqual(b["con_valor"], b["celdas"])
+        if pypdf is not None:
+            portada = pypdf.PdfReader(str(self.tmp / "anio_2025.pdf")).pages[0].extract_text()
+            self.assertIn("2024 (se pidió 2025, que no tiene datos completos)", portada.replace("\n", " "))
+
+    @unittest.skipIf(pypdf is None, "requiere pypdf")
+    def test_pdf_mapas_nuevos(self):
+        r = pypdf.PdfReader(str(self.tmp / "matagalpa_perspectiva.pdf"))
+        texto = "\n".join(p.extract_text() for p in r.pages)
+        for frase in ["campo de toda Nicaragua por indicador", "Proyección CMIP6 por región", "Mapa con imagen satelital",
+                      "interpolación bilineal", "Imagen: Imagen de prueba"]:
+            self.assertIn(frase, texto)
+        self.assertNotIn("2025 ·", texto)
+        # los minimapas son rásteres incrustados (uno por panel) además de la imagen satelital
+        imagenes = sum(len(p.images) for p in r.pages)
+        self.assertGreaterEqual(imagenes, 1 + 2 * 9 + 4)
+
     @unittest.skipIf(pypdfium2 is None, "requiere pypdfium2")
     def test_pdf_sin_texto_fuera_de_pagina(self):
         for nombre in ["matagalpa_perspectiva.pdf", "matagalpa_perspectiva_en.pdf", "matagalpa_portada.pdf"]:

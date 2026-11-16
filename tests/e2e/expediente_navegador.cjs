@@ -38,7 +38,8 @@ const CDN = [
   [/cdn\.jsdelivr\.net\/npm\/three@0\.160\.0\/(.*)$/, m => path.join(NM, 'three', m[1])],
   [/cdnjs\.cloudflare\.com\/ajax\/libs\/proj4js\/2\.9\.2\/proj4\.js$/, () => path.join(NM, 'proj4/dist/proj4.js')]
 ];
-let peticionesPower = 0, powerFalla = false;
+let peticionesPower = 0, powerFalla = false, peticionesImagen = 0;
+const RAIZ_PRUEBA = path.resolve(__dirname, '..', '..');
 async function rutas(ctx) {
   await ctx.route('**/*', async route => {
     const url = route.request().url();
@@ -53,6 +54,9 @@ async function rutas(ctx) {
       copia.properties.parameter = { [p]: r.properties.parameter[p] }; copia.parameters = { [p]: r.parameters[p] };
       return route.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(copia) });
     }
+    // mapa satelital del informe: imágenes sintéticas de prueba (no del lugar) con las mismas cabeceras CORS que Esri
+    if (/server\.arcgisonline\.com\/ArcGIS\/rest\/services\/World_Imagery\/MapServer\/export/.test(url)) { peticionesImagen++; return route.fulfill({ status: 200, contentType: 'image/jpeg', headers: { 'access-control-allow-origin': '*' }, path: path.join(RAIZ_PRUEBA, 'tests/fixtures/expediente/portada_prueba.jpg') }); }
+    if (/server\.arcgisonline\.com\/ArcGIS\/rest\/services\/Reference\/.*\/MapServer\/export/.test(url)) { peticionesImagen++; return route.fulfill({ status: 200, contentType: 'image/png', headers: { 'access-control-allow-origin': '*' }, path: path.join(RAIZ_PRUEBA, 'tests/fixtures/expediente/etiquetas_prueba.png') }); }
     if (NM) for (const [re, f] of CDN) { const m = url.match(re); if (m) { let file = f(m); if (!fs.existsSync(file)) file = file.replace('.min.js', '.js'); if (fs.existsSync(file)) return route.fulfill({ path: file, contentType: TIPOS[path.extname(file)] || 'text/javascript' }); } }
     if (/unpkg|jsdelivr|cdnjs/.test(url) && !NM) return route.continue();
     return route.fulfill({ status: 404, body: '' }); // teselas y servicios en vivo: fuera de la prueba
@@ -265,6 +269,7 @@ async function clicMapa(page, lat, lon) {
     R.fallo = String(e && e.stack || e);
   } finally {
     await navegador.close(); srv.close();
+    R.peticiones_imagen = peticionesImagen;
     fs.writeFileSync(path.join(SALIDA, 'resumen.json'), JSON.stringify(R, null, 1));
     console.log(JSON.stringify({ salida: SALIDA, fallo: R.fallo || null }));
   }
