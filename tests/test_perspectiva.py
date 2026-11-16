@@ -301,6 +301,8 @@ class Perspectiva(unittest.TestCase):
             self.assertIn(frase, texto)
         self.assertNotIn("2025 ·", texto)
         # los minimapas son rásteres incrustados (uno por panel) además de la imagen satelital
+        # tamaño razonable para descargar o enviar: rásteres en PNG comprimido y vectores simplificados
+        self.assertLess((self.tmp / "matagalpa_perspectiva.pdf").stat().st_size, 3_000_000)
         imagenes = sum(len(p.images) for p in r.pages)
         self.assertGreaterEqual(imagenes, 1 + 2 * 9 + 4)
 

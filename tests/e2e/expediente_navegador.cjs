@@ -55,6 +55,13 @@ async function rutas(ctx) {
       return route.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(copia) });
     }
     // mapa satelital del informe: imágenes sintéticas de prueba (no del lugar) con las mismas cabeceras CORS que Esri
+    // ETD_ESRI_DIR: imágenes reales de Esri ya descargadas para Masaya (para el ejemplo); si no, las sintéticas
+    if (process.env.ETD_ESRI_DIR && /arcgisonline\.com.*\/export/.test(url)) {
+      const pre = url.includes('bbox=-86.36136,') ? 'portada' : url.includes('bbox=-86.66507,') ? 'detalle' : null;
+      const capa = /World_Imagery/.test(url) ? 'img.jpg' : /Boundaries/.test(url) ? 'lim.png' : 'vias.png';
+      const f = pre && path.join(process.env.ETD_ESRI_DIR, pre + '_' + capa);
+      if (f && fs.existsSync(f)) { peticionesImagen++; return route.fulfill({ status: 200, contentType: capa.endsWith('jpg') ? 'image/jpeg' : 'image/png', headers: { 'access-control-allow-origin': '*' }, path: f }); }
+    }
     if (/server\.arcgisonline\.com\/ArcGIS\/rest\/services\/World_Imagery\/MapServer\/export/.test(url)) { peticionesImagen++; return route.fulfill({ status: 200, contentType: 'image/jpeg', headers: { 'access-control-allow-origin': '*' }, path: path.join(RAIZ_PRUEBA, 'tests/fixtures/expediente/portada_prueba.jpg') }); }
     if (/server\.arcgisonline\.com\/ArcGIS\/rest\/services\/Reference\/.*\/MapServer\/export/.test(url)) { peticionesImagen++; return route.fulfill({ status: 200, contentType: 'image/png', headers: { 'access-control-allow-origin': '*' }, path: path.join(RAIZ_PRUEBA, 'tests/fixtures/expediente/etiquetas_prueba.png') }); }
     if (NM) for (const [re, f] of CDN) { const m = url.match(re); if (m) { let file = f(m); if (!fs.existsSync(file)) file = file.replace('.min.js', '.js'); if (fs.existsSync(file)) return route.fulfill({ path: file, contentType: TIPOS[path.extname(file)] || 'text/javascript' }); } }

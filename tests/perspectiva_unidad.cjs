@@ -104,7 +104,7 @@ const ind = (id, s, extra) => Object.assign({ id, nombre: id, nombre_en: id, uni
   const r25 = A.analizar({ consulta: c25, area, variable: F.VARIABLES.T2M, fuente: F.POWER, lecturas: lect, generado_utc: '2026-11-15T00:00:00Z' });
   out.mapas.anio_2025 = { mapa: r25.mapa_anomalia, con_valor: r25.celdas.filter(x => x.anomalia_anio_visible !== null).length, celdas: r25.celdas.length };
   const pdf25 = INF.crear(r25, { jsPDF, qrcode, mundo, idioma: 'es', plantilla: 'resumen', generado_utc: '2026-11-15T00:00:00Z' });
-  if (salida) fs.writeFileSync(salida + '/anio_2025.pdf', new Uint8Array(pdf25.doc.output('arraybuffer')));
+  if (salida) fs.mkdirSync(salida, { recursive: true }), fs.writeFileSync(salida + '/anio_2025.pdf', new Uint8Array(pdf25.doc.output('arraybuffer')));
   const pdfEn = INF.crear(res, { jsPDF, qrcode, mundo, regiones, admin: dep, idioma: 'en', plantilla: 'resumen', generado_utc: '2026-11-15T00:00:00Z' });
   const bytes = new Uint8Array(pdfEs.doc.output('arraybuffer'));
   // portada con imagen (imagen sintética de prueba, no del lugar) y contorno del área

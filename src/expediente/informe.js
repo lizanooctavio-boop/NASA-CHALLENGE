@@ -32,7 +32,7 @@
     var pf = function (p) { return p === null || p === undefined ? '= ' + I18n.t('na', idioma) : p < 0.0001 ? '< ' + I18n.num(0.0001, 4, idioma) : '= ' + I18n.num(p, 4, idioma); };
     var JsPDF = op.jsPDF || (typeof window !== 'undefined' && window.jspdf && window.jspdf.jsPDF);
     if (!JsPDF) throw new Error('jsPDF no está cargado');
-    var doc = new JsPDF({ unit: 'mm', format: 'a4', compress: true, putOnlyUsedFonts: true });
+    var doc = new JsPDF({ unit: 'mm', format: 'a4', compress: true, putOnlyUsedFonts: true, floatPrecision: 3 });
     var plantilla = op.plantilla === 'resumen' ? 'resumen' : 'completo';
     var secciones = (op.secciones && op.secciones.length ? op.secciones : (plantilla === 'resumen' ? RESUMEN : SECCIONES)).filter(function (s) { return SECCIONES.indexOf(s) >= 0; });
     var v = res.variable, u = v.unidad, dec = v.decimales, nivelPct = Math.round(res.tendencia.nivel * 100);
@@ -116,14 +116,28 @@
       var s = Math.min(rect.w / w, rect.h / h), ox = rect.x + (rect.w - w * s) / 2, oy = rect.y + (rect.h - h * s) / 2;
       var lonC = (ext[0] + ext[2]) / 2;
       return {
-        lat0: lat0, s: s, k: k, ext: ext,
+        lat0: lat0, s: s, k: k, ext: ext, rect: rect,
         p: function (lon, lat) { var dl = lon - lonC; dl = dl > 180 ? dl - 360 : dl < -180 ? dl + 360 : dl; return [ox + (dl + lonC - ext[0]) * k * s, oy + (ext[3] - lat) * s]; },
         mmPorKm: function () { return s / 111.32 / 1; } // 1° de latitud ≈ 111,32 km; en x la escala es la misma a lat0
       };
     }
     function anillo(P, coords, estilo) {
       if (coords.length < 2) return;
-      var pts = coords.map(function (c) { return P.p(c[0], c[1]); }), d = [];
+      // se omiten los vértices a menos de 0,1 mm del anterior: no se ven y engordan el PDF
+      var todos = coords.map(function (c) { return P.p(c[0], c[1]); }), pts = [todos[0]], d = [];
+      // islotes de menos de 0,3 mm o anillos enteros fuera del marco: no se dibujan
+      var bx = [Infinity, Infinity, -Infinity, -Infinity];
+      todos.forEach(function (q) { bx[0] = Math.min(bx[0], q[0]); bx[1] = Math.min(bx[1], q[1]); bx[2] = Math.max(bx[2], q[0]); bx[3] = Math.max(bx[3], q[1]); });
+      if (estilo && bx[2] - bx[0] < 0.3 && bx[3] - bx[1] < 0.3) return;
+      if (P.rect && (bx[2] < P.rect.x || bx[0] > P.rect.x + P.rect.w || bx[3] < P.rect.y || bx[1] > P.rect.y + P.rect.h)) return;
+      // y los que caen fuera del marco del mapa en el mismo lado que el anterior conservado y el siguiente
+      var R2 = P.rect, oc = R2 ? function (q) { return (q[0] < R2.x - 2 ? 1 : 0) | (q[0] > R2.x + R2.w + 2 ? 2 : 0) | (q[1] < R2.y - 2 ? 4 : 0) | (q[1] > R2.y + R2.h + 2 ? 8 : 0); } : function () { return 0; };
+      for (var k = 1; k < todos.length; k++) {
+        var u2 = pts[pts.length - 1];
+        if (k === todos.length - 1) { pts.push(todos[k]); break; }
+        if (oc(u2) & oc(todos[k]) & oc(todos[k + 1])) continue;
+        if (Math.abs(todos[k][0] - u2[0]) + Math.abs(todos[k][1] - u2[1]) >= 0.1) pts.push(todos[k]);
+      }
       for (var i = 1; i < pts.length; i++) d.push([pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]]);
       doc.lines(d, pts[0][0], pts[0][1], [1, 1], estilo, true);
     }
@@ -769,10 +783,40 @@
       }
       return { data: data, width: W, height: H };
     }
+    // PNG RGB comprimido con el deflate del propio jsPDF: el RGBA crudo no se comprime y engordaba el PDF (~1 MB por panel).
+    var TABLA_CRC = (function () { var t2 = []; for (var k = 0; k < 256; k++) { var c = k; for (var j = 0; j < 8; j++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t2[k] = c >>> 0; } return t2; })();
+    function pngRGB(im) {
+      if (!doc.processDataByFilters) return null;
+      var W = im.width, H = im.height, d = im.data, raw = '';
+      var trozos = [];
+      for (var r = 0; r < H; r++) {
+        var fila = [0];
+        for (var c = 0; c < W; c++) { var o = (r * W + c) * 4; fila.push(d[o], d[o + 1], d[o + 2]); }
+        trozos.push(String.fromCharCode.apply(null, fila));
+      }
+      raw = trozos.join('');
+      var z = doc.processDataByFilters(raw, ['FlateEncode']).data;
+      function u32(x) { return String.fromCharCode((x >>> 24) & 255, (x >>> 16) & 255, (x >>> 8) & 255, x & 255); }
+      function bloque(tipo, datos) {
+        var c = 0xFFFFFFFF, todo = tipo + datos;
+        for (var i = 0; i < todo.length; i++) c = TABLA_CRC[(c ^ todo.charCodeAt(i)) & 255] ^ (c >>> 8);
+        return u32(datos.length) + todo + u32((c ^ 0xFFFFFFFF) >>> 0);
+      }
+      var bin = '\x89PNG\r\n\x1a\n' + bloque('IHDR', u32(W) + u32(H) + String.fromCharCode(8, 2, 0, 0, 0)) + bloque('IDAT', z) + bloque('IEND', '');
+      var u8 = new Uint8Array(bin.length); for (var q = 0; q < bin.length; q++) u8[q] = bin.charCodeAt(q);
+      return u8;
+    }
     function lagos(P) {
       if (!op.mundo) return;
       color(COL.agua, 'f'); color([120, 150, 175], 'd'); doc.setLineWidth(0.1);
-      op.mundo.features.forEach(function (f) { if (f.properties && f.properties.tipo === 'lago' && f.geometry) Geo.poligonos(f.geometry).forEach(function (pol) { anillo(P, pol[0], 'FD'); }); });
+      var e = P.ext;
+      op.mundo.features.forEach(function (f) {
+        if (!(f.properties && f.properties.tipo === 'lago' && f.geometry)) return;
+        Geo.poligonos(f.geometry).forEach(function (pol) {
+          var dentro = pol[0].some(function (c) { return c[0] >= e[0] - 1 && c[0] <= e[2] + 1 && c[1] >= e[1] - 1 && c[1] <= e[3] + 1; });
+          if (dentro) anillo(P, pol[0], 'FD');
+        });
+      });
     }
     function limitesNacionales(P) {
       if (op.admin && op.admin.features) {
@@ -814,10 +858,14 @@
       var gN = geomNicaragua();
       doc.saveGraphicsState();
       if (gN) {
-        Geo.poligonos(gN).forEach(function (pol) { var pts = pol[0].map(function (c2) { return P.p(c2[0], c2[1]); }), d = []; for (var i = 1; i < pts.length; i++) d.push([pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]]); doc.lines(d, pts[0][0], pts[0][1], [1, 1], null, true); });
+        Geo.poligonos(gN).forEach(function (pol) { anillo(P, pol[0], null); });
         doc.clip(); doc.discardPath();
       }
-      try { doc.addImage(rasterCampo(ext, W, H, f, C, tipo), 'RGBA', a[0], a[1], z[0] - a[0], z[1] - a[1], undefined, 'FAST'); } catch (e) { /* sin ráster: queda el mapa base */ }
+      try {
+        var im = rasterCampo(ext, W, H, f, C, tipo), png = pngRGB(im);
+        if (png) doc.addImage(png, 'PNG', a[0], a[1], z[0] - a[0], z[1] - a[1], undefined, 'FAST');
+        else doc.addImage(im, 'RGBA', a[0], a[1], z[0] - a[0], z[1] - a[1], undefined, 'FAST');
+      } catch (e) { /* sin ráster: queda el mapa base */ }
       doc.restoreGraphicsState();
       lagos(P);
       limitesNacionales(P);
