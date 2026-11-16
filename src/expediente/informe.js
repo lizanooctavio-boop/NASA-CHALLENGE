@@ -1009,6 +1009,9 @@
       seccion('P');
       var h = PV.horizonte, inds = PV.indicadores;
       var dest = PV.destacadas.map(function (id) { return inds.filter(function (o) { return o.id === id; })[0]; });
+      // Las cifras proyectadas (tabla C, fichas D y gráficos E) solo se imprimen para indicadores no exploratorios; los
+      // exploratorios se nombran con su motivo y sus datos completos quedan en el ZIP.
+      var vis = inds.filter(function (o) { return o.clasificacion.clase !== 'exploratorio'; });
       var expl = inds.filter(function (o) { return o.clasificacion.clase === 'exploratorio'; }), nop = inds.filter(function (o) { return o.clasificacion.clase === 'no_proyectable'; });
       // A. Resumen
       titular('A. ' + t('p.a'), 2);
@@ -1047,7 +1050,7 @@
       // C. Tabla de tendencias
       nuevaPagina();
       titular('C. ' + t('p.c'), 2);
-      var filas = inds.map(function (o) {
+      var filas = vis.map(function (o) {
         var hh = o.historico, pr = o.proyeccion, d = o.decimales, val = o.validacion, sm = val && val.modelos && o.seleccion ? val.modelos[o.seleccion.modelo] : null;
         return [nomInd(o) + ' (' + uInd(o) + ')',
           hh.periodo.join('–') + ' (n ' + hh.n_validos + ')',
@@ -1058,6 +1061,7 @@
           clase(o)];
       });
       tabla([t('f.indicador'), t('p.c.periodo'), t('p.c.hist'), t('p.c.cambio', { ini: h.inicio, fin: h.fin }), t('p.c.intervalo'), t('p.c.habilidad'), t('p.c.clasif')], filas, [30, 18, 36, 16, 30, 24, 18], { titulo: t('p.c.titulo', { ini: h.inicio, fin: h.fin }), tam: 6.6 });
+      if (expl.length) pie(t('p.c.omitidas', { n: expl.length }));
       pie(t('p.c.notas', { ref: PV.referencia.inicio + '–' + PV.referencia.fin, n: PV.familia_hipotesis.pruebas, sim: PV.n_simulaciones, sem: PV.semilla }));
       var fc = [];
       inds.forEach(function (o) { if (!o.cmip6) return; Object.keys(o.cmip6.escenarios).forEach(function (e) { var c = o.cmip6.escenarios[e]; fc.push([nomInd(o), e.toUpperCase().replace('SSP', 'SSP').replace(/(\d)(\d)(\d)$/, '$1-$2.$3'), String(c.n_modelos), sgn(c.cambio_mediana, 2) + ' (' + n(c.cambio_min, 2) + ' … ' + n(c.cambio_max, 2) + ') ' + c.unidad_cambio, c.proyectado_mediana === null ? t('na') : n(c.proyectado_mediana, o.decimales) + ' (' + n(c.proyectado_min, o.decimales) + ' … ' + n(c.proyectado_max, o.decimales) + ')', c.cambio_vs_referencia_mediana === undefined ? t('na') : sgn(c.cambio_vs_referencia_mediana, o.decimales) + ' ' + uInd(o), c.modelos_aumento + ' / ' + c.modelos_disminucion]); }); });
@@ -1076,7 +1080,7 @@
       // D. Ficha por indicador
       nuevaPagina();
       titular('D. ' + t('p.d'), 2);
-      inds.forEach(function (o) {
+      vis.forEach(function (o) {
         var hh = o.historico, pr = o.proyeccion, d = o.decimales, f = [];
         f.push([t('p.d.mide'), idioma === 'en' ? o.que_mide_en : o.que_mide]);
         f.push([t('p.d.fuente'), o.fuente + ' · ' + hh.periodo.join('–') + ' · ' + t('tipo.' + (o.tipo_dato === 'observacion' ? 'observacion' : 'reanalisis'))]);
@@ -1102,7 +1106,7 @@
       nuevaPagina();
       titular('E. ' + t('p.e'), 2);
       parrafo(t('p.e.txt'), { tam: 8.6 });
-      var conP = inds.filter(function (o) { return o.proyeccion; });
+      var conP = vis.filter(function (o) { return o.proyeccion; });
       var gw = (ANCHO - 22) / 2, gh = 44;
       conP.forEach(function (o, k) {
         var col = k % 2;
