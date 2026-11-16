@@ -263,5 +263,20 @@
   // Comprueba que un resultado guardado no ha sido alterado (se usa al abrir un expediente).
   function verificar(res) { return !!res && res.esquema === 'etd-resultados' && resultadoId(res) === res.resultado_id; }
 
-  return { analizar: analizar, resultadoId: resultadoId, verificar: verificar, diasMes: diasMes };
+  /*
+   * Desacuerdo entre fuentes: la tendencia del área (NASA POWER/MERRA-2) excluye el cero y una comparación independiente
+   * (GISTEMP o IMERG) no la confirma: la excluye con el signo contrario («contrario») o incluye el cero («no_confirma»).
+   * MERRA-2 tiene saltos conocidos por cambios en las observaciones asimiladas, así que en esos casos la tendencia no se
+   * presenta como confirmada. Devuelve la comparación con su tipo, o null.
+   */
+  function desacuerdoFuentes(res, comparaciones) {
+    var s = res && res.tendencia && res.tendencia.sen;
+    if (!s || !(s.ic_inf_decada * s.ic_sup_decada > 0)) return null;
+    var signo = Math.sign(s.ic_inf_decada);
+    var c = (comparaciones || res.comparaciones || []).filter(function (x) { return x && isFinite(x.inf) && isFinite(x.sup); })[0];
+    if (!c || (c.inf * c.sup > 0 && Math.sign(c.inf) === signo)) return null;
+    return Object.assign({}, c, { tipo: c.inf * c.sup > 0 ? 'contrario' : 'no_confirma' });
+  }
+
+  return { analizar: analizar, resultadoId: resultadoId, verificar: verificar, diasMes: diasMes, desacuerdoFuentes: desacuerdoFuentes };
 });

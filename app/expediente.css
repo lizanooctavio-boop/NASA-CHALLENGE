@@ -41,3 +41,5 @@
 .exp-abrir input{font-size:12px}
 .expediente button.principal{background:rgba(111,216,255,.25);border-color:rgba(111,216,255,.65);font-weight:600}
 @media (max-width:700px){.exp-cabecera{flex-direction:column}.exp-rango input{width:72px}}
+.exp-veredicto[data-estado="desacuerdo"] strong{color:var(--ambar)}
+.exp-pp-exploratorias{margin:10px 0}.exp-pp-exploratorias summary{cursor:pointer;color:var(--cian);font-weight:600}

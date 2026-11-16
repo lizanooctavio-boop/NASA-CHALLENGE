@@ -313,20 +313,25 @@
     const cuenta = cl => PV.indicadores.filter(o => o.clasificacion.clase === cl).length;
     art.append(h('p', { id: 'exp-pp-resumen' }, t('pp.resumen', { v: cuenta('validada'), e: cuenta('exploratorio'), n: cuenta('no_proyectable'), x: PV.excluidas.length })));
     const ref = PV.referencia.inicio + '–' + PV.referencia.fin;
-    const tb = h('table', { class: 'exp-ficha exp-pp-tabla', id: 'exp-pp-tabla' }, h('caption', null, t('pp.tabla', { ref })));
-    tb.append(h('tr', null, ...['pp.col.indicador', 'pp.col.cambio', 'pp.col.intervalo', 'pp.col.habilidad', 'pp.col.clase'].map(k => h('th', { scope: 'col' }, t(k)))));
-    PV.indicadores.forEach(o => {
+    // Las filas exploratorias (sin habilidad o con la inhomogeneidad de lluvia de MERRA-2) van plegadas: sus cifras
+    // no sostienen conclusiones y, a la vista, se confundirían con proyecciones validadas.
+    const tabla = (id, filas) => { const x = h('table', { class: 'exp-ficha exp-pp-tabla', id }, h('caption', null, t('pp.tabla', { ref })));
+      x.append(h('tr', null, ...['pp.col.indicador', 'pp.col.cambio', 'pp.col.intervalo', 'pp.col.habilidad', 'pp.col.clase'].map(k => h('th', { scope: 'col' }, t(k))))); filas.forEach(o => x.append(fila(o))); return x; };
+    const fila = o => {
       const p = o.proyeccion, u = en ? o.unidad_en || o.unidad : o.unidad, d = o.decimales === undefined ? 1 : o.decimales, cl = o.clasificacion.clase;
       const cr = p && p.cambio_vs_referencia.prediccion, sel = o.seleccion && o.validacion && o.validacion.modelos[o.seleccion.modelo];
       const signo = v => (v > 0 ? '+' : '') + num(v, d);
-      tb.append(h('tr', { 'data-indicador': o.id, 'data-clase': cl, class: PV.destacadas.includes(o.id) ? 'exp-pp-destacada' : null },
+      return h('tr', { 'data-indicador': o.id, 'data-clase': cl, class: PV.destacadas.includes(o.id) ? 'exp-pp-destacada' : null },
         h('th', { scope: 'row' }, (PV.destacadas.includes(o.id) ? '★ ' : '') + (en ? o.nombre_en : o.nombre)),
         h('td', null, cr ? signo(cr.p50) + ' ' + u : '—'),
         h('td', null, cr ? t('pp.pi80', { a: signo(cr.p10), b: signo(cr.p90) }) : '—'),
         h('td', null, sel ? t('p.modelo.' + o.seleccion.modelo) + ' · MSSS ' + num(sel.habilidad, 2) : '—'),
-        h('td', { title: t('p.motivo.' + o.clasificacion.motivo) }, t('p.clase.' + cl))));
-    });
-    art.append(tb);
+        h('td', { title: t('p.motivo.' + o.clasificacion.motivo) }, t('p.clase.' + cl)));
+    };
+    const exploratorias = PV.indicadores.filter(o => o.clasificacion.clase === 'exploratorio');
+    art.append(tabla('exp-pp-tabla', PV.indicadores.filter(o => o.clasificacion.clase !== 'exploratorio')));
+    if (exploratorias.length) art.append(h('details', { class: 'exp-pp-exploratorias', id: 'exp-pp-exploratorias' },
+      h('summary', null, t('pp.exploratorias', { n: exploratorias.length })), h('p', { class: 'pista' }, t('pp.exploratorias_txt')), tabla('exp-pp-tabla-exploratorias', exploratorias)));
     if (PV.cmip6_fuente) art.append(h('p', { class: 'pista' }, t('pp.cmip', { region: PV.cmip6_fuente.nombre }) + (PV.cmip6_fuente.interpolado ? ' ' + t('pp.cmip_interp') : '')));
     art.append(h('p', { class: 'pista' }, t('pp.nota')));
     art.append(h('p', { class: 'pista exp-ids' }, t('pp.id') + ': ', h('code', { id: 'exp-perspectiva-id' }, PV.perspectiva_id)));
@@ -395,7 +400,7 @@
     let regiones = null, admin = null;
     if (res.perspectiva && PP) { try { regiones = (await insumosPerspectiva()).regiones; } catch (x) { regiones = null; } }
     try { admin = (await cargarAdmin()).dep; } catch (x) { admin = null; }
-    return INF.crear(res, { imagen: sat && sat.portada, mapaSatelite: sat && sat.detalle, regiones, admin, jsPDF: L2.jsPDF, qrcode: L2.qrcode, mundo: L2.mundo, enlace: e && !e.demasiado_largo ? e.url : null, idioma: ex.idioma, plantilla: ex.plantilla, secciones: ex.secciones, autor: ex.autor, organizacion: ex.organizacion, notas: ex.notas, comparaciones: res.comparaciones || [], generado_utc: new Date().toISOString() });
+    return INF.crear(res, { imagen: sat && sat.portada, mapaSatelite: sat && sat.detalle, regiones, admin, jsPDF: L2.jsPDF, qrcode: L2.qrcode, mundo: L2.mundo, enlace: e && !e.demasiado_largo ? e.url : null, idioma: ex.idioma, plantilla: ex.plantilla, secciones: ex.secciones, autor: ex.autor, organizacion: ex.organizacion, notas: ex.notas, comparaciones: res.comparaciones || [], desacuerdo: A.desacuerdoFuentes(res), generado_utc: new Date().toISOString() });
   }
   function descargar(nombre, datos, tipo) {
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([datos], { type: tipo })); a.download = nombre; document.body.append(a); a.click(); a.remove();
@@ -624,13 +629,14 @@
     return svg;
   }
 
+  const textoDesacuerdo = cmp => t('expl.desacuerdo.' + cmp.tipo, { fuente: cmp.fuente, region: cmp.region, periodo: cmp.periodo, valor: num(cmp.valor, 3), u: cmp.unidad, inf: num(cmp.inf, 3), sup: num(cmp.sup, 3) });
   function panelResultados() {
     const res = S.resultado, T = res.tendencia, R = res.resumen, u = res.variable.unidad, dec = res.variable.decimales, nivel = Math.round(T.nivel * 100);
     const art = h('article', { id: 'exp-resultados', 'data-resultado': res.resultado_id }, h('h3', null, t('paso.resultados')));
     if (S.origenResultado === 'guardado') art.append(h('p', { class: 'exp-sello' }, t('exp.enlace_resultado') + ' · ' + res.resultado_id));
-    const est = T.veredicto.estado;
+    const dsc = A.desacuerdoFuentes(res), est = dsc ? 'desacuerdo' : T.veredicto.estado;
     art.append(h('div', { class: 'veredicto exp-veredicto', 'data-estado': est },
-      h('div', { class: 'tarjeta' }, h('small', null, t('res.veredicto')), h('strong', { id: 'exp-veredicto' }, t('ver.' + est)), h('p', null, t('expl.' + est)))));
+      h('div', { class: 'tarjeta' }, h('small', null, t('res.veredicto')), h('strong', { id: 'exp-veredicto' }, t('ver.' + est)), h('p', null, dsc ? textoDesacuerdo(dsc) : t('expl.' + est)))));
     const tj = h('div', { class: 'tarjetas' });
     const tarjeta = (id, tit, val, det) => tj.append(h('div', { class: 'tarjeta', id }, h('small', null, tit), h('strong', null, val), det ? h('p', null, det) : null));
     tarjeta('exp-sen', t('res.sen'), T.sen ? num(T.sen.pendiente_decada, dec + 1) + ' ' + t('res.por_decada', { u }) : t('na'), T.sen ? t('res.ic', { nivel, inf: num(T.sen.ic_inf_decada, dec + 1), sup: num(T.sen.ic_sup_decada, dec + 1) }) + ' · ' + t('res.mk') + ' ' + t('res.p', { p: T.sen.p_mann_kendall < 1e-4 ? '< ' + num(1e-4, 4) : '= ' + num(T.sen.p_mann_kendall, 4) }) : null);

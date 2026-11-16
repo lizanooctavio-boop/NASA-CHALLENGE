@@ -417,7 +417,8 @@
     }
 
     // ------------------------------------------------------------------ textos comunes
-    function veredictoTxt() { return t('ver.' + res.tendencia.veredicto.estado); }
+    function veredictoTxt() { return t('ver.' + (op.desacuerdo ? 'desacuerdo' : res.tendencia.veredicto.estado)); }
+    function desacuerdoTxt() { var c = op.desacuerdo; return c ? t('expl.desacuerdo.' + c.tipo, { fuente: c.fuente, region: c.region, periodo: c.periodo, valor: n(c.valor, 3), u: c.unidad, inf: n(c.inf, 3), sup: n(c.sup, 3) }) : ''; }
     function temporadaTxt() {
       var m = res.consulta.meses, nombres = t('mes');
       if (m.length === 12) return t('consulta.temporada.anual');
@@ -512,7 +513,7 @@
       parrafo(t('b.periodo'), { estilo: 'bold', despues: 0.5 });
       parrafo(t('b.periodo_txt', { ini: res.consulta.periodo.inicio, fin: res.consulta.periodo.fin, n: R.n_validos, total: R.anios_periodo, temporada: temporadaTxt(), fuente: 'NASA POWER ' + (res.fuente.version_api || '') + ' (MERRA-2)', tipo: t('tipo.' + res.fuente.tipo_dato) }));
       parrafo(t('b.resultado'), { estilo: 'bold', despues: 0.5 });
-      if (T.sen) parrafo(t('b.resultado_tend', { veredicto: veredictoTxt(), sen: senTxt(), u: u, nivel: nivelPct, inf: n(T.sen.ic_inf_decada, dec + 1), sup: n(T.sen.ic_sup_decada, dec + 1), p: pf(T.sen.p_mann_kendall) }) + ' ' + t('expl.' + T.veredicto.estado));
+      if (T.sen) parrafo(t('b.resultado_tend', { veredicto: veredictoTxt(), sen: senTxt(), u: u, nivel: nivelPct, inf: n(T.sen.ic_inf_decada, dec + 1), sup: n(T.sen.ic_sup_decada, dec + 1), p: pf(T.sen.p_mann_kendall) }) + ' ' + (op.desacuerdo ? desacuerdoTxt() : t('expl.' + T.veredicto.estado)));
       else parrafo(t('b.resultado_falta', { motivo: motivoTxt() }) + ' ' + t('expl.faltan'));
       parrafo(t('b.limitacion'), { estilo: 'bold', despues: 0.5 });
       parrafo(limitacionPrincipal());
@@ -653,7 +654,7 @@
       titular('1. ' + t('g.calculado'), 2);
       parrafo(T.sen ? t('b.resultado_tend', { veredicto: veredictoTxt(), sen: senTxt(), u: u, nivel: nivelPct, inf: n(T.sen.ic_inf_decada, dec + 1), sup: n(T.sen.ic_sup_decada, dec + 1), p: pf(T.sen.p_mann_kendall) }) : t('b.resultado_falta', { motivo: motivoTxt() }));
       titular('2. ' + t('g.interpretacion'), 2);
-      parrafo(t('expl.' + T.veredicto.estado) + ' ' + t('g.no_pronostico'));
+      parrafo((op.desacuerdo ? desacuerdoTxt() : t('expl.' + T.veredicto.estado)) + ' ' + t('g.no_pronostico'));
       if (res.calidad.avisos.indexOf('consulta_puntual') >= 0) parrafo(avisoTxt('consulta_puntual'));
       titular('3. ' + t('g.literatura'), 2);
       var comps = op.comparaciones || [];
